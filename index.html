@@ -567,6 +567,18 @@
     flex-shrink:0;
   }
   .tk-launch-row .badge svg{width:22px;height:22px;stroke:#ffd23d;fill:none;stroke-width:2;}
+  /* Coin badge — no plate background, just the coin image */
+  .tk-launch-row .badge.coin-badge{
+    background:transparent;
+    border:none;
+    width:50px;height:50px;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  }
+  .tk-launch-row .badge.coin-badge img{
+    width:100%;height:100%;
+    object-fit:contain;
+    display:block;
+  }
   .tk-launch-row .meta .label{
     font-size:11px;color:#888;font-weight:900;
     letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px;
@@ -1027,9 +1039,7 @@
 
       <div class="tk-launch-rows">
         <div class="tk-launch-row">
-          <div class="badge">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M7 10h10M7 14h6"/></svg>
-          </div>
+          <div class="badge coin-badge"><img src="coin.png" alt="$SCC"></div>
           <div class="meta">
             <div class="label">Contract Address · BSC</div>
             <div class="addr pending">Available at launch — stay tuned</div>
@@ -1040,9 +1050,7 @@
         </div>
 
         <div class="tk-launch-row">
-          <div class="badge">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 8l7-6 7 6M5 16l7 6 7-6"/></svg>
-          </div>
+          <div class="badge coin-badge"><img src="tether.png" alt="USDT"></div>
           <div class="meta">
             <div class="label">Rewards Token · USDT</div>
             <div class="addr pending">Available at launch — stay tuned</div>
@@ -1146,7 +1154,7 @@ const dummy=new THREE.Object3D();
 // PIG (voxel character — red cape, hustler with sunglasses)
 // ============================================================
 function makePig(){
-  const B=0x1da4e9,RD=0xd32f2f,DRD=0x9a1a1a,GD=0xffd23d,K=0x0a0a0a,W=0xffffff;
+  const B=0x1da4e9,RD=0xd32f2f,DRD=0x9a1a1a,GD=0xffd23d,K=0x0a0a0a,W=0xffffff,PK=0xffb19f;
   const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
   const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
 
@@ -1222,8 +1230,11 @@ function makePig(){
   // Arms — blue with gold cuff/wristband at the bottom (slightly wider than arm)
   for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
   for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+  // Pink hand below the cuff — chunky cube
+  for(let x=-15;x<=-12;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,PK);
   for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
   for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
+  for(let x=10;x<=13;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,PK);
 
   // Legs — blue with black hooves at the bottom (extended forward to suggest toes)
   for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
@@ -2167,7 +2178,7 @@ function buildGroupCulled(buckets){
   return g;
 }
 function makePig(){
-  const B=0x1da4e9,RD=0xd32f2f,DRD=0x9a1a1a,GD=0xffd23d,K=0x0a0a0a,W=0xffffff;
+  const B=0x1da4e9,RD=0xd32f2f,DRD=0x9a1a1a,GD=0xffd23d,K=0x0a0a0a,W=0xffffff,PK=0xffb19f;
   const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
   const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
   const headMods=new Map();
@@ -2206,8 +2217,10 @@ function makePig(){
   }
   for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
   for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+  for(let x=-15;x<=-12;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,PK);
   for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
   for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
+  for(let x=10;x<=13;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,PK);
   for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
   for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
   for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
