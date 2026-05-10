@@ -1350,9 +1350,171 @@
     .how-to-trade{padding:40px 14px 60px;}
     .volume-3d{height:260px;}
   }
+
+  /* ============================================================
+     TOP BANNER (above navbar)
+     ============================================================ */
+  .top-banner{
+    width:100%;
+    background:#1d4fd8;
+    color:#fff;
+    padding:10px 24px;
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    font-size:12px;font-weight:700;letter-spacing:0.05em;
+    text-transform:uppercase;
+    border-bottom:2px solid #0a0a0a;
+  }
+  .top-banner .dot{
+    display:inline-block;width:8px;height:8px;border-radius:50%;
+    background:#23d76b;box-shadow:0 0 0 3px rgba(35,215,107,0.3);
+    animation:pulse 1.5s ease-in-out infinite;flex-shrink:0;
+  }
+  .top-banner b{color:#ffd23d;font-weight:900;}
+  .top-banner .price{font-size:14px;letter-spacing:0.03em;}
+  .top-banner .banner-only{opacity:0.85;}
+
+  /* ============================================================
+     NEW HERO — mascot heroed
+     ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+  .hero-new{
+    position:relative;
+    min-height:calc(100vh - 130px);
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    align-items:center;
+    gap:40px;
+    padding:50px 80px 70px;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(255,210,61,0.18), transparent 60%),
+      linear-gradient(180deg, #fff 0%, #fafaf6 100%);
+    overflow:hidden;
+  }
+  .hero-left{position:relative;z-index:2;}
+  .hero-headline{
+    font-family:'Lilita One', system-ui, sans-serif;
+    font-size:clamp(48px, 6.5vw, 92px);
+    line-height:0.92;
+    letter-spacing:-0.02em;
+    margin:0 0 18px;
+    color:#0a0a0a;
+    text-shadow:3px 3px 0 rgba(0,0,0,0.05);
+    font-weight:400;
+  }
+  .hero-headline .gold{
+    color:#ffd23d;
+    -webkit-text-stroke:2px #0a0a0a;
+    text-shadow:4px 4px 0 #c79a0c, 5px 5px 0 #0a0a0a;
+  }
+  .hero-sub{
+    font-size:clamp(16px, 1.6vw, 20px);
+    line-height:1.5;
+    color:#444;
+    max-width:520px;
+    margin:0 0 32px;
+    font-weight:500;
+  }
+  .hero-sub b{color:#0a0a0a;font-weight:800;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px;}
+  .hero-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 28px;border-radius:8px;
+    font-weight:900;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;
+    text-decoration:none;border:2px solid;cursor:pointer;
+    transition:transform 0.15s ease;
+  }
+  .hero-btn:hover{transform:translateY(-2px);}
+  .hero-btn.primary{
+    background:#ffd23d;color:#0a0a0a;border-color:#ffd23d;
+    box-shadow:0 0 0 1px #0a0a0a inset, 4px 4px 0 #0a0a0a;
+  }
+  .hero-btn.secondary{
+    background:#fff;color:#0a0a0a;border-color:#0a0a0a;
+    box-shadow:4px 4px 0 #ffd23d;
+  }
+  .hero-trust{
+    display:flex;gap:28px;flex-wrap:wrap;
+    font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#666;
+  }
+  .hero-trust .item{display:flex;align-items:center;gap:8px;}
+  .hero-trust .item svg{width:16px;height:16px;color:#23d76b;}
+
+  .hero-right{
+    position:relative;z-index:2;
+    display:flex;align-items:center;justify-content:center;
+    min-height:520px;
+  }
+  .hero-stage{position:relative;width:100%;max-width:560px;aspect-ratio:1/1;}
+  .hero-glow{
+    position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,210,61,0.45) 0%, rgba(255,210,61,0.18) 35%, transparent 65%);
+    filter:blur(20px);
+    animation:heroGlow 4s ease-in-out infinite;
+  }
+  @keyframes heroGlow{
+    0%,100%{transform:scale(1);opacity:0.9;}
+    50%{transform:scale(1.05);opacity:1;}
+  }
+  .hero-platter{
+    position:absolute;bottom:5%;left:50%;transform:translateX(-50%);
+    width:74%;height:8%;border-radius:50%;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, transparent 65%);
+    filter:blur(4px);
+  }
+  .hero-mascot{
+    position:absolute;top:5%;left:50%;transform:translateX(-50%);
+    width:78%;height:auto;
+    animation:heroBob 4s ease-in-out infinite;
+    filter:drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+  }
+  @keyframes heroBob{
+    0%,100%{transform:translateX(-50%) translateY(0);}
+    50%{transform:translateX(-50%) translateY(-12px);}
+  }
+  .hero-float-coin{
+    position:absolute;top:8%;left:-2%;width:28%;
+    animation:heroFloatA 5s ease-in-out infinite;
+    filter:drop-shadow(0 8px 16px rgba(0,0,0,0.18));z-index:3;
+  }
+  @keyframes heroFloatA{
+    0%,100%{transform:translateY(0) rotate(-8deg);}
+    50%{transform:translateY(-18px) rotate(-2deg);}
+  }
+  .hero-float-tether{
+    position:absolute;top:22%;right:-2%;width:18%;
+    animation:heroFloatB 6s ease-in-out infinite;
+    filter:drop-shadow(0 8px 16px rgba(0,0,0,0.18));z-index:3;
+  }
+  @keyframes heroFloatB{
+    0%,100%{transform:translateY(0) rotate(10deg);}
+    50%{transform:translateY(-14px) rotate(2deg);}
+  }
+  @media (max-width:900px){
+    .hero-new{grid-template-columns:1fr;padding:24px 22px 40px;gap:20px;min-height:auto;}
+    .hero-right{min-height:380px;order:1;}
+    .hero-left{order:2;text-align:center;}
+    .hero-cta{justify-content:center;}
+    .hero-trust{justify-content:center;}
+    .hero-stage{max-width:420px;}
+    .hero-sub{margin-left:auto;margin-right:auto;}
+    .top-banner{font-size:11px;padding:8px 14px;gap:8px;flex-wrap:wrap;}
+    .top-banner .banner-only{display:none;}
+  }
+  @media (max-width:600px){
+    .hero-new{padding:18px 14px 30px;}
+    .hero-right{min-height:320px;}
+    .hero-headline{font-size:46px;}
+    .hero-btn{padding:14px 22px;font-size:12px;}
+  }
 </style>
 </head>
 <body>
+
+<div class="top-banner">
+  <span class="dot"></span>
+  <span class="banner-text"><b>INITIAL COIN OFFERING</b> — Now available at <b class="price">$0.002</b> per coin</span>
+  <span class="banner-only">— Only for a limited time</span>
+</div>
 
 <nav class="navbar">
   <div class="nav-brand">
@@ -1376,28 +1538,36 @@
   <button class="nav-cta">Connect</button>
 </nav>
 
-<div class="infobar">
-  <div class="item"><span class="pill">MEGA SALE</span><span class="label">NOW AVAILABLE</span></div>
-  <div class="item"><span class="label">INITIAL COIN OFFERING</span><span class="price">$0.002 <span class="small">PER COIN</span></span></div>
-  <div class="item"><span class="icon">⏱</span><span class="label">ONLY FOR A LIMITED TIME</span></div>
-</div>
-
-<div class="hero-section">
-<div class="hero">
-  <div class="text">
-    <div id="vt"></div>
-    <hr class="divider">
-    <div class="getpaid-row">
-      <img src="coin.png" alt="$SCC" class="getpaid-coin">
-      <div class="getpaid-text">
-        <p class="getpaid">Get Paid Royalties.</p>
-        <p class="tagline">The world's biggest rewards meme coin!</p>
-      </div>
+<section class="hero-new">
+  <div class="hero-left">
+    <h1 class="hero-headline">
+      Get Paid<br>
+      <span class="gold">Royalties.</span>
+    </h1>
+    <p class="hero-sub">
+      The world's biggest <b>rewards meme coin.</b> Every buy sends 25% straight to holders as USDT — no claiming, no farming, just <b>passive income</b> while you hold.
+    </p>
+    <div class="hero-cta">
+      <a class="hero-btn primary" href="#">Buy $SCC Now →</a>
+      <a class="hero-btn secondary" href="#distributor">How It Works</a>
+    </div>
+    <div class="hero-trust">
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>opBNB Network</div>
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Auto-Distributed</div>
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>1B Max Supply</div>
     </div>
   </div>
-  <div class="anim"><div id="vc"></div></div>
-</div>
-</div>
+
+  <div class="hero-right">
+    <div class="hero-stage">
+      <div class="hero-glow"></div>
+      <div class="hero-platter"></div>
+      <img class="hero-float-coin" src="coin.png" alt="">
+      <img class="hero-float-tether" src="tether.png" alt="">
+      <img class="hero-mascot" src="step2-crypto.png" alt="Super Cash Coin Mascot">
+    </div>
+  </div>
+</section>
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
@@ -1606,10 +1776,10 @@
           </div>
           <div class="tk-stat-info">
             <div class="label">Blockchain</div>
-            <div class="value">Binance Smart Chain</div>
-            <div class="note">BEP-20 Token</div>
+            <div class="value">opBNB</div>
+            <div class="note">opBNB Network Token</div>
           </div>
-          <div class="tk-stat-tag">BSC</div>
+          <div class="tk-stat-tag">opBNB</div>
         </div>
       </div>
     </div>
@@ -1624,7 +1794,7 @@
         <div class="tk-launch-row">
           <div class="badge coin-badge"><img src="coin.png" alt="$SCC"></div>
           <div class="meta">
-            <div class="label">Contract Address · BSC</div>
+            <div class="label">Contract Address · opBNB</div>
             <div class="addr pending">Available at launch — stay tuned</div>
           </div>
           <button class="copy-btn disabled" title="Available at launch" disabled>
@@ -1645,7 +1815,7 @@
       </div>
 
       <div class="tk-launch-cta">
-        Make sure you're on the <b>Binance Smart Chain</b> network. Always verify the contract on launch day from the official channels.
+        Make sure you're on the <b>opBNB</b> network. Always verify the contract on launch day from the official channels.
       </div>
     </div>
   </div>
@@ -1696,7 +1866,7 @@
         <div class="htt-card-img"><img src="step1-wallet.png" alt="Get a Wallet"></div>
         <div class="htt-card-body">
           <h3>Get a <span class="gold">Wallet</span></h3>
-          <p>Get yourself <b>MetaMask</b> or whatever wallet you're comfortable with and add the <b>Binance Smart Chain</b> network — that's where $SCC lives.</p>
+          <p>Get yourself <b>MetaMask</b> or whatever wallet you're comfortable with and add the <b>opBNB</b> network — that's where $SCC lives.</p>
         </div>
       </div>
 
@@ -1704,7 +1874,7 @@
         <div class="htt-card-img"><img src="step2-crypto.png" alt="Get Some Crypto"></div>
         <div class="htt-card-body">
           <h3>Get Some <span class="gold">Crypto</span></h3>
-          <p>$SCC is priced in <b>USDT</b>. Use <b>Binance</b> or any crypto provider to buy USDT, then send it to your wallet on the BSC network.</p>
+          <p>$SCC is priced in <b>USDT</b>. Use <b>Binance</b> or any crypto provider to buy USDT, then send it to your wallet on the opBNB network.</p>
         </div>
       </div>
 
@@ -1731,6 +1901,7 @@
 <script>
 (function(){
 const M=document.getElementById('vc');
+if(!M)return;  // hero replaced with static mascot — old scene disabled
 const Wd=M.clientWidth,Hd=M.clientHeight;
 const sc=new THREE.Scene();
 sc.background=new THREE.Color(0xffffff);
@@ -3214,7 +3385,7 @@ window.addEventListener('resize',()=>{
 </script>
 
 <script>
-// === DISTRIBUTOR — metal machine + voxel humans cheering ===
+// === DISTRIBUTOR — Generous pig tosses dollar bills to voxel holders ===
 (function(){
   const canvas=document.getElementById('distScene');
   if(!canvas||!window.THREE)return;
@@ -3223,636 +3394,345 @@ window.addEventListener('resize',()=>{
 
   const sc=new THREE.Scene();
   const cam=new THREE.PerspectiveCamera(36, Wd/Hd, 0.1, 600);
-  cam.position.set(0,30,110);
-  cam.lookAt(0,16,0);
+  cam.position.set(0,28,108);
+  cam.lookAt(0,12,0);
 
   const r=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
   r.setPixelRatio(window.devicePixelRatio||1);
   r.setSize(Wd,Hd,false);
 
-  // Lighting
-  sc.add(new THREE.AmbientLight(0xffffff,0.6));
-  const key=new THREE.DirectionalLight(0xffffff,1.0);
-  key.position.set(20,40,30);sc.add(key);
-  const fill=new THREE.DirectionalLight(0xffe6cc,0.35);
+  // ===== Lighting =====
+  sc.add(new THREE.AmbientLight(0xffffff,0.7));
+  const key=new THREE.DirectionalLight(0xffffff,0.95);
+  key.position.set(25,45,30);sc.add(key);
+  const fill=new THREE.DirectionalLight(0xffe6cc,0.3);
   fill.position.set(-20,15,15);sc.add(fill);
   const rim=new THREE.DirectionalLight(0xfff0f0,0.25);
-  rim.position.set(0,10,-30);sc.add(rim);
+  rim.position.set(0,20,-30);sc.add(rim);
 
-  // === VOXEL HELPER ===
-  const FACES=[
-    {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
-    {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
-    {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
-    {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
-    {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
-    {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+  // ===== Floor disc =====
+  const floor=new THREE.Mesh(
+    new THREE.CircleGeometry(60,48),
+    new THREE.MeshLambertMaterial({color:0x1a1a1a})
+  );
+  floor.rotation.x=-Math.PI/2;
+  floor.position.y=-0.1;
+  sc.add(floor);
+
+  // ===== Helpers — voxel cube primitive =====
+  const cubeGeom=new THREE.BoxGeometry(1,1,1);
+  function cube(x,y,z,sx,sy,sz,color){
+    const m=new THREE.Mesh(cubeGeom, new THREE.MeshLambertMaterial({color}));
+    m.scale.set(sx,sy,sz);
+    m.position.set(x,y,z);
+    return m;
+  }
+
+  // ===== Build the GENEROUS PIG (center) — pink voxel pig with $ apron =====
+  function makePig(){
+    const g=new THREE.Group();
+    const pink=0xf4a8b5, pinkDark=0xd87c8d, gold=0xffd23d, black=0x141414, white=0xffffff;
+    // Body — fat round-ish pig body (stacked boxes)
+    g.add(cube(0, 8, 0, 14, 11, 10, pink));
+    // Belly highlight
+    g.add(cube(0, 6, 5.1, 11, 7, 0.5, pinkDark));
+    // Head
+    const head=new THREE.Group();
+    head.add(cube(0, 0, 0, 10, 8.5, 9, pink));
+    // Snout
+    head.add(cube(0, -1.5, 4.6, 4, 3, 1, pinkDark));
+    // Snout nostrils
+    head.add(cube(-0.9, -1.5, 5.15, 0.7, 0.7, 0.3, black));
+    head.add(cube(0.9, -1.5, 5.15, 0.7, 0.7, 0.3, black));
+    // Eyes
+    head.add(cube(-2.4, 1.5, 4.55, 1.5, 1.5, 0.3, white));
+    head.add(cube(2.4, 1.5, 4.55, 1.5, 1.5, 0.3, white));
+    head.add(cube(-2.4, 1.5, 4.71, 0.7, 0.9, 0.3, black));
+    head.add(cube(2.4, 1.5, 4.71, 0.7, 0.9, 0.3, black));
+    // Eyebrows (slight smile look)
+    head.add(cube(-2.4, 3.1, 4.55, 1.8, 0.5, 0.3, black));
+    head.add(cube(2.4, 3.1, 4.55, 1.8, 0.5, 0.3, black));
+    // Mouth — small smile
+    head.add(cube(0, -3.4, 4.55, 2.6, 0.5, 0.3, black));
+    // Ears (triangular-ish using rotated cubes)
+    const earL=cube(-4.2, 4.5, 0, 1.8, 2.6, 1.5, pinkDark);
+    earL.rotation.z=-0.3;
+    head.add(earL);
+    const earR=cube(4.2, 4.5, 0, 1.8, 2.6, 1.5, pinkDark);
+    earR.rotation.z=0.3;
+    head.add(earR);
+    head.position.set(0, 16, 0);
+    g.add(head);
+    g.userData.head=head;
+
+    // $ apron sign on chest
+    g.add(cube(0, 8, 5.3, 5, 5, 0.4, gold));
+    g.add(cube(0, 8, 5.55, 4, 4, 0.2, 0x1a1a1a));
+    // Make a chunky $ symbol with cubes
+    g.add(cube(0, 9.4, 5.7, 2.8, 0.7, 0.2, gold));
+    g.add(cube(0, 8, 5.7, 2.8, 0.7, 0.2, gold));
+    g.add(cube(0, 6.6, 5.7, 2.8, 0.7, 0.2, gold));
+    g.add(cube(-1.2, 8.7, 5.7, 0.6, 1.4, 0.2, gold));
+    g.add(cube(1.2, 7.3, 5.7, 0.6, 1.4, 0.2, gold));
+    g.add(cube(0, 10.2, 5.7, 0.5, 1.6, 0.2, gold));
+    g.add(cube(0, 5.8, 5.7, 0.5, 1.6, 0.2, gold));
+
+    // Arms — left arm rests on hip, right arm raised tossing bills
+    const armL=new THREE.Group();
+    armL.add(cube(0, -3, 0, 2.5, 6, 2.5, pink));
+    armL.position.set(-7.5, 9, 1);
+    g.add(armL);
+    g.userData.armL=armL;
+
+    // Right arm — pivots at shoulder, rises and tosses
+    const armR=new THREE.Group();
+    armR.add(cube(0, -3, 0, 2.5, 6, 2.5, pink));
+    // Hand (cube at end)
+    armR.add(cube(0, -6, 0, 2.8, 1.8, 2.8, pinkDark));
+    armR.position.set(7.5, 12, 1);
+    g.add(armR);
+    g.userData.armR=armR;
+
+    // Legs
+    g.add(cube(-3.5, 1.5, 0, 3, 3, 4, pinkDark));
+    g.add(cube(3.5, 1.5, 0, 3, 3, 4, pinkDark));
+    // Hooves
+    g.add(cube(-3.5, 0.1, 0.5, 3.2, 0.6, 4.4, black));
+    g.add(cube(3.5, 0.1, 0.5, 3.2, 0.6, 4.4, black));
+
+    // Cape (red) behind
+    g.add(cube(0, 9, -5.4, 11, 10, 0.5, 0xd32f2f));
+    g.add(cube(-5, 5, -5.4, 1, 4, 0.5, 0xd32f2f));
+    g.add(cube(5, 5, -5.4, 1, 4, 0.5, 0xd32f2f));
+
+    return g;
+  }
+
+  // ===== Make a chunky voxel MONEY BAG at pig's feet =====
+  function makeMoneyBag(){
+    const g=new THREE.Group();
+    const tan=0xc9a55a, tanDark=0x9c7d3a, gold=0xffd23d, black=0x141414;
+    // Round-ish body via stacked boxes
+    g.add(cube(0, 3.5, 0, 9, 6, 8, tan));
+    g.add(cube(0, 6.5, 0, 7, 1, 6, tan));
+    // Tied neck
+    g.add(cube(0, 7.2, 0, 3, 1.4, 3, tanDark));
+    // Tied top
+    g.add(cube(-1.8, 8.5, 0, 1.8, 1.2, 1.5, tan));
+    g.add(cube(1.8, 8.5, 0, 1.8, 1.2, 1.5, tan));
+    // Big $ on bag
+    g.add(cube(0, 4, 4.05, 3.5, 4, 0.2, gold));
+    g.add(cube(0, 5.5, 4.2, 2.5, 0.5, 0.2, gold));
+    g.add(cube(0, 4, 4.2, 2.5, 0.5, 0.2, gold));
+    g.add(cube(0, 2.5, 4.2, 2.5, 0.5, 0.2, gold));
+    g.add(cube(-1.1, 4.75, 4.2, 0.5, 1, 0.2, gold));
+    g.add(cube(1.1, 3.25, 4.2, 0.5, 1, 0.2, gold));
+    g.add(cube(0, 6, 4.2, 0.4, 1.2, 0.2, gold));
+    g.add(cube(0, 2, 4.2, 0.4, 1.2, 0.2, gold));
+    // Position next to pig
+    g.position.set(-14, 0, 4);
+    g.scale.setScalar(0.85);
+    return g;
+  }
+
+  // ===== Make a voxel PERSON catching bills =====
+  function makePerson(skinColor, shirtColor, pantsColor, hairColor){
+    const g=new THREE.Group();
+    const white=0xffffff, black=0x141414;
+    // Body / shirt
+    g.add(cube(0, 6, 0, 6, 7, 4, shirtColor));
+    // Head
+    const head=new THREE.Group();
+    head.add(cube(0, 0, 0, 5, 5, 4.5, skinColor));
+    // Hair
+    head.add(cube(0, 2.5, -0.2, 5.2, 1.5, 4.7, hairColor));
+    head.add(cube(0, 1.9, -2.1, 5.2, 1, 0.6, hairColor));
+    // Eyes
+    head.add(cube(-1.2, 0.4, 2.3, 0.7, 0.7, 0.2, black));
+    head.add(cube(1.2, 0.4, 2.3, 0.7, 0.7, 0.2, black));
+    // Smile
+    head.add(cube(0, -1.3, 2.3, 1.6, 0.4, 0.2, black));
+    head.position.set(0, 12.5, 0);
+    g.add(head);
+    g.userData.head=head;
+
+    // Arms — RAISED catching pose (both up like "yes!")
+    const armL=new THREE.Group();
+    armL.add(cube(0, -2, 0, 2, 5, 2, shirtColor));
+    armL.add(cube(0, -4.5, 0, 2.2, 1.5, 2.2, skinColor)); // hand
+    armL.position.set(-4, 10, 0);
+    armL.rotation.z=0.9;  // arms up
+    g.add(armL);
+    g.userData.armL=armL;
+
+    const armR=new THREE.Group();
+    armR.add(cube(0, -2, 0, 2, 5, 2, shirtColor));
+    armR.add(cube(0, -4.5, 0, 2.2, 1.5, 2.2, skinColor)); // hand
+    armR.position.set(4, 10, 0);
+    armR.rotation.z=-0.9;
+    g.add(armR);
+    g.userData.armR=armR;
+
+    // Legs
+    g.add(cube(-1.5, 1.5, 0, 2.4, 4, 2.4, pantsColor));
+    g.add(cube(1.5, 1.5, 0, 2.4, 4, 2.4, pantsColor));
+    // Shoes
+    g.add(cube(-1.5, -0.6, 0.3, 2.6, 0.6, 3, black));
+    g.add(cube(1.5, -0.6, 0.3, 2.6, 0.6, 3, black));
+
+    return g;
+  }
+
+  // ===== Make a dollar BILL (small flat green rectangle with $ detail) =====
+  const billGeom=new THREE.BoxGeometry(2.4, 1.2, 0.1);
+  const billGreen=new THREE.MeshLambertMaterial({color:0x2f9c4d});
+  const billGold=new THREE.MeshLambertMaterial({color:0xffd23d});
+  const billDark=new THREE.MeshLambertMaterial({color:0x1f6e35});
+  function makeBill(){
+    const g=new THREE.Group();
+    const front=new THREE.Mesh(billGeom, billGreen);
+    g.add(front);
+    // $ symbol in center
+    const dot=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.7,0.05), billGold);
+    dot.position.set(0,0,0.06);
+    g.add(dot);
+    // Border lines
+    const top=new THREE.Mesh(new THREE.BoxGeometry(2.3,0.1,0.05), billDark);
+    top.position.set(0,0.5,0.06);g.add(top);
+    const bot=new THREE.Mesh(new THREE.BoxGeometry(2.3,0.1,0.05), billDark);
+    bot.position.set(0,-0.5,0.06);g.add(bot);
+    return g;
+  }
+
+  // ===== Place actors =====
+  const pig=makePig();
+  pig.position.set(0,0,0);
+  sc.add(pig);
+
+  const bag=makeMoneyBag();
+  sc.add(bag);
+
+  // Half-circle of people facing pig
+  const peopleColors=[
+    {skin:0xf2cba6, shirt:0x3b73d8, pants:0x2a3a52, hair:0x4a2c1a},
+    {skin:0xc78c5a, shirt:0xe8503b, pants:0x2a2a2a, hair:0x1a1a1a},
+    {skin:0xf5d4ad, shirt:0x6dbf5a, pants:0x3a2a52, hair:0x8c5a2a},
+    {skin:0xb87a4d, shirt:0xffd23d, pants:0x4a2a1a, hair:0x2a1a0a},
+    {skin:0xe8b896, shirt:0xb14ed8, pants:0x2a3a4a, hair:0xe8c84a},
   ];
-  function buildGroup(voxelMap, opts){
-    const allPositions=[];
-    for(const arr of voxelMap.values())for(const p of arr)allPositions.push(p);
-    const occ=new Set(allPositions.map(p=>p[0]+','+p[1]+','+p[2]));
-    const group=new THREE.Group();
-    for(const [color, positions] of voxelMap.entries()){
-      const verts=[],norms=[],idx=[];let vi=0;
-      for(const p of positions){
-        const [px,py,pz]=p;
-        for(const f of FACES){
-          const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
-          if(occ.has(nk))continue;
-          for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
-          idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
-        }
-      }
-      const geo=new THREE.BufferGeometry();
-      geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
-      geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
-      geo.setIndex(idx);
-      // Metal materials get high metalness/low roughness; non-metal stays flat
-      const isMetal = opts && opts.metals && opts.metals.has(color);
-      const mat = isMetal
-        ? new THREE.MeshStandardMaterial({color, roughness:0.35, metalness:0.85, flatShading:true})
-        : new THREE.MeshStandardMaterial({color, roughness:0.55, metalness:0.05, flatShading:true});
-      group.add(new THREE.Mesh(geo, mat));
-    }
-    return group;
-  }
-
-  // Color palette
-  const STEEL=0xa8b0b8,       // light steel
-        STEEL_D=0x6e7680,     // dark steel (panels, vents)
-        STEEL_DD=0x444a52,    // very dark (pipe shadow)
-        GD=0xffd23d,          // gold (rivets, details)
-        GDD=0xc79a0c,         // dark gold (warning stripes)
-        K=0x0a0a0a,           // black (vents, eyes)
-        W=0xffffff,           // white (eye highlights)
-        TH=0x26a17b,          // tether green (USDT panel)
-        THD=0x1a7a5a,         // dark tether
-        PK=0xffb19f,          // pink (hands, faces)
-        REDLED=0xff3b3b,      // status light red
-        GRNLED=0x2cb84d;      // status light green
-  const METAL_SET = new Set([STEEL, STEEL_D, STEEL_DD, GD, GDD]);
-
-  // === BUILD MACHINE BODY ===
-  const M=new Map();
-  const add=(c,x,y,z)=>{if(!M.has(c))M.set(c,[]);M.get(c).push([x,y,z]);};
-
-  // Body shell (steel) — 21w x 16h x 14d, hollow outer voxels
-  for(let x=-10;x<=10;x++){
-    for(let y=4;y<=19;y++){
-      for(let z=-7;z<=7;z++){
-        if(x===-10||x===10||y===4||y===19||z===-7||z===7){
-          add(STEEL,x,y,z);
-        }
-      }
-    }
-  }
-  // Dark steel band middle (industrial belt)
-  for(let x=-10;x<=10;x++){
-    for(let z=-7;z<=7;z++){
-      if(x===-10||x===10||z===-7||z===7){
-        add(STEEL_D,x,9,z);
-        add(STEEL_D,x,10,z);
-      }
-    }
-  }
-
-  // RIVETS — gold dots in pattern around panels
-  // Front face (z=8): rivets at corners of front panel
-  for(const [rx,ry] of [[-9,5],[9,5],[-9,18],[9,18],[-9,11],[9,11]]){
-    add(GD,rx,ry,7);
-  }
-  // Back face mirror
-  for(const [rx,ry] of [[-9,5],[9,5],[-9,18],[9,18]]){
-    add(GD,rx,ry,-7);
-  }
-  // Side rivets along edges
-  for(const sx of [-10,10]){
-    for(const ry of [6,8,12,15,17]){
-      add(GD,sx,ry,6); add(GD,sx,ry,-6);
-    }
-  }
-  // Top rivets at corners
-  for(const [rx,rz] of [[-9,6],[9,6],[-9,-6],[9,-6]]){
-    add(GD,rx,19,rz);
-  }
-
-  // VENTS — rows of dark steel slits on the sides
-  for(const sx of [-10,10]){
-    for(let v=0;v<3;v++){
-      const yBase = 12 + v*2;
-      for(let dz=-4;dz<=4;dz++){
-        if(dz%2===0){  // slits with gaps
-          add(STEEL_DD,sx,yBase,dz);
-        }
-      }
-    }
-  }
-  // Top vent (chimney area)
-  for(let dx=-2;dx<=2;dx++){
-    for(let dz=-2;dz<=2;dz++){
-      add(STEEL_DD, dx, 19, dz);
-    }
-  }
-  // Chimney stack — thin steel tower above the top vent
-  for(let dy=20;dy<=23;dy++){
-    for(let dx=-1;dx<=1;dx++){
-      for(let dz=-1;dz<=1;dz++){
-        if(dx===-1||dx===1||dz===-1||dz===1)add(STEEL,dx,dy,dz);
-      }
-    }
-  }
-  // Chimney top rim (gold)
-  for(let dx=-2;dx<=2;dx++){
-    for(let dz=-2;dz<=2;dz++){
-      if(dx===-2||dx===2||dz===-2||dz===2)add(GD,dx,24,dz);
-    }
-  }
-
-  // FUNNEL TOP (gold) — same as before but smaller, sits beside chimney
-  // Actually let's put funnel on FRONT TOP CORNER for asymmetric machine look
-  // Skip — keep clean: chimney is the top feature now
-
-  // === USDT DISPLAY PANEL on the chest (front, z=8) ===
-  // Frame (dark steel)
-  for(let x=-5;x<=5;x++){
-    for(let y=13;y<=16;y++){
-      if(x===-5||x===5||y===13||y===16){
-        add(STEEL_D,x,y,8);
-      }
-    }
-  }
-  // Inside green glow
-  for(let x=-4;x<=4;x++){
-    for(let y=14;y<=15;y++){
-      add(TH,x,y,8);
-    }
-  }
-  // Tether T symbol on the panel — built from tiny dark voxels
-  // T top horizontal
-  for(let dx=-2;dx<=2;dx++)add(THD,dx,15,9);
-  // T vertical stem
-  for(let dy=14;dy<=15;dy++)add(THD,0,dy,9);
-
-  // === FACE FEATURES — eyes + smile (front of machine) ===
-  // Eye sockets (dark steel rims around white eyes)
-  for(let dx=-1;dx<=2;dx++)add(STEEL_DD,-5+dx,11,8);  // socket border
-  for(let dx=-1;dx<=2;dx++)add(STEEL_DD,3+dx,11,8);
-  for(let dx=0;dx<=1;dx++)add(W,-4+dx,11,8);
-  for(let dx=0;dx<=1;dx++)add(W,4+dx,11,8);
-  add(K,-4,11,8); add(K,4,11,8);  // pupils
-
-  // Smile — curve of dark voxels
-  add(K,-4,7,8);
-  add(K,-3,6,8);add(K,-2,6,8);add(K,-1,6,8);add(K,0,6,8);add(K,1,6,8);add(K,2,6,8);add(K,3,6,8);
-  add(K,4,7,8);
-
-  // === STATUS LIGHTS — small pulsing voxel dots near top ===
-  // 3 lights row near the top front (will be animated to blink)
-  add(REDLED,-3,17,8);
-  add(GRNLED,0,17,8);
-  add(GRNLED,3,17,8);
-
-  // === WARNING STRIPES — yellow/black diagonal pattern at base ===
-  for(let x=-9;x<=9;x++){
-    const stripe = (x+9) % 4;
-    const c = stripe<2 ? GDD : K;
-    add(c, x, 5, 7);  // bottom-front warning band
-  }
-
-  // === SHOULDER PIPES — chunky steel pipes coming out where arms attach ===
-  // Three pipes per side, each at the height where an arm starts
-  // Slot heights (matching arm.startY = 8 + slot*3): slot 0=8, slot 1=11, slot 2=14
-  for(const side of [-1,1]){
-    for(let slot=0;slot<3;slot++){
-      const py = 8 + slot*3;
-      const sx = side*11;
-      // Pipe sticks out 3 voxels from the body
-      for(let off=0;off<3;off++){
-        const xx = sx + side*off;
-        for(let dy=-1;dy<=1;dy++){
-          for(let dz=-1;dz<=1;dz++){
-            if(dy===-1||dy===1||dz===-1||dz===1){  // hollow ring
-              add(STEEL_D, xx, py+dy, dz);
-            }
-          }
-        }
-      }
-      // Pipe end cap (gold flange)
-      const capX = sx + side*3;
-      for(let dy=-1;dy<=1;dy++){
-        for(let dz=-1;dz<=1;dz++){
-          if(dy===-1||dy===1||dz===-1||dz===1){
-            add(GD, capX, py+dy, dz);
-          }
-        }
-      }
-    }
-  }
-
-  // === BASE / PEDESTAL ===
-  // Wider gold base block under the machine
-  for(let x=-12;x<=12;x++){
-    for(let z=-8;z<=8;z++){
-      add(GD, x, 3, z);
-    }
-  }
-  for(let x=-12;x<=12;x++){
-    for(let z=-8;z<=8;z++){
-      if(x===-12||x===12||z===-8||z===8){
-        add(GDD, x, 2, z);
-      }
-    }
-  }
-
-  const machine=buildGroup(M, {metals:METAL_SET});
-  sc.add(machine);
-
-  // Track the status light meshes so we can animate emissive
-  // Find the meshes with REDLED/GRNLED colors
-  let redLightMesh=null, greenLightMesh=null;
-  machine.traverse(o=>{
-    if(o.isMesh){
-      const hex=o.material.color.getHex();
-      if(hex===REDLED)redLightMesh=o;
-      if(hex===GRNLED)greenLightMesh=o;
-    }
+  const people=[];
+  // Arrange 5 people in arc to right + slightly forward
+  const arcPositions=[
+    {x: 22, z: 18, rot: -0.6},
+    {x: 32, z:  6, rot: -1.0},
+    {x: 35, z: -8, rot: -1.4},
+    {x: 28, z:-20, rot: -1.9},
+    {x: 12, z:-22, rot: -2.4},
+  ];
+  arcPositions.forEach((pos,i)=>{
+    const c=peopleColors[i%peopleColors.length];
+    const p=makePerson(c.skin, c.shirt, c.pants, c.hair);
+    p.position.set(pos.x, 0, pos.z);
+    p.rotation.y=pos.rot;
+    p.userData.basePos={x:pos.x, z:pos.z};
+    p.userData.phase=Math.random()*Math.PI*2;
+    sc.add(p);
+    people.push(p);
   });
 
-  // === VOXEL BILL GEOMETRY (matches landing/volume animation) ===
-  function buildVoxelBillGeo(){
-    const gL=[0x2c/255,0xb8/255,0x4d/255];
-    const gD=[0x18/255,0x70/255,0x32/255];
-    const yel=[0xff/255,0xd2/255,0x3d/255];
-    const dpat=[
-      [0,0,0,1,0,0,0],[0,1,1,1,1,1,0],[1,1,0,1,0,0,0],[0,1,1,1,1,0,0],
-      [0,0,1,1,1,1,0],[0,0,0,1,0,1,1],[0,0,0,1,0,1,1],[0,1,1,1,1,1,0],[0,0,0,1,0,0,0]
-    ];
-    const PW=7,PD=9;
-    const voxels=[];
-    for(let x=-6;x<=6;x++){
-      for(let z=-4;z<=4;z++){
-        const onEdge=(x===-6||x===6||z===-4||z===4);
-        for(let y=0;y<=2;y++){
-          const color = onEdge ? gD : (y===2?gL:gD);
-          voxels.push([x,y,z,...color]);
-        }
-      }
-    }
-    const sx=-Math.floor(PW/2),sz=-Math.floor(PD/2);
-    for(let i=0;i<PD;i++){
-      for(let j=0;j<PW;j++){
-        if(dpat[i][j]) voxels.push([sx+j,3,sz+i,...yel]);
-      }
-    }
-    const occ=new Set(voxels.map(v=>v[0]+','+v[1]+','+v[2]));
-    const verts=[],norms=[],colors=[],idx=[];
-    let vi=0;
-    for(const v of voxels){
-      const [px,py,pz,r,g,b]=v;
-      for(const f of FACES){
-        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
-        if(occ.has(nk))continue;
-        for(const c of f.v){
-          verts.push(c[0]+px,c[1]+py,c[2]+pz);
-          norms.push(f.n[0],f.n[1],f.n[2]);
-          colors.push(r,g,b);
-        }
-        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
-      }
-    }
-    const geo=new THREE.BufferGeometry();
-    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
-    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
-    geo.setAttribute('color',new THREE.BufferAttribute(new Float32Array(colors),3));
-    geo.setIndex(idx);
-    return geo;
-  }
-  const billGeoShared=buildVoxelBillGeo();
-  const billMatShared=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.6,metalness:0.05,flatShading:true});
+  // ===== Active bills array =====
+  const bills=[];
+  const MAX_BILLS=40;
 
-  // === BUILD VOXEL HUMAN ===
-  // Generic chibi human — head + body + arms + legs, color-varied
-  function buildHuman(shirtColor, pantColor, hatColor){
-    const HM=new Map();
-    const hadd=(c,x,y,z)=>{if(!HM.has(c))HM.set(c,[]);HM.get(c).push([x,y,z]);};
-    // Head — 4x4x4 skin
-    for(let x=-1;x<=2;x++)for(let y=10;y<=13;y++)for(let z=-1;z<=2;z++)hadd(PK,x,y,z);
-    // Eyes (black dots)
-    hadd(K,0,12,3); hadd(K,1,12,3);
-    // Smile
-    hadd(K,0,11,3); hadd(K,1,11,3);
-    // Hat — 6x2x6 colored cap on top
-    if(hatColor){
-      for(let x=-2;x<=3;x++)for(let z=-2;z<=3;z++){
-        hadd(hatColor,x,14,z);
-      }
-    }
-    // Body / shirt — 5w x 4h x 3d
-    for(let x=-2;x<=2;x++)for(let y=6;y<=9;y++)for(let z=0;z<=2;z++)hadd(shirtColor,x,y,z);
-    // Arms — left and right, skin-colored, will animate
-    // (we'll override arm position later by making arms separate meshes)
-    // Legs / pants
-    for(let x=-2;x<=-1;x++)for(let y=2;y<=5;y++)for(let z=0;z<=2;z++)hadd(pantColor,x,y,z);
-    for(let x=1;x<=2;x++)for(let y=2;y<=5;y++)for(let z=0;z<=2;z++)hadd(pantColor,x,y,z);
-    // Feet (dark)
-    for(let x=-2;x<=-1;x++)for(let z=0;z<=2;z++)hadd(K,x,1,z);
-    for(let x=1;x<=2;x++)for(let z=0;z<=2;z++)hadd(K,x,1,z);
-    return buildGroup(HM);
-  }
-  // Build an arm separately so we can rotate it for the cheering motion
-  function buildArm(skinColor, shirtColor){
-    const AM=new Map();
-    const aadd=(c,x,y,z)=>{if(!AM.has(c))AM.set(c,[]);AM.get(c).push([x,y,z]);};
-    // Arm hangs from y=0 (top, attached to shoulder) DOWN to y=-4
-    // 1x1x1 voxels stacked vertically
-    // Top portion (shirt sleeve, 2 voxels)
-    for(let dy=0;dy>=-1;dy--)aadd(shirtColor,0,dy,0);
-    // Lower portion (skin, 3 voxels)
-    for(let dy=-2;dy>=-4;dy--)aadd(skinColor,0,dy,0);
-    return buildGroup(AM);
+  function spawnBill(){
+    if(bills.length>=MAX_BILLS)return;
+    const b=makeBill();
+    // Start at pig's right hand
+    b.position.set(7.5, 18, 1);
+    // Target a random person (with slight overshoot toward the air above them)
+    const target=people[Math.floor(Math.random()*people.length)];
+    const tx=target.position.x;
+    const tz=target.position.z;
+    // Velocity = constant arc: high y, x/z toward target
+    const dx=tx-b.position.x;
+    const dz=tz-b.position.z;
+    const dist=Math.sqrt(dx*dx+dz*dz);
+    const flightTime=1.4 + Math.random()*0.4;  // seconds
+    b.userData={
+      vx: dx/flightTime + (Math.random()-0.5)*2,
+      vy: 18 + Math.random()*4,
+      vz: dz/flightTime + (Math.random()-0.5)*2,
+      gravity: 28,
+      spinX: (Math.random()-0.5)*8,
+      spinY: (Math.random()-0.5)*8,
+      spinZ: (Math.random()-0.5)*8,
+      life:0,
+      maxLife: flightTime + 0.6,
+    };
+    sc.add(b);
+    bills.push(b);
   }
 
-  // === PEOPLE — 6 voxel humans, one per arm ===
-  const peopleColors=[
-    {shirt:0xd32f2f, pant:0x222244, hat:0xffd23d},  // red shirt, gold cap
-    {shirt:0x1da4e9, pant:0x222244, hat:null},      // blue shirt, no hat
-    {shirt:0x2cb84d, pant:0x222244, hat:0xd32f2f},  // green shirt, red cap
-    {shirt:0xffd23d, pant:0x222244, hat:null},      // gold shirt
-    {shirt:0xa040d0, pant:0x222244, hat:0x1da4e9},  // purple shirt, blue cap
-    {shirt:0xff8b3d, pant:0x222244, hat:null}       // orange shirt
-  ];
-
-  const NUM=6;
-  const arms=[];
-  const people=[];
-  // Position 6 people in a wide arc in front of the machine
-  const groundY = 0;
-  for(let i=0;i<NUM;i++){
-    const t=(i-(NUM-1)/2)/((NUM-1)/2);  // -1..1
-    const px = t * 32;            // spread across X
-    const pz = 14 + Math.abs(t)*4; // slight arc forward
-    const colors = peopleColors[i];
-    const human = buildHuman(colors.shirt, colors.pant, colors.hat);
-    human.scale.setScalar(0.85);
-    human.position.set(px, groundY, pz);
-    sc.add(human);
-
-    // Build separate arms for this human (so we can raise them during cheer)
-    const lArm = buildArm(PK, colors.shirt);
-    const rArm = buildArm(PK, colors.shirt);
-    lArm.position.set(px - 2.4*0.85, groundY + 9*0.85, pz + 0.5);
-    rArm.position.set(px + 2.4*0.85, groundY + 9*0.85, pz + 0.5);
-    lArm.scale.setScalar(0.85);
-    rArm.scale.setScalar(0.85);
-    sc.add(lArm);
-    sc.add(rArm);
-
-    // Where the cash gets dropped (slightly in front of person, at hand height)
-    const targetX = px;
-    const targetY = groundY + 7;
-    const targetZ = pz + 1;
-
-    // === Floating dollar amount sprite (pops up when cash received) ===
-    const sprCanvas = document.createElement('canvas');
-    sprCanvas.width = 512; sprCanvas.height = 160;
-    const sprCtx = sprCanvas.getContext('2d');
-    const sprTex = new THREE.CanvasTexture(sprCanvas);
-    sprTex.minFilter = THREE.LinearFilter;
-    const sprMat = new THREE.SpriteMaterial({map:sprTex, transparent:true, opacity:0});
-    const sprite = new THREE.Sprite(sprMat);
-    sprite.scale.set(16, 5, 1);
-    sprite.position.set(px, groundY + 16, pz);
-    sc.add(sprite);
-
-    function drawAmount(amount){
-      sprCtx.clearRect(0,0,512,160);
-      sprCtx.font = 'bold 100px Arial Black, Arial, sans-serif';
-      sprCtx.textAlign = 'center';
-      sprCtx.textBaseline = 'middle';
-      const text = '+$' + amount;
-      // Black outline (thick)
-      sprCtx.lineWidth = 16;
-      sprCtx.strokeStyle = '#000';
-      sprCtx.strokeText(text, 256, 80);
-      // Gradient green fill
-      const grad = sprCtx.createLinearGradient(0, 24, 0, 136);
-      grad.addColorStop(0, '#5be878');
-      grad.addColorStop(1, '#1d8a3a');
-      sprCtx.fillStyle = grad;
-      sprCtx.fillText(text, 256, 80);
-      sprTex.needsUpdate = true;
-    }
-
-    people.push({
-      mesh:human,
-      lArm, rArm,
-      basePos:new THREE.Vector3(px, groundY, pz),
-      lArmBase:new THREE.Vector3(px - 2.4*0.85, groundY + 9*0.85, pz + 0.5),
-      rArmBase:new THREE.Vector3(px + 2.4*0.85, groundY + 9*0.85, pz + 0.5),
-      cheerStart:0,
-      cheering:false,
-      sprite, sprMat, drawAmount,
-      spriteBaseY: groundY + 16,
-      spriteX: px, spriteZ: pz
-    });
-
-    // === ARM (machine arm) ===
-    const armGroup=new THREE.Group();
-    const SEG_COUNT = 10;
-    const segMat=new THREE.MeshStandardMaterial({color:STEEL, roughness:0.4, metalness:0.7, flatShading:true});
-    const cuffMat=new THREE.MeshStandardMaterial({color:GD, roughness:0.4, metalness:0.5, flatShading:true});
-    const segGeo=new THREE.BoxGeometry(1.4,1.4,1.4);
-    const segments=[];
-    for(let s=0;s<SEG_COUNT;s++){
-      const m = (s>=SEG_COUNT-2) ? cuffMat : segMat;
-      const seg=new THREE.Mesh(segGeo, m);
-      armGroup.add(seg);
-      segments.push(seg);
-    }
-    // Hand — chunky pink voxel cluster
-    const hand=new THREE.Group();
-    const handMat=new THREE.MeshStandardMaterial({color:PK, roughness:0.7, metalness:0.0, flatShading:true});
-    for(let hx=-1;hx<=1;hx++){
-      for(let hy=-1;hy<=1;hy++){
-        const block=new THREE.Mesh(new THREE.BoxGeometry(0.95,0.95,0.95), handMat);
-        block.position.set(hx*0.92, hy*0.92, 0);
-        hand.add(block);
-      }
-    }
-    armGroup.add(hand);
-
-    // Cash held in hand
-    const cash=new THREE.Mesh(billGeoShared, billMatShared);
-    cash.scale.setScalar(0.16);
-    cash.visible=false;
-    armGroup.add(cash);
-
-    sc.add(armGroup);
-
-    // Arm starts at the gold pipe cap on the side (3-position slot system)
-    const slotIdx = i % 3;
-    const side = i<3 ? -1 : 1;
-    const startY = 8 + slotIdx*3;
-    const startX = side * 14;  // emerges from the gold flange
-    const startZ = 0;
-
-    arms.push({
-      group:armGroup, segments, hand, cash,
-      startPos:new THREE.Vector3(startX, startY, startZ),
-      walletPos:new THREE.Vector3(targetX, targetY, targetZ),
-      personIdx:i,
-      phase: i*0.45 + Math.random()*0.15
-    });
-  }
-
-  // === ANIMATION ===
-  let local=0;
-  let lastFrameT=0;
-  const clk=new THREE.Clock();
+  // ===== Animation =====
+  let t=0, lastSpawn=0;
   let started=false, inView=false;
-  const CYCLE=4.0;
-
-  function smoothstep(a,b,t){t=Math.max(0,Math.min(1,(t-a)/(b-a)));return t*t*(3-2*t);}
+  const clock=new THREE.Clock();
 
   function tick(){
-    const now=clk.getElapsedTime();
-    const dt=Math.min(0.1, now-lastFrameT);
-    lastFrameT=now;
+    const dt=Math.min(clock.getDelta(), 0.05);
+    t+=dt;
 
-    if(started && inView){
-      local+=dt;
+    if(started){
+      // Pig idle bob
+      pig.position.y=Math.sin(t*1.8)*0.4;
 
-      // Machine idle: low rumble bounce + slight rocking
-      machine.position.y=Math.sin(local*8)*0.12;  // fast small jitter
-      machine.rotation.z=Math.sin(local*1.3)*0.008;
+      // Pig right arm — swings up and forward in tossing motion (cycle ~1s)
+      const armPhase=(t*1.4)%1;
+      const armSwing=Math.sin(armPhase*Math.PI*2)*0.5;
+      pig.userData.armR.rotation.z=-0.3+armSwing*0.8;
+      pig.userData.armR.rotation.x=-armSwing*0.4;
 
-      // Status lights blink
-      if(redLightMesh){
-        const blink = (Math.sin(local*4)+1)/2;
-        redLightMesh.material.emissive=new THREE.Color(0xff3b3b);
-        redLightMesh.material.emissiveIntensity = blink*0.8;
+      // Pig head turns slightly toward people
+      pig.userData.head.rotation.y=Math.sin(t*0.9)*0.15+0.2;
+
+      // Spawn a bill at the apex of each toss
+      if(t-lastSpawn>0.35){
+        lastSpawn=t;
+        spawnBill();
+        if(Math.random()<0.5)spawnBill();  // sometimes two at once
       }
-      if(greenLightMesh){
-        greenLightMesh.material.emissive=new THREE.Color(0x2cb84d);
-        greenLightMesh.material.emissiveIntensity = (Math.sin(local*5+1)+1)*0.4;
+
+      // Update bills — projectile motion
+      for(let i=bills.length-1;i>=0;i--){
+        const b=bills[i];
+        const u=b.userData;
+        u.life+=dt;
+        b.position.x+=u.vx*dt;
+        b.position.y+=u.vy*dt;
+        b.position.z+=u.vz*dt;
+        u.vy-=u.gravity*dt;  // gravity
+        b.rotation.x+=u.spinX*dt;
+        b.rotation.y+=u.spinY*dt;
+        b.rotation.z+=u.spinZ*dt;
+        // Remove when below floor or expired
+        if(b.position.y<0.5 || u.life>u.maxLife){
+          sc.remove(b);
+          bills.splice(i,1);
+        }
       }
 
-      // Arm cycle
-      arms.forEach(arm=>{
-        const t = ((local + arm.phase*CYCLE) % CYCLE) / CYCLE;
-        let handPos=new THREE.Vector3();
-        let cashVisible=false;
-
-        if(t<0.20){
-          const u=smoothstep(0,1,t/0.20);
-          handPos.lerpVectors(arm.startPos, arm.walletPos, u);
-          cashVisible=true;
-        } else if(t<0.35){
-          handPos.copy(arm.walletPos);
-          cashVisible=true;
-        } else if(t<0.42){
-          // Cash drop moment — trigger person cheer
-          handPos.copy(arm.walletPos);
-          cashVisible=false;
-          const p=people[arm.personIdx];
-          if(!p.cheering){
-            p.cheering=true;
-            p.cheerStart=local;
-            // Pick a random $ amount and draw it
-            const amounts=[25,50,75,100,150,200,250,300,500,750];
-            const amt = amounts[Math.floor(Math.random()*amounts.length)];
-            p.drawAmount(amt);
-          }
-        } else if(t<0.62){
-          const u=smoothstep(0,1,(t-0.42)/0.20);
-          handPos.lerpVectors(arm.walletPos, arm.startPos, u);
-          cashVisible=false;
-        } else {
-          handPos.copy(arm.startPos);
-          handPos.y += Math.sin(local*4 + arm.personIdx)*0.5;
-          cashVisible=false;
-        }
-
-        // Wave on path
-        if(t<0.20 || (t>=0.42 && t<0.62)){
-          const phaseT = t<0.20 ? t/0.20 : (t-0.42)/0.20;
-          const wave=Math.sin(local*4 + arm.personIdx*2)*0.8;
-          handPos.x += wave * Math.sin(phaseT*Math.PI) * 0.5;
-        }
-
-        // Position chained voxel segments along curve
-        for(let s=0;s<arm.segments.length;s++){
-          const u=(s+1)/(arm.segments.length+1);
-          const seg=arm.segments[s];
-          seg.position.lerpVectors(arm.startPos, handPos, u);
-          // Snake arc
-          const arc=Math.sin(u*Math.PI)*1.5;
-          seg.position.y+=arc;
-        }
-        arm.hand.position.copy(handPos);
-        arm.cash.visible=cashVisible;
-        if(cashVisible){
-          arm.cash.position.copy(handPos);
-          arm.cash.position.y-=1.2;
-          arm.cash.rotation.z=Math.sin(local*5+arm.personIdx)*0.3;
-        }
-      });
-
-      // Person cheering animation
+      // People — bob and wiggle (excited)
       people.forEach((p,i)=>{
-        if(p.cheering){
-          const cheerT = local - p.cheerStart;
-          const cheerDur = 1.4;
-          if(cheerT > cheerDur){
-            // End cheer — reset to neutral
-            p.cheering=false;
-            p.mesh.position.copy(p.basePos);
-            p.mesh.rotation.z=0;
-            p.lArm.position.copy(p.lArmBase);
-            p.rArm.position.copy(p.rArmBase);
-            p.lArm.rotation.z=0;
-            p.rArm.rotation.z=0;
-          } else {
-            const jumpProg = cheerT / cheerDur;
-            const hopY = Math.abs(Math.sin(jumpProg*Math.PI*3)) * 3.0 * (1-jumpProg*0.3);
-            p.mesh.position.set(p.basePos.x, p.basePos.y + hopY, p.basePos.z);
-            p.mesh.rotation.z = Math.sin(cheerT*15)*0.12;
-            const armRaise = Math.sin(jumpProg*Math.PI) * Math.PI * 0.85;
-            p.lArm.position.set(p.lArmBase.x, p.lArmBase.y + hopY, p.lArmBase.z);
-            p.rArm.position.set(p.rArmBase.x, p.rArmBase.y + hopY, p.rArmBase.z);
-            p.lArm.rotation.z = armRaise;
-            p.rArm.rotation.z = -armRaise;
-          }
-        } else {
-          // Idle micro-bob
-          const idle = Math.sin(local*2 + i*0.5)*0.1;
-          p.mesh.position.y = p.basePos.y + idle;
-          p.lArm.position.y = p.lArmBase.y + idle;
-          p.rArm.position.y = p.rArmBase.y + idle;
+        const ph=p.userData.phase;
+        p.position.y=Math.abs(Math.sin(t*3+ph))*0.8;
+        // Hand wiggle
+        if(p.userData.armL){
+          p.userData.armL.rotation.z=0.9+Math.sin(t*4+ph)*0.2;
+          p.userData.armR.rotation.z=-0.9-Math.sin(t*4+ph+1)*0.2;
         }
-
-        // Sprite rise + fade animation (independent timing, lasts longer than the cheer hop)
-        const sprDur = 2.0;
-        const sprT = local - p.cheerStart;
-        if(sprT >= 0 && sprT <= sprDur && p.cheerStart > 0){
-          // Ease the rise
-          const u = sprT / sprDur;
-          // Fade in fast, fade out slow at end
-          let opacity;
-          if(u < 0.15) opacity = u/0.15;
-          else if(u > 0.7) opacity = (1-u)/0.3;
-          else opacity = 1.0;
-          p.sprMat.opacity = Math.max(0, Math.min(1, opacity));
-          // Rise up + slight horizontal sway
-          const rise = u * 8;  // travels 8 units up
-          const sway = Math.sin(u*Math.PI*2)*0.6;
-          p.sprite.position.set(p.spriteX + sway, p.spriteBaseY + rise, p.spriteZ);
-          // Slight scale pop at start
-          const popScale = 1 + (u<0.2 ? Math.sin(u/0.2*Math.PI)*0.25 : 0);
-          p.sprite.scale.set(16*popScale, 5*popScale, 1);
-        } else {
-          p.sprMat.opacity = 0;
+        // Head bobbing
+        if(p.userData.head){
+          p.userData.head.rotation.z=Math.sin(t*3.5+ph)*0.08;
         }
       });
     }
@@ -3862,6 +3742,7 @@ window.addEventListener('resize',()=>{
   }
   tick();
 
+  // Start when section scrolls into view
   const section=document.getElementById('distributorSection');
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -3871,6 +3752,7 @@ window.addEventListener('resize',()=>{
   },{threshold:0.05});
   io.observe(section);
 
+  // Start immediately if already in viewport on load
   requestAnimationFrame(()=>{
     const rect=section.getBoundingClientRect();
     if(rect.top<window.innerHeight && rect.bottom>0){
