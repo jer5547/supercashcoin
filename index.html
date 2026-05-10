@@ -111,22 +111,22 @@
   .infobar .icon{font-size:18px;}
 
   /* === HERO === */
-  .hero{display:flex;align-items:center;justify-content:center;height:calc(100vh - 124px);max-width:1100px;margin:0 auto;padding:0 40px;gap:48px;}
-  .text{flex:1;align-self:flex-start;padding-top:18vh;text-align:center;}
-  #vt{width:100%;height:220px;position:relative;}
+  .hero{display:flex;align-items:center;justify-content:center;height:calc(100vh - 124px);max-width:1500px;margin:0 auto;padding:0 60px;gap:64px;}
+  .text{flex:1;text-align:center;}
+  #vt{width:100%;height:340px;position:relative;}
   #vt canvas{display:block;}
   .text hr.divider{
     border:none;
-    height:2px;
+    height:3px;
     width:0;
-    margin:-4px auto 0;
+    margin:24px auto 0;
     background:linear-gradient(90deg,transparent,#ffd23d 30%,#ffd23d 70%,transparent);
     animation:rule 0.8s cubic-bezier(0.16,1,0.3,1) 2.2s forwards;
   }
-  .text p{font-size:20px;color:#555;margin:8px 0 0;font-weight:600;letter-spacing:-0.01em;opacity:0;transform:translateY(20px);animation:subIn 0.6s ease 2.6s forwards;}
-  .text p.tagline{font-size:14px;color:#888;margin-top:4px;font-weight:500;letter-spacing:0.005em;animation-delay:2.85s;}
+  .text p{font-size:30px;color:#555;margin:18px 0 0;font-weight:700;letter-spacing:-0.01em;opacity:0;transform:translateY(20px);animation:subIn 0.6s ease 2.6s forwards;}
+  .text p.tagline{font-size:18px;color:#888;margin-top:8px;font-weight:500;letter-spacing:0.005em;animation-delay:2.85s;}
 
-  @keyframes rule{to{width:60%;}}
+  @keyframes rule{to{width:70%;}}
   @keyframes wordIn{
     0%{opacity:0;transform:translateY(100px);}
     35%{opacity:1;transform:translateY(-22px);}
@@ -138,7 +138,7 @@
   }
   @keyframes subIn{to{opacity:1;transform:translateY(0);}}
 
-  .anim{flex:1;position:relative;height:60vh;}
+  .anim{flex:1;position:relative;height:80vh;}
   #vc{position:absolute;inset:0;display:block;}
 </style>
 </head>
@@ -194,8 +194,8 @@ sc.background=new THREE.Color(0xffffff);
 // CAMERA — locked angle, pig on the right
 // ============================================================
 const cam=new THREE.PerspectiveCamera(40,Wd/Hd,0.1,300);
-cam.position.set(0,9,56);
-cam.lookAt(0,5,0);
+cam.position.set(0,14,56);
+cam.lookAt(0,8,0);
 
 const r=new THREE.WebGLRenderer({antialias:true});
 r.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -697,7 +697,7 @@ window.addEventListener('resize',()=>{
   const vScene=new THREE.Scene();
   // alpha:true on renderer makes the page bg show through
   const vCam=new THREE.PerspectiveCamera(38,Wv/Hv,0.1,200);
-  vCam.position.set(0,11,40);
+  vCam.position.set(0,11,32);
   vCam.lookAt(0,11,0);
 
   const vR=new THREE.WebGLRenderer({antialias:true,alpha:true});
