@@ -7,9 +7,112 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow:hidden;height:100%;}
-  .hero{display:flex;align-items:center;justify-content:center;height:100vh;max-width:1100px;margin:0 auto;padding:0 40px;gap:48px;}
-  .text{flex:1;align-self:flex-start;padding-top:28vh;text-align:center;}
+  html,body{margin:0;padding:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow-x:hidden;}
+
+  /* === TOP NAV === */
+  .navbar{
+    width:100%;
+    background:#0a0a0a;
+    color:#fff;
+    padding:14px 36px;
+    display:flex;
+    align-items:center;
+    gap:32px;
+    border-bottom:1px solid #1a1a1a;
+    position:relative;
+    z-index:10;
+  }
+  .nav-brand{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+  .nav-brand img{width:54px;height:54px;border-radius:50%;display:block;}
+  .nav-brand .name{
+    font-weight:900;
+    font-size:22px;
+    letter-spacing:-0.02em;
+    line-height:1;
+    color:#ffd23d;
+  }
+  .nav-brand .tag{
+    font-size:11px;
+    color:#888;
+    margin-top:3px;
+    font-weight:600;
+    letter-spacing:0.04em;
+  }
+  .nav-brand .tag b{color:#d32f2f;font-weight:800;}
+  .nav-socials{display:flex;align-items:center;gap:8px;}
+  .nav-socials a{
+    width:30px;height:30px;
+    display:flex;align-items:center;justify-content:center;
+    background:#1a1a1a;
+    border-radius:6px;
+    color:#fff;
+    font-size:13px;
+    font-weight:800;
+    text-decoration:none;
+    border:1px solid #2a2a2a;
+  }
+  .nav-socials a:hover{background:#2a2a2a;}
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    margin-left:auto;
+  }
+  .nav-links a{
+    color:#ddd;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.01em;
+  }
+  .nav-links a:hover{color:#ffd23d;}
+  .nav-cta{
+    padding:10px 22px;
+    background:#ffd23d;
+    color:#0a0a0a;
+    border:none;
+    border-radius:6px;
+    font-weight:900;
+    font-size:13px;
+    letter-spacing:0.04em;
+    cursor:pointer;
+    text-transform:uppercase;
+    border:2px solid #ffd23d;
+    box-shadow:0 0 0 1px #0a0a0a inset;
+  }
+
+  /* === INFO BANNER === */
+  .infobar{
+    width:100%;
+    background:#1a3ed6;
+    color:#fff;
+    padding:14px 36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:48px;
+    font-weight:800;
+    position:relative;
+    z-index:9;
+  }
+  .infobar .item{display:flex;align-items:center;gap:10px;}
+  .infobar .pill{
+    background:#ffd23d;
+    color:#0a0a0a;
+    padding:3px 10px;
+    border-radius:4px;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:0.06em;
+  }
+  .infobar .label{font-size:13px;letter-spacing:0.04em;}
+  .infobar .price{font-size:15px;color:#ffd23d;}
+  .infobar .price .small{font-size:10px;color:#fff;font-weight:700;}
+  .infobar .icon{font-size:18px;}
+
+  /* === HERO === */
+  .hero{display:flex;align-items:center;justify-content:center;height:calc(100vh - 124px);max-width:1100px;margin:0 auto;padding:0 40px;gap:48px;}
+  .text{flex:1;align-self:flex-start;padding-top:18vh;text-align:center;}
   #vt{width:100%;height:220px;position:relative;}
   #vt canvas{display:block;}
   .text hr.divider{
@@ -23,10 +126,7 @@
   .text p{font-size:20px;color:#555;margin:8px 0 0;font-weight:600;letter-spacing:-0.01em;opacity:0;transform:translateY(20px);animation:subIn 0.6s ease 2.6s forwards;}
   .text p.tagline{font-size:14px;color:#888;margin-top:4px;font-weight:500;letter-spacing:0.005em;animation-delay:2.85s;}
 
-  @keyframes rule{
-    to{width:60%;}
-  }
-
+  @keyframes rule{to{width:60%;}}
   @keyframes wordIn{
     0%{opacity:0;transform:translateY(100px);}
     35%{opacity:1;transform:translateY(-22px);}
@@ -36,14 +136,41 @@
     92%{transform:translateY(-1px);}
     100%{opacity:1;transform:translateY(0);}
   }
-  @keyframes subIn{
-    to{opacity:1;transform:translateY(0);}
-  }
-  .anim{flex:1;position:relative;height:70vh;}
+  @keyframes subIn{to{opacity:1;transform:translateY(0);}}
+
+  .anim{flex:1;position:relative;height:60vh;}
   #vc{position:absolute;inset:0;display:block;}
 </style>
 </head>
 <body>
+
+<nav class="navbar">
+  <div class="nav-brand">
+    <img src="coin.png" alt="Super Cash Coin">
+    <div>
+      <div class="name">Super Cash Coin</div>
+      <div class="tag">Get Paid <b>Royalties</b></div>
+    </div>
+    <div class="nav-socials">
+      <a href="#" title="Telegram">T</a>
+      <a href="#" title="X">X</a>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Tokenomics</a>
+    <a href="#">Trade Centre</a>
+    <a href="#">How To Buy</a>
+    <a href="#">White Label</a>
+  </div>
+  <button class="nav-cta">Connect</button>
+</nav>
+
+<div class="infobar">
+  <div class="item"><span class="pill">MEGA SALE</span><span class="label">NOW AVAILABLE</span></div>
+  <div class="item"><span class="label">INITIAL COIN OFFERING</span><span class="price">$0.002 <span class="small">PER COIN</span></span></div>
+  <div class="item"><span class="icon">⏱</span><span class="label">ONLY FOR A LIMITED TIME</span></div>
+</div>
 
 <div class="hero">
   <div class="text">
