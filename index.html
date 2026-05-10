@@ -30,8 +30,9 @@
     font-size:22px;
     letter-spacing:-0.02em;
     line-height:1;
-    color:#ffd23d;
+    color:#ffffff;
   }
+  .nav-brand .name .gold{color:#ffd23d;}
   .nav-brand .tag{
     font-size:11px;
     color:#888;
@@ -124,8 +125,45 @@
     background:linear-gradient(90deg,transparent,#ffd23d 30%,#ffd23d 70%,transparent);
     animation:rule 0.8s cubic-bezier(0.16,1,0.3,1) 2.2s forwards;
   }
-  .text p{font-size:30px;color:#555;margin:18px 0 0;font-weight:700;letter-spacing:-0.01em;opacity:0;transform:translateY(20px);animation:subIn 0.6s ease 2.6s forwards;}
-  .text p.tagline{font-size:18px;color:#888;margin-top:8px;font-weight:500;letter-spacing:0.005em;animation-delay:2.85s;}
+  .getpaid-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:18px 0 0;
+    opacity:0;
+    transform:translateY(20px);
+    animation:subIn 0.6s ease 2.6s forwards;
+  }
+  img.getpaid-coin{
+    width:64px;
+    height:64px;
+    flex-shrink:0;
+    display:block;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  }
+  .getpaid-text{display:block;}
+  .text p.getpaid{
+    margin:0;
+    font-size:30px;
+    color:#0a0a0a;
+    font-weight:900;
+    letter-spacing:-0.01em;
+    opacity:1;
+    transform:none;
+    animation:none;
+    line-height:1.1;
+  }
+  .text p.tagline{
+    margin:4px 0 0;
+    font-size:16px;
+    color:#888;
+    font-weight:500;
+    letter-spacing:0.005em;
+    opacity:1;
+    transform:none;
+    animation:none;
+  }
+  .text p{font-size:30px;color:#0a0a0a;margin:18px 0 0;font-weight:900;letter-spacing:-0.01em;}
 
   @keyframes rule{to{width:70%;}}
   @keyframes wordIn{
@@ -891,7 +929,7 @@
   <div class="nav-brand">
     <img src="favicon.svg" alt="Super Cash Coin">
     <div>
-      <div class="name">Super Cash Coin</div>
+      <div class="name">Super Cash <span class="gold">Coin</span></div>
       <div class="tag">Get Paid <b>Royalties</b></div>
     </div>
     <div class="nav-socials">
@@ -919,8 +957,13 @@
   <div class="text">
     <div id="vt"></div>
     <hr class="divider">
-    <p>Get Paid Royalties.</p>
-    <p class="tagline">The world's biggest rewards meme coin!</p>
+    <div class="getpaid-row">
+      <img src="coin.png" alt="$SCC" class="getpaid-coin">
+      <div class="getpaid-text">
+        <p class="getpaid">Get Paid Royalties.</p>
+        <p class="tagline">The world's biggest rewards meme coin!</p>
+      </div>
+    </div>
   </div>
   <div class="anim"><div id="vc"></div></div>
 </div>
@@ -1714,8 +1757,8 @@ window.addEventListener('resize',()=>{
 
   // Stack: SUPER on top (y=16), CASH middle yellow (y=8), COIN bottom (y=0)
   const wSU=buildWord('SUPER',0x0a0a0a,16);
-  const wCA=buildWord('CASH',0xffd23d,8);
-  const wCO=buildWord('COIN',0x0a0a0a,0);
+  const wCA=buildWord('CASH',0x0a0a0a,8);
+  const wCO=buildWord('COIN',0xffd23d,0);
   vScene.add(wSU,wCA,wCO);
 
   // Slide-in: each word starts below screen, springs up to position
