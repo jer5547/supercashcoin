@@ -9,11 +9,23 @@
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow:hidden;height:100%;}
   .hero{display:flex;align-items:center;justify-content:center;height:100vh;max-width:1100px;margin:0 auto;padding:0 40px;gap:48px;}
-  .text{flex:1;align-self:flex-start;padding-top:22vh;text-align:center;}
-  #vt{width:100%;height:340px;position:relative;}
+  .text{flex:1;align-self:flex-start;padding-top:28vh;text-align:center;}
+  #vt{width:100%;height:220px;position:relative;}
   #vt canvas{display:block;}
-  .text p{font-size:20px;color:#555;margin:22px 0 0;font-weight:600;letter-spacing:-0.01em;opacity:0;transform:translateY(20px);animation:subIn 0.6s ease 2.5s forwards;}
-  .text p.tagline{font-size:14px;color:#888;margin-top:6px;font-weight:500;letter-spacing:0.005em;animation-delay:2.75s;}
+  .text hr.divider{
+    border:none;
+    height:2px;
+    width:0;
+    margin:-4px auto 0;
+    background:linear-gradient(90deg,transparent,#ffd23d 30%,#ffd23d 70%,transparent);
+    animation:rule 0.8s cubic-bezier(0.16,1,0.3,1) 2.2s forwards;
+  }
+  .text p{font-size:20px;color:#555;margin:8px 0 0;font-weight:600;letter-spacing:-0.01em;opacity:0;transform:translateY(20px);animation:subIn 0.6s ease 2.6s forwards;}
+  .text p.tagline{font-size:14px;color:#888;margin-top:4px;font-weight:500;letter-spacing:0.005em;animation-delay:2.85s;}
+
+  @keyframes rule{
+    to{width:60%;}
+  }
 
   @keyframes wordIn{
     0%{opacity:0;transform:translateY(100px);}
@@ -36,6 +48,7 @@
 <div class="hero">
   <div class="text">
     <div id="vt"></div>
+    <hr class="divider">
     <p>Get Paid Royalties.</p>
     <p class="tagline">The world's biggest rewards meme coin!</p>
   </div>
@@ -104,8 +117,10 @@ function makePig(){
   for(let x=-2;x<=2;x++)setMod(x,40,9,K);
   setMod(3,41,9,K);setMod(4,42,9,K);
 
-  // Head cube
+  // Head cube — bottom row tapered (chin/jaw shape)
   for(let x=-11;x<=10;x++)for(let y=36;y<=55;y++)for(let z=-10;z<=9;z++){
+    if(y===36 && (x<-8||x>7||z<-8||z>7))continue;   // carve bottom corners → chin
+    if(y===37 && ((x<-10||x>9)&&(z<-10||z>9)))continue; // soften jaw corners
     add(G.head,x,y,z,headMods.get(x+','+y+','+z)||B);
   }
   // Snout
@@ -151,8 +166,10 @@ function makePig(){
     }
   }
 
-  // Body cube + dollar
+  // Body cube + dollar — top tapered into shoulders + neck base
   for(let x=-10;x<=9;x++)for(let y=10;y<=35;y++)for(let z=-8;z<=7;z++){
+    if(y===34 && (x<-8||x>7))continue;                          // mild shoulder slope
+    if(y===35 && (x<-5||x>4||z<-5||z>4))continue;               // narrow neck top (10x10)
     add(G.body,x,y,z,dollarMods.get(x+','+y+','+z)||B);
   }
   // Embossed dollar (extruded one voxel forward)
@@ -160,11 +177,17 @@ function makePig(){
     if(dollar[i][j]==='#') add(G.body,-4+j,18+(dollar.length-1-i),8,GD);
   }
 
-  // Arms & legs
-  for(let x=-15;x<=-12;x++)for(let y=16;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
-  for(let x=10;x<=13;x++)for(let y=16;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
-  for(let x=-7;x<=-3;x++)for(let y=0;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
-  for(let x=2;x<=6;x++)for(let y=0;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
+  // Arms — blue with gold cuff/wristband at the bottom (slightly wider than arm)
+  for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
+  for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+  for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
+  for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
+
+  // Legs — blue with black hooves at the bottom (extended forward to suggest toes)
+  for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
+  for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
+  for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
+  for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
 
   // Red cape (tapered shape)
   for(let y=8;y<=34;y++){
@@ -179,20 +202,49 @@ function makePig(){
     }
   }
 
-  // Build instanced meshes per color group
+  // Build merged geometry per color, with face culling — removes the grid lines
   const buildGroup=(buckets)=>{
+    // Collect ALL occupied voxel positions across all colors so we can hide internal faces
+    const occupied=new Set();
+    buckets.forEach(positions=>{
+      positions.forEach(p=>occupied.add(p[0]+','+p[1]+','+p[2]));
+    });
+
+    const FACES=[
+      {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+      {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+      {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+      {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+    ];
+
     const g=new THREE.Group();
     buckets.forEach((positions,color)=>{
+      const verts=[],norms=[],idx=[];
+      let vi=0;
+      positions.forEach(p=>{
+        const [px,py,pz]=p;
+        for(const f of FACES){
+          const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+          if(occupied.has(nk))continue;  // hidden face — skip
+          for(const c of f.v){
+            verts.push(c[0]+px,c[1]+py,c[2]+pz);
+            norms.push(f.n[0],f.n[1],f.n[2]);
+          }
+          idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
+          vi+=4;
+        }
+      });
+      if(!verts.length)return;
+      const geo=new THREE.BufferGeometry();
+      geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+      geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+      geo.setIndex(idx);
       const isGold=color===GD;
       const mat=new THREE.MeshStandardMaterial({color,roughness:isGold?0.5:0.55,metalness:isGold?0.15:0,flatShading:true});
-      const mesh=new THREE.InstancedMesh(cg,mat,positions.length);
+      const mesh=new THREE.Mesh(geo,mat);
       mesh.castShadow=true;mesh.receiveShadow=true;
-      positions.forEach((p,i)=>{
-        dummy.position.set(p[0],p[1],p[2]);
-        dummy.updateMatrix();
-        mesh.setMatrixAt(i,dummy.matrix);
-      });
-      mesh.instanceMatrix.needsUpdate=true;
       g.add(mesh);
     });
     return g;
@@ -481,7 +533,7 @@ window.addEventListener('resize',()=>{
   const vScene=new THREE.Scene();
   // alpha:true on renderer makes the page bg show through
   const vCam=new THREE.PerspectiveCamera(38,Wv/Hv,0.1,200);
-  vCam.position.set(0,11,56);
+  vCam.position.set(0,11,40);
   vCam.lookAt(0,11,0);
 
   const vR=new THREE.WebGLRenderer({antialias:true,alpha:true});
@@ -490,12 +542,15 @@ window.addEventListener('resize',()=>{
   VT.appendChild(vR.domElement);
 
   vScene.add(new THREE.AmbientLight(0xffffff,0.7));
-  const vL=new THREE.DirectionalLight(0xffffff,0.95);
-  vL.position.set(15,30,25);
+  const vL=new THREE.DirectionalLight(0xffffff,0.9);
+  vL.position.set(15,45,20);
   vScene.add(vL);
-  const vF=new THREE.DirectionalLight(0xffffff,0.35);
-  vF.position.set(-15,15,15);
+  const vF=new THREE.DirectionalLight(0xffe6cc,0.3);
+  vF.position.set(-15,12,-8);
   vScene.add(vF);
+  const vRim=new THREE.DirectionalLight(0xfff0f0,0.2);
+  vRim.position.set(0,8,-25);
+  vScene.add(vRim);
 
   // Letter patterns — 5 wide × 7 tall grid each
   const LET={
@@ -531,22 +586,45 @@ window.addEventListener('resize',()=>{
         }
       }
     }
-    const isY=color===0xffd700;
-    const mat=new THREE.MeshStandardMaterial({color,roughness:0.55,metalness:isY?0.15:0,flatShading:true});
-    const m=new THREE.InstancedMesh(cubeG,mat,ps.length);
+    // Face-cull: skip faces between adjacent voxels (no internal grid)
+    const occ=new Set(ps.map(p=>p[0]+','+p[1]+','+p[2]));
+    const FACES=[
+      {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+      {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+      {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+      {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+    ];
+    const verts=[],norms=[],idx=[];
+    let vi=0;
+    for(const p of ps){
+      const [px,py,pz]=p;
+      for(const f of FACES){
+        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+        if(occ.has(nk))continue;
+        for(const c of f.v){
+          verts.push(c[0]+px,c[1]+py,c[2]+pz);
+          norms.push(f.n[0],f.n[1],f.n[2]);
+        }
+        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
+        vi+=4;
+      }
+    }
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+    geo.setIndex(idx);
+    const isY=color===0xffd23d;
+    const mat=new THREE.MeshStandardMaterial({color,roughness:isY?0.5:0.55,metalness:isY?0.15:0,flatShading:true});
+    const m=new THREE.Mesh(geo,mat);
     m.castShadow=true;
-    ps.forEach((p,i)=>{
-      dum.position.set(p[0],p[1],p[2]);
-      dum.updateMatrix();
-      m.setMatrixAt(i,dum.matrix);
-    });
-    m.instanceMatrix.needsUpdate=true;
     return m;
   }
 
   // Stack: SUPER on top (y=16), CASH middle yellow (y=8), COIN bottom (y=0)
   const wSU=buildWord('SUPER',0x0a0a0a,16);
-  const wCA=buildWord('CASH',0xffd700,8);
+  const wCA=buildWord('CASH',0xffd23d,8);
   const wCO=buildWord('COIN',0x0a0a0a,0);
   vScene.add(wSU,wCA,wCO);
 
