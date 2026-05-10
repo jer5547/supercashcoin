@@ -295,114 +295,68 @@
     z-index:1;
   }
 
-  /* Leaderboard table */
+  /* Card-style leaderboard — each coin is its own card, top 3 have colored left borders */
   .leaderboard{
     max-width:980px;
     margin:0 auto;
-    border-radius:14px;
-    overflow:hidden;
-    background:#0a0a0a;
-    box-shadow:0 12px 40px rgba(0,0,0,0.12);
+    background:transparent;
   }
-  .lb-head{
-    display:grid;
-    grid-template-columns:50px 1fr 130px 230px;
-    padding:18px 24px;
-    background:#0a0a0a;
-    color:#888;
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    border-bottom:1px solid #222;
-    text-align:left;
-    white-space:nowrap;
+  .lb-head{display:none;}
+  #leaderboardBody{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
   }
-  .lb-head span:nth-child(n+3){text-align:right;}
   .lb-row{
     display:grid;
-    grid-template-columns:50px 1fr 130px 230px;
-    padding:20px 24px;
+    grid-template-columns:80px 1fr 200px;
+    align-items:center;
     background:#fff;
-    border-bottom:1px solid #ebebe6;
-    align-items:center;
-    transition:background 0.2s;
+    border:1px solid #e8e8e0;
+    border-left:6px solid #e0e0d8;
+    border-radius:12px;
+    padding:18px 22px;
+    transition:transform 0.2s, box-shadow 0.2s;
     text-align:left;
-    position:relative;
   }
-  .lb-row:hover{background:#fafaf7;}
-  .lb-row:last-child{border-bottom:none;}
+  .lb-row:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.06);}
   .lb-rank{
-    font-size:18px;
+    font-size:32px;
     font-weight:900;
-    color:#888;
+    color:#0a0a0a;
     font-family:'Courier New',monospace;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
+    line-height:1;
+    text-align:center;
   }
-  /* Medal styling for top 3 — gold, silver, bronze pill badges */
-  .lb-rank.gold,
-  .lb-rank.silver,
-  .lb-rank.bronze{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    font-size:15px;
-    color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-    font-weight:900;
-    box-shadow:0 2px 6px rgba(0,0,0,0.2), inset 0 -2px 0 rgba(0,0,0,0.18), inset 0 2px 0 rgba(255,255,255,0.35);
-    flex-shrink:0;
-    position:relative;
+  .lb-row.rank-1{
+    border-left-color:#ffd23d;
+    background:linear-gradient(90deg,rgba(255,210,61,0.08) 0%,#fff 30%);
   }
-  .lb-rank.gold{
-    background:radial-gradient(circle at 30% 30%, #fff7c2, #ffd23d 40%, #c79a0c 100%);
-    color:#5a3d00;
+  .lb-row.rank-1 .lb-rank{color:#c79a0c;}
+  .lb-row.rank-2{
+    border-left-color:#a8a8a8;
+    background:linear-gradient(90deg,rgba(168,168,168,0.08) 0%,#fff 30%);
   }
-  .lb-rank.silver{
-    background:radial-gradient(circle at 30% 30%, #ffffff, #d8d8d8 40%, #888 100%);
-    color:#222;
+  .lb-row.rank-2 .lb-rank{color:#7a7a7a;}
+  .lb-row.rank-3{
+    border-left-color:#c87f3a;
+    background:linear-gradient(90deg,rgba(200,127,58,0.08) 0%,#fff 30%);
   }
-  .lb-rank.bronze{
-    background:radial-gradient(circle at 30% 30%, #f0c8a0, #c87f3a 40%, #7a4814 100%);
-    color:#3a1f00;
-  }
-  /* Trophy cup icon for rank 1 */
-  .lb-rank.gold::before{
-    content:'';
-    position:absolute;
-    top:-22px;
-    left:50%;
-    transform:translateX(-50%);
-    width:24px;
-    height:22px;
-    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M5 4h14v3a4 4 0 0 1-4 4h-1v2h2v2H8v-2h2v-2H9a4 4 0 0 1-4-4V4z" fill="%23ffd23d" stroke="%23c79a0c" stroke-width="1"/><path d="M5 5H3v1a3 3 0 0 0 2 2.83V5zM19 5h2v1a3 3 0 0 1-2 2.83V5z" fill="%23ffd23d" stroke="%23c79a0c" stroke-width="1"/><rect x="8" y="15" width="8" height="2" fill="%23c79a0c"/><rect x="7" y="17" width="10" height="2" rx="1" fill="%23c79a0c"/></svg>');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-    filter:drop-shadow(0 2px 3px rgba(0,0,0,0.25));
-  }
-  /* Top 3 rows get a subtle gradient background */
-  .lb-row.rank-1{background:linear-gradient(90deg,rgba(255,210,61,0.12) 0%,#fff 50%);padding-top:32px;}
-  .lb-row.rank-2{background:linear-gradient(90deg,rgba(180,180,180,0.10) 0%,#fff 50%);}
-  .lb-row.rank-3{background:linear-gradient(90deg,rgba(200,127,58,0.10) 0%,#fff 50%);}
-  .lb-row.rank-1:hover,.lb-row.rank-2:hover,.lb-row.rank-3:hover{filter:brightness(0.98);}
+  .lb-row.rank-3 .lb-rank{color:#8a5520;}
   .lb-coin{
     display:flex;
     align-items:center;
     gap:14px;
   }
   .lb-coin img{
-    width:38px;
-    height:38px;
+    width:42px;
+    height:42px;
     border-radius:50%;
     background:#fafaf7;
     flex-shrink:0;
   }
   .lb-coin .name{
-    font-size:15px;
+    font-size:16px;
     font-weight:800;
     color:#0a0a0a;
     line-height:1.2;
@@ -413,35 +367,63 @@
     font-weight:700;
     letter-spacing:0.06em;
     text-transform:uppercase;
-    margin-top:2px;
+    margin-left:8px;
   }
-  .lb-num{
-    font-size:15px;
-    font-weight:700;
-    color:#0a0a0a;
-    text-align:right;
-    font-variant-numeric:tabular-nums;
+  .lb-coin .mc{
+    font-size:12px;
+    color:#666;
+    font-weight:500;
+    margin-top:4px;
   }
-  .lb-num.muted{color:#666;font-weight:600;}
+  .lb-num{display:none;}
   .lb-reward{
-    font-size:17px;
+    text-align:right;
+  }
+  .lb-reward .amount{
+    font-size:24px;
     font-weight:900;
     color:#2cb84d;
-    text-align:right;
+    line-height:1;
     font-variant-numeric:tabular-nums;
+    display:block;
   }
   .lb-reward .day{
     font-size:10px;
     color:#888;
     font-weight:700;
-    letter-spacing:0.08em;
+    letter-spacing:0.1em;
     text-transform:uppercase;
     display:block;
-    margin-top:2px;
+    margin-top:5px;
   }
-  /* Reward column emphasis */
-  .lb-row .lb-reward{
-    background:linear-gradient(90deg,transparent 0%,rgba(255,210,61,0.08) 100%);
+  .lb-foot{
+    margin-top:14px;
+    padding:14px 22px;
+    background:#fafaf7;
+    border:1px solid #e8e8e0;
+    color:#666;
+    font-size:12px;
+    line-height:1.5;
+    text-align:center;
+    border-radius:10px;
+  }
+  .lb-foot b{color:#c79a0c;}
+  .lb-foot .updated{
+    font-size:10px;
+    color:#aaa;
+    margin-top:4px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .lb-loading{
+    padding:40px 22px;
+    text-align:center;
+    color:#888;
+    font-size:13px;
+    background:#fff;
+    border-radius:12px;
+    border:1px solid #e8e8e0;
   }
   /* Horizontal banner divider with quote about earnings */
   .volume-banner{
@@ -474,14 +456,14 @@
   .hero-callout-bottom{
     position:relative;
     max-width:980px;
-    margin:30px auto 0;
-    padding:0 24px;
+    margin:0 auto 0;
+    padding:0 22px;
     display:grid;
-    grid-template-columns:50px 1fr 130px 230px;
+    grid-template-columns:80px 1fr 200px;
     align-items:start;
   }
   .hero-callout-bottom .text{
-    grid-column:1 / span 3;
+    grid-column:1 / span 2;
     font-size:clamp(20px,2.6vw,32px);
     font-weight:900;
     color:#0a0a0a;
@@ -494,13 +476,13 @@
     padding-right:30px;
     padding-top:0;
     align-self:start;
-    margin-top:-8px;
+    margin-top:-40px;
   }
   .hero-callout-bottom .text .underline{
     background:linear-gradient(180deg,transparent 60%,#ffd23d 60%);
   }
   .hero-callout-bottom .arrow{
-    grid-column:4;
+    grid-column:3;
     justify-self:center;
     animation:arrowBounceUp 1.4s ease-in-out infinite;
   }
@@ -509,29 +491,33 @@
     50%{transform:translateY(-12px);}
   }
   .lb-foot{
-    padding:18px 24px;
-    background:#0a0a0a;
-    color:#888;
+    margin-top:14px;
+    padding:14px 22px;
+    background:#fafaf7;
+    border:1px solid #e8e8e0;
+    color:#666;
     font-size:12px;
-    line-height:1.6;
+    line-height:1.5;
     text-align:center;
-    border-top:1px solid #222;
+    border-radius:10px;
   }
-  .lb-foot b{color:#ffd23d;}
+  .lb-foot b{color:#c79a0c;}
   .lb-foot .updated{
     font-size:10px;
-    color:#666;
-    margin-top:6px;
+    color:#aaa;
+    margin-top:4px;
     letter-spacing:0.1em;
     text-transform:uppercase;
     font-weight:700;
   }
   .lb-loading{
-    padding:60px 24px;
+    padding:40px 22px;
     text-align:center;
     color:#888;
     font-size:13px;
     background:#fff;
+    border-radius:12px;
+    border:1px solid #e8e8e0;
   }
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 </style>
@@ -1606,8 +1592,8 @@ const sc=new THREE.Scene();
 sc.background=null;
 
 const cam=new THREE.PerspectiveCamera(36,Wd/Hd,0.1,500);
-cam.position.set(8,22,92);
-cam.lookAt(8,22,0);
+cam.position.set(-12,22,92);
+cam.lookAt(-12,22,0);
 
 const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
 r.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -1951,7 +1937,7 @@ let phase=2,phaseStart=0,nextSpawn=0,lastSpawnT=0;
 let started=false,inView=false,pausedAt=0;
 const POUR_RATES=[1.20, 0.85, 0.55, 0.20, 0.025];
 let visibleBars=0,lastBarTime=0;
-const BAR_INTERVAL=3.0;
+const BAR_INTERVAL=1.8;
 
 function reset(){
   phase=2;phaseStart=clk.getElapsedTime();
@@ -2083,7 +2069,7 @@ const io=new IntersectionObserver((entries)=>{
       if(inView){pausedAt=clk.getElapsedTime();inView=false;}
     }
   });
-},{threshold:0.3});
+},{threshold:0.05});
 io.observe(VP);
 
 window.addEventListener('resize',()=>{
@@ -2318,26 +2304,22 @@ window.addEventListener('resize',()=>{
         return;
       }
       const list=data.coins.slice(0,10);
-      const medalClass=['gold','silver','bronze'];
       body.innerHTML=list.map((c,i)=>{
         const buys=c.volume_24h*0.5;
         const reward=buys*0.25;
-        const rankCls = i<3 ? `lb-rank ${medalClass[i]}` : 'lb-rank';
-        const rowCls  = i<3 ? `lb-row rank-${i+1}` : 'lb-row';
-        const rankLabel = i<3 ? (i+1) : `#${i+1}`;
+        const rowCls = i<3 ? `lb-row rank-${i+1}` : 'lb-row';
         return `
           <div class="${rowCls}">
-            <div class="${rankCls}">${rankLabel}</div>
+            <div class="lb-rank">${i+1}</div>
             <div class="lb-coin">
               <img src="${c.image||''}" alt="${c.name}" onerror="this.style.opacity='0.3'">
               <div>
-                <div class="name">${c.name}</div>
-                <div class="symbol">${c.symbol}</div>
+                <div class="name">${c.name} <span class="symbol">${c.symbol}</span></div>
+                <div class="mc">${fmtUsd(c.market_cap)} market cap</div>
               </div>
             </div>
-            <div class="lb-num">${fmtUsd(c.market_cap)}</div>
             <div class="lb-reward">
-              ${fmtUsd(reward)}
+              <span class="amount">${fmtUsd(reward)}</span>
               <span class="day">per day</span>
             </div>
           </div>`;
