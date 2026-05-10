@@ -1,0 +1,57 @@
+{
+  "updated_at": "2026-05-10T00:00:00.000Z",
+  "source": "placeholder — replaced on first GitHub Actions run",
+  "note": "Estimated buys = volume_24h * 0.5; rewards @ 25% applied client-side",
+  "coins": [
+    {
+      "id": "dogecoin",
+      "name": "Dogecoin",
+      "symbol": "DOGE",
+      "image": "https://assets.coingecko.com/coins/images/5/standard/dogecoin.png",
+      "price": 0.18,
+      "volume_24h": 1500000000,
+      "market_cap": 26000000000,
+      "price_change_24h_pct": 2.5
+    },
+    {
+      "id": "shiba-inu",
+      "name": "Shiba Inu",
+      "symbol": "SHIB",
+      "image": "https://assets.coingecko.com/coins/images/11939/standard/shiba.png",
+      "price": 0.000023,
+      "volume_24h": 500000000,
+      "market_cap": 13500000000,
+      "price_change_24h_pct": 1.2
+    },
+    {
+      "id": "pepe",
+      "name": "Pepe",
+      "symbol": "PEPE",
+      "image": "https://assets.coingecko.com/coins/images/29850/standard/pepe-token.jpeg",
+      "price": 0.0000098,
+      "volume_24h": 350000000,
+      "market_cap": 4100000000,
+      "price_change_24h_pct": 4.1
+    },
+    {
+      "id": "dogwifcoin",
+      "name": "Dogwifhat",
+      "symbol": "WIF",
+      "image": "https://assets.coingecko.com/coins/images/33767/standard/dogwifhat.jpg",
+      "price": 2.30,
+      "volume_24h": 220000000,
+      "market_cap": 2300000000,
+      "price_change_24h_pct": -0.8
+    },
+    {
+      "id": "bonk",
+      "name": "Bonk",
+      "symbol": "BONK",
+      "image": "https://assets.coingecko.com/coins/images/28600/standard/bonk.jpg",
+      "price": 0.000019,
+      "volume_24h": 145000000,
+      "market_cap": 1500000000,
+      "price_change_24h_pct": 3.6
+    }
+  ]
+}
