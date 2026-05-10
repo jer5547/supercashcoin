@@ -113,8 +113,37 @@
   .infobar .icon{font-size:18px;}
 
   /* === HERO === */
-  .hero{display:flex;align-items:center;justify-content:center;height:calc(100vh - 124px);max-width:1500px;margin:0 auto;padding:0 60px;gap:64px;}
-  .text{flex:1;text-align:center;}
+  .hero{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:calc(100vh - 124px);
+    max-width:1500px;
+    margin:0 auto;
+    padding:0 60px;
+    gap:64px;
+    position:relative;
+    z-index:1;
+  }
+  .hero-section{
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,210,61,0.10) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,210,61,0.10) 1px,transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .text{flex:1;text-align:center;position:relative;z-index:1;}
+  .anim{position:relative;z-index:1;}
   #vt{width:100%;height:340px;position:relative;}
   #vt canvas{display:block;}
   .text hr.divider{
@@ -350,6 +379,130 @@
   }
   .celebration .content{position:relative;z-index:2;}
 
+
+  /* === DISTRIBUTOR (HOW IT WORKS) SECTION === */
+  .distributor{
+    background:#ffffff;
+    color:#0a0a0a;
+    padding:10px 60px 30px;
+    position:relative;
+    overflow:hidden;
+    border-top:1px solid #e8e8e0;
+  }
+  /* Subtle grid texture */
+  .distributor::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,210,61,0.10) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,210,61,0.10) 1px,transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
+    pointer-events:none;
+  }
+  .distributor-wrap{
+    max-width:1300px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+  }
+  .dist-eyebrow{
+    text-align:center;
+    color:#c79a0c;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .dist-eyebrow .dot{
+    display:inline-block;
+    width:6px;height:6px;
+    background:#ffd23d;
+    border-radius:50%;
+    margin:0 12px;
+    vertical-align:middle;
+  }
+  .dist-title-voxel{
+    width:100%;
+    max-width:1700px;
+    height:clamp(220px,26vw,380px);
+    margin:0 auto -60px;
+  }
+  #distVoxel{width:100%;height:100%;}
+  #distVoxel canvas{display:block;width:100%!important;height:100%!important;}
+  .dist-subhead{
+    text-align:center;
+    font-size:clamp(16px,2vw,22px);
+    color:#555;
+    font-weight:500;
+    line-height:1.4;
+    max-width:760px;
+    margin:0 auto 4px;
+  }
+  .dist-subhead b{color:#c79a0c;font-weight:800;}
+
+  /* Animation stage */
+  .dist-stage{
+    position:relative;
+    width:100%;
+    height:clamp(500px,62vw,760px);
+    margin:-120px auto 8px;
+  }
+  #distScene{width:100%;height:100%;display:block;}
+
+  /* Steps row below the animation */
+  .dist-steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .dist-step{
+    background:#fafaf7;
+    border:1px solid #e8e8e0;
+    border-radius:14px;
+    padding:24px 22px;
+    position:relative;
+    transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .dist-step:hover{
+    transform:translateY(-3px);
+    border-color:#ffd23d;
+    box-shadow:0 8px 24px rgba(255,210,61,0.15);
+  }
+  .dist-step .step-num{
+    font-family:'Courier New',monospace;
+    font-size:48px;
+    font-weight:900;
+    color:#ffd23d;
+    line-height:1;
+    letter-spacing:-0.02em;
+    text-shadow:2px 2px 0 #c79a0c, 4px 4px 0 #8a6a08;
+    margin-bottom:14px;
+  }
+  .dist-step h4{
+    font-size:18px;
+    font-weight:900;
+    color:#0a0a0a;
+    margin:0 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .dist-step p{
+    font-size:13px;
+    color:#666;
+    line-height:1.55;
+    margin:0;
+  }
+  .dist-step p b{color:#c79a0c;font-weight:800;}
+
+  @media (max-width:760px){
+    .distributor{padding:80px 24px;}
+    .dist-steps{grid-template-columns:1fr;}
+  }
 
   /* === TOKENOMICS SECTION === */
   .tokenomics{
@@ -749,6 +902,104 @@
     .tokenomics{padding:80px 24px;}
   }
 
+  /* === HOW TO TRADE SECTION (4-step guide, blue background) === */
+  .how-to-trade{
+    background:linear-gradient(180deg,#1d4fd8 0%,#1a3fc0 100%);
+    color:#fff;
+    padding:80px 60px 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .how-to-trade::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 20% 30%,rgba(255,210,61,0.12) 0%,transparent 40%),
+      radial-gradient(circle at 80% 70%,rgba(255,210,61,0.08) 0%,transparent 40%);
+    pointer-events:none;
+  }
+  .htt-wrap{
+    max-width:1280px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+  .htt-title{
+    text-align:center;
+    font-size:clamp(36px,5vw,64px);
+    font-weight:900;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+    margin:0 0 50px;
+    color:#fff;
+    font-family:'Arial Black','Arial',sans-serif;
+  }
+  .htt-title .gold{color:#ffd23d;}
+  .htt-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+  }
+  .htt-card{
+    border:2px dashed rgba(255,255,255,0.4);
+    border-radius:14px;
+    padding:30px 32px 36px;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    transition:transform 0.25s, border-color 0.25s, background 0.25s;
+  }
+  .htt-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(255,210,61,0.6);
+    background:rgba(255,255,255,0.04);
+  }
+  .htt-card-img{
+    flex-shrink:0;
+    width:200px;
+    height:200px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .htt-card-img img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    filter:drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+  }
+  .htt-card-body{
+    flex:1;
+    min-width:0;
+  }
+  .htt-card-body h3{
+    font-size:clamp(20px,2.4vw,28px);
+    font-weight:900;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+    line-height:1.15;
+  }
+  .htt-card-body h3 .gold{color:#ffd23d;}
+  .htt-card-body p{
+    font-size:14px;
+    line-height:1.55;
+    margin:0;
+    color:rgba(255,255,255,0.85);
+  }
+  .htt-card-body p b{color:#ffd23d;font-weight:800;}
+  .htt-card-body p a{
+    color:#ffd23d;
+    font-weight:800;
+    text-decoration:underline;
+  }
+  @media (max-width:900px){
+    .htt-grid{grid-template-columns:1fr;}
+    .htt-card{flex-direction:column;text-align:center;padding:24px;}
+    .htt-card-img{width:160px;height:160px;}
+    .how-to-trade{padding:60px 24px;}
+  }
+
   .volume-section{
     background:#ffffff;
     color:#0a0a0a;
@@ -1037,6 +1288,7 @@
   <div class="item"><span class="icon">⏱</span><span class="label">ONLY FOR A LIMITED TIME</span></div>
 </div>
 
+<div class="hero-section">
 <div class="hero">
   <div class="text">
     <div id="vt"></div>
@@ -1050,6 +1302,7 @@
     </div>
   </div>
   <div class="anim"><div id="vc"></div></div>
+</div>
 </div>
 
 <div class="ticker" aria-hidden="true">
@@ -1142,6 +1395,35 @@
         </div>
         <h3>Hold or get left behind</h3>
         <p>The 25% sell tax heavily punishes flippers, so serious holders get a bigger share of the USDT pool. Naturally rewards <b>diamond hands</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="distributor" id="distributorSection">
+  <div class="distributor-wrap">
+    <div class="dist-title-voxel"><div id="distVoxel"></div></div>
+    <div class="dist-subhead">
+      Every buy sends <b>25% tax</b> to the Vault. When there's enough money, the Distributor automatically sends <b>USDT</b> to all holders in one cheap batch. On <b>opBNB</b> this happens often and costs almost nothing. No claiming needed — money just appears in your wallet!
+    </div>
+
+    <div class="dist-stage"><canvas id="distScene"></canvas></div>
+
+    <div class="dist-steps">
+      <div class="dist-step">
+        <div class="step-num">01</div>
+        <h4>Someone Buys $SCC</h4>
+        <p>Every buy on the open market pays a <b>25% tax</b> straight into the smart contract.</p>
+      </div>
+      <div class="dist-step">
+        <div class="step-num">02</div>
+        <h4>The Distributor Receives</h4>
+        <p>The contract converts the tax into <b>USDT</b> and loads the distributor with rewards.</p>
+      </div>
+      <div class="dist-step">
+        <div class="step-num">03</div>
+        <h4>Holders Get Paid</h4>
+        <p>Arms reach out and drop <b>USDT</b> directly into every holder's wallet automatically.</p>
       </div>
     </div>
   </div>
@@ -1308,6 +1590,45 @@
         <path d="M40 92 L40 25 M40 25 L18 47 M40 25 L62 47" stroke="#ffd23d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="text">THIS IS WHAT YOU COULD <span class="underline">BE GETTING</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="how-to-trade" id="howToTradeSection">
+  <div class="htt-wrap">
+    <h2 class="htt-title">How To Trade <span class="gold">Super Cash Coins</span></h2>
+    <div class="htt-grid">
+      <div class="htt-card">
+        <div class="htt-card-img"><img src="step1-wallet.png" alt="Get a Wallet"></div>
+        <div class="htt-card-body">
+          <h3>Get a <span class="gold">Wallet</span></h3>
+          <p>Get yourself <b>MetaMask</b> or whatever wallet you're comfortable with and add the <b>Binance Smart Chain</b> network — that's where $SCC lives.</p>
+        </div>
+      </div>
+
+      <div class="htt-card">
+        <div class="htt-card-img"><img src="step2-crypto.png" alt="Get Some Crypto"></div>
+        <div class="htt-card-body">
+          <h3>Get Some <span class="gold">Crypto</span></h3>
+          <p>$SCC is priced in <b>USDT</b>. Use <b>Binance</b> or any crypto provider to buy USDT, then send it to your wallet on the BSC network.</p>
+        </div>
+      </div>
+
+      <div class="htt-card">
+        <div class="htt-card-img"><img src="step3-trade.png" alt="Buy Super Cash Coin"></div>
+        <div class="htt-card-body">
+          <h3>Buy <span class="gold">Super Cash Coin</span></h3>
+          <p>Now for the fun part — swap your USDT for $SCC. Head to the <b>Trade Centre</b> and buy in. The more you hold, the more rewards you earn.</p>
+        </div>
+      </div>
+
+      <div class="htt-card">
+        <div class="htt-card-img"><img src="step4-rewards.png" alt="Get Your Rewards"></div>
+        <div class="htt-card-body">
+          <h3>Get Your <span class="gold">Rewards</span></h3>
+          <p>Rewards are paid to holders through <b>opBNB</b>. Use the <b>Binance bridge</b> to transfer your USDT rewards from opBNB back to BSC and enjoy the income.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2658,6 +2979,820 @@ window.addEventListener('resize',()=>{
 </script>
 
 <script>
+// === DISTRIBUTOR HEADLINE — voxel "DISTRIBUTOR" matching site style ===
+(function(){
+  const VP=document.getElementById('distVoxel');
+  if(!VP||!window.THREE)return;
+  const Wd=VP.clientWidth, Hd=VP.clientHeight;
+  if(Wd===0||Hd===0)return;
+
+  const sc=new THREE.Scene();
+  sc.background=null;
+
+  const cam=new THREE.PerspectiveCamera(38, Wd/Hd, 0.1, 200);
+  cam.position.set(0,4,68);
+  cam.lookAt(0,4,0);
+
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  r.setPixelRatio(window.devicePixelRatio||1);
+  r.setSize(Wd,Hd);
+  VP.appendChild(r.domElement);
+
+  sc.add(new THREE.AmbientLight(0xffffff,0.7));
+  const k=new THREE.DirectionalLight(0xffffff,0.9);
+  k.position.set(15,45,20);sc.add(k);
+  const fl=new THREE.DirectionalLight(0xffe6cc,0.3);
+  fl.position.set(-15,12,-8);sc.add(fl);
+  const rim=new THREE.DirectionalLight(0xfff0f0,0.2);
+  rim.position.set(0,8,-25);sc.add(rim);
+
+  const LET={
+    'H':['#...#','#...#','#...#','#####','#...#','#...#','#...#'],
+    'O':['.###.','#...#','#...#','#...#','#...#','#...#','.###.'],
+    'W':['#...#','#...#','#...#','#.#.#','#.#.#','##.##','#...#'],
+    'I':['#####','..#..','..#..','..#..','..#..','..#..','#####'],
+    'T':['#####','..#..','..#..','..#..','..#..','..#..','..#..'],
+    'R':['####.','#...#','#...#','####.','#.#..','#..#.','#...#'],
+    'K':['#...#','#..#.','#.#..','##...','#.#..','#..#.','#...#'],
+    'S':['.###.','#...#','#....','.###.','....#','#...#','.###.']
+  };
+
+  function buildWord(text,color,xStart,yBase){
+    const W=5,H=7,GAP=1;
+    const ps=[];
+    for(let i=0;i<text.length;i++){
+      const pat=LET[text[i]];
+      if(!pat)continue;
+      for(let y=0;y<pat.length;y++){
+        for(let x=0;x<pat[y].length;x++){
+          if(pat[y][x]==='#'){
+            ps.push([xStart+i*(W+GAP)+x,(H-1-y)+yBase,0]);
+          }
+        }
+      }
+    }
+    const occ=new Set(ps.map(p=>p[0]+','+p[1]+','+p[2]));
+    const FACES=[
+      {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+      {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+      {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+      {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+    ];
+    const verts=[],norms=[],idx=[];
+    let vi=0;
+    for(const p of ps){
+      const [px,py,pz]=p;
+      for(const f of FACES){
+        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+        if(occ.has(nk))continue;
+        for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
+        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
+      }
+    }
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+    geo.setIndex(idx);
+    const mat=new THREE.MeshStandardMaterial({color,roughness:0.5,metalness:0.15,flatShading:true});
+    return new THREE.Mesh(geo,mat);
+  }
+
+  // One line: "HOW IT WORKS" — HOW(17) + space(4) + IT(11) + space(4) + WORKS(29) = 65 voxels wide
+  const word = new THREE.Group();
+  const lineW = 17 + 4 + 11 + 4 + 29;  // 65
+  let xCursor = -lineW/2;
+  const wHOW = buildWord('HOW', 0x0a0a0a, xCursor, 0); word.add(wHOW); xCursor += 17 + 4;
+  const wIT = buildWord('IT', 0x0a0a0a, xCursor, 0); word.add(wIT); xCursor += 11 + 4;
+  const wWORKS = buildWord('WORKS', 0x0a0a0a, xCursor, 0); word.add(wWORKS);
+
+  word.scale.set(1,1,4);
+  sc.add(word);
+
+  const startY=-30;
+  word.position.y=startY;
+  const spring=p=>1-Math.exp(-p*5)*Math.cos(p*15);
+
+  let started=false, inView=false;
+  const startTime=performance.now();
+  let pauseAccum=0, pausedAt=0;
+
+  function tick(){
+    const now=performance.now();
+    if(started && inView){
+      const t=(now-startTime-pauseAccum)/1000;
+      const p=Math.min(1, t/1.6);
+      word.position.y=startY*(1-spring(p));
+      // Keep flat — no tilting, no bobbing in idle
+    }
+    r.render(sc,cam);
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  const section=document.getElementById('distributorSection');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        if(!started){started=true;inView=true;}
+        else if(!inView){pauseAccum+=performance.now()-pausedAt;inView=true;}
+      } else {
+        if(inView){pausedAt=performance.now();inView=false;}
+      }
+    });
+  },{threshold:0.1});
+  io.observe(section);
+
+  requestAnimationFrame(()=>{
+    const rect=section.getBoundingClientRect();
+    if(rect.top<window.innerHeight && rect.bottom>0){
+      started=true;inView=true;
+    }
+  });
+
+  window.addEventListener('resize',()=>{
+    const W=VP.clientWidth, H=VP.clientHeight;
+    if(W===0||H===0)return;
+    cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H);
+  });
+})();
+</script>
+
+<script>
+// === DISTRIBUTOR — metal machine + voxel humans cheering ===
+(function(){
+  const canvas=document.getElementById('distScene');
+  if(!canvas||!window.THREE)return;
+  const Wd=canvas.clientWidth, Hd=canvas.clientHeight;
+  if(Wd===0||Hd===0)return;
+
+  const sc=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(36, Wd/Hd, 0.1, 600);
+  cam.position.set(0,30,110);
+  cam.lookAt(0,16,0);
+
+  const r=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  r.setPixelRatio(window.devicePixelRatio||1);
+  r.setSize(Wd,Hd,false);
+
+  // Lighting
+  sc.add(new THREE.AmbientLight(0xffffff,0.6));
+  const key=new THREE.DirectionalLight(0xffffff,1.0);
+  key.position.set(20,40,30);sc.add(key);
+  const fill=new THREE.DirectionalLight(0xffe6cc,0.35);
+  fill.position.set(-20,15,15);sc.add(fill);
+  const rim=new THREE.DirectionalLight(0xfff0f0,0.25);
+  rim.position.set(0,10,-30);sc.add(rim);
+
+  // === VOXEL HELPER ===
+  const FACES=[
+    {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+    {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+    {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+    {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+    {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+    {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+  ];
+  function buildGroup(voxelMap, opts){
+    const allPositions=[];
+    for(const arr of voxelMap.values())for(const p of arr)allPositions.push(p);
+    const occ=new Set(allPositions.map(p=>p[0]+','+p[1]+','+p[2]));
+    const group=new THREE.Group();
+    for(const [color, positions] of voxelMap.entries()){
+      const verts=[],norms=[],idx=[];let vi=0;
+      for(const p of positions){
+        const [px,py,pz]=p;
+        for(const f of FACES){
+          const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+          if(occ.has(nk))continue;
+          for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
+          idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
+        }
+      }
+      const geo=new THREE.BufferGeometry();
+      geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+      geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+      geo.setIndex(idx);
+      // Metal materials get high metalness/low roughness; non-metal stays flat
+      const isMetal = opts && opts.metals && opts.metals.has(color);
+      const mat = isMetal
+        ? new THREE.MeshStandardMaterial({color, roughness:0.35, metalness:0.85, flatShading:true})
+        : new THREE.MeshStandardMaterial({color, roughness:0.55, metalness:0.05, flatShading:true});
+      group.add(new THREE.Mesh(geo, mat));
+    }
+    return group;
+  }
+
+  // Color palette
+  const STEEL=0xa8b0b8,       // light steel
+        STEEL_D=0x6e7680,     // dark steel (panels, vents)
+        STEEL_DD=0x444a52,    // very dark (pipe shadow)
+        GD=0xffd23d,          // gold (rivets, details)
+        GDD=0xc79a0c,         // dark gold (warning stripes)
+        K=0x0a0a0a,           // black (vents, eyes)
+        W=0xffffff,           // white (eye highlights)
+        TH=0x26a17b,          // tether green (USDT panel)
+        THD=0x1a7a5a,         // dark tether
+        PK=0xffb19f,          // pink (hands, faces)
+        REDLED=0xff3b3b,      // status light red
+        GRNLED=0x2cb84d;      // status light green
+  const METAL_SET = new Set([STEEL, STEEL_D, STEEL_DD, GD, GDD]);
+
+  // === BUILD MACHINE BODY ===
+  const M=new Map();
+  const add=(c,x,y,z)=>{if(!M.has(c))M.set(c,[]);M.get(c).push([x,y,z]);};
+
+  // Body shell (steel) — 21w x 16h x 14d, hollow outer voxels
+  for(let x=-10;x<=10;x++){
+    for(let y=4;y<=19;y++){
+      for(let z=-7;z<=7;z++){
+        if(x===-10||x===10||y===4||y===19||z===-7||z===7){
+          add(STEEL,x,y,z);
+        }
+      }
+    }
+  }
+  // Dark steel band middle (industrial belt)
+  for(let x=-10;x<=10;x++){
+    for(let z=-7;z<=7;z++){
+      if(x===-10||x===10||z===-7||z===7){
+        add(STEEL_D,x,9,z);
+        add(STEEL_D,x,10,z);
+      }
+    }
+  }
+
+  // RIVETS — gold dots in pattern around panels
+  // Front face (z=8): rivets at corners of front panel
+  for(const [rx,ry] of [[-9,5],[9,5],[-9,18],[9,18],[-9,11],[9,11]]){
+    add(GD,rx,ry,7);
+  }
+  // Back face mirror
+  for(const [rx,ry] of [[-9,5],[9,5],[-9,18],[9,18]]){
+    add(GD,rx,ry,-7);
+  }
+  // Side rivets along edges
+  for(const sx of [-10,10]){
+    for(const ry of [6,8,12,15,17]){
+      add(GD,sx,ry,6); add(GD,sx,ry,-6);
+    }
+  }
+  // Top rivets at corners
+  for(const [rx,rz] of [[-9,6],[9,6],[-9,-6],[9,-6]]){
+    add(GD,rx,19,rz);
+  }
+
+  // VENTS — rows of dark steel slits on the sides
+  for(const sx of [-10,10]){
+    for(let v=0;v<3;v++){
+      const yBase = 12 + v*2;
+      for(let dz=-4;dz<=4;dz++){
+        if(dz%2===0){  // slits with gaps
+          add(STEEL_DD,sx,yBase,dz);
+        }
+      }
+    }
+  }
+  // Top vent (chimney area)
+  for(let dx=-2;dx<=2;dx++){
+    for(let dz=-2;dz<=2;dz++){
+      add(STEEL_DD, dx, 19, dz);
+    }
+  }
+  // Chimney stack — thin steel tower above the top vent
+  for(let dy=20;dy<=23;dy++){
+    for(let dx=-1;dx<=1;dx++){
+      for(let dz=-1;dz<=1;dz++){
+        if(dx===-1||dx===1||dz===-1||dz===1)add(STEEL,dx,dy,dz);
+      }
+    }
+  }
+  // Chimney top rim (gold)
+  for(let dx=-2;dx<=2;dx++){
+    for(let dz=-2;dz<=2;dz++){
+      if(dx===-2||dx===2||dz===-2||dz===2)add(GD,dx,24,dz);
+    }
+  }
+
+  // FUNNEL TOP (gold) — same as before but smaller, sits beside chimney
+  // Actually let's put funnel on FRONT TOP CORNER for asymmetric machine look
+  // Skip — keep clean: chimney is the top feature now
+
+  // === USDT DISPLAY PANEL on the chest (front, z=8) ===
+  // Frame (dark steel)
+  for(let x=-5;x<=5;x++){
+    for(let y=13;y<=16;y++){
+      if(x===-5||x===5||y===13||y===16){
+        add(STEEL_D,x,y,8);
+      }
+    }
+  }
+  // Inside green glow
+  for(let x=-4;x<=4;x++){
+    for(let y=14;y<=15;y++){
+      add(TH,x,y,8);
+    }
+  }
+  // Tether T symbol on the panel — built from tiny dark voxels
+  // T top horizontal
+  for(let dx=-2;dx<=2;dx++)add(THD,dx,15,9);
+  // T vertical stem
+  for(let dy=14;dy<=15;dy++)add(THD,0,dy,9);
+
+  // === FACE FEATURES — eyes + smile (front of machine) ===
+  // Eye sockets (dark steel rims around white eyes)
+  for(let dx=-1;dx<=2;dx++)add(STEEL_DD,-5+dx,11,8);  // socket border
+  for(let dx=-1;dx<=2;dx++)add(STEEL_DD,3+dx,11,8);
+  for(let dx=0;dx<=1;dx++)add(W,-4+dx,11,8);
+  for(let dx=0;dx<=1;dx++)add(W,4+dx,11,8);
+  add(K,-4,11,8); add(K,4,11,8);  // pupils
+
+  // Smile — curve of dark voxels
+  add(K,-4,7,8);
+  add(K,-3,6,8);add(K,-2,6,8);add(K,-1,6,8);add(K,0,6,8);add(K,1,6,8);add(K,2,6,8);add(K,3,6,8);
+  add(K,4,7,8);
+
+  // === STATUS LIGHTS — small pulsing voxel dots near top ===
+  // 3 lights row near the top front (will be animated to blink)
+  add(REDLED,-3,17,8);
+  add(GRNLED,0,17,8);
+  add(GRNLED,3,17,8);
+
+  // === WARNING STRIPES — yellow/black diagonal pattern at base ===
+  for(let x=-9;x<=9;x++){
+    const stripe = (x+9) % 4;
+    const c = stripe<2 ? GDD : K;
+    add(c, x, 5, 7);  // bottom-front warning band
+  }
+
+  // === SHOULDER PIPES — chunky steel pipes coming out where arms attach ===
+  // Three pipes per side, each at the height where an arm starts
+  // Slot heights (matching arm.startY = 8 + slot*3): slot 0=8, slot 1=11, slot 2=14
+  for(const side of [-1,1]){
+    for(let slot=0;slot<3;slot++){
+      const py = 8 + slot*3;
+      const sx = side*11;
+      // Pipe sticks out 3 voxels from the body
+      for(let off=0;off<3;off++){
+        const xx = sx + side*off;
+        for(let dy=-1;dy<=1;dy++){
+          for(let dz=-1;dz<=1;dz++){
+            if(dy===-1||dy===1||dz===-1||dz===1){  // hollow ring
+              add(STEEL_D, xx, py+dy, dz);
+            }
+          }
+        }
+      }
+      // Pipe end cap (gold flange)
+      const capX = sx + side*3;
+      for(let dy=-1;dy<=1;dy++){
+        for(let dz=-1;dz<=1;dz++){
+          if(dy===-1||dy===1||dz===-1||dz===1){
+            add(GD, capX, py+dy, dz);
+          }
+        }
+      }
+    }
+  }
+
+  // === BASE / PEDESTAL ===
+  // Wider gold base block under the machine
+  for(let x=-12;x<=12;x++){
+    for(let z=-8;z<=8;z++){
+      add(GD, x, 3, z);
+    }
+  }
+  for(let x=-12;x<=12;x++){
+    for(let z=-8;z<=8;z++){
+      if(x===-12||x===12||z===-8||z===8){
+        add(GDD, x, 2, z);
+      }
+    }
+  }
+
+  const machine=buildGroup(M, {metals:METAL_SET});
+  sc.add(machine);
+
+  // Track the status light meshes so we can animate emissive
+  // Find the meshes with REDLED/GRNLED colors
+  let redLightMesh=null, greenLightMesh=null;
+  machine.traverse(o=>{
+    if(o.isMesh){
+      const hex=o.material.color.getHex();
+      if(hex===REDLED)redLightMesh=o;
+      if(hex===GRNLED)greenLightMesh=o;
+    }
+  });
+
+  // === VOXEL BILL GEOMETRY (matches landing/volume animation) ===
+  function buildVoxelBillGeo(){
+    const gL=[0x2c/255,0xb8/255,0x4d/255];
+    const gD=[0x18/255,0x70/255,0x32/255];
+    const yel=[0xff/255,0xd2/255,0x3d/255];
+    const dpat=[
+      [0,0,0,1,0,0,0],[0,1,1,1,1,1,0],[1,1,0,1,0,0,0],[0,1,1,1,1,0,0],
+      [0,0,1,1,1,1,0],[0,0,0,1,0,1,1],[0,0,0,1,0,1,1],[0,1,1,1,1,1,0],[0,0,0,1,0,0,0]
+    ];
+    const PW=7,PD=9;
+    const voxels=[];
+    for(let x=-6;x<=6;x++){
+      for(let z=-4;z<=4;z++){
+        const onEdge=(x===-6||x===6||z===-4||z===4);
+        for(let y=0;y<=2;y++){
+          const color = onEdge ? gD : (y===2?gL:gD);
+          voxels.push([x,y,z,...color]);
+        }
+      }
+    }
+    const sx=-Math.floor(PW/2),sz=-Math.floor(PD/2);
+    for(let i=0;i<PD;i++){
+      for(let j=0;j<PW;j++){
+        if(dpat[i][j]) voxels.push([sx+j,3,sz+i,...yel]);
+      }
+    }
+    const occ=new Set(voxels.map(v=>v[0]+','+v[1]+','+v[2]));
+    const verts=[],norms=[],colors=[],idx=[];
+    let vi=0;
+    for(const v of voxels){
+      const [px,py,pz,r,g,b]=v;
+      for(const f of FACES){
+        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+        if(occ.has(nk))continue;
+        for(const c of f.v){
+          verts.push(c[0]+px,c[1]+py,c[2]+pz);
+          norms.push(f.n[0],f.n[1],f.n[2]);
+          colors.push(r,g,b);
+        }
+        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
+      }
+    }
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+    geo.setAttribute('color',new THREE.BufferAttribute(new Float32Array(colors),3));
+    geo.setIndex(idx);
+    return geo;
+  }
+  const billGeoShared=buildVoxelBillGeo();
+  const billMatShared=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.6,metalness:0.05,flatShading:true});
+
+  // === BUILD VOXEL HUMAN ===
+  // Generic chibi human — head + body + arms + legs, color-varied
+  function buildHuman(shirtColor, pantColor, hatColor){
+    const HM=new Map();
+    const hadd=(c,x,y,z)=>{if(!HM.has(c))HM.set(c,[]);HM.get(c).push([x,y,z]);};
+    // Head — 4x4x4 skin
+    for(let x=-1;x<=2;x++)for(let y=10;y<=13;y++)for(let z=-1;z<=2;z++)hadd(PK,x,y,z);
+    // Eyes (black dots)
+    hadd(K,0,12,3); hadd(K,1,12,3);
+    // Smile
+    hadd(K,0,11,3); hadd(K,1,11,3);
+    // Hat — 6x2x6 colored cap on top
+    if(hatColor){
+      for(let x=-2;x<=3;x++)for(let z=-2;z<=3;z++){
+        hadd(hatColor,x,14,z);
+      }
+    }
+    // Body / shirt — 5w x 4h x 3d
+    for(let x=-2;x<=2;x++)for(let y=6;y<=9;y++)for(let z=0;z<=2;z++)hadd(shirtColor,x,y,z);
+    // Arms — left and right, skin-colored, will animate
+    // (we'll override arm position later by making arms separate meshes)
+    // Legs / pants
+    for(let x=-2;x<=-1;x++)for(let y=2;y<=5;y++)for(let z=0;z<=2;z++)hadd(pantColor,x,y,z);
+    for(let x=1;x<=2;x++)for(let y=2;y<=5;y++)for(let z=0;z<=2;z++)hadd(pantColor,x,y,z);
+    // Feet (dark)
+    for(let x=-2;x<=-1;x++)for(let z=0;z<=2;z++)hadd(K,x,1,z);
+    for(let x=1;x<=2;x++)for(let z=0;z<=2;z++)hadd(K,x,1,z);
+    return buildGroup(HM);
+  }
+  // Build an arm separately so we can rotate it for the cheering motion
+  function buildArm(skinColor, shirtColor){
+    const AM=new Map();
+    const aadd=(c,x,y,z)=>{if(!AM.has(c))AM.set(c,[]);AM.get(c).push([x,y,z]);};
+    // Arm hangs from y=0 (top, attached to shoulder) DOWN to y=-4
+    // 1x1x1 voxels stacked vertically
+    // Top portion (shirt sleeve, 2 voxels)
+    for(let dy=0;dy>=-1;dy--)aadd(shirtColor,0,dy,0);
+    // Lower portion (skin, 3 voxels)
+    for(let dy=-2;dy>=-4;dy--)aadd(skinColor,0,dy,0);
+    return buildGroup(AM);
+  }
+
+  // === PEOPLE — 6 voxel humans, one per arm ===
+  const peopleColors=[
+    {shirt:0xd32f2f, pant:0x222244, hat:0xffd23d},  // red shirt, gold cap
+    {shirt:0x1da4e9, pant:0x222244, hat:null},      // blue shirt, no hat
+    {shirt:0x2cb84d, pant:0x222244, hat:0xd32f2f},  // green shirt, red cap
+    {shirt:0xffd23d, pant:0x222244, hat:null},      // gold shirt
+    {shirt:0xa040d0, pant:0x222244, hat:0x1da4e9},  // purple shirt, blue cap
+    {shirt:0xff8b3d, pant:0x222244, hat:null}       // orange shirt
+  ];
+
+  const NUM=6;
+  const arms=[];
+  const people=[];
+  // Position 6 people in a wide arc in front of the machine
+  const groundY = 0;
+  for(let i=0;i<NUM;i++){
+    const t=(i-(NUM-1)/2)/((NUM-1)/2);  // -1..1
+    const px = t * 32;            // spread across X
+    const pz = 14 + Math.abs(t)*4; // slight arc forward
+    const colors = peopleColors[i];
+    const human = buildHuman(colors.shirt, colors.pant, colors.hat);
+    human.scale.setScalar(0.85);
+    human.position.set(px, groundY, pz);
+    sc.add(human);
+
+    // Build separate arms for this human (so we can raise them during cheer)
+    const lArm = buildArm(PK, colors.shirt);
+    const rArm = buildArm(PK, colors.shirt);
+    lArm.position.set(px - 2.4*0.85, groundY + 9*0.85, pz + 0.5);
+    rArm.position.set(px + 2.4*0.85, groundY + 9*0.85, pz + 0.5);
+    lArm.scale.setScalar(0.85);
+    rArm.scale.setScalar(0.85);
+    sc.add(lArm);
+    sc.add(rArm);
+
+    // Where the cash gets dropped (slightly in front of person, at hand height)
+    const targetX = px;
+    const targetY = groundY + 7;
+    const targetZ = pz + 1;
+
+    // === Floating dollar amount sprite (pops up when cash received) ===
+    const sprCanvas = document.createElement('canvas');
+    sprCanvas.width = 512; sprCanvas.height = 160;
+    const sprCtx = sprCanvas.getContext('2d');
+    const sprTex = new THREE.CanvasTexture(sprCanvas);
+    sprTex.minFilter = THREE.LinearFilter;
+    const sprMat = new THREE.SpriteMaterial({map:sprTex, transparent:true, opacity:0});
+    const sprite = new THREE.Sprite(sprMat);
+    sprite.scale.set(16, 5, 1);
+    sprite.position.set(px, groundY + 16, pz);
+    sc.add(sprite);
+
+    function drawAmount(amount){
+      sprCtx.clearRect(0,0,512,160);
+      sprCtx.font = 'bold 100px Arial Black, Arial, sans-serif';
+      sprCtx.textAlign = 'center';
+      sprCtx.textBaseline = 'middle';
+      const text = '+$' + amount;
+      // Black outline (thick)
+      sprCtx.lineWidth = 16;
+      sprCtx.strokeStyle = '#000';
+      sprCtx.strokeText(text, 256, 80);
+      // Gradient green fill
+      const grad = sprCtx.createLinearGradient(0, 24, 0, 136);
+      grad.addColorStop(0, '#5be878');
+      grad.addColorStop(1, '#1d8a3a');
+      sprCtx.fillStyle = grad;
+      sprCtx.fillText(text, 256, 80);
+      sprTex.needsUpdate = true;
+    }
+
+    people.push({
+      mesh:human,
+      lArm, rArm,
+      basePos:new THREE.Vector3(px, groundY, pz),
+      lArmBase:new THREE.Vector3(px - 2.4*0.85, groundY + 9*0.85, pz + 0.5),
+      rArmBase:new THREE.Vector3(px + 2.4*0.85, groundY + 9*0.85, pz + 0.5),
+      cheerStart:0,
+      cheering:false,
+      sprite, sprMat, drawAmount,
+      spriteBaseY: groundY + 16,
+      spriteX: px, spriteZ: pz
+    });
+
+    // === ARM (machine arm) ===
+    const armGroup=new THREE.Group();
+    const SEG_COUNT = 10;
+    const segMat=new THREE.MeshStandardMaterial({color:STEEL, roughness:0.4, metalness:0.7, flatShading:true});
+    const cuffMat=new THREE.MeshStandardMaterial({color:GD, roughness:0.4, metalness:0.5, flatShading:true});
+    const segGeo=new THREE.BoxGeometry(1.4,1.4,1.4);
+    const segments=[];
+    for(let s=0;s<SEG_COUNT;s++){
+      const m = (s>=SEG_COUNT-2) ? cuffMat : segMat;
+      const seg=new THREE.Mesh(segGeo, m);
+      armGroup.add(seg);
+      segments.push(seg);
+    }
+    // Hand — chunky pink voxel cluster
+    const hand=new THREE.Group();
+    const handMat=new THREE.MeshStandardMaterial({color:PK, roughness:0.7, metalness:0.0, flatShading:true});
+    for(let hx=-1;hx<=1;hx++){
+      for(let hy=-1;hy<=1;hy++){
+        const block=new THREE.Mesh(new THREE.BoxGeometry(0.95,0.95,0.95), handMat);
+        block.position.set(hx*0.92, hy*0.92, 0);
+        hand.add(block);
+      }
+    }
+    armGroup.add(hand);
+
+    // Cash held in hand
+    const cash=new THREE.Mesh(billGeoShared, billMatShared);
+    cash.scale.setScalar(0.16);
+    cash.visible=false;
+    armGroup.add(cash);
+
+    sc.add(armGroup);
+
+    // Arm starts at the gold pipe cap on the side (3-position slot system)
+    const slotIdx = i % 3;
+    const side = i<3 ? -1 : 1;
+    const startY = 8 + slotIdx*3;
+    const startX = side * 14;  // emerges from the gold flange
+    const startZ = 0;
+
+    arms.push({
+      group:armGroup, segments, hand, cash,
+      startPos:new THREE.Vector3(startX, startY, startZ),
+      walletPos:new THREE.Vector3(targetX, targetY, targetZ),
+      personIdx:i,
+      phase: i*0.45 + Math.random()*0.15
+    });
+  }
+
+  // === ANIMATION ===
+  let local=0;
+  let lastFrameT=0;
+  const clk=new THREE.Clock();
+  let started=false, inView=false;
+  const CYCLE=4.0;
+
+  function smoothstep(a,b,t){t=Math.max(0,Math.min(1,(t-a)/(b-a)));return t*t*(3-2*t);}
+
+  function tick(){
+    const now=clk.getElapsedTime();
+    const dt=Math.min(0.1, now-lastFrameT);
+    lastFrameT=now;
+
+    if(started && inView){
+      local+=dt;
+
+      // Machine idle: low rumble bounce + slight rocking
+      machine.position.y=Math.sin(local*8)*0.12;  // fast small jitter
+      machine.rotation.z=Math.sin(local*1.3)*0.008;
+
+      // Status lights blink
+      if(redLightMesh){
+        const blink = (Math.sin(local*4)+1)/2;
+        redLightMesh.material.emissive=new THREE.Color(0xff3b3b);
+        redLightMesh.material.emissiveIntensity = blink*0.8;
+      }
+      if(greenLightMesh){
+        greenLightMesh.material.emissive=new THREE.Color(0x2cb84d);
+        greenLightMesh.material.emissiveIntensity = (Math.sin(local*5+1)+1)*0.4;
+      }
+
+      // Arm cycle
+      arms.forEach(arm=>{
+        const t = ((local + arm.phase*CYCLE) % CYCLE) / CYCLE;
+        let handPos=new THREE.Vector3();
+        let cashVisible=false;
+
+        if(t<0.20){
+          const u=smoothstep(0,1,t/0.20);
+          handPos.lerpVectors(arm.startPos, arm.walletPos, u);
+          cashVisible=true;
+        } else if(t<0.35){
+          handPos.copy(arm.walletPos);
+          cashVisible=true;
+        } else if(t<0.42){
+          // Cash drop moment — trigger person cheer
+          handPos.copy(arm.walletPos);
+          cashVisible=false;
+          const p=people[arm.personIdx];
+          if(!p.cheering){
+            p.cheering=true;
+            p.cheerStart=local;
+            // Pick a random $ amount and draw it
+            const amounts=[25,50,75,100,150,200,250,300,500,750];
+            const amt = amounts[Math.floor(Math.random()*amounts.length)];
+            p.drawAmount(amt);
+          }
+        } else if(t<0.62){
+          const u=smoothstep(0,1,(t-0.42)/0.20);
+          handPos.lerpVectors(arm.walletPos, arm.startPos, u);
+          cashVisible=false;
+        } else {
+          handPos.copy(arm.startPos);
+          handPos.y += Math.sin(local*4 + arm.personIdx)*0.5;
+          cashVisible=false;
+        }
+
+        // Wave on path
+        if(t<0.20 || (t>=0.42 && t<0.62)){
+          const phaseT = t<0.20 ? t/0.20 : (t-0.42)/0.20;
+          const wave=Math.sin(local*4 + arm.personIdx*2)*0.8;
+          handPos.x += wave * Math.sin(phaseT*Math.PI) * 0.5;
+        }
+
+        // Position chained voxel segments along curve
+        for(let s=0;s<arm.segments.length;s++){
+          const u=(s+1)/(arm.segments.length+1);
+          const seg=arm.segments[s];
+          seg.position.lerpVectors(arm.startPos, handPos, u);
+          // Snake arc
+          const arc=Math.sin(u*Math.PI)*1.5;
+          seg.position.y+=arc;
+        }
+        arm.hand.position.copy(handPos);
+        arm.cash.visible=cashVisible;
+        if(cashVisible){
+          arm.cash.position.copy(handPos);
+          arm.cash.position.y-=1.2;
+          arm.cash.rotation.z=Math.sin(local*5+arm.personIdx)*0.3;
+        }
+      });
+
+      // Person cheering animation
+      people.forEach((p,i)=>{
+        if(p.cheering){
+          const cheerT = local - p.cheerStart;
+          const cheerDur = 1.4;
+          if(cheerT > cheerDur){
+            // End cheer — reset to neutral
+            p.cheering=false;
+            p.mesh.position.copy(p.basePos);
+            p.mesh.rotation.z=0;
+            p.lArm.position.copy(p.lArmBase);
+            p.rArm.position.copy(p.rArmBase);
+            p.lArm.rotation.z=0;
+            p.rArm.rotation.z=0;
+          } else {
+            const jumpProg = cheerT / cheerDur;
+            const hopY = Math.abs(Math.sin(jumpProg*Math.PI*3)) * 3.0 * (1-jumpProg*0.3);
+            p.mesh.position.set(p.basePos.x, p.basePos.y + hopY, p.basePos.z);
+            p.mesh.rotation.z = Math.sin(cheerT*15)*0.12;
+            const armRaise = Math.sin(jumpProg*Math.PI) * Math.PI * 0.85;
+            p.lArm.position.set(p.lArmBase.x, p.lArmBase.y + hopY, p.lArmBase.z);
+            p.rArm.position.set(p.rArmBase.x, p.rArmBase.y + hopY, p.rArmBase.z);
+            p.lArm.rotation.z = armRaise;
+            p.rArm.rotation.z = -armRaise;
+          }
+        } else {
+          // Idle micro-bob
+          const idle = Math.sin(local*2 + i*0.5)*0.1;
+          p.mesh.position.y = p.basePos.y + idle;
+          p.lArm.position.y = p.lArmBase.y + idle;
+          p.rArm.position.y = p.rArmBase.y + idle;
+        }
+
+        // Sprite rise + fade animation (independent timing, lasts longer than the cheer hop)
+        const sprDur = 2.0;
+        const sprT = local - p.cheerStart;
+        if(sprT >= 0 && sprT <= sprDur && p.cheerStart > 0){
+          // Ease the rise
+          const u = sprT / sprDur;
+          // Fade in fast, fade out slow at end
+          let opacity;
+          if(u < 0.15) opacity = u/0.15;
+          else if(u > 0.7) opacity = (1-u)/0.3;
+          else opacity = 1.0;
+          p.sprMat.opacity = Math.max(0, Math.min(1, opacity));
+          // Rise up + slight horizontal sway
+          const rise = u * 8;  // travels 8 units up
+          const sway = Math.sin(u*Math.PI*2)*0.6;
+          p.sprite.position.set(p.spriteX + sway, p.spriteBaseY + rise, p.spriteZ);
+          // Slight scale pop at start
+          const popScale = 1 + (u<0.2 ? Math.sin(u/0.2*Math.PI)*0.25 : 0);
+          p.sprite.scale.set(16*popScale, 5*popScale, 1);
+        } else {
+          p.sprMat.opacity = 0;
+        }
+      });
+    }
+
+    r.render(sc,cam);
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  const section=document.getElementById('distributorSection');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      inView=e.isIntersecting;
+      if(e.isIntersecting && !started)started=true;
+    });
+  },{threshold:0.05});
+  io.observe(section);
+
+  requestAnimationFrame(()=>{
+    const rect=section.getBoundingClientRect();
+    if(rect.top<window.innerHeight && rect.bottom>0){
+      started=true;inView=true;
+    }
+  });
+
+  window.addEventListener('resize',()=>{
+    const W=canvas.clientWidth, H=canvas.clientHeight;
+    if(W===0||H===0)return;
+    cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H,false);
+  });
+})();
+</script>
+
+<script>
 // === TOKENOMICS HEADLINE — rendered as 3D voxel cubes matching SUPER/CASH/COIN ===
 (function(){
   const VP=document.getElementById('tkVoxel');
@@ -2677,7 +3812,6 @@ window.addEventListener('resize',()=>{
   r.setSize(Wd,Hd);
   VP.appendChild(r.domElement);
 
-  // Same lighting as the landing voxel headline
   sc.add(new THREE.AmbientLight(0xffffff,0.7));
   const k=new THREE.DirectionalLight(0xffffff,0.9);
   k.position.set(15,45,20);sc.add(k);
@@ -2686,7 +3820,6 @@ window.addEventListener('resize',()=>{
   const rim=new THREE.DirectionalLight(0xfff0f0,0.2);
   rim.position.set(0,8,-25);sc.add(rim);
 
-  // 5×7 pixel font for T O K E N M I C S
   const LET={
     'T':['#####','..#..','..#..','..#..','..#..','..#..','..#..'],
     'O':['.###.','#...#','#...#','#...#','#...#','#...#','.###.'],
@@ -2729,12 +3862,8 @@ window.addEventListener('resize',()=>{
       for(const f of FACES){
         const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
         if(occ.has(nk))continue;
-        for(const c of f.v){
-          verts.push(c[0]+px,c[1]+py,c[2]+pz);
-          norms.push(f.n[0],f.n[1],f.n[2]);
-        }
-        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
-        vi+=4;
+        for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
+        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
       }
     }
     const geo=new THREE.BufferGeometry();
@@ -2745,15 +3874,11 @@ window.addEventListener('resize',()=>{
     return new THREE.Mesh(geo,mat);
   }
 
-  // "TOKENOMICS" — 10 chars × 5 wide + 9 gaps = 59 voxels wide
   const totalW = 5*10 + 9;
-  const xStart = -totalW/2;
-
-  const word = buildWord('TOKENOMICS', 0xffd23d, xStart, 0);
-  word.scale.set(1, 1, 4);  // thick chunky voxels matching the 25%
+  const word = buildWord('TOKENOMICS', 0xffd23d, -totalW/2, 0);
+  word.scale.set(1, 1, 4);
   sc.add(word);
 
-  // Spring entrance + idle bob
   const startY=-30;
   word.position.y=startY;
   const spring=p=>1-Math.exp(-p*5)*Math.cos(p*15);
