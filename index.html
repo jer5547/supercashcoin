@@ -187,7 +187,7 @@
     border-top:3px solid #ffd23d;
     border-bottom:3px solid #ffd23d;
     overflow:hidden;
-    padding:14px 0;
+    padding:18px 0;
     position:relative;
     box-shadow:0 4px 12px rgba(0,0,0,0.15);
   }
@@ -199,10 +199,10 @@
   }
   .ticker-item{
     flex-shrink:0;
-    padding:0 24px;
-    font-size:28px;
+    padding:0 28px;
+    font-size:42px;
     font-weight:900;
-    letter-spacing:0.04em;
+    letter-spacing:0.02em;
     color:#fff;
     font-family:'Arial Black','Arial',sans-serif;
     white-space:nowrap;
@@ -217,7 +217,7 @@
   .celebration{
     background:#0a0a0a;
     color:#fff;
-    padding:160px 60px;
+    padding:60px 60px 100px;
     position:relative;
     overflow:hidden;
     text-align:center;
@@ -276,6 +276,70 @@
     transition:opacity 0.6s ease 0.2s;
   }
   .celebration.in .sub{opacity:1;}
+
+  /* === BENEFITS GRID === */
+  .benefits{
+    margin:80px auto 0;
+    max-width:1200px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    text-align:left;
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s;
+  }
+  .celebration.in .benefits{opacity:1;transform:translateY(0);}
+  .benefit{
+    background:linear-gradient(135deg,#161616,#0f0f0f);
+    border:1px solid #2a2a2a;
+    border-left:3px solid #ffd23d;
+    border-radius:10px;
+    padding:24px;
+    transition:transform 0.25s, border-color 0.25s, background 0.25s;
+  }
+  .benefit:hover{
+    transform:translateY(-3px);
+    border-color:#ffd23d;
+    background:linear-gradient(135deg,#1a1a1a,#141414);
+  }
+  .benefit .b-icon{
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    background:linear-gradient(135deg,rgba(255,210,61,0.15),rgba(255,210,61,0.04));
+    border:1px solid rgba(255,210,61,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:14px;
+  }
+  .benefit .b-icon svg{
+    width:22px;
+    height:22px;
+    stroke:#ffd23d;
+    fill:none;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .benefit h3{
+    font-size:17px;
+    font-weight:900;
+    color:#fff;
+    margin:0 0 8px;
+    letter-spacing:-0.01em;
+    line-height:1.25;
+  }
+  .benefit p{
+    font-size:13px;
+    color:#aaa;
+    line-height:1.55;
+    margin:0;
+  }
+  .benefit p b{color:#ffd23d;font-weight:800;}
+  @media (max-width:900px){.benefits{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.benefits{grid-template-columns:1fr;}}
   .celebration #fxCanvas{
     position:absolute;
     inset:0;
@@ -283,14 +347,6 @@
     height:100%;
     pointer-events:none;
     z-index:1;
-  }
-  .celebration #billsCanvas{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:0;
   }
   .celebration .content{position:relative;z-index:2;}
 
@@ -350,19 +406,14 @@
     text-align:center;
     margin-bottom:18px;
   }
-  .tk-title h2{
-    font-size:clamp(48px,6vw,84px);
-    font-weight:900;
-    letter-spacing:-0.04em;
-    color:#fff;
-    margin:0;
-    line-height:1;
+  .tk-title-voxel{
+    width:100%;
+    max-width:1400px;
+    height:clamp(220px,28vw,400px);
+    margin:0 auto;
   }
-  .tk-title h2 .gold{
-    color:#ffd23d;
-    text-shadow:3px 3px 0 #c79a0c, 6px 6px 0 #8a6a08;
-    display:inline-block;
-  }
+  #tkVoxel{width:100%;height:100%;}
+  #tkVoxel canvas{display:block;width:100%!important;height:100%!important;}
   .tk-warn{
     text-align:center;
     margin-bottom:60px;
@@ -1035,24 +1086,71 @@
 </div>
 
 <section class="celebration" id="celebrationSection">
-  <div id="billsCanvas"></div>
   <canvas id="fxCanvas"></canvas>
   <div class="content">
-    <div class="sub">Royalty Reward Rate</div>
     <div class="pct-wrap" id="bigPct">
       <div id="pct25"></div>
     </div>
     <h2>
       A huge <span class="gold">25%</span> of every buy transaction in <span class="gold">Super Cash Coin</span> goes back to holders in <span class="tether">USD Tether</span>.
     </h2>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="b-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M5 12H1M23 12h-4M19 5l-3 3M8 16l-3 3M19 19l-3-3M8 8L5 5"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <h3>Ultra-cheap gas fees on opBNB</h3>
+        <p>Transactions cost fractions of a cent (often <b>under $0.01</b>). Buy, sell, or transfer thousands of times without getting eaten alive by fees like on Ethereum or Solana.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="b-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        </div>
+        <h3>Lightning-fast speeds</h3>
+        <p>opBNB settles in <b>~1 second</b> with massive throughput. No more waiting 30 seconds or getting front-run — your trades and rewards hit instantly.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="b-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21V8m6 13V3m6 18v-9m6 9V11"/></svg>
+        </div>
+        <h3>Highest tax = highest USDT rewards</h3>
+        <p>At <b>25%</b> (the max most contracts allow), you're pulling the biggest possible slice from every single buy. The reward pool grows faster than lower-tax tokens.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="b-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Real, automatic USDT income</h3>
+        <p>Every trade automatically sends <b>USDT</b> straight to holders' wallets. No claiming, no staking, no waiting — pure passive stablecoin yield while you hold.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="b-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12l4-4 4 4 4-4 4 4 2-2"/><path d="M3 18l4-4 4 4 4-4 4 4 2-2"/></svg>
+        </div>
+        <h3>Volume = your paycheck</h3>
+        <p>The more people trade the coin (which meme coins are built for), the more <b>25% tax</b> gets collected and the more USDT you receive. High volume literally pays you.</p>
+      </div>
+
+      <div class="benefit">
+        <div class="b-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Hold or get left behind</h3>
+        <p>The 25% sell tax heavily punishes flippers, so serious holders get a bigger share of the USDT pool. Naturally rewards <b>diamond hands</b>.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="tokenomics" id="tokenomicsSection">
   <div class="tk-wrap">
-    <div class="tk-eyebrow"><span class="dot"></span>The Numbers<span class="dot"></span></div>
     <div class="tk-title">
-      <h2><span class="gold">Tokenomics</span></h2>
+      <div class="tk-title-voxel"><div id="tkVoxel"></div></div>
     </div>
     <div class="tk-warn-wrap">
       <div class="tk-warn">⚠ Must hold at least 1 token to earn rewards</div>
@@ -1875,145 +1973,6 @@ window.addEventListener('resize',()=>{
 })();
 </script>
 
-<script>
-// === CELEBRATION — floating 3D cash bills decoration ===
-(function(){
-  const VP=document.getElementById('billsCanvas');
-  if(!VP||!window.THREE)return;
-  const Wd=VP.clientWidth, Hd=VP.clientHeight;
-
-  const sc=new THREE.Scene();
-  sc.background=null;
-  const cam=new THREE.PerspectiveCamera(45,Wd/Hd,0.1,500);
-  cam.position.set(0,0,40);
-  cam.lookAt(0,0,0);
-
-  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
-  r.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  r.setSize(Wd,Hd);
-  VP.appendChild(r.domElement);
-
-  sc.add(new THREE.AmbientLight(0xffffff,0.85));
-  const k=new THREE.DirectionalLight(0xffffff,0.9);
-  k.position.set(15,30,20);sc.add(k);
-  const f=new THREE.DirectionalLight(0xffe6cc,0.3);
-  f.position.set(-15,12,-8);sc.add(f);
-
-  // Build the same voxel cash bill geometry used in the landing scene
-  const cv=[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5],[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5],[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5],[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5],[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5],[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]];
-  const cn=[[1,0,0],[1,0,0],[1,0,0],[1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,-1],[0,0,-1],[0,0,-1],[0,0,-1]];
-  const ci=[0,1,2,0,2,3,4,5,6,4,6,7,8,9,10,8,10,11,12,13,14,12,14,15,16,17,18,16,18,19,20,21,22,20,22,23];
-
-  function buildVoxelGeo(voxels){
-    const totV=voxels.length*24;
-    const positions=new Float32Array(totV*3),normals=new Float32Array(totV*3),colors=new Float32Array(totV*3);
-    const indices=new Uint32Array(voxels.length*36);
-    let vi=0,ii=0;
-    for(const v of voxels){
-      const baseV=vi;
-      for(let i=0;i<24;i++){
-        positions[(vi+i)*3]=cv[i][0]+v[0];positions[(vi+i)*3+1]=cv[i][1]+v[1];positions[(vi+i)*3+2]=cv[i][2]+v[2];
-        normals[(vi+i)*3]=cn[i][0];normals[(vi+i)*3+1]=cn[i][1];normals[(vi+i)*3+2]=cn[i][2];
-        colors[(vi+i)*3]=v[3];colors[(vi+i)*3+1]=v[4];colors[(vi+i)*3+2]=v[5];
-      }
-      for(let i=0;i<36;i++)indices[ii+i]=ci[i]+baseV;
-      vi+=24;ii+=36;
-    }
-    const geo=new THREE.BufferGeometry();
-    geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
-    geo.setAttribute('normal',new THREE.BufferAttribute(normals,3));
-    geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
-    geo.setIndex(new THREE.BufferAttribute(indices,1));
-    return geo;
-  }
-
-  function buildBillGeo(){
-    const voxels=[];
-    const gL=[0x2c/255,0xb8/255,0x4d/255];
-    const gD=[0x18/255,0x70/255,0x32/255];
-    const yel=[0xff/255,0xd2/255,0x3d/255];
-    const dpat=[
-      [0,0,0,1,0,0,0],[0,1,1,1,1,1,0],[1,1,0,1,0,0,0],[0,1,1,1,1,0,0],[0,0,1,1,1,1,0],[0,0,0,1,0,1,1],[0,0,0,1,0,1,1],[0,1,1,1,1,1,0],[0,0,0,1,0,0,0]
-    ];
-    const PW=7,PD=9;
-    for(let x=-6;x<=6;x++){
-      for(let z=-4;z<=4;z++){
-        const onEdge=(x===-6||x===6||z===-4||z===4);
-        for(let y=0;y<=2;y++){
-          let color;if(onEdge)color=gD;else color=(y===2)?gL:gD;
-          voxels.push([x,y,z,...color]);
-        }
-      }
-    }
-    const sx=-Math.floor(PW/2),sz=-Math.floor(PD/2);
-    for(let i=0;i<PD;i++){for(let j=0;j<PW;j++){if(dpat[i][j])voxels.push([sx+j,3,sz+i,...yel]);}}
-    return buildVoxelGeo(voxels);
-  }
-
-  const billGeo=buildBillGeo();
-  const billMat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.6,metalness:0.05,flatShading:true});
-
-  // 3 small bills spread out across the upper half.
-  const positions=[
-    [-26, 4],    // mid-left (lower)
-    [26, 8],     // upper-right
-    [0, 16],     // top-center
-  ];
-  const bills=[];
-  positions.forEach((p,i)=>{
-    const m=new THREE.Mesh(billGeo,billMat);
-    m.scale.set(0.22,0.22,0.22);
-    m.position.set(
-      p[0]+(Math.random()-0.5)*1.2,
-      p[1]+(Math.random()-0.5)*1.2,
-      -4-Math.random()*7
-    );
-    m.rotation.x=Math.random()*Math.PI*2;
-    m.rotation.y=Math.random()*Math.PI*2;
-    m.rotation.z=Math.random()*Math.PI*2;
-    // Distinct rotation axes per bill so they tumble in different ways
-    m.userData.rxs=(Math.random()-0.5)*1.4;
-    m.userData.rys=(Math.random()-0.5)*1.8;
-    m.userData.rzs=(Math.random()-0.5)*1.0;
-    m.userData.bobOff=Math.random()*Math.PI*2;
-    m.userData.baseY=m.position.y;
-    sc.add(m);
-    bills.push(m);
-  });
-
-  let inView=false;
-  const clk=new THREE.Clock();
-  let lastT=0;
-  function tick(){
-    const now=clk.getElapsedTime();
-    const dt=Math.min(0.05, now-lastT);  // cap dt so pause/resume doesn't fling
-    lastT=now;
-    if(inView){
-      bills.forEach(b=>{
-        b.rotation.x+=b.userData.rxs*dt;
-        b.rotation.y+=b.userData.rys*dt;
-        b.rotation.z+=b.userData.rzs*dt;
-        b.position.y=b.userData.baseY+Math.sin(now*0.6+b.userData.bobOff)*0.6;
-      });
-    }
-    r.render(sc,cam);
-    requestAnimationFrame(tick);
-  }
-  tick();
-
-  // Pause when out of view
-  const section=document.getElementById('celebrationSection');
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{inView=e.isIntersecting;});
-  },{threshold:0.1});
-  io.observe(section);
-
-  window.addEventListener('resize',()=>{
-    const W=VP.clientWidth, H=VP.clientHeight;
-    cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H);
-  });
-})();
-</script>
 
 <script>
 // === CELEBRATION SECTION — fireworks + confetti ===
@@ -2538,14 +2497,17 @@ function spawnBill(idx){
 }
 
 const clk=new THREE.Clock();
-let phase=2,phaseStart=0,nextSpawn=0,lastSpawnT=0;
-let started=false,inView=false,pausedAt=0;
+let nextSpawn=0,lastSpawnT=0;
+let started=false,inView=false;
+let local=0;            // time elapsed while in view (seconds)
+let lastFrameT=0;       // last frame's wall time
 const POUR_RATES=[1.20, 0.85, 0.55, 0.20, 0.025];
 let visibleBars=0,lastBarTime=0;
 const BAR_INTERVAL=1.8;
+const LOOP_DURATION=32;
 
 function reset(){
-  phase=2;phaseStart=clk.getElapsedTime();
+  local=0;
   nextSpawn=0;lastSpawnT=0;cartFillH=0;
   visibleBars=0;lastBarTime=0;
   bars.forEach(b=>{
@@ -2567,11 +2529,15 @@ function reset(){
 reset();
 
 function tick(){
-  const t=clk.getElapsedTime();
-  const local=t-phaseStart;
+  const now=clk.getElapsedTime();
+  const dt=Math.min(0.1, now-lastFrameT);  // cap dt so tab-switch doesn't fling
+  lastFrameT=now;
+
   if(started && inView){
+    // Advance local clock only while visible — pause/resume just stops accumulating
+    local+=dt;
+
     if(visibleBars===0){
-      // First bar appears immediately on start
       bars[0].userData.appearTime=local;
       bars[0].visible=true;
       visibleBars=1;
@@ -2657,52 +2623,187 @@ function tick(){
       billsMesh.setMatrixAt(i,dummy.matrix);
     }
     billsMesh.instanceMatrix.needsUpdate=true;
-    if(local>32){reset();started=true;}
+    if(local>LOOP_DURATION){reset();}
   }
   r.render(sc,cam);
   requestAnimationFrame(tick);
 }
 tick();
 
+// Simple observer: just toggle inView. local time only ticks while inView is true.
 const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){
-      if(!started){
-        // First time entering view — start fresh
-        started=true;
-        reset();
-        inView=true;
-      } else if(!inView){
-        // Returning to view after scroll-out — adjust phaseStart so animation continues smoothly
-        const pauseDuration=clk.getElapsedTime()-pausedAt;
-        phaseStart+=pauseDuration;
-        lastBarTime+=pauseDuration;
-        lastSpawnT+=pauseDuration;
-        inView=true;
-      }
-    } else {
-      if(inView){
-        pausedAt=clk.getElapsedTime();
-        inView=false;
-      }
+    inView=e.isIntersecting;
+    if(e.isIntersecting && !started){
+      started=true;
     }
   });
-},{threshold:0.01});  // Trigger as soon as ANY pixel is visible
+},{threshold:0.01});
+io.observe(VP);
 
-// Start immediately if section is already in view on page load (don't wait for scroll)
+// Auto-start if section is already on screen at page load
 requestAnimationFrame(()=>{
   const rect=VP.getBoundingClientRect();
   if(rect.top<window.innerHeight && rect.bottom>0){
-    started=true;reset();inView=true;
+    started=true;
+    inView=true;
   }
 });
-
-io.observe(VP);
 
 window.addEventListener('resize',()=>{
   const W=VP.clientWidth, H=VP.clientHeight;
   cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H);
 });
+})();
+</script>
+
+<script>
+// === TOKENOMICS HEADLINE — rendered as 3D voxel cubes matching SUPER/CASH/COIN ===
+(function(){
+  const VP=document.getElementById('tkVoxel');
+  if(!VP||!window.THREE)return;
+  const Wd=VP.clientWidth, Hd=VP.clientHeight;
+  if(Wd===0||Hd===0)return;
+
+  const sc=new THREE.Scene();
+  sc.background=null;
+
+  const cam=new THREE.PerspectiveCamera(38, Wd/Hd, 0.1, 200);
+  cam.position.set(0,4,38);
+  cam.lookAt(0,4,0);
+
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  r.setPixelRatio(window.devicePixelRatio||1);
+  r.setSize(Wd,Hd);
+  VP.appendChild(r.domElement);
+
+  // Same lighting as the landing voxel headline
+  sc.add(new THREE.AmbientLight(0xffffff,0.7));
+  const k=new THREE.DirectionalLight(0xffffff,0.9);
+  k.position.set(15,45,20);sc.add(k);
+  const fl=new THREE.DirectionalLight(0xffe6cc,0.3);
+  fl.position.set(-15,12,-8);sc.add(fl);
+  const rim=new THREE.DirectionalLight(0xfff0f0,0.2);
+  rim.position.set(0,8,-25);sc.add(rim);
+
+  // 5×7 pixel font for T O K E N M I C S
+  const LET={
+    'T':['#####','..#..','..#..','..#..','..#..','..#..','..#..'],
+    'O':['.###.','#...#','#...#','#...#','#...#','#...#','.###.'],
+    'K':['#...#','#..#.','#.#..','##...','#.#..','#..#.','#...#'],
+    'E':['#####','#....','#....','####.','#....','#....','#####'],
+    'N':['#...#','##..#','#.#.#','#.#.#','#.#.#','#..##','#...#'],
+    'M':['#...#','##.##','#.#.#','#.#.#','#...#','#...#','#...#'],
+    'I':['#####','..#..','..#..','..#..','..#..','..#..','#####'],
+    'C':['.####','#....','#....','#....','#....','#....','.####'],
+    'S':['.###.','#...#','#....','.###.','....#','#...#','.###.']
+  };
+
+  function buildWord(text,color,xStart,yBase){
+    const W=5,H=7,GAP=1;
+    const ps=[];
+    for(let i=0;i<text.length;i++){
+      const pat=LET[text[i]];
+      if(!pat)continue;
+      for(let y=0;y<pat.length;y++){
+        for(let x=0;x<pat[y].length;x++){
+          if(pat[y][x]==='#'){
+            ps.push([xStart+i*(W+GAP)+x,(H-1-y)+yBase,0]);
+          }
+        }
+      }
+    }
+    const occ=new Set(ps.map(p=>p[0]+','+p[1]+','+p[2]));
+    const FACES=[
+      {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+      {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+      {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+      {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+    ];
+    const verts=[],norms=[],idx=[];
+    let vi=0;
+    for(const p of ps){
+      const [px,py,pz]=p;
+      for(const f of FACES){
+        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+        if(occ.has(nk))continue;
+        for(const c of f.v){
+          verts.push(c[0]+px,c[1]+py,c[2]+pz);
+          norms.push(f.n[0],f.n[1],f.n[2]);
+        }
+        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
+        vi+=4;
+      }
+    }
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+    geo.setIndex(idx);
+    const mat=new THREE.MeshStandardMaterial({color,roughness:0.5,metalness:0.15,flatShading:true});
+    return new THREE.Mesh(geo,mat);
+  }
+
+  // "TOKENOMICS" — 10 chars × 5 wide + 9 gaps = 59 voxels wide
+  const totalW = 5*10 + 9;
+  const xStart = -totalW/2;
+
+  const word = buildWord('TOKENOMICS', 0xffd23d, xStart, 0);
+  word.scale.set(1, 1, 4);  // thick chunky voxels matching the 25%
+  sc.add(word);
+
+  // Spring entrance + idle bob
+  const startY=-30;
+  word.position.y=startY;
+  const spring=p=>1-Math.exp(-p*5)*Math.cos(p*15);
+
+  let started=false, inView=false;
+  const startTime=performance.now();
+  let pauseAccum=0, pausedAt=0;
+
+  function tick(){
+    const now=performance.now();
+    if(started && inView){
+      const t=(now-startTime-pauseAccum)/1000;
+      const p=Math.min(1, t/1.6);
+      word.position.y = startY*(1-spring(p));
+      if(t>2.0){
+        const u=t-2.0;
+        word.position.y += Math.sin(u*1.2)*0.3;
+        word.rotation.z = Math.sin(u*0.9)*0.02;
+      }
+    }
+    r.render(sc,cam);
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  const section=document.getElementById('tokenomicsSection');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        if(!started){started=true;inView=true;}
+        else if(!inView){pauseAccum+=performance.now()-pausedAt;inView=true;}
+      } else {
+        if(inView){pausedAt=performance.now();inView=false;}
+      }
+    });
+  },{threshold:0.1});
+  io.observe(section);
+
+  requestAnimationFrame(()=>{
+    const rect=section.getBoundingClientRect();
+    if(rect.top<window.innerHeight && rect.bottom>0){
+      started=true;inView=true;
+    }
+  });
+
+  window.addEventListener('resize',()=>{
+    const W=VP.clientWidth, H=VP.clientHeight;
+    if(W===0||H===0)return;
+    cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H);
+  });
 })();
 </script>
 
