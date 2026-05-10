@@ -190,6 +190,21 @@ function makePig(){
   for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
 
   // Red cape (tapered shape)
+  // Big shoulder-pad collar — wraps over both shoulders, no chest flaps
+  for(let x=-10;x<=9;x++){
+    if(x>=-3 && x<=2)continue;     // gap for neck
+    for(let z=-9;z<=9;z++){
+      add(G.cape,x,32,z,RD);
+      add(G.cape,x,33,z,RD);
+    }
+  }
+  // Outer trim (slight darker bevel at the bottom edge of the pads on the front)
+  for(let x=-10;x<=9;x++){
+    if(x>=-3 && x<=2)continue;
+    add(G.cape,x,31,9,DRD);
+  }
+
+  // Cape (back panel — tapered, hangs behind)
   for(let y=8;y<=34;y++){
     const t=(34-y)/26;
     const halfW=Math.round(11+t*5);
@@ -486,7 +501,7 @@ function tick(){
   pig.userData.rArmPivot.rotation.z = 0.45*danceMix;
   pig.userData.lArmPivot.rotation.x = Math.sin(elapsed*beat)*0.5*danceMix + Math.sin(elapsed*1.2)*0.06*idleMix;
   pig.userData.rArmPivot.rotation.x = Math.sin(elapsed*beat+Math.PI)*0.5*danceMix - Math.sin(elapsed*1.2)*0.06*idleMix;
-  pig.userData.capePivot.rotation.x = -0.1 - Math.abs(Math.sin(elapsed*beat))*0.25*danceMix - Math.sin(elapsed*1.2)*0.05*idleMix;
+  pig.userData.capePivot.rotation.x = 0;
 
   // Spawn bills based on elapsed time (multi-spawn per frame if needed)
   const targetSpawned=Math.min(N,Math.floor(elapsed*SPAWN_RATE));
