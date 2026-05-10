@@ -1226,36 +1226,112 @@
     0%,100%{transform:translateY(0);}
     50%{transform:translateY(-12px);}
   }
-  .lb-foot{
-    margin-top:14px;
-    padding:14px 22px;
-    background:#fafaf7;
-    border:1px solid #e8e8e0;
-    color:#666;
-    font-size:12px;
-    line-height:1.5;
-    text-align:center;
-    border-radius:10px;
-  }
-  .lb-foot b{color:#c79a0c;}
-  .lb-foot .updated{
-    font-size:10px;
-    color:#aaa;
-    margin-top:4px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    font-weight:700;
-  }
-  .lb-loading{
-    padding:40px 22px;
-    text-align:center;
-    color:#888;
-    font-size:13px;
-    background:#fff;
-    border-radius:12px;
-    border:1px solid #e8e8e0;
-  }
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+  /* ============================================================
+     MOBILE RESPONSIVE BLOCK
+     ============================================================
+     Two breakpoints:
+       <= 900px  tablet    (column stacks, reduced padding)
+       <= 600px  phone     (further tightening, drop secondary stuff)
+     3D scene cameras/FOVs intentionally left untouched per project rules.
+     ============================================================ */
+  @media (max-width:900px){
+    /* --- Navbar: wrap rows so links don't squeeze brand --- */
+    .navbar{padding:12px 16px;gap:12px;flex-wrap:wrap;}
+    .nav-brand{flex-wrap:wrap;gap:10px;}
+    .nav-brand img{width:40px;height:40px;}
+    .nav-brand .name{font-size:18px;}
+    .nav-brand .tag{font-size:10px;margin-top:2px;}
+    .nav-socials a{width:26px;height:26px;font-size:12px;}
+    .nav-links{gap:14px;margin-left:0;order:3;width:100%;justify-content:center;flex-wrap:wrap;}
+    .nav-links a{font-size:12px;}
+    .nav-cta{padding:8px 16px;font-size:12px;margin-left:auto;}
+
+    /* --- Infobar: stack the 3 items so labels don't overflow --- */
+    .infobar{flex-direction:column;gap:8px;padding:12px 16px;text-align:center;}
+    .infobar .label{font-size:11px;}
+    .infobar .price{font-size:14px;}
+
+    /* --- Hero: text on top, 3D animation below --- */
+    .hero{flex-direction:column;height:auto;padding:0 18px 30px;gap:0;max-width:100%;}
+    .hero .text{padding:24px 0 8px;flex:none;width:100%;}
+    #vt{height:220px;}
+    .anim{flex:none;width:100%;height:50vh;min-height:280px;max-height:480px;}
+    .getpaid-row{padding-left:0;justify-content:center;margin-top:14px;}
+    img.getpaid-coin{width:52px;height:52px;}
+    .text p.getpaid{font-size:22px;}
+    .text p.tagline{font-size:13px;}
+
+    /* --- Ticker: smaller text --- */
+    .ticker{padding:14px 0;}
+    .ticker-item{font-size:30px;padding:0 18px;}
+
+    /* --- Celebration (25% section): tighten padding, smaller h2 --- */
+    .celebration{padding:40px 18px 70px;}
+    .celebration h2{font-size:clamp(17px,3.6vw,24px);margin-top:24px;line-height:1.3;}
+    .celebration .pct-wrap{height:clamp(200px,46vw,360px);max-width:600px;}
+    .benefits{margin-top:50px;gap:14px;}
+    .benefit{padding:20px;}
+
+    /* --- Distributor (HOW IT WORKS): tighten everything --- */
+    .distributor{padding:20px 18px 30px;}
+    .dist-title-voxel{height:clamp(140px,22vw,220px);margin-bottom:-20px;}
+    .dist-stage{height:clamp(360px,70vw,520px);margin:-40px auto 8px;}
+    .dist-subhead{font-size:clamp(14px,3vw,18px);padding:0 12px;}
+
+    /* --- Tokenomics: tighten padding, voxel title shorter --- */
+    .tokenomics{padding:80px 18px;}
+    .tk-title-voxel{height:clamp(120px,22vw,200px);}
+
+    /* --- Volume section: convert overlay layout to stacked block layout --- */
+    .volume-section{padding:40px 18px 30px;}
+    .volume-stage{display:flex;flex-direction:column;height:auto;margin-bottom:20px;}
+    #volumeHeadline{position:relative;width:100%;height:130px;top:auto;left:auto;}
+    .volume-3d{position:relative;width:100%;height:320px;inset:auto;}
+    .volume-banner{font-size:clamp(16px,4vw,22px);margin-bottom:30px;padding:0 12px;}
+
+    /* --- Leaderboard: stack the reward column under the name --- */
+    .lb-row{grid-template-columns:54px 1fr;column-gap:12px;row-gap:6px;padding:14px 16px;}
+    .lb-rank{font-size:26px;}
+    .lb-coin .name{font-size:14px;}
+    .lb-coin .symbol{font-size:10px;margin-left:6px;}
+    .lb-coin .mc{font-size:11px;}
+    .lb-coin img{width:36px;height:36px;}
+    .lb-reward{grid-column:1 / span 2;text-align:left;padding:8px 0 0 66px;border-top:1px solid #f0f0e8;}
+    .lb-reward .amount{font-size:20px;}
+    .lb-reward .day{margin-top:3px;}
+
+    /* --- Bottom callout: don't force a single row, hide arrow (no column to point at) --- */
+    .hero-callout-bottom{grid-template-columns:1fr;padding:0 18px;margin-top:20px;}
+    .hero-callout-bottom .text{grid-column:1;white-space:normal;font-size:clamp(16px,4vw,22px);text-align:center;transform:rotate(-1deg);margin-top:0;padding-right:0;text-shadow:1px 1px 0 #ffd23d, 2px 2px 0 #c79a0c;}
+    .hero-callout-bottom .arrow{display:none;}
+
+    /* --- How To Trade: existing 900px rule for cards is fine, just tighter section padding --- */
+    .how-to-trade{padding:50px 18px 70px;}
+  }
+
+  @media (max-width:600px){
+    /* --- Phone: even tighter --- */
+    .nav-brand .tag{display:none;}
+    .nav-brand .name{font-size:16px;}
+    .nav-links{gap:10px;}
+    .nav-links a{font-size:11px;}
+    .nav-socials a{width:24px;height:24px;font-size:11px;}
+    .ticker-item{font-size:24px;padding:0 14px;}
+    .infobar{gap:6px;padding:10px 14px;}
+    .infobar .label{font-size:10px;}
+    #vt{height:180px;}
+    .anim{height:44vh;min-height:240px;}
+    .text p.getpaid{font-size:19px;}
+    .celebration{padding:30px 14px 60px;}
+    .distributor{padding:14px 14px 24px;}
+    .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
+    .tokenomics{padding:60px 14px;}
+    .volume-section{padding:30px 14px 24px;}
+    .how-to-trade{padding:40px 14px 60px;}
+    .volume-3d{height:260px;}
+  }
 </style>
 </head>
 <body>
