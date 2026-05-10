@@ -1054,33 +1054,33 @@
     max-width:1200px;
     margin:0 auto;
   }
-  /* Animation container holds the voxel headline overlaid in the top-left */
+  /* Animation container — 3D pig + bars scene */
   .volume-stage{
     position:relative;
     width:100%;
-    height:560px;
+    height:480px;
     overflow:visible;
     margin-bottom:20px;
   }
-  #volumeHeadline{
-    position:absolute;
-    top:24px;
-    left:24px;
-    width:55%;
-    height:220px;
-    z-index:2;
-    pointer-events:none;
-  }
-  #volumeHeadline canvas{display:block;}
   .volume-3d{
-    position:absolute;
-    inset:0;
+    position:relative;
     width:100%;
     height:100%;
     background:transparent;
     overflow:hidden;
-    z-index:1;
   }
+  /* Volume section title — matches How To Trade / How It Works / Tokenomics */
+  .vol-title-text{
+    text-align:center;
+    font-size:clamp(40px,6vw,72px);
+    font-weight:900;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+    margin:0 0 30px;
+    color:#0a0a0a;
+    font-family:'Arial Black','Arial',sans-serif;
+  }
+  .vol-title-text .gold{color:#ffd23d;}
 
   /* Card-style leaderboard — each coin is its own card, top 3 have colored left borders */
   .leaderboard{
@@ -1328,11 +1328,10 @@
     .tokenomics{padding:80px 18px;}
     .tk-title-voxel{height:clamp(120px,22vw,200px);}
 
-    /* --- Volume section: convert overlay layout to stacked block layout --- */
+    /* --- Volume section: tighten 3D scene height on mobile --- */
     .volume-section{padding:40px 18px 30px;}
-    .volume-stage{display:flex;flex-direction:column;height:auto;margin-bottom:20px;}
-    #volumeHeadline{position:relative;width:100%;height:130px;top:auto;left:auto;}
-    .volume-3d{position:relative;width:100%;height:320px;inset:auto;}
+    .volume-stage{height:340px;margin-bottom:20px;}
+    .volume-3d{height:100%;}
     .volume-banner{font-size:clamp(16px,4vw,22px);margin-bottom:30px;padding:0 12px;}
 
     /* --- Leaderboard: stack the reward column under the name --- */
@@ -1375,7 +1374,7 @@
     .tokenomics{padding:60px 14px;}
     .volume-section{padding:30px 14px 24px;}
     .how-to-trade{padding:40px 14px 60px;}
-    .volume-3d{height:260px;}
+    .volume-stage{height:280px;}
   }
 
   /* ============================================================
@@ -1719,6 +1718,477 @@
   </div>
 </section>
 
+<!-- ============================================================
+     WALLET MOCKUP SECTION — fancy MetaMask-style UI showing
+     SCC balance + live-ticking USDT rewards
+     ============================================================ -->
+<section class="wallet-section" id="walletSection">
+  <div class="wallet-wrap">
+    <h2 class="wallet-title">Watch Your <span class="gold">Wallet Grow</span></h2>
+    <p class="wallet-sub">
+      Hold <b>$SCC</b> and <b class="gold">USDT</b> just appears in your wallet — automatically, on every buy, every day. No claiming. No farming. Just watch the number go up.
+    </p>
+
+    <div class="wallet-stage">
+      <!-- The phone-style frame -->
+      <div class="wallet-device">
+        <div class="wallet-notch"></div>
+        <div class="wallet-app">
+          <!-- App header -->
+          <div class="wallet-app-head">
+            <svg class="wallet-fox" viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M5 8 L20 4 L35 8 L32 28 L20 36 L8 28 Z" fill="#e17726" stroke="#763d16" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M20 4 L20 36" stroke="#763d16" stroke-width="1.5" opacity="0.3"/>
+              <circle cx="14" cy="18" r="3" fill="#fff"/>
+              <circle cx="26" cy="18" r="3" fill="#fff"/>
+              <circle cx="14" cy="18" r="1.5" fill="#000"/>
+              <circle cx="26" cy="18" r="1.5" fill="#000"/>
+            </svg>
+            <span class="wallet-app-name">MetaMask</span>
+            <span class="wallet-app-dot"></span>
+            <span class="wallet-app-net">opBNB</span>
+          </div>
+
+          <!-- Account row -->
+          <div class="wallet-account">
+            <span class="wallet-acct-label">Account 1</span>
+            <span class="wallet-acct-addr">0x092A1...0FA61</span>
+          </div>
+
+          <!-- Big total balance — ticks up -->
+          <div class="wallet-balance">
+            <div class="wallet-bal-amt" id="walletTotal">$2,847.32</div>
+            <div class="wallet-bal-change">
+              <span class="up">▲ +$<span id="walletGain">12.47</span></span>
+              <span class="pct">(+0.44%) today</span>
+            </div>
+          </div>
+
+          <!-- Action buttons (just for styling, not functional) -->
+          <div class="wallet-actions">
+            <div class="wallet-act"><span>$</span><span>Buy</span></div>
+            <div class="wallet-act"><span>⇄</span><span>Swap</span></div>
+            <div class="wallet-act"><span>↗</span><span>Send</span></div>
+            <div class="wallet-act"><span>↙</span><span>Receive</span></div>
+          </div>
+
+          <!-- Tokens list -->
+          <div class="wallet-tabs">
+            <span class="wallet-tab active">Tokens</span>
+            <span class="wallet-tab">NFTs</span>
+            <span class="wallet-tab">Activity</span>
+          </div>
+
+          <div class="wallet-tokens">
+            <!-- $SCC row -->
+            <div class="wallet-token">
+              <img src="coin.png" alt="$SCC" class="wallet-token-icon">
+              <div class="wallet-token-info">
+                <div class="wallet-token-name">Super Cash Coin <span class="badge-scc">$SCC</span></div>
+                <div class="wallet-token-sub">100,000.00 SCC</div>
+              </div>
+              <div class="wallet-token-vals">
+                <div class="wallet-token-val">$200.00</div>
+                <div class="wallet-token-pct">+5.2%</div>
+              </div>
+            </div>
+
+            <!-- USDT row — this is the one that ticks -->
+            <div class="wallet-token wallet-token-hot">
+              <img src="tether.png" alt="USDT" class="wallet-token-icon">
+              <div class="wallet-token-info">
+                <div class="wallet-token-name">Tether <span class="badge-usdt">USDT</span> <span class="pulse-tag-mini">REWARDS</span></div>
+                <div class="wallet-token-sub"><span id="walletUsdt">2,647.32</span> USDT</div>
+              </div>
+              <div class="wallet-token-vals">
+                <div class="wallet-token-val" id="walletUsdtVal">$2,647.32</div>
+                <div class="wallet-token-pct live"><span class="live-dot"></span>LIVE</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tiny activity feed at the bottom -->
+          <div class="wallet-feed-head">Recent rewards</div>
+          <div class="wallet-feed" id="walletFeed">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating money/coin garnish around the phone -->
+      <div class="wallet-deco wallet-deco-coin"><img src="coin.png" alt=""></div>
+      <div class="wallet-deco wallet-deco-tether"><img src="tether.png" alt=""></div>
+      <div class="wallet-deco wallet-deco-bill bill-1"></div>
+      <div class="wallet-deco wallet-deco-bill bill-2"></div>
+      <div class="wallet-deco wallet-deco-bill bill-3"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wallet-section{
+    background:linear-gradient(180deg, #fafaf6 0%, #fff 100%);
+    color:#0a0a0a;
+    padding:90px 60px 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .wallet-section::before{
+    /* subtle gold radial behind everything */
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,210,61,0.15), transparent 70%),
+      radial-gradient(circle at 20% 80%, rgba(35,215,107,0.06), transparent 50%);
+    pointer-events:none;
+  }
+  .wallet-wrap{
+    max-width:1200px;margin:0 auto;position:relative;z-index:1;
+  }
+  .wallet-title{
+    text-align:center;
+    font-size:clamp(40px,6vw,72px);
+    font-weight:900;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+    margin:0 0 18px;
+    color:#0a0a0a;
+    font-family:'Arial Black','Arial',sans-serif;
+  }
+  .wallet-title .gold{color:#ffd23d;}
+  .wallet-sub{
+    text-align:center;
+    font-size:clamp(15px,1.4vw,18px);
+    color:#555;
+    max-width:680px;
+    margin:0 auto 50px;
+    line-height:1.55;
+  }
+  .wallet-sub b{color:#0a0a0a;font-weight:800;}
+  .wallet-sub b.gold{color:#c79a0c;}
+
+  /* === The "device" frame === */
+  .wallet-stage{
+    position:relative;
+    display:flex;justify-content:center;align-items:center;
+    padding:30px 0;
+  }
+  .wallet-device{
+    position:relative;z-index:5;
+    width:380px;max-width:100%;
+    background:#0a0a0a;
+    border-radius:36px;
+    padding:16px 12px 22px;
+    box-shadow:
+      0 25px 60px rgba(0,0,0,0.25),
+      0 0 0 1px rgba(255,210,61,0.2),
+      0 0 80px rgba(255,210,61,0.18);
+  }
+  .wallet-notch{
+    width:100px;height:6px;border-radius:3px;
+    background:#1a1a1a;margin:0 auto 14px;
+  }
+  .wallet-app{
+    background:#fff;border-radius:24px;padding:18px 16px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.08) inset;
+  }
+
+  /* App header */
+  .wallet-app-head{
+    display:flex;align-items:center;gap:8px;
+    padding-bottom:14px;border-bottom:1px solid #eee;margin-bottom:14px;
+  }
+  .wallet-fox{width:28px;height:28px;flex-shrink:0;}
+  .wallet-app-name{font-weight:900;font-size:15px;color:#0a0a0a;flex:1;}
+  .wallet-app-dot{
+    width:7px;height:7px;border-radius:50%;background:#23d76b;
+    box-shadow:0 0 0 3px rgba(35,215,107,0.25);
+    animation:pulse 1.5s ease-in-out infinite;
+  }
+  .wallet-app-net{
+    font-size:11px;font-weight:800;color:#23d76b;
+    text-transform:uppercase;letter-spacing:0.06em;
+  }
+
+  /* Account row */
+  .wallet-account{
+    display:flex;align-items:center;justify-content:space-between;
+    background:#fafaf6;border-radius:10px;padding:10px 14px;margin-bottom:18px;
+  }
+  .wallet-acct-label{font-weight:800;font-size:13px;color:#0a0a0a;}
+  .wallet-acct-addr{font-family:monospace;font-size:11px;color:#888;}
+
+  /* Big balance */
+  .wallet-balance{text-align:center;margin-bottom:18px;}
+  .wallet-bal-amt{
+    font-family:'Arial Black','Arial',sans-serif;
+    font-size:42px;font-weight:900;letter-spacing:-0.03em;
+    color:#0a0a0a;line-height:1;margin-bottom:6px;
+    /* Subtle gold shimmer */
+    background:linear-gradient(180deg, #0a0a0a 60%, #4a4a4a 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+  }
+  .wallet-bal-change{
+    display:flex;justify-content:center;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;
+  }
+  .wallet-bal-change .up{color:#23d76b;}
+  .wallet-bal-change .pct{color:#888;font-weight:600;}
+
+  /* Action buttons */
+  .wallet-actions{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px;
+  }
+  .wallet-act{
+    background:#fafaf6;border-radius:10px;padding:10px 4px;text-align:center;
+    cursor:default;
+  }
+  .wallet-act span:first-child{
+    display:block;font-size:18px;font-weight:900;color:#1d4fd8;margin-bottom:2px;
+  }
+  .wallet-act span:last-child{
+    display:block;font-size:11px;font-weight:700;color:#444;
+  }
+
+  /* Tabs */
+  .wallet-tabs{
+    display:flex;gap:16px;border-bottom:1px solid #eee;margin-bottom:12px;
+  }
+  .wallet-tab{
+    font-size:12px;font-weight:800;color:#888;padding:8px 0;
+    border-bottom:2px solid transparent;
+  }
+  .wallet-tab.active{color:#0a0a0a;border-bottom-color:#0a0a0a;}
+
+  /* Token rows */
+  .wallet-tokens{margin-bottom:16px;}
+  .wallet-token{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 4px;border-bottom:1px solid #f4f4f0;
+  }
+  .wallet-token:last-child{border-bottom:none;}
+  .wallet-token-icon{width:36px;height:36px;border-radius:50%;}
+  .wallet-token-info{flex:1;min-width:0;}
+  .wallet-token-name{
+    font-size:13px;font-weight:800;color:#0a0a0a;
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  }
+  .wallet-token-sub{font-size:11px;color:#888;margin-top:2px;}
+  .wallet-token-vals{text-align:right;}
+  .wallet-token-val{
+    font-size:13px;font-weight:800;color:#0a0a0a;
+    font-family:'Arial Black','Arial',sans-serif;letter-spacing:-0.01em;
+  }
+  .wallet-token-pct{font-size:11px;color:#23d76b;font-weight:700;margin-top:2px;}
+  .wallet-token-pct.live{
+    display:flex;align-items:center;justify-content:flex-end;gap:4px;
+    color:#23d76b;letter-spacing:0.08em;
+  }
+  .live-dot{
+    width:6px;height:6px;border-radius:50%;background:#23d76b;
+    box-shadow:0 0 0 2px rgba(35,215,107,0.3);
+    animation:pulse 1s ease-in-out infinite;
+  }
+
+  .badge-scc, .badge-usdt{
+    font-size:9px;padding:2px 6px;border-radius:4px;font-weight:900;
+    letter-spacing:0.05em;
+  }
+  .badge-scc{background:#ffd23d;color:#0a0a0a;}
+  .badge-usdt{background:#26a17b;color:#fff;}
+  .pulse-tag-mini{
+    font-size:9px;font-weight:900;color:#23d76b;letter-spacing:0.08em;
+    padding:2px 6px;border-radius:4px;background:rgba(35,215,107,0.12);
+    animation:pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Highlight the USDT (rewards) row */
+  .wallet-token-hot{
+    background:linear-gradient(90deg, rgba(35,215,107,0.06), rgba(35,215,107,0.0));
+    border-radius:8px;
+    padding-left:8px;
+    margin:0 -4px;
+  }
+
+  /* Activity feed */
+  .wallet-feed-head{
+    font-size:11px;font-weight:800;color:#888;
+    letter-spacing:0.08em;text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .wallet-feed{
+    background:#fafaf6;border-radius:10px;padding:8px 12px;
+    height:78px;overflow:hidden;position:relative;
+  }
+  .wallet-feed-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:5px 0;font-size:11px;
+    animation:feedSlide 0.4s ease-out;
+  }
+  @keyframes feedSlide{
+    from{opacity:0;transform:translateY(-8px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .wallet-feed-row .label{color:#444;font-weight:700;}
+  .wallet-feed-row .amt{color:#23d76b;font-weight:800;font-family:'Arial Black',sans-serif;}
+  .wallet-feed-row .time{color:#aaa;font-size:9px;font-weight:600;letter-spacing:0.05em;}
+
+  /* === Decorative floaters around the device === */
+  .wallet-deco{position:absolute;pointer-events:none;}
+  .wallet-deco img{width:100%;height:100%;display:block;}
+  .wallet-deco-coin{
+    width:90px;height:90px;
+    top:8%;left:calc(50% - 250px);
+    animation:walletFloatA 5s ease-in-out infinite;
+    filter:drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    z-index:1;
+  }
+  .wallet-deco-tether{
+    width:75px;height:75px;
+    bottom:12%;right:calc(50% - 240px);
+    animation:walletFloatB 6s ease-in-out infinite;
+    filter:drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    z-index:1;
+  }
+  @keyframes walletFloatA{
+    0%,100%{transform:translateY(0) rotate(-8deg);}
+    50%{transform:translateY(-20px) rotate(4deg);}
+  }
+  @keyframes walletFloatB{
+    0%,100%{transform:translateY(0) rotate(8deg);}
+    50%{transform:translateY(-16px) rotate(-2deg);}
+  }
+
+  .wallet-deco-bill{
+    width:60px;height:32px;
+    background:linear-gradient(135deg, #2f9c4d 0%, #1f6e35 100%);
+    border-radius:3px;
+    border:2px solid #1a5a2a;
+    box-shadow:0 6px 12px rgba(0,0,0,0.2);
+    display:flex;align-items:center;justify-content:center;
+    color:#ffd23d;font-family:'Arial Black',sans-serif;font-size:18px;
+    z-index:1;
+  }
+  .wallet-deco-bill::before{content:'$';}
+  .bill-1{top:25%;left:calc(50% - 290px);animation:billFloat1 4.2s ease-in-out infinite;}
+  .bill-2{top:55%;left:calc(50% - 270px);animation:billFloat2 5.1s ease-in-out infinite;}
+  .bill-3{top:35%;right:calc(50% - 285px);animation:billFloat3 4.7s ease-in-out infinite;}
+  @keyframes billFloat1{
+    0%,100%{transform:translateY(0) rotate(-12deg);}
+    50%{transform:translateY(-25px) rotate(8deg);}
+  }
+  @keyframes billFloat2{
+    0%,100%{transform:translateY(0) rotate(6deg);}
+    50%{transform:translateY(-20px) rotate(-14deg);}
+  }
+  @keyframes billFloat3{
+    0%,100%{transform:translateY(0) rotate(15deg);}
+    50%{transform:translateY(-22px) rotate(-3deg);}
+  }
+
+  @media (max-width:900px){
+    .wallet-section{padding:60px 20px 70px;}
+    .wallet-device{width:340px;}
+    .wallet-deco-coin{width:65px;height:65px;left:8px;top:4%;}
+    .wallet-deco-tether{width:55px;height:55px;right:8px;bottom:6%;}
+    .bill-1{left:4px;top:20%;width:48px;height:26px;font-size:14px;}
+    .bill-2{left:8px;top:62%;width:48px;height:26px;font-size:14px;}
+    .bill-3{right:4px;top:30%;width:48px;height:26px;font-size:14px;}
+    .wallet-bal-amt{font-size:36px;}
+  }
+  @media (max-width:600px){
+    .wallet-section{padding:50px 14px 60px;}
+    .wallet-device{width:320px;padding:14px 10px 18px;}
+    .wallet-app{padding:14px 12px;}
+  }
+</style>
+
+<script>
+// === Wallet section — live-ticking USDT balance + activity feed ===
+(function(){
+  const usdtEl = document.getElementById('walletUsdt');
+  const usdtValEl = document.getElementById('walletUsdtVal');
+  const totalEl = document.getElementById('walletTotal');
+  const gainEl = document.getElementById('walletGain');
+  const feedEl = document.getElementById('walletFeed');
+  const section = document.getElementById('walletSection');
+  if(!usdtEl || !section)return;
+
+  // Starting state
+  let usdt = 2647.32;
+  let dailyGain = 12.47;
+  const sccUsdValue = 200.00; // doesn't tick
+
+  function fmt(n){
+    return n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+
+  // Insert a new feed row at the top, age out old ones
+  let feedRowId = 0;
+  const MAX_FEED = 4;
+  function pushFeedRow(amount){
+    feedRowId++;
+    const row = document.createElement('div');
+    row.className = 'wallet-feed-row';
+    row.innerHTML =
+      `<span class="label">Reward received</span>` +
+      `<span class="amt">+$${fmt(amount)}</span>` +
+      `<span class="time">just now</span>`;
+    feedEl.insertBefore(row, feedEl.firstChild);
+    while(feedEl.children.length > MAX_FEED){
+      feedEl.removeChild(feedEl.lastChild);
+    }
+    // Update older timestamps
+    Array.from(feedEl.children).forEach((r, i)=>{
+      const t = r.querySelector('.time');
+      if(!t)return;
+      if(i===0) t.textContent = 'just now';
+      else if(i===1) t.textContent = '15s ago';
+      else if(i===2) t.textContent = '32s ago';
+      else t.textContent = '1m ago';
+    });
+  }
+
+  // Seed feed with 3 rows so it doesn't look empty
+  pushFeedRow(0.42);
+  pushFeedRow(0.18);
+  pushFeedRow(0.71);
+
+  let running = false;
+  // Pause when off-screen to save cycles
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ running = e.isIntersecting; });
+  }, {threshold:0.1});
+  io.observe(section);
+
+  let tickInterval = null;
+  function tick(){
+    if(!running)return;
+    // Random tiny reward $0.01 - $0.50
+    const reward = +(0.01 + Math.random() * 0.49).toFixed(2);
+    usdt += reward;
+    dailyGain += reward;
+    usdtEl.textContent = fmt(usdt);
+    usdtValEl.textContent = '$' + fmt(usdt);
+    totalEl.textContent = '$' + fmt(usdt + sccUsdValue);
+    gainEl.textContent = fmt(dailyGain);
+    pushFeedRow(reward);
+
+    // Flash the USDT row briefly to draw the eye
+    const hotRow = document.querySelector('.wallet-token-hot');
+    if(hotRow){
+      hotRow.animate(
+        [{background:'linear-gradient(90deg, rgba(35,215,107,0.25), rgba(35,215,107,0.05))'},
+         {background:'linear-gradient(90deg, rgba(35,215,107,0.06), rgba(35,215,107,0.0))'}],
+        {duration:600, easing:'ease-out'}
+      );
+    }
+  }
+  // Tick every 1.5s while visible
+  tickInterval = setInterval(tick, 1500);
+})();
+</script>
+
 <section class="tokenomics" id="tokenomicsSection">
   <div class="tk-wrap">
     <div class="tk-title">
@@ -1849,8 +2319,8 @@
 
 <section class="volume-section">
   <div class="volume-wrap">
+    <h2 class="vol-title-text">More <span class="gold">Volume</span> = More <span class="gold">Rewards</span></h2>
     <div class="volume-stage">
-      <div id="volumeHeadline"></div>
       <div class="volume-3d" id="vc2"></div>
     </div>
 
@@ -2757,514 +3227,221 @@ window.addEventListener('resize',()=>{
 })();
 </script>
 <script>
-// === VOLUME 3D — bars + pig + cart + faucet pouring bills ===
+// === VOLUME 3D — animated bar chart, money flies out as bars grow ===
 (function(){
 const VP=document.getElementById('vc2');
 if(!VP||!window.THREE)return;
 const Wd=VP.clientWidth, Hd=VP.clientHeight;
+if(Wd===0||Hd===0)return;
+
 const sc=new THREE.Scene();
-sc.background=null;
+const cam=new THREE.PerspectiveCamera(38, Wd/Hd, 0.1, 600);
+cam.position.set(0, 32, 95);
+cam.lookAt(0, 14, 0);
 
-const cam=new THREE.PerspectiveCamera(36,Wd/Hd,0.1,500);
-cam.position.set(-12,22,92);
-cam.lookAt(-12,22,0);
-
-const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
-r.setPixelRatio(Math.min(window.devicePixelRatio,2));
+const r=new THREE.WebGLRenderer({antialias:true, alpha:true});
+r.setPixelRatio(window.devicePixelRatio||1);
 r.setSize(Wd,Hd);
-r.shadowMap.enabled=true;
-r.shadowMap.type=THREE.PCFSoftShadowMap;
 VP.appendChild(r.domElement);
 
-sc.add(new THREE.AmbientLight(0xffffff,0.7));
-const k=new THREE.DirectionalLight(0xffffff,1.0);
-k.position.set(20,50,30);k.castShadow=true;
-k.shadow.mapSize.set(1024,1024);
-const sh=k.shadow.camera;
-sh.left=-30;sh.right=30;sh.top=50;sh.bottom=-5;sh.near=0.5;sh.far=100;
-sc.add(k);
-const fl=new THREE.DirectionalLight(0xffe6cc,0.3);fl.position.set(-15,12,-8);sc.add(fl);
+// Lighting
+sc.add(new THREE.AmbientLight(0xffffff,0.85));
+const key=new THREE.DirectionalLight(0xffffff,0.9);
+key.position.set(25,50,30);sc.add(key);
+const fill=new THREE.DirectionalLight(0xffd23d,0.25);
+fill.position.set(-15,15,15);sc.add(fill);
 
-const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.ShadowMaterial({opacity:0.18}));
-ground.rotation.x=-Math.PI/2;ground.position.y=-0.3;ground.receiveShadow=true;sc.add(ground);
+// ===== Chart base plate (subtle gold platform) =====
+const baseGeom=new THREE.BoxGeometry(86, 1.5, 22);
+const baseMat=new THREE.MeshLambertMaterial({color:0x1a1a1a});
+const base=new THREE.Mesh(baseGeom, baseMat);
+base.position.set(0, -0.5, 0);
+sc.add(base);
+// Gold edge strip on base
+const edge=new THREE.Mesh(
+  new THREE.BoxGeometry(86, 0.4, 22.5),
+  new THREE.MeshLambertMaterial({color:0xffd23d})
+);
+edge.position.set(0, 0.25, 0);
+sc.add(edge);
 
-// === BARS — beveled blocks (body + top cap + bevel + base) ===
-const barHeights=[10,16,24,34,46];
-const barW=5.5, barD=4;
+// ===== Grid lines on back wall =====
+const gridMat=new THREE.MeshLambertMaterial({color:0x2a2a2a, transparent:true, opacity:0.5});
+for(let i=1;i<=5;i++){
+  const line=new THREE.Mesh(new THREE.BoxGeometry(80, 0.1, 0.1), gridMat);
+  line.position.set(0, i*7, -10);
+  sc.add(line);
+}
+
+// ===== Bars =====
+const NUM_BARS=10;
+const BAR_WIDTH=5.5;
+const BAR_GAP=2.5;
+const BAR_DEPTH=6;
+const TOTAL_W = NUM_BARS*BAR_WIDTH + (NUM_BARS-1)*BAR_GAP;
+const startX = -TOTAL_W/2 + BAR_WIDTH/2;
+
 const bars=[];
-for(let i=0;i<5;i++){
-  const h=barHeights[i];
-  const grp=new THREE.Group();
-  const bodyMat=new THREE.MeshStandardMaterial({color:0xffd23d,roughness:0.4,metalness:0.15});
-  const topMat=new THREE.MeshStandardMaterial({color:0xffea7a,roughness:0.35,metalness:0.18});
-  const baseMat=new THREE.MeshStandardMaterial({color:0xc79a0c,roughness:0.5,metalness:0.1});
-  const bodyGeo=new THREE.BoxGeometry(barW-0.4,h,barD-0.4);
-  bodyGeo.translate(0,h/2,0);
-  const body=new THREE.Mesh(bodyGeo,bodyMat);
-  body.castShadow=true;body.receiveShadow=true;grp.add(body);
-  const capGeo=new THREE.BoxGeometry(barW,0.5,barD);
-  capGeo.translate(0,h+0.25,0);
-  const cap=new THREE.Mesh(capGeo,topMat);cap.castShadow=true;grp.add(cap);
-  const bevelGeo=new THREE.BoxGeometry(barW-0.2,0.3,barD-0.2);
-  bevelGeo.translate(0,h-0.15,0);
-  const bevel=new THREE.Mesh(bevelGeo,topMat);bevel.castShadow=true;grp.add(bevel);
-  const baseGeo=new THREE.BoxGeometry(barW,0.4,barD);
-  baseGeo.translate(0,0.2,0);
-  const base=new THREE.Mesh(baseGeo,baseMat);base.castShadow=true;base.receiveShadow=true;grp.add(base);
-  grp.position.set(i*6.5,0,0);
-  grp.scale.y=0.001;grp.visible=false;
-  grp.userData.h=h;
-  grp.userData.bodyMat=bodyMat;
-  grp.userData.topMat=topMat;
-  sc.add(grp);
-  bars.push(grp);
+const barColors=[
+  0x23d76b, 0x23d76b, 0x23d76b, 0xffd23d, 0xffd23d,
+  0xffa500, 0xffa500, 0xff6b35, 0xff3355, 0xff3355,
+];
+
+for(let i=0;i<NUM_BARS;i++){
+  const x = startX + i*(BAR_WIDTH+BAR_GAP);
+  // Bar is a box; we'll scale its Y to grow it
+  const geom=new THREE.BoxGeometry(BAR_WIDTH, 1, BAR_DEPTH);
+  // Move pivot to bottom by translating geometry up by 0.5 so origin is at base
+  geom.translate(0, 0.5, 0);
+  const mat=new THREE.MeshLambertMaterial({color: barColors[i]});
+  const bar=new THREE.Mesh(geom, mat);
+  bar.position.set(x, 0.5, 0);
+  bar.scale.y=2; // initial small
+  sc.add(bar);
+  // Top cap (lighter shade for shimmer)
+  const cap=new THREE.Mesh(
+    new THREE.BoxGeometry(BAR_WIDTH+0.4, 0.6, BAR_DEPTH+0.4),
+    new THREE.MeshLambertMaterial({color: 0xffffff, transparent:true, opacity:0.3})
+  );
+  cap.position.set(x, 2, 0);
+  sc.add(cap);
+  // Bar shadow on base
+  const shadow=new THREE.Mesh(
+    new THREE.BoxGeometry(BAR_WIDTH+0.6, 0.15, BAR_DEPTH+0.6),
+    new THREE.MeshLambertMaterial({color: 0x000000, transparent:true, opacity:0.3})
+  );
+  shadow.position.set(x, 0.45, 0);
+  sc.add(shadow);
+
+  bars.push({
+    mesh: bar,
+    cap: cap,
+    target: 5 + Math.random()*25,
+    current: 2,
+    phase: i*0.25,
+    lastSpawn: 0,
+  });
 }
 
-// === PIG (face-culled merged geometry) ===
-function buildGroupCulled(buckets){
-  const occupied=new Set();
-  buckets.forEach(positions=>{positions.forEach(p=>occupied.add(p[0]+','+p[1]+','+p[2]));});
-  const FACES=[
-    {n:[1,0,0],d:[1,0,0],v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
-    {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
-    {n:[0,1,0],d:[0,1,0],v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
-    {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
-    {n:[0,0,1],d:[0,0,1],v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
-    {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
-  ];
+// ===== Flying bills (spawned from tops of growing bars) =====
+const billGeom=new THREE.BoxGeometry(2.2, 1.1, 0.1);
+const billGreenMat=new THREE.MeshLambertMaterial({color:0x2f9c4d});
+const billDarkMat =new THREE.MeshLambertMaterial({color:0x1f6e35});
+const billGoldMat =new THREE.MeshLambertMaterial({color:0xffd23d});
+function makeBill(){
   const g=new THREE.Group();
-  buckets.forEach((positions,color)=>{
-    const verts=[],norms=[],idx=[];let vi=0;
-    positions.forEach(p=>{
-      const [px,py,pz]=p;
-      for(const f of FACES){
-        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
-        if(occupied.has(nk))continue;
-        for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
-        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
-      }
-    });
-    if(!verts.length)return;
-    const geo=new THREE.BufferGeometry();
-    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
-    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
-    geo.setIndex(idx);
-    const isGold=(color===0xffd23d);
-    const mat=new THREE.MeshStandardMaterial({color,roughness:isGold?0.5:0.55,metalness:isGold?0.15:0,flatShading:true});
-    const mesh=new THREE.Mesh(geo,mat);
-    mesh.castShadow=true;
-    g.add(mesh);
-  });
+  g.add(new THREE.Mesh(billGeom, billGreenMat));
+  const dot=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.6,0.06), billGoldMat);
+  dot.position.set(0,0,0.07); g.add(dot);
+  const top=new THREE.Mesh(new THREE.BoxGeometry(2.1,0.1,0.06), billDarkMat);
+  top.position.set(0,0.45,0.07); g.add(top);
+  const bot=new THREE.Mesh(new THREE.BoxGeometry(2.1,0.1,0.06), billDarkMat);
+  bot.position.set(0,-0.45,0.07); g.add(bot);
   return g;
 }
-function makePig(){
-  const B=0x1da4e9,RD=0xd32f2f,DRD=0x9a1a1a,GD=0xffd23d,K=0x0a0a0a,W=0xffffff,PK=0xffb19f;
-  const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
-  const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
-  const headMods=new Map();
-  const setMod=(x,y,z,c)=>headMods.set(x+','+y+','+z,c);
-  for(let dx=0;dx<15;dx++)for(let dy=0;dy<3;dy++)setMod(-9+dx,49+dy,9,K);
-  setMod(-1,50,9,K);setMod(0,50,9,K);
-  setMod(-7,51,9,W);setMod(-6,51,9,W);setMod(5,51,9,W);setMod(6,51,9,W);
-  for(let x=-2;x<=2;x++)setMod(x,40,9,K);
-  setMod(3,41,9,K);setMod(4,42,9,K);
-  for(let x=-11;x<=10;x++)for(let y=36;y<=55;y++)for(let z=-10;z<=9;z++){
-    if(y===36 && (x<-8||x>7||z<-8||z>7))continue;
-    add(G.head,x,y,z,headMods.get(x+','+y+','+z)||B);
-  }
-  for(let x=-4;x<=3;x++)for(let y=42;y<=47;y++)for(let z=10;z<=15;z++){
-    let c=B;
-    if(z===15){
-      if((x===-3||x===-2)&&(y===44||y===45))c=K;
-      if((x===1||x===2)&&(y===44||y===45))c=K;
-    }
-    add(G.head,x,y,z,c);
-  }
-  const ear=(bx,by,bz,mir)=>{
-    for(let dy=0;dy<6;dy++){const w=6-dy;for(let dx=0;dx<w;dx++){const x=mir?(bx-dx):(bx+dx);for(let dz=0;dz<3;dz++)add(G.head,x,by+dy,bz+dz,B);}}
+
+const flying=[];
+function spawnBill(bar){
+  if(flying.length>120)return;
+  const b=makeBill();
+  // Spawn at top of bar
+  b.position.set(bar.mesh.position.x + (Math.random()-0.5)*BAR_WIDTH*0.7,
+                 bar.current+0.5,
+                 (Math.random()-0.5)*BAR_DEPTH*0.6);
+  // Velocity: shoot upward + slight outward spread
+  b.userData={
+    vx: (Math.random()-0.5)*8,
+    vy: 18 + Math.random()*8,
+    vz: 2 + Math.random()*6,
+    gravity: 22,
+    spinX:(Math.random()-0.5)*10,
+    spinY:(Math.random()-0.5)*10,
+    spinZ:(Math.random()-0.5)*10,
+    life:0, maxLife:2.5,
   };
-  ear(-10,56,-1,false);ear(10,56,-1,true);
-  const dollar=["....#....", ".#######.", "##..#..##", "##..#....", "##..#....", ".#######.", "....#..##", "....#..##", "##..#..##", ".#######.", "....#...."];
-  const dollarMods=new Map();
-  for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++)if(dollar[i][j]==='#')dollarMods.set((-4+j)+','+(18+(dollar.length-1-i))+',7',GD);
-  for(let x=-10;x<=9;x++)for(let y=10;y<=35;y++)for(let z=-8;z<=7;z++){
-    if(y===34 && (x<-8||x>7))continue;
-    if(y===35 && (x<-5||x>4||z<-5||z>4))continue;
-    add(G.body,x,y,z,dollarMods.get(x+','+y+','+z)||B);
-  }
-  for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
-    if(dollar[i][j]==='#')add(G.body,-4+j,18+(dollar.length-1-i),8,GD);
-  }
-  for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
-  for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
-  for(let x=-15;x<=-12;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,PK);
-  for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
-  for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
-  for(let x=10;x<=13;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,PK);
-  for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
-  for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
-  for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
-  for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
-  for(let x=-10;x<=9;x++){
-    if(x>=-3 && x<=2)continue;
-    for(let z=-9;z<=9;z++){add(G.cape,x,32,z,RD);add(G.cape,x,33,z,RD);}
-  }
-  for(let y=8;y<=34;y++){
-    const t=(34-y)/26;
-    const halfW=Math.round(11+t*5);
-    for(let x=-halfW;x<=halfW-1;x++){
-      for(let dz=0;dz<3;dz++){const z=-9-dz;const c=(dz===2)?RD:(dz===0?DRD:RD);add(G.cape,x,y,z,c);}
-    }
-  }
-  const headM=buildGroupCulled(G.head);
-  const bodyM=buildGroupCulled(G.body);
-  const lArmM=buildGroupCulled(G.lArm);
-  const rArmM=buildGroupCulled(G.rArm);
-  const lLegM=buildGroupCulled(G.lLeg);
-  const rLegM=buildGroupCulled(G.rLeg);
-  const capeM=buildGroupCulled(G.cape);
-  const lArmPivot=new THREE.Group();lArmPivot.position.set(-13.5,29,0);lArmM.position.set(13.5,-29,0);lArmPivot.add(lArmM);
-  const rArmPivot=new THREE.Group();rArmPivot.position.set(11.5,29,0);rArmM.position.set(-11.5,-29,0);rArmPivot.add(rArmM);
-  lArmPivot.rotation.x=0;rArmPivot.rotation.x=0;
-  const character=new THREE.Group();
-  character.add(bodyM);character.add(headM);character.add(lArmPivot);character.add(rArmPivot);
-  character.add(lLegM);character.add(rLegM);character.add(capeM);
-  character.scale.set(0.22,0.22,0.22);
-  return character;
-}
-const pig=makePig();
-sc.add(pig);
-
-// === SHOPPING CART ===
-function makeCart(){
-  const g=new THREE.Group();
-  const chrome=new THREE.MeshStandardMaterial({color:0xcccccc,roughness:0.3,metalness:0.85});
-  const wheelMat=new THREE.MeshStandardMaterial({color:0x222222,roughness:0.7});
-  const handleMat=new THREE.MeshStandardMaterial({color:0xd32f2f,roughness:0.5});
-  const basketW=8, basketH=5, basketD=5.5;
-  const barT=0.18;
-  function add(geo,x,y,z){
-    const m=new THREE.Mesh(geo,chrome);m.position.set(x,y,z);m.castShadow=true;g.add(m);
-  }
-  add(new THREE.BoxGeometry(basketW,barT,barT), 0, basketH/2, basketD/2);
-  add(new THREE.BoxGeometry(basketW,barT,barT), 0, basketH/2,-basketD/2);
-  add(new THREE.BoxGeometry(barT,barT,basketD), basketW/2, basketH/2, 0);
-  add(new THREE.BoxGeometry(barT,barT,basketD),-basketW/2, basketH/2, 0);
-  add(new THREE.BoxGeometry(basketW,barT,barT), 0,-basketH/2, basketD/2);
-  add(new THREE.BoxGeometry(basketW,barT,barT), 0,-basketH/2,-basketD/2);
-  add(new THREE.BoxGeometry(barT,barT,basketD), basketW/2,-basketH/2, 0);
-  add(new THREE.BoxGeometry(barT,barT,basketD),-basketW/2,-basketH/2, 0);
-  add(new THREE.BoxGeometry(barT,basketH,barT), basketW/2, 0, basketD/2);
-  add(new THREE.BoxGeometry(barT,basketH,barT),-basketW/2, 0, basketD/2);
-  add(new THREE.BoxGeometry(barT,basketH,barT), basketW/2, 0,-basketD/2);
-  add(new THREE.BoxGeometry(barT,basketH,barT),-basketW/2, 0,-basketD/2);
-  for(let i=1;i<=2;i++){
-    const y=-basketH/2 + (basketH*i/3);
-    add(new THREE.BoxGeometry(basketW,barT,barT), 0, y, basketD/2);
-    add(new THREE.BoxGeometry(basketW,barT,barT), 0, y,-basketD/2);
-    add(new THREE.BoxGeometry(barT,barT,basketD), basketW/2, y, 0);
-    add(new THREE.BoxGeometry(barT,barT,basketD),-basketW/2, y, 0);
-  }
-  for(let i=1;i<=4;i++){
-    const x=-basketW/2 + basketW*i/5;
-    const v=new THREE.Mesh(new THREE.BoxGeometry(barT,basketH,barT),chrome);
-    v.position.set(x,0,basketD/2);v.castShadow=true;g.add(v);
-    const v2=new THREE.Mesh(new THREE.BoxGeometry(barT,basketH,barT),chrome);
-    v2.position.set(x,0,-basketD/2);v2.castShadow=true;g.add(v2);
-  }
-  const floor=new THREE.Mesh(new THREE.BoxGeometry(basketW-0.2,0.2,basketD-0.2),chrome);
-  floor.position.set(0,-basketH/2+0.1,0);floor.castShadow=true;floor.receiveShadow=true;g.add(floor);
-  const hp1=new THREE.Mesh(new THREE.BoxGeometry(barT*1.5,3.5,barT*1.5),chrome);
-  hp1.position.set(-basketW/2+0.1,basketH/2+1.75,-basketD/2-0.15);hp1.castShadow=true;g.add(hp1);
-  const hp2=new THREE.Mesh(new THREE.BoxGeometry(barT*1.5,3.5,barT*1.5),chrome);
-  hp2.position.set(basketW/2-0.1,basketH/2+1.75,-basketD/2-0.15);hp2.castShadow=true;g.add(hp2);
-  const handle=new THREE.Mesh(new THREE.BoxGeometry(basketW-0.2,0.5,0.5),handleMat);
-  handle.position.set(0,basketH/2+3.3,-basketD/2-0.15);handle.castShadow=true;g.add(handle);
-  const wheelGeo=new THREE.CylinderGeometry(0.6,0.6,0.5,16);
-  function wheel(x,z){
-    const w=new THREE.Mesh(wheelGeo,wheelMat);w.rotation.z=Math.PI/2;
-    w.position.set(x,-basketH/2-0.7,z);w.castShadow=true;g.add(w);
-  }
-  wheel( basketW/2-0.4, basketD/2-0.4);
-  wheel(-basketW/2+0.4, basketD/2-0.4);
-  wheel( basketW/2-0.4,-basketD/2+0.4);
-  wheel(-basketW/2+0.4,-basketD/2+0.4);
-  return g;
-}
-const cart=makeCart();
-const CART_X=-14, CART_Y=4.2, CART_Z=4;
-cart.position.set(CART_X,CART_Y,CART_Z);
-sc.add(cart);
-
-// === FAUCET ===
-function makeFaucet(){
-  const g=new THREE.Group();
-  const chrome=new THREE.MeshStandardMaterial({color:0xbbbbbb,roughness:0.25,metalness:0.9});
-  const orange=new THREE.MeshStandardMaterial({color:0xf7931a,roughness:0.5});
-  const horizPipe=new THREE.Mesh(new THREE.CylinderGeometry(0.8,0.8,12,16),chrome);
-  horizPipe.rotation.z=Math.PI/2;horizPipe.position.set(0,4,0);horizPipe.castShadow=true;g.add(horizPipe);
-  const spout=new THREE.Mesh(new THREE.CylinderGeometry(0.7,0.9,4,16),chrome);
-  spout.position.set(-5,2,0);spout.castShadow=true;g.add(spout);
-  const flange=new THREE.Mesh(new THREE.CylinderGeometry(1.0,1.2,0.5,16),chrome);
-  flange.position.set(-5,0,0);flange.castShadow=true;g.add(flange);
-  const knob=new THREE.Mesh(new THREE.SphereGeometry(1.0,16,12),chrome);
-  knob.position.set(-5,4,0);g.add(knob);
-  const valveBase=new THREE.Mesh(new THREE.CylinderGeometry(0.5,0.5,0.6,12),orange);
-  valveBase.position.set(2,5.3,0);g.add(valveBase);
-  const valveHandle=new THREE.Mesh(new THREE.BoxGeometry(2.8,0.5,0.5),orange);
-  valveHandle.position.set(2,5.8,0);g.add(valveHandle);
-  const valveHandle2=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.5,2.8),orange);
-  valveHandle2.position.set(2,5.8,0);g.add(valveHandle2);
-  const mount=new THREE.Mesh(new THREE.BoxGeometry(1.5,3,3),chrome);
-  mount.position.set(6,4,0);g.add(mount);
-  return g;
-}
-const faucet=makeFaucet();
-const SPOUT_OFFSET_X=-5;
-faucet.position.set(CART_X-SPOUT_OFFSET_X, CART_Y+12, CART_Z);
-sc.add(faucet);
-const SPOUT_X=faucet.position.x+SPOUT_OFFSET_X;
-const SPOUT_Y_WORLD=faucet.position.y;
-const SPOUT_Z=faucet.position.z;
-
-// === BILLS ===
-const cv=[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5],[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5],[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5],[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5],[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5],[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]];
-const cn=[[1,0,0],[1,0,0],[1,0,0],[1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,-1],[0,0,-1],[0,0,-1],[0,0,-1]];
-const ci=[0,1,2,0,2,3,4,5,6,4,6,7,8,9,10,8,10,11,12,13,14,12,14,15,16,17,18,16,18,19,20,21,22,20,22,23];
-function buildVoxelGeo(voxels){
-  const totV=voxels.length*24;
-  const positions=new Float32Array(totV*3),normals=new Float32Array(totV*3),colors=new Float32Array(totV*3);
-  const indices=new Uint32Array(voxels.length*36);
-  let vi=0,ii=0;
-  for(const v of voxels){
-    const baseV=vi;
-    for(let i=0;i<24;i++){
-      positions[(vi+i)*3]=cv[i][0]+v[0];positions[(vi+i)*3+1]=cv[i][1]+v[1];positions[(vi+i)*3+2]=cv[i][2]+v[2];
-      normals[(vi+i)*3]=cn[i][0];normals[(vi+i)*3+1]=cn[i][1];normals[(vi+i)*3+2]=cn[i][2];
-      colors[(vi+i)*3]=v[3];colors[(vi+i)*3+1]=v[4];colors[(vi+i)*3+2]=v[5];
-    }
-    for(let i=0;i<36;i++)indices[ii+i]=ci[i]+baseV;
-    vi+=24;ii+=36;
-  }
-  const geo=new THREE.BufferGeometry();
-  geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
-  geo.setAttribute('normal',new THREE.BufferAttribute(normals,3));
-  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
-  geo.setIndex(new THREE.BufferAttribute(indices,1));
-  return geo;
-}
-function buildBillGeometry(){
-  const voxels=[];
-  const gL=[0x2c/255,0xb8/255,0x4d/255];
-  const gD=[0x18/255,0x70/255,0x32/255];
-  const yel=[0xff/255,0xd2/255,0x3d/255];
-  const dpat=[
-    [0,0,0,1,0,0,0],[0,1,1,1,1,1,0],[1,1,0,1,0,0,0],[0,1,1,1,1,0,0],[0,0,1,1,1,1,0],[0,0,0,1,0,1,1],[0,0,0,1,0,1,1],[0,1,1,1,1,1,0],[0,0,0,1,0,0,0]
-  ];
-  const PW=7,PD=9;
-  for(let x=-6;x<=6;x++){
-    for(let z=-4;z<=4;z++){
-      const onEdge=(x===-6||x===6||z===-4||z===4);
-      for(let y=0;y<=2;y++){
-        let color;if(onEdge)color=gD;else color=(y===2)?gL:gD;
-        voxels.push([x,y,z,...color]);
-      }
-    }
-  }
-  const sx=-Math.floor(PW/2),sz=-Math.floor(PD/2);
-  for(let i=0;i<PD;i++){for(let j=0;j<PW;j++){if(dpat[i][j])voxels.push([sx+j,3,sz+i,...yel]);}}
-  return buildVoxelGeo(voxels);
-}
-const billGeo=buildBillGeometry();
-const billMat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.6,metalness:0.05,flatShading:true});
-const N=180;  // smaller pool for the smaller scene
-const billsMesh=new THREE.InstancedMesh(billGeo,billMat,N);
-billsMesh.castShadow=true;sc.add(billsMesh);
-const dummy=new THREE.Object3D();
-const SCALE=0.22;
-const bills=[];
-for(let i=0;i<N;i++){
-  bills.push({active:false,settled:false,x:0,y:-100,z:0,vx:0,vy:0,vz:0,rx:0,ry:0,rz:0,rxs:0,rys:0,rzs:0});
-  dummy.position.set(0,-1000,0);dummy.scale.set(0,0,0);
-  dummy.updateMatrix();billsMesh.setMatrixAt(i,dummy.matrix);
-}
-billsMesh.instanceMatrix.needsUpdate=true;
-
-let cartFillH=0;
-const CART_BOTTOM=CART_Y-2.5+0.3;
-const CART_HALF_W=3.6;
-const CART_HALF_D=2.4;
-
-function spawnBill(idx){
-  const b=bills[idx];
-  b.active=true;b.settled=false;
-  b.x=SPOUT_X + (Math.random()-0.5)*0.6;
-  b.y=SPOUT_Y_WORLD;
-  b.z=SPOUT_Z + (Math.random()-0.5)*0.5;
-  b.vx=(Math.random()-0.5)*0.04;
-  b.vy=-0.10;
-  b.vz=(Math.random()-0.5)*0.04;
-  b.rx=Math.random()*Math.PI*2;b.ry=Math.random()*Math.PI*2;b.rz=Math.random()*Math.PI*2;
-  b.rxs=(Math.random()-0.5)*0.12;b.rys=(Math.random()-0.5)*0.10;b.rzs=(Math.random()-0.5)*0.12;
+  sc.add(b);
+  flying.push(b);
 }
 
-const clk=new THREE.Clock();
-let nextSpawn=0,lastSpawnT=0;
-let started=false,inView=false;
-let local=0;            // time elapsed while in view (seconds)
-let lastFrameT=0;       // last frame's wall time
-const POUR_RATES=[1.20, 0.85, 0.55, 0.20, 0.025];
-let visibleBars=0,lastBarTime=0;
-const BAR_INTERVAL=1.8;
-const LOOP_DURATION=32;
-
-function reset(){
-  local=0;
-  nextSpawn=0;lastSpawnT=0;cartFillH=0;
-  visibleBars=0;lastBarTime=0;
-  bars.forEach(b=>{
-    b.scale.y=0.001;b.visible=false;
-    b.userData.bodyMat.emissive=new THREE.Color(0x000000);
-    b.userData.bodyMat.emissiveIntensity=0;
-    b.userData.topMat.emissive=new THREE.Color(0x000000);
-    b.userData.topMat.emissiveIntensity=0;
-    b.userData.appearTime=null;
-  });
-  pig.position.set(CART_X-7.5, 0, CART_Z-2);
-  for(let i=0;i<N;i++){
-    bills[i].active=false;bills[i].settled=false;
-    dummy.position.set(0,-1000,0);dummy.scale.set(0,0,0);
-    dummy.updateMatrix();billsMesh.setMatrixAt(i,dummy.matrix);
-  }
-  billsMesh.instanceMatrix.needsUpdate=true;
-}
-reset();
+// ===== Animation =====
+let t=0;
+let started=false, inView=false;
+const clock=new THREE.Clock();
 
 function tick(){
-  const now=clk.getElapsedTime();
-  const dt=Math.min(0.1, now-lastFrameT);  // cap dt so tab-switch doesn't fling
-  lastFrameT=now;
+  const dt=Math.min(clock.getDelta(), 0.05);
+  t+=dt;
 
-  if(started && inView){
-    // Advance local clock only while visible — pause/resume just stops accumulating
-    local+=dt;
+  if(started){
+    // Each bar oscillates toward its target and occasionally picks a new target
+    bars.forEach((bar, i)=>{
+      // Target oscillates over time too (so bars never settle)
+      const wave = Math.sin(t*0.6 + bar.phase) * 8 + Math.cos(t*0.4 + bar.phase*2) * 4;
+      bar.target = 12 + wave + i*0.4;  // taller bars on the right
+      if(bar.target < 4)bar.target = 4;
 
-    if(visibleBars===0){
-      bars[0].userData.appearTime=local;
-      bars[0].visible=true;
-      visibleBars=1;
-      lastBarTime=local;
-    }
-    if(visibleBars<5 && local-lastBarTime>=BAR_INTERVAL){
-      bars[visibleBars].userData.appearTime=local;
-      bars[visibleBars].visible=true;
-      visibleBars++;lastBarTime=local;
-    }
-    bars.forEach(b=>{
-      const at=b.userData.appearTime;
-      if(at===null||at===undefined)return;
-      const elapsed=local-at;
-      const dur=0.7;
-      const p=Math.min(1,Math.max(0,elapsed/dur));
-      const eased=1-Math.pow(1-p,3);
-      b.scale.y=Math.max(0.001,eased);
-      if(elapsed<1.5){
-        const intensity=0.45 + Math.sin(local*6)*0.18;
-        b.userData.bodyMat.emissive=new THREE.Color(0xffd23d);
-        b.userData.bodyMat.emissiveIntensity=intensity;
-        b.userData.topMat.emissive=new THREE.Color(0xffea7a);
-        b.userData.topMat.emissiveIntensity=intensity*0.7;
-      } else {
-        b.userData.bodyMat.emissive=new THREE.Color(0xffd23d);
-        b.userData.bodyMat.emissiveIntensity=0.12;
-        b.userData.topMat.emissive=new THREE.Color(0xffea7a);
-        b.userData.topMat.emissiveIntensity=0.08;
+      // Smoothly move current → target
+      const diff = bar.target - bar.current;
+      bar.current += diff * dt * 1.8;
+
+      bar.mesh.scale.y = bar.current;
+      bar.cap.position.y = bar.current + 0.3;
+
+      // Spawn bills from top when bar is growing AND tall enough
+      if(diff > 0.1 && bar.current > 6){
+        if(t - bar.lastSpawn > 0.15 - bar.current*0.003){
+          bar.lastSpawn = t;
+          spawnBill(bar);
+          // Bursts on big bars
+          if(bar.current > 18 && Math.random()<0.5)spawnBill(bar);
+        }
       }
     });
-    const rateIdx=Math.max(0,Math.min(4,visibleBars-1));
-    const interval=POUR_RATES[rateIdx];
-    if(nextSpawn<N && local-lastSpawnT>interval){
-      lastSpawnT=local;spawnBill(nextSpawn);nextSpawn++;
-    }
-    pig.position.y=Math.sin(local*1.5)*0.15;
-    for(let i=0;i<N;i++){
-      const b=bills[i];
-      if(!b.active){
-        dummy.position.set(0,-1000,0);dummy.scale.set(0,0,0);
-        dummy.updateMatrix();billsMesh.setMatrixAt(i,dummy.matrix);
-        continue;
+
+    // Update flying bills (projectile)
+    for(let i=flying.length-1;i>=0;i--){
+      const b=flying[i];
+      const u=b.userData;
+      u.life+=dt;
+      b.position.x+=u.vx*dt;
+      b.position.y+=u.vy*dt;
+      b.position.z+=u.vz*dt;
+      u.vy-=u.gravity*dt;
+      b.rotation.x+=u.spinX*dt;
+      b.rotation.y+=u.spinY*dt;
+      b.rotation.z+=u.spinZ*dt;
+      if(b.position.y<-2 || u.life>u.maxLife){
+        sc.remove(b);
+        flying.splice(i,1);
       }
-      if(!b.settled){
-        b.vy-=0.012;
-        b.x+=b.vx;b.y+=b.vy;b.z+=b.vz;
-        b.rx+=b.rxs;b.ry+=b.rys;b.rz+=b.rzs;
-        const overflowAmt=Math.max(0,cartFillH-4.5);
-        const shrink=Math.max(0.25, 1 - overflowAmt*0.20);
-        const effW=CART_HALF_W*shrink;
-        const effD=CART_HALF_D*shrink;
-        const targetY=CART_BOTTOM+cartFillH;
-        const inCart=Math.abs(b.x-CART_X)<effW && Math.abs(b.z-CART_Z)<effD;
-        if(b.y<=targetY && inCart){
-          b.settled=true;
-          b.y=targetY+0.05;
-          b.x=CART_X+(Math.random()-0.5)*effW*1.6;
-          b.z=CART_Z+(Math.random()-0.5)*effD*1.6;
-          b.rx=(Math.random()-0.5)*0.4;b.rz=(Math.random()-0.5)*0.4;
-          b.ry=Math.random()*Math.PI*2;b.rxs=b.rys=b.rzs=0;
-          cartFillH+=0.035;
-        }
-        else if(b.y<=0.1){
-          b.settled=true;
-          b.y=0.1+Math.random()*0.4;
-          b.rx=(Math.random()-0.5)*0.4;
-          b.rz=(Math.random()-0.5)*0.4;
-          b.ry=Math.random()*Math.PI*2;
-          b.rxs=b.rys=b.rzs=0;
-        }
-        else if(b.y<=targetY+0.5 && !inCart && Math.abs(b.x-CART_X)<CART_HALF_W+1 && Math.abs(b.z-CART_Z)<CART_HALF_D+1){
-          const dx=b.x-CART_X;
-          const dz=b.z-CART_Z;
-          if(Math.abs(dx)>Math.abs(dz)){b.vx+=Math.sign(dx)*0.08;}else{b.vz+=Math.sign(dz)*0.06;}
-        }
-        if(b.y<-15)b.active=false;
-      }
-      dummy.position.set(b.x,b.y,b.z);
-      dummy.rotation.set(b.rx,b.ry,b.rz);
-      dummy.scale.set(SCALE,SCALE,SCALE);
-      dummy.updateMatrix();
-      billsMesh.setMatrixAt(i,dummy.matrix);
     }
-    billsMesh.instanceMatrix.needsUpdate=true;
-    if(local>LOOP_DURATION){reset();}
   }
+
   r.render(sc,cam);
   requestAnimationFrame(tick);
 }
 tick();
 
-// Simple observer: just toggle inView. local time only ticks while inView is true.
+// Trigger when in view
 const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     inView=e.isIntersecting;
-    if(e.isIntersecting && !started){
-      started=true;
-    }
+    if(e.isIntersecting && !started)started=true;
   });
-},{threshold:0.01});
+},{threshold:0.05});
 io.observe(VP);
 
-// Auto-start if section is already on screen at page load
 requestAnimationFrame(()=>{
   const rect=VP.getBoundingClientRect();
   if(rect.top<window.innerHeight && rect.bottom>0){
-    started=true;
-    inView=true;
+    started=true; inView=true;
   }
 });
 
 window.addEventListener('resize',()=>{
   const W=VP.clientWidth, H=VP.clientHeight;
-  cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H);
+  if(W===0||H===0)return;
+  cam.aspect=W/H; cam.updateProjectionMatrix(); r.setSize(W,H);
 });
 })();
 </script>
@@ -3411,15 +3588,13 @@ window.addEventListener('resize',()=>{
 </script>
 
 <script>
-// === DISTRIBUTOR — Caped mascot showering crowd (both sides) with cash + coins ===
+// === DISTRIBUTOR — Caped mascot + trolley showering crowd with cash + floating $ amounts ===
 (function(){
   const canvas=document.getElementById('distScene');
   if(!canvas||!window.THREE)return;
   const Wd=canvas.clientWidth, Hd=canvas.clientHeight;
   if(Wd===0||Hd===0)return;
 
-  // ===== Scene + camera =====
-  // Pulled back more — crowd is wider (both sides) and we want everyone visible
   const sc=new THREE.Scene();
   const cam=new THREE.PerspectiveCamera(40, Wd/Hd, 0.1, 600);
   cam.position.set(0, 38, 145);
@@ -3429,7 +3604,6 @@ window.addEventListener('resize',()=>{
   r.setPixelRatio(window.devicePixelRatio||1);
   r.setSize(Wd,Hd,false);
 
-  // ===== Lighting (warm gold cast) =====
   sc.add(new THREE.AmbientLight(0xffeec8, 0.8));
   const key=new THREE.DirectionalLight(0xfff5d8, 1.0);
   key.position.set(30, 60, 40); sc.add(key);
@@ -3438,9 +3612,6 @@ window.addEventListener('resize',()=>{
   const rim=new THREE.DirectionalLight(0xfff0f0, 0.3);
   rim.position.set(0, 25, -35); sc.add(rim);
 
-  // ===== No floor — actors sit on transparent space =====
-
-  // ===== Voxel cube primitive =====
   const cubeGeom=new THREE.BoxGeometry(1,1,1);
   function cube(x,y,z,sx,sy,sz,color){
     const m=new THREE.Mesh(cubeGeom, new THREE.MeshLambertMaterial({color}));
@@ -3449,114 +3620,104 @@ window.addEventListener('resize',()=>{
     return m;
   }
 
-  // ===== EXACT MASCOT COLORS sampled from step2-crypto.png =====
-  // Body light blue: 0x5fb9dd  |  Body shadow blue: 0x3b83b7  |  Dark accent: 0x235a90
-  const MASCOT={
-    blue: 0x5fb9dd,
+  // ===== EXACT mascot colors from step2-crypto.png =====
+  const C={
+    blue:     0x5fb9dd,
     blueDark: 0x3b83b7,
     blueDeep: 0x235a90,
-    red: 0xd33442,
-    gold: 0xffd23d,
-    black: 0x141414,
-    white: 0xffffff,
-    pink: 0xf5b5a5,
+    red:      0xd33442,
+    redDark:  0x9c2530,
+    gold:     0xffd23d,
+    black:    0x141414,
+    white:    0xffffff,
+    pink:     0xf5b5a5,
   };
 
-  // ===== Blue caped mascot (matches step2-crypto.png exactly) =====
+  // ===== Mascot v2 — proportions tightened to match reference =====
   function makeMascot(){
     const g=new THREE.Group();
-    const C=MASCOT;
 
-    // Body
-    g.add(cube(0, 10, 0, 13, 11, 9, C.blue));
-    // Cape behind
-    g.add(cube(0, 9.5, -4.7, 13, 13, 0.6, C.red));
-    g.add(cube(-4, 2.5, -4.7, 3, 4, 0.6, C.red));
-    g.add(cube(4, 2.5, -4.7, 3, 4, 0.6, C.red));
-    g.add(cube(0, 1.5, -4.7, 4, 3, 0.6, C.red));
-    // Red shoulder pads
-    g.add(cube(-6.5, 14.5, 0, 2.5, 2, 9, C.red));
-    g.add(cube(6.5, 14.5, 0, 2.5, 2, 9, C.red));
-    // Gold $ chest emblem
-    g.add(cube(0, 9.5, 4.6, 4.5, 0.8, 0.4, C.gold));
-    g.add(cube(0, 11.5, 4.6, 4.5, 0.8, 0.4, C.gold));
-    g.add(cube(0, 7.5, 4.6, 4.5, 0.8, 0.4, C.gold));
-    g.add(cube(-1.8, 10.5, 4.6, 0.8, 1.4, 0.4, C.gold));
-    g.add(cube(1.8, 8.5, 4.6, 0.8, 1.4, 0.4, C.gold));
-    g.add(cube(0, 12.6, 4.6, 0.6, 1.8, 0.4, C.gold));
-    g.add(cube(0, 6.4, 4.6, 0.6, 1.8, 0.4, C.gold));
+    // === CAPE — larger, drapes around back, jagged bottom — drawn first so it's behind ===
+    // Main cape body wider than torso to wrap around the back
+    const cape=new THREE.Group();
+    cape.add(cube(0, 10, 0, 16, 18, 0.8, C.red));
+    // Right side wrap (visible behind right shoulder when arm is up)
+    cape.add(cube(7, 9, 1.5, 2, 14, 1.2, C.red));
+    cape.add(cube(-7, 9, 1.5, 2, 14, 1.2, C.red));
+    // Jagged bottom edges
+    cape.add(cube(-5, 0.5, 0, 3, 2.5, 0.8, C.red));
+    cape.add(cube(0, -0.5, 0, 4, 2, 0.8, C.red));
+    cape.add(cube(5, 0.5, 0, 3, 2.5, 0.8, C.red));
+    cape.position.z=-4.5;
+    g.add(cape);
 
-    // Head
+    // === BODY (blue, with gold $ chest emblem) ===
+    g.add(cube(0, 10, 0, 13, 12, 9, C.blue));
+    // Red shoulder pads peeking out from cape on top
+    g.add(cube(-7, 15.5, 0, 2, 1.8, 8.5, C.red));
+    g.add(cube(7, 15.5, 0, 2, 1.8, 8.5, C.red));
+    // Gold $ chest emblem — chunkier, more centered
+    g.add(cube(0, 11.5, 4.6, 5, 1, 0.4, C.gold));
+    g.add(cube(0, 9.5, 4.6, 5, 1, 0.4, C.gold));
+    g.add(cube(0, 7.5, 4.6, 5, 1, 0.4, C.gold));
+    g.add(cube(-2, 10.5, 4.6, 1, 1.4, 0.4, C.gold));
+    g.add(cube(2, 8.5, 4.6, 1, 1.4, 0.4, C.gold));
+    g.add(cube(0, 12.8, 4.6, 0.7, 1.8, 0.4, C.gold));
+    g.add(cube(0, 6.2, 4.6, 0.7, 1.8, 0.4, C.gold));
+
+    // === HEAD — taller, with proper mask band ===
     const head=new THREE.Group();
-    head.add(cube(0, 0, 0, 10, 9, 9, C.blue));
-    // Ears
-    head.add(cube(-3.5, 5.5, 0, 1.5, 2, 1.8, C.blue));
-    head.add(cube(-3.5, 6.5, 0, 1, 1, 1.4, C.blue));
-    head.add(cube(3.5, 5.5, 0, 1.5, 2, 1.8, C.blue));
-    head.add(cube(3.5, 6.5, 0, 1, 1, 1.4, C.blue));
-    // Mask
-    head.add(cube(0, 2, 4.55, 10.5, 2.5, 0.3, C.black));
-    head.add(cube(-2.2, 2, 4.71, 1.6, 0.9, 0.3, C.white));
-    head.add(cube(2.2, 2, 4.71, 1.6, 0.9, 0.3, C.white));
-    // Snout (darker)
-    head.add(cube(0, -1.5, 4.55, 4.5, 3, 1.2, C.blueDark));
-    // Nostrils
-    head.add(cube(-1, -1.5, 5.2, 0.7, 0.7, 0.3, C.black));
-    head.add(cube(1, -1.5, 5.2, 0.7, 0.7, 0.3, C.black));
-    // Smile
-    head.add(cube(1.8, -3.4, 4.55, 1.5, 0.5, 0.3, C.black));
-    head.position.set(0, 19, 0);
+    head.add(cube(0, 0, 0, 10, 10, 9, C.blue));
+    // Top ears (small pointy)
+    head.add(cube(-3.5, 5.8, 0, 1.6, 2.2, 1.9, C.blue));
+    head.add(cube(-3.5, 7, 0, 1, 1, 1.4, C.blue));
+    head.add(cube(3.5, 5.8, 0, 1.6, 2.2, 1.9, C.blue));
+    head.add(cube(3.5, 7, 0, 1, 1, 1.4, C.blue));
+    // === MASK — proper width, full strip across eyes
+    head.add(cube(0, 2.3, 4.55, 10.5, 2.8, 0.3, C.black));
+    // White eye slits inside the mask
+    head.add(cube(-2.3, 2.3, 4.71, 1.8, 0.95, 0.3, C.white));
+    head.add(cube(2.3, 2.3, 4.71, 1.8, 0.95, 0.3, C.white));
+    // Snout (slightly darker blue) — wider, juts out
+    head.add(cube(0, -1.2, 4.55, 5, 3.2, 1.3, C.blueDark));
+    // Nostrils — two small black squares
+    head.add(cube(-1.1, -1.2, 5.25, 0.7, 0.7, 0.3, C.black));
+    head.add(cube(1.1, -1.2, 5.25, 0.7, 0.7, 0.3, C.black));
+    // Subtle smile to the right
+    head.add(cube(1.6, -3.4, 4.55, 1.6, 0.5, 0.3, C.black));
+    head.position.set(0, 19.5, 0);
     g.add(head);
     g.userData.head=head;
 
-    // Arms — BOTH arms toss now (one left, one right)
+    // === ARMS — pivot at shoulder, swing for tossing
     const armL=new THREE.Group();
-    armL.add(cube(0, -3.5, 0, 2.8, 7, 2.8, C.blue));
-    armL.add(cube(0, -7.5, 0, 3, 1.5, 3, C.pink));
-    armL.position.set(-7.5, 13, 0.5);
+    armL.add(cube(0, -3.8, 0, 3, 7.5, 3, C.blue));
+    armL.add(cube(0, -7.8, 0, 3.2, 1.5, 3.2, C.pink)); // hand
+    armL.position.set(-7.5, 13.5, 0.5);
     g.add(armL);
     g.userData.armL=armL;
 
     const armR=new THREE.Group();
-    armR.add(cube(0, -3.5, 0, 2.8, 7, 2.8, C.blue));
-    armR.add(cube(0, -7.5, 0, 3, 1.5, 3, C.pink));
-    armR.position.set(7.5, 13, 0.5);
+    armR.add(cube(0, -3.8, 0, 3, 7.5, 3, C.blue));
+    armR.add(cube(0, -7.8, 0, 3.2, 1.5, 3.2, C.pink));
+    armR.position.set(7.5, 13.5, 0.5);
     g.add(armR);
     g.userData.armR=armR;
 
-    // Legs
-    g.add(cube(-3, 2, 0, 4, 5, 4.5, C.blue));
-    g.add(cube(3, 2, 0, 4, 5, 4.5, C.blue));
-    // Boots
-    g.add(cube(-3, -0.5, 0.5, 4.4, 1, 5, C.black));
-    g.add(cube(3, -0.5, 0.5, 4.4, 1, 5, C.black));
-    // Yellow ankle cuffs
-    g.add(cube(-3, 0.7, 0, 4.6, 0.8, 4.7, C.gold));
-    g.add(cube(3, 0.7, 0, 4.6, 0.8, 4.7, C.gold));
+    // === LEGS
+    g.add(cube(-3, 2, 0, 4.5, 5, 4.8, C.blue));
+    g.add(cube(3, 2, 0, 4.5, 5, 4.8, C.blue));
+    // Gold ankle bands
+    g.add(cube(-3, 0.7, 0, 4.7, 0.8, 5, C.gold));
+    g.add(cube(3, 0.7, 0, 4.7, 0.8, 5, C.gold));
+    // Black boots
+    g.add(cube(-3, -0.5, 0.5, 4.7, 1.2, 5.2, C.black));
+    g.add(cube(3, -0.5, 0.5, 4.7, 1.2, 5.2, C.black));
 
     return g;
   }
 
-  // ===== Money bag =====
-  function makeMoneyBag(scale=1){
-    const g=new THREE.Group();
-    const tan=0xc9a55a, tanDark=0x9c7d3a, gold=0xffd23d;
-    g.add(cube(0, 3.5, 0, 9, 6, 8, tan));
-    g.add(cube(0, 6.5, 0, 7, 1, 6, tan));
-    g.add(cube(0, 7.2, 0, 3, 1.4, 3, tanDark));
-    g.add(cube(-1.8, 8.5, 0, 1.8, 1.2, 1.5, tan));
-    g.add(cube(1.8, 8.5, 0, 1.8, 1.2, 1.5, tan));
-    g.add(cube(0, 5.5, 4.1, 2.5, 0.5, 0.2, gold));
-    g.add(cube(0, 4, 4.1, 2.5, 0.5, 0.2, gold));
-    g.add(cube(0, 2.5, 4.1, 2.5, 0.5, 0.2, gold));
-    g.add(cube(-1.1, 4.75, 4.1, 0.5, 1, 0.2, gold));
-    g.add(cube(1.1, 3.25, 4.1, 0.5, 1, 0.2, gold));
-    g.add(cube(0, 6, 4.1, 0.4, 1.2, 0.2, gold));
-    g.add(cube(0, 2, 4.1, 0.4, 1.2, 0.2, gold));
-    g.scale.setScalar(scale);
-    return g;
-  }
-
+  // ===== Voxel CASH STACK =====
   function makeCashStack(){
     const g=new THREE.Group();
     const green=0x2f9c4d, greenDark=0x1f6e35, paper=0xf2e8c8;
@@ -3567,7 +3728,93 @@ window.addEventListener('resize',()=>{
     return g;
   }
 
-  // ===== Person =====
+  // ===== Voxel SHOPPING TROLLEY full of cash — next to mascot =====
+  function makeTrolley(){
+    const g=new THREE.Group();
+    const metal=0xb0b8c0, metalDark=0x6a7280;
+    // Basket — open box (4 walls, floor, no top)
+    const W=10, D=7, H=6;
+    // Floor
+    g.add(cube(0, 1, 0, W, 0.3, D, metalDark));
+    // Front + back walls (with gaps to look like wire)
+    for(let i=0;i<3;i++){
+      g.add(cube(0, 2+i*1.5, D/2, W-0.5, 0.3, 0.3, metal)); // front bars
+      g.add(cube(0, 2+i*1.5, -D/2, W-0.5, 0.3, 0.3, metal)); // back bars
+    }
+    // Verticals on corners
+    g.add(cube(-W/2+0.3, 3.5, D/2-0.2, 0.4, H, 0.4, metalDark));
+    g.add(cube(W/2-0.3, 3.5, D/2-0.2, 0.4, H, 0.4, metalDark));
+    g.add(cube(-W/2+0.3, 3.5, -D/2+0.2, 0.4, H, 0.4, metalDark));
+    g.add(cube(W/2-0.3, 3.5, -D/2+0.2, 0.4, H, 0.4, metalDark));
+    // Side bars (left/right)
+    for(let i=0;i<3;i++){
+      g.add(cube(-W/2, 2+i*1.5, 0, 0.3, 0.3, D-0.5, metal));
+      g.add(cube(W/2, 2+i*1.5, 0, 0.3, 0.3, D-0.5, metal));
+    }
+    // Top rim (thicker)
+    g.add(cube(0, 7, D/2, W, 0.5, 0.5, metalDark));
+    g.add(cube(0, 7, -D/2, W, 0.5, 0.5, metalDark));
+    g.add(cube(-W/2, 7, 0, 0.5, 0.5, D, metalDark));
+    g.add(cube(W/2, 7, 0, 0.5, 0.5, D, metalDark));
+    // Handle bar
+    g.add(cube(W/2+1, 10, 0, 0.5, 0.5, D, metalDark));
+    g.add(cube(W/2+0.5, 9, D/2-0.5, 0.5, 4, 0.5, metalDark));
+    g.add(cube(W/2+0.5, 9, -D/2+0.5, 0.5, 4, 0.5, metalDark));
+
+    // === STUFF the basket with cash stacks + bills ===
+    const green=0x2f9c4d, greenDark=0x1f6e35, paper=0xf2e8c8, gold=0xffd23d;
+    // Cash bricks inside
+    for(let r=0;r<2;r++){
+      for(let c=0;c<3;c++){
+        const x=(c-1)*2.5;
+        const z=(r-0.5)*2.2;
+        const yBase = 1.4 + r*1.8;
+        // Brick body
+        for(let i=0;i<3;i++){
+          g.add(cube(x, yBase+i*0.45, z, 2.2, 0.4, 1.8, i%2===0?green:greenDark));
+        }
+        // Paper band
+        g.add(cube(x, yBase+0.5, z, 2.3, 0.6, 1.9, paper));
+      }
+    }
+    // Loose bills poking out the top
+    for(let i=0;i<6;i++){
+      const x=(Math.random()-0.5)*8;
+      const z=(Math.random()-0.5)*4;
+      const tilt=(Math.random()-0.5)*0.5;
+      const bill=cube(x, 6.5+Math.random()*1.5, z, 2.4, 0.15, 1.4, green);
+      bill.rotation.z=tilt;
+      bill.rotation.y=Math.random()*Math.PI;
+      g.add(bill);
+    }
+    // A few gold coin tops
+    for(let i=0;i<3;i++){
+      const x=(Math.random()-0.5)*7;
+      const z=(Math.random()-0.5)*4;
+      const c=new THREE.Mesh(
+        new THREE.CylinderGeometry(0.7,0.7,0.25,16),
+        new THREE.MeshLambertMaterial({color:gold})
+      );
+      c.position.set(x, 7+Math.random()*0.5, z);
+      g.add(c);
+    }
+
+    // Wheels
+    const wheelGeom=new THREE.CylinderGeometry(0.9, 0.9, 0.5, 12);
+    const wheelMat=new THREE.MeshLambertMaterial({color:0x202020});
+    for(let i=0;i<4;i++){
+      const w=new THREE.Mesh(wheelGeom, wheelMat);
+      w.rotation.z=Math.PI/2;
+      const wx = (i%2===0?-1:1) * (W/2-1);
+      const wz = (i<2?-1:1) * (D/2-1);
+      w.position.set(wx, 0, wz);
+      g.add(w);
+    }
+
+    return g;
+  }
+
+  // ===== Voxel PERSON =====
   function makePerson(skin, shirt, pants, hair){
     const g=new THREE.Group();
     const black=0x141414;
@@ -3635,29 +3882,65 @@ window.addEventListener('resize',()=>{
     return g;
   }
 
+  // ===== Floating "+$X" sprites (HTML overlay style, rendered as 3D billboards) =====
+  // We use a CanvasTexture to draw the text, since Three.js r128 doesn't have CSS3DRenderer setup.
+  const sprites=[];  // active "+$X" sprites
+  function makeMoneyText(amount){
+    const c=document.createElement('canvas');
+    c.width=128; c.height=64;
+    const ctx=c.getContext('2d');
+    ctx.font='bold 38px Arial Black, Arial, sans-serif';
+    ctx.fillStyle='#23d76b';  // bright green
+    ctx.strokeStyle='#0a3a18'; // dark green outline
+    ctx.lineWidth=4;
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    const text='+$'+amount;
+    ctx.strokeText(text, 64, 32);
+    ctx.fillText(text, 64, 32);
+    const tex=new THREE.CanvasTexture(c);
+    tex.minFilter=THREE.LinearFilter;
+    const mat=new THREE.SpriteMaterial({map:tex, transparent:true});
+    const sp=new THREE.Sprite(mat);
+    sp.scale.set(8, 4, 1);
+    return sp;
+  }
+  function spawnMoneyText(person){
+    if(sprites.length > 60)return;
+    const amount = 5 + Math.floor(Math.random()*95); // $5 - $99
+    const sp = makeMoneyText(amount);
+    sp.position.set(
+      person.position.x + (Math.random()-0.5)*4,
+      19 + Math.random()*2,
+      person.position.z
+    );
+    sp.userData={
+      vy: 6 + Math.random()*3,
+      life: 0,
+      maxLife: 1.6 + Math.random()*0.4,
+    };
+    sc.add(sp);
+    sprites.push(sp);
+  }
+
   // ===== Place actors =====
   const mascot=makeMascot();
   mascot.position.set(0, 0, 0);
   sc.add(mascot);
 
-  // Money bags + cash stacks at mascot's feet (now placed on BOTH sides since people are on both sides)
-  const bag1=makeMoneyBag(0.85);
-  bag1.position.set(-14, 0, 5);
-  bag1.rotation.y=0.25;
-  sc.add(bag1);
-  const bag2=makeMoneyBag(0.85);
-  bag2.position.set(14, 0, 5);
-  bag2.rotation.y=-0.25;
-  sc.add(bag2);
+  // TROLLEY next to mascot (on his left, slightly behind)
+  const trolley=makeTrolley();
+  trolley.position.set(-18, 0, 3);
+  trolley.rotation.y=0.3;
+  sc.add(trolley);
 
-  // Cash stacks scattered around the base
+  // Cash stacks scattered around
   const stackPositions=[
     {x:-9, z:9, rot:0.1},
     {x:9, z:9, rot:-0.2},
     {x:-4, z:11, rot:0.4},
     {x:4, z:11, rot:-0.4},
-    {x:-18, z:3, rot:0.5},
-    {x:18, z:3, rot:-0.5},
+    {x:14, z:7, rot:-0.5},
   ];
   stackPositions.forEach(p=>{
     const s=makeCashStack();
@@ -3666,8 +3949,8 @@ window.addEventListener('resize',()=>{
     sc.add(s);
   });
 
-  // Loose coins scattered at the front
-  for(let i=0;i<18;i++){
+  // Loose coins
+  for(let i=0;i<14;i++){
     const c=makeCoin();
     const angle=Math.random()*Math.PI*2;
     const dist=10+Math.random()*8;
@@ -3677,7 +3960,7 @@ window.addEventListener('resize',()=>{
     sc.add(c);
   }
 
-  // ===== People — TWO SIDES, front + back rows = ~20 total =====
+  // ===== ~20 people both sides =====
   const peopleColors=[
     {skin:0xf2cba6, shirt:0x3b73d8, pants:0x2a3a52, hair:0x4a2c1a},
     {skin:0xc78c5a, shirt:0xe8503b, pants:0x2a2a2a, hair:0x1a1a1a},
@@ -3700,8 +3983,6 @@ window.addEventListener('resize',()=>{
     {skin:0xf5d2a8, shirt:0xdd5544, pants:0x2a3a3a, hair:0x9a6a3a},
     {skin:0xa07555, shirt:0xaadd33, pants:0x2a2a2a, hair:0x0a0a0a},
   ];
-
-  // RIGHT side crowd (mascot tosses cash → right)
   const rightFront=[
     {x: 22, z: 22, rot:-0.5},
     {x: 32, z: 14, rot:-0.85},
@@ -3716,8 +3997,6 @@ window.addEventListener('resize',()=>{
     {x: 44, z: 0, rot:-1.3},
     {x: 18, z:-26, rot:-2.4},
   ];
-
-  // LEFT side crowd (mirror — cash tossed → left)
   const leftFront=[
     {x:-22, z: 22, rot: 0.5},
     {x:-32, z: 14, rot: 0.85},
@@ -3732,7 +4011,6 @@ window.addEventListener('resize',()=>{
     {x:-44, z: 0, rot: 1.3},
     {x:-18, z:-26, rot: 2.4},
   ];
-
   const people=[];
   let colorIdx=0;
   function placePerson(pos){
@@ -3743,6 +4021,7 @@ window.addEventListener('resize',()=>{
     p.rotation.y=pos.rot;
     p.userData.phase=Math.random()*Math.PI*2;
     p.userData.side = pos.x > 0 ? 'right' : 'left';
+    p.userData.lastMoneyText=Math.random()*1.5; // stagger
     sc.add(p);
     people.push(p);
   }
@@ -3750,26 +4029,19 @@ window.addEventListener('resize',()=>{
   rightBack.forEach(placePerson);
   leftFront.forEach(placePerson);
   leftBack.forEach(placePerson);
-
-  // Split people by side so we can target each toss properly
   const rightPeople=people.filter(p=>p.userData.side==='right');
   const leftPeople =people.filter(p=>p.userData.side==='left');
 
-  // ===== Flying items — bills + coins, going BOTH directions =====
+  // ===== Flying items =====
   const flying=[];
-  const MAX_FLYING=180;  // bumped up
-
+  const MAX_FLYING=180;
   function spawnItem(side){
-    // side: 'right' or 'left' — picks which hand and which target crowd
     if(flying.length>=MAX_FLYING)return;
     const isCoin=Math.random()<0.25;
     const item=isCoin ? makeCoin() : makeBill();
     if(isCoin)item.scale.setScalar(1.6);
-
-    // Hand spawn position depends on side
     const handX = side==='right' ? 7.5 : -7.5;
     item.position.set(handX, 20 + mascot.position.y, 1);
-
     const crowd = side==='right' ? rightPeople : leftPeople;
     const target=crowd[Math.floor(Math.random()*crowd.length)];
     const tx=target.position.x + (Math.random()-0.5)*7;
@@ -3782,11 +4054,8 @@ window.addEventListener('resize',()=>{
       vy: 17 + Math.random()*6,
       vz: dz/flightTime + (Math.random()-0.5)*3,
       gravity: 20,
-      spinX:(Math.random()-0.5)*9,
-      spinY:(Math.random()-0.5)*9,
-      spinZ:(Math.random()-0.5)*9,
-      life:0,
-      maxLife:flightTime + 0.8,
+      spinX:(Math.random()-0.5)*9, spinY:(Math.random()-0.5)*9, spinZ:(Math.random()-0.5)*9,
+      life:0, maxLife:flightTime + 0.8,
     };
     sc.add(item);
     flying.push(item);
@@ -3802,33 +4071,28 @@ window.addEventListener('resize',()=>{
     t+=dt;
 
     if(started){
-      // Mascot idle bob
       mascot.position.y=Math.sin(t*1.8)*0.4;
 
-      // BOTH arms swing in tossing motion, slightly out of phase
       const armPhaseR=(t*1.4)%1;
-      const armPhaseL=((t*1.4)+0.5)%1;  // half a cycle offset
+      const armPhaseL=((t*1.4)+0.5)%1;
       const swingR=Math.sin(armPhaseR*Math.PI*2)*0.5;
       const swingL=Math.sin(armPhaseL*Math.PI*2)*0.5;
       mascot.userData.armR.rotation.z=-0.3 + swingR*0.9;
       mascot.userData.armR.rotation.x=-swingR*0.4;
-      mascot.userData.armL.rotation.z=0.3 - swingL*0.9;   // mirror for left arm
+      mascot.userData.armL.rotation.z=0.3 - swingL*0.9;
       mascot.userData.armL.rotation.x=-swingL*0.4;
-
-      // Head turns back and forth between the two crowds
       mascot.userData.head.rotation.y=Math.sin(t*0.7)*0.4;
 
-      // Spawn ALTERNATING sides, very rapidly
+      // Spawn bills both sides
       if(t-lastSpawn>0.06){
         lastSpawn=t;
-        // Alternate which side gets the bigger burst
         const burstR=Math.random()<0.4?2:1;
         const burstL=Math.random()<0.4?2:1;
         for(let i=0;i<burstR;i++)spawnItem('right');
         for(let i=0;i<burstL;i++)spawnItem('left');
       }
 
-      // Update flying
+      // Update flying bills/coins
       for(let i=flying.length-1;i>=0;i--){
         const f=flying[i];
         const u=f.userData;
@@ -3846,7 +4110,7 @@ window.addEventListener('resize',()=>{
         }
       }
 
-      // People bob + wiggle
+      // People bob + wiggle + occasional "+$X" sprite
       people.forEach(p=>{
         const ph=p.userData.phase;
         p.position.y=Math.abs(Math.sin(t*3+ph))*0.9;
@@ -3857,7 +4121,33 @@ window.addEventListener('resize',()=>{
         if(p.userData.head){
           p.userData.head.rotation.z=Math.sin(t*3.5+ph)*0.1;
         }
+        // Spawn money text periodically per person
+        p.userData.lastMoneyText -= dt;
+        if(p.userData.lastMoneyText <= 0){
+          spawnMoneyText(p);
+          p.userData.lastMoneyText = 0.8 + Math.random()*1.5; // every 0.8-2.3s per person
+        }
       });
+
+      // Update "+$X" sprites — rise and fade
+      for(let i=sprites.length-1;i>=0;i--){
+        const sp=sprites[i];
+        const u=sp.userData;
+        u.life += dt;
+        sp.position.y += u.vy*dt;
+        // Fade out in last 40% of life
+        const fadeStart = u.maxLife * 0.6;
+        if(u.life > fadeStart){
+          const fade = 1 - (u.life - fadeStart) / (u.maxLife - fadeStart);
+          sp.material.opacity = Math.max(0, fade);
+        }
+        if(u.life > u.maxLife){
+          sc.remove(sp);
+          if(sp.material.map)sp.material.map.dispose();
+          sp.material.dispose();
+          sprites.splice(i,1);
+        }
+      }
     }
 
     r.render(sc,cam);
@@ -3865,7 +4155,6 @@ window.addEventListener('resize',()=>{
   }
   tick();
 
-  // ===== In-view trigger =====
   const section=document.getElementById('distributorSection');
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
