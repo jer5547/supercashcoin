@@ -1563,7 +1563,6 @@
       <div class="hero-glow"></div>
       <div class="hero-platter"></div>
       <img class="hero-float-coin" src="coin.png" alt="">
-      <img class="hero-float-tether" src="tether.png" alt="">
       <img class="hero-mascot" src="step2-crypto.png" alt="Super Cash Coin Mascot">
     </div>
   </div>
@@ -3385,7 +3384,7 @@ window.addEventListener('resize',()=>{
 </script>
 
 <script>
-// === DISTRIBUTOR — Blue caped mascot showering crowd with cash + coins ===
+// === DISTRIBUTOR — Caped mascot showering crowd (both sides) with cash + coins ===
 (function(){
   const canvas=document.getElementById('distScene');
   if(!canvas||!window.THREE)return;
@@ -3393,41 +3392,26 @@ window.addEventListener('resize',()=>{
   if(Wd===0||Hd===0)return;
 
   // ===== Scene + camera =====
-  // Camera pulled back to show wider crowd + full mascot.
+  // Pulled back more — crowd is wider (both sides) and we want everyone visible
   const sc=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(38, Wd/Hd, 0.1, 600);
-  cam.position.set(0, 36, 130);
-  cam.lookAt(0, 14, 0);
+  const cam=new THREE.PerspectiveCamera(40, Wd/Hd, 0.1, 600);
+  cam.position.set(0, 38, 145);
+  cam.lookAt(0, 12, 0);
 
   const r=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
   r.setPixelRatio(window.devicePixelRatio||1);
   r.setSize(Wd,Hd,false);
 
-  // ===== Lighting (warm gold cast over the whole scene) =====
-  sc.add(new THREE.AmbientLight(0xffeec8, 0.75));
+  // ===== Lighting (warm gold cast) =====
+  sc.add(new THREE.AmbientLight(0xffeec8, 0.8));
   const key=new THREE.DirectionalLight(0xfff5d8, 1.0);
   key.position.set(30, 60, 40); sc.add(key);
-  const fill=new THREE.DirectionalLight(0xffd23d, 0.35);
+  const fill=new THREE.DirectionalLight(0xffd23d, 0.3);
   fill.position.set(-25, 20, 20); sc.add(fill);
   const rim=new THREE.DirectionalLight(0xfff0f0, 0.3);
   rim.position.set(0, 25, -35); sc.add(rim);
 
-  // ===== Gold floor disc =====
-  // Two-tone: bright gold center + darker gold ring for depth
-  const floorOuter=new THREE.Mesh(
-    new THREE.CircleGeometry(80, 64),
-    new THREE.MeshLambertMaterial({color:0xc79a0c})
-  );
-  floorOuter.rotation.x=-Math.PI/2;
-  floorOuter.position.y=-0.2;
-  sc.add(floorOuter);
-  const floorInner=new THREE.Mesh(
-    new THREE.CircleGeometry(60, 48),
-    new THREE.MeshLambertMaterial({color:0xffd23d})
-  );
-  floorInner.rotation.x=-Math.PI/2;
-  floorInner.position.y=-0.1;
-  sc.add(floorInner);
+  // ===== No floor — actors sit on transparent space =====
 
   // ===== Voxel cube primitive =====
   const cubeGeom=new THREE.BoxGeometry(1,1,1);
@@ -3438,100 +3422,103 @@ window.addEventListener('resize',()=>{
     return m;
   }
 
-  // ===== Blue caped voxel MASCOT (matches the hero superhero pig) =====
-  // Colors picked to match step2-crypto.png mascot exactly
+  // ===== EXACT MASCOT COLORS sampled from step2-crypto.png =====
+  // Body light blue: 0x5fb9dd  |  Body shadow blue: 0x3b83b7  |  Dark accent: 0x235a90
+  const MASCOT={
+    blue: 0x5fb9dd,
+    blueDark: 0x3b83b7,
+    blueDeep: 0x235a90,
+    red: 0xd33442,
+    gold: 0xffd23d,
+    black: 0x141414,
+    white: 0xffffff,
+    pink: 0xf5b5a5,
+  };
+
+  // ===== Blue caped mascot (matches step2-crypto.png exactly) =====
   function makeMascot(){
     const g=new THREE.Group();
-    const blue=0x4cb4ee, blueDark=0x2d8fd0, red=0xd33442, gold=0xffd23d;
-    const black=0x141414, white=0xffffff, pink=0xf5b5a5;
+    const C=MASCOT;
 
-    // === Body (blue with red cape underneath, gold $ on chest) ===
-    g.add(cube(0, 10, 0, 13, 11, 9, blue));
-    // Cape behind body — flowing down
-    const cape=cube(0, 9.5, -4.7, 13, 13, 0.6, red);
-    g.add(cape);
-    // Cape jagged bottom
-    g.add(cube(-4, 2.5, -4.7, 3, 4, 0.6, red));
-    g.add(cube(4, 2.5, -4.7, 3, 4, 0.6, red));
-    g.add(cube(0, 1.5, -4.7, 4, 3, 0.6, red));
+    // Body
+    g.add(cube(0, 10, 0, 13, 11, 9, C.blue));
+    // Cape behind
+    g.add(cube(0, 9.5, -4.7, 13, 13, 0.6, C.red));
+    g.add(cube(-4, 2.5, -4.7, 3, 4, 0.6, C.red));
+    g.add(cube(4, 2.5, -4.7, 3, 4, 0.6, C.red));
+    g.add(cube(0, 1.5, -4.7, 4, 3, 0.6, C.red));
     // Red shoulder pads
-    g.add(cube(-6.5, 14.5, 0, 2.5, 2, 9, red));
-    g.add(cube(6.5, 14.5, 0, 2.5, 2, 9, red));
+    g.add(cube(-6.5, 14.5, 0, 2.5, 2, 9, C.red));
+    g.add(cube(6.5, 14.5, 0, 2.5, 2, 9, C.red));
     // Gold $ chest emblem
-    g.add(cube(0, 9.5, 4.6, 4.5, 0.8, 0.4, gold));    // mid bar
-    g.add(cube(0, 11.5, 4.6, 4.5, 0.8, 0.4, gold));   // top bar
-    g.add(cube(0, 7.5, 4.6, 4.5, 0.8, 0.4, gold));    // bot bar
-    g.add(cube(-1.8, 10.5, 4.6, 0.8, 1.4, 0.4, gold)); // left vert (top half)
-    g.add(cube(1.8, 8.5, 4.6, 0.8, 1.4, 0.4, gold));   // right vert (bot half)
-    g.add(cube(0, 12.6, 4.6, 0.6, 1.8, 0.4, gold));    // top tick
-    g.add(cube(0, 6.4, 4.6, 0.6, 1.8, 0.4, gold));     // bot tick
+    g.add(cube(0, 9.5, 4.6, 4.5, 0.8, 0.4, C.gold));
+    g.add(cube(0, 11.5, 4.6, 4.5, 0.8, 0.4, C.gold));
+    g.add(cube(0, 7.5, 4.6, 4.5, 0.8, 0.4, C.gold));
+    g.add(cube(-1.8, 10.5, 4.6, 0.8, 1.4, 0.4, C.gold));
+    g.add(cube(1.8, 8.5, 4.6, 0.8, 1.4, 0.4, C.gold));
+    g.add(cube(0, 12.6, 4.6, 0.6, 1.8, 0.4, C.gold));
+    g.add(cube(0, 6.4, 4.6, 0.6, 1.8, 0.4, C.gold));
 
-    // === Head (blue cube with masked eyes, pig snout) ===
+    // Head
     const head=new THREE.Group();
-    head.add(cube(0, 0, 0, 10, 9, 9, blue));
-    // Pig ears on top (small pointy blue)
-    head.add(cube(-3.5, 5.5, 0, 1.5, 2, 1.8, blue));
-    head.add(cube(-3.5, 6.5, 0, 1, 1, 1.4, blue));
-    head.add(cube(3.5, 5.5, 0, 1.5, 2, 1.8, blue));
-    head.add(cube(3.5, 6.5, 0, 1, 1, 1.4, blue));
-    // Black mask band across eyes (full strip)
-    head.add(cube(0, 2, 4.55, 10.5, 2.5, 0.3, black));
-    // White eye blocks inside the mask
-    head.add(cube(-2.2, 2, 4.71, 1.6, 0.9, 0.3, white));
-    head.add(cube(2.2, 2, 4.71, 1.6, 0.9, 0.3, white));
-    // Snout — pink darker block jutting forward
-    head.add(cube(0, -1.5, 4.55, 4.5, 3, 1.2, blueDark));
-    // Snout nostrils — two black squares
-    head.add(cube(-1, -1.5, 5.2, 0.7, 0.7, 0.3, black));
-    head.add(cube(1, -1.5, 5.2, 0.7, 0.7, 0.3, black));
-    // Slight black smile
-    head.add(cube(1.8, -3.4, 4.55, 1.5, 0.5, 0.3, black));
+    head.add(cube(0, 0, 0, 10, 9, 9, C.blue));
+    // Ears
+    head.add(cube(-3.5, 5.5, 0, 1.5, 2, 1.8, C.blue));
+    head.add(cube(-3.5, 6.5, 0, 1, 1, 1.4, C.blue));
+    head.add(cube(3.5, 5.5, 0, 1.5, 2, 1.8, C.blue));
+    head.add(cube(3.5, 6.5, 0, 1, 1, 1.4, C.blue));
+    // Mask
+    head.add(cube(0, 2, 4.55, 10.5, 2.5, 0.3, C.black));
+    head.add(cube(-2.2, 2, 4.71, 1.6, 0.9, 0.3, C.white));
+    head.add(cube(2.2, 2, 4.71, 1.6, 0.9, 0.3, C.white));
+    // Snout (darker)
+    head.add(cube(0, -1.5, 4.55, 4.5, 3, 1.2, C.blueDark));
+    // Nostrils
+    head.add(cube(-1, -1.5, 5.2, 0.7, 0.7, 0.3, C.black));
+    head.add(cube(1, -1.5, 5.2, 0.7, 0.7, 0.3, C.black));
+    // Smile
+    head.add(cube(1.8, -3.4, 4.55, 1.5, 0.5, 0.3, C.black));
     head.position.set(0, 19, 0);
     g.add(head);
     g.userData.head=head;
 
-    // === Arms ===
-    // Left arm rests at side
+    // Arms — BOTH arms toss now (one left, one right)
     const armL=new THREE.Group();
-    armL.add(cube(0, -3.5, 0, 2.8, 7, 2.8, blue));
-    armL.add(cube(0, -7.5, 0, 3, 1.5, 3, pink)); // hand
+    armL.add(cube(0, -3.5, 0, 2.8, 7, 2.8, C.blue));
+    armL.add(cube(0, -7.5, 0, 3, 1.5, 3, C.pink));
     armL.position.set(-7.5, 13, 0.5);
     g.add(armL);
     g.userData.armL=armL;
 
-    // Right arm — pivots and TOSSES cash up + out
     const armR=new THREE.Group();
-    armR.add(cube(0, -3.5, 0, 2.8, 7, 2.8, blue));
-    armR.add(cube(0, -7.5, 0, 3, 1.5, 3, pink)); // hand (spawn point for bills)
+    armR.add(cube(0, -3.5, 0, 2.8, 7, 2.8, C.blue));
+    armR.add(cube(0, -7.5, 0, 3, 1.5, 3, C.pink));
     armR.position.set(7.5, 13, 0.5);
     g.add(armR);
     g.userData.armR=armR;
 
-    // === Legs ===
-    g.add(cube(-3, 2, 0, 4, 5, 4.5, blue));
-    g.add(cube(3, 2, 0, 4, 5, 4.5, blue));
-    // Black boots
-    g.add(cube(-3, -0.5, 0.5, 4.4, 1, 5, black));
-    g.add(cube(3, -0.5, 0.5, 4.4, 1, 5, black));
-    // Yellow belt cuffs above the boots (matches mascot's wrist/ankle accents)
-    g.add(cube(-3, 0.7, 0, 4.6, 0.8, 4.7, gold));
-    g.add(cube(3, 0.7, 0, 4.6, 0.8, 4.7, gold));
+    // Legs
+    g.add(cube(-3, 2, 0, 4, 5, 4.5, C.blue));
+    g.add(cube(3, 2, 0, 4, 5, 4.5, C.blue));
+    // Boots
+    g.add(cube(-3, -0.5, 0.5, 4.4, 1, 5, C.black));
+    g.add(cube(3, -0.5, 0.5, 4.4, 1, 5, C.black));
+    // Yellow ankle cuffs
+    g.add(cube(-3, 0.7, 0, 4.6, 0.8, 4.7, C.gold));
+    g.add(cube(3, 0.7, 0, 4.6, 0.8, 4.7, C.gold));
 
     return g;
   }
 
-  // ===== Voxel MONEY BAG (tied sack with $ on it) =====
+  // ===== Money bag =====
   function makeMoneyBag(scale=1){
     const g=new THREE.Group();
     const tan=0xc9a55a, tanDark=0x9c7d3a, gold=0xffd23d;
-    // Body
     g.add(cube(0, 3.5, 0, 9, 6, 8, tan));
     g.add(cube(0, 6.5, 0, 7, 1, 6, tan));
-    // Tied neck
     g.add(cube(0, 7.2, 0, 3, 1.4, 3, tanDark));
     g.add(cube(-1.8, 8.5, 0, 1.8, 1.2, 1.5, tan));
     g.add(cube(1.8, 8.5, 0, 1.8, 1.2, 1.5, tan));
-    // Big $ symbol on bag (chunky)
     g.add(cube(0, 5.5, 4.1, 2.5, 0.5, 0.2, gold));
     g.add(cube(0, 4, 4.1, 2.5, 0.5, 0.2, gold));
     g.add(cube(0, 2.5, 4.1, 2.5, 0.5, 0.2, gold));
@@ -3543,41 +3530,31 @@ window.addEventListener('resize',()=>{
     return g;
   }
 
-  // ===== Voxel CASH STACK (a bundle of banded green bills) =====
   function makeCashStack(){
     const g=new THREE.Group();
     const green=0x2f9c4d, greenDark=0x1f6e35, paper=0xf2e8c8;
-    // 5 bills stacked
     for(let i=0;i<5;i++){
       g.add(cube(0, 0.5+i*0.7, 0, 6, 0.6, 3, i%2===0?green:greenDark));
     }
-    // Paper band around the middle
     g.add(cube(0, 2.2, 0, 6.3, 0.8, 3.3, paper));
     return g;
   }
 
-  // ===== Voxel PERSON (cheering, arms up) =====
+  // ===== Person =====
   function makePerson(skin, shirt, pants, hair){
     const g=new THREE.Group();
     const black=0x141414;
-    // Body
     g.add(cube(0, 6, 0, 6, 7, 4, shirt));
-    // Head
     const head=new THREE.Group();
     head.add(cube(0, 0, 0, 5, 5, 4.5, skin));
-    // Hair
     head.add(cube(0, 2.5, -0.2, 5.2, 1.5, 4.7, hair));
     head.add(cube(0, 1.9, -2.1, 5.2, 1, 0.6, hair));
-    // Eyes
     head.add(cube(-1.2, 0.4, 2.3, 0.7, 0.7, 0.2, black));
     head.add(cube(1.2, 0.4, 2.3, 0.7, 0.7, 0.2, black));
-    // Smile (slightly bigger — they're excited)
     head.add(cube(0, -1.3, 2.3, 2, 0.5, 0.2, black));
     head.position.set(0, 12.5, 0);
     g.add(head);
     g.userData.head=head;
-
-    // Arms RAISED catching pose
     const armL=new THREE.Group();
     armL.add(cube(0, -2, 0, 2, 5, 2, shirt));
     armL.add(cube(0, -4.5, 0, 2.2, 1.5, 2.2, skin));
@@ -3585,7 +3562,6 @@ window.addEventListener('resize',()=>{
     armL.rotation.z=0.95;
     g.add(armL);
     g.userData.armL=armL;
-
     const armR=new THREE.Group();
     armR.add(cube(0, -2, 0, 2, 5, 2, shirt));
     armR.add(cube(0, -4.5, 0, 2.2, 1.5, 2.2, skin));
@@ -3593,8 +3569,6 @@ window.addEventListener('resize',()=>{
     armR.rotation.z=-0.95;
     g.add(armR);
     g.userData.armR=armR;
-
-    // Legs
     g.add(cube(-1.5, 1.5, 0, 2.4, 4, 2.4, pants));
     g.add(cube(1.5, 1.5, 0, 2.4, 4, 2.4, pants));
     g.add(cube(-1.5, -0.6, 0.3, 2.6, 0.6, 3, black));
@@ -3602,7 +3576,7 @@ window.addEventListener('resize',()=>{
     return g;
   }
 
-  // ===== Bills + Coins (the things flying around) =====
+  // ===== Bills + coins =====
   const billGeom=new THREE.BoxGeometry(2.6, 1.3, 0.12);
   const billGreen=new THREE.MeshLambertMaterial({color:0x2f9c4d});
   const billDarker=new THREE.MeshLambertMaterial({color:0x1f6e35});
@@ -3610,10 +3584,8 @@ window.addEventListener('resize',()=>{
   function makeBill(){
     const g=new THREE.Group();
     g.add(new THREE.Mesh(billGeom, billGreen));
-    // $ in center
     const dot=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.75,0.07), billGold);
     dot.position.set(0,0,0.08);g.add(dot);
-    // top/bottom border accent
     const top=new THREE.Mesh(new THREE.BoxGeometry(2.5,0.12,0.07), billDarker);
     top.position.set(0,0.55,0.08);g.add(top);
     const bot=new THREE.Mesh(new THREE.BoxGeometry(2.5,0.12,0.07), billDarker);
@@ -3623,19 +3595,16 @@ window.addEventListener('resize',()=>{
 
   const coinGeom=new THREE.CylinderGeometry(0.85, 0.85, 0.2, 16);
   const coinMatGold=new THREE.MeshLambertMaterial({color:0xffd23d});
-  const coinMatRing=new THREE.MeshLambertMaterial({color:0x1a5fb8});
+  const coinMatBlue=new THREE.MeshLambertMaterial({color:0x1a5fb8});
   function makeCoin(){
     const g=new THREE.Group();
     const outer=new THREE.Mesh(coinGeom, coinMatGold);
-    outer.rotation.x=Math.PI/2;
-    g.add(outer);
-    // Blue inner disc to match the $SCC coin face
+    outer.rotation.x=Math.PI/2;g.add(outer);
     const inner=new THREE.Mesh(
       new THREE.CylinderGeometry(0.55,0.55,0.24,16),
-      coinMatRing
+      coinMatBlue
     );
-    inner.rotation.x=Math.PI/2;
-    g.add(inner);
+    inner.rotation.x=Math.PI/2;g.add(inner);
     return g;
   }
 
@@ -3644,24 +3613,24 @@ window.addEventListener('resize',()=>{
   mascot.position.set(0, 0, 0);
   sc.add(mascot);
 
-  // Money bag #1 (mascot's left side, slightly back)
-  const bag1=makeMoneyBag(0.9);
-  bag1.position.set(-15, 0, 5);
+  // Money bags + cash stacks at mascot's feet (now placed on BOTH sides since people are on both sides)
+  const bag1=makeMoneyBag(0.85);
+  bag1.position.set(-14, 0, 5);
   bag1.rotation.y=0.25;
   sc.add(bag1);
-
-  // Money bag #2 (mascot's other side, smaller)
-  const bag2=makeMoneyBag(0.75);
-  bag2.position.set(-22, 0, -1);
-  bag2.rotation.y=-0.4;
+  const bag2=makeMoneyBag(0.85);
+  bag2.position.set(14, 0, 5);
+  bag2.rotation.y=-0.25;
   sc.add(bag2);
 
-  // Stack of cash bricks at base — 4 stacks
+  // Cash stacks scattered around the base
   const stackPositions=[
-    {x:-10, z:9, rot:0.1},
-    {x:-6, z:11, rot:-0.3},
-    {x:-13, z:10, rot:0.5},
-    {x:-8, z:7.5, rot:0.0},
+    {x:-9, z:9, rot:0.1},
+    {x:9, z:9, rot:-0.2},
+    {x:-4, z:11, rot:0.4},
+    {x:4, z:11, rot:-0.4},
+    {x:-18, z:3, rot:0.5},
+    {x:18, z:3, rot:-0.5},
   ];
   stackPositions.forEach(p=>{
     const s=makeCashStack();
@@ -3670,18 +3639,18 @@ window.addEventListener('resize',()=>{
     sc.add(s);
   });
 
-  // Loose coins scattered on the floor near mascot
-  for(let i=0;i<14;i++){
+  // Loose coins scattered at the front
+  for(let i=0;i<18;i++){
     const c=makeCoin();
     const angle=Math.random()*Math.PI*2;
-    const dist=8+Math.random()*9;
-    c.position.set(Math.cos(angle)*dist - 14, 0.4+Math.random()*0.3, Math.sin(angle)*dist + 4);
+    const dist=10+Math.random()*8;
+    c.position.set(Math.cos(angle)*dist, 0.4+Math.random()*0.3, Math.sin(angle)*dist*0.6 + 7);
     c.rotation.z=Math.random()*0.4-0.2;
     c.scale.setScalar(1.4);
     sc.add(c);
   }
 
-  // ===== 12 PEOPLE in a deeper crowd (front row + back row) =====
+  // ===== People — TWO SIDES, front + back rows = ~20 total =====
   const peopleColors=[
     {skin:0xf2cba6, shirt:0x3b73d8, pants:0x2a3a52, hair:0x4a2c1a},
     {skin:0xc78c5a, shirt:0xe8503b, pants:0x2a2a2a, hair:0x1a1a1a},
@@ -3695,68 +3664,97 @@ window.addEventListener('resize',()=>{
     {skin:0xc88e63, shirt:0x88c855, pants:0x2a2a3a, hair:0x2a2a0a},
     {skin:0xf0bf95, shirt:0xff3355, pants:0x1a2a3a, hair:0xd4a44a},
     {skin:0xb88a5a, shirt:0xbb55ee, pants:0x2a2a2a, hair:0x1a1a1a},
+    {skin:0xe8c39e, shirt:0x33aacc, pants:0x3a2a3a, hair:0x6a4a2a},
+    {skin:0xc88e6a, shirt:0xee9933, pants:0x2a3a2a, hair:0x1a0a0a},
+    {skin:0xf2b888, shirt:0x9966cc, pants:0x2a2a2a, hair:0xeebb44},
+    {skin:0xb37d57, shirt:0x44dd88, pants:0x3a3a2a, hair:0x2a1a0a},
+    {skin:0xe8c8a0, shirt:0xff66aa, pants:0x2a2a4a, hair:0x5a4a2a},
+    {skin:0xc89770, shirt:0x6677ee, pants:0x1a2a2a, hair:0x1a1a1a},
+    {skin:0xf5d2a8, shirt:0xdd5544, pants:0x2a3a3a, hair:0x9a6a3a},
+    {skin:0xa07555, shirt:0xaadd33, pants:0x2a2a2a, hair:0x0a0a0a},
   ];
 
-  // Arc them around the right side, front row + back row
-  // Front row (closer to camera, lower z)
-  const frontRow=[
+  // RIGHT side crowd (mascot tosses cash → right)
+  const rightFront=[
     {x: 22, z: 22, rot:-0.5},
     {x: 32, z: 14, rot:-0.85},
     {x: 38, z:  2, rot:-1.25},
     {x: 36, z:-12, rot:-1.7},
     {x: 26, z:-22, rot:-2.1},
-    {x: 12, z:-26, rot:-2.5},
   ];
-  // Back row (further from camera, higher z behind front)
-  const backRow=[
-    {x: 16, z:  8, rot:-0.6},
-    {x: 26, z:  0, rot:-1.0},
-    {x: 30, z:-10, rot:-1.5},
-    {x: 22, z:-18, rot:-2.0},
-    {x:  8, z:-18, rot:-2.6},
-    {x: 42, z: -2, rot:-1.3},
+  const rightBack=[
+    {x: 26, z: 6, rot:-0.95},
+    {x: 32, z:-6, rot:-1.3},
+    {x: 28, z:-16, rot:-1.85},
+    {x: 44, z: 0, rot:-1.3},
+    {x: 18, z:-26, rot:-2.4},
+  ];
+
+  // LEFT side crowd (mirror — cash tossed → left)
+  const leftFront=[
+    {x:-22, z: 22, rot: 0.5},
+    {x:-32, z: 14, rot: 0.85},
+    {x:-38, z:  2, rot: 1.25},
+    {x:-36, z:-12, rot: 1.7},
+    {x:-26, z:-22, rot: 2.1},
+  ];
+  const leftBack=[
+    {x:-26, z: 6, rot: 0.95},
+    {x:-32, z:-6, rot: 1.3},
+    {x:-28, z:-16, rot: 1.85},
+    {x:-44, z: 0, rot: 1.3},
+    {x:-18, z:-26, rot: 2.4},
   ];
 
   const people=[];
-  function placePerson(pos, colorIdx){
+  let colorIdx=0;
+  function placePerson(pos){
     const c=peopleColors[colorIdx % peopleColors.length];
+    colorIdx++;
     const p=makePerson(c.skin, c.shirt, c.pants, c.hair);
     p.position.set(pos.x, 0, pos.z);
     p.rotation.y=pos.rot;
-    p.userData.basePos={x:pos.x, z:pos.z};
     p.userData.phase=Math.random()*Math.PI*2;
+    p.userData.side = pos.x > 0 ? 'right' : 'left';
     sc.add(p);
     people.push(p);
   }
-  frontRow.forEach((pos,i)=>placePerson(pos, i));
-  backRow.forEach((pos,i)=>placePerson(pos, i+6));
+  rightFront.forEach(placePerson);
+  rightBack.forEach(placePerson);
+  leftFront.forEach(placePerson);
+  leftBack.forEach(placePerson);
 
-  // ===== Flying items (bills + coins) =====
+  // Split people by side so we can target each toss properly
+  const rightPeople=people.filter(p=>p.userData.side==='right');
+  const leftPeople =people.filter(p=>p.userData.side==='left');
+
+  // ===== Flying items — bills + coins, going BOTH directions =====
   const flying=[];
-  const MAX_FLYING=120;
+  const MAX_FLYING=180;  // bumped up
 
-  function spawnItem(){
+  function spawnItem(side){
+    // side: 'right' or 'left' — picks which hand and which target crowd
     if(flying.length>=MAX_FLYING)return;
-    // 75% bill, 25% coin
     const isCoin=Math.random()<0.25;
     const item=isCoin ? makeCoin() : makeBill();
     if(isCoin)item.scale.setScalar(1.6);
-    // Start at mascot's right hand world position (account for mascot bob)
-    item.position.set(7.5, 20 + mascot.position.y, 1);
 
-    // Target a random person's torso area, with extra spread so they fly everywhere
-    const target=people[Math.floor(Math.random()*people.length)];
-    const tx=target.position.x + (Math.random()-0.5)*6;
-    const tz=target.position.z + (Math.random()-0.5)*6;
+    // Hand spawn position depends on side
+    const handX = side==='right' ? 7.5 : -7.5;
+    item.position.set(handX, 20 + mascot.position.y, 1);
+
+    const crowd = side==='right' ? rightPeople : leftPeople;
+    const target=crowd[Math.floor(Math.random()*crowd.length)];
+    const tx=target.position.x + (Math.random()-0.5)*7;
+    const tz=target.position.z + (Math.random()-0.5)*7;
     const dx=tx-item.position.x;
     const dz=tz-item.position.z;
-    // Long flight time = more time in the air = denser look
-    const flightTime=1.8 + Math.random()*0.6;
+    const flightTime=1.7 + Math.random()*0.6;
     item.userData={
       vx: dx/flightTime + (Math.random()-0.5)*3,
-      vy: 16 + Math.random()*6,
+      vy: 17 + Math.random()*6,
       vz: dz/flightTime + (Math.random()-0.5)*3,
-      gravity: 20,  // softer gravity = more hang time
+      gravity: 20,
       spinX:(Math.random()-0.5)*9,
       spinY:(Math.random()-0.5)*9,
       spinZ:(Math.random()-0.5)*9,
@@ -3780,26 +3778,30 @@ window.addEventListener('resize',()=>{
       // Mascot idle bob
       mascot.position.y=Math.sin(t*1.8)*0.4;
 
-      // Mascot right arm — tossing cycle
-      const armPhase=(t*1.4)%1;
-      const armSwing=Math.sin(armPhase*Math.PI*2)*0.5;
-      mascot.userData.armR.rotation.z=-0.3 + armSwing*0.9;
-      mascot.userData.armR.rotation.x=-armSwing*0.4;
+      // BOTH arms swing in tossing motion, slightly out of phase
+      const armPhaseR=(t*1.4)%1;
+      const armPhaseL=((t*1.4)+0.5)%1;  // half a cycle offset
+      const swingR=Math.sin(armPhaseR*Math.PI*2)*0.5;
+      const swingL=Math.sin(armPhaseL*Math.PI*2)*0.5;
+      mascot.userData.armR.rotation.z=-0.3 + swingR*0.9;
+      mascot.userData.armR.rotation.x=-swingR*0.4;
+      mascot.userData.armL.rotation.z=0.3 - swingL*0.9;   // mirror for left arm
+      mascot.userData.armL.rotation.x=-swingL*0.4;
 
-      // Mascot left arm slight wave
-      mascot.userData.armL.rotation.z=Math.sin(t*1.2)*0.15;
+      // Head turns back and forth between the two crowds
+      mascot.userData.head.rotation.y=Math.sin(t*0.7)*0.4;
 
-      // Mascot head turn
-      mascot.userData.head.rotation.y=Math.sin(t*0.8)*0.18 + 0.25;
-
-      // Spawn LOTS of items (4× original rate, sometimes burst)
-      if(t-lastSpawn>0.08){
+      // Spawn ALTERNATING sides, very rapidly
+      if(t-lastSpawn>0.06){
         lastSpawn=t;
-        const burst=Math.random()<0.3?3:(Math.random()<0.5?2:1);
-        for(let i=0;i<burst;i++)spawnItem();
+        // Alternate which side gets the bigger burst
+        const burstR=Math.random()<0.4?2:1;
+        const burstL=Math.random()<0.4?2:1;
+        for(let i=0;i<burstR;i++)spawnItem('right');
+        for(let i=0;i<burstL;i++)spawnItem('left');
       }
 
-      // Update flying items
+      // Update flying
       for(let i=flying.length-1;i>=0;i--){
         const f=flying[i];
         const u=f.userData;
@@ -3817,7 +3819,7 @@ window.addEventListener('resize',()=>{
         }
       }
 
-      // People — bob and arm-wiggle
+      // People bob + wiggle
       people.forEach(p=>{
         const ph=p.userData.phase;
         p.position.y=Math.abs(Math.sin(t*3+ph))*0.9;
@@ -3836,7 +3838,7 @@ window.addEventListener('resize',()=>{
   }
   tick();
 
-  // ===== Section-in-view trigger =====
+  // ===== In-view trigger =====
   const section=document.getElementById('distributorSection');
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
