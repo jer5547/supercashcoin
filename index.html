@@ -427,30 +427,22 @@
   }
   /* Horizontal banner divider with quote about earnings */
   .volume-banner{
-    margin:0 auto 30px;
-    padding:32px 40px;
-    border-top:3px solid #ffd23d;
-    border-bottom:3px solid #ffd23d;
-    background:linear-gradient(180deg, #fffbed 0%, #fff5d4 100%);
+    max-width:900px;
+    margin:0 auto 50px;
+    padding:0 20px;
     text-align:center;
-    font-size:clamp(15px,1.6vw,18px);
-    line-height:1.6;
+    font-size:clamp(22px,3vw,38px);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1.25;
     color:#0a0a0a;
-    font-weight:500;
-    max-width:1100px;
-    margin-left:auto;
-    margin-right:auto;
-    border-radius:6px;
-    position:relative;
+    background:none;
+    border:none;
+    border-radius:0;
   }
   .volume-banner b{color:#0a0a0a;font-weight:900;}
-  .volume-banner .gold{color:#c79a0c;font-weight:900;}
-  .volume-banner .scc{
-    color:#0a0a0a;
-    background:linear-gradient(180deg,transparent 60%,#ffd23d 60%);
-    padding:0 4px;
-    font-weight:900;
-  }
+  .volume-banner .gold{color:#ffd23d;}
+  .volume-banner .scc{color:#ffd23d;font-weight:900;}
 
   /* Bottom hero callout — arrow on the RIGHT pointing UP at the daily rewards column */
   .hero-callout-bottom{
@@ -1965,8 +1957,12 @@ function tick(){
   const t=clk.getElapsedTime();
   const local=t-phaseStart;
   if(started && inView){
-    if(visibleBars===0 && local>=0){
-      bars[0].userData.appearTime=0;bars[0].visible=true;visibleBars=1;lastBarTime=0;
+    if(visibleBars===0){
+      // First bar appears immediately on start
+      bars[0].userData.appearTime=local;
+      bars[0].visible=true;
+      visibleBars=1;
+      lastBarTime=local;
     }
     if(visibleBars<5 && local-lastBarTime>=BAR_INTERVAL){
       bars[visibleBars].userData.appearTime=local;
@@ -2059,17 +2055,35 @@ const io=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       if(!started){
-        started=true;reset();inView=true;
+        // First time entering view — start fresh
+        started=true;
+        reset();
+        inView=true;
       } else if(!inView){
+        // Returning to view after scroll-out — adjust phaseStart so animation continues smoothly
         const pauseDuration=clk.getElapsedTime()-pausedAt;
-        phaseStart+=pauseDuration;lastBarTime+=pauseDuration;lastSpawnT+=pauseDuration;
+        phaseStart+=pauseDuration;
+        lastBarTime+=pauseDuration;
+        lastSpawnT+=pauseDuration;
         inView=true;
       }
     } else {
-      if(inView){pausedAt=clk.getElapsedTime();inView=false;}
+      if(inView){
+        pausedAt=clk.getElapsedTime();
+        inView=false;
+      }
     }
   });
-},{threshold:0.05});
+},{threshold:0.01});  // Trigger as soon as ANY pixel is visible
+
+// Start immediately if section is already in view on page load (don't wait for scroll)
+requestAnimationFrame(()=>{
+  const rect=VP.getBoundingClientRect();
+  if(rect.top<window.innerHeight && rect.bottom>0){
+    started=true;reset();inView=true;
+  }
+});
+
 io.observe(VP);
 
 window.addEventListener('resize',()=>{
