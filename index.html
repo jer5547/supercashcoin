@@ -181,6 +181,38 @@
   .anim{flex:1;position:relative;height:80vh;}
   #vc{position:absolute;inset:0;display:block;}
 
+  /* === TICKER MARQUEE === */
+  .ticker{
+    background:#d32f2f;
+    border-top:3px solid #ffd23d;
+    border-bottom:3px solid #ffd23d;
+    overflow:hidden;
+    padding:14px 0;
+    position:relative;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  }
+  .ticker-track{
+    display:flex;
+    width:max-content;
+    animation:tickerScroll 24s linear infinite;
+    will-change:transform;
+  }
+  .ticker-item{
+    flex-shrink:0;
+    padding:0 24px;
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:0.04em;
+    color:#fff;
+    font-family:'Arial Black','Arial',sans-serif;
+    white-space:nowrap;
+  }
+  .ticker-item:nth-child(odd){color:#ffd23d;}
+  @keyframes tickerScroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
   /* === CELEBRATION SECTION === */
   .celebration{
     background:#0a0a0a;
@@ -967,6 +999,39 @@
     </div>
   </div>
   <div class="anim"><div id="vc"></div></div>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+    <span class="ticker-item">$SCC</span>
+  </div>
 </div>
 
 <section class="celebration" id="celebrationSection">
