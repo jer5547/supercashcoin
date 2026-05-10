@@ -952,6 +952,33 @@
     font-family:'Arial Black','Arial',sans-serif;
   }
   .htt-title .gold{color:#ffd23d;}
+
+  /* Same family/weight for the distributor and tokenomics titles
+     (replaces the old 3D voxel titles).
+     Distributor section has WHITE bg → dark text.
+     Tokenomics section has BLACK bg → white text. */
+  .dist-title-text{
+    text-align:center;
+    font-size:clamp(40px,6vw,72px);
+    font-weight:900;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+    margin:0 0 24px;
+    color:#0a0a0a;
+    font-family:'Arial Black','Arial',sans-serif;
+  }
+  .tk-title-text{
+    text-align:center;
+    font-size:clamp(40px,6vw,72px);
+    font-weight:900;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+    margin:0 0 24px;
+    color:#fff;
+    font-family:'Arial Black','Arial',sans-serif;
+  }
+  .dist-title-text .gold,
+  .tk-title-text .gold{color:#ffd23d;}
   .htt-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -1665,7 +1692,7 @@
 
 <section class="distributor" id="distributorSection">
   <div class="distributor-wrap">
-    <div class="dist-title-voxel"><div id="distVoxel"></div></div>
+    <h2 class="dist-title-text">How It <span class="gold">Works</span></h2>
     <div class="dist-subhead">
       Every buy sends <b>25% tax</b> to the Vault. When there's enough money, the Distributor automatically sends <b>USDT</b> to all holders in one cheap batch. On <b>opBNB</b> this happens often and costs almost nothing. No claiming needed — money just appears in your wallet!
     </div>
@@ -1695,7 +1722,7 @@
 <section class="tokenomics" id="tokenomicsSection">
   <div class="tk-wrap">
     <div class="tk-title">
-      <div class="tk-title-voxel"><div id="tkVoxel"></div></div>
+      <h2 class="tk-title-text"><span class="gold">Tokenomics</span></h2>
     </div>
     <div class="tk-warn-wrap">
       <div class="tk-warn">⚠ Must hold at least 1 token to earn rewards</div>
