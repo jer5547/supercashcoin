@@ -3283,8 +3283,8 @@ const startX = -TOTAL_W/2 + BAR_WIDTH/2;
 
 const bars=[];
 const barColors=[
-  0x23d76b, 0x23d76b, 0x23d76b, 0xffd23d, 0xffd23d,
-  0xffa500, 0xffa500, 0xff6b35, 0xff3355, 0xff3355,
+  0xffd23d, 0xffd23d, 0xffd23d, 0xffd23d, 0xffd23d,
+  0xffd23d, 0xffd23d, 0xffd23d, 0xffd23d, 0xffd23d,
 ];
 
 for(let i=0;i<NUM_BARS;i++){
@@ -3620,101 +3620,185 @@ window.addEventListener('resize',()=>{
     return m;
   }
 
-  // ===== EXACT mascot colors from step2-crypto.png =====
-  const C={
-    blue:     0x5fb9dd,
-    blueDark: 0x3b83b7,
-    blueDeep: 0x235a90,
-    red:      0xd33442,
-    redDark:  0x9c2530,
-    gold:     0xffd23d,
-    black:    0x141414,
-    white:    0xffffff,
-    pink:     0xf5b5a5,
-  };
-
-  // ===== Mascot v2 — proportions tightened to match reference =====
+  // ===== Mascot — using the proven reference pig from the volume/hero scene =====
+  // Same voxel system + face-culled merged geometry. Keeps the same userData API
+  // that the animation loop below expects (head, armL, armR).
   function makeMascot(){
-    const g=new THREE.Group();
+    const B=0x1da4e9, RD=0xd32f2f, DRD=0x9a1a1a, GD=0xffd23d, K=0x0a0a0a, W=0xffffff;
+    const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
+    const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
 
-    // === CAPE — larger, drapes around back, jagged bottom — drawn first so it's behind ===
-    // Main cape body wider than torso to wrap around the back
-    const cape=new THREE.Group();
-    cape.add(cube(0, 10, 0, 16, 18, 0.8, C.red));
-    // Right side wrap (visible behind right shoulder when arm is up)
-    cape.add(cube(7, 9, 1.5, 2, 14, 1.2, C.red));
-    cape.add(cube(-7, 9, 1.5, 2, 14, 1.2, C.red));
-    // Jagged bottom edges
-    cape.add(cube(-5, 0.5, 0, 3, 2.5, 0.8, C.red));
-    cape.add(cube(0, -0.5, 0, 4, 2, 0.8, C.red));
-    cape.add(cube(5, 0.5, 0, 3, 2.5, 0.8, C.red));
-    cape.position.z=-4.5;
-    g.add(cape);
+    // Head face overrides (sunglasses, smirk, eye reflections)
+    const headMods=new Map();
+    const setMod=(x,y,z,c)=>headMods.set(x+','+y+','+z,c);
+    for(let dx=0;dx<15;dx++)for(let dy=0;dy<3;dy++)setMod(-9+dx,49+dy,9,K);
+    setMod(-1,50,9,K);setMod(0,50,9,K);
+    setMod(-7,51,9,W);setMod(-6,51,9,W);setMod(5,51,9,W);setMod(6,51,9,W);
+    for(let x=-2;x<=2;x++)setMod(x,40,9,K);
+    setMod(3,41,9,K);setMod(4,42,9,K);
 
-    // === BODY (blue, with gold $ chest emblem) ===
-    g.add(cube(0, 10, 0, 13, 12, 9, C.blue));
-    // Red shoulder pads peeking out from cape on top
-    g.add(cube(-7, 15.5, 0, 2, 1.8, 8.5, C.red));
-    g.add(cube(7, 15.5, 0, 2, 1.8, 8.5, C.red));
-    // Gold $ chest emblem — chunkier, more centered
-    g.add(cube(0, 11.5, 4.6, 5, 1, 0.4, C.gold));
-    g.add(cube(0, 9.5, 4.6, 5, 1, 0.4, C.gold));
-    g.add(cube(0, 7.5, 4.6, 5, 1, 0.4, C.gold));
-    g.add(cube(-2, 10.5, 4.6, 1, 1.4, 0.4, C.gold));
-    g.add(cube(2, 8.5, 4.6, 1, 1.4, 0.4, C.gold));
-    g.add(cube(0, 12.8, 4.6, 0.7, 1.8, 0.4, C.gold));
-    g.add(cube(0, 6.2, 4.6, 0.7, 1.8, 0.4, C.gold));
+    // Head — chin/jaw shape
+    for(let x=-11;x<=10;x++)for(let y=36;y<=55;y++)for(let z=-10;z<=9;z++){
+      if(y===36 && (x<-8||x>7||z<-8||z>7))continue;
+      add(G.head,x,y,z,headMods.get(x+','+y+','+z)||B);
+    }
+    // Snout
+    for(let x=-4;x<=3;x++)for(let y=42;y<=47;y++)for(let z=10;z<=15;z++){
+      let c=B;
+      if(z===15){
+        if((x===-3||x===-2)&&(y===44||y===45))c=K;
+        if((x===1||x===2)&&(y===44||y===45))c=K;
+      }
+      add(G.head,x,y,z,c);
+    }
+    // Ears (triangle pyramids built from stepped voxels)
+    const ear=(bx,by,bz,mir)=>{
+      for(let dy=0;dy<6;dy++){
+        const w=6-dy;
+        for(let dx=0;dx<w;dx++){
+          const x=mir?(bx-dx):(bx+dx);
+          for(let dz=0;dz<3;dz++)add(G.head,x,by+dy,bz+dz,B);
+        }
+      }
+    };
+    ear(-10,56,-1,false);
+    ear(10,56,-1,true);
 
-    // === HEAD — taller, with proper mask band ===
-    const head=new THREE.Group();
-    head.add(cube(0, 0, 0, 10, 10, 9, C.blue));
-    // Top ears (small pointy)
-    head.add(cube(-3.5, 5.8, 0, 1.6, 2.2, 1.9, C.blue));
-    head.add(cube(-3.5, 7, 0, 1, 1, 1.4, C.blue));
-    head.add(cube(3.5, 5.8, 0, 1.6, 2.2, 1.9, C.blue));
-    head.add(cube(3.5, 7, 0, 1, 1, 1.4, C.blue));
-    // === MASK — proper width, full strip across eyes
-    head.add(cube(0, 2.3, 4.55, 10.5, 2.8, 0.3, C.black));
-    // White eye slits inside the mask
-    head.add(cube(-2.3, 2.3, 4.71, 1.8, 0.95, 0.3, C.white));
-    head.add(cube(2.3, 2.3, 4.71, 1.8, 0.95, 0.3, C.white));
-    // Snout (slightly darker blue) — wider, juts out
-    head.add(cube(0, -1.2, 4.55, 5, 3.2, 1.3, C.blueDark));
-    // Nostrils — two small black squares
-    head.add(cube(-1.1, -1.2, 5.25, 0.7, 0.7, 0.3, C.black));
-    head.add(cube(1.1, -1.2, 5.25, 0.7, 0.7, 0.3, C.black));
-    // Subtle smile to the right
-    head.add(cube(1.6, -3.4, 4.55, 1.6, 0.5, 0.3, C.black));
-    head.position.set(0, 19.5, 0);
-    g.add(head);
-    g.userData.head=head;
+    // Dollar sign — 11x9 voxels
+    const dollar=[
+      "....#....", ".#######.", "##..#..##", "##..#....", "##..#....",
+      ".#######.", "....#..##", "....#..##", "##..#..##", ".#######.", "....#...."
+    ];
+    const dollarMods=new Map();
+    for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
+      if(dollar[i][j]==='#')dollarMods.set((-4+j)+','+(18+(dollar.length-1-i))+',7',GD);
+    }
+    // Body
+    for(let x=-10;x<=9;x++)for(let y=10;y<=35;y++)for(let z=-8;z<=7;z++){
+      if(y===34 && (x<-8||x>7))continue;
+      if(y===35 && (x<-5||x>4||z<-5||z>4))continue;
+      add(G.body,x,y,z,dollarMods.get(x+','+y+','+z)||B);
+    }
+    // Embossed $ on chest
+    for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
+      if(dollar[i][j]==='#')add(G.body,-4+j,18+(dollar.length-1-i),8,GD);
+    }
+    // Arms with gold cuffs
+    for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
+    for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+    for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
+    for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
+    // Legs with black hooves
+    for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
+    for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
+    for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
+    for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
+    // Cape — shoulder pads + tapered back panel
+    for(let x=-10;x<=9;x++){
+      if(x>=-3 && x<=2)continue;
+      for(let z=-9;z<=9;z++){
+        add(G.cape,x,32,z,RD);
+        add(G.cape,x,33,z,RD);
+      }
+    }
+    for(let x=-10;x<=9;x++){
+      if(x>=-3 && x<=2)continue;
+      add(G.cape,x,31,9,DRD);
+    }
+    for(let y=8;y<=34;y++){
+      const t=(34-y)/26;
+      const halfW=Math.round(11+t*5);
+      for(let x=-halfW;x<=halfW-1;x++){
+        for(let dz=0;dz<3;dz++){
+          const z=-9-dz;
+          const c=(dz===2)?RD:(dz===0?DRD:RD);
+          add(G.cape,x,y,z,c);
+        }
+      }
+    }
 
-    // === ARMS — pivot at shoulder, swing for tossing
-    const armL=new THREE.Group();
-    armL.add(cube(0, -3.8, 0, 3, 7.5, 3, C.blue));
-    armL.add(cube(0, -7.8, 0, 3.2, 1.5, 3.2, C.pink)); // hand
-    armL.position.set(-7.5, 13.5, 0.5);
-    g.add(armL);
-    g.userData.armL=armL;
+    // Face-culled mesh builder
+    const buildGroup=(buckets)=>{
+      const occupied=new Set();
+      buckets.forEach(positions=>{positions.forEach(p=>occupied.add(p[0]+','+p[1]+','+p[2]));});
+      const FACES=[
+        {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+        {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+        {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+        {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+        {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+        {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+      ];
+      const g=new THREE.Group();
+      buckets.forEach((positions,color)=>{
+        const verts=[],norms=[],idx=[];let vi=0;
+        positions.forEach(p=>{
+          const [px,py,pz]=p;
+          for(const f of FACES){
+            const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+            if(occupied.has(nk))continue;
+            for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
+            idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
+            vi+=4;
+          }
+        });
+        if(!verts.length)return;
+        const geo=new THREE.BufferGeometry();
+        geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+        geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+        geo.setIndex(idx);
+        const isGold=color===GD;
+        const mat=new THREE.MeshLambertMaterial({color});
+        const mesh=new THREE.Mesh(geo,mat);
+        g.add(mesh);
+      });
+      return g;
+    };
+    const headM=buildGroup(G.head);
+    const bodyM=buildGroup(G.body);
+    const lArmM=buildGroup(G.lArm);
+    const rArmM=buildGroup(G.rArm);
+    const lLegM=buildGroup(G.lLeg);
+    const rLegM=buildGroup(G.rLeg);
+    const capeM=buildGroup(G.cape);
 
-    const armR=new THREE.Group();
-    armR.add(cube(0, -3.8, 0, 3, 7.5, 3, C.blue));
-    armR.add(cube(0, -7.8, 0, 3.2, 1.5, 3.2, C.pink));
-    armR.position.set(7.5, 13.5, 0.5);
-    g.add(armR);
-    g.userData.armR=armR;
+    // Pivots — same setup as reference doc, exposed as head/armL/armR so the
+    // distributor animation loop's existing references keep working.
+    const headPivot=new THREE.Group();
+    headPivot.position.set(0,36,0);
+    headM.position.set(0,-36,0);
+    headPivot.add(headM);
 
-    // === LEGS
-    g.add(cube(-3, 2, 0, 4.5, 5, 4.8, C.blue));
-    g.add(cube(3, 2, 0, 4.5, 5, 4.8, C.blue));
-    // Gold ankle bands
-    g.add(cube(-3, 0.7, 0, 4.7, 0.8, 5, C.gold));
-    g.add(cube(3, 0.7, 0, 4.7, 0.8, 5, C.gold));
-    // Black boots
-    g.add(cube(-3, -0.5, 0.5, 4.7, 1.2, 5.2, C.black));
-    g.add(cube(3, -0.5, 0.5, 4.7, 1.2, 5.2, C.black));
+    const lArmPivot=new THREE.Group();
+    lArmPivot.position.set(-13.5,29,0);
+    lArmM.position.set(13.5,-29,0);
+    lArmPivot.add(lArmM);
 
-    return g;
+    const rArmPivot=new THREE.Group();
+    rArmPivot.position.set(11.5,29,0);
+    rArmM.position.set(-11.5,-29,0);
+    rArmPivot.add(rArmM);
+
+    const character=new THREE.Group();
+    character.add(bodyM);
+    character.add(headPivot);
+    character.add(lArmPivot);
+    character.add(rArmPivot);
+    character.add(lLegM);
+    character.add(rLegM);
+    character.add(capeM);
+
+    // Scale — the reference doc pig is ~60 units tall. Distributor scene actors
+    // are sized for ~22 units tall, so scale down to fit alongside the people.
+    character.scale.set(0.36,0.36,0.36);
+
+    // Map the userData names the distributor animation expects
+    character.userData={
+      head: headPivot,
+      armL: lArmPivot,
+      armR: rArmPivot,
+    };
+    return character;
   }
 
   // ===== Voxel CASH STACK =====
