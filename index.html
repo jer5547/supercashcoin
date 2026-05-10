@@ -335,26 +335,48 @@ function buildVoxelGeo(voxels){
 
 function buildBillGeometry(){
   const voxels=[];
-  const gL=[0x2c/255,0xb8/255,0x4d/255]; // light green inner
-  const gD=[0x18/255,0x70/255,0x32/255]; // dark green border
-  const yel=[0xff/255,0xd2/255,0x3d/255]; // gold $
+  const gL=[0x2c/255,0xb8/255,0x4d/255];   // light green inner field
+  const gD=[0x18/255,0x70/255,0x32/255];   // dark green border + sides
+  const yel=[0xff/255,0xd2/255,0x3d/255];  // gold $
+
+  // Chunky pixel-art $ pattern — 7w × 9t (matches the reference style)
   const dpat=[
-    [0,0,1,0,0],
-    [0,1,1,1,0],
-    [1,0,1,0,0],
-    [0,1,1,1,0],
-    [0,0,1,0,1],
-    [0,1,1,1,0],
-    [0,0,1,0,0]
+    [0,0,0,1,0,0,0],   // top mast tip
+    [0,1,1,1,1,1,0],   // top S curve
+    [1,1,0,1,0,0,0],   // left side + mast
+    [0,1,1,1,1,0,0],   // top→middle transition
+    [0,0,1,1,1,1,0],   // middle bar
+    [0,0,0,1,0,1,1],   // mast + right side
+    [0,0,0,1,0,1,1],   // mast + right side
+    [0,1,1,1,1,1,0],   // bottom curve
+    [0,0,0,1,0,0,0]    // bottom mast tip
   ];
-  // 13w × 9d × 1t — flat slab, $ is in same plane as green field
+  const PW=7, PD=9;
+
+  // BILL: 13 wide × 9 deep × 3 thick. Border wraps all 4 sides at full thickness;
+  // inner field is light green; $ is embossed (sits one voxel above the field surface).
   for(let x=-6;x<=6;x++){
     for(let z=-4;z<=4;z++){
-      const isB=(x===-6||x===6||z===-4||z===4);
-      let color=isB?gD:gL;
-      const px=x+2,pz=z+3;
-      if(px>=0&&px<=4&&pz>=0&&pz<=6&&dpat[pz][px])color=yel;
-      voxels.push([x,0,z,...color]);
+      const onEdge=(x===-6||x===6||z===-4||z===4);
+      for(let y=0;y<=2;y++){
+        let color;
+        if(onEdge){
+          color=gD;                                                        // dark green wraps all sides
+        }else{
+          color=(y===2)?gL:gD;                                             // top face = light green, sides/bottom = dark
+        }
+        voxels.push([x,y,z,...color]);
+      }
+    }
+  }
+  // Embossed $ — 1 voxel above the inner field surface
+  const sx=-Math.floor(PW/2);
+  const sz=-Math.floor(PD/2);
+  for(let i=0;i<PD;i++){
+    for(let j=0;j<PW;j++){
+      if(dpat[i][j]){
+        voxels.push([sx+j,3,sz+i,...yel]);
+      }
     }
   }
   return buildVoxelGeo(voxels);
@@ -380,7 +402,7 @@ billsMesh.receiveShadow=true;
 sc.add(billsMesh);
 
 const SCALE=0.16;
-const BILL_THICKNESS=0.13;
+const BILL_THICKNESS=0.85;
 
 const bills=[];
 for(let i=0;i<N;i++){
