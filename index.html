@@ -411,21 +411,29 @@
   .tk-stat.featured::before{transform:scaleY(1);}
   .tk-stat-icon{
     width:48px;height:48px;
-    border-radius:12px;
-    background:linear-gradient(135deg,rgba(255,210,61,0.15),rgba(255,210,61,0.05));
-    border:1px solid rgba(255,210,61,0.25);
+    border-radius:14px;
+    background:linear-gradient(135deg,#1c1c1c,#0f0f0f);
+    border:1px solid rgba(255,210,61,0.18);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:22px;
-    color:#ffd23d;
     flex-shrink:0;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.04), 0 4px 12px rgba(0,0,0,0.4);
+  }
+  .tk-stat-icon svg{
+    width:22px;height:22px;
+    stroke:#ffd23d;
+    fill:none;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
   }
   .tk-stat.featured .tk-stat-icon{
-    background:linear-gradient(135deg,#ffd23d,#c79a0c);
-    color:#0a0a0a;
+    background:linear-gradient(135deg,#ffea7a,#ffd23d 50%,#c79a0c);
     border-color:#ffd23d;
+    box-shadow:0 0 0 3px rgba(255,210,61,0.18), 0 6px 20px rgba(255,210,61,0.4);
   }
+  .tk-stat.featured .tk-stat-icon svg{stroke:#0a0a0a;stroke-width:2.5;}
   .tk-stat-info .label{
     font-size:11px;
     color:#888;
@@ -465,91 +473,145 @@
     border-color:#ffd23d;
   }
 
-  /* Contract addresses */
-  .tk-contract{
-    margin-top:30px;
-    padding:32px;
-    background:linear-gradient(135deg,#141414 0%,#0a0a0a 100%);
-    border:1px solid #2a2a2a;
-    border-radius:18px;
-    max-width:780px;
+  /* Launch panel — dramatic CTA-style card for the contract addresses */
+  .tk-launch{
+    margin-top:20px;
+    padding:48px 40px;
+    background:
+      radial-gradient(circle at 0% 0%,rgba(255,210,61,0.18) 0%,transparent 50%),
+      radial-gradient(circle at 100% 100%,rgba(255,210,61,0.08) 0%,transparent 50%),
+      linear-gradient(135deg,#161616 0%,#0a0a0a 100%);
+    border:1px solid rgba(255,210,61,0.25);
+    border-radius:24px;
+    max-width:920px;
     margin-left:auto;
     margin-right:auto;
+    position:relative;
+    overflow:hidden;
   }
-  .tk-contract-title{
-    text-align:center;
-    font-size:14px;
+  .tk-launch::before{
+    content:'';
+    position:absolute;
+    top:-2px;left:-2px;right:-2px;bottom:-2px;
+    background:linear-gradient(135deg,rgba(255,210,61,0.4),transparent 30%,transparent 70%,rgba(255,210,61,0.2));
+    border-radius:24px;
+    z-index:-1;
+    pointer-events:none;
+  }
+  .tk-launch-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .tk-launch-head .pulse-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 16px;
+    background:rgba(255,210,61,0.12);
+    border:1px solid rgba(255,210,61,0.3);
+    border-radius:99px;
+    font-size:11px;
+    font-weight:900;
+    color:#ffd23d;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+  }
+  .tk-launch-head .pulse-tag::before{
+    content:'';
+    width:8px;height:8px;border-radius:50%;background:#ffd23d;
+    box-shadow:0 0 0 0 rgba(255,210,61,0.7);
+    animation:dotPulse 2s infinite;
+  }
+  @keyframes dotPulse{
+    0%{box-shadow:0 0 0 0 rgba(255,210,61,0.7);}
+    70%{box-shadow:0 0 0 12px rgba(255,210,61,0);}
+    100%{box-shadow:0 0 0 0 rgba(255,210,61,0);}
+  }
+  .tk-launch-head .h{
+    font-size:24px;
     font-weight:900;
     color:#fff;
-    margin-bottom:6px;
-    letter-spacing:0.06em;
+    letter-spacing:-0.01em;
   }
-  .tk-contract-title .accent{color:#ffd23d;}
-  .tk-contract-sub{
-    text-align:center;
-    font-size:11px;
-    color:#666;
-    margin-bottom:22px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    font-weight:700;
-  }
-  .tk-contract-row{
+  .tk-launch-head .h .accent{color:#ffd23d;}
+  .tk-launch-rows{
     display:grid;
-    grid-template-columns:140px 1fr 52px;
-    gap:0;
-    background:#0a0a0a;
-    border:1px solid #1f1f1f;
-    border-radius:10px;
-    overflow:hidden;
-    margin-bottom:10px;
-    transition:border-color 0.2s;
+    grid-template-columns:1fr;
+    gap:14px;
   }
-  .tk-contract-row:last-child{margin-bottom:0;}
-  .tk-contract-row:hover{border-color:rgba(255,210,61,0.4);}
-  .tk-contract-label{
-    background:#161616;
-    color:#ffd23d;
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    padding:14px 16px;
-    display:flex;
+  .tk-launch-row{
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:18px;
     align-items:center;
-    gap:8px;
-    border-right:1px solid #2a2a2a;
+    padding:18px 20px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.03) 0%,rgba(255,255,255,0.01) 100%);
+    border:1px solid #232323;
+    border-radius:14px;
+    transition:border-color 0.25s, background 0.25s;
   }
-  .tk-contract-value{
-    padding:14px 18px;
-    color:#888;
-    font-size:13px;
+  .tk-launch-row:hover{
+    border-color:rgba(255,210,61,0.4);
+    background:linear-gradient(180deg,rgba(255,210,61,0.04) 0%,transparent 100%);
+  }
+  .tk-launch-row .badge{
+    width:46px;height:46px;border-radius:12px;
+    background:linear-gradient(135deg,rgba(255,210,61,0.2),rgba(255,210,61,0.05));
+    border:1px solid rgba(255,210,61,0.3);
+    display:flex;align-items:center;justify-content:center;
+    color:#ffd23d;font-weight:900;font-size:18px;
+    flex-shrink:0;
+  }
+  .tk-launch-row .badge svg{width:22px;height:22px;stroke:#ffd23d;fill:none;stroke-width:2;}
+  .tk-launch-row .meta .label{
+    font-size:11px;color:#888;font-weight:900;
+    letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px;
+  }
+  .tk-launch-row .meta .addr{
+    font-size:14px;color:#aaa;
+    font-family:'SF Mono','Courier New',monospace;
     font-weight:600;
-    font-family:'Courier New',monospace;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    font-style:italic;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   }
-  .tk-contract-copy{
-    background:transparent;
-    color:#666;
-    border:none;
-    border-left:1px solid #2a2a2a;
+  .tk-launch-row .meta .addr.pending{
+    color:#666;font-style:italic;font-family:inherit;
+  }
+  .tk-launch-row .copy-btn{
+    background:rgba(255,210,61,0.08);
+    border:1px solid rgba(255,210,61,0.25);
+    color:#ffd23d;
+    width:40px;height:40px;
+    border-radius:10px;
     cursor:pointer;
-    font-size:18px;
-    transition:background 0.2s, color 0.2s;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display:flex;align-items:center;justify-content:center;
+    transition:background 0.2s, border-color 0.2s, transform 0.15s;
+    flex-shrink:0;
   }
-  .tk-contract-copy:hover{background:rgba(255,210,61,0.08);color:#ffd23d;}
+  .tk-launch-row .copy-btn:hover{
+    background:rgba(255,210,61,0.15);
+    border-color:rgba(255,210,61,0.5);
+    transform:translateY(-1px);
+  }
+  .tk-launch-row .copy-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;}
+  .tk-launch-row .copy-btn.disabled{
+    opacity:0.4;cursor:not-allowed;
+  }
+  .tk-launch-cta{
+    margin-top:24px;
+    text-align:center;
+    font-size:13px;
+    color:#888;
+    line-height:1.6;
+  }
+  .tk-launch-cta b{color:#ffd23d;font-weight:900;}
 
   @media (max-width:760px){
     .tk-grid{grid-template-columns:1fr;gap:40px;}
-    .tk-contract-row{grid-template-columns:110px 1fr 48px;}
+    .tk-launch{padding:30px 22px;}
     .tokenomics{padding:80px 24px;}
   }
 
@@ -886,7 +948,9 @@
 
       <div class="tk-stats">
         <div class="tk-stat">
-          <div class="tk-stat-icon">🪙</div>
+          <div class="tk-stat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9h4a2 2 0 0 1 0 4h-4M9 13h5a2 2 0 0 1 0 4h-5M11 7v10"/></svg>
+          </div>
           <div class="tk-stat-info">
             <div class="label">Token Name</div>
             <div class="value">Super Cash Coin</div>
@@ -895,7 +959,9 @@
         </div>
 
         <div class="tk-stat featured">
-          <div class="tk-stat-icon">💰</div>
+          <div class="tk-stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v18M16 7H10a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H7"/></svg>
+          </div>
           <div class="tk-stat-info">
             <div class="label">Buy Tax</div>
             <div class="value"><span class="accent">25%</span></div>
@@ -905,7 +971,9 @@
         </div>
 
         <div class="tk-stat">
-          <div class="tk-stat-icon">🔥</div>
+          <div class="tk-stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2c2 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4-1 3 1 4 1 4s-1-3 2-9z"/></svg>
+          </div>
           <div class="tk-stat-info">
             <div class="label">Sell Tax</div>
             <div class="value">3%</div>
@@ -915,7 +983,9 @@
         </div>
 
         <div class="tk-stat">
-          <div class="tk-stat-icon">📊</div>
+          <div class="tk-stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21V8m6 13V3m6 18v-9m6 9V11"/></svg>
+          </div>
           <div class="tk-stat-info">
             <div class="label">Total Supply</div>
             <div class="value">1,000,000,000</div>
@@ -925,7 +995,9 @@
         </div>
 
         <div class="tk-stat">
-          <div class="tk-stat-icon">⚡</div>
+          <div class="tk-stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
           <div class="tk-stat-info">
             <div class="label">Decimals</div>
             <div class="value">18</div>
@@ -934,7 +1006,9 @@
         </div>
 
         <div class="tk-stat">
-          <div class="tk-stat-icon">🌐</div>
+          <div class="tk-stat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          </div>
           <div class="tk-stat-info">
             <div class="label">Blockchain</div>
             <div class="value">Binance Smart Chain</div>
@@ -945,19 +1019,42 @@
       </div>
     </div>
 
-    <div class="tk-contract">
-      <div class="tk-contract-title">Add to your <span class="accent">Binance Wallet</span></div>
-      <div class="tk-contract-sub">Contract addresses will be published at launch</div>
-
-      <div class="tk-contract-row">
-        <div class="tk-contract-label">⟁ Contract</div>
-        <div class="tk-contract-value">Coming soon — launching shortly</div>
-        <button class="tk-contract-copy" title="Copy" onclick="navigator.clipboard&amp;&amp;navigator.clipboard.writeText(this.previousElementSibling.textContent)">⧉</button>
+    <div class="tk-launch">
+      <div class="tk-launch-head">
+        <div class="pulse-tag">Launching Soon</div>
+        <div class="h">Add to your <span class="accent">Binance Wallet</span></div>
       </div>
-      <div class="tk-contract-row">
-        <div class="tk-contract-label">₮ Rewards</div>
-        <div class="tk-contract-value">Coming soon — launching shortly</div>
-        <button class="tk-contract-copy" title="Copy" onclick="navigator.clipboard&amp;&amp;navigator.clipboard.writeText(this.previousElementSibling.textContent)">⧉</button>
+
+      <div class="tk-launch-rows">
+        <div class="tk-launch-row">
+          <div class="badge">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M7 10h10M7 14h6"/></svg>
+          </div>
+          <div class="meta">
+            <div class="label">Contract Address · BSC</div>
+            <div class="addr pending">Available at launch — stay tuned</div>
+          </div>
+          <button class="copy-btn disabled" title="Available at launch" disabled>
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          </button>
+        </div>
+
+        <div class="tk-launch-row">
+          <div class="badge">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 8l7-6 7 6M5 16l7 6 7-6"/></svg>
+          </div>
+          <div class="meta">
+            <div class="label">Rewards Token · USDT</div>
+            <div class="addr pending">Available at launch — stay tuned</div>
+          </div>
+          <button class="copy-btn disabled" title="Available at launch" disabled>
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="tk-launch-cta">
+        Make sure you're on the <b>Binance Smart Chain</b> network. Always verify the contract on launch day from the official channels.
       </div>
     </div>
   </div>
