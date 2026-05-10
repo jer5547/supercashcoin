@@ -259,51 +259,41 @@
   .volume-section{
     background:#ffffff;
     color:#0a0a0a;
-    padding:120px 60px;
+    padding:60px 60px 50px;
     position:relative;
     overflow:hidden;
   }
   .volume-wrap{
-    max-width:1100px;
+    max-width:1200px;
     margin:0 auto;
-    text-align:center;
   }
-  .volume-text .eyebrow{
-    color:#c79a0c;
-    font-size:13px;
-    font-weight:900;
-    letter-spacing:0.2em;
-    margin-bottom:18px;
-    text-transform:uppercase;
+  /* Animation container holds the voxel headline overlaid in the top-left */
+  .volume-stage{
+    position:relative;
+    width:100%;
+    height:560px;
+    overflow:visible;
+    margin-bottom:20px;
   }
-  /* Voxel-style headline using stacked text-shadows for chunky pixel feel */
-  .volume-text h2{
-    font-size:clamp(40px,6vw,72px);
-    font-weight:900;
-    line-height:1;
-    letter-spacing:-0.03em;
-    margin:0 auto 28px;
-    color:#0a0a0a;
-    text-shadow:
-      2px 2px 0 #1a1a1a,
-      4px 4px 0 #2a2a2a;
-    max-width:900px;
+  #volumeHeadline{
+    position:absolute;
+    top:24px;
+    left:24px;
+    width:55%;
+    height:220px;
+    z-index:2;
+    pointer-events:none;
   }
-  .volume-text h2 .gold{
-    color:#ffd23d;
-    text-shadow:
-      2px 2px 0 #c79a0c,
-      4px 4px 0 #8a6a08;
+  #volumeHeadline canvas{display:block;}
+  .volume-3d{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:transparent;
+    overflow:hidden;
+    z-index:1;
   }
-  .volume-text .lead{
-    font-size:17px;
-    color:#555;
-    line-height:1.65;
-    margin:0 auto 60px;
-    font-weight:400;
-    max-width:760px;
-  }
-  .volume-text .lead b{color:#0a0a0a;font-weight:700;}
 
   /* Leaderboard table */
   .leaderboard{
@@ -316,36 +306,89 @@
   }
   .lb-head{
     display:grid;
-    grid-template-columns:60px 2fr 1.3fr 1.3fr 1.4fr;
+    grid-template-columns:50px 1fr 130px 230px;
     padding:18px 24px;
     background:#0a0a0a;
     color:#888;
     font-size:11px;
     font-weight:800;
-    letter-spacing:0.14em;
+    letter-spacing:0.12em;
     text-transform:uppercase;
     border-bottom:1px solid #222;
     text-align:left;
+    white-space:nowrap;
   }
   .lb-head span:nth-child(n+3){text-align:right;}
   .lb-row{
     display:grid;
-    grid-template-columns:60px 2fr 1.3fr 1.3fr 1.4fr;
+    grid-template-columns:50px 1fr 130px 230px;
     padding:20px 24px;
     background:#fff;
     border-bottom:1px solid #ebebe6;
     align-items:center;
     transition:background 0.2s;
     text-align:left;
+    position:relative;
   }
   .lb-row:hover{background:#fafaf7;}
   .lb-row:last-child{border-bottom:none;}
   .lb-rank{
     font-size:18px;
     font-weight:900;
-    color:#c79a0c;
+    color:#888;
     font-family:'Courier New',monospace;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
   }
+  /* Medal styling for top 3 — gold, silver, bronze pill badges */
+  .lb-rank.gold,
+  .lb-rank.silver,
+  .lb-rank.bronze{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    font-size:15px;
+    color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:900;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2), inset 0 -2px 0 rgba(0,0,0,0.18), inset 0 2px 0 rgba(255,255,255,0.35);
+    flex-shrink:0;
+    position:relative;
+  }
+  .lb-rank.gold{
+    background:radial-gradient(circle at 30% 30%, #fff7c2, #ffd23d 40%, #c79a0c 100%);
+    color:#5a3d00;
+  }
+  .lb-rank.silver{
+    background:radial-gradient(circle at 30% 30%, #ffffff, #d8d8d8 40%, #888 100%);
+    color:#222;
+  }
+  .lb-rank.bronze{
+    background:radial-gradient(circle at 30% 30%, #f0c8a0, #c87f3a 40%, #7a4814 100%);
+    color:#3a1f00;
+  }
+  /* Trophy cup icon for rank 1 */
+  .lb-rank.gold::before{
+    content:'';
+    position:absolute;
+    top:-22px;
+    left:50%;
+    transform:translateX(-50%);
+    width:24px;
+    height:22px;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M5 4h14v3a4 4 0 0 1-4 4h-1v2h2v2H8v-2h2v-2H9a4 4 0 0 1-4-4V4z" fill="%23ffd23d" stroke="%23c79a0c" stroke-width="1"/><path d="M5 5H3v1a3 3 0 0 0 2 2.83V5zM19 5h2v1a3 3 0 0 1-2 2.83V5z" fill="%23ffd23d" stroke="%23c79a0c" stroke-width="1"/><rect x="8" y="15" width="8" height="2" fill="%23c79a0c"/><rect x="7" y="17" width="10" height="2" rx="1" fill="%23c79a0c"/></svg>');
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,0.25));
+  }
+  /* Top 3 rows get a subtle gradient background */
+  .lb-row.rank-1{background:linear-gradient(90deg,rgba(255,210,61,0.12) 0%,#fff 50%);padding-top:32px;}
+  .lb-row.rank-2{background:linear-gradient(90deg,rgba(180,180,180,0.10) 0%,#fff 50%);}
+  .lb-row.rank-3{background:linear-gradient(90deg,rgba(200,127,58,0.10) 0%,#fff 50%);}
+  .lb-row.rank-1:hover,.lb-row.rank-2:hover,.lb-row.rank-3:hover{filter:brightness(0.98);}
   .lb-coin{
     display:flex;
     align-items:center;
@@ -395,6 +438,75 @@
     text-transform:uppercase;
     display:block;
     margin-top:2px;
+  }
+  /* Reward column emphasis */
+  .lb-row .lb-reward{
+    background:linear-gradient(90deg,transparent 0%,rgba(255,210,61,0.08) 100%);
+  }
+  /* Horizontal banner divider with quote about earnings */
+  .volume-banner{
+    margin:0 auto 30px;
+    padding:32px 40px;
+    border-top:3px solid #ffd23d;
+    border-bottom:3px solid #ffd23d;
+    background:linear-gradient(180deg, #fffbed 0%, #fff5d4 100%);
+    text-align:center;
+    font-size:clamp(15px,1.6vw,18px);
+    line-height:1.6;
+    color:#0a0a0a;
+    font-weight:500;
+    max-width:1100px;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:6px;
+    position:relative;
+  }
+  .volume-banner b{color:#0a0a0a;font-weight:900;}
+  .volume-banner .gold{color:#c79a0c;font-weight:900;}
+  .volume-banner .scc{
+    color:#0a0a0a;
+    background:linear-gradient(180deg,transparent 60%,#ffd23d 60%);
+    padding:0 4px;
+    font-weight:900;
+  }
+
+  /* Bottom hero callout — arrow on the RIGHT pointing UP at the daily rewards column */
+  .hero-callout-bottom{
+    position:relative;
+    max-width:980px;
+    margin:30px auto 0;
+    padding:0 24px;
+    display:grid;
+    grid-template-columns:50px 1fr 130px 230px;
+    align-items:start;
+  }
+  .hero-callout-bottom .text{
+    grid-column:1 / span 3;
+    font-size:clamp(20px,2.6vw,32px);
+    font-weight:900;
+    color:#0a0a0a;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+    text-shadow:2px 2px 0 #ffd23d, 4px 4px 0 #c79a0c;
+    transform:rotate(-2deg);
+    white-space:nowrap;
+    text-align:right;
+    padding-right:30px;
+    padding-top:0;
+    align-self:start;
+    margin-top:-8px;
+  }
+  .hero-callout-bottom .text .underline{
+    background:linear-gradient(180deg,transparent 60%,#ffd23d 60%);
+  }
+  .hero-callout-bottom .arrow{
+    grid-column:4;
+    justify-self:center;
+    animation:arrowBounceUp 1.4s ease-in-out infinite;
+  }
+  @keyframes arrowBounceUp{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
   }
   .lb-foot{
     padding:18px 24px;
@@ -481,29 +593,37 @@
 
 <section class="volume-section">
   <div class="volume-wrap">
-    <div class="volume-text">
-      <div class="eyebrow">Volume = Rewards</div>
-      <h2>More <span class="gold">Volume</span>, More <span class="gold">Rewards</span></h2>
-      <p class="lead">
-        Imagine what you could be earning every day with Super Cash Coin. Here are the top meme coins right now — this is what holders <b>could be earning</b> if Super Cash Coin was in those spots.
-      </p>
+    <div class="volume-stage">
+      <div id="volumeHeadline"></div>
+      <div class="volume-3d" id="vc2"></div>
+    </div>
+
+    <div class="volume-banner">
+      Right now, here are the top meme coins and what their holders <b>could have been making</b>. If <span class="scc">Super Cash Coin</span> reached those same spots — this is exactly what <b>you could be earning</b>. <span class="gold">Earn passive income as the trades come in!</span>
     </div>
 
     <div class="leaderboard">
       <div class="lb-head">
         <span>#</span>
         <span>Coin</span>
-        <span>24H Volume</span>
-        <span>Est. Buys</span>
+        <span>Market Cap</span>
         <span>Daily Rewards @ 25%</span>
       </div>
       <div id="leaderboardBody">
         <div class="lb-loading">Loading live data…</div>
       </div>
       <div class="lb-foot">
-        Estimated buys = <b>50%</b> of 24h trading volume · Rewards = <b>25%</b> of buys distributed to holders
+        Estimated rewards = <b>25%</b> of estimated daily buys (50% of 24h volume) distributed to holders
         <div class="updated" id="lbUpdated"></div>
       </div>
+    </div>
+
+    <div class="hero-callout-bottom">
+      <svg class="arrow" width="80" height="100" viewBox="0 0 80 100" fill="none">
+        <path d="M40 92 L40 25 M40 25 L18 47 M40 25 L62 47" stroke="#0a0a0a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M40 92 L40 25 M40 25 L18 47 M40 25 L62 47" stroke="#ffd23d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="text">THIS IS WHAT YOU COULD <span class="underline">BE GETTING</span></div>
     </div>
   </div>
 </section>
@@ -1477,6 +1597,696 @@ window.addEventListener('resize',()=>{
 })();
 </script>
 <script>
+// === VOLUME 3D — bars + pig + cart + faucet pouring bills ===
+(function(){
+const VP=document.getElementById('vc2');
+if(!VP||!window.THREE)return;
+const Wd=VP.clientWidth, Hd=VP.clientHeight;
+const sc=new THREE.Scene();
+sc.background=null;
+
+const cam=new THREE.PerspectiveCamera(36,Wd/Hd,0.1,500);
+cam.position.set(8,22,92);
+cam.lookAt(8,22,0);
+
+const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
+r.setPixelRatio(Math.min(window.devicePixelRatio,2));
+r.setSize(Wd,Hd);
+r.shadowMap.enabled=true;
+r.shadowMap.type=THREE.PCFSoftShadowMap;
+VP.appendChild(r.domElement);
+
+sc.add(new THREE.AmbientLight(0xffffff,0.7));
+const k=new THREE.DirectionalLight(0xffffff,1.0);
+k.position.set(20,50,30);k.castShadow=true;
+k.shadow.mapSize.set(1024,1024);
+const sh=k.shadow.camera;
+sh.left=-30;sh.right=30;sh.top=50;sh.bottom=-5;sh.near=0.5;sh.far=100;
+sc.add(k);
+const fl=new THREE.DirectionalLight(0xffe6cc,0.3);fl.position.set(-15,12,-8);sc.add(fl);
+
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.ShadowMaterial({opacity:0.18}));
+ground.rotation.x=-Math.PI/2;ground.position.y=-0.3;ground.receiveShadow=true;sc.add(ground);
+
+// === BARS — beveled blocks (body + top cap + bevel + base) ===
+const barHeights=[10,16,24,34,46];
+const barW=5.5, barD=4;
+const bars=[];
+for(let i=0;i<5;i++){
+  const h=barHeights[i];
+  const grp=new THREE.Group();
+  const bodyMat=new THREE.MeshStandardMaterial({color:0xffd23d,roughness:0.4,metalness:0.15});
+  const topMat=new THREE.MeshStandardMaterial({color:0xffea7a,roughness:0.35,metalness:0.18});
+  const baseMat=new THREE.MeshStandardMaterial({color:0xc79a0c,roughness:0.5,metalness:0.1});
+  const bodyGeo=new THREE.BoxGeometry(barW-0.4,h,barD-0.4);
+  bodyGeo.translate(0,h/2,0);
+  const body=new THREE.Mesh(bodyGeo,bodyMat);
+  body.castShadow=true;body.receiveShadow=true;grp.add(body);
+  const capGeo=new THREE.BoxGeometry(barW,0.5,barD);
+  capGeo.translate(0,h+0.25,0);
+  const cap=new THREE.Mesh(capGeo,topMat);cap.castShadow=true;grp.add(cap);
+  const bevelGeo=new THREE.BoxGeometry(barW-0.2,0.3,barD-0.2);
+  bevelGeo.translate(0,h-0.15,0);
+  const bevel=new THREE.Mesh(bevelGeo,topMat);bevel.castShadow=true;grp.add(bevel);
+  const baseGeo=new THREE.BoxGeometry(barW,0.4,barD);
+  baseGeo.translate(0,0.2,0);
+  const base=new THREE.Mesh(baseGeo,baseMat);base.castShadow=true;base.receiveShadow=true;grp.add(base);
+  grp.position.set(i*6.5,0,0);
+  grp.scale.y=0.001;grp.visible=false;
+  grp.userData.h=h;
+  grp.userData.bodyMat=bodyMat;
+  grp.userData.topMat=topMat;
+  sc.add(grp);
+  bars.push(grp);
+}
+
+// === PIG (face-culled merged geometry) ===
+function buildGroupCulled(buckets){
+  const occupied=new Set();
+  buckets.forEach(positions=>{positions.forEach(p=>occupied.add(p[0]+','+p[1]+','+p[2]));});
+  const FACES=[
+    {n:[1,0,0],d:[1,0,0],v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+    {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+    {n:[0,1,0],d:[0,1,0],v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+    {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+    {n:[0,0,1],d:[0,0,1],v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+    {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+  ];
+  const g=new THREE.Group();
+  buckets.forEach((positions,color)=>{
+    const verts=[],norms=[],idx=[];let vi=0;
+    positions.forEach(p=>{
+      const [px,py,pz]=p;
+      for(const f of FACES){
+        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+        if(occupied.has(nk))continue;
+        for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
+        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);vi+=4;
+      }
+    });
+    if(!verts.length)return;
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+    geo.setIndex(idx);
+    const isGold=(color===0xffd23d);
+    const mat=new THREE.MeshStandardMaterial({color,roughness:isGold?0.5:0.55,metalness:isGold?0.15:0,flatShading:true});
+    const mesh=new THREE.Mesh(geo,mat);
+    mesh.castShadow=true;
+    g.add(mesh);
+  });
+  return g;
+}
+function makePig(){
+  const B=0x1da4e9,RD=0xd32f2f,DRD=0x9a1a1a,GD=0xffd23d,K=0x0a0a0a,W=0xffffff;
+  const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
+  const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
+  const headMods=new Map();
+  const setMod=(x,y,z,c)=>headMods.set(x+','+y+','+z,c);
+  for(let dx=0;dx<15;dx++)for(let dy=0;dy<3;dy++)setMod(-9+dx,49+dy,9,K);
+  setMod(-1,50,9,K);setMod(0,50,9,K);
+  setMod(-7,51,9,W);setMod(-6,51,9,W);setMod(5,51,9,W);setMod(6,51,9,W);
+  for(let x=-2;x<=2;x++)setMod(x,40,9,K);
+  setMod(3,41,9,K);setMod(4,42,9,K);
+  for(let x=-11;x<=10;x++)for(let y=36;y<=55;y++)for(let z=-10;z<=9;z++){
+    if(y===36 && (x<-8||x>7||z<-8||z>7))continue;
+    add(G.head,x,y,z,headMods.get(x+','+y+','+z)||B);
+  }
+  for(let x=-4;x<=3;x++)for(let y=42;y<=47;y++)for(let z=10;z<=15;z++){
+    let c=B;
+    if(z===15){
+      if((x===-3||x===-2)&&(y===44||y===45))c=K;
+      if((x===1||x===2)&&(y===44||y===45))c=K;
+    }
+    add(G.head,x,y,z,c);
+  }
+  const ear=(bx,by,bz,mir)=>{
+    for(let dy=0;dy<6;dy++){const w=6-dy;for(let dx=0;dx<w;dx++){const x=mir?(bx-dx):(bx+dx);for(let dz=0;dz<3;dz++)add(G.head,x,by+dy,bz+dz,B);}}
+  };
+  ear(-10,56,-1,false);ear(10,56,-1,true);
+  const dollar=["....#....", ".#######.", "##..#..##", "##..#....", "##..#....", ".#######.", "....#..##", "....#..##", "##..#..##", ".#######.", "....#...."];
+  const dollarMods=new Map();
+  for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++)if(dollar[i][j]==='#')dollarMods.set((-4+j)+','+(18+(dollar.length-1-i))+',7',GD);
+  for(let x=-10;x<=9;x++)for(let y=10;y<=35;y++)for(let z=-8;z<=7;z++){
+    if(y===34 && (x<-8||x>7))continue;
+    if(y===35 && (x<-5||x>4||z<-5||z>4))continue;
+    add(G.body,x,y,z,dollarMods.get(x+','+y+','+z)||B);
+  }
+  for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
+    if(dollar[i][j]==='#')add(G.body,-4+j,18+(dollar.length-1-i),8,GD);
+  }
+  for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
+  for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+  for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
+  for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
+  for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
+  for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
+  for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
+  for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
+  for(let x=-10;x<=9;x++){
+    if(x>=-3 && x<=2)continue;
+    for(let z=-9;z<=9;z++){add(G.cape,x,32,z,RD);add(G.cape,x,33,z,RD);}
+  }
+  for(let y=8;y<=34;y++){
+    const t=(34-y)/26;
+    const halfW=Math.round(11+t*5);
+    for(let x=-halfW;x<=halfW-1;x++){
+      for(let dz=0;dz<3;dz++){const z=-9-dz;const c=(dz===2)?RD:(dz===0?DRD:RD);add(G.cape,x,y,z,c);}
+    }
+  }
+  const headM=buildGroupCulled(G.head);
+  const bodyM=buildGroupCulled(G.body);
+  const lArmM=buildGroupCulled(G.lArm);
+  const rArmM=buildGroupCulled(G.rArm);
+  const lLegM=buildGroupCulled(G.lLeg);
+  const rLegM=buildGroupCulled(G.rLeg);
+  const capeM=buildGroupCulled(G.cape);
+  const lArmPivot=new THREE.Group();lArmPivot.position.set(-13.5,29,0);lArmM.position.set(13.5,-29,0);lArmPivot.add(lArmM);
+  const rArmPivot=new THREE.Group();rArmPivot.position.set(11.5,29,0);rArmM.position.set(-11.5,-29,0);rArmPivot.add(rArmM);
+  lArmPivot.rotation.x=0;rArmPivot.rotation.x=0;
+  const character=new THREE.Group();
+  character.add(bodyM);character.add(headM);character.add(lArmPivot);character.add(rArmPivot);
+  character.add(lLegM);character.add(rLegM);character.add(capeM);
+  character.scale.set(0.22,0.22,0.22);
+  return character;
+}
+const pig=makePig();
+sc.add(pig);
+
+// === SHOPPING CART ===
+function makeCart(){
+  const g=new THREE.Group();
+  const chrome=new THREE.MeshStandardMaterial({color:0xcccccc,roughness:0.3,metalness:0.85});
+  const wheelMat=new THREE.MeshStandardMaterial({color:0x222222,roughness:0.7});
+  const handleMat=new THREE.MeshStandardMaterial({color:0xd32f2f,roughness:0.5});
+  const basketW=8, basketH=5, basketD=5.5;
+  const barT=0.18;
+  function add(geo,x,y,z){
+    const m=new THREE.Mesh(geo,chrome);m.position.set(x,y,z);m.castShadow=true;g.add(m);
+  }
+  add(new THREE.BoxGeometry(basketW,barT,barT), 0, basketH/2, basketD/2);
+  add(new THREE.BoxGeometry(basketW,barT,barT), 0, basketH/2,-basketD/2);
+  add(new THREE.BoxGeometry(barT,barT,basketD), basketW/2, basketH/2, 0);
+  add(new THREE.BoxGeometry(barT,barT,basketD),-basketW/2, basketH/2, 0);
+  add(new THREE.BoxGeometry(basketW,barT,barT), 0,-basketH/2, basketD/2);
+  add(new THREE.BoxGeometry(basketW,barT,barT), 0,-basketH/2,-basketD/2);
+  add(new THREE.BoxGeometry(barT,barT,basketD), basketW/2,-basketH/2, 0);
+  add(new THREE.BoxGeometry(barT,barT,basketD),-basketW/2,-basketH/2, 0);
+  add(new THREE.BoxGeometry(barT,basketH,barT), basketW/2, 0, basketD/2);
+  add(new THREE.BoxGeometry(barT,basketH,barT),-basketW/2, 0, basketD/2);
+  add(new THREE.BoxGeometry(barT,basketH,barT), basketW/2, 0,-basketD/2);
+  add(new THREE.BoxGeometry(barT,basketH,barT),-basketW/2, 0,-basketD/2);
+  for(let i=1;i<=2;i++){
+    const y=-basketH/2 + (basketH*i/3);
+    add(new THREE.BoxGeometry(basketW,barT,barT), 0, y, basketD/2);
+    add(new THREE.BoxGeometry(basketW,barT,barT), 0, y,-basketD/2);
+    add(new THREE.BoxGeometry(barT,barT,basketD), basketW/2, y, 0);
+    add(new THREE.BoxGeometry(barT,barT,basketD),-basketW/2, y, 0);
+  }
+  for(let i=1;i<=4;i++){
+    const x=-basketW/2 + basketW*i/5;
+    const v=new THREE.Mesh(new THREE.BoxGeometry(barT,basketH,barT),chrome);
+    v.position.set(x,0,basketD/2);v.castShadow=true;g.add(v);
+    const v2=new THREE.Mesh(new THREE.BoxGeometry(barT,basketH,barT),chrome);
+    v2.position.set(x,0,-basketD/2);v2.castShadow=true;g.add(v2);
+  }
+  const floor=new THREE.Mesh(new THREE.BoxGeometry(basketW-0.2,0.2,basketD-0.2),chrome);
+  floor.position.set(0,-basketH/2+0.1,0);floor.castShadow=true;floor.receiveShadow=true;g.add(floor);
+  const hp1=new THREE.Mesh(new THREE.BoxGeometry(barT*1.5,3.5,barT*1.5),chrome);
+  hp1.position.set(-basketW/2+0.1,basketH/2+1.75,-basketD/2-0.15);hp1.castShadow=true;g.add(hp1);
+  const hp2=new THREE.Mesh(new THREE.BoxGeometry(barT*1.5,3.5,barT*1.5),chrome);
+  hp2.position.set(basketW/2-0.1,basketH/2+1.75,-basketD/2-0.15);hp2.castShadow=true;g.add(hp2);
+  const handle=new THREE.Mesh(new THREE.BoxGeometry(basketW-0.2,0.5,0.5),handleMat);
+  handle.position.set(0,basketH/2+3.3,-basketD/2-0.15);handle.castShadow=true;g.add(handle);
+  const wheelGeo=new THREE.CylinderGeometry(0.6,0.6,0.5,16);
+  function wheel(x,z){
+    const w=new THREE.Mesh(wheelGeo,wheelMat);w.rotation.z=Math.PI/2;
+    w.position.set(x,-basketH/2-0.7,z);w.castShadow=true;g.add(w);
+  }
+  wheel( basketW/2-0.4, basketD/2-0.4);
+  wheel(-basketW/2+0.4, basketD/2-0.4);
+  wheel( basketW/2-0.4,-basketD/2+0.4);
+  wheel(-basketW/2+0.4,-basketD/2+0.4);
+  return g;
+}
+const cart=makeCart();
+const CART_X=-14, CART_Y=4.2, CART_Z=4;
+cart.position.set(CART_X,CART_Y,CART_Z);
+sc.add(cart);
+
+// === FAUCET ===
+function makeFaucet(){
+  const g=new THREE.Group();
+  const chrome=new THREE.MeshStandardMaterial({color:0xbbbbbb,roughness:0.25,metalness:0.9});
+  const orange=new THREE.MeshStandardMaterial({color:0xf7931a,roughness:0.5});
+  const horizPipe=new THREE.Mesh(new THREE.CylinderGeometry(0.8,0.8,12,16),chrome);
+  horizPipe.rotation.z=Math.PI/2;horizPipe.position.set(0,4,0);horizPipe.castShadow=true;g.add(horizPipe);
+  const spout=new THREE.Mesh(new THREE.CylinderGeometry(0.7,0.9,4,16),chrome);
+  spout.position.set(-5,2,0);spout.castShadow=true;g.add(spout);
+  const flange=new THREE.Mesh(new THREE.CylinderGeometry(1.0,1.2,0.5,16),chrome);
+  flange.position.set(-5,0,0);flange.castShadow=true;g.add(flange);
+  const knob=new THREE.Mesh(new THREE.SphereGeometry(1.0,16,12),chrome);
+  knob.position.set(-5,4,0);g.add(knob);
+  const valveBase=new THREE.Mesh(new THREE.CylinderGeometry(0.5,0.5,0.6,12),orange);
+  valveBase.position.set(2,5.3,0);g.add(valveBase);
+  const valveHandle=new THREE.Mesh(new THREE.BoxGeometry(2.8,0.5,0.5),orange);
+  valveHandle.position.set(2,5.8,0);g.add(valveHandle);
+  const valveHandle2=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.5,2.8),orange);
+  valveHandle2.position.set(2,5.8,0);g.add(valveHandle2);
+  const mount=new THREE.Mesh(new THREE.BoxGeometry(1.5,3,3),chrome);
+  mount.position.set(6,4,0);g.add(mount);
+  return g;
+}
+const faucet=makeFaucet();
+const SPOUT_OFFSET_X=-5;
+faucet.position.set(CART_X-SPOUT_OFFSET_X, CART_Y+12, CART_Z);
+sc.add(faucet);
+const SPOUT_X=faucet.position.x+SPOUT_OFFSET_X;
+const SPOUT_Y_WORLD=faucet.position.y;
+const SPOUT_Z=faucet.position.z;
+
+// === BILLS ===
+const cv=[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5],[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5],[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5],[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5],[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5],[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]];
+const cn=[[1,0,0],[1,0,0],[1,0,0],[1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,-1],[0,0,-1],[0,0,-1],[0,0,-1]];
+const ci=[0,1,2,0,2,3,4,5,6,4,6,7,8,9,10,8,10,11,12,13,14,12,14,15,16,17,18,16,18,19,20,21,22,20,22,23];
+function buildVoxelGeo(voxels){
+  const totV=voxels.length*24;
+  const positions=new Float32Array(totV*3),normals=new Float32Array(totV*3),colors=new Float32Array(totV*3);
+  const indices=new Uint32Array(voxels.length*36);
+  let vi=0,ii=0;
+  for(const v of voxels){
+    const baseV=vi;
+    for(let i=0;i<24;i++){
+      positions[(vi+i)*3]=cv[i][0]+v[0];positions[(vi+i)*3+1]=cv[i][1]+v[1];positions[(vi+i)*3+2]=cv[i][2]+v[2];
+      normals[(vi+i)*3]=cn[i][0];normals[(vi+i)*3+1]=cn[i][1];normals[(vi+i)*3+2]=cn[i][2];
+      colors[(vi+i)*3]=v[3];colors[(vi+i)*3+1]=v[4];colors[(vi+i)*3+2]=v[5];
+    }
+    for(let i=0;i<36;i++)indices[ii+i]=ci[i]+baseV;
+    vi+=24;ii+=36;
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  geo.setAttribute('normal',new THREE.BufferAttribute(normals,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  geo.setIndex(new THREE.BufferAttribute(indices,1));
+  return geo;
+}
+function buildBillGeometry(){
+  const voxels=[];
+  const gL=[0x2c/255,0xb8/255,0x4d/255];
+  const gD=[0x18/255,0x70/255,0x32/255];
+  const yel=[0xff/255,0xd2/255,0x3d/255];
+  const dpat=[
+    [0,0,0,1,0,0,0],[0,1,1,1,1,1,0],[1,1,0,1,0,0,0],[0,1,1,1,1,0,0],[0,0,1,1,1,1,0],[0,0,0,1,0,1,1],[0,0,0,1,0,1,1],[0,1,1,1,1,1,0],[0,0,0,1,0,0,0]
+  ];
+  const PW=7,PD=9;
+  for(let x=-6;x<=6;x++){
+    for(let z=-4;z<=4;z++){
+      const onEdge=(x===-6||x===6||z===-4||z===4);
+      for(let y=0;y<=2;y++){
+        let color;if(onEdge)color=gD;else color=(y===2)?gL:gD;
+        voxels.push([x,y,z,...color]);
+      }
+    }
+  }
+  const sx=-Math.floor(PW/2),sz=-Math.floor(PD/2);
+  for(let i=0;i<PD;i++){for(let j=0;j<PW;j++){if(dpat[i][j])voxels.push([sx+j,3,sz+i,...yel]);}}
+  return buildVoxelGeo(voxels);
+}
+const billGeo=buildBillGeometry();
+const billMat=new THREE.MeshStandardMaterial({vertexColors:true,roughness:0.6,metalness:0.05,flatShading:true});
+const N=180;  // smaller pool for the smaller scene
+const billsMesh=new THREE.InstancedMesh(billGeo,billMat,N);
+billsMesh.castShadow=true;sc.add(billsMesh);
+const dummy=new THREE.Object3D();
+const SCALE=0.22;
+const bills=[];
+for(let i=0;i<N;i++){
+  bills.push({active:false,settled:false,x:0,y:-100,z:0,vx:0,vy:0,vz:0,rx:0,ry:0,rz:0,rxs:0,rys:0,rzs:0});
+  dummy.position.set(0,-1000,0);dummy.scale.set(0,0,0);
+  dummy.updateMatrix();billsMesh.setMatrixAt(i,dummy.matrix);
+}
+billsMesh.instanceMatrix.needsUpdate=true;
+
+let cartFillH=0;
+const CART_BOTTOM=CART_Y-2.5+0.3;
+const CART_HALF_W=3.6;
+const CART_HALF_D=2.4;
+
+function spawnBill(idx){
+  const b=bills[idx];
+  b.active=true;b.settled=false;
+  b.x=SPOUT_X + (Math.random()-0.5)*0.6;
+  b.y=SPOUT_Y_WORLD;
+  b.z=SPOUT_Z + (Math.random()-0.5)*0.5;
+  b.vx=(Math.random()-0.5)*0.04;
+  b.vy=-0.10;
+  b.vz=(Math.random()-0.5)*0.04;
+  b.rx=Math.random()*Math.PI*2;b.ry=Math.random()*Math.PI*2;b.rz=Math.random()*Math.PI*2;
+  b.rxs=(Math.random()-0.5)*0.12;b.rys=(Math.random()-0.5)*0.10;b.rzs=(Math.random()-0.5)*0.12;
+}
+
+const clk=new THREE.Clock();
+let phase=2,phaseStart=0,nextSpawn=0,lastSpawnT=0;
+let started=false,inView=false,pausedAt=0;
+const POUR_RATES=[1.20, 0.85, 0.55, 0.20, 0.025];
+let visibleBars=0,lastBarTime=0;
+const BAR_INTERVAL=3.0;
+
+function reset(){
+  phase=2;phaseStart=clk.getElapsedTime();
+  nextSpawn=0;lastSpawnT=0;cartFillH=0;
+  visibleBars=0;lastBarTime=0;
+  bars.forEach(b=>{
+    b.scale.y=0.001;b.visible=false;
+    b.userData.bodyMat.emissive=new THREE.Color(0x000000);
+    b.userData.bodyMat.emissiveIntensity=0;
+    b.userData.topMat.emissive=new THREE.Color(0x000000);
+    b.userData.topMat.emissiveIntensity=0;
+    b.userData.appearTime=null;
+  });
+  pig.position.set(CART_X-7.5, 0, CART_Z-2);
+  for(let i=0;i<N;i++){
+    bills[i].active=false;bills[i].settled=false;
+    dummy.position.set(0,-1000,0);dummy.scale.set(0,0,0);
+    dummy.updateMatrix();billsMesh.setMatrixAt(i,dummy.matrix);
+  }
+  billsMesh.instanceMatrix.needsUpdate=true;
+}
+reset();
+
+function tick(){
+  const t=clk.getElapsedTime();
+  const local=t-phaseStart;
+  if(started && inView){
+    if(visibleBars===0 && local>=0){
+      bars[0].userData.appearTime=0;bars[0].visible=true;visibleBars=1;lastBarTime=0;
+    }
+    if(visibleBars<5 && local-lastBarTime>=BAR_INTERVAL){
+      bars[visibleBars].userData.appearTime=local;
+      bars[visibleBars].visible=true;
+      visibleBars++;lastBarTime=local;
+    }
+    bars.forEach(b=>{
+      const at=b.userData.appearTime;
+      if(at===null||at===undefined)return;
+      const elapsed=local-at;
+      const dur=0.7;
+      const p=Math.min(1,Math.max(0,elapsed/dur));
+      const eased=1-Math.pow(1-p,3);
+      b.scale.y=Math.max(0.001,eased);
+      if(elapsed<1.5){
+        const intensity=0.45 + Math.sin(local*6)*0.18;
+        b.userData.bodyMat.emissive=new THREE.Color(0xffd23d);
+        b.userData.bodyMat.emissiveIntensity=intensity;
+        b.userData.topMat.emissive=new THREE.Color(0xffea7a);
+        b.userData.topMat.emissiveIntensity=intensity*0.7;
+      } else {
+        b.userData.bodyMat.emissive=new THREE.Color(0xffd23d);
+        b.userData.bodyMat.emissiveIntensity=0.12;
+        b.userData.topMat.emissive=new THREE.Color(0xffea7a);
+        b.userData.topMat.emissiveIntensity=0.08;
+      }
+    });
+    const rateIdx=Math.max(0,Math.min(4,visibleBars-1));
+    const interval=POUR_RATES[rateIdx];
+    if(nextSpawn<N && local-lastSpawnT>interval){
+      lastSpawnT=local;spawnBill(nextSpawn);nextSpawn++;
+    }
+    pig.position.y=Math.sin(local*1.5)*0.15;
+    for(let i=0;i<N;i++){
+      const b=bills[i];
+      if(!b.active){
+        dummy.position.set(0,-1000,0);dummy.scale.set(0,0,0);
+        dummy.updateMatrix();billsMesh.setMatrixAt(i,dummy.matrix);
+        continue;
+      }
+      if(!b.settled){
+        b.vy-=0.012;
+        b.x+=b.vx;b.y+=b.vy;b.z+=b.vz;
+        b.rx+=b.rxs;b.ry+=b.rys;b.rz+=b.rzs;
+        const overflowAmt=Math.max(0,cartFillH-4.5);
+        const shrink=Math.max(0.25, 1 - overflowAmt*0.20);
+        const effW=CART_HALF_W*shrink;
+        const effD=CART_HALF_D*shrink;
+        const targetY=CART_BOTTOM+cartFillH;
+        const inCart=Math.abs(b.x-CART_X)<effW && Math.abs(b.z-CART_Z)<effD;
+        if(b.y<=targetY && inCart){
+          b.settled=true;
+          b.y=targetY+0.05;
+          b.x=CART_X+(Math.random()-0.5)*effW*1.6;
+          b.z=CART_Z+(Math.random()-0.5)*effD*1.6;
+          b.rx=(Math.random()-0.5)*0.4;b.rz=(Math.random()-0.5)*0.4;
+          b.ry=Math.random()*Math.PI*2;b.rxs=b.rys=b.rzs=0;
+          cartFillH+=0.035;
+        }
+        else if(b.y<=0.1){
+          b.settled=true;
+          b.y=0.1+Math.random()*0.4;
+          b.rx=(Math.random()-0.5)*0.4;
+          b.rz=(Math.random()-0.5)*0.4;
+          b.ry=Math.random()*Math.PI*2;
+          b.rxs=b.rys=b.rzs=0;
+        }
+        else if(b.y<=targetY+0.5 && !inCart && Math.abs(b.x-CART_X)<CART_HALF_W+1 && Math.abs(b.z-CART_Z)<CART_HALF_D+1){
+          const dx=b.x-CART_X;
+          const dz=b.z-CART_Z;
+          if(Math.abs(dx)>Math.abs(dz)){b.vx+=Math.sign(dx)*0.08;}else{b.vz+=Math.sign(dz)*0.06;}
+        }
+        if(b.y<-15)b.active=false;
+      }
+      dummy.position.set(b.x,b.y,b.z);
+      dummy.rotation.set(b.rx,b.ry,b.rz);
+      dummy.scale.set(SCALE,SCALE,SCALE);
+      dummy.updateMatrix();
+      billsMesh.setMatrixAt(i,dummy.matrix);
+    }
+    billsMesh.instanceMatrix.needsUpdate=true;
+    if(local>32){reset();started=true;}
+  }
+  r.render(sc,cam);
+  requestAnimationFrame(tick);
+}
+tick();
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      if(!started){
+        started=true;reset();inView=true;
+      } else if(!inView){
+        const pauseDuration=clk.getElapsedTime()-pausedAt;
+        phaseStart+=pauseDuration;lastBarTime+=pauseDuration;lastSpawnT+=pauseDuration;
+        inView=true;
+      }
+    } else {
+      if(inView){pausedAt=clk.getElapsedTime();inView=false;}
+    }
+  });
+},{threshold:0.3});
+io.observe(VP);
+
+window.addEventListener('resize',()=>{
+  const W=VP.clientWidth, H=VP.clientHeight;
+  cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H);
+});
+})();
+</script>
+
+<script>
+// === VOLUME HEADLINE — voxel "MORE VOLUME / MORE REWARDS" matching landing style ===
+(function(){
+  const VP=document.getElementById('volumeHeadline');
+  if(!VP||!window.THREE)return;
+  const Wd=VP.clientWidth, Hd=VP.clientHeight;
+
+  const sc=new THREE.Scene();
+  sc.background=null;
+
+  const cam=new THREE.PerspectiveCamera(38,Wd/Hd,0.1,200);
+  cam.position.set(0,4,42);
+  cam.lookAt(0,4,0);
+
+  const r=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  r.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  r.setSize(Wd,Hd);
+  VP.appendChild(r.domElement);
+
+  // Lighting matched to the SCC landing voxel headline so colors render the same
+  sc.add(new THREE.AmbientLight(0xffffff,0.7));
+  const k=new THREE.DirectionalLight(0xffffff,0.9);
+  k.position.set(15,45,20);sc.add(k);
+  const fl=new THREE.DirectionalLight(0xffe6cc,0.3);
+  fl.position.set(-15,12,-8);sc.add(fl);
+  const rim=new THREE.DirectionalLight(0xfff0f0,0.2);
+  rim.position.set(0,8,-25);sc.add(rim);
+
+  // 5×7 pixel font (same as landing page LET)
+  const LET={
+    'A':['.###.','#...#','#...#','#####','#...#','#...#','#...#'],
+    'C':['.####','#....','#....','#....','#....','#....','.####'],
+    'D':['####.','#...#','#...#','#...#','#...#','#...#','####.'],
+    'E':['#####','#....','#....','####.','#....','#....','#####'],
+    'H':['#...#','#...#','#...#','#####','#...#','#...#','#...#'],
+    'I':['.###.','..#..','..#..','..#..','..#..','..#..','.###.'],
+    'L':['#....','#....','#....','#....','#....','#....','#####'],
+    'M':['#...#','##.##','#.#.#','#.#.#','#...#','#...#','#...#'],
+    'N':['#...#','##..#','#.#.#','#..##','#...#','#...#','#...#'],
+    'O':['.###.','#...#','#...#','#...#','#...#','#...#','.###.'],
+    'P':['####.','#...#','#...#','####.','#....','#....','#....'],
+    'R':['####.','#...#','#...#','####.','#.#..','#..#.','#...#'],
+    'S':['.####','#....','#....','.###.','....#','....#','####.'],
+    'T':['#####','..#..','..#..','..#..','..#..','..#..','..#..'],
+    'U':['#...#','#...#','#...#','#...#','#...#','#...#','.###.'],
+    'V':['#...#','#...#','#...#','#...#','#...#','.#.#.','..#..'],
+    'W':['#...#','#...#','#...#','#.#.#','#.#.#','##.##','#...#'],
+    'E2':['#####','#....','#....','####.','#....','#....','#####']
+  };
+
+  // Build a face-culled voxel word
+  function buildWord(text,color,xStart,yBase){
+    const W=5,H=7,GAP=1;
+    const ps=[];
+    for(let i=0;i<text.length;i++){
+      const pat=LET[text[i]];
+      if(!pat)continue;
+      for(let y=0;y<pat.length;y++){
+        for(let x=0;x<pat[y].length;x++){
+          if(pat[y][x]==='#'){
+            ps.push([xStart+i*(W+GAP)+x,(H-1-y)+yBase,0]);
+          }
+        }
+      }
+    }
+    const occ=new Set(ps.map(p=>p[0]+','+p[1]+','+p[2]));
+    const FACES=[
+      {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+      {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+      {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+      {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+    ];
+    const verts=[],norms=[],idx=[];
+    let vi=0;
+    for(const p of ps){
+      const [px,py,pz]=p;
+      for(const f of FACES){
+        const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+        if(occ.has(nk))continue;
+        for(const c of f.v){
+          verts.push(c[0]+px,c[1]+py,c[2]+pz);
+          norms.push(f.n[0],f.n[1],f.n[2]);
+        }
+        idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
+        vi+=4;
+      }
+    }
+    const geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+    geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+    geo.setIndex(idx);
+    const isY=color===0xffd23d;
+    const mat=new THREE.MeshStandardMaterial({color,roughness:isY?0.5:0.55,metalness:isY?0.15:0,flatShading:true});
+    return new THREE.Mesh(geo,mat);
+  }
+
+  // Layout: 4 stacked words, each on its own line, centered horizontally
+  // Each char is 5 wide, gap 1 wide. Word width = 6N - 1 voxels.
+  const W_MORE = 6*4 - 1;        // "MORE" = 23
+  const W_VOLUME = 6*6 - 1;      // "VOLUME" = 35
+  const W_REWARDS = 6*7 - 1;     // "REWARDS" = 41
+
+  const ROW_GAP = 2;             // extra voxels between rows
+  const LINE_H = 7 + ROW_GAP;    // 9 voxels per row
+
+  // Layout: 2 lines, each "MORE [WORD]" side by side, left-aligned
+  const SPACE = 4;               // voxels between MORE and the gold word
+
+  // Y positions: line 1 (MORE VOLUME) on top, line 2 (MORE REWARDS) below
+  const Y_LINE1 = LINE_H;        // 9
+  const Y_LINE2 = 0;
+
+  // Left-align — both lines anchored to the same left edge
+  const X_LEFT = -34;
+
+  const wMore1   = buildWord('MORE',    0x0a0a0a, X_LEFT,                       Y_LINE1);
+  const wVolume  = buildWord('VOLUME',  0xffd23d, X_LEFT + W_MORE + SPACE,      Y_LINE1);
+  const wMore2   = buildWord('MORE',    0x0a0a0a, X_LEFT,                       Y_LINE2);
+  const wRewards = buildWord('REWARDS', 0xffd23d, X_LEFT + W_MORE + SPACE,      Y_LINE2);
+
+  sc.add(wMore1, wVolume, wMore2, wRewards);
+
+  // Spring entrance, staggered per word
+  const allWords=[wMore1, wVolume, wMore2, wRewards];
+  const startY=-30;
+  allWords.forEach(w=>{w.position.y=startY;});
+
+  const spring=p=>1-Math.exp(-p*5)*Math.cos(p*15);
+
+  let started=false, inView=false;
+  const startTime=performance.now();
+  let pauseAccum=0, pausedAt=0;
+
+  function tick(){
+    const now=performance.now();
+    if(started && inView){
+      const t=(now-startTime-pauseAccum)/1000;
+      // Spring entrance: each word delayed by 0.2s
+      [0,1,2,3].forEach(i=>{
+        const delay=i*0.2;
+        const elapsed=Math.max(0, t-delay);
+        const p=Math.min(1, elapsed/1.6);
+        allWords[i].position.y = startY*(1-spring(p));
+      });
+      // Lively idle animation after entrance settles — visible bob + subtle tilt
+      if(t>2.0){
+        const u=t-2.0;
+        // Words bob up/down with staggered phase
+        wMore1.position.y   += Math.sin(u*1.6 + 0.0)*0.55;
+        wVolume.position.y  += Math.sin(u*1.6 + 0.7)*0.75;
+        wMore2.position.y   += Math.sin(u*1.6 + 1.4)*0.55;
+        wRewards.position.y += Math.sin(u*1.6 + 2.1)*0.75;
+        // Gentle rotation tilt — each word rocks slightly
+        wMore1.rotation.z   = Math.sin(u*1.2 + 0.0)*0.04;
+        wVolume.rotation.z  = Math.sin(u*1.2 + 0.5)*0.05;
+        wMore2.rotation.z   = Math.sin(u*1.2 + 1.0)*0.04;
+        wRewards.rotation.z = Math.sin(u*1.2 + 1.5)*0.05;
+        // Gold words get a subtle scale pulse for emphasis
+        const goldPulse = 1 + Math.sin(u*2.4)*0.04;
+        wVolume.scale.set(goldPulse, goldPulse, 1);
+        wRewards.scale.set(goldPulse, goldPulse, 1);
+      }
+    }
+    r.render(sc,cam);
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // Trigger on scroll-in, pause on scroll-out
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        if(!started){started=true;inView=true;}
+        else if(!inView){
+          pauseAccum+=performance.now()-pausedAt;
+          inView=true;
+        }
+      } else {
+        if(inView){pausedAt=performance.now();inView=false;}
+      }
+    });
+  },{threshold:0.3});
+  io.observe(VP);
+
+  window.addEventListener('resize',()=>{
+    const W=VP.clientWidth, H=VP.clientHeight;
+    cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H);
+  });
+})();
+</script>
+
+<script>
 // === MEME COIN LEADERBOARD — fetches data from local meme-coins.json ===
 (function(){
   const body=document.getElementById('leaderboardBody');
@@ -1507,12 +2317,17 @@ window.addEventListener('resize',()=>{
         body.innerHTML='<div class="lb-loading">Data unavailable.</div>';
         return;
       }
-      body.innerHTML=data.coins.slice(0,5).map((c,i)=>{
+      const list=data.coins.slice(0,10);
+      const medalClass=['gold','silver','bronze'];
+      body.innerHTML=list.map((c,i)=>{
         const buys=c.volume_24h*0.5;
         const reward=buys*0.25;
+        const rankCls = i<3 ? `lb-rank ${medalClass[i]}` : 'lb-rank';
+        const rowCls  = i<3 ? `lb-row rank-${i+1}` : 'lb-row';
+        const rankLabel = i<3 ? (i+1) : `#${i+1}`;
         return `
-          <div class="lb-row">
-            <div class="lb-rank">#${i+1}</div>
+          <div class="${rowCls}">
+            <div class="${rankCls}">${rankLabel}</div>
             <div class="lb-coin">
               <img src="${c.image||''}" alt="${c.name}" onerror="this.style.opacity='0.3'">
               <div>
@@ -1520,8 +2335,7 @@ window.addEventListener('resize',()=>{
                 <div class="symbol">${c.symbol}</div>
               </div>
             </div>
-            <div class="lb-num">${fmtUsd(c.volume_24h)}</div>
-            <div class="lb-num muted">${fmtUsd(buys)}</div>
+            <div class="lb-num">${fmtUsd(c.market_cap)}</div>
             <div class="lb-reward">
               ${fmtUsd(reward)}
               <span class="day">per day</span>
