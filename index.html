@@ -166,7 +166,7 @@
   .celebration{
     background:linear-gradient(180deg,#1d4fd8 0%,#1a3fc0 100%);
     color:#fff;
-    padding:60px 60px 100px;
+    padding:16px 60px 40px;
     position:relative;
     overflow:hidden;
     text-align:center;
@@ -184,7 +184,7 @@
     letter-spacing:-0.02em;
     line-height:1.25;
     max-width:900px;
-    margin:36px auto 0;
+    margin:0 auto 10px;
     color:#fff;
   }
   .celebration h2 .gold{color:#ffd23d;}
@@ -200,65 +200,57 @@
     font-weight:800;
     margin-bottom:30px;
   }
-  /* === BENEFITS GRID === */
+  /* === BENEFITS GRID (Option 2 — dashed white border, centered stacked) === */
   .benefits{
-    margin:80px auto 0;
+    margin:10px auto 0;
     max-width:1200px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    text-align:left;
+    gap:22px;
+    text-align:center;
   }
   .benefit{
-    background:linear-gradient(135deg,#161616,#0f0f0f);
-    border:1px solid #2a2a2a;
-    border-left:3px solid #ffd23d;
-    border-radius:10px;
-    padding:24px;
+    border:2px dashed rgba(255,255,255,0.4);
+    border-radius:14px;
+    padding:30px 22px 28px;
     transition:transform 0.25s, border-color 0.25s, background 0.25s;
   }
   .benefit:hover{
     transform:translateY(-3px);
-    border-color:#ffd23d;
-    background:linear-gradient(135deg,#1a1a1a,#141414);
+    border-color:rgba(255,210,61,0.6);
+    background:rgba(255,255,255,0.04);
   }
-  .benefit .b-icon{
-    width:44px;
-    height:44px;
-    border-radius:10px;
-    background:linear-gradient(135deg,rgba(255,210,61,0.15),rgba(255,210,61,0.04));
-    border:1px solid rgba(255,210,61,0.25);
+  .benefit .b-illust{
+    width:96px;
+    height:96px;
+    margin:0 auto 18px;
     display:flex;
     align-items:center;
     justify-content:center;
-    margin-bottom:14px;
   }
-  .benefit .b-icon svg{
-    width:22px;
-    height:22px;
-    stroke:#ffd23d;
-    fill:none;
-    stroke-width:2;
-    stroke-linecap:round;
-    stroke-linejoin:round;
+  .benefit .b-illust svg{
+    width:100%;
+    height:100%;
+    display:block;
   }
   .benefit h3{
-    font-size:17px;
+    font-family:'Arial Black','Arial',sans-serif;
+    font-size:18px;
     font-weight:900;
     color:#fff;
-    margin:0 0 8px;
-    letter-spacing:-0.01em;
-    line-height:1.25;
+    margin:0 0 10px;
+    letter-spacing:-0.005em;
+    line-height:1.15;
+    text-transform:uppercase;
   }
   .benefit p{
-    font-size:13px;
-    color:#aaa;
+    font-size:14px;
+    color:rgba(255,255,255,0.85);
     line-height:1.55;
     margin:0;
   }
-  .benefit p b{color:#ffd23d;font-weight:800;}
-  @media (max-width:900px){.benefits{grid-template-columns:repeat(2,1fr);}}
-  @media (max-width:600px){.benefits{grid-template-columns:1fr;}}
+  .benefit p b{color:#ffd23d;font-weight:900;}
+  @media (max-width:900px){.benefits{grid-template-columns:1fr;max-width:480px;gap:14px;}}
   .celebration .content{position:relative;z-index:2;}
 
   /* === DISTRIBUTOR (HOW IT WORKS) SECTION === */
@@ -517,36 +509,18 @@
     position:relative;
     width:100%;
     max-width:1300px;
-    height:400px;
-    margin:0 auto -10px;
+    height:clamp(480px,46vw,700px);
+    margin:-40px auto -60px;
     overflow:hidden;
   }
   .celeb-anim-stage .volume-3d{
     position:absolute;inset:0;width:100%;height:100%;
   }
-  .celeb-anim-caption{
-    text-align:center;
-    font-size:14px;
-    font-weight:900;
-    color:#fff;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    margin:0 auto 14px;
-  }
-  .celeb-anim-caption .gold{color:#ffd23d;}
-  .celeb-anim-rule{
-    border:none;
-    height:1px;
-    width:60%;
-    max-width:500px;
-    margin:0 auto 28px;
-    background:linear-gradient(90deg, transparent, rgba(255,210,61,0.5) 30%, rgba(255,210,61,0.5) 70%, transparent);
-  }
   @media (max-width:900px){
-    .celeb-anim-stage{height:340px;}
+    .celeb-anim-stage{height:440px;}
   }
   @media (max-width:600px){
-    .celeb-anim-stage{height:260px;}
+    .celeb-anim-stage{height:340px;}
   }
 
   /* Detail strip below the two big cards */
@@ -1186,8 +1160,8 @@
     .ticker-item{font-size:30px;padding:0 18px;}
 
     /* --- Celebration (25% section): tighten padding, smaller h2 --- */
-    .celebration{padding:40px 18px 70px;}
-    .celebration h2{font-size:clamp(17px,3.6vw,24px);margin-top:24px;line-height:1.3;}
+    .celebration{padding:30px 18px 60px;}
+    .celebration h2{font-size:clamp(17px,3.6vw,24px);margin:0 auto 14px;line-height:1.3;}
       .benefits{margin-top:50px;gap:14px;}
     .benefit{padding:20px;}
 
@@ -1271,17 +1245,26 @@
   .hero-new{
     position:relative;
     min-height:calc(100vh - 130px);
-    display:grid;
-    grid-template-columns:1.05fr 1fr;
-    align-items:center;
-    gap:40px;
     padding:50px 80px 70px;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(255,210,61,0.18), transparent 60%),
-      linear-gradient(180deg, #fff 0%, #fafaf6 100%);
+    background:#ffffff;
     overflow:hidden;
+    display:flex;
+    align-items:center;
   }
-  .hero-left{position:relative;z-index:2;}
+  #heroScene{
+    position:absolute;
+    top:0;left:0;
+    width:100%;height:100%;
+    display:block;
+    z-index:1;
+    pointer-events:none;
+  }
+  .hero-left{
+    position:relative;
+    z-index:3;
+    max-width:560px;
+    width:100%;
+  }
   .hero-headline{
     font-family:'Lilita One', system-ui, sans-serif;
     font-size:clamp(48px, 6.5vw, 92px);
@@ -1336,23 +1319,6 @@
   }
   .hero-trust .item{display:flex;align-items:center;gap:8px;}
   .hero-trust .item svg{width:16px;height:16px;color:#23d76b;}
-
-  .hero-right{
-    position:relative;z-index:2;
-    display:flex;align-items:center;justify-content:center;
-    min-height:520px;
-  }
-  .hero-stage{position:relative;width:100%;max-width:560px;aspect-ratio:1/1;}
-  .hero-glow{
-    position:absolute;inset:0;border-radius:50%;
-    background:radial-gradient(circle, rgba(255,210,61,0.45) 0%, rgba(255,210,61,0.18) 35%, transparent 65%);
-    filter:blur(20px);
-    animation:heroGlow 4s ease-in-out infinite;
-  }
-  @keyframes heroGlow{
-    0%,100%{transform:scale(1);opacity:0.9;}
-    50%{transform:scale(1.05);opacity:1;}
-  }
   .hero-platter{
     position:absolute;bottom:5%;left:50%;transform:translateX(-50%);
     width:74%;height:8%;border-radius:50%;
@@ -1597,6 +1563,7 @@
 </nav>
 
 <section class="hero-new">
+  <canvas id="heroScene"></canvas>
   <div class="hero-left">
     <h1 class="hero-headline">
       Get Paid<br>
@@ -1613,15 +1580,6 @@
       <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>opBNB Network</div>
       <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Auto-Distributed</div>
       <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>1B Max Supply</div>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="hero-stage">
-      <div class="hero-glow"></div>
-      <div class="hero-platter"></div>
-      <img class="hero-float-coin" src="coin.png" alt="">
-      <img class="hero-mascot" src="step2-crypto.png" alt="Super Cash Coin Mascot">
     </div>
   </div>
 </section>
@@ -1661,62 +1619,54 @@
 
 <section class="celebration" id="celebrationSection">
   <div class="content">
-    <div class="celeb-anim-stage">
-      <div class="volume-3d" id="vc2"></div>
-    </div>
-    <div class="celeb-anim-caption">More <span class="gold">Volume</span> = More <span class="gold">Rewards</span></div>
-    <hr class="celeb-anim-rule">
     <h2>
       A huge <span class="gold">25%</span> of every buy transaction in <span class="gold">Super Cash Coin</span> goes back to holders in <span class="tether">USD Tether</span>.
     </h2>
+    <div class="celeb-anim-stage">
+      <canvas id="distScene"></canvas>
+    </div>
 
     <div class="benefits">
       <div class="benefit">
-        <div class="b-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M5 12H1M23 12h-4M19 5l-3 3M8 16l-3 3M19 19l-3-3M8 8L5 5"/><circle cx="12" cy="12" r="4"/></svg>
+        <div class="b-illust">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="40" fill="#26a17b" stroke="#0a4a30" stroke-width="4"/>
+            <text x="50" y="68" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="56" font-weight="900" fill="#fff" stroke="#0a4a30" stroke-width="2">₮</text>
+            <circle cx="36" cy="34" r="7" fill="#fff" opacity="0.35"/>
+          </svg>
         </div>
-        <h3>Ultra-cheap gas fees on opBNB</h3>
-        <p>Transactions cost fractions of a cent (often <b>under $0.01</b>). Buy, sell, or transfer thousands of times without getting eaten alive by fees like on Ethereum or Solana.</p>
+        <h3>GET PAID TETHER</h3>
+        <p>Fully automatic, no need to mine, claim or pool anything! Just add contracts to your wallet.</p>
       </div>
 
       <div class="benefit">
-        <div class="b-icon">
-          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        <div class="b-illust">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <rect x="12" y="22" width="76" height="56" rx="6" fill="#1da4e9" stroke="#0a3a52" stroke-width="4"/>
+            <rect x="12" y="22" width="76" height="14" fill="#0a4a78" stroke="#0a3a52" stroke-width="4"/>
+            <circle cx="20" cy="29" r="2.5" fill="#ffd23d"/>
+            <circle cx="28" cy="29" r="2.5" fill="#ffd23d"/>
+            <rect x="20" y="44" width="26" height="26" rx="3" fill="#fff"/>
+            <rect x="52" y="44" width="28" height="10" rx="2" fill="#fff"/>
+            <rect x="52" y="58" width="28" height="12" rx="2" fill="#ffd23d"/>
+          </svg>
         </div>
-        <h3>Lightning-fast speeds</h3>
-        <p>opBNB settles in <b>~1 second</b> with massive throughput. No more waiting 30 seconds or getting front-run — your trades and rewards hit instantly.</p>
+        <h3>DEDICATED PLATFORM</h3>
+        <p>An entire platform dedicated to our meme coin — buy/sell and select your auto-reinvest settings.</p>
       </div>
 
       <div class="benefit">
-        <div class="b-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 21V8m6 13V3m6 18v-9m6 9V11"/></svg>
+        <div class="b-illust">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <rect x="14" y="60" width="18" height="26" rx="3" fill="#ffd23d" stroke="#7a5a08" stroke-width="4"/>
+            <rect x="41" y="42" width="18" height="44" rx="3" fill="#ffd23d" stroke="#7a5a08" stroke-width="4"/>
+            <rect x="68" y="22" width="18" height="64" rx="3" fill="#ffd23d" stroke="#7a5a08" stroke-width="4"/>
+            <path d="M22 56 L50 38 L77 18" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <polygon points="74,10 86,18 72,22" fill="#fff" stroke="#7a5a08" stroke-width="2"/>
+          </svg>
         </div>
-        <h3>Highest tax = highest USDT rewards</h3>
-        <p>At <b>25%</b> (the max most contracts allow), you're pulling the biggest possible slice from every single buy. The reward pool grows faster than lower-tax tokens.</p>
-      </div>
-
-      <div class="benefit">
-        <div class="b-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>Real, automatic USDT income</h3>
-        <p>Every trade automatically sends <b>USDT</b> straight to holders' wallets. No claiming, no staking, no waiting — pure passive stablecoin yield while you hold.</p>
-      </div>
-
-      <div class="benefit">
-        <div class="b-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 12l4-4 4 4 4-4 4 4 2-2"/><path d="M3 18l4-4 4 4 4-4 4 4 2-2"/></svg>
-        </div>
-        <h3>Volume = your paycheck</h3>
-        <p>The more people trade the coin (which meme coins are built for), the more <b>25% tax</b> gets collected and the more USDT you receive. High volume literally pays you.</p>
-      </div>
-
-      <div class="benefit">
-        <div class="b-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6l9-4z"/><path d="M9 12l2 2 4-4"/></svg>
-        </div>
-        <h3>Hold or get left behind</h3>
-        <p>The 25% sell tax heavily punishes flippers, so serious holders get a bigger share of the USDT pool. Naturally rewards <b>diamond hands</b>.</p>
+        <h3>HIGH VOLUME</h3>
+        <p>One of the largest taxes — more volume = more cashflow for you!</p>
       </div>
     </div>
   </div>
@@ -1729,7 +1679,7 @@
       Every buy sends <b>25% tax</b> to the Vault. When there's enough money, the Distributor automatically sends <b>USDT</b> to all holders in one cheap batch. On <b>opBNB</b> this happens often and costs almost nothing. No claiming needed — money just appears in your wallet!
     </div>
 
-    <div class="dist-stage"><canvas id="distScene"></canvas></div>
+    <div class="dist-stage"><div class="volume-3d" id="vc2"></div></div>
 
     <div class="dist-steps">
       <div class="dist-step">
@@ -1750,6 +1700,787 @@
     </div>
   </div>
 </section>
+
+<!-- ============================================================
+     PLATFORM PREVIEW SECTION — scattered mockup collage
+     ============================================================ -->
+<section class="platform-section" id="platformSection">
+
+  <!-- Reusable SCC pig logo as SVG symbol -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="sccLogo" viewBox="0 0 32 32" shape-rendering="crispEdges">
+        <rect x="3" y="2" width="3" height="1" fill="#1da4e9"/>
+        <rect x="3" y="3" width="4" height="1" fill="#1da4e9"/>
+        <rect x="3" y="4" width="5" height="1" fill="#1da4e9"/>
+        <rect x="26" y="2" width="3" height="1" fill="#1da4e9"/>
+        <rect x="25" y="3" width="4" height="1" fill="#1da4e9"/>
+        <rect x="24" y="4" width="5" height="1" fill="#1da4e9"/>
+        <rect x="3" y="5" width="26" height="22" fill="#1da4e9"/>
+        <rect x="4" y="11" width="24" height="4" fill="#0a0a0a"/>
+        <rect x="6" y="12" width="2" height="1" fill="#ffffff"/>
+        <rect x="18" y="12" width="2" height="1" fill="#ffffff"/>
+        <rect x="11" y="18" width="10" height="6" fill="#1da4e9"/>
+        <rect x="13" y="20" width="2" height="2" fill="#0a0a0a"/>
+        <rect x="17" y="20" width="2" height="2" fill="#0a0a0a"/>
+        <rect x="13" y="25" width="6" height="1" fill="#0a0a0a"/>
+        <rect x="19" y="24" width="1" height="1" fill="#0a0a0a"/>
+        <rect x="20" y="23" width="1" height="1" fill="#0a0a0a"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="platform-copy">
+    <div class="platform-eyebrow"><span class="platform-eyebrow-dot"></span>Platform · In Development</div>
+    <h2 class="platform-h">We Built An Entire <span class="platform-h-gold">Platform.</span></h2>
+    <p class="platform-sub">All for one coin. <b>$SCC.</b> Stats, milestones, leaderboards, auto-reinvest — the whole thing. Platform's in dev, but here's a sneak peek.</p>
+  </div>
+
+  <div class="platform-stage">
+
+    <!-- Stats dashboard browser (big, behind, rotated -3deg) -->
+    <div class="mk-browser mk-stats-bg">
+      <div class="mk-browser-chrome">
+        <div class="mk-browser-dots"><span></span><span></span><span></span></div>
+        <div class="mk-browser-url">supercashcoin.com/stats</div>
+      </div>
+      <div class="mk-browser-body">
+        <div class="mk-app-head">
+          <div class="mk-app-logo"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
+          <div class="mk-app-name">Super Cash <span class="mk-gold">Coin</span></div>
+          <div class="mk-app-nav">
+            <span class="active">Stats</span>
+            <span>Trade</span>
+            <span>Leaderboard</span>
+          </div>
+          <div class="mk-app-net">opBNB</div>
+        </div>
+
+        <div class="mk-stats-hero">
+          <div class="mk-chart-card">
+            <div class="mk-chart-head">
+              <div class="mk-chart-title">$SCC Price · USDT</div>
+              <div class="mk-chart-tabs">
+                <span>1H</span><span>4H</span><span class="active">1D</span><span>1W</span>
+              </div>
+            </div>
+            <svg class="mk-chart-svg" viewBox="0 0 400 110" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="mkChartFill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#ffd23d" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#ffd23d" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,95 L25,87 L55,90 L85,75 L115,78 L145,62 L175,68 L205,50 L235,53 L265,38 L295,40 L325,22 L355,26 L385,12 L400,10 L400,110 L0,110 Z" fill="url(#mkChartFill)"/>
+              <path d="M0,95 L25,87 L55,90 L85,75 L115,78 L145,62 L175,68 L205,50 L235,53 L265,38 L295,40 L325,22 L355,26 L385,12 L400,10" stroke="#ffd23d" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="400" cy="10" r="4" fill="#ffd23d"/>
+              <circle class="mk-pulse-dot" cx="400" cy="10" r="7" fill="#ffd23d" opacity="0.3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="mk-tile mk-gold-edge" style="margin-bottom:8px;">
+              <div class="mk-tile-label">Price</div>
+              <div class="mk-tile-val mk-val-gold">$0.0042</div>
+              <div class="mk-tile-sub"><span class="up">▲ +12.4%</span> today</div>
+            </div>
+            <div class="mk-tile mk-green-edge">
+              <div class="mk-tile-label">Royalties Paid</div>
+              <div class="mk-tile-val mk-val-green">$284K</div>
+              <div class="mk-tile-sub">to holders so far</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mk-milestones">
+          <div class="mk-milestone">
+            <div class="mk-milestone-label">10K Holders</div>
+            <div class="mk-milestone-bar"><div class="mk-milestone-fill mk-fill-done" style="width:100%"></div></div>
+            <div class="mk-milestone-pct mk-pct-green">✓ HIT</div>
+          </div>
+          <div class="mk-milestone">
+            <div class="mk-milestone-label">100K Holders</div>
+            <div class="mk-milestone-bar"><div class="mk-milestone-fill" style="width:62%"></div></div>
+            <div class="mk-milestone-pct">62%</div>
+          </div>
+          <div class="mk-milestone">
+            <div class="mk-milestone-label">$1M Royalties</div>
+            <div class="mk-milestone-bar"><div class="mk-milestone-fill" style="width:28%"></div></div>
+            <div class="mk-milestone-pct">28%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone wallet view — live-ticking USDT rewards (overlapping front-right, rotated +5deg) -->
+    <div class="mk-phone mk-phone-fg">
+      <div class="mk-phone-notch"></div>
+      <div class="mk-wallet-screen">
+        <div class="mk-wallet-bar">
+          <span class="mk-wallet-time">9:41</span>
+          <span>opBNB</span>
+        </div>
+        <div class="mk-wallet-head">
+          <svg class="mk-wallet-fox" viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M5 8 L20 4 L35 8 L32 28 L20 36 L8 28 Z" fill="#e17726" stroke="#763d16" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="14" cy="18" r="3" fill="#fff"/>
+            <circle cx="26" cy="18" r="3" fill="#fff"/>
+            <circle cx="14" cy="18" r="1.5" fill="#000"/>
+            <circle cx="26" cy="18" r="1.5" fill="#000"/>
+          </svg>
+          <span class="mk-wallet-app">MetaMask</span>
+          <span class="mk-wallet-net-dot"></span>
+          <span class="mk-wallet-net">opBNB</span>
+        </div>
+        <div class="mk-wallet-acct">
+          <span>Account 1</span>
+          <span class="mk-wallet-addr">0x092...0FA61</span>
+        </div>
+        <div class="mk-wallet-balance">
+          <div class="mk-wallet-bal-amt" id="mkWalletTotal">$2,847.32</div>
+          <div class="mk-wallet-bal-chg">
+            <span class="mk-up">▲ +$<span id="mkWalletGain">12.47</span></span>
+            <span class="mk-pct">today</span>
+          </div>
+        </div>
+        <div class="mk-wallet-tokens">
+          <div class="mk-wallet-token">
+            <div class="mk-wallet-token-icon"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
+            <div class="mk-wallet-token-info">
+              <div class="mk-wallet-token-name">$SCC</div>
+              <div class="mk-wallet-token-sub">100K SCC</div>
+            </div>
+            <div class="mk-wallet-token-vals">
+              <div class="mk-wallet-token-val">$200.00</div>
+              <div class="mk-wallet-token-pct">+5.2%</div>
+            </div>
+          </div>
+          <div class="mk-wallet-token mk-wallet-hot">
+            <div class="mk-wallet-usdt-icon">₮</div>
+            <div class="mk-wallet-token-info">
+              <div class="mk-wallet-token-name">USDT <span class="mk-rewards-tag">REWARDS</span></div>
+              <div class="mk-wallet-token-sub"><span id="mkWalletUsdt">2,647.32</span> USDT</div>
+            </div>
+            <div class="mk-wallet-token-vals">
+              <div class="mk-wallet-token-val" id="mkWalletUsdtVal">$2,647.32</div>
+              <div class="mk-wallet-token-pct mk-wallet-live"><span class="mk-live-dot"></span>LIVE</div>
+            </div>
+          </div>
+        </div>
+        <div class="mk-wallet-feed-head">Recent rewards</div>
+        <div class="mk-wallet-feed" id="mkWalletFeed"></div>
+      </div>
+    </div>
+
+    <!-- Leaderboard small (top-right, rotated -6deg) -->
+    <div class="mk-leaderboard mk-leaderboard-top">
+      <div class="mk-lb-head">
+        <div class="mk-lb-head-title">Top Holders</div>
+        <div class="mk-lb-head-sub">Live · 14,832</div>
+      </div>
+      <div class="mk-lb-body">
+        <div class="mk-lb-row mk-r1">
+          <div class="mk-lb-rank">1</div>
+          <div class="mk-lb-avatar"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
+          <div class="mk-lb-info">
+            <div class="mk-lb-addr">0x7c4f...3f2a 👑</div>
+            <div class="mk-lb-country">🇺🇸 United States</div>
+          </div>
+          <div class="mk-lb-amt">2.4M<span class="mk-lb-usd">$10,080</span></div>
+        </div>
+        <div class="mk-lb-row mk-r2">
+          <div class="mk-lb-rank">2</div>
+          <div class="mk-lb-avatar"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
+          <div class="mk-lb-info">
+            <div class="mk-lb-addr">0x91b3...8a91</div>
+            <div class="mk-lb-country">🇯🇵 Japan</div>
+          </div>
+          <div class="mk-lb-amt">1.8M<span class="mk-lb-usd">$7,560</span></div>
+        </div>
+        <div class="mk-lb-row mk-r3">
+          <div class="mk-lb-rank">3</div>
+          <div class="mk-lb-avatar"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
+          <div class="mk-lb-info">
+            <div class="mk-lb-addr">0x4d8e...2c01</div>
+            <div class="mk-lb-country">🇩🇪 Germany</div>
+          </div>
+          <div class="mk-lb-amt">1.2M<span class="mk-lb-usd">$5,040</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Milestone corner card (front-bottom-left, rotated +4deg) -->
+    <div class="mk-card mk-milestone-corner">
+      <div class="mk-card-eyebrow">Next Milestone</div>
+      <h4 class="mk-card-title">100,000 Holders</h4>
+      <div class="mk-milestone-bar mk-big-bar">
+        <div class="mk-milestone-fill" style="width:62%"></div>
+      </div>
+      <div class="mk-card-foot">
+        <span class="mk-card-progress">62,481 / 100,000</span>
+        <span class="mk-card-pct">62%</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ============================================================
+   PLATFORM PREVIEW SECTION — all styles scoped under .platform-section
+   ============================================================ */
+.platform-section{
+  background:linear-gradient(180deg,#fafaf6 0%,#fff 100%);
+  color:#0a0a0a;
+  padding:90px 60px 100px;
+  position:relative;
+  overflow:hidden;
+}
+.platform-section::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(255,210,61,0.14), transparent 70%),
+    radial-gradient(circle at 80% 80%, rgba(29,164,233,0.06), transparent 50%);
+  pointer-events:none;
+}
+.platform-copy{
+  text-align:center;max-width:780px;margin:0 auto 50px;
+  position:relative;z-index:1;
+}
+.platform-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;
+  background:rgba(255,210,61,0.15);
+  border:1px solid rgba(255,210,61,0.4);
+  border-radius:99px;
+  font-size:11px;font-weight:900;color:#c79a0c;
+  letter-spacing:0.18em;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.platform-eyebrow-dot{
+  width:7px;height:7px;border-radius:50%;background:#ffd23d;
+  box-shadow:0 0 0 0 rgba(255,210,61,0.6);
+  animation:platformPulse 2s ease-in-out infinite;
+}
+@keyframes platformPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,210,61,0.6);}
+  50%{box-shadow:0 0 0 8px rgba(255,210,61,0);}
+}
+.platform-h{
+  font-family:'Lilita One',sans-serif;
+  font-size:clamp(40px,5.5vw,68px);
+  line-height:1;
+  color:#0a0a0a;
+  margin:0 0 14px;
+  font-weight:400;
+}
+.platform-h-gold{
+  color:#ffd23d;
+  -webkit-text-stroke:2px #0a0a0a;
+  text-shadow:3px 3px 0 #c79a0c, 4px 4px 0 #0a0a0a;
+}
+.platform-sub{
+  font-size:16px;color:#555;line-height:1.55;
+  margin:0 auto;max-width:580px;
+}
+.platform-sub b{color:#0a0a0a;font-weight:800;}
+
+/* === Stage === */
+.platform-stage{
+  position:relative;
+  max-width:1200px;
+  height:680px;
+  margin:0 auto;
+}
+.platform-stage > *{position:absolute;}
+
+/* === Scattered positions === */
+.mk-stats-bg{
+  width:580px;top:80px;left:40px;
+  transform:rotate(-3deg);z-index:2;
+}
+.mk-phone-fg{
+  top:150px;right:130px;
+  transform:rotate(5deg);z-index:4;
+}
+.mk-leaderboard-top{
+  width:340px;top:30px;right:30px;
+  transform:rotate(-6deg);z-index:3;
+}
+.mk-milestone-corner{
+  width:290px;bottom:30px;left:260px;
+  transform:rotate(4deg);z-index:5;
+}
+
+/* === Browser frame === */
+.mk-browser{
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 25px 60px rgba(13,30,70,0.22), 0 6px 16px rgba(0,0,0,0.08);
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.mk-browser-chrome{
+  background:linear-gradient(180deg,#f4f4ee 0%,#e8e8e0 100%);
+  padding:9px 14px;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid #d8d8d0;
+}
+.mk-browser-dots{display:flex;gap:6px;flex-shrink:0;}
+.mk-browser-dots span{width:11px;height:11px;border-radius:50%;}
+.mk-browser-dots span:nth-child(1){background:#ff5f57;}
+.mk-browser-dots span:nth-child(2){background:#ffbd2e;}
+.mk-browser-dots span:nth-child(3){background:#27c93f;}
+.mk-browser-url{
+  flex:1;background:#fff;border-radius:6px;
+  padding:4px 10px;font-size:11px;color:#555;
+  font-family:'SF Mono',Menlo,monospace;
+  border:1px solid #d8d8d0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.mk-browser-url::before{content:'🔒 ';opacity:0.6;}
+.mk-browser-body{background:#0e1726;padding:20px;color:#fff;position:relative;}
+
+/* App header inside browser */
+.mk-app-head{
+  display:flex;align-items:center;gap:12px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:16px;
+}
+.mk-app-logo{
+  width:30px;height:30px;border-radius:6px;
+  background:#0a0a0a;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;padding:2px;
+}
+.mk-app-logo svg{width:100%;height:100%;display:block;}
+.mk-app-name{
+  font-family:'Lilita One',sans-serif;
+  font-size:15px;color:#fff;letter-spacing:0.02em;
+}
+.mk-gold{color:#ffd23d;}
+.mk-app-nav{
+  display:flex;gap:18px;margin-left:auto;
+  font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  color:#888;
+}
+.mk-app-nav .active{color:#ffd23d;}
+.mk-app-net{
+  font-size:9px;font-weight:900;color:#23d76b;
+  letter-spacing:0.1em;text-transform:uppercase;
+  display:flex;align-items:center;gap:4px;
+}
+.mk-app-net::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:#23d76b;box-shadow:0 0 0 2px rgba(35,215,107,0.3);
+  animation:platformPulse 1.5s ease-in-out infinite;
+}
+
+.mk-stats-hero{
+  display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-bottom:14px;
+}
+.mk-tile{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  padding:14px;
+}
+.mk-gold-edge{border-left:3px solid #ffd23d;}
+.mk-green-edge{border-left:3px solid #23d76b;}
+.mk-tile-label{
+  font-size:9px;color:#888;letter-spacing:0.12em;
+  text-transform:uppercase;font-weight:800;margin-bottom:6px;
+}
+.mk-tile-val{
+  font-family:'Arial Black',sans-serif;
+  font-size:24px;letter-spacing:-0.02em;color:#fff;line-height:1;
+}
+.mk-val-gold{color:#ffd23d;}
+.mk-val-green{color:#23d76b;}
+.mk-tile-sub{font-size:10px;color:#888;margin-top:4px;}
+.mk-tile-sub .up{color:#23d76b;font-weight:800;}
+
+.mk-chart-card{
+  background:linear-gradient(180deg, rgba(255,210,61,0.03) 0%, transparent 100%);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+  padding:14px;
+}
+.mk-chart-head{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;
+}
+.mk-chart-title{
+  font-size:10px;color:#bbb;letter-spacing:0.12em;
+  text-transform:uppercase;font-weight:800;
+}
+.mk-chart-tabs{display:flex;gap:4px;font-size:9px;font-weight:800;}
+.mk-chart-tabs span{
+  padding:3px 8px;border-radius:4px;
+  background:rgba(255,255,255,0.04);color:#888;letter-spacing:0.06em;
+}
+.mk-chart-tabs span.active{background:rgba(255,210,61,0.18);color:#ffd23d;}
+.mk-chart-svg{width:100%;height:110px;display:block;}
+.mk-pulse-dot{animation:mkPulseRing 1.6s ease-out infinite;}
+@keyframes mkPulseRing{
+  0%{r:4;opacity:0.6;}
+  100%{r:14;opacity:0;}
+}
+
+.mk-milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.mk-milestone{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;padding:10px;
+}
+.mk-milestone-label{
+  font-size:9px;color:#888;letter-spacing:0.1em;
+  text-transform:uppercase;font-weight:800;margin-bottom:6px;
+}
+.mk-milestone-bar{
+  height:5px;background:rgba(255,255,255,0.08);
+  border-radius:3px;overflow:hidden;
+}
+.mk-milestone-fill{
+  height:100%;border-radius:3px;
+  background:linear-gradient(90deg, #ffd23d, #ffe884);
+}
+.mk-fill-done{background:linear-gradient(90deg, #23d76b, #4ee892);}
+.mk-milestone-pct{
+  font-size:11px;color:#fff;font-weight:900;margin-top:5px;
+  font-family:'Arial Black',sans-serif;
+}
+.mk-pct-green{color:#23d76b;}
+
+/* === Phone === */
+.mk-phone{
+  width:240px;background:#0a0a0a;
+  border-radius:30px;padding:9px 7px 12px;
+  box-shadow:
+    0 30px 60px rgba(13,30,70,0.3),
+    0 8px 20px rgba(0,0,0,0.15),
+    0 0 0 1px rgba(255,210,61,0.15);
+}
+.mk-phone-notch{
+  width:60px;height:5px;border-radius:3px;background:#1a1a1a;margin:0 auto 8px;
+}
+.mk-phone-screen{
+  background:#0e1726;border-radius:22px;padding:14px 12px 16px;color:#fff;
+}
+.mk-phone-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:9px;color:#888;margin-bottom:10px;font-weight:700;
+}
+.mk-phone-time{color:#fff;font-weight:900;}
+.mk-phone-head{
+  display:flex;align-items:center;gap:8px;
+  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:12px;
+}
+.mk-phone-logo{
+  width:24px;height:24px;border-radius:5px;
+  background:#0a0a0a;flex-shrink:0;padding:1px;
+}
+.mk-phone-logo svg{width:100%;height:100%;display:block;}
+.mk-phone-name{
+  font-family:'Lilita One',sans-serif;
+  font-size:12px;color:#fff;letter-spacing:0.02em;
+}
+.mk-phone-net{
+  margin-left:auto;font-size:8px;font-weight:900;color:#23d76b;letter-spacing:0.1em;
+}
+.mk-phone-price{text-align:center;margin-bottom:12px;}
+.mk-phone-price-lbl{
+  font-size:8px;color:#888;letter-spacing:0.12em;
+  text-transform:uppercase;font-weight:800;margin-bottom:2px;
+}
+.mk-phone-price-val{
+  font-family:'Arial Black',sans-serif;
+  font-size:24px;color:#fff;letter-spacing:-0.02em;line-height:1;
+}
+.mk-phone-price-chg{font-size:9px;color:#23d76b;font-weight:900;margin-top:3px;}
+.mk-phone-chart{width:100%;height:45px;display:block;margin-bottom:12px;}
+.mk-phone-tabs{
+  display:flex;gap:0;background:rgba(255,255,255,0.05);
+  border-radius:8px;padding:3px;margin-bottom:10px;
+}
+.mk-phone-tab{
+  flex:1;text-align:center;padding:5px;font-size:10px;font-weight:900;
+  color:#888;border-radius:5px;letter-spacing:0.05em;
+}
+.mk-buy-active{background:#23d76b;color:#0a0a0a;}
+.mk-phone-input{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:7px;
+  padding:8px 10px;margin-bottom:8px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.mk-phone-input-val{font-family:'Arial Black',sans-serif;font-size:14px;color:#fff;}
+.mk-phone-input-tok{font-size:9px;color:#888;font-weight:800;letter-spacing:0.06em;}
+.mk-phone-reinvest{
+  background:linear-gradient(135deg, rgba(255,210,61,0.12), rgba(255,210,61,0.03));
+  border:1px solid rgba(255,210,61,0.3);
+  border-radius:8px;
+  padding:9px 10px;
+  display:flex;align-items:center;gap:9px;
+  margin-bottom:10px;
+}
+.mk-phone-reinvest-info{flex:1;min-width:0;}
+.mk-phone-reinvest-label{
+  font-size:8px;color:#ffd23d;font-weight:900;letter-spacing:0.1em;
+  text-transform:uppercase;margin-bottom:1px;
+}
+.mk-phone-reinvest-mode{font-size:10px;color:#fff;font-weight:900;}
+.mk-arrow{color:#888;font-weight:400;margin:0 3px;}
+.mk-toggle{
+  width:32px;height:18px;background:#23d76b;border-radius:99px;
+  position:relative;flex-shrink:0;
+}
+.mk-toggle::after{
+  content:'';position:absolute;
+  width:14px;height:14px;border-radius:50%;background:#fff;
+  top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);
+}
+.mk-phone-btn{
+  width:100%;padding:9px;background:#23d76b;color:#0a0a0a;
+  border-radius:7px;font-size:11px;font-weight:900;letter-spacing:0.06em;
+  text-align:center;
+}
+
+/* === Leaderboard === */
+.mk-leaderboard{
+  background:#fff;border-radius:12px;
+  box-shadow:0 25px 60px rgba(13,30,70,0.22), 0 6px 16px rgba(0,0,0,0.08);
+  overflow:hidden;border:1px solid rgba(0,0,0,0.06);
+}
+.mk-lb-head{
+  background:linear-gradient(180deg,#0e1726 0%, #07101e 100%);
+  padding:12px 16px;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(255,210,61,0.15);
+}
+.mk-lb-head-title{
+  font-family:'Lilita One',sans-serif;
+  font-size:13px;color:#ffd23d;letter-spacing:0.05em;
+}
+.mk-lb-head-sub{
+  font-size:9px;color:#888;letter-spacing:0.1em;
+  text-transform:uppercase;font-weight:800;margin-left:auto;
+}
+.mk-lb-body{padding:8px;background:#fafaf6;}
+.mk-lb-row{
+  display:grid;grid-template-columns:24px 30px 1fr auto;
+  align-items:center;gap:10px;
+  padding:7px 10px;
+  background:#fff;border-radius:6px;margin-bottom:3px;
+}
+.mk-lb-row:last-child{margin-bottom:0;}
+.mk-r1{
+  background:linear-gradient(90deg, rgba(255,210,61,0.12), #fff 50%);
+  border-left:3px solid #ffd23d;
+}
+.mk-r2{
+  background:linear-gradient(90deg, rgba(168,168,168,0.1), #fff 50%);
+  border-left:3px solid #a8a8a8;
+}
+.mk-r3{
+  background:linear-gradient(90deg, rgba(200,127,58,0.1), #fff 50%);
+  border-left:3px solid #c87f3a;
+}
+.mk-lb-rank{
+  font-family:'Arial Black',sans-serif;
+  font-size:14px;color:#0a0a0a;text-align:center;line-height:1;
+}
+.mk-r1 .mk-lb-rank{color:#c79a0c;}
+.mk-r2 .mk-lb-rank{color:#666;}
+.mk-r3 .mk-lb-rank{color:#8a5520;}
+.mk-lb-avatar{
+  width:30px;height:30px;border-radius:6px;
+  background:#0a0a0a;flex-shrink:0;overflow:hidden;padding:2px;
+}
+.mk-lb-avatar svg{width:100%;height:100%;display:block;}
+.mk-lb-info{min-width:0;}
+.mk-lb-addr{
+  font-family:'SF Mono',Menlo,monospace;
+  font-size:10px;color:#0a0a0a;font-weight:800;
+}
+.mk-lb-country{
+  font-size:9px;color:#888;font-weight:600;letter-spacing:0.04em;
+}
+.mk-lb-amt{
+  font-family:'Arial Black',sans-serif;
+  font-size:11px;color:#0a0a0a;text-align:right;line-height:1.1;
+}
+.mk-lb-usd{
+  display:block;font-size:9px;color:#23d76b;font-weight:800;margin-top:2px;
+}
+
+/* === Floating card === */
+.mk-card{
+  background:#0e1726;color:#fff;
+  border-radius:14px;padding:16px;
+  box-shadow:0 25px 60px rgba(13,30,70,0.22), 0 6px 16px rgba(0,0,0,0.08);
+  border:1px solid rgba(255,255,255,0.05);
+}
+.mk-card-eyebrow{
+  font-size:9px;color:#ffd23d;letter-spacing:0.15em;
+  text-transform:uppercase;font-weight:900;margin-bottom:6px;
+}
+.mk-card-title{
+  font-family:'Lilita One',sans-serif;
+  font-size:16px;margin:0 0 12px;line-height:1.1;color:#fff;font-weight:400;
+}
+.mk-big-bar{height:8px;margin-bottom:8px;}
+.mk-card-foot{display:flex;justify-content:space-between;font-size:11px;}
+.mk-card-progress{color:#888;font-weight:700;}
+.mk-card-pct{color:#ffd23d;font-weight:900;font-family:'Arial Black',sans-serif;}
+
+
+/* === Wallet phone screen (replaces trade-view phone) === */
+.mk-wallet-screen{
+  background:#fff;border-radius:22px;padding:10px 8px 12px;color:#0a0a0a;
+}
+.mk-wallet-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:8px;color:#888;font-weight:700;margin-bottom:8px;
+}
+.mk-wallet-time{color:#0a0a0a;font-weight:900;}
+.mk-wallet-head{
+  display:flex;align-items:center;gap:5px;
+  padding-bottom:8px;border-bottom:1px solid #eee;margin-bottom:8px;
+}
+.mk-wallet-fox{width:18px;height:18px;flex-shrink:0;display:block;}
+.mk-wallet-app{font-weight:900;font-size:11px;color:#0a0a0a;flex:1;}
+.mk-wallet-net-dot{
+  width:6px;height:6px;border-radius:50%;background:#23d76b;
+  box-shadow:0 0 0 2px rgba(35,215,107,0.25);
+  animation:platformPulse 1.5s ease-in-out infinite;
+}
+.mk-wallet-net{font-size:9px;font-weight:800;color:#23d76b;letter-spacing:0.05em;text-transform:uppercase;}
+.mk-wallet-acct{
+  display:flex;justify-content:space-between;align-items:center;
+  background:#fafaf6;border-radius:6px;padding:5px 8px;margin-bottom:8px;
+  font-size:9px;
+}
+.mk-wallet-acct span:first-child{font-weight:800;color:#0a0a0a;}
+.mk-wallet-addr{font-family:'SF Mono',Menlo,monospace;font-size:8px;color:#888;}
+.mk-wallet-balance{text-align:center;margin-bottom:10px;}
+.mk-wallet-bal-amt{
+  font-family:'Arial Black',sans-serif;
+  font-size:24px;font-weight:900;color:#0a0a0a;letter-spacing:-0.02em;line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.mk-wallet-bal-chg{
+  display:flex;justify-content:center;align-items:center;gap:5px;
+  font-size:9px;font-weight:700;margin-top:3px;
+}
+.mk-wallet-bal-chg .mk-up{color:#23d76b;}
+.mk-wallet-bal-chg .mk-pct{color:#888;font-weight:600;}
+.mk-wallet-tokens{margin-bottom:8px;}
+.mk-wallet-token{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 4px;border-bottom:1px solid #f4f4f0;
+}
+.mk-wallet-token:last-child{border-bottom:none;}
+.mk-wallet-hot{
+  background:linear-gradient(90deg, rgba(35,215,107,0.10), rgba(35,215,107,0));
+  border-radius:5px;
+  padding-left:6px;margin:0 -2px;
+}
+.mk-wallet-token-icon{
+  width:24px;height:24px;border-radius:5px;
+  background:#0a0a0a;flex-shrink:0;padding:2px;
+}
+.mk-wallet-token-icon svg{width:100%;height:100%;display:block;}
+.mk-wallet-usdt-icon{
+  width:24px;height:24px;border-radius:50%;
+  background:#26a17b;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:15px;font-family:'Arial Black',sans-serif;
+  flex-shrink:0;
+}
+.mk-wallet-token-info{flex:1;min-width:0;}
+.mk-wallet-token-name{
+  font-size:11px;font-weight:800;color:#0a0a0a;
+  display:flex;align-items:center;gap:4px;flex-wrap:wrap;
+}
+.mk-rewards-tag{
+  font-size:7px;font-weight:900;color:#23d76b;
+  background:rgba(35,215,107,0.13);
+  padding:1px 4px;border-radius:3px;
+  letter-spacing:0.06em;
+  animation:platformPulse 1.5s ease-in-out infinite;
+}
+.mk-wallet-token-sub{font-size:9px;color:#888;margin-top:1px;font-variant-numeric:tabular-nums;}
+.mk-wallet-token-vals{text-align:right;}
+.mk-wallet-token-val{
+  font-family:'Arial Black',sans-serif;
+  font-size:11px;font-weight:900;color:#0a0a0a;line-height:1.1;
+  font-variant-numeric:tabular-nums;
+}
+.mk-wallet-token-pct{font-size:9px;color:#23d76b;font-weight:700;margin-top:1px;}
+.mk-wallet-live{
+  display:flex;align-items:center;justify-content:flex-end;gap:3px;letter-spacing:0.06em;
+}
+.mk-live-dot{
+  width:5px;height:5px;border-radius:50%;background:#23d76b;
+  animation:platformPulse 1s ease-in-out infinite;
+}
+.mk-wallet-feed-head{
+  font-size:8px;font-weight:800;color:#888;
+  letter-spacing:0.08em;text-transform:uppercase;
+  margin-bottom:4px;
+}
+.mk-wallet-feed{
+  background:#fafaf6;border-radius:6px;padding:5px 8px;
+  height:54px;overflow:hidden;position:relative;
+}
+.mk-wallet-feed-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:2px 0;font-size:8px;
+  animation:mkFeedSlide 0.4s ease-out;
+}
+.mk-wallet-feed-row .label{color:#444;font-weight:700;}
+.mk-wallet-feed-row .amt{color:#23d76b;font-weight:800;font-family:'Arial Black',sans-serif;}
+.mk-wallet-feed-row .time{color:#aaa;font-size:7px;font-weight:600;}
+@keyframes mkFeedSlide{
+  from{opacity:0;transform:translateY(-6px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* === Responsive === */
+@media (max-width:1200px){
+  .platform-stage{transform:scale(0.85);transform-origin:top center;height:600px;}
+}
+@media (max-width:1000px){
+  .platform-stage{transform:scale(0.7);height:540px;}
+}
+@media (max-width:840px){
+  .platform-section{padding:60px 20px 70px;}
+  .platform-stage{
+    transform:none;height:auto;
+    display:flex;flex-direction:column;align-items:center;gap:24px;
+    max-width:520px;
+  }
+  .platform-stage > *{
+    position:relative;
+    top:auto;left:auto;right:auto;bottom:auto;
+    transform:none !important;
+    width:100% !important;max-width:100%;
+  }
+  .mk-phone{width:260px !important;align-self:center;}
+  .mk-milestone-corner{max-width:340px;}
+  .mk-leaderboard-top{max-width:420px;}
+}
+@media (max-width:600px){
+  .platform-section{padding:50px 16px 60px;}
+  .mk-browser-body{padding:14px;}
+  .mk-stats-hero{grid-template-columns:1fr;}
+  .mk-milestones{grid-template-columns:1fr;gap:6px;}
+  .mk-app-nav{display:none;}
+}
+</style>
+
 
 <!-- ============================================================
      WALLET MOCKUP SECTION — fancy MetaMask-style UI showing
@@ -2984,30 +3715,31 @@ window.addEventListener('resize',()=>{
 })();
 </script>
 
+
 <script>
-// === DISTRIBUTOR — Caped mascot + trolley showering crowd with cash + floating $ amounts ===
+// === BUYING → CONTRACT → HOLDING — Queue pays tax, then all holders split it simultaneously ===
 (function(){
   const canvas=document.getElementById('distScene');
   if(!canvas||!window.THREE)return;
-  const Wd=canvas.clientWidth, Hd=canvas.clientHeight;
+  let Wd=canvas.clientWidth, Hd=canvas.clientHeight;
   if(Wd===0||Hd===0)return;
 
   const sc=new THREE.Scene();
-  const cam=new THREE.PerspectiveCamera(40, Wd/Hd, 0.1, 600);
-  cam.position.set(0, 38, 145);
-  cam.lookAt(0, 12, 0);
+  const cam=new THREE.PerspectiveCamera(38, Wd/Hd, 0.1, 600);
+  cam.position.set(0, 20, 110);
+  cam.lookAt(0, 8, 0);
 
   const r=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
   r.setPixelRatio(window.devicePixelRatio||1);
   r.setSize(Wd,Hd,false);
 
-  sc.add(new THREE.AmbientLight(0xffeec8, 0.8));
-  const key=new THREE.DirectionalLight(0xfff5d8, 1.0);
-  key.position.set(30, 60, 40); sc.add(key);
-  const fill=new THREE.DirectionalLight(0xffd23d, 0.3);
-  fill.position.set(-25, 20, 20); sc.add(fill);
-  const rim=new THREE.DirectionalLight(0xfff0f0, 0.3);
-  rim.position.set(0, 25, -35); sc.add(rim);
+  sc.add(new THREE.AmbientLight(0xffffff, 0.7));
+  const key=new THREE.DirectionalLight(0xffffff, 0.9);
+  key.position.set(15, 45, 20); sc.add(key);
+  const fill=new THREE.DirectionalLight(0xffe6cc, 0.3);
+  fill.position.set(-15, 12, -8); sc.add(fill);
+  const rim=new THREE.DirectionalLight(0xfff0f0, 0.2);
+  rim.position.set(0, 8, -25); sc.add(rim);
 
   const cubeGeom=new THREE.BoxGeometry(1,1,1);
   function cube(x,y,z,sx,sy,sz,color){
@@ -3017,15 +3749,11 @@ window.addEventListener('resize',()=>{
     return m;
   }
 
-  // ===== Mascot — using the proven reference pig from the volume/hero scene =====
-  // Same voxel system + face-culled merged geometry. Keeps the same userData API
-  // that the animation loop below expects (head, armL, armR).
+  // ===== Voxel MASCOT (caped superhero pig) =====
   function makeMascot(){
-    const B=0x1da4e9, RD=0xd32f2f, DRD=0x9a1a1a, GD=0xffd23d, K=0x0a0a0a, W=0xffffff;
+    const B=0x1da4e9, RD=0xd32f2f, DRD=0x9a1a1a, GD=0xffd23d, K=0x0a0a0a, W=0xffffff, PK=0xffb19f;
     const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
     const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
-
-    // Head face overrides (sunglasses, smirk, eye reflections)
     const headMods=new Map();
     const setMod=(x,y,z,c)=>headMods.set(x+','+y+','+z,c);
     for(let dx=0;dx<15;dx++)for(let dy=0;dy<3;dy++)setMod(-9+dx,49+dy,9,K);
@@ -3033,13 +3761,10 @@ window.addEventListener('resize',()=>{
     setMod(-7,51,9,W);setMod(-6,51,9,W);setMod(5,51,9,W);setMod(6,51,9,W);
     for(let x=-2;x<=2;x++)setMod(x,40,9,K);
     setMod(3,41,9,K);setMod(4,42,9,K);
-
-    // Head — chin/jaw shape
     for(let x=-11;x<=10;x++)for(let y=36;y<=55;y++)for(let z=-10;z<=9;z++){
       if(y===36 && (x<-8||x>7||z<-8||z>7))continue;
       add(G.head,x,y,z,headMods.get(x+','+y+','+z)||B);
     }
-    // Snout
     for(let x=-4;x<=3;x++)for(let y=42;y<=47;y++)for(let z=10;z<=15;z++){
       let c=B;
       if(z===15){
@@ -3048,7 +3773,6 @@ window.addEventListener('resize',()=>{
       }
       add(G.head,x,y,z,c);
     }
-    // Ears (triangle pyramids built from stepped voxels)
     const ear=(bx,by,bz,mir)=>{
       for(let dy=0;dy<6;dy++){
         const w=6-dy;
@@ -3058,10 +3782,7 @@ window.addEventListener('resize',()=>{
         }
       }
     };
-    ear(-10,56,-1,false);
-    ear(10,56,-1,true);
-
-    // Dollar sign — 11x9 voxels
+    ear(-10,56,-1,false); ear(10,56,-1,true);
     const dollar=[
       "....#....", ".#######.", "##..#..##", "##..#....", "##..#....",
       ".#######.", "....#..##", "....#..##", "##..#..##", ".#######.", "....#...."
@@ -3070,32 +3791,28 @@ window.addEventListener('resize',()=>{
     for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
       if(dollar[i][j]==='#')dollarMods.set((-4+j)+','+(18+(dollar.length-1-i))+',7',GD);
     }
-    // Body
     for(let x=-10;x<=9;x++)for(let y=10;y<=35;y++)for(let z=-8;z<=7;z++){
       if(y===34 && (x<-8||x>7))continue;
       if(y===35 && (x<-5||x>4||z<-5||z>4))continue;
       add(G.body,x,y,z,dollarMods.get(x+','+y+','+z)||B);
     }
-    // Embossed $ on chest
     for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
       if(dollar[i][j]==='#')add(G.body,-4+j,18+(dollar.length-1-i),8,GD);
     }
-    // Arms with gold cuffs
     for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
     for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+    for(let x=-15;x<=-12;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,PK);
     for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
     for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
-    // Legs with black hooves
+    for(let x=10;x<=13;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,PK);
     for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
     for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
     for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
     for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
-    // Cape — shoulder pads + tapered back panel
     for(let x=-10;x<=9;x++){
       if(x>=-3 && x<=2)continue;
       for(let z=-9;z<=9;z++){
-        add(G.cape,x,32,z,RD);
-        add(G.cape,x,33,z,RD);
+        add(G.cape,x,32,z,RD); add(G.cape,x,33,z,RD);
       }
     }
     for(let x=-10;x<=9;x++){
@@ -3113,8 +3830,6 @@ window.addEventListener('resize',()=>{
         }
       }
     }
-
-    // Face-culled mesh builder
     const buildGroup=(buckets)=>{
       const occupied=new Set();
       buckets.forEach(positions=>{positions.forEach(p=>occupied.add(p[0]+','+p[1]+','+p[2]));});
@@ -3135,8 +3850,7 @@ window.addEventListener('resize',()=>{
             const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
             if(occupied.has(nk))continue;
             for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
-            idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
-            vi+=4;
+            idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3); vi+=4;
           }
         });
         if(!verts.length)return;
@@ -3145,9 +3859,8 @@ window.addEventListener('resize',()=>{
         geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
         geo.setIndex(idx);
         const isGold=color===GD;
-        const mat=new THREE.MeshLambertMaterial({color});
-        const mesh=new THREE.Mesh(geo,mat);
-        g.add(mesh);
+        const mat=new THREE.MeshStandardMaterial({color,roughness:isGold?0.5:0.55,metalness:isGold?0.15:0,flatShading:true});
+        g.add(new THREE.Mesh(geo, mat));
       });
       return g;
     };
@@ -3158,141 +3871,15 @@ window.addEventListener('resize',()=>{
     const lLegM=buildGroup(G.lLeg);
     const rLegM=buildGroup(G.rLeg);
     const capeM=buildGroup(G.cape);
-
-    // Pivots — same setup as reference doc, exposed as head/armL/armR so the
-    // distributor animation loop's existing references keep working.
-    const headPivot=new THREE.Group();
-    headPivot.position.set(0,36,0);
-    headM.position.set(0,-36,0);
-    headPivot.add(headM);
-
-    const lArmPivot=new THREE.Group();
-    lArmPivot.position.set(-13.5,29,0);
-    lArmM.position.set(13.5,-29,0);
-    lArmPivot.add(lArmM);
-
-    const rArmPivot=new THREE.Group();
-    rArmPivot.position.set(11.5,29,0);
-    rArmM.position.set(-11.5,-29,0);
-    rArmPivot.add(rArmM);
-
+    const headPivot=new THREE.Group(); headPivot.position.set(0,36,0); headM.position.set(0,-36,0); headPivot.add(headM);
+    const lArmPivot=new THREE.Group(); lArmPivot.position.set(-13.5,29,0); lArmM.position.set(13.5,-29,0); lArmPivot.add(lArmM);
+    const rArmPivot=new THREE.Group(); rArmPivot.position.set(11.5,29,0); rArmM.position.set(-11.5,-29,0); rArmPivot.add(rArmM);
     const character=new THREE.Group();
-    character.add(bodyM);
-    character.add(headPivot);
-    character.add(lArmPivot);
-    character.add(rArmPivot);
-    character.add(lLegM);
-    character.add(rLegM);
-    character.add(capeM);
-
-    // Scale — the reference doc pig is ~60 units tall. Distributor scene actors
-    // are sized for ~22 units tall, so scale down to fit alongside the people.
+    character.add(bodyM); character.add(headPivot); character.add(lArmPivot); character.add(rArmPivot);
+    character.add(lLegM); character.add(rLegM); character.add(capeM);
     character.scale.set(0.36,0.36,0.36);
-
-    // Map the userData names the distributor animation expects
-    character.userData={
-      head: headPivot,
-      armL: lArmPivot,
-      armR: rArmPivot,
-    };
+    character.userData={head: headPivot, armL: lArmPivot, armR: rArmPivot};
     return character;
-  }
-
-  // ===== Voxel CASH STACK =====
-  function makeCashStack(){
-    const g=new THREE.Group();
-    const green=0x2f9c4d, greenDark=0x1f6e35, paper=0xf2e8c8;
-    for(let i=0;i<5;i++){
-      g.add(cube(0, 0.5+i*0.7, 0, 6, 0.6, 3, i%2===0?green:greenDark));
-    }
-    g.add(cube(0, 2.2, 0, 6.3, 0.8, 3.3, paper));
-    return g;
-  }
-
-  // ===== Voxel SHOPPING TROLLEY full of cash — next to mascot =====
-  function makeTrolley(){
-    const g=new THREE.Group();
-    const metal=0xb0b8c0, metalDark=0x6a7280;
-    // Basket — open box (4 walls, floor, no top)
-    const W=10, D=7, H=6;
-    // Floor
-    g.add(cube(0, 1, 0, W, 0.3, D, metalDark));
-    // Front + back walls (with gaps to look like wire)
-    for(let i=0;i<3;i++){
-      g.add(cube(0, 2+i*1.5, D/2, W-0.5, 0.3, 0.3, metal)); // front bars
-      g.add(cube(0, 2+i*1.5, -D/2, W-0.5, 0.3, 0.3, metal)); // back bars
-    }
-    // Verticals on corners
-    g.add(cube(-W/2+0.3, 3.5, D/2-0.2, 0.4, H, 0.4, metalDark));
-    g.add(cube(W/2-0.3, 3.5, D/2-0.2, 0.4, H, 0.4, metalDark));
-    g.add(cube(-W/2+0.3, 3.5, -D/2+0.2, 0.4, H, 0.4, metalDark));
-    g.add(cube(W/2-0.3, 3.5, -D/2+0.2, 0.4, H, 0.4, metalDark));
-    // Side bars (left/right)
-    for(let i=0;i<3;i++){
-      g.add(cube(-W/2, 2+i*1.5, 0, 0.3, 0.3, D-0.5, metal));
-      g.add(cube(W/2, 2+i*1.5, 0, 0.3, 0.3, D-0.5, metal));
-    }
-    // Top rim (thicker)
-    g.add(cube(0, 7, D/2, W, 0.5, 0.5, metalDark));
-    g.add(cube(0, 7, -D/2, W, 0.5, 0.5, metalDark));
-    g.add(cube(-W/2, 7, 0, 0.5, 0.5, D, metalDark));
-    g.add(cube(W/2, 7, 0, 0.5, 0.5, D, metalDark));
-    // Handle bar
-    g.add(cube(W/2+1, 10, 0, 0.5, 0.5, D, metalDark));
-    g.add(cube(W/2+0.5, 9, D/2-0.5, 0.5, 4, 0.5, metalDark));
-    g.add(cube(W/2+0.5, 9, -D/2+0.5, 0.5, 4, 0.5, metalDark));
-
-    // === STUFF the basket with cash stacks + bills ===
-    const green=0x2f9c4d, greenDark=0x1f6e35, paper=0xf2e8c8, gold=0xffd23d;
-    // Cash bricks inside
-    for(let r=0;r<2;r++){
-      for(let c=0;c<3;c++){
-        const x=(c-1)*2.5;
-        const z=(r-0.5)*2.2;
-        const yBase = 1.4 + r*1.8;
-        // Brick body
-        for(let i=0;i<3;i++){
-          g.add(cube(x, yBase+i*0.45, z, 2.2, 0.4, 1.8, i%2===0?green:greenDark));
-        }
-        // Paper band
-        g.add(cube(x, yBase+0.5, z, 2.3, 0.6, 1.9, paper));
-      }
-    }
-    // Loose bills poking out the top
-    for(let i=0;i<6;i++){
-      const x=(Math.random()-0.5)*8;
-      const z=(Math.random()-0.5)*4;
-      const tilt=(Math.random()-0.5)*0.5;
-      const bill=cube(x, 6.5+Math.random()*1.5, z, 2.4, 0.15, 1.4, green);
-      bill.rotation.z=tilt;
-      bill.rotation.y=Math.random()*Math.PI;
-      g.add(bill);
-    }
-    // A few gold coin tops
-    for(let i=0;i<3;i++){
-      const x=(Math.random()-0.5)*7;
-      const z=(Math.random()-0.5)*4;
-      const c=new THREE.Mesh(
-        new THREE.CylinderGeometry(0.7,0.7,0.25,16),
-        new THREE.MeshLambertMaterial({color:gold})
-      );
-      c.position.set(x, 7+Math.random()*0.5, z);
-      g.add(c);
-    }
-
-    // Wheels
-    const wheelGeom=new THREE.CylinderGeometry(0.9, 0.9, 0.5, 12);
-    const wheelMat=new THREE.MeshLambertMaterial({color:0x202020});
-    for(let i=0;i<4;i++){
-      const w=new THREE.Mesh(wheelGeom, wheelMat);
-      w.rotation.z=Math.PI/2;
-      const wx = (i%2===0?-1:1) * (W/2-1);
-      const wz = (i<2?-1:1) * (D/2-1);
-      w.position.set(wx, 0, wz);
-      g.add(w);
-    }
-
-    return g;
   }
 
   // ===== Voxel PERSON =====
@@ -3308,22 +3895,17 @@ window.addEventListener('resize',()=>{
     head.add(cube(1.2, 0.4, 2.3, 0.7, 0.7, 0.2, black));
     head.add(cube(0, -1.3, 2.3, 2, 0.5, 0.2, black));
     head.position.set(0, 12.5, 0);
-    g.add(head);
-    g.userData.head=head;
+    g.add(head); g.userData.head=head;
     const armL=new THREE.Group();
     armL.add(cube(0, -2, 0, 2, 5, 2, shirt));
     armL.add(cube(0, -4.5, 0, 2.2, 1.5, 2.2, skin));
-    armL.position.set(-4, 10, 0);
-    armL.rotation.z=0.95;
-    g.add(armL);
-    g.userData.armL=armL;
+    armL.position.set(-4, 10, 0); armL.rotation.z=0.95;
+    g.add(armL); g.userData.armL=armL;
     const armR=new THREE.Group();
     armR.add(cube(0, -2, 0, 2, 5, 2, shirt));
     armR.add(cube(0, -4.5, 0, 2.2, 1.5, 2.2, skin));
-    armR.position.set(4, 10, 0);
-    armR.rotation.z=-0.95;
-    g.add(armR);
-    g.userData.armR=armR;
+    armR.position.set(4, 10, 0); armR.rotation.z=-0.95;
+    g.add(armR); g.userData.armR=armR;
     g.add(cube(-1.5, 1.5, 0, 2.4, 4, 2.4, pants));
     g.add(cube(1.5, 1.5, 0, 2.4, 4, 2.4, pants));
     g.add(cube(-1.5, -0.6, 0.3, 2.6, 0.6, 3, black));
@@ -3331,117 +3913,111 @@ window.addEventListener('resize',()=>{
     return g;
   }
 
-  // ===== Bills + coins =====
-  const billGeom=new THREE.BoxGeometry(2.6, 1.3, 0.12);
-  const billGreen=new THREE.MeshLambertMaterial({color:0x2f9c4d});
-  const billDarker=new THREE.MeshLambertMaterial({color:0x1f6e35});
-  const billGold=new THREE.MeshLambertMaterial({color:0xffd23d});
-  function makeBill(){
-    const g=new THREE.Group();
-    g.add(new THREE.Mesh(billGeom, billGreen));
-    const dot=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.75,0.07), billGold);
-    dot.position.set(0,0,0.08);g.add(dot);
-    const top=new THREE.Mesh(new THREE.BoxGeometry(2.5,0.12,0.07), billDarker);
-    top.position.set(0,0.55,0.08);g.add(top);
-    const bot=new THREE.Mesh(new THREE.BoxGeometry(2.5,0.12,0.07), billDarker);
-    bot.position.set(0,-0.55,0.08);g.add(bot);
-    return g;
-  }
+  // ===== Wood plank floor (staggered planks, mixed wood tones) =====
+  sc.add(cube(0, -0.5, 0, 130, 1, 36, 0x2a1a0a));  // dark base
+  (function buildWoodFloor(){
+    const woodColors=[0x8b4513, 0xa0522d, 0x6b3410, 0x9c5e2e, 0x7a3f1a, 0x8a4a1f, 0xa66134];
+    const plankBaseLen=14;
+    const plankWidth=2.4;
+    const plankGap=0.15;
+    let rowZ=-18 + plankWidth/2;
+    let rowIdx=0;
+    while(rowZ < 18){
+      // Stagger every other row so seams don't line up
+      const offset = (rowIdx % 2 === 0) ? 0 : plankBaseLen/2;
+      let x = -70 + offset;
+      while(x < 70){
+        const len = plankBaseLen * (0.7 + Math.random()*0.5);
+        const wc = woodColors[Math.floor(Math.random() * woodColors.length)];
+        sc.add(cube(x + len/2, 0.05, rowZ, len - plankGap, 0.15, plankWidth - plankGap, wc));
+        x += len;
+      }
+      rowZ += plankWidth;
+      rowIdx++;
+    }
+  })();
 
-  const coinGeom=new THREE.CylinderGeometry(0.85, 0.85, 0.2, 16);
-  const coinMatGold=new THREE.MeshLambertMaterial({color:0xffd23d});
-  const coinMatBlue=new THREE.MeshLambertMaterial({color:0x1a5fb8});
-  function makeCoin(){
-    const g=new THREE.Group();
-    const outer=new THREE.Mesh(coinGeom, coinMatGold);
-    outer.rotation.x=Math.PI/2;g.add(outer);
-    const inner=new THREE.Mesh(
-      new THREE.CylinderGeometry(0.55,0.55,0.24,16),
-      coinMatBlue
-    );
-    inner.rotation.x=Math.PI/2;g.add(inner);
-    return g;
-  }
+  // ===== Counter (left of mascot) — receives the buy =====
+  const counter = new THREE.Group();
+  // Top
+  counter.add(cube(0, 5, 0, 14, 0.6, 5, 0x8B4513));
+  // Front facade (lighter)
+  counter.add(cube(0, 2.4, 2.3, 14, 4.8, 0.4, 0x6B3410));
+  // Side legs
+  counter.add(cube(-6.7, 2.4, 0, 0.6, 5, 5, 0x6B3410));
+  counter.add(cube(6.7, 2.4, 0, 0.6, 5, 5, 0x6B3410));
+  // Cash register on top
+  counter.add(cube(-2, 6.5, 0.5, 4, 2.5, 2.5, 0x2a2a2a));
+  counter.add(cube(-2, 7.6, 1.4, 3.4, 0.6, 0.4, 0xffd23d)); // screen
+  counter.add(cube(-2, 8.1, 0.4, 4.2, 0.4, 0.8, 0x1a1a1a)); // top edge
+  // Money pile starting to grow on the counter
+  counter.add(cube(3, 5.7, 0, 3, 1.0, 2.2, 0x2f9c4d));
+  counter.add(cube(3, 6.4, 0, 2.8, 0.6, 2, 0xf2e8c8));
+  counter.position.set(-12, 0, 0);
+  sc.add(counter);
 
-  // ===== Floating "+$X" sprites (HTML overlay style, rendered as 3D billboards) =====
-  // We use a CanvasTexture to draw the text, since Three.js r128 doesn't have CSS3DRenderer setup.
-  const sprites=[];  // active "+$X" sprites
-  function makeMoneyText(amount){
+  // ===== Vault (right of mascot) — distributes to holders =====
+  const vault = new THREE.Group();
+  // Safe body
+  vault.add(cube(0, 6, 0, 12, 12, 7, 0x4a4a4a));
+  // Door front
+  vault.add(cube(0, 6, 3.7, 10, 10, 0.3, 0x6a6a6a));
+  // Door rim
+  vault.add(cube(0, 11, 3.8, 10, 0.4, 0.3, 0x404040));
+  vault.add(cube(0, 1, 3.8, 10, 0.4, 0.3, 0x404040));
+  vault.add(cube(-5, 6, 3.8, 0.4, 10, 0.3, 0x404040));
+  vault.add(cube(5, 6, 3.8, 0.4, 10, 0.3, 0x404040));
+  // Door handle (gold lever)
+  vault.add(cube(2.5, 6, 3.95, 1.2, 0.8, 0.4, 0xffd23d));
+  vault.add(cube(3, 6, 4.1, 0.4, 0.4, 0.8, 0xffd23d));
+  // Gold $ symbol centered on the door
+  const dols=[
+    "..#..","#####","#.#..","#####","..#.#","#####","..#.."
+  ];
+  // dollar grid is 5 wide × 7 tall; center it on door (0, 6)
+  for(let i=0;i<dols.length;i++)for(let j=0;j<5;j++){
+    if(dols[i][j]==='#'){
+      const dx = (j - 2) * 0.6;          // center horizontally
+      const dy = ((dols.length-1)/2 - i) * 0.6;  // center vertically
+      vault.add(cube(dx, 6 + dy, 3.95, 0.55, 0.55, 0.15, 0xffd23d));
+    }
+  }
+  // Stack of bills bursting out the top
+  vault.add(cube(0, 12.5, 0, 5, 0.8, 2.4, 0x2f9c4d));
+  vault.add(cube(-1.5, 13.1, 0.4, 2.4, 0.5, 1.6, 0x2f9c4d));
+  vault.add(cube(1.5, 13.2, -0.3, 2.4, 0.5, 1.6, 0x1f6e35));
+  vault.position.set(14, 0, 0);
+  sc.add(vault);
+
+  // ===== Mascot in center =====
+  const mascot = makeMascot();
+  mascot.position.set(0, 0, -2);
+  mascot.rotation.y = 0;
+  sc.add(mascot);
+
+  // ===== Zone labels (BUYING on left, HOLDING on right) =====
+  function makeLabel(text, fill){
     const c=document.createElement('canvas');
-    c.width=128; c.height=64;
+    c.width=320; c.height=96;
     const ctx=c.getContext('2d');
-    ctx.font='bold 38px Arial Black, Arial, sans-serif';
-    ctx.fillStyle='#23d76b';  // bright green
-    ctx.strokeStyle='#0a3a18'; // dark green outline
-    ctx.lineWidth=4;
+    ctx.font='bold 68px Arial Black, Arial, sans-serif';
+    ctx.fillStyle=fill;
+    ctx.strokeStyle='#0a0a0a';
+    ctx.lineWidth=8;
     ctx.textAlign='center';
     ctx.textBaseline='middle';
-    const text='+$'+amount;
-    ctx.strokeText(text, 64, 32);
-    ctx.fillText(text, 64, 32);
+    ctx.strokeText(text, 160, 48);
+    ctx.fillText(text, 160, 48);
     const tex=new THREE.CanvasTexture(c);
     tex.minFilter=THREE.LinearFilter;
     const mat=new THREE.SpriteMaterial({map:tex, transparent:true});
     const sp=new THREE.Sprite(mat);
-    sp.scale.set(8, 4, 1);
+    sp.scale.set(26, 8, 1);
     return sp;
   }
-  function spawnMoneyText(person){
-    if(sprites.length > 60)return;
-    const amount = 5 + Math.floor(Math.random()*95); // $5 - $99
-    const sp = makeMoneyText(amount);
-    sp.position.set(
-      person.position.x + (Math.random()-0.5)*4,
-      19 + Math.random()*2,
-      person.position.z
-    );
-    sp.userData={
-      vy: 6 + Math.random()*3,
-      life: 0,
-      maxLife: 1.6 + Math.random()*0.4,
-    };
-    sc.add(sp);
-    sprites.push(sp);
-  }
+  // (zone labels removed — animation is self-explanatory)
 
-  // ===== Place actors =====
-  const mascot=makeMascot();
-  mascot.position.set(0, 0, 0);
-  sc.add(mascot);
-
-  // TROLLEY next to mascot (on his left, slightly behind)
-  const trolley=makeTrolley();
-  trolley.position.set(-18, 0, 3);
-  trolley.rotation.y=0.3;
-  sc.add(trolley);
-
-  // Cash stacks scattered around
-  const stackPositions=[
-    {x:-9, z:9, rot:0.1},
-    {x:9, z:9, rot:-0.2},
-    {x:-4, z:11, rot:0.4},
-    {x:4, z:11, rot:-0.4},
-    {x:14, z:7, rot:-0.5},
-  ];
-  stackPositions.forEach(p=>{
-    const s=makeCashStack();
-    s.position.set(p.x, 0, p.z);
-    s.rotation.y=p.rot;
-    sc.add(s);
-  });
-
-  // Loose coins
-  for(let i=0;i<14;i++){
-    const c=makeCoin();
-    const angle=Math.random()*Math.PI*2;
-    const dist=10+Math.random()*8;
-    c.position.set(Math.cos(angle)*dist, 0.4+Math.random()*0.3, Math.sin(angle)*dist*0.6 + 7);
-    c.rotation.z=Math.random()*0.4-0.2;
-    c.scale.setScalar(1.4);
-    sc.add(c);
-  }
-
-  // ===== ~20 people both sides =====
+  // ===== People colors =====
   const peopleColors=[
     {skin:0xf2cba6, shirt:0x3b73d8, pants:0x2a3a52, hair:0x4a2c1a},
     {skin:0xc78c5a, shirt:0xe8503b, pants:0x2a2a2a, hair:0x1a1a1a},
@@ -3458,93 +4034,226 @@ window.addEventListener('resize',()=>{
     {skin:0xe8c39e, shirt:0x33aacc, pants:0x3a2a3a, hair:0x6a4a2a},
     {skin:0xc88e6a, shirt:0xee9933, pants:0x2a3a2a, hair:0x1a0a0a},
     {skin:0xf2b888, shirt:0x9966cc, pants:0x2a2a2a, hair:0xeebb44},
-    {skin:0xb37d57, shirt:0x44dd88, pants:0x3a3a2a, hair:0x2a1a0a},
-    {skin:0xe8c8a0, shirt:0xff66aa, pants:0x2a2a4a, hair:0x5a4a2a},
-    {skin:0xc89770, shirt:0x6677ee, pants:0x1a2a2a, hair:0x1a1a1a},
-    {skin:0xf5d2a8, shirt:0xdd5544, pants:0x2a3a3a, hair:0x9a6a3a},
-    {skin:0xa07555, shirt:0xaadd33, pants:0x2a2a2a, hair:0x0a0a0a},
   ];
-  const rightFront=[
-    {x: 22, z: 22, rot:-0.5},
-    {x: 32, z: 14, rot:-0.85},
-    {x: 38, z:  2, rot:-1.25},
-    {x: 36, z:-12, rot:-1.7},
-    {x: 26, z:-22, rot:-2.1},
-  ];
-  const rightBack=[
-    {x: 26, z: 6, rot:-0.95},
-    {x: 32, z:-6, rot:-1.3},
-    {x: 28, z:-16, rot:-1.85},
-    {x: 44, z: 0, rot:-1.3},
-    {x: 18, z:-26, rot:-2.4},
-  ];
-  const leftFront=[
-    {x:-22, z: 22, rot: 0.5},
-    {x:-32, z: 14, rot: 0.85},
-    {x:-38, z:  2, rot: 1.25},
-    {x:-36, z:-12, rot: 1.7},
-    {x:-26, z:-22, rot: 2.1},
-  ];
-  const leftBack=[
-    {x:-26, z: 6, rot: 0.95},
-    {x:-32, z:-6, rot: 1.3},
-    {x:-28, z:-16, rot: 1.85},
-    {x:-44, z: 0, rot: 1.3},
-    {x:-18, z:-26, rot: 2.4},
-  ];
-  const people=[];
   let colorIdx=0;
-  function placePerson(pos){
-    const c=peopleColors[colorIdx % peopleColors.length];
-    colorIdx++;
+  function nextColor(){ const c=peopleColors[colorIdx%peopleColors.length]; colorIdx++; return c; }
+
+  // ===== Queue setup =====
+  // Slots are positions along the x-axis. Front of queue is the rightmost slot (closest to mascot).
+  const QUEUE_SLOTS=[-19, -27, -35, -43, -51];   // index 0 = front (at counter)
+  const NUM_SLOTS=QUEUE_SLOTS.length;
+  function makeBuyer(){
+    const c=nextColor();
     const p=makePerson(c.skin, c.shirt, c.pants, c.hair);
-    p.position.set(pos.x, 0, pos.z);
-    p.rotation.y=pos.rot;
+    // Face right (toward mascot)
+    p.rotation.y = Math.PI/2;
     p.userData.phase=Math.random()*Math.PI*2;
-    p.userData.side = pos.x > 0 ? 'right' : 'left';
-    p.userData.lastMoneyText=Math.random()*1.5; // stagger
+    return p;
+  }
+  // Build initial queue
+  const queue=[];
+  for(let i=0;i<NUM_SLOTS;i++){
+    const b=makeBuyer();
+    b.position.set(QUEUE_SLOTS[i], 0, 0);
+    b.userData.targetX=QUEUE_SLOTS[i];
+    b.userData.state='queued';
+    sc.add(b);
+    queue.push(b);
+  }
+
+  // ===== Holder slots (positions on the right side) =====
+  const HOLDER_SLOTS=[
+    {x:24, z:-10, rot:-Math.PI/2 - 0.3},
+    {x:32, z:-12, rot:-Math.PI/2 - 0.2},
+    {x:40, z:-9,  rot:-Math.PI/2 - 0.5},
+    {x:48, z:-4,  rot:-Math.PI/2 - 0.7},
+    {x:28, z: 2,  rot:-Math.PI/2 - 0.15},
+    {x:38, z: 4,  rot:-Math.PI/2 - 0.3},
+    {x:46, z: 8,  rot:-Math.PI/2 - 0.5},
+    {x:30, z:12,  rot:-Math.PI/2 - 0.1},
+    {x:42, z:14,  rot:-Math.PI/2 - 0.35},
+  ];
+  const MAX_HOLDERS=HOLDER_SLOTS.length;
+  const slotOccupied=new Array(MAX_HOLDERS).fill(false);
+  const holders=[];         // people currently standing in holder slots
+  const walkers=[];         // people walking from counter to a holder slot
+  let coinTarget=null;      // the walker the next coin should track during its flight
+  const backgroundCrowd=[]; // extra buyers who blended into the back of the crowd (no payouts)
+
+  // Start with ONE holder (in the first slot). The rest grow as buyers walk across.
+  (function seedInitialHolder(){
+    const c=nextColor();
+    const p=makePerson(c.skin, c.shirt, c.pants, c.hair);
+    const slot=HOLDER_SLOTS[0];
+    p.position.set(slot.x, 0, slot.z);
+    p.rotation.y=slot.rot;
+    p.userData.phase=Math.random()*Math.PI*2;
+    p.userData.state='holder';
+    p.userData.slotIdx=0;
+    slotOccupied[0]=true;
     sc.add(p);
-    people.push(p);
-  }
-  rightFront.forEach(placePerson);
-  rightBack.forEach(placePerson);
-  leftFront.forEach(placePerson);
-  leftBack.forEach(placePerson);
-  const rightPeople=people.filter(p=>p.userData.side==='right');
-  const leftPeople =people.filter(p=>p.userData.side==='left');
+    holders.push(p);
+  })();
 
-  // ===== Flying items =====
-  const flying=[];
-  const MAX_FLYING=180;
-  function spawnItem(side){
-    if(flying.length>=MAX_FLYING)return;
-    const isCoin=Math.random()<0.25;
-    const item=isCoin ? makeCoin() : makeBill();
-    if(isCoin)item.scale.setScalar(1.6);
-    const handX = side==='right' ? 7.5 : -7.5;
-    item.position.set(handX, 20 + mascot.position.y, 1);
-    const crowd = side==='right' ? rightPeople : leftPeople;
-    const target=crowd[Math.floor(Math.random()*crowd.length)];
-    const tx=target.position.x + (Math.random()-0.5)*7;
-    const tz=target.position.z + (Math.random()-0.5)*7;
-    const dx=tx-item.position.x;
-    const dz=tz-item.position.z;
-    const flightTime=1.7 + Math.random()*0.6;
-    item.userData={
-      vx: dx/flightTime + (Math.random()-0.5)*3,
-      vy: 17 + Math.random()*6,
-      vz: dz/flightTime + (Math.random()-0.5)*3,
-      gravity: 20,
-      spinX:(Math.random()-0.5)*9, spinY:(Math.random()-0.5)*9, spinZ:(Math.random()-0.5)*9,
-      life:0, maxLife:flightTime + 0.8,
+  function reserveNextSlot(){
+    // Return index of first free slot, or -1 if all occupied
+    for(let i=0;i<MAX_HOLDERS;i++){
+      if(!slotOccupied[i]) return i;
+    }
+    return -1;
+  }
+
+  // ===== "+$X" sprites (red for tax, green for rewards) =====
+  function makeMoneyText(amount, isTax){
+    const c=document.createElement('canvas');
+    c.width=128; c.height=128;
+    const ctx=c.getContext('2d');
+    ctx.font='bold 110px Arial Black, Arial, sans-serif';
+    ctx.fillStyle = isTax ? '#ff4757' : '#23d76b';
+    ctx.strokeStyle = isTax ? '#4a0a0a' : '#0a3a18';
+    ctx.lineWidth=10;
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.strokeText('$', 64, 68);
+    ctx.fillText('$', 64, 68);
+    const tex=new THREE.CanvasTexture(c);
+    tex.minFilter=THREE.LinearFilter;
+    const mat=new THREE.SpriteMaterial({map:tex, transparent:true});
+    const sp=new THREE.Sprite(mat);
+    sp.scale.set(6, 6, 1);
+    return sp;
+  }
+  const sprites=[];
+  function spawnSprite(x, y, z, amount, isTax){
+    if(sprites.length > 40) return;
+    const sp = makeMoneyText(amount, isTax);
+    sp.position.set(x, y, z);
+    sp.userData={vy: 6 + Math.random()*2, life:0, maxLife: 1.6 + Math.random()*0.3};
+    sc.add(sp);
+    sprites.push(sp);
+  }
+
+  // ===== Flying bills =====
+  const billGeom=new THREE.BoxGeometry(2.6, 1.3, 0.12);
+  const billRedMat=new THREE.MeshLambertMaterial({color:0xd32f2f});
+  const billRedDarkMat=new THREE.MeshLambertMaterial({color:0x7a1010});
+  const billGreenMat=new THREE.MeshLambertMaterial({color:0x2f9c4d});
+  const billGreenDarkMat=new THREE.MeshLambertMaterial({color:0x1f6e35});
+  const billGoldMat=new THREE.MeshLambertMaterial({color:0xffd23d});
+  function makeBill(isRed){
+    const g=new THREE.Group();
+    g.add(new THREE.Mesh(billGeom, isRed?billRedMat:billGreenMat));
+    const dot=new THREE.Mesh(new THREE.BoxGeometry(0.5,0.75,0.07), billGoldMat);
+    dot.position.set(0,0,0.08); g.add(dot);
+    const top=new THREE.Mesh(new THREE.BoxGeometry(2.5,0.12,0.07), isRed?billRedDarkMat:billGreenDarkMat);
+    top.position.set(0,0.55,0.08); g.add(top);
+    const bot=new THREE.Mesh(new THREE.BoxGeometry(2.5,0.12,0.07), isRed?billRedDarkMat:billGreenDarkMat);
+    bot.position.set(0,-0.55,0.08); g.add(bot);
+    return g;
+  }
+  const flyingBills=[];
+  function spawnFlyingBill(fromX, fromY, fromZ, toX, toY, toZ, isRed, arcHeight){
+    if(flyingBills.length > 70) return;
+    const b = makeBill(isRed);
+    b.position.set(fromX, fromY, fromZ);
+    b.userData={
+      sx:fromX, sy:fromY, sz:fromZ,
+      tx:toX, ty:toY, tz:toZ,
+      life:0, duration: 0.7 + Math.random()*0.25,
+      arc: arcHeight || 8,
+      spinX:(Math.random()-0.5)*10, spinY:(Math.random()-0.5)*10, spinZ:(Math.random()-0.5)*10,
     };
-    sc.add(item);
-    flying.push(item);
+    sc.add(b);
+    flyingBills.push(b);
   }
 
-  // ===== Animation loop =====
-  let t=0, lastSpawn=0;
-  let started=false, inView=false;
+  // ===== Gold pig coin texture (face stamped on a coin) =====
+  function makePigCoinTexture(){
+    const cv=document.createElement('canvas');
+    cv.width=128; cv.height=128;
+    const ctx=cv.getContext('2d');
+    // Outer rim
+    ctx.fillStyle='#a37800';
+    ctx.beginPath(); ctx.arc(64,64,62,0,Math.PI*2); ctx.fill();
+    // Gold body
+    ctx.fillStyle='#ffd23d';
+    ctx.beginPath(); ctx.arc(64,64,57,0,Math.PI*2); ctx.fill();
+    // Inner ring
+    ctx.fillStyle='#ffe48a';
+    ctx.beginPath(); ctx.arc(64,64,46,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='#c79a0c';
+    ctx.lineWidth=2;
+    ctx.stroke();
+    // Pig face — drawn from the favicon SVG (32x32 pixel art) scaled to fit
+    // Origin offset so pig (drawn from 3,2 to 28,25) is roughly centered on (64,64)
+    // Scale 2.4: pig is roughly 24x24 source pixels, target 56x56
+    const S=2.4, OX=64 - 16*S, OY=64 - 14*S;  // shift so 16,14 (pig center) lands on coin center
+    function px(x,y,w,h,color){
+      ctx.fillStyle=color;
+      ctx.fillRect(OX+x*S, OY+y*S, w*S, h*S);
+    }
+    // Ears
+    px(3,2,3,1,'#1da4e9');
+    px(3,3,4,1,'#1da4e9');
+    px(3,4,5,1,'#1da4e9');
+    px(26,2,3,1,'#1da4e9');
+    px(25,3,4,1,'#1da4e9');
+    px(24,4,5,1,'#1da4e9');
+    // Head
+    px(3,5,26,22,'#1da4e9');
+    // Sunglasses band
+    px(4,11,24,4,'#0a0a0a');
+    // Glasses reflections
+    px(6,12,2,1,'#ffffff');
+    px(18,12,2,1,'#ffffff');
+    // Snout
+    px(11,18,10,6,'#1da4e9');
+    px(13,20,2,2,'#0a0a0a');
+    px(17,20,2,2,'#0a0a0a');
+    px(13,25,6,1,'#0a0a0a');
+    const tex=new THREE.CanvasTexture(cv);
+    tex.minFilter=THREE.LinearFilter;
+    tex.magFilter=THREE.LinearFilter;
+    return tex;
+  }
+  const pigCoinTex=makePigCoinTexture();
+  const pigCoinFaceMat=new THREE.MeshLambertMaterial({map:pigCoinTex});
+  const pigCoinRimMat=new THREE.MeshLambertMaterial({color:0xa37800});
+  // Cylinder with the pig texture on flat top + bottom, gold rim on the side
+  const coinGeom=new THREE.CylinderGeometry(1.4, 1.4, 0.25, 24, 1, false);
+  function makePigCoin(){
+    // CylinderGeometry materials order: [side, top, bottom]
+    const c=new THREE.Mesh(coinGeom, [pigCoinRimMat, pigCoinFaceMat, pigCoinFaceMat]);
+    // Default cylinder axis is Y. Orient it so the face points along Z (toward viewer)
+    c.rotation.x = Math.PI/2;
+    // Wrap in a group so the rotation doesn't fight the spin we add later
+    const g=new THREE.Group();
+    g.add(c);
+    return g;
+  }
+  function spawnFlyingCoin(fromX, fromY, fromZ, toX, toY, toZ, arcHeight, track){
+    if(flyingBills.length > 70) return;
+    const co = makePigCoin();
+    co.position.set(fromX, fromY, fromZ);
+    co.userData={
+      sx:fromX, sy:fromY, sz:fromZ,
+      tx:toX, ty:toY, tz:toZ,
+      life:0, duration: 0.7 + Math.random()*0.25,
+      arc: arcHeight || 10,
+      spinX:(Math.random()-0.5)*8, spinY:(Math.random()-0.5)*12, spinZ:(Math.random()-0.5)*6,
+      track: track || null,  // if set, coin's target updates each frame to follow this object
+      targetYOffset: 11,
+    };
+    sc.add(co);
+    flyingBills.push(co);
+  }
+
+  // ===== Cycle state =====
+  let buyTimer = 1.2;           // delay before first buy
+  const BUY_INTERVAL = 2.6;     // seconds between buys
+
+  let t=0;
+  let started=false;
   const clock=new THREE.Clock();
 
   function tick(){
@@ -3552,113 +4261,285 @@ window.addEventListener('resize',()=>{
     t+=dt;
 
     if(started){
-      mascot.position.y=Math.sin(t*1.8)*0.4;
+      // Mascot idle + slight cape sway via rotation
+      mascot.position.y = Math.sin(t*1.5)*0.3;
+      mascot.userData.head.rotation.y = Math.sin(t*0.7)*0.25;
+      // Arms occasionally raise (when bills coming in or going out)
+      mascot.userData.armL.rotation.z = 0.3 - Math.abs(Math.sin(t*1.2))*0.4;
+      mascot.userData.armR.rotation.z = -0.3 + Math.abs(Math.sin(t*1.2 + 0.3))*0.4;
 
-      const armPhaseR=(t*1.4)%1;
-      const armPhaseL=((t*1.4)+0.5)%1;
-      const swingR=Math.sin(armPhaseR*Math.PI*2)*0.5;
-      const swingL=Math.sin(armPhaseL*Math.PI*2)*0.5;
-      mascot.userData.armR.rotation.z=-0.3 + swingR*0.9;
-      mascot.userData.armR.rotation.x=-swingR*0.4;
-      mascot.userData.armL.rotation.z=0.3 - swingL*0.9;
-      mascot.userData.armL.rotation.x=-swingL*0.4;
-      mascot.userData.head.rotation.y=Math.sin(t*0.7)*0.4;
+      // ===== BUY CYCLE =====
+      buyTimer -= dt;
+      if(buyTimer <= 0 && queue.length === NUM_SLOTS){
+        buyTimer = BUY_INTERVAL;
+        const front = queue[0];
+        const fx = front.position.x;
+        const fz = front.position.z;
+        // Red $ sign over the front buyer (money leaving them — they're spending)
+        spawnSprite(fx + 1, 17, fz, '$', true);
+        // Green cash bills fly from buyer → counter (cash is always green)
+        for(let i=0;i<4;i++){
+          setTimeout(() => {
+            if(!started) return;
+            spawnFlyingBill(fx + 2, 13, fz, -10, 7, 0, false, 9);
+          }, i * 90);
+        }
+        // The coin tracks the walker live — its target updates each frame to wherever
+        // they currently are, so it always lands ON them no matter where they walk.
+        setTimeout(() => {
+          if(!started || !coinTarget) return;
+          spawnFlyingCoin(14, 14, 0, coinTarget.position.x, 11, coinTarget.position.z, 9, coinTarget);
+        }, 950);
 
-      // Spawn bills both sides
-      if(t-lastSpawn>0.06){
-        lastSpawn=t;
-        const burstR=Math.random()<0.4?2:1;
-        const burstL=Math.random()<0.4?2:1;
-        for(let i=0;i<burstR;i++)spawnItem('right');
-        for(let i=0;i<burstL;i++)spawnItem('left');
+        // Holders get their 25% tax cut — green cash bills, slightly after the coin starts flying
+        // so the eye reads: pay → buyer walks/gets coin → holders get their share.
+        if(holders.length > 0){
+          setTimeout(() => {
+            if(!started) return;
+            holders.forEach((h) => {
+              spawnSprite(h.position.x, 18, h.position.z, '$', false);
+              spawnFlyingBill(14, 14, 0, h.position.x + (Math.random()-0.5)*2, 11, h.position.z, false, 10);
+              h.userData.receivedTimer = 0.7;
+            });
+          }, 1400);
+        }
+
+        // Find a holder slot for the buyer.
+        let slotIdx = reserveNextSlot();
+        if(slotIdx === -1){
+          // Holder section is full — this buyer blends into the crowd at the back.
+          // They walk to a spot behind the existing holders and quietly stand there.
+          const blendX = 32 + Math.random()*16;     // somewhere within the holder area horizontally
+          const blendZ = -16 + Math.random()*2;     // behind the back row (z=-12 max)
+          const blendRot = -Math.PI/2 + (Math.random()-0.5)*0.6;
+          front.userData.state = 'blending_in';
+          front.userData.walkTargetRot = blendRot;
+          front.userData.waypoints = [
+            {x: blendX, z: 8 + Math.random()*1.5},  // step forward first so they don't clip vault
+            {x: blendX, z: blendZ}                   // then back to the crowd
+          ];
+          front.userData.wpIdx = 0;
+          front.userData.blendRot = blendRot;
+          walkers.push(front);
+        } else {
+          slotOccupied[slotIdx] = true;
+          const slot = HOLDER_SLOTS[slotIdx];
+          // Front buyer becomes a walker. Two-waypoint path: forward toward the camera, then back to the slot
+          // so they don't visually walk through the mascot/vault.
+          front.userData.state = 'walking_to_holder';
+          front.userData.slotIdx = slotIdx;
+          front.userData.walkTargetRot = slot.rot;
+          front.userData.waypoints = [
+            {x: slot.x, z: 8 + Math.random()*1.5},
+            {x: slot.x, z: slot.z}
+          ];
+          front.userData.wpIdx = 0;
+          walkers.push(front);
+        }
+        // Mark this walker as the one currently receiving a coin (the coin tracks them live)
+        coinTarget = front;
+        queue.shift();
+        // Spawn a new buyer behind the back of the line, walking in
+        const fresh = makeBuyer();
+        fresh.position.set(QUEUE_SLOTS[NUM_SLOTS-1] - 14, 0, 0);
+        fresh.userData.targetX = QUEUE_SLOTS[NUM_SLOTS-1];
+        fresh.userData.state = 'queued';
+        sc.add(fresh);
+        queue.push(fresh);
       }
 
-      // Update flying bills/coins
-      for(let i=flying.length-1;i>=0;i--){
-        const f=flying[i];
-        const u=f.userData;
-        u.life+=dt;
-        f.position.x+=u.vx*dt;
-        f.position.y+=u.vy*dt;
-        f.position.z+=u.vz*dt;
-        u.vy-=u.gravity*dt;
-        f.rotation.x+=u.spinX*dt;
-        f.rotation.y+=u.spinY*dt;
-        f.rotation.z+=u.spinZ*dt;
-        if(f.position.y<0.4 || u.life>u.maxLife){
-          sc.remove(f);
-          flying.splice(i,1);
+      // ===== Update walkers (buyers traveling from counter to a holder slot) =====
+      for(let i = walkers.length - 1; i >= 0; i--){
+        const w = walkers[i];
+        const wp = w.userData.waypoints[w.userData.wpIdx];
+        const dx = wp.x - w.position.x;
+        const dz = wp.z - w.position.z;
+        const dist = Math.sqrt(dx*dx + dz*dz);
+        if(dist < 0.9){
+          w.userData.wpIdx++;
+          if(w.userData.wpIdx >= w.userData.waypoints.length){
+            if(w.userData.state === 'blending_in'){
+              // Arrived at the back of the crowd — quietly join the background (no coins, just idle)
+              w.position.x = wp.x;
+              w.position.z = wp.z;
+              w.position.y = 0;
+              w.rotation.y = w.userData.blendRot;
+              w.userData.state = 'background_crowd';
+              w.userData.phase = Math.random()*Math.PI*2;
+              if(w.userData.armL){
+                w.userData.armL.rotation.z = 0.95;
+                w.userData.armR.rotation.z = -0.95;
+              }
+              backgroundCrowd.push(w);
+              walkers.splice(i, 1);
+            } else {
+              // Arrived at the holder slot — become a holder
+              w.position.x = wp.x;
+              w.position.z = wp.z;
+              w.position.y = 0;
+              w.rotation.y = w.userData.walkTargetRot;
+              w.userData.state = 'holder';
+              w.userData.phase = Math.random()*Math.PI*2;
+              // Reset arms to idle pose
+              if(w.userData.armL){
+                w.userData.armL.rotation.z = 0.95;
+                w.userData.armR.rotation.z = -0.95;
+              }
+              holders.push(w);
+              walkers.splice(i, 1);
+            }
+          }
+        } else {
+          const speed = 13;
+          const nx = dx / dist, nz = dz / dist;
+          w.position.x += nx * speed * dt;
+          w.position.z += nz * speed * dt;
+          w.position.y = Math.abs(Math.sin(t*10 + w.userData.phase))*0.4;
+          w.rotation.y = Math.atan2(nx, nz);
+          if(w.userData.armL){
+            w.userData.armL.rotation.z = 0.95 + Math.sin(t*10 + w.userData.phase)*0.35;
+            w.userData.armR.rotation.z = -0.95 - Math.sin(t*10 + w.userData.phase + 0.3)*0.35;
+          }
         }
       }
 
-      // People bob + wiggle + occasional "+$X" sprite
-      people.forEach(p=>{
-        const ph=p.userData.phase;
-        p.position.y=Math.abs(Math.sin(t*3+ph))*0.9;
-        if(p.userData.armL){
-          p.userData.armL.rotation.z=0.95+Math.sin(t*4.5+ph)*0.25;
-          p.userData.armR.rotation.z=-0.95-Math.sin(t*4.5+ph+1)*0.25;
-        }
-        if(p.userData.head){
-          p.userData.head.rotation.z=Math.sin(t*3.5+ph)*0.1;
-        }
-        // Spawn money text periodically per person
-        p.userData.lastMoneyText -= dt;
-        if(p.userData.lastMoneyText <= 0){
-          spawnMoneyText(p);
-          p.userData.lastMoneyText = 0.8 + Math.random()*1.5; // every 0.8-2.3s per person
+      // Update queue positions (shift forward, with walk bob while moving)
+      queue.forEach((b, i) => {
+        const target = QUEUE_SLOTS[i];
+        b.userData.targetX = target;
+        const dx = target - b.position.x;
+        if(Math.abs(dx) > 0.05){
+          const moveSpeed = 12;
+          b.position.x += Math.sign(dx) * Math.min(Math.abs(dx), moveSpeed * dt);
+          b.position.y = Math.abs(Math.sin(t*10 + b.userData.phase))*0.4;
+          // Swing arms while walking
+          if(b.userData.armL){
+            b.userData.armL.rotation.z = 0.95 + Math.sin(t*10 + b.userData.phase)*0.35;
+            b.userData.armR.rotation.z = -0.95 - Math.sin(t*10 + b.userData.phase + 0.3)*0.35;
+          }
+        } else {
+          // idle bob + small arm shuffle
+          b.position.y = Math.sin(t*2.5 + b.userData.phase)*0.15;
+          if(b.userData.armL){
+            b.userData.armL.rotation.z = 0.95 + Math.sin(t*1.5 + b.userData.phase)*0.06;
+            b.userData.armR.rotation.z = -0.95 - Math.sin(t*1.5 + b.userData.phase + 1)*0.06;
+          }
         }
       });
 
-      // Update "+$X" sprites — rise and fade
+      // ===== Holders idle bob + cheer reaction when receiving =====
+      holders.forEach(h => {
+        const ph=h.userData.phase;
+        if(h.userData.receivedTimer && h.userData.receivedTimer > 0){
+          // Reaction cheer: arms up, jump
+          h.userData.receivedTimer -= dt;
+          const progress = 1 - (h.userData.receivedTimer / 0.7);
+          const cheer = Math.sin(progress * Math.PI);  // 0→1→0
+          h.position.y = Math.abs(Math.sin(t*2.5 + ph))*0.4 + cheer * 1.6;
+          if(h.userData.armL){
+            h.userData.armL.rotation.z = 0.95 - cheer * 1.85;  // straight up
+            h.userData.armR.rotation.z = -0.95 + cheer * 1.85;
+          }
+          if(h.userData.head){
+            h.userData.head.rotation.z = Math.sin(t*3 + ph)*0.08;
+          }
+        } else {
+          // Idle bob
+          h.position.y = Math.abs(Math.sin(t*2.5 + ph))*0.5;
+          if(h.userData.armL){
+            h.userData.armL.rotation.z = 0.95 + Math.sin(t*4 + ph)*0.2;
+            h.userData.armR.rotation.z = -0.95 - Math.sin(t*4 + ph + 1)*0.2;
+          }
+          if(h.userData.head){
+            h.userData.head.rotation.z = Math.sin(t*3 + ph)*0.08;
+          }
+        }
+      });
+
+      // ===== Background crowd idle bob (extras who blended in — no payouts) =====
+      backgroundCrowd.forEach(p => {
+        const ph=p.userData.phase;
+        p.position.y = Math.abs(Math.sin(t*2.2 + ph))*0.35;
+        if(p.userData.armL){
+          p.userData.armL.rotation.z = 0.95 + Math.sin(t*3.5 + ph)*0.12;
+          p.userData.armR.rotation.z = -0.95 - Math.sin(t*3.5 + ph + 1)*0.12;
+        }
+      });
+
+      // Update flying bills (parabolic arc)
+      for(let i=flyingBills.length-1;i>=0;i--){
+        const b=flyingBills[i];
+        const u=b.userData;
+        u.life += dt;
+        const p = u.life / u.duration;
+        if(p >= 1){
+          sc.remove(b);
+          flyingBills.splice(i,1);
+          continue;
+        }
+        // If this projectile tracks a target (e.g. coin tracking the buyer who's walking away),
+        // refresh its destination each frame so it lands on them no matter where they are.
+        if(u.track){
+          u.tx = u.track.position.x;
+          u.ty = (u.targetYOffset || 11);
+          u.tz = u.track.position.z;
+        }
+        const lx = u.sx + (u.tx - u.sx)*p;
+        const ly = u.sy + (u.ty - u.sy)*p;
+        const lz = u.sz + (u.tz - u.sz)*p;
+        const arc = u.arc * Math.sin(p * Math.PI);
+        b.position.set(lx, ly + arc, lz);
+        b.rotation.x += u.spinX*dt;
+        b.rotation.y += u.spinY*dt;
+        b.rotation.z += u.spinZ*dt;
+      }
+
+      // Update sprites
       for(let i=sprites.length-1;i>=0;i--){
         const sp=sprites[i];
         const u=sp.userData;
         u.life += dt;
         sp.position.y += u.vy*dt;
-        // Fade out in last 40% of life
         const fadeStart = u.maxLife * 0.6;
         if(u.life > fadeStart){
-          const fade = 1 - (u.life - fadeStart) / (u.maxLife - fadeStart);
+          const fade = 1 - (u.life - fadeStart)/(u.maxLife - fadeStart);
           sp.material.opacity = Math.max(0, fade);
         }
         if(u.life > u.maxLife){
           sc.remove(sp);
-          if(sp.material.map)sp.material.map.dispose();
+          if(sp.material.map) sp.material.map.dispose();
           sp.material.dispose();
           sprites.splice(i,1);
         }
       }
     }
 
-    r.render(sc,cam);
+    r.render(sc, cam);
     requestAnimationFrame(tick);
   }
   tick();
 
-  const section=document.getElementById('distributorSection');
+  const section=document.getElementById('celebrationSection');
   const io=new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
-      inView=e.isIntersecting;
-      if(e.isIntersecting && !started)started=true;
+      if(e.isIntersecting && !started) started=true;
     });
   },{threshold:0.05});
   io.observe(section);
 
   requestAnimationFrame(()=>{
     const rect=section.getBoundingClientRect();
-    if(rect.top<window.innerHeight && rect.bottom>0){
-      started=true;inView=true;
-    }
+    if(rect.top<window.innerHeight && rect.bottom>0) started=true;
   });
 
   window.addEventListener('resize',()=>{
     const W=canvas.clientWidth, H=canvas.clientHeight;
     if(W===0||H===0)return;
-    cam.aspect=W/H;cam.updateProjectionMatrix();r.setSize(W,H,false);
+    cam.aspect=W/H; cam.updateProjectionMatrix(); r.setSize(W,H,false);
   });
 })();
 </script>
+
 
 <script>
 // === MEME COIN LEADERBOARD — fetches data from local meme-coins.json ===
@@ -3719,6 +4600,814 @@ window.addEventListener('resize',()=>{
     .catch(err=>{
       body.innerHTML='<div class="lb-loading">Could not load coin data. Run the update script to populate <code>meme-coins.json</code>.</div>';
     });
+})();
+</script>
+
+<script>
+// === Platform phone — live-ticking USDT wallet (replaces removed wallet section ticker) ===
+(function(){
+  const usdtEl=document.getElementById('mkWalletUsdt');
+  const usdtValEl=document.getElementById('mkWalletUsdtVal');
+  const totalEl=document.getElementById('mkWalletTotal');
+  const gainEl=document.getElementById('mkWalletGain');
+  const feedEl=document.getElementById('mkWalletFeed');
+  if(!usdtEl||!feedEl)return;
+  let usdt=2647.32, dailyGain=12.47;
+  const sccVal=200.00;
+  function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function pushRow(amt){
+    const row=document.createElement('div');
+    row.className='mk-wallet-feed-row';
+    row.innerHTML='<span class="label">Reward</span><span class="amt">+$'+fmt(amt)+'</span><span class="time">just now</span>';
+    feedEl.insertBefore(row, feedEl.firstChild);
+    while(feedEl.children.length>4)feedEl.removeChild(feedEl.lastChild);
+    Array.from(feedEl.children).forEach((r,i)=>{
+      const t=r.querySelector('.time');if(!t)return;
+      if(i===0)t.textContent='just now';
+      else if(i===1)t.textContent='15s ago';
+      else if(i===2)t.textContent='32s ago';
+      else t.textContent='1m ago';
+    });
+  }
+  pushRow(0.42);pushRow(0.18);pushRow(0.71);
+  setInterval(()=>{
+    const r=+(0.01+Math.random()*0.49).toFixed(2);
+    usdt+=r; dailyGain+=r;
+    usdtEl.textContent=fmt(usdt);
+    if(usdtValEl)usdtValEl.textContent='$'+fmt(usdt);
+    if(totalEl)totalEl.textContent='$'+fmt(usdt+sccVal);
+    if(gainEl)gainEl.textContent=fmt(dailyGain);
+    pushRow(r);
+    // Flash the highlight on the USDT row
+    const hot=document.querySelector('.mk-wallet-hot');
+    if(hot&&hot.animate){
+      hot.animate(
+        [{background:'linear-gradient(90deg, rgba(35,215,107,0.32), rgba(35,215,107,0.04))'},
+         {background:'linear-gradient(90deg, rgba(35,215,107,0.10), rgba(35,215,107,0))'}],
+        {duration:600, easing:'ease-out'}
+      );
+    }
+  }, 1500);
+})();
+</script>
+
+<script>
+(function(){
+const M=document.getElementById('heroScene');
+if(!M||!window.THREE)return;
+function init(){
+  const Wd=M.clientWidth, Hd=M.clientHeight;
+  if(Wd===0||Hd===0){requestAnimationFrame(init);return;}
+  run(Wd, Hd);
+}
+function run(Wd, Hd){
+const sc=new THREE.Scene();
+sc.background=new THREE.Color(0xffffff);
+
+const cam=new THREE.PerspectiveCamera(38,Wd/Hd,0.1,400);
+cam.position.set(0,16,80);
+cam.lookAt(0,8,0);
+
+const r=new THREE.WebGLRenderer({canvas:M,antialias:true,alpha:true});
+r.setPixelRatio(Math.min(window.devicePixelRatio,2));
+r.setSize(Wd,Hd,false);
+r.shadowMap.enabled=true;
+r.shadowMap.type=THREE.PCFSoftShadowMap;
+
+sc.add(new THREE.AmbientLight(0xffffff,0.7));
+const k=new THREE.DirectionalLight(0xffffff,0.9);
+k.position.set(15,45,20);k.castShadow=true;
+k.shadow.mapSize.set(2048,2048);
+const sh=k.shadow.camera;
+sh.left=-50;sh.right=50;sh.top=50;sh.bottom=-10;sh.near=0.5;sh.far=140;
+sc.add(k);
+const fl=new THREE.DirectionalLight(0xffe6cc,0.3);fl.position.set(-15,12,-8);sc.add(fl);
+const rim=new THREE.DirectionalLight(0xfff0f0,0.2);rim.position.set(0,8,-25);sc.add(rim);
+
+const ground=new THREE.Mesh(
+  new THREE.PlaneGeometry(200,200),
+  new THREE.ShadowMaterial({opacity:0.18})
+);
+ground.rotation.x=-Math.PI/2;ground.position.y=-0.5;ground.receiveShadow=true;
+sc.add(ground);
+
+const dummy=new THREE.Object3D();
+
+function makePig(){
+  const B=0x1da4e9,RD=0xd32f2f,DRD=0x9a1a1a,GD=0xffd23d,K=0x0a0a0a,W=0xffffff,PK=0xffb19f;
+  const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
+  const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
+
+  const headMods=new Map();
+  const setMod=(x,y,z,c)=>headMods.set(x+','+y+','+z,c);
+  for(let dx=0;dx<15;dx++)for(let dy=0;dy<3;dy++)setMod(-9+dx,49+dy,9,K);
+  setMod(-1,50,9,K);setMod(0,50,9,K);
+  setMod(-7,51,9,W);setMod(-6,51,9,W);setMod(5,51,9,W);setMod(6,51,9,W);
+  for(let x=-2;x<=2;x++)setMod(x,40,9,K);
+  setMod(3,41,9,K);setMod(4,42,9,K);
+
+  for(let x=-11;x<=10;x++)for(let y=36;y<=55;y++)for(let z=-10;z<=9;z++){
+    if(y===36 && (x<-8||x>7||z<-8||z>7))continue;
+    if(y===37 && ((x<-10||x>9)&&(z<-10||z>9)))continue;
+    add(G.head,x,y,z,headMods.get(x+','+y+','+z)||B);
+  }
+  for(let x=-4;x<=3;x++)for(let y=42;y<=47;y++)for(let z=10;z<=15;z++){
+    let c=B;
+    if(z===15){
+      if((x===-3||x===-2)&&(y===44||y===45))c=K;
+      if((x===1||x===2)&&(y===44||y===45))c=K;
+    }
+    add(G.head,x,y,z,c);
+  }
+  const ear=(bx,by,bz,mir)=>{
+    for(let dy=0;dy<6;dy++){
+      const w=6-dy;
+      for(let dx=0;dx<w;dx++){
+        const x=mir?(bx-dx):(bx+dx);
+        for(let dz=0;dz<3;dz++)add(G.head,x,by+dy,bz+dz,B);
+      }
+    }
+  };
+  ear(-10,56,-1,false);
+  ear(10,56,-1,true);
+
+  const dollar=[
+    "....#....",
+    ".#######.",
+    "##..#..##",
+    "##..#....",
+    "##..#....",
+    ".#######.",
+    "....#..##",
+    "....#..##",
+    "##..#..##",
+    ".#######.",
+    "....#...."
+  ];
+  const dollarMods=new Map();
+  for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
+    if(dollar[i][j]==='#'){
+      dollarMods.set((-4+j)+','+(18+(dollar.length-1-i))+',7',GD);
+    }
+  }
+
+  for(let x=-10;x<=9;x++)for(let y=10;y<=35;y++)for(let z=-8;z<=7;z++){
+    if(y===34 && (x<-8||x>7))continue;
+    if(y===35 && (x<-5||x>4||z<-5||z>4))continue;
+    add(G.body,x,y,z,dollarMods.get(x+','+y+','+z)||B);
+  }
+  for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
+    if(dollar[i][j]==='#') add(G.body,-4+j,18+(dollar.length-1-i),8,GD);
+  }
+
+  for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
+  for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+  for(let x=-15;x<=-12;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,PK);
+  for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
+  for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
+  for(let x=10;x<=13;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,PK);
+
+  for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
+  for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
+  for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
+  for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
+
+  for(let x=-10;x<=9;x++){
+    if(x>=-3 && x<=2)continue;
+    for(let z=-9;z<=9;z++){
+      add(G.cape,x,32,z,RD);
+      add(G.cape,x,33,z,RD);
+    }
+  }
+  for(let x=-10;x<=9;x++){
+    if(x>=-3 && x<=2)continue;
+    add(G.cape,x,31,9,DRD);
+  }
+
+  for(let y=8;y<=34;y++){
+    const t=(34-y)/26;
+    const halfW=Math.round(11+t*5);
+    for(let x=-halfW;x<=halfW-1;x++){
+      for(let dz=0;dz<3;dz++){
+        const z=-9-dz;
+        const c=(dz===2)?RD:(dz===0?DRD:RD);
+        add(G.cape,x,y,z,c);
+      }
+    }
+  }
+
+  const buildGroup=(buckets)=>{
+    const occupied=new Set();
+    buckets.forEach(positions=>{
+      positions.forEach(p=>occupied.add(p[0]+','+p[1]+','+p[2]));
+    });
+    const FACES=[
+      {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+      {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+      {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+      {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+      {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+    ];
+    const g=new THREE.Group();
+    buckets.forEach((positions,color)=>{
+      const verts=[],norms=[],idx=[];
+      let vi=0;
+      positions.forEach(p=>{
+        const [px,py,pz]=p;
+        for(const f of FACES){
+          const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+          if(occupied.has(nk))continue;
+          for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
+          idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3);
+          vi+=4;
+        }
+      });
+      if(!verts.length)return;
+      const geo=new THREE.BufferGeometry();
+      geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+      geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+      geo.setIndex(idx);
+      const isGold=color===GD;
+      const mat=new THREE.MeshStandardMaterial({color,roughness:isGold?0.5:0.55,metalness:isGold?0.15:0,flatShading:true});
+      const mesh=new THREE.Mesh(geo,mat);
+      mesh.castShadow=true;mesh.receiveShadow=true;
+      g.add(mesh);
+    });
+    return g;
+  };
+  const headM=buildGroup(G.head);
+  const bodyM=buildGroup(G.body);
+  const lArmM=buildGroup(G.lArm);
+  const rArmM=buildGroup(G.rArm);
+  const lLegM=buildGroup(G.lLeg);
+  const rLegM=buildGroup(G.rLeg);
+  const capeM=buildGroup(G.cape);
+
+  const headPivot=new THREE.Group();
+  headPivot.position.set(0,36,0);
+  headM.position.set(0,-36,0);
+  headPivot.add(headM);
+
+  const lArmPivot=new THREE.Group();
+  lArmPivot.position.set(-13.5,29,0);
+  lArmM.position.set(13.5,-29,0);
+  lArmPivot.add(lArmM);
+
+  const rArmPivot=new THREE.Group();
+  rArmPivot.position.set(11.5,29,0);
+  rArmM.position.set(-11.5,-29,0);
+  rArmPivot.add(rArmM);
+
+  const capePivot=new THREE.Group();
+  capePivot.position.set(0,34,-9);
+  capeM.position.set(0,-34,9);
+  capePivot.add(capeM);
+
+  const character=new THREE.Group();
+  character.add(bodyM);
+  character.add(headPivot);
+  character.add(lArmPivot);
+  character.add(rArmPivot);
+  character.add(lLegM);
+  character.add(rLegM);
+  character.add(capePivot);
+  character.scale.set(0.5,0.5,0.5);
+  character.userData={headPivot,lArmPivot,rArmPivot,capePivot};
+  return character;
+}
+
+const pig=makePig();
+pig.scale.set(0.35,0.35,0.35);
+sc.add(pig);
+
+// ============================================================
+// PUSHER (bulldozer-style) — sleek modern, smooth shapes, brand colors
+// Has a big curved blade on the front that pushes the pile
+// ============================================================
+function makePusher(){
+  const g=new THREE.Group();
+  const bodyMat=new THREE.MeshStandardMaterial({color:0x1da4e9,roughness:0.45,metalness:0.35});
+  const darkMat=new THREE.MeshStandardMaterial({color:0x1a1a1a,roughness:0.6,metalness:0.2});
+  const goldMat=new THREE.MeshStandardMaterial({color:0xffd23d,roughness:0.4,metalness:0.5});
+  const greyMat=new THREE.MeshStandardMaterial({color:0x9aa3ad,roughness:0.4,metalness:0.6});
+  const glassMat=new THREE.MeshStandardMaterial({color:0xb8e0f5,roughness:0.2,metalness:0.1,transparent:true,opacity:0.55});
+
+  // Main chassis
+  const chassisGeo=new THREE.BoxGeometry(7,3.2,10);
+  const chassis=new THREE.Mesh(chassisGeo,bodyMat);
+  chassis.position.set(0,2.2,0);
+  chassis.castShadow=true;chassis.receiveShadow=true;
+  g.add(chassis);
+
+  // Gold stripe along the body
+  const stripe=new THREE.Mesh(new THREE.BoxGeometry(7.05,0.5,10.05),goldMat);
+  stripe.position.set(0,2.0,0);
+  g.add(stripe);
+
+  // Operator cabin
+  const cabin=new THREE.Mesh(new THREE.BoxGeometry(5.5,3.5,4.5),bodyMat);
+  cabin.position.set(0,5.6,-1.5);
+  cabin.castShadow=true;
+  g.add(cabin);
+
+  // Roof
+  const roof=new THREE.Mesh(new THREE.BoxGeometry(6,0.4,5),darkMat);
+  roof.position.set(0,7.5,-1.5);g.add(roof);
+
+  // Windshield
+  const windshield=new THREE.Mesh(new THREE.BoxGeometry(5,2.5,0.2),glassMat);
+  windshield.position.set(0,5.8,0.7);
+  windshield.rotation.x=-0.2;
+  g.add(windshield);
+  // Side windows
+  const sideW1=new THREE.Mesh(new THREE.BoxGeometry(0.2,2.2,3),glassMat);
+  sideW1.position.set(-2.7,5.8,-1.5);g.add(sideW1);
+  const sideW2=new THREE.Mesh(new THREE.BoxGeometry(0.2,2.2,3),glassMat);
+  sideW2.position.set(2.7,5.8,-1.5);g.add(sideW2);
+
+  // BLADE — big curved pusher blade on the front
+  const blade=new THREE.Group();
+  // Main blade panel (tall, wide, slightly tilted forward at top for a curved-look)
+  const bladeMain=new THREE.Mesh(new THREE.BoxGeometry(10,5,0.6),goldMat);
+  bladeMain.position.set(0,2.5,0);
+  bladeMain.castShadow=true;blade.add(bladeMain);
+  // Bottom scoop lip (angled slightly inward at bottom)
+  const bladeLip=new THREE.Mesh(new THREE.BoxGeometry(10,1.2,1.5),goldMat);
+  bladeLip.position.set(0,0.4,0.6);
+  bladeLip.rotation.x=-0.4;
+  blade.add(bladeLip);
+  // Side wings (slightly angled toward the front to contain the pile)
+  const wingL=new THREE.Mesh(new THREE.BoxGeometry(0.5,5,2),goldMat);
+  wingL.position.set(-4.8,2.5,0.9);
+  wingL.rotation.y=0.4;
+  blade.add(wingL);
+  const wingR=new THREE.Mesh(new THREE.BoxGeometry(0.5,5,2),goldMat);
+  wingR.position.set(4.8,2.5,0.9);
+  wingR.rotation.y=-0.4;
+  blade.add(wingR);
+  // Dark trim on top edge
+  const trim=new THREE.Mesh(new THREE.BoxGeometry(10.2,0.5,0.8),darkMat);
+  trim.position.set(0,5,0);
+  blade.add(trim);
+  // Connect to chassis
+  const arm1=new THREE.Mesh(new THREE.BoxGeometry(0.6,0.6,3),greyMat);
+  arm1.position.set(-3,2.5,4.5);
+  blade.add(arm1);
+  const arm2=new THREE.Mesh(new THREE.BoxGeometry(0.6,0.6,3),greyMat);
+  arm2.position.set(3,2.5,4.5);
+  blade.add(arm2);
+  blade.position.set(0,0,6.5);  // in front of chassis
+  g.add(blade);
+
+  // Wheels — 6 black tires (3 per side) for a more realistic look
+  function wheel(x,z){
+    const w=new THREE.Mesh(new THREE.CylinderGeometry(1.2,1.2,0.9,16),darkMat);
+    w.rotation.z=Math.PI/2;
+    w.position.set(x,1,z);
+    w.castShadow=true;
+    g.add(w);
+    const hub=new THREE.Mesh(new THREE.CylinderGeometry(0.5,0.5,1.0,12),goldMat);
+    hub.rotation.z=Math.PI/2;
+    hub.position.set(x,1,z);
+    g.add(hub);
+  }
+  wheel(-3.8,-3.5); wheel(3.8,-3.5);
+  wheel(-3.8,0); wheel(3.8,0);
+  wheel(-3.8,3.5); wheel(3.8,3.5);
+
+  // Headlights
+  const headL=new THREE.Mesh(new THREE.CircleGeometry(0.5,16),new THREE.MeshStandardMaterial({color:0xfff0c0,emissive:0xfff0c0,emissiveIntensity:0.5}));
+  headL.position.set(-1.8,3.5,5.01);g.add(headL);
+  const headR=new THREE.Mesh(new THREE.CircleGeometry(0.5,16),new THREE.MeshStandardMaterial({color:0xfff0c0,emissive:0xfff0c0,emissiveIntensity:0.5}));
+  headR.position.set(1.8,3.5,5.01);g.add(headR);
+
+  // Exhaust pipe (top of cabin, vertical)
+  const pipe=new THREE.Mesh(new THREE.CylinderGeometry(0.3,0.3,2,12),darkMat);
+  pipe.position.set(2.5,8.5,-1.5);g.add(pipe);
+
+  return g;
+}
+const pusher=makePusher();
+pusher.scale.set(0.55,0.55,0.55);
+pusher.visible=false;
+sc.add(pusher);
+
+// ============================================================
+// CASH GEOMETRY (existing — bills + simple coin geom)
+// ============================================================
+const cv=[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5],[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5],[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5],[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5],[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5],[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]];
+const cn=[[1,0,0],[1,0,0],[1,0,0],[1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[-1,0,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,-1,0],[0,0,1],[0,0,1],[0,0,1],[0,0,1],[0,0,-1],[0,0,-1],[0,0,-1],[0,0,-1]];
+const ci=[0,1,2,0,2,3,4,5,6,4,6,7,8,9,10,8,10,11,12,13,14,12,14,15,16,17,18,16,18,19,20,21,22,20,22,23];
+
+function buildVoxelGeo(voxels){
+  const totV=voxels.length*24;
+  const positions=new Float32Array(totV*3),normals=new Float32Array(totV*3),colors=new Float32Array(totV*3);
+  const indices=new Uint32Array(voxels.length*36);
+  let vi=0,ii=0;
+  for(const v of voxels){
+    const baseV=vi;
+    for(let i=0;i<24;i++){
+      positions[(vi+i)*3]=cv[i][0]+v[0];
+      positions[(vi+i)*3+1]=cv[i][1]+v[1];
+      positions[(vi+i)*3+2]=cv[i][2]+v[2];
+      normals[(vi+i)*3]=cn[i][0];
+      normals[(vi+i)*3+1]=cn[i][1];
+      normals[(vi+i)*3+2]=cn[i][2];
+      colors[(vi+i)*3]=v[3];
+      colors[(vi+i)*3+1]=v[4];
+      colors[(vi+i)*3+2]=v[5];
+    }
+    for(let i=0;i<36;i++)indices[ii+i]=ci[i]+baseV;
+    vi+=24;ii+=36;
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  geo.setAttribute('normal',new THREE.BufferAttribute(normals,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  geo.setIndex(new THREE.BufferAttribute(indices,1));
+  return geo;
+}
+
+function buildBillGeometry(){
+  const voxels=[];
+  const gL=[0x2c/255,0xb8/255,0x4d/255];
+  const gD=[0x18/255,0x70/255,0x32/255];
+  const yel=[0xff/255,0xd2/255,0x3d/255];
+  const dpat=[
+    [0,0,0,1,0,0,0],
+    [0,1,1,1,1,1,0],
+    [1,1,0,1,0,0,0],
+    [0,1,1,1,1,0,0],
+    [0,0,1,1,1,1,0],
+    [0,0,0,1,0,1,1],
+    [0,0,0,1,0,1,1],
+    [0,1,1,1,1,1,0],
+    [0,0,0,1,0,0,0]
+  ];
+  const PW=7, PD=9;
+  for(let x=-6;x<=6;x++){
+    for(let z=-4;z<=4;z++){
+      const onEdge=(x===-6||x===6||z===-4||z===4);
+      for(let y=0;y<=2;y++){
+        let color;
+        if(onEdge){color=gD;}
+        else{color=(y===2)?gL:gD;}
+        voxels.push([x,y,z,...color]);
+      }
+    }
+  }
+  const sx=-Math.floor(PW/2);
+  const sz=-Math.floor(PD/2);
+  for(let i=0;i<PD;i++){
+    for(let j=0;j<PW;j++){
+      if(dpat[i][j]){voxels.push([sx+j,3,sz+i,...yel]);}
+    }
+  }
+  return buildVoxelGeo(voxels);
+}
+
+const billGeo=buildBillGeometry();
+const billMat=new THREE.MeshStandardMaterial({
+  vertexColors:true,
+  roughness:0.6,
+  metalness:0.05,
+  flatShading:true
+});
+const coinGeo=new THREE.CylinderGeometry(3,3,0.5,16);
+const coinMat=new THREE.MeshStandardMaterial({color:0xffd23d,roughness:0.4,metalness:0.5,flatShading:true});
+
+// ============================================================
+// PILE SYSTEM — ring of randomized stack zones around pig
+// ============================================================
+// Pig home position (declared early so pile zones can be offset to it)
+const PIG_HOME_Y=5;
+const PIG_HOME_X=22;
+const PIG_HOME_Z=0;
+
+const RING_COUNT=24;
+const ZONES=[];
+for(let i=0;i<RING_COUNT;i++){
+  const ang=(i/RING_COUNT)*Math.PI*2 + (Math.random()-0.5)*0.2;
+  const rad=4 + Math.random()*6;
+  ZONES.push({
+    x: PIG_HOME_X + Math.cos(ang)*rad,
+    z: Math.sin(ang)*rad,
+    h: 0,
+    baseRy: Math.random()*Math.PI*2,
+    maxH: 1.5 + Math.random()*1.5
+  });
+}
+
+const NUM_BILLS=180;
+const NUM_COINS=40;
+const billsMesh=new THREE.InstancedMesh(billGeo,billMat,NUM_BILLS);
+const coinsMesh=new THREE.InstancedMesh(coinGeo,coinMat,NUM_COINS);
+billsMesh.castShadow=true;billsMesh.receiveShadow=true;
+coinsMesh.castShadow=true;coinsMesh.receiveShadow=true;
+sc.add(billsMesh);sc.add(coinsMesh);
+
+const SCALE=0.18;
+const COIN_SCALE=0.32;
+const BILL_THICKNESS=0.7;
+
+// Particle pool: each particle can be 'bill' or 'coin'
+const particles=[];
+for(let i=0;i<NUM_BILLS;i++){
+  particles.push({kind:'bill',active:false,settled:false,zone:null,x:0,y:-100,z:0,vx:0,vy:0,vz:0,rx:0,ry:0,rz:0,rxs:0,rys:0,rzs:0,gone:false});
+}
+for(let i=0;i<NUM_COINS;i++){
+  particles.push({kind:'coin',active:false,settled:false,zone:null,x:0,y:-100,z:0,vx:0,vy:0,vz:0,rx:0,ry:0,rz:0,rxs:0,rys:0,rzs:0,gone:false});
+}
+
+function hideInstance(mesh, i){
+  dummy.position.set(0,-1000,0);dummy.scale.set(0,0,0);
+  dummy.updateMatrix();
+  mesh.setMatrixAt(i,dummy.matrix);
+}
+
+function spawnParticle(p){
+  // Pick a random ZONE not yet at max height
+  const candidates=[];
+  for(const z of ZONES){if(z.h<z.maxH)candidates.push(z);}
+  if(candidates.length===0){p.active=false;return;}
+  const zone=candidates[Math.floor(Math.random()*candidates.length)];
+  p.zone=zone;
+  p.active=true;p.settled=false;p.gone=false;
+  // Falls from high up, with horizontal drift and spin
+  const ox=(Math.random()-0.5)*1.0;
+  const oz=(Math.random()-0.5)*1.0;
+  p.x=zone.x+ox + (Math.random()-0.5)*2;  // drift offset
+  p.y=22+Math.random()*4;
+  p.z=zone.z+oz + (Math.random()-0.5)*2;
+  // Slight horizontal drift toward the zone
+  p.vx=((zone.x+ox)-p.x)*0.04;
+  p.vz=((zone.z+oz)-p.z)*0.04;
+  p.vy=-0.05-Math.random()*0.04;
+  p.rx=Math.random()*Math.PI*2;
+  p.ry=Math.random()*Math.PI*2;
+  p.rz=Math.random()*Math.PI*2;
+  p.rxs=(Math.random()-0.5)*0.10;
+  p.rys=(Math.random()-0.5)*0.08;
+  p.rzs=(Math.random()-0.5)*0.10;
+}
+
+function resetScene(){
+  // Reset all particles + zones
+  for(const p of particles){p.active=false;p.settled=false;p.gone=false;p.y=-100;}
+  ZONES.forEach(z=>z.h=0);
+  for(let i=0;i<NUM_BILLS;i++)hideInstance(billsMesh,i);
+  for(let i=0;i<NUM_COINS;i++)hideInstance(coinsMesh,i);
+  billsMesh.instanceMatrix.needsUpdate=true;
+  coinsMesh.instanceMatrix.needsUpdate=true;
+  pusher.visible=false;
+}
+resetScene();
+
+// ============================================================
+// PHASE MACHINE — 31 second cinematic loop
+// ============================================================
+// Phase 1: SUPERHERO LAND   t=0 → 3s    (pig descends from sky)
+// Phase 2: CASH STORM       t=3 → 14s   (cash rains in, piles build)
+// Phase 3: TRIUMPH HOLD     t=14 → 22s  (cash stops, pig poses)
+// Phase 4: FLY AWAY         t=22 → 26s  (raise arm, pause, then launch up)
+// Phase 5: PUSHER IN+OUT    t=26 → 30s  (pusher drives in, shoves pile, exits)
+// Phase 6: EMPTY BEAT       t=30 → 31s  (brief empty pause, then loop)
+const PHASE_TIMES=[3, 14, 22, 26, 30, 31];
+
+const SPAWN_RATE_BILLS=20;  // bills/sec
+const SPAWN_RATE_COINS=4;   // coins/sec
+
+let spawnedBills=0;
+let spawnedCoins=0;
+let pilePickedUp=false;  // whether pusher blade has reached the pile
+
+const clk=new THREE.Clock();
+let lastFrameT=0;
+let cycleStart=0;
+
+function easeOutCubic(t){return 1-Math.pow(1-t,3);}
+function easeInCubic(t){return t*t*t;}
+function easeInOutCubic(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+
+function tick(){
+  const now=clk.getElapsedTime();
+  const dt=Math.min(0.06, now-lastFrameT);
+  lastFrameT=now;
+  const t=now-cycleStart;
+
+  // Determine phase
+  let phase=0;
+  for(let i=0;i<PHASE_TIMES.length;i++){
+    if(t<PHASE_TIMES[i]){phase=i;break;}
+    phase=i+1;
+  }
+
+  // ========================================================
+  // PHASE 1: SUPERHERO LAND (0 → 3s) — drops from the sky
+  // ========================================================
+  if(phase===0){
+    const p=t/3.0;
+    const e=easeOutCubic(p);
+    pig.position.set(PIG_HOME_X, 90 - 85*e, PIG_HOME_Z);
+    pig.rotation.set(0,0,0);
+    pig.scale.setScalar(0.35);
+    // Superhero pose: hands on hips, chest out, head up
+    pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
+    pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
+    pig.userData.headPivot.rotation.set(0.15, 0, 0);
+    pig.userData.capePivot.rotation.set(0, 0, 0);
+  }
+  // ========================================================
+  // PHASE 2: CASH STORM (3 → 14s) — pig holds still, cash rains
+  // ========================================================
+  else if(phase===1){
+    const pt=t-3.0;
+    // Static hero pose — no bobbing
+    pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
+    pig.rotation.set(0,0,0);
+    pig.scale.setScalar(0.35);
+    pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
+    pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
+    pig.userData.headPivot.rotation.set(0.15, 0, 0);
+    pig.userData.capePivot.rotation.set(0, 0, 0);
+
+    // Spawn bills + coins at controlled rates
+    const targetBills=Math.min(NUM_BILLS, Math.floor(pt*SPAWN_RATE_BILLS));
+    while(spawnedBills<targetBills){
+      for(const p of particles){
+        if(p.kind==='bill' && !p.active && !p.gone){spawnParticle(p);break;}
+      }
+      spawnedBills++;
+    }
+    const targetCoins=Math.min(NUM_COINS, Math.floor(pt*SPAWN_RATE_COINS));
+    while(spawnedCoins<targetCoins){
+      for(const p of particles){
+        if(p.kind==='coin' && !p.active && !p.gone){spawnParticle(p);break;}
+      }
+      spawnedCoins++;
+    }
+  }
+  // ========================================================
+  // PHASE 3: TRIUMPH HOLD (14 → 22s) — pig stands still over the pile
+  // ========================================================
+  else if(phase===2){
+    pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
+    pig.rotation.set(0,0,0);
+    pig.scale.setScalar(0.35);
+    pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
+    pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
+    pig.userData.headPivot.rotation.set(0.15, 0, 0);
+    pig.userData.capePivot.rotation.set(0, 0, 0);
+  }
+  // ========================================================
+  // PHASE 4: FLY AWAY (22 → 26s) — fast arm raise, hover, then launch
+  // Sub-timing: 0 → 0.5s = arm raise (snappy)
+  //             0.5 → 1.5s = hover with arm up (1s hold)
+  //             1.5 → 4.0s = launch upward (2.5s)
+  // ========================================================
+  else if(phase===3){
+    const pt=t-22.0;  // 0 → 4
+    pig.rotation.set(0,0,0);
+    pig.scale.setScalar(0.35);
+    pig.userData.headPivot.rotation.set(0.1, 0, 0);
+    pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);  // left stays on hip
+
+    if(pt < 0.5){
+      // Raise right arm FAST (0.5s, snappy ease)
+      const u=pt/0.5;
+      const eu=easeOutCubic(u);
+      pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
+      pig.userData.rArmPivot.rotation.set(-Math.PI*eu, 0, 0.1);
+      pig.userData.capePivot.rotation.set(0, 0, 0);
+    } else if(pt < 1.5){
+      // Hover with arm fully raised — 1 second hold
+      pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
+      pig.userData.rArmPivot.rotation.set(-Math.PI, 0, 0.1);
+      pig.userData.capePivot.rotation.set(0, 0, 0);
+    } else {
+      // Launch! Straight up, arm leads
+      const u=(pt-1.5)/2.5;  // 0 → 1
+      const eu=easeInCubic(u);
+      pig.position.set(PIG_HOME_X, PIG_HOME_Y + eu*95, PIG_HOME_Z);
+      pig.userData.rArmPivot.rotation.set(-Math.PI, 0, 0.1);
+      pig.userData.lArmPivot.rotation.set(0.3*eu, 0, -0.2);
+      pig.userData.capePivot.rotation.set(-0.3*eu, 0, 0);
+    }
+  }
+  // ========================================================
+  // PHASE 5: PUSHER IN + PUSH + OUT (26 → 30s) — drives across pushing the pile off
+  // ========================================================
+  else if(phase===4){
+    const pt=(t-26.0)/4.0;
+    pig.position.set(0,-100,0);
+    pusher.visible=true;
+
+    // Pusher drives from x=-70 (well off-screen left) to x=+90 (well off-screen right)
+    // Pile gets shoved along once the blade hits it
+    const startX=-70, endX=90;
+    const eu=pt;  // linear drive for steady push
+    const px = startX + (endX-startX)*eu;
+    pusher.position.set(px, 0, 0);
+    pusher.rotation.y=Math.PI/2;  // facing right
+    if(!pilePickedUp && px > -25) pilePickedUp=true;
+  }
+  // ========================================================
+  // PHASE 6: EMPTY BEAT (30 → 31s) → LOOP
+  // ========================================================
+  else {
+    pusher.visible=false;
+    pig.position.set(0,-100,0);  // hidden
+    if(t>=31){
+      cycleStart=now;
+      spawnedBills=0;
+      spawnedCoins=0;
+      pilePickedUp=false;
+      resetScene();
+    }
+  }
+
+  // ========================================================
+  // UPDATE PARTICLES (bills + coins)
+  // ========================================================
+  let bi=0, ci=0;
+  for(const p of particles){
+    const mesh = p.kind==='bill' ? billsMesh : coinsMesh;
+    const idx = p.kind==='bill' ? bi : ci;
+
+    if(!p.active || p.gone){
+      hideInstance(mesh, idx);
+      if(p.kind==='bill')bi++;else ci++;
+      continue;
+    }
+
+    if(!p.settled){
+      p.x+=p.vx;p.y+=p.vy;p.z+=p.vz;
+      p.rx+=p.rxs;p.ry+=p.rys;p.rz+=p.rzs;
+      const targetY=p.zone.h+0.15;
+      if(p.y<=targetY){
+        p.settled=true;
+        p.y=p.zone.h+BILL_THICKNESS*0.5;
+        p.rx=(Math.random()-0.5)*0.15;
+        p.rz=(Math.random()-0.5)*0.15;
+        p.ry=p.zone.baseRy+(Math.random()-0.5)*0.3;
+        p.rxs=p.rys=p.rzs=0;
+        p.zone.h += (p.kind==='coin'?0.45:BILL_THICKNESS);
+      }
+    }
+
+    // PUSHER PUSH: during pusher phase, any particle whose x is at or behind the blade gets pushed
+    // Pusher faces right (driving in +x). Blade is at front (+z when ungrouped, but with rotation.y=PI/2 the +z becomes +x in world)
+    // So in world space the blade leading edge is at: pusher.position.x + bladeLeadOffset (scaled)
+    if(pilePickedUp && p.settled){
+      // The pusher is scaled 0.55 and rotated so its z+ axis points in +x direction
+      // Blade is at local z=6.5 (front), so world x of blade leading edge ≈ pusher.x + 6.5*0.55 ≈ pusher.x + 3.6
+      const bladeLeadX = pusher.position.x + 3.6;
+      const bladeBackX = pusher.position.x + 2.0;  // blade has some thickness
+      if(p.x < bladeLeadX){
+        // Particle is in front of or being touched by the blade — push it forward
+        // Snap to just in front of the blade, accumulate piled up
+        p.x = bladeLeadX + (p.x - bladeBackX)*0.0 + Math.random()*0.5;
+        // Add slight upward jostle (bills tumble as they get shoved)
+        p.y += Math.random()*0.05;
+        if(p.y < 0.1) p.y = 0.1;
+        // Random tumble
+        if(Math.random()<0.05){
+          p.rx += (Math.random()-0.5)*0.1;
+          p.rz += (Math.random()-0.5)*0.1;
+        }
+      }
+    }
+
+    dummy.position.set(p.x,p.y,p.z);
+    dummy.rotation.set(p.rx,p.ry,p.rz);
+    if(p.kind==='bill'){
+      dummy.scale.set(SCALE,SCALE,SCALE);
+    } else {
+      dummy.scale.set(COIN_SCALE,COIN_SCALE,COIN_SCALE);
+    }
+    dummy.updateMatrix();
+    mesh.setMatrixAt(idx, dummy.matrix);
+
+    if(p.kind==='bill')bi++;else ci++;
+  }
+  billsMesh.instanceMatrix.needsUpdate=true;
+  coinsMesh.instanceMatrix.needsUpdate=true;
+
+  r.render(sc,cam);
+  requestAnimationFrame(tick);
+}
+tick();
+
+window.addEventListener('resize',()=>{
+  const Wn=M.clientWidth,Hn=M.clientHeight;
+  if(Wn===0||Hn===0)return;
+  cam.aspect=Wn/Hn;
+  cam.updateProjectionMatrix();
+  r.setSize(Wn,Hn,false);
+});
+}
+init();
 })();
 </script>
 </body>
