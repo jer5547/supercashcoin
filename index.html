@@ -1404,6 +1404,166 @@
     .hero-headline{font-size:46px;}
     .hero-btn{padding:14px 22px;font-size:12px;}
   }
+
+  /* ============================================================
+     JOIN US CTA SECTION
+     ============================================================ */
+  .join-section{
+    background:#fafaf0;
+    padding:80px 60px 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .join-section::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at center, transparent 0%, rgba(255,210,61,0.04) 100%);
+    pointer-events:none;
+  }
+  .join-wrap{
+    max-width:1300px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:60px;
+    align-items:center;
+    position:relative;
+    z-index:1;
+  }
+  .join-image{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:joinFloat 5s ease-in-out infinite;
+  }
+  .join-image img{
+    width:100%;
+    max-width:560px;
+    height:auto;
+    display:block;
+    filter:drop-shadow(0 25px 35px rgba(0,0,0,0.18));
+  }
+  @keyframes joinFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+  }
+  .join-card{
+    background:linear-gradient(180deg,#1d4fd8 0%,#1a3fc0 100%);
+    border:4px solid #0a0a0a;
+    border-radius:6px;
+    padding:42px 42px 38px;
+    box-shadow:0 20px 50px rgba(26,63,192,0.25);
+    position:relative;
+  }
+  .join-card-tag{
+    font-family:'Arial Black','Arial',sans-serif;
+    font-size:18px;
+    font-weight:900;
+    color:#0a0a0a;
+    letter-spacing:0.02em;
+    margin-bottom:12px;
+  }
+  .join-card-h{
+    font-family:'Arial Black','Arial',sans-serif;
+    font-size:clamp(34px,3.6vw,52px);
+    font-weight:900;
+    line-height:0.95;
+    letter-spacing:-0.01em;
+    color:#ffd23d;
+    margin:0 0 22px;
+    text-transform:uppercase;
+  }
+  .join-card-p{
+    font-size:18px;
+    color:#fff;
+    line-height:1.45;
+    margin:0 0 28px;
+    font-weight:500;
+  }
+  .join-card-socials{
+    display:flex;
+    gap:14px;
+  }
+  .js-tile{
+    width:66px;
+    height:66px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    transition:transform 0.2s ease;
+    box-shadow:0 6px 14px rgba(0,0,0,0.25);
+  }
+  .js-tile:hover{transform:translateY(-3px);}
+  .js-tile svg{
+    width:30px;
+    height:30px;
+  }
+  .js-x{background:#0a0a0a;color:#fff;}
+  .js-tg{background:#229ED9;color:#fff;}
+  @media (max-width:900px){
+    .join-section{padding:50px 24px 70px;}
+    .join-wrap{
+      grid-template-columns:1fr;
+      gap:30px;
+      text-align:center;
+    }
+    .join-image img{max-width:380px;}
+    .join-card-socials{justify-content:center;}
+    .join-card{padding:32px 28px;}
+  }
+  @media (max-width:600px){
+    .join-section{padding:40px 16px 50px;}
+    .join-card{padding:26px 22px;}
+    .join-card-p{font-size:15px;}
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .site-footer{
+    background:#0a0a0a;
+    color:#aaa;
+    padding:50px 60px 36px;
+    border-top:1px solid #1a1a1a;
+  }
+  .footer-wrap{
+    max-width:1100px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .footer-disclaimer p{
+    font-size:13px;
+    line-height:1.65;
+    color:#888;
+    margin:0 0 18px;
+  }
+  .footer-disclaimer p:last-of-type{margin-bottom:28px;}
+  .footer-owner{
+    font-size:14px;
+    color:#bbb;
+    font-weight:600;
+    margin-bottom:20px;
+  }
+  .footer-copyright{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    color:#aaa;
+    font-weight:600;
+  }
+  .footer-copyright img{
+    width:22px;
+    height:22px;
+    display:block;
+  }
+  @media (max-width:600px){
+    .site-footer{padding:36px 18px 28px;}
+    .footer-disclaimer p{font-size:12px;}
+  }
 </style>
 </head>
 <body>
@@ -2229,6 +2389,47 @@
     </div>
   </div>
 </section>
+
+<!-- ============================================================
+     JOIN US CTA — pile-of-coins image + blue "Let's make $SCC #1" card
+     ============================================================ -->
+<section class="join-section">
+  <div class="join-wrap">
+    <div class="join-image">
+      <img src="coin-pile.png" alt="Super Cash Coin pile">
+    </div>
+    <div class="join-card">
+      <div class="join-card-tag">NOW AVAILABLE</div>
+      <h2 class="join-card-h">LET'S MAKE<br>SUPER CASH COIN<br>THE NUMBER 1<br>MEME COIN!</h2>
+      <p class="join-card-p">Join us and become part of our journey. For more information join our socials here:</p>
+      <div class="join-card-socials">
+        <a href="#" aria-label="X (Twitter)" class="js-tile js-x">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="Telegram" class="js-tile js-tg">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="footer-wrap">
+    <div class="footer-disclaimer">
+      <p>Trading Super Cash Coin may not be suitable for everyone, so please ensure that you fully understand the risks involved. The community that maintains this website and socials does not issue advice, recommendations or opinions in relation to acquiring, holding or disposing of Super Cash Coin. Our mascot doesn't represent any real celebrities and isn't meant to infringe on the copyrights of any individual or entities. There are no financial advisors in our community so all services are provided on an execution only basis.</p>
+      <p>The information on this site is not directed at residents of the United States or any particular country outside of the United States and is not intended for distribution to, or use by, any person in any country or jurisdiction where such distribution or use would be contrary to local law or regulation.</p>
+    </div>
+    <div class="footer-owner">This website is owned and operated by the Super Cash Coin Community</div>
+    <div class="footer-copyright">
+      <img src="coin.png" alt="">
+      <span>Super Cash Coin Copyright 2026</span>
+    </div>
+  </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
