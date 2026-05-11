@@ -1244,11 +1244,12 @@
   .hero-new{
     position:relative;
     min-height:calc(100vh - 130px);
-    padding:50px 80px 70px;
+    padding:50px 0 70px;
     background:#ffffff;
     overflow:hidden;
     display:flex;
     align-items:center;
+    justify-content:center;
   }
   #heroScene{
     position:absolute;
@@ -1263,6 +1264,8 @@
     z-index:3;
     max-width:560px;
     width:100%;
+    margin-left:14%;
+    margin-right:auto;
   }
   .hero-headline{
     font-family:'Press Start 2P', 'Lilita One', system-ui, sans-serif;
@@ -1431,7 +1434,7 @@
   @media (max-width:900px){
     .hero-new{grid-template-columns:1fr;padding:24px 22px 40px;gap:20px;min-height:auto;}
     .hero-right{min-height:380px;order:1;}
-    .hero-left{order:2;text-align:center;}
+    .hero-left{order:2;text-align:center;margin-left:auto;}
     .hero-cta{justify-content:center;}
     .hero-trust{justify-content:center;}
     .hero-stage{max-width:420px;}
@@ -5284,8 +5287,10 @@ function tick(){
   // ========================================================
   if(phase===0){
     const p=t/3.0;
-    const e=easeOutCubic(p);
-    pig.position.set(PIG_HOME_X, 90 - 85*e, PIG_HOME_Z);
+    // Smoother ease — quintic gives a more cinematic deceleration
+    const e=1-Math.pow(1-p,4);  // easeOutQuart
+    // Falls from y=90 (above nav bar) smoothly DOWN to exactly PIG_HOME_Y (no snap to phase 2)
+    pig.position.set(PIG_HOME_X, 90 - (90 - PIG_HOME_Y)*e, PIG_HOME_Z);
     pig.rotation.set(-0.07,-0.29,0);
     pig.scale.setScalar(0.7);
     // Superhero pose: hands on hips, chest out, head up
