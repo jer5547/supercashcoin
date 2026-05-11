@@ -601,6 +601,129 @@
   }
   .tk-warn-wrap{text-align:center;margin-bottom:60px;}
 
+  /* === OPTION 3 LAYOUT — feature cards flanking the coin === */
+  .tk-subhead{
+    text-align:center;
+    font-size:clamp(15px,1.4vw,18px);
+    color:#888;
+    max-width:600px;
+    margin:0 auto 60px;
+    line-height:1.55;
+    font-weight:500;
+  }
+  .tk-hero-row{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:40px;
+    align-items:center;
+    max-width:1300px;
+    margin:0 auto 50px;
+  }
+  .tk-feature-card{
+    background:linear-gradient(135deg,rgba(255,210,61,0.12) 0%,rgba(255,210,61,0.03) 100%);
+    border:1px solid rgba(255,210,61,0.25);
+    border-radius:18px;
+    padding:40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .tk-feature-card::after{
+    content:'';
+    position:absolute;
+    top:-50%;
+    right:-50%;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle,rgba(255,210,61,0.15) 0%,transparent 50%);
+    pointer-events:none;
+  }
+  .tk-feature-card.right{text-align:right;}
+  .tk-feature-card .eyebrow{
+    font-size:11px;
+    font-weight:900;
+    color:#ffd23d;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+    position:relative;
+    z-index:1;
+  }
+  .tk-feature-card .big-num{
+    font-family:'Arial Black','Arial',sans-serif;
+    font-size:clamp(72px,8vw,104px);
+    font-weight:900;
+    line-height:0.95;
+    background:linear-gradient(180deg,#ffe884 0%,#ffd23d 60%,#c79a0c 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    letter-spacing:-0.04em;
+    margin-bottom:8px;
+    position:relative;
+    z-index:1;
+  }
+  .tk-feature-card h3{
+    font-size:20px;
+    font-weight:900;
+    color:#fff;
+    margin:0 0 8px;
+    letter-spacing:-0.01em;
+    position:relative;
+    z-index:1;
+  }
+  .tk-feature-card p{
+    font-size:13px;
+    color:#999;
+    line-height:1.55;
+    margin:0;
+    position:relative;
+    z-index:1;
+  }
+
+  /* Detail strip below the two big cards */
+  .tk-details-strip{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:14px;
+    max-width:1300px;
+    margin:0 auto 80px;
+  }
+  .tk-detail{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:10px;
+    padding:18px 16px;
+    text-align:center;
+  }
+  .tk-detail .lbl{
+    font-size:10px;
+    color:#888;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .tk-detail .val{
+    font-size:16px;
+    font-weight:900;
+    color:#fff;
+    margin-top:6px;
+    letter-spacing:-0.01em;
+  }
+  @media (max-width:900px){
+    .tk-hero-row{
+      grid-template-columns:1fr;
+      gap:24px;
+    }
+    .tk-feature-card{padding:30px 24px;}
+    .tk-feature-card.right{text-align:left;}
+    .tk-details-strip{grid-template-columns:repeat(3,1fr);}
+  }
+  @media (max-width:600px){
+    .tk-details-strip{grid-template-columns:repeat(2,1fr);}
+    .tk-feature-card .big-num{font-size:64px;}
+  }
+  /* === END OPTION 3 LAYOUT === */
+
   .tk-grid{
     display:grid;
     grid-template-columns:1.1fr 1fr;
@@ -2194,11 +2317,17 @@
     <div class="tk-title">
       <h2 class="tk-title-text"><span class="gold">Tokenomics</span></h2>
     </div>
-    <div class="tk-warn-wrap">
-      <div class="tk-warn">⚠ Must hold at least 1 token to earn rewards</div>
-    </div>
+    <p class="tk-subhead">Two numbers that matter. Everything else is detail.</p>
 
-    <div class="tk-grid">
+    <!-- Two giant feature cards flanking the coin -->
+    <div class="tk-hero-row">
+      <div class="tk-feature-card">
+        <div class="eyebrow">Buy Tax</div>
+        <div class="big-num">25%</div>
+        <h3>Goes to holders</h3>
+        <p>Every buy. Paid in USDT. Auto-distributed on opBNB. No claiming required.</p>
+      </div>
+
       <div class="tk-coin-stage">
         <span class="tk-spark s1">✦</span>
         <span class="tk-spark s2">✦</span>
@@ -2207,76 +2336,39 @@
         <img src="coin.png" alt="Super Cash Coin" class="tk-coin-img">
       </div>
 
-      <div class="tk-stats">
-        <div class="tk-stat">
-          <div class="tk-stat-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9h4a2 2 0 0 1 0 4h-4M9 13h5a2 2 0 0 1 0 4h-5M11 7v10"/></svg>
-          </div>
-          <div class="tk-stat-info">
-            <div class="label">Token Name</div>
-            <div class="value">Super Cash Coin</div>
-          </div>
-          <div class="tk-stat-tag">$SCC</div>
-        </div>
+      <div class="tk-feature-card right">
+        <div class="eyebrow">Total Supply</div>
+        <div class="big-num">1B</div>
+        <h3>Hard-capped forever</h3>
+        <p>One billion $SCC. No minting, no team unlocks. 3% burn on every sell.</p>
+      </div>
+    </div>
 
-        <div class="tk-stat featured">
-          <div class="tk-stat-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3v18M16 7H10a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6H7"/></svg>
-          </div>
-          <div class="tk-stat-info">
-            <div class="label">Buy Tax</div>
-            <div class="value"><span class="accent">25%</span></div>
-            <div class="note">Distributed as Royalties</div>
-          </div>
-          <div class="tk-stat-tag">Rewards</div>
-        </div>
-
-        <div class="tk-stat">
-          <div class="tk-stat-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2c2 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4-1 3 1 4 1 4s-1-3 2-9z"/></svg>
-          </div>
-          <div class="tk-stat-info">
-            <div class="label">Sell Tax</div>
-            <div class="value">3%</div>
-            <div class="note">Deflation &amp; Liquidity</div>
-          </div>
-          <div class="tk-stat-tag">Burn</div>
-        </div>
-
-        <div class="tk-stat">
-          <div class="tk-stat-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 21V8m6 13V3m6 18v-9m6 9V11"/></svg>
-          </div>
-          <div class="tk-stat-info">
-            <div class="label">Total Supply</div>
-            <div class="value">1,000,000,000</div>
-            <div class="note">Fixed maximum, no minting</div>
-          </div>
-          <div class="tk-stat-tag">Capped</div>
-        </div>
-
-        <div class="tk-stat">
-          <div class="tk-stat-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          </div>
-          <div class="tk-stat-info">
-            <div class="label">Decimals</div>
-            <div class="value">18</div>
-          </div>
-          <div class="tk-stat-tag">Standard</div>
-        </div>
-
-        <div class="tk-stat">
-          <div class="tk-stat-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-          </div>
-          <div class="tk-stat-info">
-            <div class="label">Blockchain</div>
-            <div class="value">opBNB</div>
-            <div class="note">opBNB Network Token</div>
-          </div>
-          <div class="tk-stat-tag">opBNB</div>
-        </div>
+    <!-- Smaller details strip below -->
+    <div class="tk-details-strip">
+      <div class="tk-detail">
+        <div class="lbl">Network</div>
+        <div class="val">opBNB</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Symbol</div>
+        <div class="val">$SCC</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Decimals</div>
+        <div class="val">18</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Rewards</div>
+        <div class="val">USDT</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Sell Tax</div>
+        <div class="val">3%</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">To Qualify</div>
+        <div class="val">Hold ≥ 1 $SCC</div>
       </div>
     </div>
 
