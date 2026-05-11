@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Super Cash Coin - Get Paid Royalties</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
   *{box-sizing:border-box;}
@@ -1523,9 +1526,8 @@
   .top-banner .banner-only{opacity:0.85;}
 
   /* ============================================================
-     NEW HERO — mascot heroed
+     NEW HERO — mascot heroed (Lilita One loaded via link in <head>)
      ============================================================ */
-  @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
   .hero-new{
     position:relative;
     min-height:calc(100vh - 130px);
@@ -1567,19 +1569,26 @@
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px;}
   .hero-btn{
     display:inline-flex;align-items:center;gap:10px;
-    padding:16px 28px;border-radius:8px;
+    padding:16px 30px;border-radius:10px;
     font-weight:900;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;
-    text-decoration:none;border:2px solid;cursor:pointer;
-    transition:transform 0.15s ease;
+    text-decoration:none;border:none;cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
   }
   .hero-btn:hover{transform:translateY(-2px);}
   .hero-btn.primary{
-    background:#ffd23d;color:#0a0a0a;border-color:#ffd23d;
-    box-shadow:0 0 0 1px #0a0a0a inset, 4px 4px 0 #0a0a0a;
+    background:#ffd23d;color:#0a0a0a;
+    box-shadow:0 4px 0 #c79a0c;
+  }
+  .hero-btn.primary:hover{
+    box-shadow:0 6px 0 #c79a0c;
   }
   .hero-btn.secondary{
-    background:#fff;color:#0a0a0a;border-color:#0a0a0a;
-    box-shadow:4px 4px 0 #ffd23d;
+    background:#fff;color:#0a0a0a;
+    border:2px solid #0a0a0a;
+    box-shadow:0 4px 0 #444;
+  }
+  .hero-btn.secondary:hover{
+    box-shadow:0 6px 0 #444;
   }
   .hero-trust{
     display:flex;gap:28px;flex-wrap:wrap;
@@ -1621,7 +1630,7 @@
     50%{transform:translateX(-50%) translateY(-12px);}
   }
   .hero-float-coin{
-    position:absolute;top:8%;left:-2%;width:28%;
+    position:absolute;top:6%;left:-4%;width:36%;
     animation:heroFloatA 5s ease-in-out infinite;
     filter:drop-shadow(0 8px 16px rgba(0,0,0,0.18));z-index:3;
   }
