@@ -1609,6 +1609,7 @@
 </head>
 <body>
 
+
 <div class="top-banner">
   <span class="dot"></span>
   <span class="banner-text"><b>INITIAL COIN OFFERING</b> — Now available at <b class="price">$0.002</b> per coin</span>
@@ -4740,8 +4741,8 @@ const sc=new THREE.Scene();
 sc.background=new THREE.Color(0xffffff);
 
 const cam=new THREE.PerspectiveCamera(38,Wd/Hd,0.1,400);
-cam.position.set(0,16,80);
-cam.lookAt(0,8,0);
+cam.position.set(15,23,92);
+cam.lookAt(19,18,0);
 
 const r=new THREE.WebGLRenderer({canvas:M,antialias:true,alpha:true});
 r.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -4953,7 +4954,7 @@ function makePig(){
 }
 
 const pig=makePig();
-pig.scale.set(0.35,0.35,0.35);
+pig.scale.set(0.7,0.7,0.7);
 sc.add(pig);
 
 // ============================================================
@@ -5156,26 +5157,26 @@ const coinMat=new THREE.MeshStandardMaterial({color:0xffd23d,roughness:0.4,metal
 // PILE SYSTEM — ring of randomized stack zones around pig
 // ============================================================
 // Pig home position (declared early so pile zones can be offset to it)
-const PIG_HOME_Y=5;
-const PIG_HOME_X=15;
-const PIG_HOME_Z=0;
+const PIG_HOME_Y=-1.5;
+const PIG_HOME_X=45;
+const PIG_HOME_Z=9;
 
-const RING_COUNT=24;
+const RING_COUNT=50;
 const ZONES=[];
 for(let i=0;i<RING_COUNT;i++){
-  const ang=(i/RING_COUNT)*Math.PI*2 + (Math.random()-0.5)*0.2;
-  const rad=4 + Math.random()*6;
+  const ang=(i/RING_COUNT)*Math.PI*2 + (Math.random()-0.5)*0.3;
+  const rad=6 + Math.random()*14;
   ZONES.push({
     x: PIG_HOME_X + Math.cos(ang)*rad,
     z: Math.sin(ang)*rad,
     h: 0,
     baseRy: Math.random()*Math.PI*2,
-    maxH: 1.5 + Math.random()*1.5
+    maxH: 2.5 + Math.random()*2.5
   });
 }
 
-const NUM_BILLS=180;
-const NUM_COINS=40;
+const NUM_BILLS=420;
+const NUM_COINS=100;
 const billsMesh=new THREE.InstancedMesh(billGeo,billMat,NUM_BILLS);
 const coinsMesh=new THREE.InstancedMesh(coinGeo,coinMat,NUM_COINS);
 billsMesh.castShadow=true;billsMesh.receiveShadow=true;
@@ -5250,8 +5251,8 @@ resetScene();
 // Phase 6: EMPTY BEAT       t=30 → 31s  (brief empty pause, then loop)
 const PHASE_TIMES=[3, 14, 22, 26, 30, 31];
 
-const SPAWN_RATE_BILLS=20;  // bills/sec
-const SPAWN_RATE_COINS=4;   // coins/sec
+const SPAWN_RATE_BILLS=50;  // bills/sec
+const SPAWN_RATE_COINS=12;  // coins/sec
 
 let spawnedBills=0;
 let spawnedCoins=0;
@@ -5285,8 +5286,8 @@ function tick(){
     const p=t/3.0;
     const e=easeOutCubic(p);
     pig.position.set(PIG_HOME_X, 90 - 85*e, PIG_HOME_Z);
-    pig.rotation.set(0,0.35,0);
-    pig.scale.setScalar(0.35);
+    pig.rotation.set(-0.07,-0.29,0);
+    pig.scale.setScalar(0.7);
     // Superhero pose: hands on hips, chest out, head up
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
     pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
@@ -5300,8 +5301,8 @@ function tick(){
     const pt=t-3.0;
     // Static hero pose — no bobbing
     pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
-    pig.rotation.set(0,0.35,0);
-    pig.scale.setScalar(0.35);
+    pig.rotation.set(-0.07,-0.29,0);
+    pig.scale.setScalar(0.7);
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
     pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
     pig.userData.headPivot.rotation.set(0.15, 0, 0);
@@ -5328,8 +5329,8 @@ function tick(){
   // ========================================================
   else if(phase===2){
     pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
-    pig.rotation.set(0,0.35,0);
-    pig.scale.setScalar(0.35);
+    pig.rotation.set(-0.07,-0.29,0);
+    pig.scale.setScalar(0.7);
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
     pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
     pig.userData.headPivot.rotation.set(0.15, 0, 0);
@@ -5343,8 +5344,8 @@ function tick(){
   // ========================================================
   else if(phase===3){
     const pt=t-22.0;  // 0 → 4
-    pig.rotation.set(0,0.35,0);
-    pig.scale.setScalar(0.35);
+    pig.rotation.set(-0.07,-0.29,0);
+    pig.scale.setScalar(0.7);
     pig.userData.headPivot.rotation.set(0.1, 0, 0);
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);  // left stays on hip
 
