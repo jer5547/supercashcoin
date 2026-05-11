@@ -7,9 +7,8 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow-x:hidden;}
 
@@ -1266,52 +1265,37 @@
     width:100%;
   }
   .hero-headline{
-    font-family:'Lilita One', system-ui, sans-serif;
-    font-size:clamp(48px, 6.5vw, 92px);
-    line-height:0.92;
-    letter-spacing:-0.02em;
-    margin:0 0 18px;
+    font-family:'Press Start 2P', 'Lilita One', system-ui, sans-serif;
+    font-size:clamp(28px, 4.2vw, 56px);
+    line-height:1.15;
+    letter-spacing:0;
+    margin:0 0 30px;
     color:#0a0a0a;
     text-shadow:3px 3px 0 rgba(0,0,0,0.05);
     font-weight:400;
+    text-transform:uppercase;
   }
   .hero-headline .gold{
     color:#ffd23d;
-    -webkit-text-stroke:2px #0a0a0a;
+    -webkit-text-stroke:1.5px #0a0a0a;
     text-shadow:4px 4px 0 #c79a0c, 5px 5px 0 #0a0a0a;
   }
   .hero-sub{
     font-size:clamp(16px, 1.6vw, 20px);
-    line-height:1.5;
+    line-height:1.55;
     color:#444;
     max-width:520px;
     margin:0 0 32px;
     font-weight:500;
   }
   .hero-sub b{color:#0a0a0a;font-weight:800;}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px;}
-  .hero-btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:16px 30px;border-radius:10px;
-    font-weight:900;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;
-    text-decoration:none;border:none;cursor:pointer;
-    transition:transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .hero-btn:hover{transform:translateY(-2px);}
-  .hero-btn.primary{
-    background:#ffd23d;color:#0a0a0a;
-    box-shadow:0 4px 0 #c79a0c;
-  }
-  .hero-btn.primary:hover{
-    box-shadow:0 6px 0 #c79a0c;
-  }
-  .hero-btn.secondary{
-    background:#fff;color:#0a0a0a;
-    border:2px solid #0a0a0a;
-    box-shadow:0 4px 0 #444;
-  }
-  .hero-btn.secondary:hover{
-    box-shadow:0 6px 0 #444;
+  .hero-sub .hl{
+    background:linear-gradient(180deg, transparent 55%, #ffd23d 55%, #ffd23d 96%, transparent 96%);
+    padding:0 4px;
+    color:#0a0a0a;
+    font-weight:800;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
   }
   .hero-trust{
     display:flex;gap:28px;flex-wrap:wrap;
@@ -1319,6 +1303,16 @@
   }
   .hero-trust .item{display:flex;align-items:center;gap:8px;}
   .hero-trust .item svg{width:16px;height:16px;color:#23d76b;}
+  .hero-trust .opbnb-item{
+    background:#fff;
+    border:2px solid #0a0a0a;
+    border-radius:10px;
+    padding:10px 18px;
+    color:#0a0a0a;
+    font-size:13px;
+    box-shadow:0 3px 0 #0a0a0a;
+  }
+  .hero-trust .opbnb-item svg{width:24px;height:24px;color:initial;}
   .hero-platter{
     position:absolute;bottom:5%;left:50%;transform:translateX(-50%);
     width:74%;height:8%;border-radius:50%;
@@ -1334,6 +1328,87 @@
   @keyframes heroBob{
     0%,100%{transform:translateX(-50%) translateY(0);}
     50%{transform:translateX(-50%) translateY(-12px);}
+  }
+
+  /* ============== STICKY FLOATING COIN — bottom-right, pulsing, always visible ============== */
+  .float-coin{
+    position:fixed;
+    right:24px;
+    bottom:24px;
+    width:96px;
+    height:96px;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform 0.2s ease;
+    animation:floatCoinBob 3s ease-in-out infinite;
+  }
+  .float-coin:hover{
+    transform:scale(1.08);
+  }
+  .float-coin-img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    position:relative;
+    z-index:2;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,0.25));
+  }
+  .float-coin-pulse{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,210,61,0.6) 0%, rgba(255,210,61,0) 70%);
+    animation:floatCoinPulse 2s ease-out infinite;
+    z-index:1;
+  }
+  .float-coin-pulse::before, .float-coin-pulse::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:3px solid #ffd23d;
+    animation:floatCoinRing 2s ease-out infinite;
+  }
+  .float-coin-pulse::after{
+    animation-delay:1s;
+  }
+  .float-coin-label{
+    position:absolute;
+    bottom:-22px;
+    left:50%;
+    transform:translateX(-50%);
+    font-family:'Press Start 2P', system-ui, sans-serif;
+    font-size:9px;
+    color:#0a0a0a;
+    background:#ffd23d;
+    border:2px solid #0a0a0a;
+    border-radius:6px;
+    padding:5px 8px;
+    white-space:nowrap;
+    box-shadow:0 2px 0 #0a0a0a;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  @keyframes floatCoinBob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+  @keyframes floatCoinPulse{
+    0%,100%{opacity:0.7;transform:scale(1);}
+    50%{opacity:1;transform:scale(1.06);}
+  }
+  @keyframes floatCoinRing{
+    0%{opacity:1;transform:scale(1);}
+    100%{opacity:0;transform:scale(1.8);}
+  }
+  @media (max-width:640px){
+    .float-coin{width:72px;height:72px;right:14px;bottom:14px;}
+    .float-coin-label{font-size:8px;padding:4px 6px;bottom:-20px;}
   }
   .hero-float-coin{
     position:absolute;top:6%;left:-4%;width:32%;
@@ -1566,20 +1641,20 @@
   <canvas id="heroScene"></canvas>
   <div class="hero-left">
     <h1 class="hero-headline">
-      Get Paid<br>
-      <span class="gold">Royalties.</span>
+      Super Cash<br>
+      <span class="gold">Coin.</span>
     </h1>
     <p class="hero-sub">
-      The world's biggest <b>rewards meme coin.</b> Every buy sends 25% straight to holders as USDT — no claiming, no farming, just <b>passive income</b> while you hold.
+      <span class="hl">The world's biggest rewards meme coin.</span> Every buy sends 25% straight to holders as USDT — no claiming, no farming, just <b>passive income</b> while you hold.
     </p>
-    <div class="hero-cta">
-      <a class="hero-btn primary" href="#">Buy $SCC Now →</a>
-      <a class="hero-btn secondary" href="#distributor">How It Works</a>
-    </div>
     <div class="hero-trust">
-      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>opBNB Network</div>
-      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Auto-Distributed</div>
-      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>1B Max Supply</div>
+      <div class="item opbnb-item">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="#f3ba2f" stroke="#0a0a0a" stroke-width="1.5"/>
+          <path d="M16 10 L20 13 L20 19 L16 22 L12 19 L12 13 Z" fill="#0a0a0a" opacity="0.85"/>
+        </svg>
+        opBNB Chain
+      </div>
     </div>
   </div>
 </section>
@@ -5082,7 +5157,7 @@ const coinMat=new THREE.MeshStandardMaterial({color:0xffd23d,roughness:0.4,metal
 // ============================================================
 // Pig home position (declared early so pile zones can be offset to it)
 const PIG_HOME_Y=5;
-const PIG_HOME_X=22;
+const PIG_HOME_X=15;
 const PIG_HOME_Z=0;
 
 const RING_COUNT=24;
@@ -5210,7 +5285,7 @@ function tick(){
     const p=t/3.0;
     const e=easeOutCubic(p);
     pig.position.set(PIG_HOME_X, 90 - 85*e, PIG_HOME_Z);
-    pig.rotation.set(0,0,0);
+    pig.rotation.set(0,0.35,0);
     pig.scale.setScalar(0.35);
     // Superhero pose: hands on hips, chest out, head up
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
@@ -5225,7 +5300,7 @@ function tick(){
     const pt=t-3.0;
     // Static hero pose — no bobbing
     pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
-    pig.rotation.set(0,0,0);
+    pig.rotation.set(0,0.35,0);
     pig.scale.setScalar(0.35);
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
     pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
@@ -5253,7 +5328,7 @@ function tick(){
   // ========================================================
   else if(phase===2){
     pig.position.set(PIG_HOME_X, PIG_HOME_Y, PIG_HOME_Z);
-    pig.rotation.set(0,0,0);
+    pig.rotation.set(0,0.35,0);
     pig.scale.setScalar(0.35);
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);
     pig.userData.rArmPivot.rotation.set(0.2, 0, 0.7);
@@ -5268,7 +5343,7 @@ function tick(){
   // ========================================================
   else if(phase===3){
     const pt=t-22.0;  // 0 → 4
-    pig.rotation.set(0,0,0);
+    pig.rotation.set(0,0.35,0);
     pig.scale.setScalar(0.35);
     pig.userData.headPivot.rotation.set(0.1, 0, 0);
     pig.userData.lArmPivot.rotation.set(0.2, 0, -0.7);  // left stays on hip
@@ -5410,5 +5485,10 @@ window.addEventListener('resize',()=>{
 init();
 })();
 </script>
+<a class="float-coin" href="#" aria-label="Buy $SCC Now">
+  <div class="float-coin-pulse"></div>
+  <img src="coin.png" alt="" class="float-coin-img">
+  <span class="float-coin-label">Buy $SCC</span>
+</a>
 </body>
 </html>
