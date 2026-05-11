@@ -1409,7 +1409,7 @@
      JOIN US CTA SECTION
      ============================================================ */
   .join-section{
-    background:#fafaf0;
+    background:#ffffff;
     padding:80px 60px 100px;
     position:relative;
     overflow:hidden;
@@ -1422,11 +1422,11 @@
     pointer-events:none;
   }
   .join-wrap{
-    max-width:1300px;
+    max-width:1400px;
     margin:0 auto;
     display:grid;
-    grid-template-columns:1.1fr 1fr;
-    gap:60px;
+    grid-template-columns:1.4fr 1fr;
+    gap:40px;
     align-items:center;
     position:relative;
     z-index:1;
@@ -1439,10 +1439,12 @@
   }
   .join-image img{
     width:100%;
-    max-width:560px;
+    max-width:760px;
     height:auto;
     display:block;
     filter:drop-shadow(0 25px 35px rgba(0,0,0,0.18));
+    -webkit-mask-image:radial-gradient(ellipse 75% 70% at center, black 50%, transparent 95%);
+    mask-image:radial-gradient(ellipse 75% 70% at center, black 50%, transparent 95%);
   }
   @keyframes joinFloat{
     0%,100%{transform:translateY(0);}
@@ -1460,9 +1462,10 @@
     font-family:'Arial Black','Arial',sans-serif;
     font-size:18px;
     font-weight:900;
-    color:#0a0a0a;
+    color:#23d76b;
     letter-spacing:0.02em;
     margin-bottom:12px;
+    text-shadow:0 0 12px rgba(35,215,107,0.4);
   }
   .join-card-h{
     font-family:'Arial Black','Arial',sans-serif;
