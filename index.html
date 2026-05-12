@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Press+Start+2P&family=Black+Ops+One&family=Luckiest+Guy&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Press+Start+2P&family=Black+Ops+One&family=Luckiest+Guy&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow-x:hidden;}
@@ -17,59 +17,40 @@
     width:100%;
     background:#000000;
     color:#fff;
-    padding:14px 36px;
+    padding:10px 36px;
     display:flex;
     align-items:center;
-    gap:32px;
+    gap:40px;
     border-bottom:1px solid #1a1a1a;
     position:relative;
     z-index:10;
   }
-  .nav-brand{display:flex;align-items:center;gap:12px;flex-shrink:0;}
-  .nav-brand img{width:48px;height:48px;display:block;background:#000000;border-radius:8px;padding:2px;}
+  .nav-brand{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+  .nav-brand canvas{width:53px;height:53px;display:block;transform:translateY(-3px);}
   .nav-brand .name{
-    font-weight:900;
+    font-family:'Luckiest Guy', 'Lilita One', sans-serif;
+    font-weight:400;
     font-size:22px;
-    letter-spacing:-0.02em;
+    letter-spacing:0.01em;
     line-height:1;
     color:#ffffff;
+    text-transform:uppercase;
   }
   .nav-brand .name .gold{color:#ffd23d;}
-  .nav-brand .tag{
-    font-size:11px;
-    color:#888;
-    margin-top:3px;
-    font-weight:600;
-    letter-spacing:0.04em;
-  }
-  .nav-brand .tag b{color:#d32f2f;font-weight:800;}
-  .nav-socials{display:flex;align-items:center;gap:8px;}
-  .nav-socials a{
-    width:38px;height:38px;
-    display:flex;align-items:center;justify-content:center;
-    background:transparent;
-    border:2px solid #ffd23d;
-    border-radius:6px;
-    color:#ffd23d;
-    text-decoration:none;
-    box-shadow:0 0 0 1px #0a0a0a inset;
-    transition:background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-  }
-  .nav-socials a:hover{background:#ffd23d;color:#000;transform:translateY(-1px);}
-  .nav-socials a svg{width:18px;height:18px;display:block;}
   .nav-links{
     display:flex;
     align-items:center;
-    gap:28px;
-    margin-left:auto;
+    gap:36px;
+    margin:0 auto;
   }
   .nav-links a{
     color:#fff;
     text-decoration:none;
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
+    font-family:'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:0;
+    text-transform:none;
     position:relative;
     padding:8px 0;
     transition:color 0.2s ease;
@@ -86,20 +67,40 @@
   }
   .nav-links a:hover{color:#ffd23d;}
   .nav-links a:hover::after{transform:scaleX(1);}
+  .nav-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-shrink:0;
+  }
+  .nav-socials{display:flex;align-items:center;gap:8px;}
+  .nav-socials a{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    color:#fff;
+    text-decoration:none;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform 0.2s ease, filter 0.2s ease;
+  }
+  .nav-socials a:hover{transform:translateY(-1px);filter:brightness(1.1);}
+  .nav-socials a svg{width:16px;height:16px;display:block;}
+  .nav-socials a[title="Telegram"]{background:#229ed9;}
+  .nav-socials a[title="X"]{background:#000;border:1.5px solid #2a2a2a;}
   .nav-cta{
-    padding:10px 22px;
-    background:#ffd23d;
-    color:#0a0a0a;
-    border:none;
-    border-radius:6px;
+    padding:9px 22px;
+    background:transparent;
+    color:#ffd23d;
+    border:2px solid #ffd23d;
+    border-radius:999px;
     font-weight:900;
-    font-size:13px;
-    letter-spacing:0.04em;
+    font-size:11px;
+    letter-spacing:0.08em;
     cursor:pointer;
     text-transform:uppercase;
-    border:2px solid #ffd23d;
-    box-shadow:0 0 0 1px #0a0a0a inset;
+    transition:background 0.2s ease, color 0.2s ease;
   }
+  .nav-cta:hover{background:#ffd23d;color:#0a0a0a;}
 
   /* === INFO BANNER === */
 
@@ -131,7 +132,7 @@
 
   /* === TICKER MARQUEE === */
   .ticker{
-    background:#d32f2f;
+    background:#F40000;
     border-top:3px solid #ffd23d;
     border-bottom:3px solid #ffd23d;
     overflow:hidden;
@@ -1138,14 +1139,14 @@
   @media (max-width:900px){
     /* --- Navbar: wrap rows so links don't squeeze brand --- */
     .navbar{padding:12px 16px;gap:12px;flex-wrap:wrap;}
-    .nav-brand{flex-wrap:wrap;gap:10px;}
-    .nav-brand img{width:40px;height:40px;}
+    .nav-brand{flex-wrap:wrap;gap:1px;}
+    .nav-brand canvas{width:40px;height:40px;}
     .nav-brand .name{font-size:18px;}
     .nav-brand .tag{font-size:10px;margin-top:2px;}
     .nav-socials a{width:34px;height:34px;}
     .nav-socials a svg{width:16px;height:16px;}
     .nav-links{gap:14px;margin-left:0;order:3;width:100%;justify-content:center;flex-wrap:wrap;}
-    .nav-links a{font-size:12px;padding:6px 0;}
+    .nav-links a{font-size:16px;padding:6px 0;}
     .nav-cta{padding:8px 16px;font-size:12px;margin-left:auto;}
 
     /* --- Infobar: stack the 3 items so labels don't overflow --- */
@@ -1203,7 +1204,7 @@
     .nav-brand .tag{display:none;}
     .nav-brand .name{font-size:16px;}
     .nav-links{gap:10px;}
-    .nav-links a{font-size:11px;}
+    .nav-links a{font-size:14px;}
     .nav-socials a{width:30px;height:30px;}
     .nav-socials a svg{width:14px;height:14px;}
     .ticker-item{font-size:24px;padding:0 14px;}
@@ -1260,15 +1261,19 @@
     pointer-events:none;
     overflow:hidden;
   }
-  .hero-pig-img{
+  .hero-pig-wrap{
     position:absolute;
     right:11%;
-    bottom:4%;
-    height:85%;
-    max-height:680px;
-    width:auto;
+    bottom:6%;
+    height:78%;
+    max-height:640px;
+    aspect-ratio: 1636 / 1752;
     z-index:50;
-    filter:drop-shadow(0 24px 32px rgba(0,0,0,0.25));
+  }
+  .hero-pig-img{
+    display:block;
+    width:100%;
+    height:100%;
     animation:heroPigBob 4s ease-in-out infinite;
   }
   @keyframes heroPigBob{
@@ -1324,15 +1329,25 @@
     z-index:40;
     pointer-events:none;
     user-select:none;
-    animation:dollarFloat var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+    animation:
+      dollarFloat var(--dur, 4s) ease-in-out var(--delay, 0s) infinite,
+      dollarShine 1.8s ease-in-out var(--delay, 0s) infinite;
   }
   .float-dollar.back{z-index:20;opacity:0.7;}
   @keyframes dollarFloat{
     0%, 100%{
-      transform:translate(0, 0) rotate(var(--rot, 0deg)) scale(1);
+      transform:translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1);
     }
     50%{
-      transform:translate(var(--dx, 10px), var(--dy, -18px)) rotate(calc(var(--rot, 0deg) + 10deg)) scale(1.08);
+      transform:translate(calc(-50% + var(--dx, 10px)), calc(-50% + var(--dy, -18px))) rotate(calc(var(--rot, 0deg) + 10deg)) scale(1.08);
+    }
+  }
+  @keyframes dollarShine{
+    0%, 100%{
+      filter:drop-shadow(0 0 4px rgba(255,210,61,0.35)) brightness(1);
+    }
+    50%{
+      filter:drop-shadow(0 0 18px rgba(255,235,150,0.95)) brightness(1.25);
     }
   }
 
@@ -1738,19 +1753,10 @@
 <body>
 
 
-<div class="top-banner">
-  <span class="dot"></span>
-  <span class="banner-text"><b>INITIAL COIN OFFERING</b> — Now available at <b class="price">$0.002</b> per coin</span>
-  <span class="banner-only">— Only for a limited time</span>
-</div>
-
 <nav class="navbar">
   <div class="nav-brand">
-    <img src="favicon.svg" alt="Super Cash Coin">
-    <div>
-      <div class="name">Super Cash <span class="gold">Coin</span></div>
-      <div class="tag">Get Paid <b>Royalties</b></div>
-    </div>
+    <canvas id="nav-mascot"></canvas>
+    <div class="name">Super Cash <span class="gold">Coin</span></div>
     <div class="nav-socials">
       <a href="#" title="Telegram" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
       <a href="#" title="X" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -1763,12 +1769,22 @@
     <a href="#">How To Buy</a>
     <a href="#">White Label</a>
   </div>
-  <button class="nav-cta">Connect</button>
+  <div class="nav-right">
+    <button class="nav-cta">Connect</button>
+  </div>
 </nav>
+
+<div class="top-banner">
+  <span class="dot"></span>
+  <span class="banner-text"><b>INITIAL COIN OFFERING</b> — Now available at <b class="price">$0.002</b> per coin</span>
+  <span class="banner-only">— Only for a limited time</span>
+</div>
 
 <section class="hero-new">
   <div class="hero-pig-stage" id="heroPigStage">
-    <img class="hero-pig-img" src="pig.png" alt="Super Cash Coin mascot" />
+    <div class="hero-pig-wrap" id="heroPigWrap">
+      <img class="hero-pig-img" src="pig.png" alt="Super Cash Coin mascot" />
+    </div>
   </div>
   <div class="hero-left">
     <h1 class="hero-headline">
@@ -1777,7 +1793,7 @@
     </h1>
     <p class="hero-sub">
       <span class="hl">GET PAID ROYALTIES</span><br/>
-      THE #1 Largest reward ever set for a meme coin
+      The Largest Automatic Holder Reward Ever Created
     </p>
     <div class="hero-socials">
       <a class="hero-social-btn tg" href="#" aria-label="Telegram">
@@ -4890,11 +4906,16 @@ window.addEventListener('resize',()=>{
 
   const BILL_SVG = `
     <svg viewBox="0 0 130 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <rect x="4" y="6" width="124" height="80" rx="9" fill="#0a4818"/>
-      <rect x="3" y="3" width="124" height="80" rx="9" fill="url(#cashOuter)"/>
-      <rect x="6" y="5" width="118" height="20" rx="6" fill="url(#cashShine)"/>
-      <path d="M 14 22 Q 19 18, 24 22 Q 29 26, 34 22 Q 39 18, 44 22 Q 49 26, 54 22 Q 59 18, 64 22 Q 69 26, 74 22 Q 79 18, 84 22 Q 89 26, 94 22 Q 99 18, 104 22 Q 109 26, 114 22 L 116 64 Q 111 68, 106 64 Q 101 60, 96 64 Q 91 68, 86 64 Q 81 60, 76 64 Q 71 68, 66 64 Q 61 60, 56 64 Q 51 68, 46 64 Q 41 60, 36 64 Q 31 68, 26 64 Q 21 60, 16 64 Z" fill="url(#cashInner)" stroke="#1a8a32" stroke-width="0.7"/>
-      <text x="65" y="54" font-family="'Arial Black', Impact, sans-serif" font-size="34" font-weight="900" fill="#1a8a32" text-anchor="middle" font-style="italic" stroke="#0e6020" stroke-width="0.5">$</text>
+      <!-- Drop-shadow base (offset, dark green) -->
+      <rect x="6" y="9" width="120" height="76" rx="16" fill="#0b4a22" opacity="0.85"/>
+      <!-- Main body — bright bold green -->
+      <rect x="3" y="4" width="120" height="76" rx="16" fill="#3dc650"/>
+      <!-- Darker green chunky border -->
+      <rect x="3" y="4" width="120" height="76" rx="16" fill="none" stroke="#1a7a2e" stroke-width="4"/>
+      <!-- Top gloss highlight (slight 3D sheen) -->
+      <ellipse cx="63" cy="20" rx="50" ry="10" fill="#80e090" opacity="0.55"/>
+      <!-- Big white $ in middle, dark green outline -->
+      <text x="63" y="62" font-family="'Arial Black', Impact, sans-serif" font-size="52" font-weight="900" fill="#ffffff" text-anchor="middle" font-style="italic" stroke="#1a7a2e" stroke-width="3" paint-order="stroke">$</text>
     </svg>`;
 
   function rand(min, max){ return min + Math.random() * (max - min); }
@@ -4915,26 +4936,25 @@ window.addEventListener('resize',()=>{
     </svg>`;
 
   function spawnDollarSigns(){
-    // 5 hand-placed dollar signs hugging the mascot
+    // Placements from the positioner — anchored to the mascot wrapper (% of mascot bbox)
+    // x,y are CENTER of each $, relative to the mascot's bounding box.
     const placements = [
-      // Upper-left near head
-      {xPct: 60, yPct: 13, size: 46, rot: -12, back: false, dx: 6, dy: -10, dur: 4.5},
-      // Upper-right near head
-      {xPct: 90, yPct: 16, size: 38, rot: 14,  back: false, dx: -5, dy: -10, dur: 5.0},
-      // Mid-left next to hand/cape
-      {xPct: 56, yPct: 48, size: 42, rot: -8, back: false, dx: 6, dy: -8,  dur: 5.4},
-      // Lower-right near boots
-      {xPct: 90, yPct: 82, size: 32, rot: -8,  back: true,  dx: 5,  dy: -7,  dur: 3.8},
-      // Lower-left near boots
-      {xPct: 58, yPct: 78, size: 34, rot: 10,  back: true,  dx: 4,  dy: -8,  dur: 4.2},
+      {x:13, y:22, size:56, rot:-12, back:false, dx: 6, dy:-10, dur:4.5},
+      {x:83, y:83, size:34, rot:12,  back:true,  dx:-5, dy: -7, dur:4.8},
+      {x:10, y:91, size:40, rot:-8,  back:true,  dx: 4, dy: -8, dur:4.2},
+      {x:84, y:35, size:42, rot:10,  back:false, dx:-5, dy: -7, dur:5.0},
     ];
+
+    // Anchor host = the mascot wrapper, so positions scale with the mascot
+    // on every screen size (mobile, tablet, desktop).
+    const host = document.getElementById('heroPigWrap') || stage;
 
     placements.forEach((p, i) => {
       const dollar = document.createElement('div');
       dollar.className = 'float-dollar' + (p.back ? ' back' : '');
       dollar.textContent = '$';
-      dollar.style.left = p.xPct + '%';
-      dollar.style.top = p.yPct + '%';
+      dollar.style.left = p.x + '%';
+      dollar.style.top = p.y + '%';
       dollar.style.fontSize = p.size + 'px';
       dollar.style.setProperty('--rot', p.rot + 'deg');
       dollar.style.setProperty('--dx', p.dx + 'px');
@@ -4942,7 +4962,7 @@ window.addEventListener('resize',()=>{
       dollar.style.setProperty('--dur', p.dur + 's');
       // Stagger so they don't all bob in sync
       dollar.style.setProperty('--delay', (-i * 0.9) + 's');
-      stage.appendChild(dollar);
+      host.appendChild(dollar);
     });
   }
 
@@ -4977,9 +4997,9 @@ window.addEventListener('resize',()=>{
     }
 
     spawnDollarSigns();
-    spawnSparkles();
+    // spawnSparkles();  // disabled — no twinkles, $ has its own shine animation
 
-    const NUM_BILLS = 50;       // total bills falling simultaneously
+    const NUM_BILLS = 90;       // total bills falling simultaneously
     const DEEP_RATIO = 0.40;    // 40% are background (smaller + blurred for depth)
 
     for(let i = 0; i < NUM_BILLS; i++){
@@ -5783,5 +5803,6 @@ init();
   <img src="coin.png" alt="" class="float-coin-img">
   <span class="float-coin-label">Buy $SCC</span>
 </a>
+<script src="nav-mascot.js"></script>
 </body>
 </html>
