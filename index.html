@@ -163,11 +163,11 @@
 
   /* === TICKER MARQUEE === */
   .ticker{
-    background:#F40000;
+    background:#1d4fd8;
     border-top:3px solid #ffd23d;
     border-bottom:3px solid #ffd23d;
     overflow:hidden;
-    padding:18px 0;
+    padding:4px 0;
     position:relative;
     box-shadow:0 4px 12px rgba(0,0,0,0.15);
   }
@@ -176,18 +176,40 @@
     width:max-content;
     animation:tickerScroll 24s linear infinite;
     will-change:transform;
+    align-items:center;
   }
   .ticker-item{
     flex-shrink:0;
-    padding:0 28px;
-    font-size:42px;
+    padding:0 22px;
+    font-size:32px;
     font-weight:900;
     letter-spacing:0.02em;
-    color:#fff;
-    font-family:'Arial Black','Arial',sans-serif;
+    font-family:'Luckiest Guy','Lilita One','Arial Black',sans-serif;
+    text-transform:uppercase;
     white-space:nowrap;
+    background:linear-gradient(180deg,#ffffff 0%,#fff493 25%,#ffd23d 50%,#d9a116 80%,#8a5e07 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    -webkit-text-stroke:1.2px #4a3402;
+    filter:
+      drop-shadow(1px 1px 0 #b8830a)
+      drop-shadow(2px 2px 0 #8a5e07)
+      drop-shadow(3px 3px 0 #4a2f02)
+      drop-shadow(4px 5px 8px rgba(0,0,0,0.4));
   }
-  .ticker-item:nth-child(odd){color:#ffd23d;}
+  .ticker-vox{
+    flex-shrink:0;
+    margin:0 14px;
+    width:28px;
+    height:28px;
+    display:block;
+    animation:tickerVoxBob 2.4s ease-in-out infinite;
+  }
+  @keyframes tickerVoxBob{
+    0%,100%{transform:translateY(0) rotate(0);}
+    50%{transform:translateY(-3px) rotate(3deg);}
+  }
   @keyframes tickerScroll{
     0%{transform:translateX(0);}
     100%{transform:translateX(-50%);}
@@ -195,13 +217,21 @@
 
   /* === CELEBRATION SECTION === */
   .celebration{
-    background:linear-gradient(180deg,#1d4fd8 0%,#1a3fc0 100%);
+    background:#0a0a0a;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.08'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.07' transform='rotate(15 130 180)'>$</text><text x='10' y='180' font-family='Arial Black,sans-serif' font-size='44' font-weight='900' fill='%23ffd23d' fill-opacity='0.06' transform='rotate(-12 10 180)'>$</text></svg>");
+    background-size:200px 200px;
+    background-repeat:repeat;
     color:#fff;
-    padding:16px 60px 40px;
+    padding:80px 60px 80px;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
     position:relative;
     overflow:hidden;
     text-align:center;
-    border-top:1px solid rgba(255,255,255,0.08);
+    border-top:2px solid #ffd23d;
+    border-bottom:2px solid #ffd23d;
   }
   #pct25{width:100%;height:100%;}
   #pct25 canvas{display:block;}
@@ -210,18 +240,34 @@
     50%{filter:drop-shadow(0 0 60px rgba(255,210,61,0.95));}
   }
   .celebration h2{
-    font-size:clamp(22px,3vw,38px);
-    font-weight:800;
-    letter-spacing:-0.02em;
-    line-height:1.25;
-    max-width:900px;
-    margin:0 auto 10px;
-    color:#fff;
+    font-family:'Arial Black','Helvetica',sans-serif;
+    font-size:clamp(22px, 3.4vw, 48px);
+    font-weight:900;
+    letter-spacing:0.005em;
+    line-height:1.05;
+    text-transform:uppercase;
+    max-width:1000px;
+    margin:0 auto 16px;
+    color:#ffd23d;
   }
+  .celebration h2 .white{color:#fff;}
   .celebration h2 .gold{color:#ffd23d;}
-  .celebration h2 .tether{
-    color:#26a17b;
-    white-space:nowrap;
+  .celebration h2 .tether{color:#ffd23d;white-space:nowrap;}
+  .celebration .lead{
+    font-family:'Inter','Helvetica',sans-serif;
+    color:#86ed5a;
+    font-size:clamp(14px, 1.6vw, 20px);
+    font-weight:600;
+    margin:0 auto 6px;
+    max-width:760px;
+  }
+  .celebration .lead-white{
+    font-family:'Inter','Helvetica',sans-serif;
+    color:#fff;
+    font-size:clamp(13px, 1.4vw, 18px);
+    font-weight:500;
+    margin:0 auto 30px;
+    max-width:760px;
   }
   .celebration .sub{
     color:#888;
@@ -231,30 +277,35 @@
     font-weight:800;
     margin-bottom:30px;
   }
-  /* === BENEFITS GRID (Option 2 — dashed white border, centered stacked) === */
+  /* === BENEFITS — horizontal dark navy pill cards with subtitle === */
   .benefits{
     margin:10px auto 0;
-    max-width:1200px;
+    max-width:1100px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:22px;
-    text-align:center;
+    gap:14px;
+    text-align:left;
   }
   .benefit{
-    border:2px dashed rgba(255,255,255,0.4);
+    background:#091a3e;
+    border:1px solid #16307a;
     border-radius:14px;
-    padding:30px 22px 28px;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    gap:14px;
     transition:transform 0.25s, border-color 0.25s, background 0.25s;
   }
   .benefit:hover{
     transform:translateY(-3px);
     border-color:rgba(255,210,61,0.6);
-    background:rgba(255,255,255,0.04);
+    background:#0d2255;
   }
   .benefit .b-illust{
-    width:96px;
-    height:96px;
-    margin:0 auto 18px;
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    margin:0;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -264,24 +315,40 @@
     height:100%;
     display:block;
   }
+  .benefit .b-illust.b-wordmark{
+    width:auto;
+    min-width:54px;
+    height:42px;
+    font-family:'Inter','Helvetica',sans-serif;
+    font-weight:900;
+    font-size:18px;
+    letter-spacing:-0.01em;
+    color:#f0b90b;
+    background:rgba(240,185,11,0.08);
+    border-radius:8px;
+    padding:0 10px;
+  }
+  .benefit .b-text{flex:1;min-width:0;}
   .benefit h3{
     font-family:'Arial Black','Arial',sans-serif;
-    font-size:18px;
+    font-size:14px;
     font-weight:900;
     color:#fff;
-    margin:0 0 10px;
-    letter-spacing:-0.005em;
+    margin:0 0 3px;
+    letter-spacing:0.02em;
     line-height:1.15;
     text-transform:uppercase;
   }
   .benefit p{
-    font-size:14px;
-    color:rgba(255,255,255,0.85);
-    line-height:1.55;
+    font-family:'Inter','Helvetica',sans-serif;
+    font-size:12px;
+    color:#86a4e3;
+    line-height:1.4;
     margin:0;
+    font-weight:500;
   }
   .benefit p b{color:#ffd23d;font-weight:900;}
-  @media (max-width:900px){.benefits{grid-template-columns:1fr;max-width:480px;gap:14px;}}
+  @media (max-width:900px){.benefits{grid-template-columns:1fr;max-width:480px;gap:10px;}}
   .celebration .content{position:relative;z-index:2;}
 
   /* === DISTRIBUTOR (HOW IT WORKS) SECTION === */
@@ -540,18 +607,18 @@
     position:relative;
     width:100%;
     max-width:1300px;
-    height:clamp(480px,46vw,700px);
-    margin:-40px auto -60px;
+    height:clamp(340px,32vw,500px);
+    margin:-60px auto -60px;
     overflow:hidden;
   }
   .celeb-anim-stage .volume-3d{
     position:absolute;inset:0;width:100%;height:100%;
   }
   @media (max-width:900px){
-    .celeb-anim-stage{height:440px;}
+    .celeb-anim-stage{height:300px;margin:-50px auto -50px;}
   }
   @media (max-width:600px){
-    .celeb-anim-stage{height:340px;}
+    .celeb-anim-stage{height:240px;margin:-30px auto -30px;}
   }
 
   /* Detail strip below the two big cards */
@@ -1207,14 +1274,16 @@
           img.getpaid-coin{width:52px;height:52px;}
     
     /* --- Ticker: smaller text --- */
-    .ticker{padding:14px 0;}
-    .ticker-item{font-size:30px;padding:0 18px;}
+    .ticker{padding:3px 0;}
+    .ticker-item{font-size:24px;padding:0 16px;}
+    .ticker-vox{width:22px;height:22px;margin:0 10px;}
 
     /* --- Celebration (25% section): tighten padding, smaller h2 --- */
     .celebration{padding:30px 18px 60px;}
-    .celebration h2{font-size:clamp(17px,3.6vw,24px);margin:0 auto 14px;line-height:1.3;}
+    .celebration h2{margin:0 auto 14px;line-height:1.1;}
+    .celebration .lead, .celebration .lead-white{padding:0 12px;}
       .benefits{margin-top:50px;gap:14px;}
-    .benefit{padding:20px;}
+    .benefit{padding:14px 18px;}
 
     /* --- Distributor (HOW IT WORKS): tighten everything --- */
     .distributor{padding:20px 18px 30px;}
@@ -1256,7 +1325,8 @@
     .nav-brand .name{font-size:13px;}
     .nav-brand canvas{width:32px;height:32px;}
     .nav-links a{font-size:16px;}
-    .ticker-item{font-size:24px;padding:0 14px;}
+    .ticker-item{font-size:20px;padding:0 12px;}
+    .ticker-vox{width:18px;height:18px;margin:0 8px;}
               .celebration{padding:30px 14px 60px;}
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
@@ -1430,34 +1500,6 @@
     font-weight:400;
     text-transform:uppercase;
     position:relative;
-  }
-  .hero-headline::before,
-  .hero-headline::after,
-  .hero-headline .sparkle{
-    content:'✦';
-    position:absolute;
-    color:#fff;
-    font-family:Arial,sans-serif;
-    text-shadow:0 0 8px #fff, 0 0 14px #ffd23d, 0 0 20px rgba(255,210,61,0.6);
-    pointer-events:none;
-    -webkit-text-stroke:0;
-    z-index:2;
-  }
-  .hero-headline::before{
-    top:6%;
-    left:12%;
-    font-size:clamp(14px, 1.6vw, 22px);
-    animation:sccSparkle 2.4s ease-in-out infinite;
-  }
-  .hero-headline::after{
-    top:48%;
-    right:14%;
-    font-size:clamp(12px, 1.3vw, 18px);
-    animation:sccSparkle 2.4s ease-in-out infinite 1.2s;
-  }
-  @keyframes sccSparkle{
-    0%,100%{opacity:0;transform:scale(0.4) rotate(0deg);}
-    50%{opacity:1;transform:scale(1.2) rotate(15deg);}
   }
   .hero-headline .big{
     display:block;
@@ -2018,41 +2060,79 @@
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
     <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
+    <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
+    <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
+    <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
+    <span class="ticker-item">$SCC</span>
+    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
   </div>
 </div>
 
 <section class="celebration" id="celebrationSection">
   <div class="content">
     <h2>
-      A huge <span class="gold">25%</span> of every buy transaction in <span class="gold">Super Cash Coin</span> goes back to holders in <span class="tether">USD Tether</span>.
+      25% OF EVERY BUY GOES BACK<br/>TO HOLDERS IN <span class="white">USD TETHER</span>!
     </h2>
+    <p class="lead">Imagine how much you can earn in passive income every day!</p>
+    <p class="lead-white">Like earning a wage — steady cashflow!</p>
     <div class="celeb-anim-stage">
       <canvas id="distScene"></canvas>
     </div>
@@ -2060,864 +2140,202 @@
     <div class="benefits">
       <div class="benefit">
         <div class="b-illust">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <circle cx="50" cy="50" r="40" fill="#26a17b" stroke="#0a4a30" stroke-width="4"/>
-            <text x="50" y="68" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-size="56" font-weight="900" fill="#fff" stroke="#0a4a30" stroke-width="2">₮</text>
-            <circle cx="36" cy="34" r="7" fill="#fff" opacity="0.35"/>
+          <svg viewBox="0 0 32 36" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 4 L29 4 L26 11 L18 11 L18 32 L14 32 L14 11 L6 11 Z" fill="#26a17b" stroke="#1a4d3a" stroke-width="0.5"/>
           </svg>
         </div>
-        <h3>GET PAID TETHER</h3>
-        <p>Fully automatic, no need to mine, claim or pool anything! Just add contracts to your wallet.</p>
+        <div class="b-text">
+          <h3>GET PAID TETHER</h3>
+          <p>Auto rewards in USDT</p>
+        </div>
       </div>
 
       <div class="benefit">
         <div class="b-illust">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <rect x="12" y="22" width="76" height="56" rx="6" fill="#1da4e9" stroke="#0a3a52" stroke-width="4"/>
-            <rect x="12" y="22" width="76" height="14" fill="#0a4a78" stroke="#0a3a52" stroke-width="4"/>
-            <circle cx="20" cy="29" r="2.5" fill="#ffd23d"/>
-            <circle cx="28" cy="29" r="2.5" fill="#ffd23d"/>
-            <rect x="20" y="44" width="26" height="26" rx="3" fill="#fff"/>
-            <rect x="52" y="44" width="28" height="10" rx="2" fill="#fff"/>
-            <rect x="52" y="58" width="28" height="12" rx="2" fill="#ffd23d"/>
-          </svg>
+          <img src="bnb-logo.png" alt="opBNB" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
-        <h3>DEDICATED PLATFORM</h3>
-        <p>An entire platform dedicated to our meme coin — buy/sell and select your auto-reinvest settings.</p>
+        <div class="b-text">
+          <h3>BUILT ON opBNB</h3>
+          <p>Ultra fast and low fees</p>
+        </div>
       </div>
 
       <div class="benefit">
         <div class="b-illust">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <rect x="14" y="60" width="18" height="26" rx="3" fill="#ffd23d" stroke="#7a5a08" stroke-width="4"/>
-            <rect x="41" y="42" width="18" height="44" rx="3" fill="#ffd23d" stroke="#7a5a08" stroke-width="4"/>
-            <rect x="68" y="22" width="18" height="64" rx="3" fill="#ffd23d" stroke="#7a5a08" stroke-width="4"/>
-            <path d="M22 56 L50 38 L77 18" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
-            <polygon points="74,10 86,18 72,22" fill="#fff" stroke="#7a5a08" stroke-width="2"/>
+          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="22" width="6" height="10" fill="#3dc650"/>
+            <rect x="14" y="16" width="6" height="16" fill="#3dc650"/>
+            <rect x="24" y="10" width="6" height="22" fill="#3dc650"/>
+            <polyline points="6,18 16,12 26,6" stroke="#3dc650" stroke-width="2" fill="none"/>
+            <polygon points="22,6 30,4 28,12" fill="#3dc650"/>
           </svg>
         </div>
-        <h3>HIGH VOLUME</h3>
-        <p>One of the largest taxes — more volume = more cashflow for you!</p>
+        <div class="b-text">
+          <h3>HIGH VOLUME</h3>
+          <p>More volume = more rewards</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="distributor" id="distributorSection">
-  <div class="distributor-wrap">
-    <h2 class="dist-title-text">How It <span class="gold">Works</span></h2>
-    <div class="dist-subhead">
-      Every buy sends <b>25% tax</b> to the Vault. When there's enough money, the Distributor automatically sends <b>USDT</b> to all holders in one cheap batch. On <b>opBNB</b> this happens often and costs almost nothing. No claiming needed — money just appears in your wallet!
-    </div>
 
-    <div class="dist-stage"><div class="volume-3d" id="vc2"></div></div>
-
-    <div class="dist-steps">
-      <div class="dist-step">
-        <div class="step-num">01</div>
-        <h4>Someone Buys $SCC</h4>
-        <p>Every buy on the open market pays a <b>25% tax</b> straight into the smart contract.</p>
-      </div>
-      <div class="dist-step">
-        <div class="step-num">02</div>
-        <h4>The Distributor Receives</h4>
-        <p>The contract converts the tax into <b>USDT</b> and loads the distributor with rewards.</p>
-      </div>
-      <div class="dist-step">
-        <div class="step-num">03</div>
-        <h4>Holders Get Paid</h4>
-        <p>Arms reach out and drop <b>USDT</b> directly into every holder's wallet automatically.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PLATFORM PREVIEW SECTION — scattered mockup collage
-     ============================================================ -->
-<section class="platform-section" id="platformSection">
-
-  <!-- Reusable SCC pig logo as SVG symbol -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="sccLogo" viewBox="0 0 32 32" shape-rendering="crispEdges">
-        <rect x="3" y="2" width="3" height="1" fill="#1da4e9"/>
-        <rect x="3" y="3" width="4" height="1" fill="#1da4e9"/>
-        <rect x="3" y="4" width="5" height="1" fill="#1da4e9"/>
-        <rect x="26" y="2" width="3" height="1" fill="#1da4e9"/>
-        <rect x="25" y="3" width="4" height="1" fill="#1da4e9"/>
-        <rect x="24" y="4" width="5" height="1" fill="#1da4e9"/>
-        <rect x="3" y="5" width="26" height="22" fill="#1da4e9"/>
-        <rect x="4" y="11" width="24" height="4" fill="#0a0a0a"/>
-        <rect x="6" y="12" width="2" height="1" fill="#ffffff"/>
-        <rect x="18" y="12" width="2" height="1" fill="#ffffff"/>
-        <rect x="11" y="18" width="10" height="6" fill="#1da4e9"/>
-        <rect x="13" y="20" width="2" height="2" fill="#0a0a0a"/>
-        <rect x="17" y="20" width="2" height="2" fill="#0a0a0a"/>
-        <rect x="13" y="25" width="6" height="1" fill="#0a0a0a"/>
-        <rect x="19" y="24" width="1" height="1" fill="#0a0a0a"/>
-        <rect x="20" y="23" width="1" height="1" fill="#0a0a0a"/>
-      </symbol>
-    </defs>
-  </svg>
-
-  <div class="platform-copy">
-    <div class="platform-eyebrow"><span class="platform-eyebrow-dot"></span>Platform · In Development</div>
-    <h2 class="platform-h">We Built An Entire <span class="platform-h-gold">Platform.</span></h2>
-    <p class="platform-sub">All for one coin. <b>$SCC.</b> Stats, milestones, leaderboards, auto-reinvest — the whole thing. Platform's in dev, but here's a sneak peek.</p>
-  </div>
-
-  <div class="platform-stage">
-
-    <!-- Stats dashboard browser (big, behind, rotated -3deg) -->
-    <div class="mk-browser mk-stats-bg">
-      <div class="mk-browser-chrome">
-        <div class="mk-browser-dots"><span></span><span></span><span></span></div>
-        <div class="mk-browser-url">supercashcoin.com/stats</div>
-      </div>
-      <div class="mk-browser-body">
-        <div class="mk-app-head">
-          <div class="mk-app-logo"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
-          <div class="mk-app-name">Super Cash <span class="mk-gold">Coin</span></div>
-          <div class="mk-app-nav">
-            <span class="active">Stats</span>
-            <span>Trade</span>
-            <span>Leaderboard</span>
-          </div>
-          <div class="mk-app-net">opBNB</div>
-        </div>
-
-        <div class="mk-stats-hero">
-          <div class="mk-chart-card">
-            <div class="mk-chart-head">
-              <div class="mk-chart-title">$SCC Price · USDT</div>
-              <div class="mk-chart-tabs">
-                <span>1H</span><span>4H</span><span class="active">1D</span><span>1W</span>
-              </div>
-            </div>
-            <svg class="mk-chart-svg" viewBox="0 0 400 110" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="mkChartFill" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#ffd23d" stop-opacity="0.4"/>
-                  <stop offset="100%" stop-color="#ffd23d" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0,95 L25,87 L55,90 L85,75 L115,78 L145,62 L175,68 L205,50 L235,53 L265,38 L295,40 L325,22 L355,26 L385,12 L400,10 L400,110 L0,110 Z" fill="url(#mkChartFill)"/>
-              <path d="M0,95 L25,87 L55,90 L85,75 L115,78 L145,62 L175,68 L205,50 L235,53 L265,38 L295,40 L325,22 L355,26 L385,12 L400,10" stroke="#ffd23d" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="400" cy="10" r="4" fill="#ffd23d"/>
-              <circle class="mk-pulse-dot" cx="400" cy="10" r="7" fill="#ffd23d" opacity="0.3"/>
-            </svg>
-          </div>
-          <div>
-            <div class="mk-tile mk-gold-edge" style="margin-bottom:8px;">
-              <div class="mk-tile-label">Price</div>
-              <div class="mk-tile-val mk-val-gold">$0.0042</div>
-              <div class="mk-tile-sub"><span class="up">▲ +12.4%</span> today</div>
-            </div>
-            <div class="mk-tile mk-green-edge">
-              <div class="mk-tile-label">Royalties Paid</div>
-              <div class="mk-tile-val mk-val-green">$284K</div>
-              <div class="mk-tile-sub">to holders so far</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mk-milestones">
-          <div class="mk-milestone">
-            <div class="mk-milestone-label">10K Holders</div>
-            <div class="mk-milestone-bar"><div class="mk-milestone-fill mk-fill-done" style="width:100%"></div></div>
-            <div class="mk-milestone-pct mk-pct-green">✓ HIT</div>
-          </div>
-          <div class="mk-milestone">
-            <div class="mk-milestone-label">100K Holders</div>
-            <div class="mk-milestone-bar"><div class="mk-milestone-fill" style="width:62%"></div></div>
-            <div class="mk-milestone-pct">62%</div>
-          </div>
-          <div class="mk-milestone">
-            <div class="mk-milestone-label">$1M Royalties</div>
-            <div class="mk-milestone-bar"><div class="mk-milestone-fill" style="width:28%"></div></div>
-            <div class="mk-milestone-pct">28%</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phone wallet view — live-ticking USDT rewards (overlapping front-right, rotated +5deg) -->
-    <div class="mk-phone mk-phone-fg">
-      <div class="mk-phone-notch"></div>
-      <div class="mk-wallet-screen">
-        <div class="mk-wallet-bar">
-          <span class="mk-wallet-time">9:41</span>
-          <span>opBNB</span>
-        </div>
-        <div class="mk-wallet-head">
-          <svg class="mk-wallet-fox" viewBox="0 0 40 40" aria-hidden="true">
-            <path d="M5 8 L20 4 L35 8 L32 28 L20 36 L8 28 Z" fill="#e17726" stroke="#763d16" stroke-width="1.5" stroke-linejoin="round"/>
-            <circle cx="14" cy="18" r="3" fill="#fff"/>
-            <circle cx="26" cy="18" r="3" fill="#fff"/>
-            <circle cx="14" cy="18" r="1.5" fill="#000"/>
-            <circle cx="26" cy="18" r="1.5" fill="#000"/>
-          </svg>
-          <span class="mk-wallet-app">MetaMask</span>
-          <span class="mk-wallet-net-dot"></span>
-          <span class="mk-wallet-net">opBNB</span>
-        </div>
-        <div class="mk-wallet-acct">
-          <span>Account 1</span>
-          <span class="mk-wallet-addr">0x092...0FA61</span>
-        </div>
-        <div class="mk-wallet-balance">
-          <div class="mk-wallet-bal-amt" id="mkWalletTotal">$2,847.32</div>
-          <div class="mk-wallet-bal-chg">
-            <span class="mk-up">▲ +$<span id="mkWalletGain">12.47</span></span>
-            <span class="mk-pct">today</span>
-          </div>
-        </div>
-        <div class="mk-wallet-tokens">
-          <div class="mk-wallet-token">
-            <div class="mk-wallet-token-icon"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
-            <div class="mk-wallet-token-info">
-              <div class="mk-wallet-token-name">$SCC</div>
-              <div class="mk-wallet-token-sub">100K SCC</div>
-            </div>
-            <div class="mk-wallet-token-vals">
-              <div class="mk-wallet-token-val">$200.00</div>
-              <div class="mk-wallet-token-pct">+5.2%</div>
-            </div>
-          </div>
-          <div class="mk-wallet-token mk-wallet-hot">
-            <div class="mk-wallet-usdt-icon">₮</div>
-            <div class="mk-wallet-token-info">
-              <div class="mk-wallet-token-name">USDT <span class="mk-rewards-tag">REWARDS</span></div>
-              <div class="mk-wallet-token-sub"><span id="mkWalletUsdt">2,647.32</span> USDT</div>
-            </div>
-            <div class="mk-wallet-token-vals">
-              <div class="mk-wallet-token-val" id="mkWalletUsdtVal">$2,647.32</div>
-              <div class="mk-wallet-token-pct mk-wallet-live"><span class="mk-live-dot"></span>LIVE</div>
-            </div>
-          </div>
-        </div>
-        <div class="mk-wallet-feed-head">Recent rewards</div>
-        <div class="mk-wallet-feed" id="mkWalletFeed"></div>
-      </div>
-    </div>
-
-    <!-- Leaderboard small (top-right, rotated -6deg) -->
-    <div class="mk-leaderboard mk-leaderboard-top">
-      <div class="mk-lb-head">
-        <div class="mk-lb-head-title">Top Holders</div>
-        <div class="mk-lb-head-sub">Live · 14,832</div>
-      </div>
-      <div class="mk-lb-body">
-        <div class="mk-lb-row mk-r1">
-          <div class="mk-lb-rank">1</div>
-          <div class="mk-lb-avatar"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
-          <div class="mk-lb-info">
-            <div class="mk-lb-addr">0x7c4f...3f2a 👑</div>
-            <div class="mk-lb-country">🇺🇸 United States</div>
-          </div>
-          <div class="mk-lb-amt">2.4M<span class="mk-lb-usd">$10,080</span></div>
-        </div>
-        <div class="mk-lb-row mk-r2">
-          <div class="mk-lb-rank">2</div>
-          <div class="mk-lb-avatar"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
-          <div class="mk-lb-info">
-            <div class="mk-lb-addr">0x91b3...8a91</div>
-            <div class="mk-lb-country">🇯🇵 Japan</div>
-          </div>
-          <div class="mk-lb-amt">1.8M<span class="mk-lb-usd">$7,560</span></div>
-        </div>
-        <div class="mk-lb-row mk-r3">
-          <div class="mk-lb-rank">3</div>
-          <div class="mk-lb-avatar"><svg viewBox="0 0 32 32"><use href="#sccLogo"/></svg></div>
-          <div class="mk-lb-info">
-            <div class="mk-lb-addr">0x4d8e...2c01</div>
-            <div class="mk-lb-country">🇩🇪 Germany</div>
-          </div>
-          <div class="mk-lb-amt">1.2M<span class="mk-lb-usd">$5,040</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Milestone corner card (front-bottom-left, rotated +4deg) -->
-    <div class="mk-card mk-milestone-corner">
-      <div class="mk-card-eyebrow">Next Milestone</div>
-      <h4 class="mk-card-title">100,000 Holders</h4>
-      <div class="mk-milestone-bar mk-big-bar">
-        <div class="mk-milestone-fill" style="width:62%"></div>
-      </div>
-      <div class="mk-card-foot">
-        <span class="mk-card-progress">62,481 / 100,000</span>
-        <span class="mk-card-pct">62%</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-/* ============================================================
-   PLATFORM PREVIEW SECTION — all styles scoped under .platform-section
-   ============================================================ */
-.platform-section{
-  background:linear-gradient(180deg,#fafaf6 0%,#fff 100%);
-  color:#0a0a0a;
-  padding:90px 60px 100px;
-  position:relative;
-  overflow:hidden;
-}
-.platform-section::before{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(255,210,61,0.14), transparent 70%),
-    radial-gradient(circle at 80% 80%, rgba(29,164,233,0.06), transparent 50%);
-  pointer-events:none;
-}
-.platform-copy{
-  text-align:center;max-width:780px;margin:0 auto 50px;
-  position:relative;z-index:1;
-}
-.platform-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:6px 14px;
-  background:rgba(255,210,61,0.15);
-  border:1px solid rgba(255,210,61,0.4);
-  border-radius:99px;
-  font-size:11px;font-weight:900;color:#c79a0c;
-  letter-spacing:0.18em;text-transform:uppercase;
-  margin-bottom:18px;
-}
-.platform-eyebrow-dot{
-  width:7px;height:7px;border-radius:50%;background:#ffd23d;
-  box-shadow:0 0 0 0 rgba(255,210,61,0.6);
-  animation:platformPulse 2s ease-in-out infinite;
-}
-@keyframes platformPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(255,210,61,0.6);}
-  50%{box-shadow:0 0 0 8px rgba(255,210,61,0);}
-}
-.platform-h{
-  font-family:'Lilita One',sans-serif;
-  font-size:clamp(40px,5.5vw,68px);
-  line-height:1;
-  color:#0a0a0a;
-  margin:0 0 14px;
-  font-weight:400;
-}
-.platform-h-gold{
-  color:#ffd23d;
-  -webkit-text-stroke:2px #0a0a0a;
-  text-shadow:3px 3px 0 #c79a0c, 4px 4px 0 #0a0a0a;
-}
-.platform-sub{
-  font-size:16px;color:#555;line-height:1.55;
-  margin:0 auto;max-width:580px;
-}
-.platform-sub b{color:#0a0a0a;font-weight:800;}
-
-/* === Stage === */
-.platform-stage{
-  position:relative;
-  max-width:1200px;
-  height:680px;
-  margin:0 auto;
-}
-.platform-stage > *{position:absolute;}
-
-/* === Scattered positions === */
-.mk-stats-bg{
-  width:580px;top:80px;left:40px;
-  transform:rotate(-3deg);z-index:2;
-}
-.mk-phone-fg{
-  top:150px;right:130px;
-  transform:rotate(5deg);z-index:4;
-}
-.mk-leaderboard-top{
-  width:340px;top:30px;right:30px;
-  transform:rotate(-6deg);z-index:3;
-}
-.mk-milestone-corner{
-  width:290px;bottom:30px;left:260px;
-  transform:rotate(4deg);z-index:5;
-}
-
-/* === Browser frame === */
-.mk-browser{
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 25px 60px rgba(13,30,70,0.22), 0 6px 16px rgba(0,0,0,0.08);
-  overflow:hidden;
-  border:1px solid rgba(0,0,0,0.06);
-}
-.mk-browser-chrome{
-  background:linear-gradient(180deg,#f4f4ee 0%,#e8e8e0 100%);
-  padding:9px 14px;
-  display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid #d8d8d0;
-}
-.mk-browser-dots{display:flex;gap:6px;flex-shrink:0;}
-.mk-browser-dots span{width:11px;height:11px;border-radius:50%;}
-.mk-browser-dots span:nth-child(1){background:#ff5f57;}
-.mk-browser-dots span:nth-child(2){background:#ffbd2e;}
-.mk-browser-dots span:nth-child(3){background:#27c93f;}
-.mk-browser-url{
-  flex:1;background:#fff;border-radius:6px;
-  padding:4px 10px;font-size:11px;color:#555;
-  font-family:'SF Mono',Menlo,monospace;
-  border:1px solid #d8d8d0;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.mk-browser-url::before{content:'🔒 ';opacity:0.6;}
-.mk-browser-body{background:#0e1726;padding:20px;color:#fff;position:relative;}
-
-/* App header inside browser */
-.mk-app-head{
-  display:flex;align-items:center;gap:12px;
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  margin-bottom:16px;
-}
-.mk-app-logo{
-  width:30px;height:30px;border-radius:6px;
-  background:#0a0a0a;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;padding:2px;
-}
-.mk-app-logo svg{width:100%;height:100%;display:block;}
-.mk-app-name{
-  font-family:'Lilita One',sans-serif;
-  font-size:15px;color:#fff;letter-spacing:0.02em;
-}
-.mk-gold{color:#ffd23d;}
-.mk-app-nav{
-  display:flex;gap:18px;margin-left:auto;
-  font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  color:#888;
-}
-.mk-app-nav .active{color:#ffd23d;}
-.mk-app-net{
-  font-size:9px;font-weight:900;color:#23d76b;
-  letter-spacing:0.1em;text-transform:uppercase;
-  display:flex;align-items:center;gap:4px;
-}
-.mk-app-net::before{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:#23d76b;box-shadow:0 0 0 2px rgba(35,215,107,0.3);
-  animation:platformPulse 1.5s ease-in-out infinite;
-}
-
-.mk-stats-hero{
-  display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-bottom:14px;
-}
-.mk-tile{
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:10px;
-  padding:14px;
-}
-.mk-gold-edge{border-left:3px solid #ffd23d;}
-.mk-green-edge{border-left:3px solid #23d76b;}
-.mk-tile-label{
-  font-size:9px;color:#888;letter-spacing:0.12em;
-  text-transform:uppercase;font-weight:800;margin-bottom:6px;
-}
-.mk-tile-val{
-  font-family:'Arial Black',sans-serif;
-  font-size:24px;letter-spacing:-0.02em;color:#fff;line-height:1;
-}
-.mk-val-gold{color:#ffd23d;}
-.mk-val-green{color:#23d76b;}
-.mk-tile-sub{font-size:10px;color:#888;margin-top:4px;}
-.mk-tile-sub .up{color:#23d76b;font-weight:800;}
-
-.mk-chart-card{
-  background:linear-gradient(180deg, rgba(255,210,61,0.03) 0%, transparent 100%);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:10px;
-  padding:14px;
-}
-.mk-chart-head{
-  display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;
-}
-.mk-chart-title{
-  font-size:10px;color:#bbb;letter-spacing:0.12em;
-  text-transform:uppercase;font-weight:800;
-}
-.mk-chart-tabs{display:flex;gap:4px;font-size:9px;font-weight:800;}
-.mk-chart-tabs span{
-  padding:3px 8px;border-radius:4px;
-  background:rgba(255,255,255,0.04);color:#888;letter-spacing:0.06em;
-}
-.mk-chart-tabs span.active{background:rgba(255,210,61,0.18);color:#ffd23d;}
-.mk-chart-svg{width:100%;height:110px;display:block;}
-.mk-pulse-dot{animation:mkPulseRing 1.6s ease-out infinite;}
-@keyframes mkPulseRing{
-  0%{r:4;opacity:0.6;}
-  100%{r:14;opacity:0;}
-}
-
-.mk-milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.mk-milestone{
-  background:rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:8px;padding:10px;
-}
-.mk-milestone-label{
-  font-size:9px;color:#888;letter-spacing:0.1em;
-  text-transform:uppercase;font-weight:800;margin-bottom:6px;
-}
-.mk-milestone-bar{
-  height:5px;background:rgba(255,255,255,0.08);
-  border-radius:3px;overflow:hidden;
-}
-.mk-milestone-fill{
-  height:100%;border-radius:3px;
-  background:linear-gradient(90deg, #ffd23d, #ffe884);
-}
-.mk-fill-done{background:linear-gradient(90deg, #23d76b, #4ee892);}
-.mk-milestone-pct{
-  font-size:11px;color:#fff;font-weight:900;margin-top:5px;
-  font-family:'Arial Black',sans-serif;
-}
-.mk-pct-green{color:#23d76b;}
-
-/* === Phone === */
-.mk-phone{
-  width:240px;background:#0a0a0a;
-  border-radius:30px;padding:9px 7px 12px;
-  box-shadow:
-    0 30px 60px rgba(13,30,70,0.3),
-    0 8px 20px rgba(0,0,0,0.15),
-    0 0 0 1px rgba(255,210,61,0.15);
-}
-.mk-phone-notch{
-  width:60px;height:5px;border-radius:3px;background:#1a1a1a;margin:0 auto 8px;
-}
-.mk-phone-screen{
-  background:#0e1726;border-radius:22px;padding:14px 12px 16px;color:#fff;
-}
-.mk-phone-bar{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:9px;color:#888;margin-bottom:10px;font-weight:700;
-}
-.mk-phone-time{color:#fff;font-weight:900;}
-.mk-phone-head{
-  display:flex;align-items:center;gap:8px;
-  padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08);
-  margin-bottom:12px;
-}
-.mk-phone-logo{
-  width:24px;height:24px;border-radius:5px;
-  background:#0a0a0a;flex-shrink:0;padding:1px;
-}
-.mk-phone-logo svg{width:100%;height:100%;display:block;}
-.mk-phone-name{
-  font-family:'Lilita One',sans-serif;
-  font-size:12px;color:#fff;letter-spacing:0.02em;
-}
-.mk-phone-net{
-  margin-left:auto;font-size:8px;font-weight:900;color:#23d76b;letter-spacing:0.1em;
-}
-.mk-phone-price{text-align:center;margin-bottom:12px;}
-.mk-phone-price-lbl{
-  font-size:8px;color:#888;letter-spacing:0.12em;
-  text-transform:uppercase;font-weight:800;margin-bottom:2px;
-}
-.mk-phone-price-val{
-  font-family:'Arial Black',sans-serif;
-  font-size:24px;color:#fff;letter-spacing:-0.02em;line-height:1;
-}
-.mk-phone-price-chg{font-size:9px;color:#23d76b;font-weight:900;margin-top:3px;}
-.mk-phone-chart{width:100%;height:45px;display:block;margin-bottom:12px;}
-.mk-phone-tabs{
-  display:flex;gap:0;background:rgba(255,255,255,0.05);
-  border-radius:8px;padding:3px;margin-bottom:10px;
-}
-.mk-phone-tab{
-  flex:1;text-align:center;padding:5px;font-size:10px;font-weight:900;
-  color:#888;border-radius:5px;letter-spacing:0.05em;
-}
-.mk-buy-active{background:#23d76b;color:#0a0a0a;}
-.mk-phone-input{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:7px;
-  padding:8px 10px;margin-bottom:8px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.mk-phone-input-val{font-family:'Arial Black',sans-serif;font-size:14px;color:#fff;}
-.mk-phone-input-tok{font-size:9px;color:#888;font-weight:800;letter-spacing:0.06em;}
-.mk-phone-reinvest{
-  background:linear-gradient(135deg, rgba(255,210,61,0.12), rgba(255,210,61,0.03));
-  border:1px solid rgba(255,210,61,0.3);
-  border-radius:8px;
-  padding:9px 10px;
-  display:flex;align-items:center;gap:9px;
-  margin-bottom:10px;
-}
-.mk-phone-reinvest-info{flex:1;min-width:0;}
-.mk-phone-reinvest-label{
-  font-size:8px;color:#ffd23d;font-weight:900;letter-spacing:0.1em;
-  text-transform:uppercase;margin-bottom:1px;
-}
-.mk-phone-reinvest-mode{font-size:10px;color:#fff;font-weight:900;}
-.mk-arrow{color:#888;font-weight:400;margin:0 3px;}
-.mk-toggle{
-  width:32px;height:18px;background:#23d76b;border-radius:99px;
-  position:relative;flex-shrink:0;
-}
-.mk-toggle::after{
-  content:'';position:absolute;
-  width:14px;height:14px;border-radius:50%;background:#fff;
-  top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,0.3);
-}
-.mk-phone-btn{
-  width:100%;padding:9px;background:#23d76b;color:#0a0a0a;
-  border-radius:7px;font-size:11px;font-weight:900;letter-spacing:0.06em;
-  text-align:center;
-}
-
-/* === Leaderboard === */
-.mk-leaderboard{
-  background:#fff;border-radius:12px;
-  box-shadow:0 25px 60px rgba(13,30,70,0.22), 0 6px 16px rgba(0,0,0,0.08);
-  overflow:hidden;border:1px solid rgba(0,0,0,0.06);
-}
-.mk-lb-head{
-  background:linear-gradient(180deg,#0e1726 0%, #07101e 100%);
-  padding:12px 16px;
-  display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid rgba(255,210,61,0.15);
-}
-.mk-lb-head-title{
-  font-family:'Lilita One',sans-serif;
-  font-size:13px;color:#ffd23d;letter-spacing:0.05em;
-}
-.mk-lb-head-sub{
-  font-size:9px;color:#888;letter-spacing:0.1em;
-  text-transform:uppercase;font-weight:800;margin-left:auto;
-}
-.mk-lb-body{padding:8px;background:#fafaf6;}
-.mk-lb-row{
-  display:grid;grid-template-columns:24px 30px 1fr auto;
-  align-items:center;gap:10px;
-  padding:7px 10px;
-  background:#fff;border-radius:6px;margin-bottom:3px;
-}
-.mk-lb-row:last-child{margin-bottom:0;}
-.mk-r1{
-  background:linear-gradient(90deg, rgba(255,210,61,0.12), #fff 50%);
-  border-left:3px solid #ffd23d;
-}
-.mk-r2{
-  background:linear-gradient(90deg, rgba(168,168,168,0.1), #fff 50%);
-  border-left:3px solid #a8a8a8;
-}
-.mk-r3{
-  background:linear-gradient(90deg, rgba(200,127,58,0.1), #fff 50%);
-  border-left:3px solid #c87f3a;
-}
-.mk-lb-rank{
-  font-family:'Arial Black',sans-serif;
-  font-size:14px;color:#0a0a0a;text-align:center;line-height:1;
-}
-.mk-r1 .mk-lb-rank{color:#c79a0c;}
-.mk-r2 .mk-lb-rank{color:#666;}
-.mk-r3 .mk-lb-rank{color:#8a5520;}
-.mk-lb-avatar{
-  width:30px;height:30px;border-radius:6px;
-  background:#0a0a0a;flex-shrink:0;overflow:hidden;padding:2px;
-}
-.mk-lb-avatar svg{width:100%;height:100%;display:block;}
-.mk-lb-info{min-width:0;}
-.mk-lb-addr{
-  font-family:'SF Mono',Menlo,monospace;
-  font-size:10px;color:#0a0a0a;font-weight:800;
-}
-.mk-lb-country{
-  font-size:9px;color:#888;font-weight:600;letter-spacing:0.04em;
-}
-.mk-lb-amt{
-  font-family:'Arial Black',sans-serif;
-  font-size:11px;color:#0a0a0a;text-align:right;line-height:1.1;
-}
-.mk-lb-usd{
-  display:block;font-size:9px;color:#23d76b;font-weight:800;margin-top:2px;
-}
-
-/* === Floating card === */
-.mk-card{
-  background:#0e1726;color:#fff;
-  border-radius:14px;padding:16px;
-  box-shadow:0 25px 60px rgba(13,30,70,0.22), 0 6px 16px rgba(0,0,0,0.08);
-  border:1px solid rgba(255,255,255,0.05);
-}
-.mk-card-eyebrow{
-  font-size:9px;color:#ffd23d;letter-spacing:0.15em;
-  text-transform:uppercase;font-weight:900;margin-bottom:6px;
-}
-.mk-card-title{
-  font-family:'Lilita One',sans-serif;
-  font-size:16px;margin:0 0 12px;line-height:1.1;color:#fff;font-weight:400;
-}
-.mk-big-bar{height:8px;margin-bottom:8px;}
-.mk-card-foot{display:flex;justify-content:space-between;font-size:11px;}
-.mk-card-progress{color:#888;font-weight:700;}
-.mk-card-pct{color:#ffd23d;font-weight:900;font-family:'Arial Black',sans-serif;}
-
-
-/* === Wallet phone screen (replaces trade-view phone) === */
-.mk-wallet-screen{
-  background:#fff;border-radius:22px;padding:10px 8px 12px;color:#0a0a0a;
-}
-.mk-wallet-bar{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:8px;color:#888;font-weight:700;margin-bottom:8px;
-}
-.mk-wallet-time{color:#0a0a0a;font-weight:900;}
-.mk-wallet-head{
-  display:flex;align-items:center;gap:5px;
-  padding-bottom:8px;border-bottom:1px solid #eee;margin-bottom:8px;
-}
-.mk-wallet-fox{width:18px;height:18px;flex-shrink:0;display:block;}
-.mk-wallet-app{font-weight:900;font-size:11px;color:#0a0a0a;flex:1;}
-.mk-wallet-net-dot{
-  width:6px;height:6px;border-radius:50%;background:#23d76b;
-  box-shadow:0 0 0 2px rgba(35,215,107,0.25);
-  animation:platformPulse 1.5s ease-in-out infinite;
-}
-.mk-wallet-net{font-size:9px;font-weight:800;color:#23d76b;letter-spacing:0.05em;text-transform:uppercase;}
-.mk-wallet-acct{
-  display:flex;justify-content:space-between;align-items:center;
-  background:#fafaf6;border-radius:6px;padding:5px 8px;margin-bottom:8px;
-  font-size:9px;
-}
-.mk-wallet-acct span:first-child{font-weight:800;color:#0a0a0a;}
-.mk-wallet-addr{font-family:'SF Mono',Menlo,monospace;font-size:8px;color:#888;}
-.mk-wallet-balance{text-align:center;margin-bottom:10px;}
-.mk-wallet-bal-amt{
-  font-family:'Arial Black',sans-serif;
-  font-size:24px;font-weight:900;color:#0a0a0a;letter-spacing:-0.02em;line-height:1;
-  font-variant-numeric:tabular-nums;
-}
-.mk-wallet-bal-chg{
-  display:flex;justify-content:center;align-items:center;gap:5px;
-  font-size:9px;font-weight:700;margin-top:3px;
-}
-.mk-wallet-bal-chg .mk-up{color:#23d76b;}
-.mk-wallet-bal-chg .mk-pct{color:#888;font-weight:600;}
-.mk-wallet-tokens{margin-bottom:8px;}
-.mk-wallet-token{
-  display:flex;align-items:center;gap:6px;
-  padding:5px 4px;border-bottom:1px solid #f4f4f0;
-}
-.mk-wallet-token:last-child{border-bottom:none;}
-.mk-wallet-hot{
-  background:linear-gradient(90deg, rgba(35,215,107,0.10), rgba(35,215,107,0));
-  border-radius:5px;
-  padding-left:6px;margin:0 -2px;
-}
-.mk-wallet-token-icon{
-  width:24px;height:24px;border-radius:5px;
-  background:#0a0a0a;flex-shrink:0;padding:2px;
-}
-.mk-wallet-token-icon svg{width:100%;height:100%;display:block;}
-.mk-wallet-usdt-icon{
-  width:24px;height:24px;border-radius:50%;
-  background:#26a17b;color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:900;font-size:15px;font-family:'Arial Black',sans-serif;
-  flex-shrink:0;
-}
-.mk-wallet-token-info{flex:1;min-width:0;}
-.mk-wallet-token-name{
-  font-size:11px;font-weight:800;color:#0a0a0a;
-  display:flex;align-items:center;gap:4px;flex-wrap:wrap;
-}
-.mk-rewards-tag{
-  font-size:7px;font-weight:900;color:#23d76b;
-  background:rgba(35,215,107,0.13);
-  padding:1px 4px;border-radius:3px;
-  letter-spacing:0.06em;
-  animation:platformPulse 1.5s ease-in-out infinite;
-}
-.mk-wallet-token-sub{font-size:9px;color:#888;margin-top:1px;font-variant-numeric:tabular-nums;}
-.mk-wallet-token-vals{text-align:right;}
-.mk-wallet-token-val{
-  font-family:'Arial Black',sans-serif;
-  font-size:11px;font-weight:900;color:#0a0a0a;line-height:1.1;
-  font-variant-numeric:tabular-nums;
-}
-.mk-wallet-token-pct{font-size:9px;color:#23d76b;font-weight:700;margin-top:1px;}
-.mk-wallet-live{
-  display:flex;align-items:center;justify-content:flex-end;gap:3px;letter-spacing:0.06em;
-}
-.mk-live-dot{
-  width:5px;height:5px;border-radius:50%;background:#23d76b;
-  animation:platformPulse 1s ease-in-out infinite;
-}
-.mk-wallet-feed-head{
-  font-size:8px;font-weight:800;color:#888;
-  letter-spacing:0.08em;text-transform:uppercase;
-  margin-bottom:4px;
-}
-.mk-wallet-feed{
-  background:#fafaf6;border-radius:6px;padding:5px 8px;
-  height:54px;overflow:hidden;position:relative;
-}
-.mk-wallet-feed-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:2px 0;font-size:8px;
-  animation:mkFeedSlide 0.4s ease-out;
-}
-.mk-wallet-feed-row .label{color:#444;font-weight:700;}
-.mk-wallet-feed-row .amt{color:#23d76b;font-weight:800;font-family:'Arial Black',sans-serif;}
-.mk-wallet-feed-row .time{color:#aaa;font-size:7px;font-weight:600;}
-@keyframes mkFeedSlide{
-  from{opacity:0;transform:translateY(-6px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* === Responsive === */
-@media (max-width:1200px){
-  .platform-stage{transform:scale(0.85);transform-origin:top center;height:600px;}
-}
-@media (max-width:1000px){
-  .platform-stage{transform:scale(0.7);height:540px;}
-}
-@media (max-width:840px){
-  .platform-section{padding:60px 20px 70px;}
-  .platform-stage{
-    transform:none;height:auto;
-    display:flex;flex-direction:column;align-items:center;gap:24px;
-    max-width:520px;
-  }
-  .platform-stage > *{
-    position:relative;
-    top:auto;left:auto;right:auto;bottom:auto;
-    transform:none !important;
-    width:100% !important;max-width:100%;
-  }
-  .mk-phone{width:260px !important;align-self:center;}
-  .mk-milestone-corner{max-width:340px;}
-  .mk-leaderboard-top{max-width:420px;}
-}
-@media (max-width:600px){
-  .platform-section{padding:50px 16px 60px;}
-  .mk-browser-body{padding:14px;}
-  .mk-stats-hero{grid-template-columns:1fr;}
-  .mk-milestones{grid-template-columns:1fr;gap:6px;}
-  .mk-app-nav{display:none;}
-}
-</style>
 
 
 <!-- ============================================================
      WALLET MOCKUP SECTION — fancy MetaMask-style UI showing
      SCC balance + live-ticking USDT rewards
      ============================================================ -->
-<section class="wallet-section" id="walletSection">
+<section class="htb-section" id="howToBuy">
+  <div class="htb-wrap">
+    <h2 class="htb-title">How To <span class="gold">Buy</span></h2>
+    <p class="htb-sub">
+      Three simple steps and you're earning <b class="gold">USDT rewards</b> from holding $SCC.
+    </p>
+
+    <div class="htb-layout">
+      <!-- ===== Phone (left on desktop, top on mobile) ===== -->
+      <div class="htb-phone-stage">
+        <div class="wallet-device">
+          <div class="wallet-notch"></div>
+          <div class="wallet-app">
+            <div class="wallet-app-head">
+              <svg class="wallet-fox" viewBox="0 0 318 318" xmlns="http://www.w3.org/2000/svg">
+                <path d="M274.1 35.5l-99.5 73.9L193 65.8z" fill="#E2761B"/>
+                <path d="M44.4 35.5l98.7 74.6-17.5-44.3zm193.9 171.3l-26.5 40.6 56.7 15.6 16.3-55.3zm-204.4.9L50.1 263l56.7-15.6-26.5-40.6z" fill="#E4761B"/>
+                <path d="M103.6 138.2l-15.8 23.9 56.3 2.5-2-60.5zm111.3 0l-39-34.8-1.3 61.2 56.2-2.5zM106.8 247.4l33.8-16.5-29.2-22.8zm71-16.5l33.9 16.5-4.7-39.3z" fill="#E4761B"/>
+                <path d="M211.8 247.4l-33.9-16.5 2.7 22.1-.3 9.3zm-105 0l31.5 14.9-.2-9.3 2.5-22.1z" fill="#D7C1B3"/>
+                <path d="M138.8 193.5l-28.2-8.3 19.9-9.1zm40.7 0l8.3-17.4 20 9.1z" fill="#233447"/>
+                <path d="M106.8 247.4l4.8-40.6-31.3.9zM207 206.8l4.8 40.6 26.5-39.7zm23.8-44.7l-56.2 2.5 5.2 28.9 8.3-17.4 20 9.1zm-120.2 23.1l20-9.1 8.2 17.4 5.3-28.9-56.3-2.5z" fill="#CD6116"/>
+                <path d="M87.8 162.1l23.6 46-.8-22.9zm120.3 23.1l-1 22.9 23.7-46zm-64-20.6l-5.3 28.9 6.6 34.1 1.5-44.9zm30.5 0l-2.7 18 1.2 45 6.7-34.1z" fill="#E4751F"/>
+                <path d="M179.6 193.5l-6.7 34.1 4.8 3.3 29.2-22.8 1-22.9zm-69-8.3l.8 22.9 29.2 22.8 4.8-3.3-6.6-34.1z" fill="#F6851B"/>
+                <path d="M180.1 261.9l.3-9.3-2.5-2.2h-37.4l-2.3 2.2.2 9.3-31.5-14.9 11 9 22.3 15.5h38.3l22.4-15.5 11-9z" fill="#C0AD9E"/>
+                <path d="M177.9 230.9l-4.8-3.3h-27.6l-4.8 3.3-2.5 22.1 2.3-2.2h37.4l2.5 2.2z" fill="#161616"/>
+                <path d="M278.3 114.2l8.5-40.8-12.7-37.9-96.2 71.4 37 31.3 52.3 15.3 11.6-13.5-5-3.6 8-7.3-6.2-4.8 8-6.1zM31.8 73.4l8.5 40.8-5.4 4 8 6.1-6.1 4.8 8 7.3-5 3.6 11.5 13.5 52.3-15.3 37-31.3-96.2-71.4z" fill="#763D16"/>
+                <path d="M267.2 153.5l-52.3-15.3 15.9 23.9-23.7 46 31.2-.4h46.5zm-163.6-15.3l-52.3 15.3-17.4 54.2h46.4l31.1.4-23.6-46zm71 26.4l3.3-57.7 15.2-41.1h-67.5l15 41.1 3.5 57.7 1.2 18.2.1 44.8h27.6l.2-44.8z" fill="#F6851B"/>
+              </svg>
+              <span class="wallet-app-name">MetaMask</span>
+              <span class="wallet-app-dot"></span>
+              <span class="wallet-app-net">opBNB</span>
+            </div>
+
+            <!-- Account row -->
+            <div class="wallet-account">
+              <span class="wallet-acct-label">Account 1</span>
+              <span class="wallet-acct-addr">0x092A1...0FA61</span>
+            </div>
+
+            <!-- Big total balance — ticks up -->
+            <div class="wallet-balance">
+              <div class="wallet-bal-amt" id="htbTotal">$2,847.32</div>
+              <div class="wallet-bal-change">
+                <span class="up">▲ +$<span id="htbGain">12.47</span></span>
+                <span class="pct">(+0.44%) today</span>
+              </div>
+            </div>
+
+            <div class="wallet-actions">
+              <div class="wallet-act"><span>$</span><span>Buy</span></div>
+              <div class="wallet-act"><span>⇄</span><span>Swap</span></div>
+              <div class="wallet-act"><span>↗</span><span>Send</span></div>
+              <div class="wallet-act"><span>↙</span><span>Receive</span></div>
+            </div>
+
+            <div class="wallet-tabs">
+              <span class="wallet-tab active">Tokens</span>
+              <span class="wallet-tab">NFTs</span>
+              <span class="wallet-tab">Activity</span>
+            </div>
+
+            <div class="wallet-tokens">
+              <!-- $SCC -->
+              <div class="wallet-token">
+                <img src="coin.png" alt="$SCC" class="wallet-token-icon">
+                <div class="wallet-token-info">
+                  <div class="wallet-token-name">Super Cash Coin <span class="badge-scc">$SCC</span></div>
+                  <div class="wallet-token-sub">100,000.00 SCC</div>
+                </div>
+                <div class="wallet-token-vals">
+                  <div class="wallet-token-val">$200.00</div>
+                  <div class="wallet-token-pct">+5.2%</div>
+                </div>
+              </div>
+
+              <!-- USDT — this one ticks live -->
+              <div class="wallet-token wallet-token-hot">
+                <img src="tether.png" alt="USDT" class="wallet-token-icon">
+                <div class="wallet-token-info">
+                  <div class="wallet-token-name">Tether <span class="badge-usdt">USDT</span> <span class="pulse-tag-mini">REWARDS</span></div>
+                  <div class="wallet-token-sub"><span id="htbUsdt">2,647.32</span> USDT</div>
+                </div>
+                <div class="wallet-token-vals">
+                  <div class="wallet-token-val" id="htbUsdtVal">$2,647.32</div>
+                  <div class="wallet-token-pct live"><span class="live-dot"></span>LIVE</div>
+                </div>
+              </div>
+
+              <!-- BNB for gas -->
+              <div class="wallet-token">
+                <img src="bnb-logo.png" alt="BNB" class="wallet-token-icon">
+                <div class="wallet-token-info">
+                  <div class="wallet-token-name">BNB <span class="badge-bnb">GAS</span></div>
+                  <div class="wallet-token-sub">0.04 BNB</div>
+                </div>
+                <div class="wallet-token-vals">
+                  <div class="wallet-token-val">$26.47</div>
+                  <div class="wallet-token-pct">For fees</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wallet-feed-head">Recent rewards</div>
+            <div class="wallet-feed" id="htbFeed">
+              <!-- populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Steps (right on desktop, below on mobile) ===== -->
+      <div class="htb-steps">
+        <div class="htb-step">
+          <div class="htb-num">1</div>
+          <div class="htb-step-pic">
+            <img src="step1-wallet.png" alt="Get a wallet">
+          </div>
+          <div class="htb-step-body">
+            <h4>Get a Wallet</h4>
+            <p>Grab <span class="gold">MetaMask</span>, add the <span class="gold">opBNB</span> network and a bit of <span class="gold">BNB</span> for gas.</p>
+          </div>
+        </div>
+
+        <div class="htb-step">
+          <div class="htb-num">2</div>
+          <div class="htb-step-pic">
+            <img src="step2-trade.png" alt="Get some crypto">
+          </div>
+          <div class="htb-step-body">
+            <h4>Get Some Crypto</h4>
+            <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> and bridge it to opBNB — that's our trading currency.</p>
+          </div>
+        </div>
+
+        <div class="htb-step">
+          <div class="htb-num">3</div>
+          <div class="htb-step-pic">
+            <img src="step3-buy.png" alt="Buy Super Cash Coin">
+          </div>
+          <div class="htb-step-body">
+            <h4>Buy Super Cash Coin</h4>
+            <p>Swap <span class="gold">USDT</span> → <span class="gold">$SCC</span>. Turn on <span class="gold">auto-reinvest</span> to compound rewards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wallet-section" id="walletSection2">
   <div class="wallet-wrap">
     <h2 class="wallet-title">Watch Your <span class="gold">Wallet Grow</span></h2>
     <p class="wallet-sub">
@@ -3061,6 +2479,138 @@
   .wallet-sub b{color:#0a0a0a;font-weight:800;}
   .wallet-sub b.gold{color:#c79a0c;}
 
+  /* === HOW TO BUY SECTION ============================== */
+  .htb-section{
+    background:linear-gradient(180deg,#fafaf6 0%,#fff 100%);
+    color:#0a0a0a;
+    padding:90px 60px 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .htb-section::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,210,61,0.10), transparent 70%);
+    pointer-events:none;
+  }
+  .htb-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+  .htb-title{
+    text-align:center;
+    font-family:'Arial Black','Arial',sans-serif;
+    font-size:clamp(40px,6vw,72px);
+    font-weight:900;
+    letter-spacing:-0.02em;
+    line-height:1.1;
+    margin:0 0 18px;
+    color:#0a0a0a;
+  }
+  .htb-title .gold{color:#ffd23d;}
+  .htb-sub{
+    text-align:center;
+    font-size:clamp(15px,1.4vw,18px);
+    color:#555;
+    max-width:680px;
+    margin:0 auto 50px;
+    line-height:1.55;
+    font-family:'Inter','Arial',sans-serif;
+  }
+  .htb-sub b{color:#0a0a0a;font-weight:800;}
+  .htb-sub b.gold{color:#c79a0c;}
+
+  .htb-layout{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .htb-phone-stage{display:flex;justify-content:center;align-items:center;}
+
+  /* Steps column — dark navy benefit-card style with big pic + small number */
+  .htb-steps{display:flex;flex-direction:column;gap:16px;}
+  .htb-step{
+    position:relative;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    padding:22px 26px;
+    background:#091a3e;
+    border:1px solid #16307a;
+    border-radius:14px;
+    transition:transform .25s,border-color .25s,background .25s;
+  }
+  .htb-step:hover{
+    transform:translateY(-3px);
+    border-color:rgba(255,210,61,0.6);
+    background:#0d2255;
+  }
+  .htb-num{
+    position:absolute;
+    top:10px;
+    left:14px;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ffd23d,#d9a116);
+    color:#0a0a0a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Arial Black',sans-serif;
+    font-weight:900;
+    font-size:13px;
+    box-shadow:0 2px 6px rgba(255,210,61,0.35);
+  }
+  .htb-step-pic{
+    width:96px;
+    height:96px;
+    flex-shrink:0;
+    margin-left:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .htb-step-pic svg,
+  .htb-step-pic img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:contain;
+  }
+  .htb-step-body{flex:1;min-width:0;}
+  .htb-step-body h4{
+    margin:0 0 5px;
+    font-family:'Arial Black',sans-serif;
+    font-size:17px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    color:#fff;
+    line-height:1.15;
+  }
+  .htb-step-body p{
+    margin:0;
+    font-family:'Inter','Arial',sans-serif;
+    font-size:13px;
+    color:#86a4e3;
+    line-height:1.5;
+    font-weight:500;
+  }
+  .htb-step-body p .gold{color:#ffd23d;font-weight:700;}
+
+  /* Responsive: stack on mobile */
+  @media (max-width:900px){
+    .htb-section{padding:60px 22px 70px;}
+    .htb-layout{grid-template-columns:1fr;gap:36px;}
+    .htb-phone-stage{order:1;}
+    .htb-steps{order:2;}
+    .htb-step{padding:18px 22px;gap:16px;}
+    .htb-step-pic{width:72px;height:72px;}
+    .htb-step-body h4{font-size:15px;}
+    .htb-step-body p{font-size:12px;}
+  }
+  @media (max-width:600px){
+    .htb-section{padding:50px 14px 60px;}
+  }
+
   /* === The "device" frame === */
   .wallet-stage{
     position:relative;
@@ -3191,6 +2741,14 @@
   }
   .badge-scc{background:#ffd23d;color:#0a0a0a;}
   .badge-usdt{background:#26a17b;color:#fff;}
+  .badge-bnb{background:#f0b90b;color:#0a0a0a;}
+  .bnb-token-icon{
+    width:36px;height:36px;border-radius:50%;
+    background:#f0b90b;color:#0a0a0a;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Arial Black',sans-serif;font-size:18px;font-weight:900;
+    flex-shrink:0;
+  }
   .pulse-tag-mini{
     font-size:9px;font-weight:900;color:#23d76b;letter-spacing:0.08em;
     padding:2px 6px;border-radius:4px;background:rgba(35,215,107,0.12);
@@ -3381,6 +2939,79 @@
   }
   // Tick every 1.5s while visible
   tickInterval = setInterval(tick, 1500);
+})();
+
+// === How To Buy section — same live-ticking animation, different IDs ===
+(function(){
+  const usdtEl = document.getElementById('htbUsdt');
+  const usdtValEl = document.getElementById('htbUsdtVal');
+  const totalEl = document.getElementById('htbTotal');
+  const gainEl = document.getElementById('htbGain');
+  const feedEl = document.getElementById('htbFeed');
+  const section = document.getElementById('howToBuy');
+  if(!usdtEl || !section) return;
+
+  let usdt = 2647.32;
+  let dailyGain = 12.47;
+  const sccUsdValue = 200.00;
+
+  function fmt(n){
+    return n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+
+  let feedRowId = 0;
+  const MAX_FEED = 4;
+  function pushFeedRow(amount){
+    feedRowId++;
+    const row = document.createElement('div');
+    row.className = 'wallet-feed-row';
+    row.innerHTML =
+      `<span class="label">Reward received</span>` +
+      `<span class="amt">+$${fmt(amount)}</span>` +
+      `<span class="time">just now</span>`;
+    feedEl.insertBefore(row, feedEl.firstChild);
+    while(feedEl.children.length > MAX_FEED){
+      feedEl.removeChild(feedEl.lastChild);
+    }
+    Array.from(feedEl.children).forEach((r, i)=>{
+      const t = r.querySelector('.time');
+      if(!t)return;
+      if(i===0) t.textContent = 'just now';
+      else if(i===1) t.textContent = '15s ago';
+      else if(i===2) t.textContent = '32s ago';
+      else t.textContent = '1m ago';
+    });
+  }
+
+  // Seed feed
+  pushFeedRow(0.42);
+  pushFeedRow(0.18);
+  pushFeedRow(0.71);
+
+  let running = false;
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ running = e.isIntersecting; });
+  }, {threshold:0.1});
+  io.observe(section);
+
+  function tick(){
+    if(!running) return;
+    const reward = +(0.01 + Math.random() * 0.49).toFixed(2);
+    usdt += reward;
+    dailyGain += reward;
+    usdtEl.textContent = fmt(usdt);
+    if(usdtValEl) usdtValEl.textContent = '$' + fmt(usdt);
+    totalEl.textContent = '$' + fmt(usdt + sccUsdValue);
+    gainEl.textContent = fmt(dailyGain);
+    pushFeedRow(reward);
+    if(totalEl.animate){
+      totalEl.animate(
+        [{color:'#23d76b'},{color:'#0a0a0a'}],
+        {duration:600, easing:'ease-out'}
+      );
+    }
+  }
+  setInterval(tick, 1500);
 })();
 </script>
 
@@ -4344,23 +3975,62 @@ window.addEventListener('resize',()=>{
     return g;
   }
 
-  // ===== Wood plank floor (staggered planks, mixed wood tones) =====
-  sc.add(cube(0, -0.5, 0, 130, 1, 36, 0x2a1a0a));  // dark base
-  (function buildWoodFloor(){
-    const woodColors=[0x8b4513, 0xa0522d, 0x6b3410, 0x9c5e2e, 0x7a3f1a, 0x8a4a1f, 0xa66134];
-    const plankBaseLen=14;
-    const plankWidth=2.4;
-    const plankGap=0.15;
-    let rowZ=-18 + plankWidth/2;
-    let rowIdx=0;
-    while(rowZ < 18){
-      // Stagger every other row so seams don't line up
-      const offset = (rowIdx % 2 === 0) ? 0 : plankBaseLen/2;
-      let x = -70 + offset;
-      while(x < 70){
-        const len = plankBaseLen * (0.7 + Math.random()*0.5);
+  // ===== Wooden stage floor with proper edges =====
+  (function buildStage(){
+    const stageWidth = 130;
+    const stageDepth = 36;
+    const stageThickness = 3.5;          // total stage height (gives the floor real edge)
+    const topY = 0;                       // top surface y
+    const baseY = topY - stageThickness;  // bottom
+
+    const trimDark = 0x4a2a10;            // deep brown trim
+    const trimMid  = 0x6b3a18;            // mid brown trim
+    const trimLight = 0x8a4f22;           // lighter highlight on top edge
+
+    // Solid base block (gives the stage real thickness)
+    sc.add(cube(0, baseY + stageThickness/2, 0, stageWidth, stageThickness, stageDepth, 0x3a200c));
+
+    // Front edge fascia (slightly darker, recessed)
+    sc.add(cube(0, baseY + stageThickness/2 - 0.1, stageDepth/2 + 0.05, stageWidth + 0.5, stageThickness - 0.3, 0.4, trimDark));
+
+    // Front trim molding (lighter, sits along the very top front edge of stage)
+    sc.add(cube(0, topY - 0.35, stageDepth/2 + 0.05, stageWidth + 0.6, 0.7, 0.5, trimMid));
+    sc.add(cube(0, topY + 0.05, stageDepth/2 + 0.05, stageWidth + 0.8, 0.2, 0.55, trimLight));
+
+    // Side trims (left + right)
+    sc.add(cube(-stageWidth/2 - 0.1, baseY + stageThickness/2, 0, 0.4, stageThickness, stageDepth + 0.5, trimDark));
+    sc.add(cube( stageWidth/2 + 0.1, baseY + stageThickness/2, 0, 0.4, stageThickness, stageDepth + 0.5, trimDark));
+
+    // Side top molding
+    sc.add(cube(-stageWidth/2 - 0.1, topY + 0.05, 0, 0.5, 0.2, stageDepth + 0.7, trimLight));
+    sc.add(cube( stageWidth/2 + 0.1, topY + 0.05, 0, 0.5, 0.2, stageDepth + 0.7, trimLight));
+
+    // Planks on top — staggered, varied wood tones
+    const woodColors = [0x8b4513, 0xa0522d, 0x6b3410, 0x9c5e2e, 0x7a3f1a, 0x8a4a1f, 0xa66134];
+    const plankBaseLen = 14;
+    const plankWidth = 2.4;
+    const plankGap = 0.18;
+    const plankY = topY + 0.1;          // sit slightly above the base
+    const plankH = 0.3;                  // plank thickness
+    const leftEdge = -stageWidth/2 + 0.5;
+    const rightEdge = stageWidth/2 - 0.5;
+    let rowZ = -stageDepth/2 + plankWidth/2 + 0.4;
+    let rowIdx = 0;
+    while (rowZ < stageDepth/2 - 0.4) {
+      // Stagger by starting some rows before the left edge so seams don't align
+      // and the left edge is always filled.
+      const offset = (rowIdx % 2 === 0) ? 0 : -plankBaseLen/2;
+      let x = leftEdge + offset;
+      while (x < rightEdge) {
+        const len = plankBaseLen * (0.7 + Math.random() * 0.5);
         const wc = woodColors[Math.floor(Math.random() * woodColors.length)];
-        sc.add(cube(x + len/2, 0.05, rowZ, len - plankGap, 0.15, plankWidth - plankGap, wc));
+        // Clip the plank to the stage edges
+        const plankStart = Math.max(x, leftEdge);
+        const plankEnd = Math.min(x + len, rightEdge);
+        const visibleLen = plankEnd - plankStart;
+        if (visibleLen > 0.3) {
+          sc.add(cube(plankStart + visibleLen/2, plankY, rowZ, visibleLen - plankGap, plankH, plankWidth - plankGap, wc));
+        }
         x += len;
       }
       rowZ += plankWidth;
