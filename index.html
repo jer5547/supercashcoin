@@ -2591,17 +2591,13 @@
 
   /* === HOW TO BUY SECTION ============================== */
   .htb-section{
-    background:linear-gradient(180deg,#fafaf6 0%,#fff 100%);
-    color:#0a0a0a;
+    background:#1d4fd8;
+    color:#fff;
     padding:90px 60px 100px;
     position:relative;
     overflow:hidden;
-  }
-  .htb-section::before{
-    content:'';position:absolute;inset:0;
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,210,61,0.10), transparent 70%);
-    pointer-events:none;
+    border-top:3px solid #0a0a0a;
+    border-bottom:3px solid #0a0a0a;
   }
   .htb-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
   .htb-title{
@@ -2612,21 +2608,22 @@
     letter-spacing:-0.02em;
     line-height:1.1;
     margin:0 0 18px;
-    color:#0a0a0a;
+    color:#fff;
+    text-shadow:3px 3px 0 #0a0a0a;
   }
-  .htb-title .gold{color:#ffd23d;}
+  .htb-title .gold{color:#ffd23d;text-shadow:3px 3px 0 #0a0a0a;}
   .htb-sub{
     text-align:center;
     font-family:'Sigmar One','Lilita One',cursive;
     font-size:clamp(18px,2vw,26px);
-    color:#0a0a0a;
+    color:#fff;
     max-width:920px;
     margin:0 auto 50px;
     line-height:1.4;
     letter-spacing:0.01em;
     text-transform:uppercase;
   }
-  .htb-sub b{color:#0a0a0a;font-weight:400;}
+  .htb-sub b{color:#fff;font-weight:400;}
   .htb-sub b.gold{
     display:inline-block;
     background:#ffd23d;
@@ -2684,7 +2681,7 @@
   .htb-divider-txt{
     font-family:'Arial Black',sans-serif;
     font-size:13px;
-    color:#0a0a0a;
+    color:#fff;
     text-transform:uppercase;
     letter-spacing:.15em;
     flex-shrink:0;
@@ -2692,8 +2689,8 @@
   .htb-divider-line{
     flex:1;
     height:2px;
-    background:repeating-linear-gradient(90deg,#0a0a0a,#0a0a0a 6px,transparent 6px,transparent 10px);
-    opacity:0.4;
+    background:repeating-linear-gradient(90deg,#fff,#fff 6px,transparent 6px,transparent 10px);
+    opacity:0.5;
   }
 
   /* Contract addresses block — sits above the step cards (Style 2: light & clean) */
@@ -3321,90 +3318,139 @@
      ============================================================ -->
 <style>
   .cf-section{
-    background:#0a0a0a;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.06'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.05' transform='rotate(15 130 180)'>$</text></svg>");
-    background-size:200px 200px;
-    background-repeat:repeat;
+    background:#1d4fd8;
     color:#fff;
-    padding:80px 32px 80px;
-    border-top:2px solid #ffd23d;
-    border-bottom:2px solid #ffd23d;
+    padding:90px 32px 100px;
     position:relative;
     overflow:hidden;
+    border-top:3px solid #0a0a0a;
+    border-bottom:3px solid #0a0a0a;
   }
-  .cf{position:relative;max-width:1180px;margin:0 auto;font-family:Arial,sans-serif}
+  .cf{position:relative;max-width:1180px;margin:0 auto;font-family:Arial,sans-serif;z-index:1}
   .cf > *{position:relative;z-index:2}
 
   .cf-bg-floats{position:absolute;inset:-40px;pointer-events:none;overflow:hidden;z-index:0}
-  .cf-bg-floats span{position:absolute;color:rgba(255,210,61,0.1);font-family:'Black Ops One','Arial Black',sans-serif;font-weight:900;animation:cfFloatUp linear infinite;text-shadow:0 0 8px rgba(255,210,61,0.2)}
+  .cf-bg-floats span{position:absolute;color:rgba(255,210,61,0.22);font-family:'Black Ops One','Arial Black',sans-serif;font-weight:900;animation:cfFloatUp linear infinite}
   @keyframes cfFloatUp{0%{transform:translateY(110%) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-30%) rotate(20deg);opacity:0}}
 
-  .cf-title{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(28px,4.4vw,48px);text-transform:uppercase;text-align:center;color:#ffd23d;margin:0 0 6px;letter-spacing:.01em;line-height:1.05;text-shadow:0 2px 0 rgba(255,210,61,0.3),0 0 24px rgba(255,210,61,0.4);animation:cfTitleWiggle 4s ease-in-out infinite}
+  .cf-title{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(28px,4.4vw,48px);text-transform:uppercase;text-align:center;color:#fff;margin:0 0 6px;letter-spacing:.01em;line-height:1.05;text-shadow:3px 3px 0 #0a0a0a;animation:cfTitleWiggle 4s ease-in-out infinite}
+  .cf-title .gold{color:#ffd23d;text-shadow:3px 3px 0 #0a0a0a}
   @keyframes cfTitleWiggle{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
-  .cf-eyebrow{text-align:center;font-size:clamp(10px,1.1vw,13px);letter-spacing:.32em;color:#86ed5a;text-transform:uppercase;margin:0 0 30px;font-family:'Black Ops One','Arial Black',sans-serif}
+  .cf-eyebrow{text-align:center;font-size:clamp(10px,1.1vw,13px);letter-spacing:.32em;color:#ffd23d;text-transform:uppercase;margin:0 0 30px;font-family:'Black Ops One','Arial Black',sans-serif}
 
   .cf-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
   .cf-left{display:flex;flex-direction:column;gap:14px;min-width:0}
   .cf-right{display:flex;flex-direction:column;gap:0;min-width:0}
 
-  .cf-cashflow{position:relative;background:linear-gradient(180deg,rgba(255,210,61,0.13),rgba(255,210,61,0.02));border:2px solid rgba(255,210,61,0.6);border-radius:14px;padding:22px 18px;text-align:center;box-shadow:0 0 35px rgba(255,210,61,0.2);overflow:visible;animation:cfCashGlow 2.4s ease-in-out infinite}
-  @keyframes cfCashGlow{0%,100%{box-shadow:0 0 35px rgba(255,210,61,0.2)}50%{box-shadow:0 0 55px rgba(255,210,61,0.45)}}
-  .cf-cashflow .lbl{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;letter-spacing:.32em;color:#86ed5a;text-transform:uppercase;margin-bottom:6px}
-  .cf-cashflow .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(40px,5.5vw,64px);color:#fff;line-height:1;margin:14px 0 8px;transition:transform 0.2s,color 0.2s;text-shadow:0 0 22px rgba(255,210,61,0.55)}
-  .cf-cashflow .amt.flash{color:#86ed5a;transform:scale(1.06)}
-  .cf-cashflow .unit{font-size:11px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.2em;font-weight:bold}
-  .cf-cashflow .extra{font-size:12px;color:rgba(255,255,255,0.5);margin-top:12px}
+  .cf-cashflow{position:relative;background:#fff;border:3px solid #0a0a0a;border-radius:14px;padding:22px 18px;text-align:center;box-shadow:6px 6px 0 #0a0a0a,0 0 35px rgba(255,210,61,0.35);overflow:visible;animation:cfCashGlow 2.4s ease-in-out infinite}
+  @keyframes cfCashGlow{0%,100%{box-shadow:6px 6px 0 #0a0a0a,0 0 30px rgba(255,210,61,0.25)}50%{box-shadow:6px 6px 0 #0a0a0a,0 0 55px rgba(255,210,61,0.6)}}
+  .cf-cashflow .lbl{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;letter-spacing:.32em;color:#23a04b;text-transform:uppercase;margin-bottom:6px}
+  .cf-cashflow .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(40px,5.5vw,64px);color:#0a0a0a;line-height:1;margin:14px 0 8px;transition:transform 0.2s,color 0.2s}
+  .cf-cashflow .amt.flash{color:#23a04b;transform:scale(1.06)}
+  .cf-cashflow .unit{font-size:11px;color:rgba(10,10,10,0.65);text-transform:uppercase;letter-spacing:.2em;font-weight:bold}
+  .cf-cashflow .extra{font-size:12px;color:rgba(10,10,10,0.55);margin-top:12px}
   .cf-sparkles{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
-  .cf-sparkle{position:absolute;color:#ffd23d;font-size:16px;font-weight:bold;pointer-events:none;animation:cfSparkAnim 0.7s ease-out forwards}
+  .cf-sparkle{position:absolute;color:#ffb800;font-size:16px;font-weight:bold;pointer-events:none;animation:cfSparkAnim 0.7s ease-out forwards;text-shadow:0 0 6px rgba(255,210,61,0.7)}
   @keyframes cfSparkAnim{0%{opacity:0;transform:translate(0,0) scale(0) rotate(0deg)}40%{opacity:1;transform:translate(var(--dx),var(--dy)) scale(1) rotate(180deg)}100%{opacity:0;transform:translate(calc(var(--dx)*1.6),calc(var(--dy)*1.6)) scale(0.3) rotate(360deg)}}
 
-  .cf-s-row{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,210,61,0.4);border-radius:11px;padding:14px 16px}
+  .cf-s-row{background:#fff;border:3px solid #0a0a0a;border-radius:11px;padding:14px 16px;box-shadow:5px 5px 0 #0a0a0a}
   .cf-s-lbl{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;font-family:'Black Ops One','Arial Black',sans-serif;text-transform:uppercase;font-size:13px}
-  .cf-s-lbl .l{color:rgba(255,255,255,0.85)}
-  .cf-s-lbl .v{color:#ffd23d;font-size:22px;text-shadow:0 0 10px rgba(255,210,61,0.45)}
-  .cf-section input[type="range"]{appearance:none;-webkit-appearance:none;width:100%;height:12px;background:linear-gradient(90deg,#ffd23d 0%,#ffd23d var(--fill,50%),rgba(255,255,255,0.1) var(--fill,50%));border-radius:6px;outline:none;border:1.5px solid rgba(255,210,61,0.55);cursor:pointer;margin:0}
-  .cf-section input[type="range"]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:24px;height:24px;background:#fff;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:0 0 14px rgba(255,210,61,0.85)}
-  .cf-section input[type="range"]::-moz-range-thumb{width:24px;height:24px;background:#fff;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:0 0 14px rgba(255,210,61,0.85)}
+  .cf-s-lbl .l{color:#0a0a0a}
+  .cf-s-lbl .v{color:#0a0a0a;font-size:22px;background:#ffd23d;border:2px solid #0a0a0a;border-radius:6px;padding:1px 8px 2px;box-shadow:2px 2px 0 #0a0a0a}
+  .cf-section input[type="range"]{appearance:none;-webkit-appearance:none;width:100%;height:14px;background:linear-gradient(90deg,#ffd23d 0%,#ffd23d var(--fill,50%),#e2e2dc var(--fill,50%));border-radius:7px;outline:none;border:2px solid #0a0a0a;cursor:pointer;margin:0}
+  .cf-section input[type="range"]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:26px;height:26px;background:#ffd23d;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:2px 2px 0 #0a0a0a}
+  .cf-section input[type="range"]::-moz-range-thumb{width:26px;height:26px;background:#ffd23d;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:2px 2px 0 #0a0a0a}
 
-  .cf-trolley-stage{position:relative;height:340px;background:radial-gradient(ellipse at center,rgba(255,210,61,0.1) 0%,rgba(0,0,0,0.6) 65%);border:2px solid rgba(255,210,61,0.55);border-radius:14px;overflow:hidden;box-shadow:0 0 32px rgba(255,210,61,0.18)}
+  .cf-trolley-stage{position:relative;height:460px;background:radial-gradient(ellipse at center,#ffffff 0%,#e6ebf6 75%);border:3px solid #0a0a0a;border-radius:14px;overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
   .cf-trolley-stage canvas{display:block;width:100%;height:100%}
-  .cf-trolley-lbl{position:absolute;top:11px;left:0;right:0;text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:11px;letter-spacing:.3em;color:#86ed5a;text-transform:uppercase;z-index:2;text-shadow:0 1px 4px #000}
-  .cf-trolley-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,210,61,0.5);font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+  .cf-trolley-lbl{position:absolute;top:11px;left:0;right:0;text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:11px;letter-spacing:.3em;color:#1d4fd8;text-transform:uppercase;z-index:2}
+  .cf-trolley-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(10,10,10,0.4);font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase}
 
-  .cf-lb-title{font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.28em;color:#86ed5a;text-align:center;margin:0 0 12px;text-transform:uppercase}
-  .cf-lb-title .g{color:#ffd23d;font-size:15px;text-shadow:0 0 10px rgba(255,210,61,0.5)}
+  /* MEDAL ICONS — for top 3 positions, dynamically applied to whichever row is in that slot */
+  .cf-medal{display:none;flex-direction:column;align-items:center;width:30px;flex-shrink:0;margin-left:-2px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3))}
+  .cf-lb-row.rank-gold .cf-medal,
+  .cf-lb-row.rank-silver .cf-medal,
+  .cf-lb-row.rank-bronze .cf-medal{display:flex}
+  .cf-medal .medal-ribbon{width:14px;height:13px;clip-path:polygon(0 0,100% 0,50% 100%);border-radius:1px}
+  .cf-medal .medal-disc{
+    width:26px;height:26px;border-radius:50%;border:2.5px solid #0a0a0a;margin-top:-3px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;color:#0a0a0a;
+    box-shadow:inset 0 -3px 5px rgba(0,0,0,0.18),inset 0 3px 5px rgba(255,255,255,0.4)
+  }
+  .cf-lb-row.rank-gold .medal-ribbon{background:#cc2a2a}
+  .cf-lb-row.rank-gold .medal-disc{background:radial-gradient(circle at 35% 30%,#fff2a0,#ffd23d 60%,#b8860b)}
+  .cf-lb-row.rank-gold .medal-disc::after{content:'1'}
+  .cf-lb-row.rank-silver .medal-ribbon{background:#1d4fd8}
+  .cf-lb-row.rank-silver .medal-disc{background:radial-gradient(circle at 35% 30%,#ffffff,#d8d8d8 60%,#888888)}
+  .cf-lb-row.rank-silver .medal-disc::after{content:'2'}
+  .cf-lb-row.rank-bronze .medal-ribbon{background:#23a04b}
+  .cf-lb-row.rank-bronze .medal-disc{background:radial-gradient(circle at 35% 30%,#f0c79a,#cd7f32 60%,#7a4818)}
+  .cf-lb-row.rank-bronze .medal-disc::after{content:'3'}
+  .cf-lb-row.rank-gold .cf-medal{animation:cfMedalShine 2s ease-in-out infinite}
+  @keyframes cfMedalShine{0%,100%{transform:rotate(-4deg) scale(1)}50%{transform:rotate(4deg) scale(1.08)}}
 
-  .cf-lb-stage{position:relative;height:680px;border:2px solid rgba(255,210,61,0.4);border-radius:16px;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.35));overflow:hidden;box-shadow:0 0 28px rgba(255,210,61,0.14),inset 0 0 40px rgba(0,0,0,0.55)}
-  .cf-lb-list-wrap{position:absolute;left:48px;right:8px;top:8px;bottom:8px;overflow:hidden;border-radius:10px}
+  /* TOP 3 ROW STYLING — really stand out (applied dynamically to whichever row is in slot 1/2/3) */
+  .cf-lb-row.rank-gold{background:linear-gradient(90deg,#fff5cc,#ffe999);border:2.5px solid #b8860b;box-shadow:4px 4px 0 #0a0a0a,0 0 22px rgba(255,210,61,0.55);height:60px;z-index:2}
+  .cf-lb-row.rank-gold .rank{display:none}
+  .cf-lb-row.rank-gold .name{font-size:14px;color:#0a0a0a;font-weight:900}
+  .cf-lb-row.rank-gold .reward .amt{color:#0a0a0a;font-size:15px}
+  .cf-lb-row.rank-silver{background:linear-gradient(90deg,#f4f4f4,#dadada);border:2.5px solid #707070;box-shadow:4px 4px 0 #0a0a0a,0 0 16px rgba(200,200,200,0.6);height:58px;z-index:2}
+  .cf-lb-row.rank-silver .rank{display:none}
+  .cf-lb-row.rank-silver .name{font-size:13.5px;color:#0a0a0a;font-weight:900}
+  .cf-lb-row.rank-silver .reward .amt{color:#0a0a0a;font-size:14px}
+  .cf-lb-row.rank-bronze{background:linear-gradient(90deg,#f5dcc0,#e6b886);border:2.5px solid #8b5a2b;box-shadow:4px 4px 0 #0a0a0a,0 0 14px rgba(205,127,50,0.45);height:56px;z-index:2}
+  .cf-lb-row.rank-bronze .rank{display:none}
+  .cf-lb-row.rank-bronze .name{font-size:13px;color:#0a0a0a;font-weight:900}
+  .cf-lb-row.rank-bronze .reward .amt{color:#0a0a0a;font-size:13.5px}
+  /* When SCC takes a medal position — gold border on the SCC gradient instead */
+  .cf-lb-row.scc.rank-gold,.cf-lb-row.scc.rank-silver,.cf-lb-row.scc.rank-bronze{background:#ffd23d;border-color:#0a0a0a}
+  /* Smooth height transition */
+  .cf-lb-row{transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),height 0.4s,background 0.3s,border-color 0.3s,box-shadow 0.3s}
+
+  .cf-lb-title{font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.28em;color:#ffd23d;text-align:center;margin:0 0 12px;text-transform:uppercase}
+  .cf-lb-title .g{color:#0a0a0a;font-size:15px;background:#ffd23d;border:2px solid #0a0a0a;border-radius:6px;padding:1px 7px 2px;box-shadow:2px 2px 0 #0a0a0a}
+
+  .cf-lb-stage{position:relative;height:680px;border:3px solid #0a0a0a;border-radius:16px;background:linear-gradient(180deg,#fff,#f5f5ef);overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
+  .cf-lb-list-wrap{position:absolute;left:62px;right:8px;top:8px;bottom:8px;overflow:hidden;border-radius:10px}
   .cf-lb-list{position:absolute;left:0;right:0;top:0;height:1820px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1);will-change:transform}
-  .cf-lb-row{position:absolute;left:0;right:0;height:52px;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;padding:0 10px 0 16px;gap:9px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),background 0.3s,border-color 0.3s,box-shadow 0.3s;will-change:transform}
-  .cf-lb-row .rank{font-family:'Black Ops One','Arial Black',sans-serif;font-size:14px;color:rgba(255,255,255,0.55);min-width:22px;text-align:center}
-  .cf-lb-row .ic{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Black Ops One','Arial Black',sans-serif;font-size:8px;font-weight:900;color:#0a0a0a}
+  .cf-lb-row{position:absolute;left:0;right:0;height:52px;background:#fff;border:1.5px solid #0a0a0a;border-radius:10px;display:flex;align-items:center;padding:0 10px 0 16px;gap:9px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),background 0.3s,border-color 0.3s,box-shadow 0.3s;will-change:transform;box-shadow:2px 2px 0 rgba(10,10,10,0.6)}
+  .cf-lb-row .rank{font-family:'Black Ops One','Arial Black',sans-serif;font-size:14px;color:rgba(10,10,10,0.6);min-width:22px;text-align:center}
+  .cf-lb-row .ic{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:#f5f5ef;border:1.5px solid #0a0a0a;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Black Ops One','Arial Black',sans-serif;font-size:8px;font-weight:900;color:#0a0a0a}
   .cf-lb-row .ic img{width:100%;height:100%;object-fit:cover;display:block}
   .cf-lb-row .ic.scc-ic{background:#ffd23d;border-color:#0a0a0a;animation:cfSccIconPulse 1.5s ease-in-out infinite}
   @keyframes cfSccIconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
   .cf-lb-row .info{flex:1;min-width:0;overflow:hidden}
-  .cf-lb-row .name{font-size:12px;font-weight:bold;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .cf-lb-row .sub{font-size:9.5px;color:rgba(255,255,255,0.42);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+  .cf-lb-row .name{font-size:12px;font-weight:bold;color:#0a0a0a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cf-lb-row .sub{font-size:9.5px;color:rgba(10,10,10,0.55);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
   .cf-lb-row .reward{text-align:right;flex-shrink:0}
-  .cf-lb-row .reward .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;color:#23d76b;line-height:1;text-shadow:0 0 8px rgba(35,215,107,0.3)}
-  .cf-lb-row .reward .u{font-size:8px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.12em;margin-top:2px;font-weight:bold}
-  .cf-lb-row.scc{background:linear-gradient(90deg,rgba(255,210,61,0.3),rgba(255,210,61,0.08));border-color:#ffd23d;border-width:2px;box-shadow:0 0 28px rgba(255,210,61,0.6);z-index:3}
-  .cf-lb-row.scc .rank,.cf-lb-row.scc .name,.cf-lb-row.scc .reward .amt{color:#ffd23d}
-  .cf-lb-row.scc .reward .amt{text-shadow:0 0 14px rgba(255,210,61,0.7)}
+  .cf-lb-row .reward .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;color:#23a04b;line-height:1}
+  .cf-lb-row .reward .u{font-size:8px;color:rgba(10,10,10,0.5);text-transform:uppercase;letter-spacing:.12em;margin-top:2px;font-weight:bold}
+  .cf-lb-row.scc{background:#ffd23d;border-color:#0a0a0a;border-width:2.5px;box-shadow:4px 4px 0 #0a0a0a,0 0 28px rgba(255,210,61,0.65);z-index:3}
+  .cf-lb-row.scc .rank,.cf-lb-row.scc .name{color:#0a0a0a}
+  .cf-lb-row.scc .reward .amt{color:#0a0a0a;text-shadow:none}
 
   .cf-rope-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;overflow:visible}
-  .cf-pulley{fill:#3a3a3a;stroke:#1a1a1a;stroke-width:1.5}
+  .cf-pulley{fill:#3a3a3a;stroke:#0a0a0a;stroke-width:1.5}
   .cf-pulley-inner{fill:#ffd23d;stroke:#0a0a0a;stroke-width:1}
-  .cf-pulley-bracket{fill:#6b6b6b;stroke:#1a1a1a;stroke-width:1}
+  .cf-pulley-bracket{fill:#6b6b6b;stroke:#0a0a0a;stroke-width:1}
   .cf-rope-shade{stroke:#3a2810;stroke-width:5;fill:none;stroke-linecap:round}
   .cf-rope-main{stroke:#9c7a4a;stroke-width:3.2;fill:none;stroke-linecap:round}
   .cf-rope-highlight{stroke:#d4b78a;stroke-width:1.2;fill:none;stroke-linecap:round;opacity:0.7;stroke-dasharray:4,3}
   .cf-rope-knot{fill:#5a3d1a;stroke:#2a1a08;stroke-width:1}
 
-  .cf-mascot{position:absolute;bottom:10px;left:4px;width:46px;height:68px;z-index:6;transform-origin:bottom center;animation:cfMascotPull 1.4s ease-in-out infinite}
-  @keyframes cfMascotPull{0%,100%{transform:translateY(0) rotate(-3deg) scaleY(1)}40%{transform:translateY(-4px) rotate(2deg) scaleY(0.97)}80%{transform:translateY(1px) rotate(-1deg) scaleY(1.02)}}
-  .cf-mascot svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5))}
+  .cf-mascot{position:absolute;bottom:6px;left:-4px;width:74px;height:88px;z-index:6;transform-origin:bottom center;animation:cfMascotPull 1.4s ease-in-out infinite;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.35))}
+  @keyframes cfMascotPull{0%,100%{transform:translateY(0) rotate(-3deg) scaleY(1)}40%{transform:translateY(-5px) rotate(2deg) scaleY(0.97)}80%{transform:translateY(1px) rotate(-1deg) scaleY(1.02)}}
+  .cf-mascot canvas{width:100%;height:100%;display:block;pointer-events:none}
+
+  /* Compact rows for ranks 8-30 — half the height to fit more on screen */
+  .cf-lb-row.compact{height:32px;padding:0 8px 0 14px;gap:7px;box-shadow:1.5px 1.5px 0 rgba(10,10,10,0.5)}
+  .cf-lb-row.compact .rank{font-size:11px;min-width:18px}
+  .cf-lb-row.compact .ic{width:20px;height:20px;border-width:1px}
+  .cf-lb-row.compact .name{font-size:10.5px}
+  .cf-lb-row.compact .sub{display:none}
+  .cf-lb-row.compact .reward .amt{font-size:11px}
+  .cf-lb-row.compact .reward .u{display:none}
 
   @media (max-width:900px){
     .cf-section{padding:50px 18px 60px}
@@ -3426,7 +3472,7 @@
   <div class="cf">
     <div class="cf-bg-floats" id="cfBgFloats"></div>
 
-    <h2 class="cf-title">What Could YOU Be Earning?</h2>
+    <h2 class="cf-title">What Could <span class="gold">YOU</span> Be Earning?</h2>
     <p class="cf-eyebrow">★ Drag To See Your Daily Cashflow ★</p>
 
     <div class="cf-split">
@@ -3444,7 +3490,7 @@
         </div>
         <div class="cf-s-row">
           <div class="cf-s-lbl"><span class="l">★ Your Holdings</span><span class="v" id="cfHoldVal">5%</span></div>
-          <input type="range" id="cfHoldSlider" min="1" max="100" value="5" step="1"/>
+          <input type="range" id="cfHoldSlider" min="0.01" max="70" value="5" step="0.01"/>
         </div>
         <div class="cf-trolley-stage">
           <div class="cf-trolley-lbl">Your Trolley</div>
@@ -3473,29 +3519,7 @@
             <circle id="cfRopeKnot" class="cf-rope-knot" r="3"/>
           </svg>
           <div class="cf-mascot" id="cfMascot">
-            <svg viewBox="0 0 70 110" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="35" cy="56" rx="22" ry="24" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2.5"/>
-              <ellipse cx="35" cy="56" rx="18" ry="20" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.25"/>
-              <text x="35" y="64" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="22" fill="#0a0a0a" font-weight="900">$</text>
-              <circle cx="27" cy="47" r="2.4" fill="#0a0a0a"/>
-              <circle cx="43" cy="47" r="2.4" fill="#0a0a0a"/>
-              <circle cx="27.7" cy="46.3" r="0.7" fill="#fff"/>
-              <circle cx="43.7" cy="46.3" r="0.7" fill="#fff"/>
-              <path d="M 22 42 L 30 40" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M 40 40 L 48 42" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M 18 60 Q 11 44 19 26" stroke="#ffd23d" stroke-width="7" fill="none" stroke-linecap="round"/>
-              <path d="M 18 60 Q 11 44 19 26" stroke="#0a0a0a" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.35"/>
-              <path d="M 52 60 Q 59 44 51 26" stroke="#ffd23d" stroke-width="7" fill="none" stroke-linecap="round"/>
-              <path d="M 52 60 Q 59 44 51 26" stroke="#0a0a0a" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.35"/>
-              <circle cx="19" cy="26" r="5" fill="#ffd23d" stroke="#0a0a0a" stroke-width="1.5"/>
-              <circle cx="51" cy="26" r="5" fill="#ffd23d" stroke="#0a0a0a" stroke-width="1.5"/>
-              <path d="M 28 78 L 23 102" stroke="#ffd23d" stroke-width="7" stroke-linecap="round"/>
-              <path d="M 42 78 L 47 102" stroke="#ffd23d" stroke-width="7" stroke-linecap="round"/>
-              <path d="M 28 78 L 23 102" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-              <path d="M 42 78 L 47 102" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-              <ellipse cx="23" cy="104" rx="7" ry="3.2" fill="#0a0a0a"/>
-              <ellipse cx="47" cy="104" rx="7" ry="3.2" fill="#0a0a0a"/>
-            </svg>
+            <canvas id="cfMascotCanvas"></canvas>
           </div>
         </div>
       </div>
@@ -3506,7 +3530,8 @@
 <script>
 // === EARN CALCULATOR — interactive cashflow widget with real top-30 meme coin data ===
 (function(){
-  const ROW_H=52,ROW_GAP=4,ROW_T=ROW_H+ROW_GAP,VISIBLE=12;
+  const BIG_H=52,BIG_GAP=4,COMPACT_H=32,COMPACT_GAP=3,BIG_T=BIG_H+BIG_GAP,COMPACT_T=COMPACT_H+COMPACT_GAP;
+  const TARGET_COUNT=30;
   const rankSlider=document.getElementById('cfRankSlider'),holdSlider=document.getElementById('cfHoldSlider');
   const rankVal=document.getElementById('cfRankVal'),holdVal=document.getElementById('cfHoldVal');
   const payAmt=document.getElementById('cfPayAmt'),payExtra=document.getElementById('cfPayExtra');
@@ -3521,23 +3546,44 @@
     return '$'+Math.round(n).toLocaleString();
   }
   function fillBar(s){s.style.setProperty('--fill',((s.value-s.min)/(s.max-s.min)*100)+'%')}
+  // Slot positioning: cumulative heights (slot 1-3 are medal-tall, 4-7 big, 8+ compact)
+  function getSlotY(slot){
+    let y=0;
+    for(let s=1;s<slot;s++){
+      const h=(s===1)?60:(s===2)?58:(s===3)?56:(s<=7)?BIG_H:COMPACT_H;
+      const gap=s<=7?BIG_GAP:COMPACT_GAP;
+      y += h + gap;
+    }
+    return y;
+  }
+  function totalListH(){return getSlotY(TARGET_COUNT)+COMPACT_H;}
 
   function makeFloats(){
-    const cont=document.getElementById('cfBgFloats');
-    for(let i=0;i<18;i++){
-      const s=document.createElement('span');
-      s.textContent='$';
-      const size=20+Math.random()*48;
-      s.style.fontSize=size+'px';
-      s.style.left=(Math.random()*100)+'%';
-      s.style.animationDuration=(11+Math.random()*18)+'s';
-      s.style.animationDelay=(-Math.random()*22)+'s';
-      cont.appendChild(s);
+    // No floating $ background — clean blue section per request
+  }
+
+  // Pad coin data to always have 30 entries (slider must go 1-30)
+  function padCoins(){
+    if(memeCoins.length>=TARGET_COUNT)return;
+    let prev=memeCoins[memeCoins.length-1]||{volume_24h:5e6,market_cap:10e6};
+    while(memeCoins.length<TARGET_COUNT){
+      // Compound decay each step so every rank has a distinct value
+      const c={
+        name:'Coin #'+(memeCoins.length+1),
+        symbol:'???',
+        market_cap:prev.market_cap*0.86,
+        volume_24h:prev.volume_24h*0.86,
+        image:''
+      };
+      memeCoins.push(c);
+      prev=c;
     }
   }
 
   function buildLeaderboard(){
+    padCoins();
     lbList.innerHTML='';
+    const medalHtml='<div class="cf-medal"><div class="medal-ribbon"></div><div class="medal-disc"></div></div>';
     memeCoins.forEach((c,i)=>{
       const row=document.createElement('div');
       row.className='cf-lb-row';
@@ -3545,35 +3591,55 @@
       const icHtml = c.image
         ? '<div class="ic"><img src="'+c.image+'" alt="'+c.symbol+'" onerror="this.parentNode.textContent=\''+(c.symbol||'?').toUpperCase().slice(0,4)+'\'"></div>'
         : '<div class="ic">'+(c.symbol||'?').toUpperCase().slice(0,4)+'</div>';
-      row.innerHTML='<div class="rank">'+(i+1)+'</div>'+icHtml+'<div class="info"><div class="name">'+c.name+'</div><div class="sub">'+(c.symbol||'').toUpperCase()+' · '+fmt(c.market_cap)+'</div></div><div class="reward"><div class="amt">'+fmt(c.volume_24h*0.125)+'</div><div class="u">per day</div></div>';
+      row.innerHTML='<div class="rank">'+(i+1)+'</div>'+medalHtml+icHtml+'<div class="info"><div class="name">'+c.name+'</div><div class="sub">'+(c.symbol||'').toUpperCase()+' · '+fmt(c.market_cap)+'</div></div><div class="reward"><div class="amt">'+fmt(c.volume_24h*0.125)+'</div><div class="u">per day</div></div>';
       lbList.appendChild(row);
     });
     const scc=document.createElement('div');
     scc.className='cf-lb-row scc';
     scc.id='cf-lb-scc';
-    scc.innerHTML='<div class="rank" id="cfSccRankNum">'+currentRank+'</div><div class="ic scc-ic">$SCC</div><div class="info"><div class="name">Super Cash Coin</div><div class="sub">★ YOUR coin slots in here ★</div></div><div class="reward"><div class="amt" id="cfSccAmt">$0</div><div class="u">per day</div></div>';
+    scc.innerHTML='<div class="rank" id="cfSccRankNum">'+currentRank+'</div>'+medalHtml+'<div class="ic scc-ic"><img src="scc-token.png" alt="$SCC" onerror="this.parentNode.textContent=\'$SCC\'"></div><div class="info"><div class="name">Super Cash Coin</div><div class="sub">★ If we took this ranking ★</div></div><div class="reward"><div class="amt" id="cfSccAmt">$0</div><div class="u">per day</div></div>';
     lbList.appendChild(scc);
-    // Update list height to fit all rows + SCC
-    const total=memeCoins.length+1;
-    lbList.style.height=(total*ROW_T)+'px';
+    lbList.style.height=totalListH()+'px';
+  }
+
+  // Slot height varies — top 3 are medal slots (60/58/56), 4-7 big (52), 8+ compact (32)
+  function slotH(slot){
+    if(slot===1)return 60;
+    if(slot===2)return 58;
+    if(slot===3)return 56;
+    if(slot<=7)return BIG_H;
+    return COMPACT_H;
+  }
+  function applyMedalClass(row,slot){
+    row.classList.remove('rank-gold','rank-silver','rank-bronze','compact');
+    if(slot===1)row.classList.add('rank-gold');
+    else if(slot===2)row.classList.add('rank-silver');
+    else if(slot===3)row.classList.add('rank-bronze');
+    else if(slot>7)row.classList.add('compact');
   }
 
   function updateLeaderboard(rank){
     for(let i=0;i<memeCoins.length;i++){
       const real=i+1,slot=real<rank?real:real+1;
       const row=document.getElementById('cf-lb-'+i);
-      row.style.transform='translateY('+((slot-1)*ROW_T)+'px)';
+      row.style.transform='translateY('+getSlotY(slot)+'px)';
+      applyMedalClass(row,slot);
       row.querySelector('.rank').textContent=slot;
     }
     const scc=document.getElementById('cf-lb-scc');
-    scc.style.transform='translateY('+((rank-1)*ROW_T)+'px)';
+    scc.style.transform='translateY('+getSlotY(rank)+'px)';
+    applyMedalClass(scc,rank);
     document.getElementById('cfSccRankNum').textContent=rank;
-    const total=memeCoins.length+1;
+    // Scroll the visible window so SCC stays in view
     const wrap=lbStage.querySelector('.cf-lb-list-wrap');
-    const wrapH=wrap?wrap.clientHeight:VISIBLE*ROW_T;
-    const visibleRows=Math.max(4,Math.floor(wrapH/ROW_T));
-    let scrollIdx=Math.max(0,Math.min(rank-Math.floor(visibleRows/2)-1,total-visibleRows));
-    lbList.style.transform='translateY('+(-scrollIdx*ROW_T)+'px)';
+    const wrapH=wrap?wrap.clientHeight:560;
+    const sccTop=getSlotY(rank);
+    const sccH=slotH(rank);
+    const sccBottom=sccTop+sccH;
+    const totalH=totalListH();
+    let scrollY=0;
+    if(sccBottom>wrapH){scrollY=Math.min(sccBottom-wrapH+20,Math.max(0,totalH-wrapH));}
+    lbList.style.transform='translateY('+(-scrollY)+'px)';
   }
 
   function flashPay(){
@@ -3595,12 +3661,12 @@
 
   function update(){
     if(!memeCoins.length)return;
-    const maxRank=memeCoins.length;
-    if(rankSlider.max!=maxRank)rankSlider.max=maxRank;
-    const rank=Math.min(parseInt(rankSlider.value),maxRank),holdPct=parseInt(holdSlider.value);
+    if(rankSlider.max!='30')rankSlider.max='30';
+    const rank=Math.min(parseInt(rankSlider.value),TARGET_COUNT),holdPct=parseFloat(holdSlider.value);
     currentRank=rank;
     rankVal.textContent='#'+rank;
-    holdVal.textContent=holdPct+'%';
+    // Smart formatting: integer for >= 1%, 2 decimals for smaller
+    holdVal.textContent=(holdPct>=1?holdPct.toFixed(0):holdPct.toFixed(2))+'%';
     fillBar(rankSlider);fillBar(holdSlider);
     const coin=memeCoins[rank-1]||{volume_24h:0};
     const total=coin.volume_24h*0.125,share=total*(holdPct/100);
@@ -3609,7 +3675,9 @@
     payExtra.textContent="that's "+fmt(share*365)+'/year';
     const sccAmt=document.getElementById('cfSccAmt');
     if(sccAmt)sccAmt.textContent=fmt(total);
-    setCoinCount(Math.min(Math.round(holdPct/4.5),21));
+    // 70% holdings (max — team owns 30%) → 300 coins; always show at least 1 coin if holdings > 0
+    const coinCount=holdPct>0?Math.max(1,Math.min(300,Math.round(holdPct/70*300))):0;
+    setCoinCount(coinCount);
     updateLeaderboard(rank);
   }
 
@@ -3653,54 +3721,166 @@
     const loading=document.getElementById('cfTrolleyLoading');
     const W=canvas.clientWidth||300,H=canvas.clientHeight||320;
     const scene=new THREE.Scene();
-    const camera=new THREE.PerspectiveCamera(38,W/H,0.1,100);
-    camera.position.set(3.2,4.2,6.5);camera.lookAt(0,1.2,0);
+    const camera=new THREE.PerspectiveCamera(32,W/H,0.1,100);
+    camera.position.set(4.6,5.6,8.5);camera.lookAt(0,1.6,0);
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
     renderer.setSize(W,H,false);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-    scene.add(new THREE.AmbientLight(0xffffff,0.75));
-    const dl=new THREE.DirectionalLight(0xffe4a0,0.85);dl.position.set(4,9,5);scene.add(dl);
-    const dl2=new THREE.DirectionalLight(0x86ed5a,0.35);dl2.position.set(-4,4,-2);scene.add(dl2);
-    const gold=new THREE.MeshStandardMaterial({color:0xffd23d,metalness:0.4,roughness:0.35});
-    const edgeMat=new THREE.LineBasicMaterial({color:0x6b4a08});
-    function addEdges(mesh){const e=new THREE.EdgesGeometry(mesh.geometry);mesh.add(new THREE.LineSegments(e,edgeMat));}
+    scene.add(new THREE.AmbientLight(0xffffff,0.78));
+    const dl=new THREE.DirectionalLight(0xffffff,0.9);dl.position.set(4,9,5);scene.add(dl);
+    const dl2=new THREE.DirectionalLight(0xfff0c0,0.45);dl2.position.set(-4,5,-2);scene.add(dl2);
+
+    // ===== Shopping cart materials =====
+    const silver=new THREE.MeshStandardMaterial({color:0xcccccc,metalness:0.95,roughness:0.15});
+    const red=new THREE.MeshStandardMaterial({color:0xcc2a2a,metalness:0.35,roughness:0.45});
+    const wheelDark=new THREE.MeshStandardMaterial({color:0x1f1f1f,metalness:0.2,roughness:0.7});
+    const wheelHub=new THREE.MeshStandardMaterial({color:0x808080,metalness:0.9,roughness:0.3});
+
     const trolley=new THREE.Group();
-    const base=new THREE.Mesh(new THREE.BoxGeometry(3.4,0.28,2.0),gold);addEdges(base);trolley.add(base);
-    const front=new THREE.Mesh(new THREE.BoxGeometry(3.4,1.1,0.16),gold);front.position.set(0,0.55,0.92);addEdges(front);trolley.add(front);
-    const back=new THREE.Mesh(new THREE.BoxGeometry(3.4,1.7,0.16),gold);back.position.set(0,0.85,-0.92);addEdges(back);trolley.add(back);
-    for(const x of [-1.62,1.62]){
-      const s=new THREE.Mesh(new THREE.BoxGeometry(0.16,1.4,1.84),gold);s.position.set(x,0.7,0);addEdges(s);trolley.add(s);
+    const BW=3.6,BD=2.0,BH=1.4,BAR=0.04; // basket width / depth / height / bar thickness
+
+    function bar(w,h,d,x,y,z,mat){
+      const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat||silver);
+      m.position.set(x,y,z);trolley.add(m);return m;
     }
-    for(let i=0;i<3;i++){
-      const r=new THREE.Mesh(new THREE.BoxGeometry(3.0,0.06,0.06),gold);r.position.set(0,0.3+i*0.32,0.84);trolley.add(r);
-      const r2=new THREE.Mesh(new THREE.BoxGeometry(3.0,0.06,0.06),gold);r2.position.set(0,0.3+i*0.32,-0.84);trolley.add(r2);
+
+    // Wire basket — DENSE vertical bars front + back (8 each side)
+    const xCols=[-BW/2,-1.2,-0.75,-0.3,0.3,0.75,1.2,BW/2];
+    for(const x of xCols){bar(BAR,BH,BAR,x,BH/2,BD/2);bar(BAR,BH,BAR,x,BH/2,-BD/2);}
+    // Wire basket — vertical bars left + right sides (5 each)
+    const zCols=[-BD/2,-0.55,0,0.55,BD/2];
+    for(const z of zCols){bar(BAR,BH,BAR,-BW/2,BH/2,z);bar(BAR,BH,BAR,BW/2,BH/2,z);}
+
+    // Horizontal rings at 5 levels for proper wire-mesh look
+    for(const y of [0.08,0.4,0.72,1.04,BH-0.06]){
+      bar(BW+0.04,BAR,BAR,0,y,BD/2);
+      bar(BW+0.04,BAR,BAR,0,y,-BD/2);
+      bar(BAR,BAR,BD,-BW/2,y,0);
+      bar(BAR,BAR,BD,BW/2,y,0);
     }
-    const wheelDark=new THREE.MeshStandardMaterial({color:0x1a1a1a,metalness:0.3,roughness:0.7});
-    for(const [x,z] of [[-1.32,0.65],[1.32,0.65],[-1.32,-0.65],[1.32,-0.65]]){
-      const w=new THREE.Mesh(new THREE.CylinderGeometry(0.34,0.34,0.2,14),wheelDark);
-      w.rotation.z=Math.PI/2;w.position.set(x,-0.4,z);trolley.add(w);
-      const h=new THREE.Mesh(new THREE.CylinderGeometry(0.13,0.13,0.22,10),gold);
-      h.rotation.z=Math.PI/2;h.position.set(x,-0.4,z);trolley.add(h);
+
+    // Floor wire grid
+    for(const x of [-1.3,-0.7,-0.2,0.2,0.7,1.3]){bar(BAR,BAR,BD,x,0.03,0);}
+    for(const z of [-0.6,-0.2,0.2,0.6]){bar(BW,BAR,BAR,0,0.03,z);}
+
+    // Bottom frame platform under basket
+    bar(BW*0.85,0.09,0.09,0,-0.5,0.75);
+    bar(BW*0.85,0.09,0.09,0,-0.5,-0.75);
+    bar(0.09,0.09,1.6,-BW*0.4,-0.5,0);
+    bar(0.09,0.09,1.6,BW*0.4,-0.5,0);
+
+    // Legs connecting basket to frame
+    for(const x of [-BW*0.4,BW*0.4]){
+      for(const z of [-0.75,0.75]){
+        bar(0.09,0.55,0.09,x,-0.22,z);
+      }
     }
-    const hv=new THREE.Mesh(new THREE.BoxGeometry(0.14,1.3,0.14),gold);hv.position.set(-1.62,1.6,-0.92);addEdges(hv);trolley.add(hv);
-    const hh=new THREE.Mesh(new THREE.BoxGeometry(0.14,0.14,0.7),gold);hh.position.set(-1.62,2.2,-1.27);addEdges(hh);trolley.add(hh);
+
+    // Casters (4 wheels)
+    for(const [x,z] of [[-BW*0.4,0.75],[BW*0.4,0.75],[-BW*0.4,-0.75],[BW*0.4,-0.75]]){
+      const wheel=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.2,0.12,16),wheelDark);
+      wheel.rotation.z=Math.PI/2;wheel.position.set(x,-0.75,z);trolley.add(wheel);
+      const hub=new THREE.Mesh(new THREE.CylinderGeometry(0.055,0.055,0.14,8),wheelHub);
+      hub.rotation.z=Math.PI/2;hub.position.set(x,-0.75,z);trolley.add(hub);
+      // Caster bracket
+      bar(0.09,0.2,0.24,x,-0.62,z);
+    }
+
+    // Handle — red horizontal bar on back, two silver stems
+    const handle=new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.07,1.6,14),red);
+    handle.rotation.x=Math.PI/2;handle.position.set(-BW/2-0.4,BH+0.42,0);trolley.add(handle);
+    // Red caps on handle ends
+    for(const z of [-0.8,0.8]){
+      const cap=new THREE.Mesh(new THREE.SphereGeometry(0.085,12,8),red);
+      cap.position.set(-BW/2-0.4,BH+0.42,z);trolley.add(cap);
+    }
+    // Stems (angled silver pipes)
+    for(const z of [-0.7,0.7]){
+      const stem=new THREE.Mesh(new THREE.CylinderGeometry(0.045,0.045,0.65,12),silver);
+      stem.position.set(-BW/2-0.2,BH+0.16,z);
+      stem.rotation.z=-0.5;
+      trolley.add(stem);
+    }
+
     scene.add(trolley);
-    const COLORS=[0xffd23d,0x86ed5a,0x23d76b,0xff8a5a,0x5aceff,0xc45aff,0xff5a93,0xffe066];
-    const coinGeo=new THREE.BoxGeometry(0.48,0.13,0.48);
-    const coinEdges=new THREE.EdgesGeometry(coinGeo);
-    const coinEdgeMat=new THREE.LineBasicMaterial({color:0x0a0a0a});
+
+    // ===== SCC coin texture, drawn procedurally in canvas =====
+    function makeSCCTexture(){
+      const c=document.createElement('canvas');
+      const S=256;c.width=S;c.height=S;
+      const ctx=c.getContext('2d');
+      // Gold outer disc
+      ctx.fillStyle='#ffd23d';
+      ctx.beginPath();ctx.arc(S/2,S/2,S/2-3,0,Math.PI*2);ctx.fill();
+      // Inner darker rim ring
+      ctx.strokeStyle='#c79a0c';
+      ctx.lineWidth=5;
+      ctx.beginPath();ctx.arc(S/2,S/2,S/2-13,0,Math.PI*2);ctx.stroke();
+      // Blue inner circle
+      ctx.fillStyle='#1d54c0';
+      ctx.beginPath();ctx.arc(S/2,S/2,S*0.37,0,Math.PI*2);ctx.fill();
+      // Pixel character (yellow on blue) — castle-like head with eye band
+      ctx.imageSmoothingEnabled=false;
+      ctx.fillStyle='#ffd23d';
+      // Two tower notches on top
+      ctx.fillRect(90,72,18,16);
+      ctx.fillRect(148,72,18,16);
+      // Crown bar between
+      ctx.fillRect(78,86,98,14);
+      // Black eye band
+      ctx.fillStyle='#0a0a0a';
+      ctx.fillRect(78,100,98,28);
+      // Light eye dots
+      ctx.fillStyle='#aab4d8';
+      ctx.fillRect(96,108,14,10);
+      ctx.fillRect(144,108,14,10);
+      // Yellow lower jaw
+      ctx.fillStyle='#ffd23d';
+      ctx.fillRect(78,128,98,42);
+      // Mouth details
+      ctx.fillStyle='#0a0a0a';
+      ctx.fillRect(104,146,12,10);
+      ctx.fillRect(140,146,12,10);
+      ctx.fillRect(120,162,24,8);
+      const tex=new THREE.CanvasTexture(c);
+      tex.minFilter=THREE.LinearFilter;
+      tex.magFilter=THREE.LinearFilter;
+      tex.anisotropy=8;
+      return tex;
+    }
+    const sccTex=makeSCCTexture();
+    const coinGeo=new THREE.CylinderGeometry(0.27,0.27,0.07,28);
+    const coinSide=new THREE.MeshStandardMaterial({color:0xd9a116,metalness:0.7,roughness:0.3});
+    const coinFace=new THREE.MeshStandardMaterial({map:sccTex,metalness:0.45,roughness:0.4});
+    const coinMats=[coinSide,coinFace,coinFace];
     const coins=[];
-    function getTarget(idx){const layer=Math.floor(idx/6),inL=idx%6,col=inL%3,row=Math.floor(inL/3);return{x:(col-1)*0.85,y:0.22+layer*0.16,z:(row-0.5)*0.78};}
+
+    // ===== Coin stack layout: 8 vertical columns in 4×2 grid =====
+    const STACK_POS=[
+      {x:-1.15,z:0.45},{x:-0.4,z:0.45},{x:0.4,z:0.45},{x:1.15,z:0.45},
+      {x:-1.15,z:-0.45},{x:-0.4,z:-0.45},{x:0.4,z:-0.45},{x:1.15,z:-0.45}
+    ];
+    const NUM_STACKS=8;
+    const COIN_THICK=0.075; // spacing between stacked coins
+    function getTarget(idx){
+      const stackIdx=idx%NUM_STACKS;
+      const layer=Math.floor(idx/NUM_STACKS);
+      const p=STACK_POS[stackIdx];
+      return{x:p.x,y:0.1+layer*COIN_THICK,z:p.z};
+    }
     function addCoin(){
-      const idx=coins.length,t=getTarget(idx),color=COLORS[idx%COLORS.length];
-      const coin=new THREE.Mesh(coinGeo,new THREE.MeshStandardMaterial({color,metalness:0.55,roughness:0.3}));
-      coin.add(new THREE.LineSegments(coinEdges,coinEdgeMat));
-      coin.position.set(t.x+(Math.random()-0.5)*0.4,4.5+Math.random()*0.6,t.z+(Math.random()-0.5)*0.2);
+      const idx=coins.length,t=getTarget(idx);
+      const coin=new THREE.Mesh(coinGeo,coinMats);
+      coin.position.set(t.x+(Math.random()-0.5)*0.25,5.0+Math.random()*0.6,t.z+(Math.random()-0.5)*0.2);
       coin.rotation.set(Math.random()*Math.PI*2,Math.random()*Math.PI*2,Math.random()*Math.PI*2);
-      coin.userData={target:t,vy:0,rx:(Math.random()-0.5)*0.22,rz:(Math.random()-0.5)*0.18,falling:true};
+      // Settle face-up with random Y spin (slight tilt for variation, but mostly stacked)
+      const settleY=Math.random()*Math.PI*2;
+      const settleTilt=(Math.random()-0.5)*0.08;
+      coin.userData={target:t,settleY,settleTiltX:settleTilt,settleTiltZ:settleTilt*0.6,vy:0,rx:(Math.random()-0.5)*0.25,rz:(Math.random()-0.5)*0.2,falling:true};
       scene.add(coin);coins.push(coin);
     }
-    function removeCoin(){const c=coins.pop();if(c){scene.remove(c);c.material.dispose();}}
+    function removeCoin(){const c=coins.pop();if(c){scene.remove(c);}}
     setCoinCount=function(n){while(coins.length<n)addCoin();while(coins.length>n)removeCoin();};
+
     const clock=new THREE.Clock();
     function animate(){
       requestAnimationFrame(animate);
@@ -3714,11 +3894,14 @@
           coin.rotation.x+=ud.rx;coin.rotation.z+=ud.rz;
           if(coin.position.y<=ud.target.y){
             coin.position.y=ud.target.y;coin.position.x=ud.target.x;coin.position.z=ud.target.z;
-            coin.rotation.x=0;coin.rotation.z=0;ud.falling=false;
+            coin.rotation.x=ud.settleTiltX;
+            coin.rotation.y=ud.settleY;
+            coin.rotation.z=ud.settleTiltZ;
+            ud.falling=false;
           }
         }
       }
-      trolley.rotation.y=Math.sin(clock.elapsedTime*0.35)*0.08;
+      trolley.rotation.y=Math.sin(clock.elapsedTime*0.3)*0.06;
       renderer.render(scene,camera);
     }
     animate();
@@ -3754,11 +3937,85 @@
       update();
     });
 
+  // Build the voxel SCC mascot (same character as nav-mascot.js) into the leaderboard's bottom-left
+  function setupMascot(){
+    if(typeof THREE==='undefined'){setTimeout(setupMascot,100);return;}
+    const canvas=document.getElementById('cfMascotCanvas');
+    if(!canvas)return;
+    const K=0x0a0a0a,W=0xffffff,OR=0xff8a1f;
+    function vox(x,y,z,color,depth){
+      const m=new THREE.Mesh(
+        new THREE.BoxGeometry(1,1,depth),
+        new THREE.MeshStandardMaterial({color:color,roughness:0.55,flatShading:true})
+      );
+      m.position.set(x,y,z);
+      return m;
+    }
+    function buildSCC(){
+      const g=new THREE.Group();
+      // Ears
+      g.add(vox(-7,11,0,OR,2));g.add(vox(-6,11,0,OR,2));
+      g.add(vox( 6,11,0,OR,2));g.add(vox( 7,11,0,OR,2));
+      g.add(vox(-7,10,0,OR,2));g.add(vox(-6,10,0,OR,2));g.add(vox(-5,10,0,OR,2));
+      g.add(vox( 5,10,0,OR,2));g.add(vox( 6,10,0,OR,2));g.add(vox( 7,10,0,OR,2));
+      // Top bar
+      for(let x=-7;x<=7;x++)for(let y=8;y<=9;y++)g.add(vox(x,y,0,OR,2));
+      // Sunglasses
+      for(let x=-6;x<=6;x++)for(let y=4;y<=7;y++)g.add(vox(x,y,0,K,2));
+      // Lens highlights
+      g.add(vox(-4,5,0,W,2));g.add(vox(-3,5,0,W,2));
+      g.add(vox( 3,5,0,W,2));g.add(vox( 4,5,0,W,2));
+      // Lower face
+      for(let x=-7;x<=7;x++)for(let y=-2;y<=3;y++)g.add(vox(x,y,0,OR,2));
+      for(let x=-6;x<=6;x++)g.add(vox(x,-3,0,OR,2));
+      // Nostrils
+      g.add(vox(-2,2,1.1,K,0.4));
+      g.add(vox( 2,2,1.1,K,0.4));
+      // Smirk
+      g.add(vox(4, 0,1.1,K,0.4));
+      g.add(vox(4,-1,1.1,K,0.4));
+      for(let x=-3;x<=3;x++)g.add(vox(x,-2,1.1,K,0.4));
+      return g;
+    }
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(32,1,0.1,200);
+    camera.position.set(0,4,28);camera.lookAt(0,4,0);
+    scene.add(new THREE.AmbientLight(0xffffff,0.65));
+    const key=new THREE.DirectionalLight(0xffffff,0.9);key.position.set(8,18,22);scene.add(key);
+    const fill=new THREE.DirectionalLight(0xfff0d0,0.35);fill.position.set(-15,8,8);scene.add(fill);
+    const rim=new THREE.DirectionalLight(0xfff0f0,0.2);rim.position.set(0,-5,-15);scene.add(rim);
+    const character=buildSCC();
+    scene.add(character);
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+    renderer.setClearColor(0,0);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    function resize(){
+      const r=canvas.getBoundingClientRect();
+      if(!r.width)return;
+      renderer.setSize(r.width,r.height,false);
+      camera.aspect=r.width/r.height;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    new ResizeObserver(resize).observe(canvas);
+    const phase=Math.random()*Math.PI*2;
+    function tick(){
+      const t=performance.now()/1000+phase;
+      // Subtle idle bob/sway — the outer .cf-mascot CSS animation handles the rope-pulling rock
+      character.rotation.y=Math.sin(t*1.4)*0.08;
+      character.rotation.x=Math.sin(t*1.8)*0.04;
+      renderer.render(scene,camera);
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
   makeFloats();
   rankSlider.addEventListener('input',update);
   holdSlider.addEventListener('input',update);
   setupRope();
   setupTrolley();
+  setupMascot();
 })();
 </script>
 
