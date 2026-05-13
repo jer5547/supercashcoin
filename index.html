@@ -2606,8 +2606,47 @@
         </div>
       </div>
 
-      <!-- ===== Steps (right on desktop, below on mobile) ===== -->
-      <div class="htb-steps">
+      <!-- ===== Right column: contracts on top, steps at the bottom ===== -->
+      <div class="htb-right-col">
+        <div class="htb-contracts">
+          <div class="htb-contract">
+            <img src="coin.png" alt="$SCC" class="ctr-icon">
+            <div class="ctr-meta">
+              <div class="ctr-label">Meme Contract Address · <b>$SCC</b> · 12 decimals</div>
+              <div class="ctr-addr">Available at launch — stay tuned</div>
+            </div>
+            <button class="ctr-copy" title="Available at launch" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            </button>
+          </div>
+
+          <div class="htb-contract">
+            <img src="tether-logo.png" alt="USDT" class="ctr-icon">
+            <div class="ctr-meta">
+              <div class="ctr-label">Rewards Contract Address · <b>$USDT</b> · 18 decimals</div>
+              <div class="ctr-addr">Available at launch — stay tuned</div>
+            </div>
+            <button class="ctr-copy" title="Available at launch" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            </button>
+          </div>
+
+          <div class="htb-contract">
+            <img src="bnb-logo.png" alt="BNB" class="ctr-icon">
+            <div class="ctr-meta">
+              <div class="ctr-label">Gas Contract Address · <b>$BNB</b> · 18 decimals</div>
+              <div class="ctr-addr">Available at launch — stay tuned</div>
+            </div>
+            <button class="ctr-copy" title="Available at launch" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <hr class="htb-divider">
+
+        <!-- ===== Steps ===== -->
+        <div class="htb-steps">
         <div class="htb-step">
           <div class="htb-step-left">
             <div class="htb-num">01</div>
@@ -2658,7 +2697,11 @@
           </div>
         </div>
       </div>
+      <!-- /htb-steps -->
+      </div>
+      <!-- /htb-right-col -->
     </div>
+    <!-- /htb-layout -->
   </div>
 </section>
 
@@ -2848,53 +2891,147 @@
     display:grid;
     grid-template-columns:380px 1fr;
     gap:60px;
-    align-items:center;
+    align-items:stretch;
   }
   .htb-phone-stage{display:flex;justify-content:center;align-items:center;}
 
-  /* Steps column — split card: gold left, navy right */
-  .htb-steps{display:flex;flex-direction:column;gap:18px;}
+  /* Right column wrapper: steps on top, contracts at bottom */
+  .htb-right-col{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    height:100%;
+    justify-content:space-between;
+  }
+
+  /* Divider between steps and contracts */
+  .htb-divider{
+    border:none;
+    border-top:1.5px dashed rgba(255,210,61,0.5);
+    margin:6px 0;
+    width:100%;
+  }
+
+  /* Contract addresses block — sits above the step cards (Style 2: light & clean) */
+  .htb-contracts{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding:18px;
+    background:#fff;
+    border:1.5px solid #ffd23d;
+    border-radius:14px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  }
+  .htb-contract{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 12px;
+    border-radius:10px;
+    background:#fafaf6;
+    border:1px solid #eee;
+    transition:background .15s, border-color .15s;
+  }
+  .htb-contract:hover{
+    background:#fff8e0;
+    border-color:rgba(255,210,61,0.5);
+  }
+  .htb-contract .ctr-icon{
+    width:32px;
+    height:32px;
+    flex-shrink:0;
+    border-radius:50%;
+    object-fit:contain;
+  }
+  .htb-contract .ctr-meta{flex:1;min-width:0;}
+  .htb-contract .ctr-label{
+    font-family:'Inter','Arial',sans-serif;
+    font-size:11px;
+    font-weight:600;
+    color:#666;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    line-height:1.2;
+    margin-bottom:2px;
+  }
+  .htb-contract .ctr-label b{color:#0a0a0a;font-weight:900;}
+  .htb-contract .ctr-addr{
+    font-family:'JetBrains Mono','Menlo','Monaco',monospace;
+    font-size:11.5px;
+    color:#999;
+    font-weight:500;
+    font-style:italic;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .htb-contract .ctr-copy{
+    flex-shrink:0;
+    background:#ffd23d;
+    border:1px solid #d9a116;
+    color:#0a0a0a;
+    border-radius:8px;
+    width:32px;
+    height:32px;
+    padding:7px;
+    cursor:pointer;
+    transition:background .15s, transform .12s;
+  }
+  .htb-contract .ctr-copy:hover:not(:disabled){
+    background:#ffdb5c;
+    transform:translateY(-1px);
+  }
+  .htb-contract .ctr-copy:disabled{cursor:not-allowed;opacity:0.5;}
+  .htb-contract .ctr-copy svg{width:100%;height:100%;display:block;}
+
+  /* Steps column — Style 2: white card with gold border, matches contracts */
+  .htb-steps{display:flex;flex-direction:column;gap:14px;flex:1;}
   .htb-step{
     display:grid;
-    grid-template-columns:200px 1fr;
-    border-radius:18px;
+    grid-template-columns:120px 1fr;
+    border-radius:14px;
     overflow:hidden;
-    box-shadow:0 10px 24px rgba(0,0,0,0.08);
+    background:#fff;
+    border:1.5px solid #ffd23d;
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
     transition:transform .25s, box-shadow .25s;
-    min-height:160px;
+    flex:1;
+    min-height:110px;
   }
   .htb-step:hover{
     transform:translateY(-3px);
-    box-shadow:0 14px 32px rgba(0,0,0,0.14);
+    box-shadow:0 10px 28px rgba(255,210,61,0.2);
   }
 
-  /* LEFT — gold side */
+  /* LEFT — light gray with subtle gold tint */
   .htb-step-left{
     position:relative;
-    background:linear-gradient(135deg,#ffe066 0%,#ffd23d 50%,#d9a116 100%);
+    background:#fafaf6;
+    border-right:1px solid #eee;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:24px;
+    padding:14px;
   }
   .htb-num{
     position:absolute;
-    top:14px;
-    left:18px;
+    top:6px;
+    left:10px;
     font-family:'Arial Black',sans-serif;
     font-weight:900;
-    font-size:48px;
-    color:rgba(10,10,10,0.18);
+    font-size:18px;
+    color:rgba(10,10,10,0.2);
     line-height:1;
     z-index:1;
   }
   .htb-step-pic{
-    width:120px;
-    height:120px;
+    width:78px;
+    height:78px;
     display:flex;
     align-items:center;
     justify-content:center;
-    filter:drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+    filter:drop-shadow(0 3px 6px rgba(0,0,0,0.18));
     position:relative;
     z-index:2;
   }
@@ -2906,62 +3043,62 @@
     display:block;
   }
 
-  /* RIGHT — dark navy side */
+  /* RIGHT — clean white side */
   .htb-step-right{
-    background:#091a3e;
-    padding:24px 28px;
+    background:#fff;
+    padding:14px 18px;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    gap:8px;
+    gap:4px;
   }
   .htb-step-right h4{
-    margin:0 0 6px;
+    margin:0 0 3px;
     font-family:'Arial Black',sans-serif;
-    font-size:24px;
+    font-size:17px;
     text-transform:uppercase;
     letter-spacing:.02em;
-    color:#fff;
+    color:#0a0a0a;
     line-height:1.1;
   }
   .htb-step-right p{
     margin:0;
     font-family:'Inter','Arial',sans-serif;
-    font-size:15px;
-    color:#86a4e3;
-    line-height:1.55;
+    font-size:13px;
+    color:#666;
+    line-height:1.5;
     font-weight:500;
   }
-  .htb-step-right p .gold{color:#ffd23d;font-weight:700;}
+  .htb-step-right p .gold{color:#c79a0c;font-weight:700;}
 
   /* Action links */
   .htb-links{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
-    margin-top:10px;
+    margin-top:6px;
   }
   .htb-link{
     display:inline-flex;
     align-items:center;
     gap:5px;
     padding:5px 11px;
-    background:rgba(255,210,61,0.1);
-    border:1px solid rgba(255,210,61,0.35);
+    background:#ffd23d;
+    border:1px solid #d9a116;
     border-radius:999px;
     font-family:'Inter','Arial',sans-serif;
     font-size:10.5px;
     font-weight:700;
-    color:#ffd23d;
+    color:#0a0a0a;
     text-decoration:none;
     text-transform:none;
     letter-spacing:0;
     transition:background .15s, transform .12s;
     white-space:nowrap;
   }
-  .htb-link::after{content:'→';font-size:12px;opacity:0.8;}
+  .htb-link::after{content:'→';font-size:12px;opacity:0.85;}
   .htb-link:hover{
-    background:rgba(255,210,61,0.2);
+    background:#ffdb5c;
     transform:translateY(-1px);
   }
 
@@ -3452,40 +3589,6 @@
       </div>
     </div>
 
-    <div class="tk-launch">
-      <div class="tk-launch-head">
-        <div class="pulse-tag">Launching Soon</div>
-        <div class="h">Add to your <span class="accent">Binance Wallet</span></div>
-      </div>
-
-      <div class="tk-launch-rows">
-        <div class="tk-launch-row">
-          <div class="badge coin-badge"><img src="coin.png" alt="$SCC"></div>
-          <div class="meta">
-            <div class="label">Contract Address · opBNB</div>
-            <div class="addr pending">Available at launch — stay tuned</div>
-          </div>
-          <button class="copy-btn disabled" title="Available at launch" disabled>
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-          </button>
-        </div>
-
-        <div class="tk-launch-row">
-          <div class="badge coin-badge"><img src="tether.png" alt="USDT"></div>
-          <div class="meta">
-            <div class="label">Rewards Token · USDT</div>
-            <div class="addr pending">Available at launch — stay tuned</div>
-          </div>
-          <button class="copy-btn disabled" title="Available at launch" disabled>
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <div class="tk-launch-cta">
-        Make sure you're on the <b>opBNB</b> network. Always verify the contract on launch day from the official channels.
-      </div>
-    </div>
   </div>
 </section>
 
