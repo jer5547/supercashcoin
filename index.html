@@ -162,58 +162,59 @@
   }
 
   /* === TICKER MARQUEE === */
-  .ticker{
+  .rain-banner{
     background:#1d4fd8;
-    border-top:3px solid #ffd23d;
-    border-bottom:3px solid #ffd23d;
+    border-top:3px solid #0a0a0a;
+    border-bottom:3px solid #0a0a0a;
     overflow:hidden;
-    padding:4px 0;
+    height:64px;
     position:relative;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
-  }
-  .ticker-track{
     display:flex;
-    width:max-content;
-    animation:tickerScroll 24s linear infinite;
-    will-change:transform;
     align-items:center;
-  }
-  .ticker-item{
-    flex-shrink:0;
-    padding:0 22px;
-    font-size:32px;
-    font-weight:900;
-    letter-spacing:0.02em;
-    font-family:'Luckiest Guy','Lilita One','Arial Black',sans-serif;
+    justify-content:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    font-family:'Black Ops One','Arial Black',sans-serif;
     text-transform:uppercase;
-    white-space:nowrap;
-    background:linear-gradient(180deg,#ffffff 0%,#fff493 25%,#ffd23d 50%,#d9a116 80%,#8a5e07 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    -webkit-text-stroke:1.2px #4a3402;
-    filter:
-      drop-shadow(1px 1px 0 #b8830a)
-      drop-shadow(2px 2px 0 #8a5e07)
-      drop-shadow(3px 3px 0 #4a2f02)
-      drop-shadow(4px 5px 8px rgba(0,0,0,0.4));
   }
-  .ticker-vox{
-    flex-shrink:0;
-    margin:0 14px;
-    width:28px;
-    height:28px;
-    display:block;
-    animation:tickerVoxBob 2.4s ease-in-out infinite;
+  .rain-item{
+    position:absolute;
+    top:0;
+    animation:rainFall linear infinite;
+    z-index:1;
+    filter:drop-shadow(2px 2px 0 rgba(0,0,0,0.3));
+    pointer-events:none;
   }
-  @keyframes tickerVoxBob{
-    0%,100%{transform:translateY(0) rotate(0);}
-    50%{transform:translateY(-3px) rotate(3deg);}
+  .rain-bill{width:42px;height:24px;display:block}
+  .rain-coin{width:26px;height:26px;display:block}
+  @keyframes rainFall{
+    0%{transform:translateY(-110%) rotate(0deg)}
+    100%{transform:translateY(220%) rotate(360deg)}
   }
-  @keyframes tickerScroll{
-    0%{transform:translateX(0);}
-    100%{transform:translateX(-50%);}
+  .rain-hl{
+    position:absolute;
+    left:60px;
+    right:60px;
+    text-align:center;
+    opacity:0;
+    color:#fff;
+    font-size:clamp(15px,2.2vw,22px);
+    letter-spacing:.06em;
+    text-shadow:2px 2px 0 #0a0a0a;
+    z-index:3;
+    animation:rainHL 12s linear infinite;
+    pointer-events:none;
   }
+  .rain-hl:nth-of-type(1){animation-delay:0s}
+  .rain-hl:nth-of-type(2){animation-delay:4s}
+  .rain-hl:nth-of-type(3){animation-delay:8s}
+  @keyframes rainHL{
+    0%{opacity:0;transform:translateY(10px)}
+    4%{opacity:1;transform:translateY(0)}
+    29%{opacity:1;transform:translateY(0)}
+    33%{opacity:0;transform:translateY(-10px)}
+    100%{opacity:0;transform:translateY(-10px)}
+  }
+  .rain-star{color:#ffd23d;margin:0 12px;text-shadow:2px 2px 0 #0a0a0a}
 
   /* === CELEBRATION SECTION === */
   .celebration{
@@ -1072,10 +1073,10 @@
       .hero .text{padding:24px 0 8px;flex:none;width:100%;}
           img.getpaid-coin{width:52px;height:52px;}
     
-    /* --- Ticker: smaller text --- */
-    .ticker{padding:3px 0;}
-    .ticker-item{font-size:24px;padding:0 16px;}
-    .ticker-vox{width:22px;height:22px;margin:0 10px;}
+    /* --- Money-rain banner: smaller on tablet --- */
+    .rain-banner{height:54px;}
+    .rain-bill{width:36px;height:21px}
+    .rain-coin{width:22px;height:22px}
 
     /* --- Celebration (25% section): tighten padding, smaller h2 --- */
     .celebration{padding:30px 18px 60px;}
@@ -1103,8 +1104,9 @@
     .nav-brand .name{font-size:13px;}
     .nav-brand canvas{width:32px;height:32px;}
     .nav-links a{font-size:16px;}
-    .ticker-item{font-size:20px;padding:0 12px;}
-    .ticker-vox{width:18px;height:18px;margin:0 8px;}
+    .rain-banner{height:46px;}
+    .rain-bill{width:30px;height:18px}
+    .rain-coin{width:18px;height:18px}
               .celebration{padding:30px 14px 60px;}
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
@@ -1833,74 +1835,27 @@
   </div>
 </section>
 
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-    <span class="ticker-item">$SCC</span>
-    <svg class="ticker-vox" viewBox="0 0 15 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg"><g fill="#ffd23d"><rect x="0" y="0" width="2" height="1"/><rect x="13" y="0" width="2" height="1"/><rect x="0" y="1" width="3" height="1"/><rect x="12" y="1" width="3" height="1"/><rect x="0" y="2" width="15" height="2"/><rect x="0" y="8" width="15" height="6"/><rect x="1" y="14" width="13" height="1"/></g><rect x="1" y="4" width="13" height="4" fill="#1a1a1a"/><g fill="#ffffff"><rect x="3" y="6" width="2" height="1"/><rect x="10" y="6" width="2" height="1"/></g><g fill="#1a1a1a"><rect x="5" y="9" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="4" y="13" width="7" height="1"/><rect x="11" y="11" width="1" height="2"/></g></svg>
-  </div>
+
+<!-- ============================================================
+     MONEY-RAIN ROTATING ANNOUNCEMENT BANNER
+     Replaces the old scrolling $SCC ticker. Falling USDT bills + gold
+     coins behind 3 rotating headlines (cycle every 4s).
+     ============================================================ -->
+<div class="rain-banner" aria-hidden="true">
+  <div class="rain-item" style="left:4%;animation-duration:3.6s;animation-delay:0s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
+  <div class="rain-item" style="left:14%;animation-duration:4.2s;animation-delay:1.4s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
+  <div class="rain-item" style="left:24%;animation-duration:3.8s;animation-delay:2.1s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
+  <div class="rain-item" style="left:36%;animation-duration:4.4s;animation-delay:0.9s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
+  <div class="rain-item" style="left:48%;animation-duration:3.5s;animation-delay:2.6s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
+  <div class="rain-item" style="left:60%;animation-duration:4.0s;animation-delay:1.6s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
+  <div class="rain-item" style="left:72%;animation-duration:3.4s;animation-delay:0.7s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
+  <div class="rain-item" style="left:84%;animation-duration:4.3s;animation-delay:2.3s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
+  <div class="rain-item" style="left:93%;animation-duration:3.7s;animation-delay:1.2s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
+  <span class="rain-hl"><span class="rain-star">★</span>Get Paid Frequently · No Staking Needed<span class="rain-star">★</span></span>
+  <span class="rain-hl"><span class="rain-star">★</span>Built On opBNB · Gas Is Basically Free<span class="rain-star">★</span></span>
+  <span class="rain-hl"><span class="rain-star">★</span>25% Royalties On Every Buy Transaction<span class="rain-star">★</span></span>
 </div>
+
 
 <section class="celebration" id="celebrationSection">
   <div class="content">
@@ -2171,164 +2126,6 @@
      WALLET MOCKUP SECTION — fancy MetaMask-style UI showing
      SCC balance + live-ticking USDT rewards
      ============================================================ -->
-<section class="tokenomics" id="tokenomicsSection">
-  <div class="tk-wrap">
-    <div class="tk-title">
-      <h2 class="tk-title-text"><span class="gold">Tokenomics</span></h2>
-    </div>
-    <p class="tk-subhead">Two numbers that matter. Everything else is detail.</p>
-
-    <!-- Two giant feature cards flanking the coin -->
-    <div class="tk-hero-row">
-      <div class="tk-feature-card">
-        <div class="eyebrow">Buy Tax</div>
-        <div class="big-num">25%</div>
-        <h3>Goes to holders</h3>
-        <p>Every buy. Paid in USDT. Auto-distributed on opBNB. No claiming required.</p>
-      </div>
-
-      <div class="tk-coin-stage">
-        <span class="tk-spark s1">✦</span>
-        <span class="tk-spark s2">✦</span>
-        <span class="tk-spark s3">✦</span>
-        <span class="tk-spark s4">✦</span>
-        <img src="coin.png" alt="Super Cash Coin" class="tk-coin-img">
-      </div>
-
-      <div class="tk-feature-card right">
-        <div class="eyebrow">Total Supply</div>
-        <div class="big-num">1B</div>
-        <h3>Hard-capped forever</h3>
-        <p>One billion $SCC. No minting, no team unlocks. 3% burn on every sell.</p>
-      </div>
-    </div>
-
-    <!-- Smaller details strip below -->
-    <div class="tk-details-strip">
-      <div class="tk-detail">
-        <div class="lbl">Network</div>
-        <div class="val">opBNB</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Symbol</div>
-        <div class="val">$SCC</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Decimals</div>
-        <div class="val">18</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Rewards</div>
-        <div class="val">USDT</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Sell Tax</div>
-        <div class="val">3%</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">To Qualify</div>
-        <div class="val">Hold ≥ 1 $SCC</div>
-      </div>
-    </div>
-
-    <div class="tk-divider"><hr/><span>★ Built On ★</span><hr/></div>
-
-    <div class="vs-wrap">
-      <img src="opbnb-logo.png" alt="opBNB" class="vs-hero-logo">
-      <p class="vs-eyebrow">★ Why The Network Matters</p>
-      <h2 class="vs-title">Built On <span class="green">opBNB</span></h2>
-      <p class="vs-sub">
-        The opBNB network is what makes Super Cash Coin's royalty engine work — fast, cheap, secure, and built for high-frequency payouts to thousands of holders.
-      </p>
-
-      <div class="benefits opb-six">
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 33 15 A 14 14 0 1 0 28 28" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-              <polyline points="33,4 33,15 22,15" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="19" y="25" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" fill="#ffd23d" font-weight="900">$</text>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>MORE FREQUENT PAYOUTS</h3>
-            <p>Cheap gas means royalty distributions trigger far more often. More cycles, more cashflow rolling in.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 14 6 L 24 6 M 14 6 L 11 11 M 24 6 L 27 11" fill="none" stroke="#ffd23d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M 11 11 L 27 11 Q 34 19 31 28 Q 29 35 19 35 Q 9 35 7 28 Q 4 19 11 11 Z" fill="#ffd23d"/>
-              <text x="19" y="26" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="14" font-weight="900" fill="#0a0a0a">$</text>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>KEEP MORE REWARDS</h3>
-            <p>At ~$0.001 per transaction, gas barely touches your payouts. Almost every cent lands in your wallet.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="22,4 8,21 17,21 14,34 30,16 21,16" fill="#ffd23d"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>LIGHTNING FAST</h3>
-            <p>Sub-second block times. Payouts confirm instantly. No sitting around waiting for your USDT to arrive.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 4 14 L 4 9 L 26 9 L 28 12" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-              <rect x="4" y="12" width="30" height="22" rx="3" fill="none" stroke="#ffd23d" stroke-width="3"/>
-              <rect x="22" y="19" width="14" height="9" rx="2" fill="#ffd23d"/>
-              <circle cx="29" cy="23.5" r="1.5" fill="#0a0a0a"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>USE YOUR WALLET</h3>
-            <p>Fully EVM-compatible. MetaMask, Trust Wallet, whatever you already use. No new logins, no new tools.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 19 3 L 6 8 L 6 19 Q 6 30 19 35 Q 32 30 32 19 L 32 8 Z" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round"/>
-              <polyline points="13,19 17,23 25,14" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>BNB CHAIN SECURITY</h3>
-            <p>Built on top of BNB Chain — one of the largest L1s in crypto. Battle-tested security under the hood.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <line x1="4" y1="14" x2="30" y2="14" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-              <polyline points="24,8 30,14 24,20" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="34" y1="24" x2="8" y2="24" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-              <polyline points="14,18 8,24 14,30" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>EASY BRIDGE</h3>
-            <p>Move USDT in and out via the Binance Bridge. One click. No exchange hopping, no friction.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
 <section class="htb-section" id="howToBuy">
   <div class="htb-wrap">
     <h2 class="htb-title">How To <span class="gold">Buy</span></h2>
@@ -2593,11 +2390,10 @@
   .htb-section{
     background:#1d4fd8;
     color:#fff;
-    padding:90px 60px 100px;
+    padding:90px 60px 40px;
     position:relative;
     overflow:hidden;
     border-top:3px solid #0a0a0a;
-    border-bottom:3px solid #0a0a0a;
   }
   .htb-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
   .htb-title{
@@ -3320,10 +3116,9 @@
   .cf-section{
     background:#1d4fd8;
     color:#fff;
-    padding:90px 32px 100px;
+    padding:30px 32px 100px;
     position:relative;
     overflow:hidden;
-    border-top:3px solid #0a0a0a;
     border-bottom:3px solid #0a0a0a;
   }
   .cf{position:relative;max-width:1180px;margin:0 auto;font-family:Arial,sans-serif;z-index:1}
@@ -4142,6 +3937,164 @@
 <!-- ============================================================
      CLOSER — "Join the Gang" with floating coin pile accent
      ============================================================ -->
+<section class="tokenomics" id="tokenomicsSection">
+  <div class="tk-wrap">
+    <div class="tk-title">
+      <h2 class="tk-title-text"><span class="gold">Tokenomics</span></h2>
+    </div>
+    <p class="tk-subhead">Two numbers that matter. Everything else is detail.</p>
+
+    <!-- Two giant feature cards flanking the coin -->
+    <div class="tk-hero-row">
+      <div class="tk-feature-card">
+        <div class="eyebrow">Buy Tax</div>
+        <div class="big-num">25%</div>
+        <h3>Goes to holders</h3>
+        <p>Every buy. Paid in USDT. Auto-distributed on opBNB. No claiming required.</p>
+      </div>
+
+      <div class="tk-coin-stage">
+        <span class="tk-spark s1">✦</span>
+        <span class="tk-spark s2">✦</span>
+        <span class="tk-spark s3">✦</span>
+        <span class="tk-spark s4">✦</span>
+        <img src="coin.png" alt="Super Cash Coin" class="tk-coin-img">
+      </div>
+
+      <div class="tk-feature-card right">
+        <div class="eyebrow">Total Supply</div>
+        <div class="big-num">1B</div>
+        <h3>Hard-capped forever</h3>
+        <p>One billion $SCC. No minting, no team unlocks. 3% burn on every sell.</p>
+      </div>
+    </div>
+
+    <!-- Smaller details strip below -->
+    <div class="tk-details-strip">
+      <div class="tk-detail">
+        <div class="lbl">Network</div>
+        <div class="val">opBNB</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Symbol</div>
+        <div class="val">$SCC</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Decimals</div>
+        <div class="val">18</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Rewards</div>
+        <div class="val">USDT</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Sell Tax</div>
+        <div class="val">3%</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">To Qualify</div>
+        <div class="val">Hold ≥ 1 $SCC</div>
+      </div>
+    </div>
+
+    <div class="tk-divider"><hr/><span>★ Built On ★</span><hr/></div>
+
+    <div class="vs-wrap">
+      <img src="opbnb-logo.png" alt="opBNB" class="vs-hero-logo">
+      <p class="vs-eyebrow">★ Why The Network Matters</p>
+      <h2 class="vs-title">Built On <span class="green">opBNB</span></h2>
+      <p class="vs-sub">
+        The opBNB network is what makes Super Cash Coin's royalty engine work — fast, cheap, secure, and built for high-frequency payouts to thousands of holders.
+      </p>
+
+      <div class="benefits opb-six">
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 33 15 A 14 14 0 1 0 28 28" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="33,4 33,15 22,15" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="19" y="25" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" fill="#ffd23d" font-weight="900">$</text>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>MORE FREQUENT PAYOUTS</h3>
+            <p>Cheap gas means royalty distributions trigger far more often. More cycles, more cashflow rolling in.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 14 6 L 24 6 M 14 6 L 11 11 M 24 6 L 27 11" fill="none" stroke="#ffd23d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 11 11 L 27 11 Q 34 19 31 28 Q 29 35 19 35 Q 9 35 7 28 Q 4 19 11 11 Z" fill="#ffd23d"/>
+              <text x="19" y="26" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="14" font-weight="900" fill="#0a0a0a">$</text>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>KEEP MORE REWARDS</h3>
+            <p>At ~$0.001 per transaction, gas barely touches your payouts. Almost every cent lands in your wallet.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="22,4 8,21 17,21 14,34 30,16 21,16" fill="#ffd23d"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>LIGHTNING FAST</h3>
+            <p>Sub-second block times. Payouts confirm instantly. No sitting around waiting for your USDT to arrive.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 4 14 L 4 9 L 26 9 L 28 12" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+              <rect x="4" y="12" width="30" height="22" rx="3" fill="none" stroke="#ffd23d" stroke-width="3"/>
+              <rect x="22" y="19" width="14" height="9" rx="2" fill="#ffd23d"/>
+              <circle cx="29" cy="23.5" r="1.5" fill="#0a0a0a"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>USE YOUR WALLET</h3>
+            <p>Fully EVM-compatible. MetaMask, Trust Wallet, whatever you already use. No new logins, no new tools.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 19 3 L 6 8 L 6 19 Q 6 30 19 35 Q 32 30 32 19 L 32 8 Z" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round"/>
+              <polyline points="13,19 17,23 25,14" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>BNB CHAIN SECURITY</h3>
+            <p>Built on top of BNB Chain — one of the largest L1s in crypto. Battle-tested security under the hood.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="14" x2="30" y2="14" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="24,8 30,14 24,20" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="34" y1="24" x2="8" y2="24" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="14,18 8,24 14,30" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>EASY BRIDGE</h3>
+            <p>Move USDT in and out via the Binance Bridge. One click. No exchange hopping, no friction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 <section class="cta-section">
   <div class="cta-wrap">
     <div class="cta-pile-side" aria-hidden="true">
