@@ -1023,221 +1023,6 @@
     .how-to-trade{padding:60px 24px;}
   }
 
-  .volume-section{
-    background:#ffffff;
-    color:#0a0a0a;
-    padding:60px 60px 50px;
-    position:relative;
-    overflow:hidden;
-  }
-  .volume-wrap{
-    max-width:1200px;
-    margin:0 auto;
-  }
-  /* Animation container — 3D pig + bars scene */
-  .volume-stage{
-    position:relative;
-    width:100%;
-    height:480px;
-    overflow:visible;
-    margin-bottom:20px;
-  }
-  .volume-3d{
-    position:relative;
-    width:100%;
-    height:100%;
-    background:transparent;
-    overflow:hidden;
-  }
-  /* Volume section title — matches How To Trade / How It Works / Tokenomics */
-
-  /* Card-style leaderboard — each coin is its own card, top 3 have colored left borders */
-  .leaderboard{
-    max-width:980px;
-    margin:0 auto;
-    background:transparent;
-  }
-  .lb-head{display:none;}
-  #leaderboardBody{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .lb-row{
-    display:grid;
-    grid-template-columns:80px 1fr 200px;
-    align-items:center;
-    background:#fff;
-    border:1px solid #e8e8e0;
-    border-left:6px solid #e0e0d8;
-    border-radius:12px;
-    padding:18px 22px;
-    transition:transform 0.2s, box-shadow 0.2s;
-    text-align:left;
-  }
-  .lb-row:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.06);}
-  .lb-rank{
-    font-size:32px;
-    font-weight:900;
-    color:#0a0a0a;
-    font-family:'Courier New',monospace;
-    line-height:1;
-    text-align:center;
-  }
-  .lb-row.rank-1{
-    border-left-color:#ffd23d;
-    background:linear-gradient(90deg,rgba(255,210,61,0.08) 0%,#fff 30%);
-  }
-  .lb-row.rank-1 .lb-rank{color:#c79a0c;}
-  .lb-row.rank-2{
-    border-left-color:#a8a8a8;
-    background:linear-gradient(90deg,rgba(168,168,168,0.08) 0%,#fff 30%);
-  }
-  .lb-row.rank-2 .lb-rank{color:#7a7a7a;}
-  .lb-row.rank-3{
-    border-left-color:#c87f3a;
-    background:linear-gradient(90deg,rgba(200,127,58,0.08) 0%,#fff 30%);
-  }
-  .lb-row.rank-3 .lb-rank{color:#8a5520;}
-  .lb-coin{
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
-  .lb-coin img{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:#fafaf7;
-    flex-shrink:0;
-  }
-  .lb-coin .name{
-    font-size:16px;
-    font-weight:800;
-    color:#0a0a0a;
-    line-height:1.2;
-  }
-  .lb-coin .symbol{
-    font-size:11px;
-    color:#888;
-    font-weight:700;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    margin-left:8px;
-  }
-  .lb-coin .mc{
-    font-size:12px;
-    color:#666;
-    font-weight:500;
-    margin-top:4px;
-  }
-  .lb-num{display:none;}
-  .lb-reward{
-    text-align:right;
-  }
-  .lb-reward .amount{
-    font-size:24px;
-    font-weight:900;
-    color:#2cb84d;
-    line-height:1;
-    font-variant-numeric:tabular-nums;
-    display:block;
-  }
-  .lb-reward .day{
-    font-size:10px;
-    color:#888;
-    font-weight:700;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    display:block;
-    margin-top:5px;
-  }
-  .lb-foot{
-    margin-top:14px;
-    padding:14px 22px;
-    background:#fafaf7;
-    border:1px solid #e8e8e0;
-    color:#666;
-    font-size:12px;
-    line-height:1.5;
-    text-align:center;
-    border-radius:10px;
-  }
-  .lb-foot b{color:#c79a0c;}
-  .lb-foot .updated{
-    font-size:10px;
-    color:#aaa;
-    margin-top:4px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    font-weight:700;
-  }
-  .lb-loading{
-    padding:40px 22px;
-    text-align:center;
-    color:#888;
-    font-size:13px;
-    background:#fff;
-    border-radius:12px;
-    border:1px solid #e8e8e0;
-  }
-  /* Horizontal banner divider with quote about earnings */
-  .volume-banner{
-    max-width:900px;
-    margin:0 auto 50px;
-    padding:0 20px;
-    text-align:center;
-    font-size:clamp(22px,3vw,38px);
-    font-weight:800;
-    letter-spacing:-0.02em;
-    line-height:1.25;
-    color:#0a0a0a;
-    background:none;
-    border:none;
-    border-radius:0;
-  }
-  .volume-banner b{color:#0a0a0a;font-weight:900;}
-  .volume-banner .gold{color:#ffd23d;}
-  .volume-banner .scc{color:#ffd23d;font-weight:900;}
-
-  /* Bottom hero callout — arrow on the RIGHT pointing UP at the daily rewards column */
-  .hero-callout-bottom{
-    position:relative;
-    max-width:980px;
-    margin:0 auto 0;
-    padding:0 22px;
-    display:grid;
-    grid-template-columns:80px 1fr 200px;
-    align-items:start;
-  }
-  .hero-callout-bottom .text{
-    grid-column:1 / span 2;
-    font-size:clamp(20px,2.6vw,32px);
-    font-weight:900;
-    color:#0a0a0a;
-    letter-spacing:-0.02em;
-    line-height:1.1;
-    text-shadow:2px 2px 0 #ffd23d, 4px 4px 0 #c79a0c;
-    transform:rotate(-2deg);
-    white-space:nowrap;
-    text-align:right;
-    padding-right:30px;
-    padding-top:0;
-    align-self:start;
-    margin-top:-40px;
-  }
-  .hero-callout-bottom .text .underline{
-    background:linear-gradient(180deg,transparent 60%,#ffd23d 60%);
-  }
-  .hero-callout-bottom .arrow{
-    grid-column:3;
-    justify-self:center;
-    animation:arrowBounceUp 1.4s ease-in-out infinite;
-  }
-  @keyframes arrowBounceUp{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-12px);}
-  }
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 
   /* ============================================================
@@ -1308,28 +1093,6 @@
     /* --- Tokenomics: tighten padding, voxel title shorter --- */
     .tokenomics{padding:80px 18px;}
   
-    /* --- Volume section: tighten 3D scene height on mobile --- */
-    .volume-section{padding:40px 18px 30px;}
-    .volume-stage{height:340px;margin-bottom:20px;}
-    .volume-3d{height:100%;}
-    .volume-banner{font-size:clamp(16px,4vw,22px);margin-bottom:30px;padding:0 12px;}
-
-    /* --- Leaderboard: stack the reward column under the name --- */
-    .lb-row{grid-template-columns:54px 1fr;column-gap:12px;row-gap:6px;padding:14px 16px;}
-    .lb-rank{font-size:26px;}
-    .lb-coin .name{font-size:14px;}
-    .lb-coin .symbol{font-size:10px;margin-left:6px;}
-    .lb-coin .mc{font-size:11px;}
-    .lb-coin img{width:36px;height:36px;}
-    .lb-reward{grid-column:1 / span 2;text-align:left;padding:8px 0 0 66px;border-top:1px solid #f0f0e8;}
-    .lb-reward .amount{font-size:20px;}
-    .lb-reward .day{margin-top:3px;}
-
-    /* --- Bottom callout: don't force a single row, hide arrow (no column to point at) --- */
-    .hero-callout-bottom{grid-template-columns:1fr;padding:0 18px;margin-top:20px;}
-    .hero-callout-bottom .text{grid-column:1;white-space:normal;font-size:clamp(16px,4vw,22px);text-align:center;transform:rotate(-1deg);margin-top:0;padding-right:0;text-shadow:1px 1px 0 #ffd23d, 2px 2px 0 #c79a0c;}
-    .hero-callout-bottom .arrow{display:none;}
-
     /* --- How To Trade: existing 900px rule for cards is fine, just tighter section padding --- */
     .how-to-trade{padding:50px 18px 70px;}
   }
@@ -1346,9 +1109,7 @@
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
     .tokenomics{padding:60px 14px;}
-    .volume-section{padding:30px 14px 24px;}
     .how-to-trade{padding:40px 14px 60px;}
-    .volume-stage{height:280px;}
   }
 
   /* ============================================================
@@ -3553,37 +3314,453 @@
 </script>
 
 
-<section class="volume-section">
-  <div class="volume-wrap">
-    <div class="volume-banner">
-      Right now, here are the top meme coins and what their holders <b>could have been making</b>. If <span class="scc">Super Cash Coin</span> reached those same spots — this is exactly what <b>you could be earning</b>. <span class="gold">Earn passive income as the trades come in!</span>
-    </div>
+<!-- ============================================================
+     EARN CALCULATOR — interactive "what could I be earning"
+     Two sliders + voxel trolley + animated top-30 leaderboard
+     with mascot pulling SCC up the ranks via a rope/pulley.
+     ============================================================ -->
+<style>
+  .cf-section{
+    background:#0a0a0a;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.06'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.05' transform='rotate(15 130 180)'>$</text></svg>");
+    background-size:200px 200px;
+    background-repeat:repeat;
+    color:#fff;
+    padding:80px 32px 80px;
+    border-top:2px solid #ffd23d;
+    border-bottom:2px solid #ffd23d;
+    position:relative;
+    overflow:hidden;
+  }
+  .cf{position:relative;max-width:1180px;margin:0 auto;font-family:Arial,sans-serif}
+  .cf > *{position:relative;z-index:2}
 
-    <div class="leaderboard">
-      <div class="lb-head">
-        <span>#</span>
-        <span>Coin</span>
-        <span>Market Cap</span>
-        <span>Daily Rewards @ 25%</span>
-      </div>
-      <div id="leaderboardBody">
-        <div class="lb-loading">Loading live data…</div>
-      </div>
-      <div class="lb-foot">
-        Estimated rewards = <b>25%</b> of estimated daily buys (50% of 24h volume) distributed to holders
-        <div class="updated" id="lbUpdated"></div>
-      </div>
-    </div>
+  .cf-bg-floats{position:absolute;inset:-40px;pointer-events:none;overflow:hidden;z-index:0}
+  .cf-bg-floats span{position:absolute;color:rgba(255,210,61,0.1);font-family:'Black Ops One','Arial Black',sans-serif;font-weight:900;animation:cfFloatUp linear infinite;text-shadow:0 0 8px rgba(255,210,61,0.2)}
+  @keyframes cfFloatUp{0%{transform:translateY(110%) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-30%) rotate(20deg);opacity:0}}
 
-    <div class="hero-callout-bottom">
-      <svg class="arrow" width="80" height="100" viewBox="0 0 80 100" fill="none">
-        <path d="M40 92 L40 25 M40 25 L18 47 M40 25 L62 47" stroke="#0a0a0a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M40 92 L40 25 M40 25 L18 47 M40 25 L62 47" stroke="#ffd23d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div class="text">THIS IS WHAT YOU COULD <span class="underline">BE GETTING</span></div>
+  .cf-title{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(28px,4.4vw,48px);text-transform:uppercase;text-align:center;color:#ffd23d;margin:0 0 6px;letter-spacing:.01em;line-height:1.05;text-shadow:0 2px 0 rgba(255,210,61,0.3),0 0 24px rgba(255,210,61,0.4);animation:cfTitleWiggle 4s ease-in-out infinite}
+  @keyframes cfTitleWiggle{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
+  .cf-eyebrow{text-align:center;font-size:clamp(10px,1.1vw,13px);letter-spacing:.32em;color:#86ed5a;text-transform:uppercase;margin:0 0 30px;font-family:'Black Ops One','Arial Black',sans-serif}
+
+  .cf-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  .cf-left{display:flex;flex-direction:column;gap:14px;min-width:0}
+  .cf-right{display:flex;flex-direction:column;gap:0;min-width:0}
+
+  .cf-cashflow{position:relative;background:linear-gradient(180deg,rgba(255,210,61,0.13),rgba(255,210,61,0.02));border:2px solid rgba(255,210,61,0.6);border-radius:14px;padding:22px 18px;text-align:center;box-shadow:0 0 35px rgba(255,210,61,0.2);overflow:visible;animation:cfCashGlow 2.4s ease-in-out infinite}
+  @keyframes cfCashGlow{0%,100%{box-shadow:0 0 35px rgba(255,210,61,0.2)}50%{box-shadow:0 0 55px rgba(255,210,61,0.45)}}
+  .cf-cashflow .lbl{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;letter-spacing:.32em;color:#86ed5a;text-transform:uppercase;margin-bottom:6px}
+  .cf-cashflow .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(40px,5.5vw,64px);color:#fff;line-height:1;margin:14px 0 8px;transition:transform 0.2s,color 0.2s;text-shadow:0 0 22px rgba(255,210,61,0.55)}
+  .cf-cashflow .amt.flash{color:#86ed5a;transform:scale(1.06)}
+  .cf-cashflow .unit{font-size:11px;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:.2em;font-weight:bold}
+  .cf-cashflow .extra{font-size:12px;color:rgba(255,255,255,0.5);margin-top:12px}
+  .cf-sparkles{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
+  .cf-sparkle{position:absolute;color:#ffd23d;font-size:16px;font-weight:bold;pointer-events:none;animation:cfSparkAnim 0.7s ease-out forwards}
+  @keyframes cfSparkAnim{0%{opacity:0;transform:translate(0,0) scale(0) rotate(0deg)}40%{opacity:1;transform:translate(var(--dx),var(--dy)) scale(1) rotate(180deg)}100%{opacity:0;transform:translate(calc(var(--dx)*1.6),calc(var(--dy)*1.6)) scale(0.3) rotate(360deg)}}
+
+  .cf-s-row{background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,210,61,0.4);border-radius:11px;padding:14px 16px}
+  .cf-s-lbl{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;font-family:'Black Ops One','Arial Black',sans-serif;text-transform:uppercase;font-size:13px}
+  .cf-s-lbl .l{color:rgba(255,255,255,0.85)}
+  .cf-s-lbl .v{color:#ffd23d;font-size:22px;text-shadow:0 0 10px rgba(255,210,61,0.45)}
+  .cf-section input[type="range"]{appearance:none;-webkit-appearance:none;width:100%;height:12px;background:linear-gradient(90deg,#ffd23d 0%,#ffd23d var(--fill,50%),rgba(255,255,255,0.1) var(--fill,50%));border-radius:6px;outline:none;border:1.5px solid rgba(255,210,61,0.55);cursor:pointer;margin:0}
+  .cf-section input[type="range"]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:24px;height:24px;background:#fff;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:0 0 14px rgba(255,210,61,0.85)}
+  .cf-section input[type="range"]::-moz-range-thumb{width:24px;height:24px;background:#fff;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:0 0 14px rgba(255,210,61,0.85)}
+
+  .cf-trolley-stage{position:relative;height:340px;background:radial-gradient(ellipse at center,rgba(255,210,61,0.1) 0%,rgba(0,0,0,0.6) 65%);border:2px solid rgba(255,210,61,0.55);border-radius:14px;overflow:hidden;box-shadow:0 0 32px rgba(255,210,61,0.18)}
+  .cf-trolley-stage canvas{display:block;width:100%;height:100%}
+  .cf-trolley-lbl{position:absolute;top:11px;left:0;right:0;text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:11px;letter-spacing:.3em;color:#86ed5a;text-transform:uppercase;z-index:2;text-shadow:0 1px 4px #000}
+  .cf-trolley-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,210,61,0.5);font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+
+  .cf-lb-title{font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.28em;color:#86ed5a;text-align:center;margin:0 0 12px;text-transform:uppercase}
+  .cf-lb-title .g{color:#ffd23d;font-size:15px;text-shadow:0 0 10px rgba(255,210,61,0.5)}
+
+  .cf-lb-stage{position:relative;height:680px;border:2px solid rgba(255,210,61,0.4);border-radius:16px;background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.35));overflow:hidden;box-shadow:0 0 28px rgba(255,210,61,0.14),inset 0 0 40px rgba(0,0,0,0.55)}
+  .cf-lb-list-wrap{position:absolute;left:48px;right:8px;top:8px;bottom:8px;overflow:hidden;border-radius:10px}
+  .cf-lb-list{position:absolute;left:0;right:0;top:0;height:1820px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1);will-change:transform}
+  .cf-lb-row{position:absolute;left:0;right:0;height:52px;background:linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;padding:0 10px 0 16px;gap:9px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),background 0.3s,border-color 0.3s,box-shadow 0.3s;will-change:transform}
+  .cf-lb-row .rank{font-family:'Black Ops One','Arial Black',sans-serif;font-size:14px;color:rgba(255,255,255,0.55);min-width:22px;text-align:center}
+  .cf-lb-row .ic{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Black Ops One','Arial Black',sans-serif;font-size:8px;font-weight:900;color:#0a0a0a}
+  .cf-lb-row .ic img{width:100%;height:100%;object-fit:cover;display:block}
+  .cf-lb-row .ic.scc-ic{background:#ffd23d;border-color:#0a0a0a;animation:cfSccIconPulse 1.5s ease-in-out infinite}
+  @keyframes cfSccIconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+  .cf-lb-row .info{flex:1;min-width:0;overflow:hidden}
+  .cf-lb-row .name{font-size:12px;font-weight:bold;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cf-lb-row .sub{font-size:9.5px;color:rgba(255,255,255,0.42);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+  .cf-lb-row .reward{text-align:right;flex-shrink:0}
+  .cf-lb-row .reward .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;color:#23d76b;line-height:1;text-shadow:0 0 8px rgba(35,215,107,0.3)}
+  .cf-lb-row .reward .u{font-size:8px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.12em;margin-top:2px;font-weight:bold}
+  .cf-lb-row.scc{background:linear-gradient(90deg,rgba(255,210,61,0.3),rgba(255,210,61,0.08));border-color:#ffd23d;border-width:2px;box-shadow:0 0 28px rgba(255,210,61,0.6);z-index:3}
+  .cf-lb-row.scc .rank,.cf-lb-row.scc .name,.cf-lb-row.scc .reward .amt{color:#ffd23d}
+  .cf-lb-row.scc .reward .amt{text-shadow:0 0 14px rgba(255,210,61,0.7)}
+
+  .cf-rope-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;overflow:visible}
+  .cf-pulley{fill:#3a3a3a;stroke:#1a1a1a;stroke-width:1.5}
+  .cf-pulley-inner{fill:#ffd23d;stroke:#0a0a0a;stroke-width:1}
+  .cf-pulley-bracket{fill:#6b6b6b;stroke:#1a1a1a;stroke-width:1}
+  .cf-rope-shade{stroke:#3a2810;stroke-width:5;fill:none;stroke-linecap:round}
+  .cf-rope-main{stroke:#9c7a4a;stroke-width:3.2;fill:none;stroke-linecap:round}
+  .cf-rope-highlight{stroke:#d4b78a;stroke-width:1.2;fill:none;stroke-linecap:round;opacity:0.7;stroke-dasharray:4,3}
+  .cf-rope-knot{fill:#5a3d1a;stroke:#2a1a08;stroke-width:1}
+
+  .cf-mascot{position:absolute;bottom:10px;left:4px;width:46px;height:68px;z-index:6;transform-origin:bottom center;animation:cfMascotPull 1.4s ease-in-out infinite}
+  @keyframes cfMascotPull{0%,100%{transform:translateY(0) rotate(-3deg) scaleY(1)}40%{transform:translateY(-4px) rotate(2deg) scaleY(0.97)}80%{transform:translateY(1px) rotate(-1deg) scaleY(1.02)}}
+  .cf-mascot svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5))}
+
+  @media (max-width:900px){
+    .cf-section{padding:50px 18px 60px}
+    .cf-split{grid-template-columns:1fr;gap:14px}
+    .cf-lb-stage{height:580px}
+    .cf-trolley-stage{height:280px}
+  }
+  @media (max-width:600px){
+    .cf-section{padding:40px 14px 50px}
+    .cf-cashflow{padding:18px 14px}
+    .cf-cashflow .amt{font-size:38px}
+    .cf-lb-stage{height:520px}
+    .cf-lb-list-wrap{left:44px}
+    .cf-trolley-stage{height:240px}
+  }
+</style>
+
+<section class="cf-section" id="earnCalcSection">
+  <div class="cf">
+    <div class="cf-bg-floats" id="cfBgFloats"></div>
+
+    <h2 class="cf-title">What Could YOU Be Earning?</h2>
+    <p class="cf-eyebrow">★ Drag To See Your Daily Cashflow ★</p>
+
+    <div class="cf-split">
+      <div class="cf-left">
+        <div class="cf-cashflow">
+          <div class="lbl">Your Daily Cashflow</div>
+          <div class="amt" id="cfPayAmt">$0</div>
+          <div class="unit">USDT per day</div>
+          <div class="extra" id="cfPayExtra">that's $0/year</div>
+          <div class="cf-sparkles" id="cfSparkles"></div>
+        </div>
+        <div class="cf-s-row">
+          <div class="cf-s-lbl"><span class="l">★ SCC's Rank</span><span class="v" id="cfRankVal">#15</span></div>
+          <input type="range" id="cfRankSlider" min="1" max="30" value="15" step="1"/>
+        </div>
+        <div class="cf-s-row">
+          <div class="cf-s-lbl"><span class="l">★ Your Holdings</span><span class="v" id="cfHoldVal">5%</span></div>
+          <input type="range" id="cfHoldSlider" min="1" max="100" value="5" step="1"/>
+        </div>
+        <div class="cf-trolley-stage">
+          <div class="cf-trolley-lbl">Your Trolley</div>
+          <div class="cf-trolley-loading" id="cfTrolleyLoading">Loading...</div>
+          <canvas id="cfTrolleyCanvas"></canvas>
+        </div>
+      </div>
+
+      <div class="cf-right">
+        <div class="cf-lb-title">★ Top <span class="g">30</span> Meme Coins · Mascot Hoists $SCC ★</div>
+        <div class="cf-lb-stage" id="cfLbStage">
+          <div class="cf-lb-list-wrap">
+            <div class="cf-lb-list" id="cfLbList">
+              <div style="position:absolute;left:0;right:0;top:0;padding:20px;color:rgba(255,210,61,0.6);text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase">Loading top 30…</div>
+            </div>
+          </div>
+          <svg class="cf-rope-svg" id="cfRopeSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <g class="cf-pulley-grp" id="cfPulleyGrp">
+              <rect class="cf-pulley-bracket" x="-2" y="-12" width="4" height="6"/>
+              <circle class="cf-pulley" r="6"/>
+              <circle class="cf-pulley-inner" r="2.5"/>
+            </g>
+            <path id="cfRopeShade" class="cf-rope-shade"/>
+            <path id="cfRopePath" class="cf-rope-main"/>
+            <path id="cfRopeHighlight" class="cf-rope-highlight"/>
+            <circle id="cfRopeKnot" class="cf-rope-knot" r="3"/>
+          </svg>
+          <div class="cf-mascot" id="cfMascot">
+            <svg viewBox="0 0 70 110" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="35" cy="56" rx="22" ry="24" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2.5"/>
+              <ellipse cx="35" cy="56" rx="18" ry="20" fill="none" stroke="#0a0a0a" stroke-width="1" opacity="0.25"/>
+              <text x="35" y="64" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="22" fill="#0a0a0a" font-weight="900">$</text>
+              <circle cx="27" cy="47" r="2.4" fill="#0a0a0a"/>
+              <circle cx="43" cy="47" r="2.4" fill="#0a0a0a"/>
+              <circle cx="27.7" cy="46.3" r="0.7" fill="#fff"/>
+              <circle cx="43.7" cy="46.3" r="0.7" fill="#fff"/>
+              <path d="M 22 42 L 30 40" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M 40 40 L 48 42" stroke="#0a0a0a" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M 18 60 Q 11 44 19 26" stroke="#ffd23d" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M 18 60 Q 11 44 19 26" stroke="#0a0a0a" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.35"/>
+              <path d="M 52 60 Q 59 44 51 26" stroke="#ffd23d" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <path d="M 52 60 Q 59 44 51 26" stroke="#0a0a0a" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.35"/>
+              <circle cx="19" cy="26" r="5" fill="#ffd23d" stroke="#0a0a0a" stroke-width="1.5"/>
+              <circle cx="51" cy="26" r="5" fill="#ffd23d" stroke="#0a0a0a" stroke-width="1.5"/>
+              <path d="M 28 78 L 23 102" stroke="#ffd23d" stroke-width="7" stroke-linecap="round"/>
+              <path d="M 42 78 L 47 102" stroke="#ffd23d" stroke-width="7" stroke-linecap="round"/>
+              <path d="M 28 78 L 23 102" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+              <path d="M 42 78 L 47 102" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+              <ellipse cx="23" cy="104" rx="7" ry="3.2" fill="#0a0a0a"/>
+              <ellipse cx="47" cy="104" rx="7" ry="3.2" fill="#0a0a0a"/>
+            </svg>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+// === EARN CALCULATOR — interactive cashflow widget with real top-30 meme coin data ===
+(function(){
+  const ROW_H=52,ROW_GAP=4,ROW_T=ROW_H+ROW_GAP,VISIBLE=12;
+  const rankSlider=document.getElementById('cfRankSlider'),holdSlider=document.getElementById('cfHoldSlider');
+  const rankVal=document.getElementById('cfRankVal'),holdVal=document.getElementById('cfHoldVal');
+  const payAmt=document.getElementById('cfPayAmt'),payExtra=document.getElementById('cfPayExtra');
+  const lbList=document.getElementById('cfLbList'),lbStage=document.getElementById('cfLbStage');
+  const sparklesEl=document.getElementById('cfSparkles');
+  let memeCoins=[],flashTimer=null,setCoinCount=()=>{},currentRank=15;
+
+  function fmt(n){
+    if(n>=1e9)return '$'+(n/1e9).toFixed(2)+'B';
+    if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';
+    if(n>=1e3)return '$'+(n/1e3).toFixed(1)+'K';
+    return '$'+Math.round(n).toLocaleString();
+  }
+  function fillBar(s){s.style.setProperty('--fill',((s.value-s.min)/(s.max-s.min)*100)+'%')}
+
+  function makeFloats(){
+    const cont=document.getElementById('cfBgFloats');
+    for(let i=0;i<18;i++){
+      const s=document.createElement('span');
+      s.textContent='$';
+      const size=20+Math.random()*48;
+      s.style.fontSize=size+'px';
+      s.style.left=(Math.random()*100)+'%';
+      s.style.animationDuration=(11+Math.random()*18)+'s';
+      s.style.animationDelay=(-Math.random()*22)+'s';
+      cont.appendChild(s);
+    }
+  }
+
+  function buildLeaderboard(){
+    lbList.innerHTML='';
+    memeCoins.forEach((c,i)=>{
+      const row=document.createElement('div');
+      row.className='cf-lb-row';
+      row.id='cf-lb-'+i;
+      const icHtml = c.image
+        ? '<div class="ic"><img src="'+c.image+'" alt="'+c.symbol+'" onerror="this.parentNode.textContent=\''+(c.symbol||'?').toUpperCase().slice(0,4)+'\'"></div>'
+        : '<div class="ic">'+(c.symbol||'?').toUpperCase().slice(0,4)+'</div>';
+      row.innerHTML='<div class="rank">'+(i+1)+'</div>'+icHtml+'<div class="info"><div class="name">'+c.name+'</div><div class="sub">'+(c.symbol||'').toUpperCase()+' · '+fmt(c.market_cap)+'</div></div><div class="reward"><div class="amt">'+fmt(c.volume_24h*0.125)+'</div><div class="u">per day</div></div>';
+      lbList.appendChild(row);
+    });
+    const scc=document.createElement('div');
+    scc.className='cf-lb-row scc';
+    scc.id='cf-lb-scc';
+    scc.innerHTML='<div class="rank" id="cfSccRankNum">'+currentRank+'</div><div class="ic scc-ic">$SCC</div><div class="info"><div class="name">Super Cash Coin</div><div class="sub">★ YOUR coin slots in here ★</div></div><div class="reward"><div class="amt" id="cfSccAmt">$0</div><div class="u">per day</div></div>';
+    lbList.appendChild(scc);
+    // Update list height to fit all rows + SCC
+    const total=memeCoins.length+1;
+    lbList.style.height=(total*ROW_T)+'px';
+  }
+
+  function updateLeaderboard(rank){
+    for(let i=0;i<memeCoins.length;i++){
+      const real=i+1,slot=real<rank?real:real+1;
+      const row=document.getElementById('cf-lb-'+i);
+      row.style.transform='translateY('+((slot-1)*ROW_T)+'px)';
+      row.querySelector('.rank').textContent=slot;
+    }
+    const scc=document.getElementById('cf-lb-scc');
+    scc.style.transform='translateY('+((rank-1)*ROW_T)+'px)';
+    document.getElementById('cfSccRankNum').textContent=rank;
+    const total=memeCoins.length+1;
+    const wrap=lbStage.querySelector('.cf-lb-list-wrap');
+    const wrapH=wrap?wrap.clientHeight:VISIBLE*ROW_T;
+    const visibleRows=Math.max(4,Math.floor(wrapH/ROW_T));
+    let scrollIdx=Math.max(0,Math.min(rank-Math.floor(visibleRows/2)-1,total-visibleRows));
+    lbList.style.transform='translateY('+(-scrollIdx*ROW_T)+'px)';
+  }
+
+  function flashPay(){
+    payAmt.classList.add('flash');
+    clearTimeout(flashTimer);
+    flashTimer=setTimeout(()=>payAmt.classList.remove('flash'),220);
+    for(let i=0;i<7;i++){
+      const s=document.createElement('span');
+      s.className='cf-sparkle';
+      s.textContent=i%2===0?'✦':'$';
+      const angle=(i/7)*Math.PI*2+Math.random()*0.3;
+      const dist=42+Math.random()*18;
+      s.style.setProperty('--dx',Math.cos(angle)*dist+'px');
+      s.style.setProperty('--dy',Math.sin(angle)*dist+'px');
+      sparklesEl.appendChild(s);
+      setTimeout(()=>s.remove(),720);
+    }
+  }
+
+  function update(){
+    if(!memeCoins.length)return;
+    const maxRank=memeCoins.length;
+    if(rankSlider.max!=maxRank)rankSlider.max=maxRank;
+    const rank=Math.min(parseInt(rankSlider.value),maxRank),holdPct=parseInt(holdSlider.value);
+    currentRank=rank;
+    rankVal.textContent='#'+rank;
+    holdVal.textContent=holdPct+'%';
+    fillBar(rankSlider);fillBar(holdSlider);
+    const coin=memeCoins[rank-1]||{volume_24h:0};
+    const total=coin.volume_24h*0.125,share=total*(holdPct/100);
+    const f=fmt(share);
+    if(payAmt.textContent!==f){payAmt.textContent=f;flashPay();}
+    payExtra.textContent="that's "+fmt(share*365)+'/year';
+    const sccAmt=document.getElementById('cfSccAmt');
+    if(sccAmt)sccAmt.textContent=fmt(total);
+    setCoinCount(Math.min(Math.round(holdPct/4.5),21));
+    updateLeaderboard(rank);
+  }
+
+  function setupRope(){
+    const ropeSvg=document.getElementById('cfRopeSvg');
+    const ropePath=document.getElementById('cfRopePath');
+    const ropeShade=document.getElementById('cfRopeShade');
+    const ropeHighlight=document.getElementById('cfRopeHighlight');
+    const ropeKnot=document.getElementById('cfRopeKnot');
+    const pulleyGrp=document.getElementById('cfPulleyGrp');
+    const mascot=document.getElementById('cfMascot');
+
+    function updateRope(){
+      const sccCard=document.getElementById('cf-lb-scc');
+      if(!sccCard)return;
+      const sw=lbStage.clientWidth,sh=lbStage.clientHeight;
+      ropeSvg.setAttribute('viewBox','0 0 '+sw+' '+sh);
+      const stageRect=lbStage.getBoundingClientRect();
+      const sccRect=sccCard.getBoundingClientRect();
+      const sccLeftX=sccRect.left-stageRect.left+8;
+      const sccCY=sccRect.top-stageRect.top+sccRect.height/2;
+      const mascotRect=mascot.getBoundingClientRect();
+      const mHandX=mascotRect.left-stageRect.left+mascotRect.width/2;
+      const mHandY=mascotRect.top-stageRect.top+mascotRect.height*0.18;
+      const pulleyX=26,pulleyY=24;
+      pulleyGrp.setAttribute('transform','translate('+pulleyX+' '+pulleyY+')');
+      const d='M '+mHandX+' '+mHandY+' L '+pulleyX+' '+pulleyY+' L '+sccLeftX+' '+sccCY;
+      ropePath.setAttribute('d',d);
+      ropeShade.setAttribute('d',d);
+      ropeHighlight.setAttribute('d',d);
+      ropeKnot.setAttribute('cx',sccLeftX);
+      ropeKnot.setAttribute('cy',sccCY);
+    }
+    function loop(){updateRope();requestAnimationFrame(loop);}
+    loop();
+  }
+
+  function setupTrolley(){
+    if(typeof THREE==='undefined'){setTimeout(setupTrolley,100);return;}
+    const canvas=document.getElementById('cfTrolleyCanvas');
+    const loading=document.getElementById('cfTrolleyLoading');
+    const W=canvas.clientWidth||300,H=canvas.clientHeight||320;
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(38,W/H,0.1,100);
+    camera.position.set(3.2,4.2,6.5);camera.lookAt(0,1.2,0);
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+    renderer.setSize(W,H,false);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    scene.add(new THREE.AmbientLight(0xffffff,0.75));
+    const dl=new THREE.DirectionalLight(0xffe4a0,0.85);dl.position.set(4,9,5);scene.add(dl);
+    const dl2=new THREE.DirectionalLight(0x86ed5a,0.35);dl2.position.set(-4,4,-2);scene.add(dl2);
+    const gold=new THREE.MeshStandardMaterial({color:0xffd23d,metalness:0.4,roughness:0.35});
+    const edgeMat=new THREE.LineBasicMaterial({color:0x6b4a08});
+    function addEdges(mesh){const e=new THREE.EdgesGeometry(mesh.geometry);mesh.add(new THREE.LineSegments(e,edgeMat));}
+    const trolley=new THREE.Group();
+    const base=new THREE.Mesh(new THREE.BoxGeometry(3.4,0.28,2.0),gold);addEdges(base);trolley.add(base);
+    const front=new THREE.Mesh(new THREE.BoxGeometry(3.4,1.1,0.16),gold);front.position.set(0,0.55,0.92);addEdges(front);trolley.add(front);
+    const back=new THREE.Mesh(new THREE.BoxGeometry(3.4,1.7,0.16),gold);back.position.set(0,0.85,-0.92);addEdges(back);trolley.add(back);
+    for(const x of [-1.62,1.62]){
+      const s=new THREE.Mesh(new THREE.BoxGeometry(0.16,1.4,1.84),gold);s.position.set(x,0.7,0);addEdges(s);trolley.add(s);
+    }
+    for(let i=0;i<3;i++){
+      const r=new THREE.Mesh(new THREE.BoxGeometry(3.0,0.06,0.06),gold);r.position.set(0,0.3+i*0.32,0.84);trolley.add(r);
+      const r2=new THREE.Mesh(new THREE.BoxGeometry(3.0,0.06,0.06),gold);r2.position.set(0,0.3+i*0.32,-0.84);trolley.add(r2);
+    }
+    const wheelDark=new THREE.MeshStandardMaterial({color:0x1a1a1a,metalness:0.3,roughness:0.7});
+    for(const [x,z] of [[-1.32,0.65],[1.32,0.65],[-1.32,-0.65],[1.32,-0.65]]){
+      const w=new THREE.Mesh(new THREE.CylinderGeometry(0.34,0.34,0.2,14),wheelDark);
+      w.rotation.z=Math.PI/2;w.position.set(x,-0.4,z);trolley.add(w);
+      const h=new THREE.Mesh(new THREE.CylinderGeometry(0.13,0.13,0.22,10),gold);
+      h.rotation.z=Math.PI/2;h.position.set(x,-0.4,z);trolley.add(h);
+    }
+    const hv=new THREE.Mesh(new THREE.BoxGeometry(0.14,1.3,0.14),gold);hv.position.set(-1.62,1.6,-0.92);addEdges(hv);trolley.add(hv);
+    const hh=new THREE.Mesh(new THREE.BoxGeometry(0.14,0.14,0.7),gold);hh.position.set(-1.62,2.2,-1.27);addEdges(hh);trolley.add(hh);
+    scene.add(trolley);
+    const COLORS=[0xffd23d,0x86ed5a,0x23d76b,0xff8a5a,0x5aceff,0xc45aff,0xff5a93,0xffe066];
+    const coinGeo=new THREE.BoxGeometry(0.48,0.13,0.48);
+    const coinEdges=new THREE.EdgesGeometry(coinGeo);
+    const coinEdgeMat=new THREE.LineBasicMaterial({color:0x0a0a0a});
+    const coins=[];
+    function getTarget(idx){const layer=Math.floor(idx/6),inL=idx%6,col=inL%3,row=Math.floor(inL/3);return{x:(col-1)*0.85,y:0.22+layer*0.16,z:(row-0.5)*0.78};}
+    function addCoin(){
+      const idx=coins.length,t=getTarget(idx),color=COLORS[idx%COLORS.length];
+      const coin=new THREE.Mesh(coinGeo,new THREE.MeshStandardMaterial({color,metalness:0.55,roughness:0.3}));
+      coin.add(new THREE.LineSegments(coinEdges,coinEdgeMat));
+      coin.position.set(t.x+(Math.random()-0.5)*0.4,4.5+Math.random()*0.6,t.z+(Math.random()-0.5)*0.2);
+      coin.rotation.set(Math.random()*Math.PI*2,Math.random()*Math.PI*2,Math.random()*Math.PI*2);
+      coin.userData={target:t,vy:0,rx:(Math.random()-0.5)*0.22,rz:(Math.random()-0.5)*0.18,falling:true};
+      scene.add(coin);coins.push(coin);
+    }
+    function removeCoin(){const c=coins.pop();if(c){scene.remove(c);c.material.dispose();}}
+    setCoinCount=function(n){while(coins.length<n)addCoin();while(coins.length>n)removeCoin();};
+    const clock=new THREE.Clock();
+    function animate(){
+      requestAnimationFrame(animate);
+      const dt=Math.min(clock.getDelta(),0.05);
+      for(const coin of coins){
+        const ud=coin.userData;
+        if(ud.falling){
+          ud.vy-=14*dt;coin.position.y+=ud.vy*dt;
+          coin.position.x+=(ud.target.x-coin.position.x)*5*dt;
+          coin.position.z+=(ud.target.z-coin.position.z)*5*dt;
+          coin.rotation.x+=ud.rx;coin.rotation.z+=ud.rz;
+          if(coin.position.y<=ud.target.y){
+            coin.position.y=ud.target.y;coin.position.x=ud.target.x;coin.position.z=ud.target.z;
+            coin.rotation.x=0;coin.rotation.z=0;ud.falling=false;
+          }
+        }
+      }
+      trolley.rotation.y=Math.sin(clock.elapsedTime*0.35)*0.08;
+      renderer.render(scene,camera);
+    }
+    animate();
+    new ResizeObserver(()=>{const w=canvas.clientWidth,h=canvas.clientHeight;if(w&&h){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}}).observe(canvas);
+    if(loading)loading.style.display='none';
+    update();
+  }
+
+  // Fetch live data from meme-coins.json (same source as old leaderboard)
+  fetch('meme-coins.json',{cache:'no-cache'})
+    .then(r=>{if(!r.ok)throw new Error('fetch failed');return r.json();})
+    .then(data=>{
+      if(!data||!Array.isArray(data.coins)||!data.coins.length){throw new Error('no coins');}
+      memeCoins=data.coins.slice(0,30);
+      buildLeaderboard();
+      update();
+    })
+    .catch(()=>{
+      // Fallback: hardcoded sample data so the section still works if JSON is missing
+      memeCoins=[
+        {name:'Dogecoin',symbol:'DOGE',market_cap:26e9,volume_24h:2e9,image:''},
+        {name:'Shiba Inu',symbol:'SHIB',market_cap:13.5e9,volume_24h:1.2e9,image:''},
+        {name:'Pepe',symbol:'PEPE',market_cap:4.1e9,volume_24h:900e6,image:''},
+        {name:'Dogwifhat',symbol:'WIF',market_cap:2.3e9,volume_24h:700e6,image:''},
+        {name:'Bonk',symbol:'BONK',market_cap:1.5e9,volume_24h:500e6,image:''},
+        {name:'FLOKI',symbol:'FLOKI',market_cap:1.2e9,volume_24h:400e6,image:''},
+        {name:'Popcat',symbol:'POPCAT',market_cap:830e6,volume_24h:280e6,image:''},
+        {name:'Brett',symbol:'BRETT',market_cap:840e6,volume_24h:200e6,image:''},
+        {name:'MEW',symbol:'MEW',market_cap:420e6,volume_24h:170e6,image:''},
+        {name:'Mog Coin',symbol:'MOG',market_cap:460e6,volume_24h:140e6,image:''}
+      ];
+      buildLeaderboard();
+      update();
+    });
+
+  makeFloats();
+  rankSlider.addEventListener('input',update);
+  holdSlider.addEventListener('input',update);
+  setupRope();
+  setupTrolley();
+})();
+</script>
 
 
 <!-- ============================================================
@@ -5197,67 +5374,6 @@ window.addEventListener('resize',()=>{
 </script>
 
 
-<script>
-// === MEME COIN LEADERBOARD — fetches data from local meme-coins.json ===
-(function(){
-  const body=document.getElementById('leaderboardBody');
-  const updated=document.getElementById('lbUpdated');
-  if(!body)return;
-
-  function fmtUsd(n){
-    if(n>=1e9)return '$'+(n/1e9).toFixed(2)+'B';
-    if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';
-    if(n>=1e3)return '$'+(n/1e3).toFixed(1)+'K';
-    return '$'+n.toFixed(0);
-  }
-  function fmtTimeAgo(iso){
-    if(!iso)return '';
-    const ms=Date.now()-new Date(iso).getTime();
-    const m=Math.floor(ms/60000);
-    if(m<1)return 'just now';
-    if(m<60)return m+' min ago';
-    const h=Math.floor(m/60);
-    if(h<24)return h+' hr ago';
-    return Math.floor(h/24)+' days ago';
-  }
-
-  fetch('meme-coins.json',{cache:'no-cache'})
-    .then(res=>{if(!res.ok)throw new Error('fetch failed');return res.json();})
-    .then(data=>{
-      if(!data||!Array.isArray(data.coins)||!data.coins.length){
-        body.innerHTML='<div class="lb-loading">Data unavailable.</div>';
-        return;
-      }
-      const list=data.coins.slice(0,10);
-      body.innerHTML=list.map((c,i)=>{
-        const buys=c.volume_24h*0.5;
-        const reward=buys*0.25;
-        const rowCls = i<3 ? `lb-row rank-${i+1}` : 'lb-row';
-        return `
-          <div class="${rowCls}">
-            <div class="lb-rank">${i+1}</div>
-            <div class="lb-coin">
-              <img src="${c.image||''}" alt="${c.name}" onerror="this.style.opacity='0.3'">
-              <div>
-                <div class="name">${c.name} <span class="symbol">${c.symbol}</span></div>
-                <div class="mc">${fmtUsd(c.market_cap)} market cap</div>
-              </div>
-            </div>
-            <div class="lb-reward">
-              <span class="amount">${fmtUsd(reward)}</span>
-              <span class="day">per day</span>
-            </div>
-          </div>`;
-      }).join('');
-      if(updated&&data.updated_at){
-        updated.textContent='Last updated '+fmtTimeAgo(data.updated_at);
-      }
-    })
-    .catch(err=>{
-      body.innerHTML='<div class="lb-loading">Could not load coin data. Run the update script to populate <code>meme-coins.json</code>.</div>';
-    });
-})();
-</script>
 
 <script>
 // === Platform phone — live-ticking USDT wallet (replaces removed wallet section ticker) ===
