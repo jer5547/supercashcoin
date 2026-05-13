@@ -3338,9 +3338,10 @@
   @keyframes cfTitleWiggle{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
   .cf-eyebrow{text-align:center;font-size:clamp(10px,1.1vw,13px);letter-spacing:.32em;color:#ffd23d;text-transform:uppercase;margin:0 0 30px;font-family:'Black Ops One','Arial Black',sans-serif}
 
-  .cf-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  .cf-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
   .cf-left{display:flex;flex-direction:column;gap:14px;min-width:0}
   .cf-right{display:flex;flex-direction:column;gap:0;min-width:0}
+  .cf-right .cf-lb-stage{flex:1;min-height:740px}
 
   .cf-cashflow{position:relative;background:#fff;border:3px solid #0a0a0a;border-radius:14px;padding:22px 18px;text-align:center;box-shadow:6px 6px 0 #0a0a0a,0 0 35px rgba(255,210,61,0.35);overflow:visible;animation:cfCashGlow 2.4s ease-in-out infinite}
   @keyframes cfCashGlow{0%,100%{box-shadow:6px 6px 0 #0a0a0a,0 0 30px rgba(255,210,61,0.25)}50%{box-shadow:6px 6px 0 #0a0a0a,0 0 55px rgba(255,210,61,0.6)}}
@@ -3361,21 +3362,21 @@
   .cf-section input[type="range"]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:26px;height:26px;background:#ffd23d;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:2px 2px 0 #0a0a0a}
   .cf-section input[type="range"]::-moz-range-thumb{width:26px;height:26px;background:#ffd23d;border:3px solid #0a0a0a;border-radius:50%;cursor:grab;box-shadow:2px 2px 0 #0a0a0a}
 
-  .cf-trolley-stage{position:relative;height:460px;background:radial-gradient(ellipse at center,#ffffff 0%,#e6ebf6 75%);border:3px solid #0a0a0a;border-radius:14px;overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
+  .cf-trolley-stage{position:relative;height:400px;background:radial-gradient(ellipse at center,#ffffff 0%,#e6ebf6 75%);border:3px solid #0a0a0a;border-radius:14px;overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
   .cf-trolley-stage canvas{display:block;width:100%;height:100%}
   .cf-trolley-lbl{position:absolute;top:11px;left:0;right:0;text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:11px;letter-spacing:.3em;color:#1d4fd8;text-transform:uppercase;z-index:2}
   .cf-trolley-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(10,10,10,0.4);font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase}
 
   /* MEDAL ICONS — for top 3 positions, dynamically applied to whichever row is in that slot */
-  .cf-medal{display:none;flex-direction:column;align-items:center;width:30px;flex-shrink:0;margin-left:-2px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3))}
+  .cf-medal{display:none;flex-direction:column;align-items:center;width:38px;flex-shrink:0;margin-left:-2px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3))}
   .cf-lb-row.rank-gold .cf-medal,
   .cf-lb-row.rank-silver .cf-medal,
   .cf-lb-row.rank-bronze .cf-medal{display:flex}
-  .cf-medal .medal-ribbon{width:14px;height:13px;clip-path:polygon(0 0,100% 0,50% 100%);border-radius:1px}
+  .cf-medal .medal-ribbon{width:18px;height:16px;clip-path:polygon(0 0,100% 0,50% 100%);border-radius:1px}
   .cf-medal .medal-disc{
-    width:26px;height:26px;border-radius:50%;border:2.5px solid #0a0a0a;margin-top:-3px;
+    width:34px;height:34px;border-radius:50%;border:3px solid #0a0a0a;margin-top:-4px;
     display:flex;align-items:center;justify-content:center;
-    font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;color:#0a0a0a;
+    font-family:'Black Ops One','Arial Black',sans-serif;font-size:17px;color:#0a0a0a;
     box-shadow:inset 0 -3px 5px rgba(0,0,0,0.18),inset 0 3px 5px rgba(255,255,255,0.4)
   }
   .cf-lb-row.rank-gold .medal-ribbon{background:#cc2a2a}
@@ -3391,15 +3392,15 @@
   @keyframes cfMedalShine{0%,100%{transform:rotate(-4deg) scale(1)}50%{transform:rotate(4deg) scale(1.08)}}
 
   /* TOP 3 ROW STYLING — really stand out (applied dynamically to whichever row is in slot 1/2/3) */
-  .cf-lb-row.rank-gold{background:linear-gradient(90deg,#fff5cc,#ffe999);border:2.5px solid #b8860b;box-shadow:4px 4px 0 #0a0a0a,0 0 22px rgba(255,210,61,0.55);height:60px;z-index:2}
+  .cf-lb-row.rank-gold{background:linear-gradient(90deg,#fff5cc,#ffe999);border:2.5px solid #b8860b;box-shadow:4px 4px 0 #0a0a0a,0 0 22px rgba(255,210,61,0.55);height:78px;z-index:2}
   .cf-lb-row.rank-gold .rank{display:none}
   .cf-lb-row.rank-gold .name{font-size:14px;color:#0a0a0a;font-weight:900}
   .cf-lb-row.rank-gold .reward .amt{color:#0a0a0a;font-size:15px}
-  .cf-lb-row.rank-silver{background:linear-gradient(90deg,#f4f4f4,#dadada);border:2.5px solid #707070;box-shadow:4px 4px 0 #0a0a0a,0 0 16px rgba(200,200,200,0.6);height:58px;z-index:2}
+  .cf-lb-row.rank-silver{background:linear-gradient(90deg,#f4f4f4,#dadada);border:2.5px solid #707070;box-shadow:4px 4px 0 #0a0a0a,0 0 16px rgba(200,200,200,0.6);height:72px;z-index:2}
   .cf-lb-row.rank-silver .rank{display:none}
   .cf-lb-row.rank-silver .name{font-size:13.5px;color:#0a0a0a;font-weight:900}
   .cf-lb-row.rank-silver .reward .amt{color:#0a0a0a;font-size:14px}
-  .cf-lb-row.rank-bronze{background:linear-gradient(90deg,#f5dcc0,#e6b886);border:2.5px solid #8b5a2b;box-shadow:4px 4px 0 #0a0a0a,0 0 14px rgba(205,127,50,0.45);height:56px;z-index:2}
+  .cf-lb-row.rank-bronze{background:linear-gradient(90deg,#f5dcc0,#e6b886);border:2.5px solid #8b5a2b;box-shadow:4px 4px 0 #0a0a0a,0 0 14px rgba(205,127,50,0.45);height:68px;z-index:2}
   .cf-lb-row.rank-bronze .rank{display:none}
   .cf-lb-row.rank-bronze .name{font-size:13px;color:#0a0a0a;font-weight:900}
   .cf-lb-row.rank-bronze .reward .amt{color:#0a0a0a;font-size:13.5px}
@@ -3408,25 +3409,25 @@
   /* Smooth height transition */
   .cf-lb-row{transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),height 0.4s,background 0.3s,border-color 0.3s,box-shadow 0.3s}
 
-  .cf-lb-title{font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.28em;color:#ffd23d;text-align:center;margin:0 0 12px;text-transform:uppercase}
-  .cf-lb-title .g{color:#0a0a0a;font-size:15px;background:#ffd23d;border:2px solid #0a0a0a;border-radius:6px;padding:1px 7px 2px;box-shadow:2px 2px 0 #0a0a0a}
+  .cf-lb-header{position:absolute;top:0;left:0;right:0;height:42px;display:flex;align-items:center;justify-content:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;letter-spacing:.22em;color:#ffd23d;text-transform:uppercase;background:#0a0a0a;border-bottom:2px solid #0a0a0a;border-radius:13px 13px 0 0;z-index:4;text-shadow:1px 1px 0 rgba(0,0,0,0.4)}
+  .cf-lb-header .g{color:#0a0a0a;font-size:16px;background:#ffd23d;border:2px solid #ffd23d;border-radius:6px;padding:0 8px 1px;margin:0 4px;box-shadow:0 0 0 2px #0a0a0a}
 
-  .cf-lb-stage{position:relative;height:680px;border:3px solid #0a0a0a;border-radius:16px;background:linear-gradient(180deg,#fff,#f5f5ef);overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
-  .cf-lb-list-wrap{position:absolute;left:62px;right:8px;top:8px;bottom:8px;overflow:hidden;border-radius:10px}
+  .cf-lb-stage{position:relative;height:740px;border:3px solid #0a0a0a;border-radius:16px;background:linear-gradient(180deg,#fff,#f5f5ef);overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
+  .cf-lb-list-wrap{position:absolute;left:10px;right:10px;top:52px;bottom:10px;overflow:hidden;border-radius:10px}
   .cf-lb-list{position:absolute;left:0;right:0;top:0;height:1820px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1);will-change:transform}
-  .cf-lb-row{position:absolute;left:0;right:0;height:52px;background:#fff;border:1.5px solid #0a0a0a;border-radius:10px;display:flex;align-items:center;padding:0 10px 0 16px;gap:9px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),background 0.3s,border-color 0.3s,box-shadow 0.3s;will-change:transform;box-shadow:2px 2px 0 rgba(10,10,10,0.6)}
-  .cf-lb-row .rank{font-family:'Black Ops One','Arial Black',sans-serif;font-size:14px;color:rgba(10,10,10,0.6);min-width:22px;text-align:center}
-  .cf-lb-row .ic{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:#f5f5ef;border:1.5px solid #0a0a0a;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Black Ops One','Arial Black',sans-serif;font-size:8px;font-weight:900;color:#0a0a0a}
+  .cf-lb-row{position:absolute;left:0;right:0;height:64px;background:#fff;border:2px solid #0a0a0a;border-radius:11px;display:flex;align-items:center;padding:0 14px 0 18px;gap:11px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),background 0.3s,border-color 0.3s,box-shadow 0.3s;will-change:transform;box-shadow:3px 3px 0 rgba(10,10,10,0.6)}
+  .cf-lb-row .rank{font-family:'Black Ops One','Arial Black',sans-serif;font-size:17px;color:rgba(10,10,10,0.6);min-width:26px;text-align:center}
+  .cf-lb-row .ic{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:#f5f5ef;border:2px solid #0a0a0a;display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:'Black Ops One','Arial Black',sans-serif;font-size:10px;font-weight:900;color:#0a0a0a}
   .cf-lb-row .ic img{width:100%;height:100%;object-fit:cover;display:block}
   .cf-lb-row .ic.scc-ic{background:#ffd23d;border-color:#0a0a0a;animation:cfSccIconPulse 1.5s ease-in-out infinite}
   @keyframes cfSccIconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
   .cf-lb-row .info{flex:1;min-width:0;overflow:hidden}
-  .cf-lb-row .name{font-size:12px;font-weight:bold;color:#0a0a0a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .cf-lb-row .sub{font-size:9.5px;color:rgba(10,10,10,0.55);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+  .cf-lb-row .name{font-size:15px;font-weight:bold;color:#0a0a0a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cf-lb-row .sub{font-size:11.5px;color:rgba(10,10,10,0.55);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
   .cf-lb-row .reward{text-align:right;flex-shrink:0}
-  .cf-lb-row .reward .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;color:#23a04b;line-height:1}
-  .cf-lb-row .reward .u{font-size:8px;color:rgba(10,10,10,0.5);text-transform:uppercase;letter-spacing:.12em;margin-top:2px;font-weight:bold}
-  .cf-lb-row.scc{background:#ffd23d;border-color:#0a0a0a;border-width:2.5px;box-shadow:4px 4px 0 #0a0a0a,0 0 28px rgba(255,210,61,0.65);z-index:3}
+  .cf-lb-row .reward .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:16px;color:#23a04b;line-height:1}
+  .cf-lb-row .reward .u{font-size:10px;color:rgba(10,10,10,0.5);text-transform:uppercase;letter-spacing:.12em;margin-top:3px;font-weight:bold}
+  .cf-lb-row.scc{background:#ffd23d;border-color:#0a0a0a;border-width:3px;box-shadow:4px 4px 0 #0a0a0a,0 0 28px rgba(255,210,61,0.65);z-index:3}
   .cf-lb-row.scc .rank,.cf-lb-row.scc .name{color:#0a0a0a}
   .cf-lb-row.scc .reward .amt{color:#0a0a0a;text-shadow:none}
 
@@ -3439,17 +3440,16 @@
   .cf-rope-highlight{stroke:#d4b78a;stroke-width:1.2;fill:none;stroke-linecap:round;opacity:0.7;stroke-dasharray:4,3}
   .cf-rope-knot{fill:#5a3d1a;stroke:#2a1a08;stroke-width:1}
 
-  .cf-mascot{position:absolute;bottom:6px;left:-4px;width:74px;height:88px;z-index:6;transform-origin:bottom center;animation:cfMascotPull 1.4s ease-in-out infinite;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.35))}
-  @keyframes cfMascotPull{0%,100%{transform:translateY(0) rotate(-3deg) scaleY(1)}40%{transform:translateY(-5px) rotate(2deg) scaleY(0.97)}80%{transform:translateY(1px) rotate(-1deg) scaleY(1.02)}}
+  .cf-mascot{position:absolute;bottom:8px;left:4px;width:72px;height:104px;z-index:6;transform-origin:bottom center;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.35));will-change:transform}
   .cf-mascot canvas{width:100%;height:100%;display:block;pointer-events:none}
 
-  /* Compact rows for ranks 8-30 — half the height to fit more on screen */
-  .cf-lb-row.compact{height:32px;padding:0 8px 0 14px;gap:7px;box-shadow:1.5px 1.5px 0 rgba(10,10,10,0.5)}
-  .cf-lb-row.compact .rank{font-size:11px;min-width:18px}
-  .cf-lb-row.compact .ic{width:20px;height:20px;border-width:1px}
-  .cf-lb-row.compact .name{font-size:10.5px}
+  /* Compact rows for ranks 8-30 — slightly smaller but still readable */
+  .cf-lb-row.compact{height:40px;padding:0 10px 0 16px;gap:9px;box-shadow:2px 2px 0 rgba(10,10,10,0.5)}
+  .cf-lb-row.compact .rank{font-size:13px;min-width:22px}
+  .cf-lb-row.compact .ic{width:26px;height:26px;border-width:1.5px}
+  .cf-lb-row.compact .name{font-size:12.5px}
   .cf-lb-row.compact .sub{display:none}
-  .cf-lb-row.compact .reward .amt{font-size:11px}
+  .cf-lb-row.compact .reward .amt{font-size:13px}
   .cf-lb-row.compact .reward .u{display:none}
 
   @media (max-width:900px){
@@ -3486,7 +3486,7 @@
         </div>
         <div class="cf-s-row">
           <div class="cf-s-lbl"><span class="l">★ SCC's Rank</span><span class="v" id="cfRankVal">#15</span></div>
-          <input type="range" id="cfRankSlider" min="1" max="30" value="15" step="1"/>
+          <input type="range" id="cfRankSlider" min="1" max="50" value="15" step="1"/>
         </div>
         <div class="cf-s-row">
           <div class="cf-s-lbl"><span class="l">★ Your Holdings</span><span class="v" id="cfHoldVal">5%</span></div>
@@ -3500,26 +3500,12 @@
       </div>
 
       <div class="cf-right">
-        <div class="cf-lb-title">★ Top <span class="g">30</span> Meme Coins · Mascot Hoists $SCC ★</div>
         <div class="cf-lb-stage" id="cfLbStage">
+          <div class="cf-lb-header">★ Top <span class="g">50</span> Meme Coins By Volume ★</div>
           <div class="cf-lb-list-wrap">
             <div class="cf-lb-list" id="cfLbList">
-              <div style="position:absolute;left:0;right:0;top:0;padding:20px;color:rgba(255,210,61,0.6);text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase">Loading top 30…</div>
+              <div style="position:absolute;left:0;right:0;top:0;padding:20px;color:rgba(10,10,10,0.55);text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase">Loading top 50…</div>
             </div>
-          </div>
-          <svg class="cf-rope-svg" id="cfRopeSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <g class="cf-pulley-grp" id="cfPulleyGrp">
-              <rect class="cf-pulley-bracket" x="-2" y="-12" width="4" height="6"/>
-              <circle class="cf-pulley" r="6"/>
-              <circle class="cf-pulley-inner" r="2.5"/>
-            </g>
-            <path id="cfRopeShade" class="cf-rope-shade"/>
-            <path id="cfRopePath" class="cf-rope-main"/>
-            <path id="cfRopeHighlight" class="cf-rope-highlight"/>
-            <circle id="cfRopeKnot" class="cf-rope-knot" r="3"/>
-          </svg>
-          <div class="cf-mascot" id="cfMascot">
-            <canvas id="cfMascotCanvas"></canvas>
           </div>
         </div>
       </div>
@@ -3530,8 +3516,8 @@
 <script>
 // === EARN CALCULATOR — interactive cashflow widget with real top-30 meme coin data ===
 (function(){
-  const BIG_H=52,BIG_GAP=4,COMPACT_H=32,COMPACT_GAP=3,BIG_T=BIG_H+BIG_GAP,COMPACT_T=COMPACT_H+COMPACT_GAP;
-  const TARGET_COUNT=30;
+  const BIG_H=64,BIG_GAP=2,COMPACT_H=40,COMPACT_GAP=2,BIG_T=BIG_H+BIG_GAP,COMPACT_T=COMPACT_H+COMPACT_GAP;
+  const TARGET_COUNT=50;
   const rankSlider=document.getElementById('cfRankSlider'),holdSlider=document.getElementById('cfHoldSlider');
   const rankVal=document.getElementById('cfRankVal'),holdVal=document.getElementById('cfHoldVal');
   const payAmt=document.getElementById('cfPayAmt'),payExtra=document.getElementById('cfPayExtra');
@@ -3550,7 +3536,7 @@
   function getSlotY(slot){
     let y=0;
     for(let s=1;s<slot;s++){
-      const h=(s===1)?60:(s===2)?58:(s===3)?56:(s<=7)?BIG_H:COMPACT_H;
+      const h=(s===1)?78:(s===2)?72:(s===3)?68:(s<=7)?BIG_H:COMPACT_H;
       const gap=s<=7?BIG_GAP:COMPACT_GAP;
       y += h + gap;
     }
@@ -3597,16 +3583,16 @@
     const scc=document.createElement('div');
     scc.className='cf-lb-row scc';
     scc.id='cf-lb-scc';
-    scc.innerHTML='<div class="rank" id="cfSccRankNum">'+currentRank+'</div>'+medalHtml+'<div class="ic scc-ic"><img src="scc-token.png" alt="$SCC" onerror="this.parentNode.textContent=\'$SCC\'"></div><div class="info"><div class="name">Super Cash Coin</div><div class="sub">★ If we took this ranking ★</div></div><div class="reward"><div class="amt" id="cfSccAmt">$0</div><div class="u">per day</div></div>';
+    scc.innerHTML='<div class="rank" id="cfSccRankNum">'+currentRank+'</div>'+medalHtml+'<div class="ic scc-ic"><img src="coin.png" alt="$SCC" onerror="this.parentNode.textContent=\'$SCC\'"></div><div class="info"><div class="name">Super Cash Coin</div><div class="sub">★ If we took this ranking ★</div></div><div class="reward"><div class="amt" id="cfSccAmt">$0</div><div class="u">per day</div></div>';
     lbList.appendChild(scc);
     lbList.style.height=totalListH()+'px';
   }
 
-  // Slot height varies — top 3 are medal slots (60/58/56), 4-7 big (52), 8+ compact (32)
+  // Slot height varies — top 3 are medal slots (78/72/68), 4-7 big (64), 8+ compact (40)
   function slotH(slot){
-    if(slot===1)return 60;
-    if(slot===2)return 58;
-    if(slot===3)return 56;
+    if(slot===1)return 78;
+    if(slot===2)return 72;
+    if(slot===3)return 68;
     if(slot<=7)return BIG_H;
     return COMPACT_H;
   }
@@ -3661,7 +3647,7 @@
 
   function update(){
     if(!memeCoins.length)return;
-    if(rankSlider.max!='30')rankSlider.max='30';
+    if(rankSlider.max!='50')rankSlider.max='50';
     const rank=Math.min(parseInt(rankSlider.value),TARGET_COUNT),holdPct=parseFloat(holdSlider.value);
     currentRank=rank;
     rankVal.textContent='#'+rank;
@@ -3701,7 +3687,7 @@
       const sccCY=sccRect.top-stageRect.top+sccRect.height/2;
       const mascotRect=mascot.getBoundingClientRect();
       const mHandX=mascotRect.left-stageRect.left+mascotRect.width/2;
-      const mHandY=mascotRect.top-stageRect.top+mascotRect.height*0.18;
+      const mHandY=mascotRect.top-stageRect.top+mascotRect.height*0.05;
       const pulleyX=26,pulleyY=24;
       pulleyGrp.setAttribute('transform','translate('+pulleyX+' '+pulleyY+')');
       const d='M '+mHandX+' '+mHandY+' L '+pulleyX+' '+pulleyY+' L '+sccLeftX+' '+sccCY;
@@ -3722,7 +3708,7 @@
     const W=canvas.clientWidth||300,H=canvas.clientHeight||320;
     const scene=new THREE.Scene();
     const camera=new THREE.PerspectiveCamera(32,W/H,0.1,100);
-    camera.position.set(4.6,5.6,8.5);camera.lookAt(0,1.6,0);
+    camera.position.set(5.4,6.4,10.0);camera.lookAt(0,1.8,0);
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
     renderer.setSize(W,H,false);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
     scene.add(new THREE.AmbientLight(0xffffff,0.78));
@@ -3937,55 +3923,169 @@
       update();
     });
 
-  // Build the voxel SCC mascot (same character as nav-mascot.js) into the leaderboard's bottom-left
+  // Build the FULL voxel SCC superhero mascot (same character as celebration animation — orange cat with red cape and dollar sign on chest)
   function setupMascot(){
     if(typeof THREE==='undefined'){setTimeout(setupMascot,100);return;}
     const canvas=document.getElementById('cfMascotCanvas');
     if(!canvas)return;
-    const K=0x0a0a0a,W=0xffffff,OR=0xff8a1f;
-    function vox(x,y,z,color,depth){
-      const m=new THREE.Mesh(
-        new THREE.BoxGeometry(1,1,depth),
-        new THREE.MeshStandardMaterial({color:color,roughness:0.55,flatShading:true})
-      );
-      m.position.set(x,y,z);
-      return m;
+
+    const B=0x1d54c0, RD=0xd32f2f, DRD=0x9a1a1a, GD=0xffd23d, K=0x0a0a0a, W=0xffffff, PK=0xffb19f;
+    const G={head:new Map(),body:new Map(),lArm:new Map(),rArm:new Map(),lLeg:new Map(),rLeg:new Map(),cape:new Map()};
+    const add=(b,x,y,z,c)=>{if(!b.has(c))b.set(c,[]);b.get(c).push([x,y,z]);};
+
+    // ===== HEAD voxels =====
+    const headMods=new Map();
+    const setMod=(x,y,z,c)=>headMods.set(x+','+y+','+z,c);
+    // Black sunglasses band across front of head
+    for(let dx=0;dx<15;dx++)for(let dy=0;dy<3;dy++)setMod(-9+dx,49+dy,9,K);
+    setMod(-1,50,9,K);setMod(0,50,9,K);
+    // White lens highlights on the glasses
+    setMod(-7,51,9,W);setMod(-6,51,9,W);setMod(5,51,9,W);setMod(6,51,9,W);
+    // Mouth (smirk)
+    for(let x=-2;x<=2;x++)setMod(x,40,9,K);
+    setMod(3,41,9,K);setMod(4,42,9,K);
+    // Build head cube
+    for(let x=-11;x<=10;x++)for(let y=36;y<=55;y++)for(let z=-10;z<=9;z++){
+      if(y===36 && (x<-8||x>7||z<-8||z>7))continue;
+      add(G.head,x,y,z,headMods.get(x+','+y+','+z)||B);
     }
-    function buildSCC(){
+    // Face front detail layer
+    for(let x=-4;x<=3;x++)for(let y=42;y<=47;y++)for(let z=10;z<=15;z++){
+      let c=B;
+      if(z===15){
+        if((x===-3||x===-2)&&(y===44||y===45))c=K;
+        if((x===1||x===2)&&(y===44||y===45))c=K;
+      }
+      add(G.head,x,y,z,c);
+    }
+    // Cat ears (pyramid shape on each side)
+    const ear=(bx,by,bz,mir)=>{
+      for(let dy=0;dy<6;dy++){
+        const w=6-dy;
+        for(let dx=0;dx<w;dx++){
+          const x=mir?(bx-dx):(bx+dx);
+          for(let dz=0;dz<3;dz++)add(G.head,x,by+dy,bz+dz,B);
+        }
+      }
+    };
+    ear(-10,56,-1,false); ear(10,56,-1,true);
+
+    // ===== BODY with gold dollar sign =====
+    const dollar=[
+      "....#....", ".#######.", "##..#..##", "##..#....", "##..#....",
+      ".#######.", "....#..##", "....#..##", "##..#..##", ".#######.", "....#...."
+    ];
+    const dollarMods=new Map();
+    for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
+      if(dollar[i][j]==='#')dollarMods.set((-4+j)+','+(18+(dollar.length-1-i))+',7',GD);
+    }
+    for(let x=-10;x<=9;x++)for(let y=10;y<=35;y++)for(let z=-8;z<=7;z++){
+      if(y===34 && (x<-8||x>7))continue;
+      if(y===35 && (x<-5||x>4||z<-5||z>4))continue;
+      add(G.body,x,y,z,dollarMods.get(x+','+y+','+z)||B);
+    }
+    // Gold $ floating just in front of chest
+    for(let i=0;i<dollar.length;i++)for(let j=0;j<9;j++){
+      if(dollar[i][j]==='#')add(G.body,-4+j,18+(dollar.length-1-i),8,GD);
+    }
+
+    // ===== ARMS =====
+    for(let x=-15;x<=-12;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,B);
+    for(let x=-16;x<=-11;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.lArm,x,y,z,GD);
+    for(let x=-15;x<=-12;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.lArm,x,y,z,PK);
+    for(let x=10;x<=13;x++)for(let y=18;y<=29;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,B);
+    for(let x=9;x<=14;x++)for(let y=16;y<=17;y++)for(let z=-6;z<=4;z++)add(G.rArm,x,y,z,GD);
+    for(let x=10;x<=13;x++)for(let y=12;y<=15;y++)for(let z=-5;z<=3;z++)add(G.rArm,x,y,z,PK);
+
+    // ===== LEGS =====
+    for(let x=-7;x<=-3;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.lLeg,x,y,z,B);
+    for(let x=-7;x<=-3;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.lLeg,x,y,z,K);
+    for(let x=2;x<=6;x++)for(let y=2;y<=9;y++)for(let z=-4;z<=4;z++)add(G.rLeg,x,y,z,B);
+    for(let x=2;x<=6;x++)for(let y=0;y<=1;y++)for(let z=-4;z<=5;z++)add(G.rLeg,x,y,z,K);
+
+    // ===== RED CAPE (flowing behind) =====
+    for(let x=-10;x<=9;x++){
+      if(x>=-3 && x<=2)continue;
+      for(let z=-9;z<=9;z++){add(G.cape,x,32,z,RD);add(G.cape,x,33,z,RD);}
+    }
+    for(let x=-10;x<=9;x++){
+      if(x>=-3 && x<=2)continue;
+      add(G.cape,x,31,9,DRD);
+    }
+    for(let y=8;y<=34;y++){
+      const t=(34-y)/26;
+      const halfW=Math.round(11+t*5);
+      for(let x=-halfW;x<=halfW-1;x++){
+        for(let dz=0;dz<3;dz++){
+          const z=-9-dz;
+          const c=(dz===2)?RD:(dz===0?DRD:RD);
+          add(G.cape,x,y,z,c);
+        }
+      }
+    }
+
+    // ===== Build optimized voxel meshes (face-culled) =====
+    const buildGroup=(buckets)=>{
+      const occupied=new Set();
+      buckets.forEach(positions=>{positions.forEach(p=>occupied.add(p[0]+','+p[1]+','+p[2]));});
+      const FACES=[
+        {n:[1,0,0], d:[1,0,0], v:[[0.5,-0.5,0.5],[0.5,-0.5,-0.5],[0.5,0.5,-0.5],[0.5,0.5,0.5]]},
+        {n:[-1,0,0],d:[-1,0,0],v:[[-0.5,-0.5,-0.5],[-0.5,-0.5,0.5],[-0.5,0.5,0.5],[-0.5,0.5,-0.5]]},
+        {n:[0,1,0], d:[0,1,0], v:[[-0.5,0.5,0.5],[0.5,0.5,0.5],[0.5,0.5,-0.5],[-0.5,0.5,-0.5]]},
+        {n:[0,-1,0],d:[0,-1,0],v:[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5]]},
+        {n:[0,0,1], d:[0,0,1], v:[[-0.5,-0.5,0.5],[0.5,-0.5,0.5],[0.5,0.5,0.5],[-0.5,0.5,0.5]]},
+        {n:[0,0,-1],d:[0,0,-1],v:[[0.5,-0.5,-0.5],[-0.5,-0.5,-0.5],[-0.5,0.5,-0.5],[0.5,0.5,-0.5]]}
+      ];
       const g=new THREE.Group();
-      // Ears
-      g.add(vox(-7,11,0,OR,2));g.add(vox(-6,11,0,OR,2));
-      g.add(vox( 6,11,0,OR,2));g.add(vox( 7,11,0,OR,2));
-      g.add(vox(-7,10,0,OR,2));g.add(vox(-6,10,0,OR,2));g.add(vox(-5,10,0,OR,2));
-      g.add(vox( 5,10,0,OR,2));g.add(vox( 6,10,0,OR,2));g.add(vox( 7,10,0,OR,2));
-      // Top bar
-      for(let x=-7;x<=7;x++)for(let y=8;y<=9;y++)g.add(vox(x,y,0,OR,2));
-      // Sunglasses
-      for(let x=-6;x<=6;x++)for(let y=4;y<=7;y++)g.add(vox(x,y,0,K,2));
-      // Lens highlights
-      g.add(vox(-4,5,0,W,2));g.add(vox(-3,5,0,W,2));
-      g.add(vox( 3,5,0,W,2));g.add(vox( 4,5,0,W,2));
-      // Lower face
-      for(let x=-7;x<=7;x++)for(let y=-2;y<=3;y++)g.add(vox(x,y,0,OR,2));
-      for(let x=-6;x<=6;x++)g.add(vox(x,-3,0,OR,2));
-      // Nostrils
-      g.add(vox(-2,2,1.1,K,0.4));
-      g.add(vox( 2,2,1.1,K,0.4));
-      // Smirk
-      g.add(vox(4, 0,1.1,K,0.4));
-      g.add(vox(4,-1,1.1,K,0.4));
-      for(let x=-3;x<=3;x++)g.add(vox(x,-2,1.1,K,0.4));
+      buckets.forEach((positions,color)=>{
+        const verts=[],norms=[],idx=[];let vi=0;
+        positions.forEach(p=>{
+          const [px,py,pz]=p;
+          for(const f of FACES){
+            const nk=(px+f.d[0])+','+(py+f.d[1])+','+(pz+f.d[2]);
+            if(occupied.has(nk))continue;
+            for(const c of f.v){verts.push(c[0]+px,c[1]+py,c[2]+pz);norms.push(f.n[0],f.n[1],f.n[2]);}
+            idx.push(vi,vi+1,vi+2,vi,vi+2,vi+3); vi+=4;
+          }
+        });
+        if(!verts.length)return;
+        const geo=new THREE.BufferGeometry();
+        geo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verts),3));
+        geo.setAttribute('normal',new THREE.BufferAttribute(new Float32Array(norms),3));
+        geo.setIndex(idx);
+        const isGold=color===GD;
+        const mat=new THREE.MeshStandardMaterial({color,roughness:isGold?0.5:0.55,metalness:isGold?0.15:0,flatShading:true});
+        g.add(new THREE.Mesh(geo, mat));
+      });
       return g;
-    }
+    };
+
+    const headM=buildGroup(G.head);
+    const bodyM=buildGroup(G.body);
+    const lArmM=buildGroup(G.lArm);
+    const rArmM=buildGroup(G.rArm);
+    const lLegM=buildGroup(G.lLeg);
+    const rLegM=buildGroup(G.rLeg);
+    const capeM=buildGroup(G.cape);
+    // Pivots for arm/head animation
+    const headPivot=new THREE.Group(); headPivot.position.set(0,36,0); headM.position.set(0,-36,0); headPivot.add(headM);
+    const lArmPivot=new THREE.Group(); lArmPivot.position.set(-13.5,29,0); lArmM.position.set(13.5,-29,0); lArmPivot.add(lArmM);
+    const rArmPivot=new THREE.Group(); rArmPivot.position.set(11.5,29,0); rArmM.position.set(-11.5,-29,0); rArmPivot.add(rArmM);
+    const character=new THREE.Group();
+    character.add(bodyM); character.add(headPivot); character.add(lArmPivot); character.add(rArmPivot);
+    character.add(lLegM); character.add(rLegM); character.add(capeM);
+    // Center the character vertically: feet at y=0, top of ears around y=62 → center at y=31
+    character.position.y=-31;
+
     const scene=new THREE.Scene();
-    const camera=new THREE.PerspectiveCamera(32,1,0.1,200);
-    camera.position.set(0,4,28);camera.lookAt(0,4,0);
+    const camera=new THREE.PerspectiveCamera(30,1,0.1,400);
+    camera.position.set(0,0,135);camera.lookAt(0,0,0);
     scene.add(new THREE.AmbientLight(0xffffff,0.65));
-    const key=new THREE.DirectionalLight(0xffffff,0.9);key.position.set(8,18,22);scene.add(key);
-    const fill=new THREE.DirectionalLight(0xfff0d0,0.35);fill.position.set(-15,8,8);scene.add(fill);
-    const rim=new THREE.DirectionalLight(0xfff0f0,0.2);rim.position.set(0,-5,-15);scene.add(rim);
-    const character=buildSCC();
+    const key=new THREE.DirectionalLight(0xffffff,0.95);key.position.set(15,30,40);scene.add(key);
+    const fill=new THREE.DirectionalLight(0xfff0d0,0.4);fill.position.set(-25,15,15);scene.add(fill);
+    const rim=new THREE.DirectionalLight(0xffd7d7,0.25);rim.position.set(0,-10,-25);scene.add(rim);
     scene.add(character);
+
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
     renderer.setClearColor(0,0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -3998,12 +4098,33 @@
     }
     resize();
     new ResizeObserver(resize).observe(canvas);
-    const phase=Math.random()*Math.PI*2;
+
+    // ONE animation loop drives EVERYTHING in sync:
+    // - both arms pull (rotation oscillates around π = straight up)
+    // - body leans forward as he pulls
+    // - the wrapper translates DOWN (so the bounding rect moves, dragging the rope's mascot-end)
+    // - then everything reverses, hauling the rope back up
+    // Since the rope endpoint reads getBoundingClientRect(), the wrapper translate IS the visible rope tug.
+    const mascotEl=document.getElementById('cfMascot');
+    const PI=Math.PI;
     function tick(){
-      const t=performance.now()/1000+phase;
-      // Subtle idle bob/sway — the outer .cf-mascot CSS animation handles the rope-pulling rock
-      character.rotation.y=Math.sin(t*1.4)*0.08;
-      character.rotation.x=Math.sin(t*1.8)*0.04;
+      const t=performance.now()/1000;
+      // 1.1Hz pulling cycle. cycle = +1 at peak-up, -1 at peak-down
+      const cycle=Math.sin(t*PI*2*1.1);
+      // Arms at π (straight UP), pumping slightly. lArm tilts slightly INWARD-OUTWARD as he pulls.
+      // Negative π rotates clockwise from "down" → arm points UP. We oscillate ±0.25 around that
+      // so arms swing visibly during pull cycles. Right arm uses +π (counterclockwise) — same UP.
+      lArmPivot.rotation.z=-PI + cycle*0.25;
+      rArmPivot.rotation.z= PI - cycle*0.25;
+      // Body leans slightly forward on the pull-down beat
+      character.rotation.x=-cycle*0.06;
+      // Subtle side sway (idle)
+      character.rotation.y=Math.sin(t*0.6)*0.06;
+      // WRAPPER tug: cycle=-1 (peak-down) wrapper drops 5px and rotates back; +1 wrapper rises 4px.
+      // The rope endpoint follows this, so the rope visibly bobs as he yanks.
+      const ty=-cycle*4 - 1;
+      const rot=cycle*5;
+      mascotEl.style.transform='translateY('+ty+'px) rotate('+rot+'deg)';
       renderer.render(scene,camera);
       requestAnimationFrame(tick);
     }
@@ -4013,9 +4134,7 @@
   makeFloats();
   rankSlider.addEventListener('input',update);
   holdSlider.addEventListener('input',update);
-  setupRope();
   setupTrolley();
-  setupMascot();
 })();
 </script>
 
