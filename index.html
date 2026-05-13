@@ -283,72 +283,69 @@
     max-width:1100px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:14px;
-    text-align:left;
+    gap:18px;
+    text-align:center;
   }
   .benefit{
-    background:#091a3e;
-    border:1px solid #16307a;
-    border-radius:14px;
-    padding:18px 22px;
+    background:linear-gradient(180deg,rgba(255,210,61,0.06),rgba(255,210,61,0.02));
+    border:1.5px solid rgba(255,210,61,0.4);
+    border-radius:18px;
+    padding:28px 22px 24px;
     display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:14px;
-    transition:transform 0.25s, border-color 0.25s, background 0.25s;
+    box-shadow:0 0 30px rgba(255,210,61,0.12);
+    transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s;
   }
   .benefit:hover{
-    transform:translateY(-3px);
-    border-color:rgba(255,210,61,0.6);
-    background:#0d2255;
+    transform:translateY(-4px);
+    border-color:rgba(255,210,61,0.75);
+    box-shadow:0 0 45px rgba(255,210,61,0.22);
   }
   .benefit .b-illust{
-    width:42px;
-    height:42px;
-    flex-shrink:0;
-    margin:0;
+    width:auto;
+    height:auto;
+    background:transparent;
+    border-radius:0;
+    box-shadow:none;
     display:flex;
     align-items:center;
     justify-content:center;
+    margin:0 auto 14px;
+    flex-shrink:0;
   }
-  .benefit .b-illust svg{
-    width:100%;
-    height:100%;
+  .benefit .b-illust svg,
+  .benefit .b-illust img{
+    width:72px;
+    height:72px;
     display:block;
+    object-fit:contain;
+    filter:drop-shadow(0 6px 12px rgba(0,0,0,0.4));
   }
-  .benefit .b-illust.b-wordmark{
-    width:auto;
-    min-width:54px;
-    height:42px;
-    font-family:'Inter','Helvetica',sans-serif;
-    font-weight:900;
-    font-size:18px;
-    letter-spacing:-0.01em;
-    color:#f0b90b;
-    background:rgba(240,185,11,0.08);
-    border-radius:8px;
-    padding:0 10px;
-  }
-  .benefit .b-text{flex:1;min-width:0;}
+  .benefit .b-text{width:100%;}
   .benefit h3{
     font-family:'Arial Black','Arial',sans-serif;
-    font-size:14px;
+    font-size:15px;
     font-weight:900;
     color:#fff;
-    margin:0 0 3px;
+    margin:0 0 8px;
     letter-spacing:0.02em;
     line-height:1.15;
     text-transform:uppercase;
   }
   .benefit p{
     font-family:'Inter','Helvetica',sans-serif;
-    font-size:12px;
-    color:#86a4e3;
-    line-height:1.4;
+    font-size:13px;
+    color:rgba(255,255,255,0.8);
+    line-height:1.5;
     margin:0;
     font-weight:500;
   }
   .benefit p b{color:#ffd23d;font-weight:900;}
-  @media (max-width:900px){.benefits{grid-template-columns:1fr;max-width:480px;gap:10px;}}
+  @media (max-width:900px){
+    .benefits{grid-template-columns:1fr;max-width:480px;gap:14px;}
+    .benefit{padding:24px 20px;}
+  }
   .celebration .content{position:relative;z-index:2;}
 
   /* === DISTRIBUTOR (HOW IT WORKS) SECTION === */
@@ -2140,44 +2137,358 @@
     <div class="benefits">
       <div class="benefit">
         <div class="b-illust">
-          <svg viewBox="0 0 32 36" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 4 L29 4 L26 11 L18 11 L18 32 L14 32 L14 11 L6 11 Z" fill="#26a17b" stroke="#1a4d3a" stroke-width="0.5"/>
-          </svg>
+          <img src="tether-logo.png" alt="Tether USDT">
         </div>
         <div class="b-text">
           <h3>GET PAID TETHER</h3>
-          <p>Auto rewards in USDT</p>
+          <p>Fully automatic. No mining, claiming or pooling — just add contracts to your wallet.</p>
         </div>
       </div>
 
       <div class="benefit">
         <div class="b-illust">
-          <img src="bnb-logo.png" alt="opBNB" style="width:100%;height:100%;object-fit:contain;display:block;">
+          <img src="opbnb-logo.png" alt="opBNB">
         </div>
         <div class="b-text">
           <h3>BUILT ON opBNB</h3>
-          <p>Ultra fast and low fees</p>
+          <p>Ultra-fast, ultra-cheap transactions = way more frequent distributions to holders.</p>
         </div>
       </div>
 
       <div class="benefit">
         <div class="b-illust">
-          <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="22" width="6" height="10" fill="#3dc650"/>
-            <rect x="14" y="16" width="6" height="16" fill="#3dc650"/>
-            <rect x="24" y="10" width="6" height="22" fill="#3dc650"/>
-            <polyline points="6,18 16,12 26,6" stroke="#3dc650" stroke-width="2" fill="none"/>
-            <polygon points="22,6 30,4 28,12" fill="#3dc650"/>
+          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="22" width="6" height="11" fill="#ffd23d"/>
+            <rect x="16" y="14" width="6" height="19" fill="#ffd23d"/>
+            <rect x="27" y="6" width="6" height="27" fill="#ffd23d"/>
+            <polyline points="7,18 19,10 31,4" stroke="#ffd23d" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="26,4 33,2 31,9" fill="#ffd23d"/>
           </svg>
         </div>
         <div class="b-text">
           <h3>HIGH VOLUME</h3>
-          <p>More volume = more rewards</p>
+          <p>One of the largest taxes — more volume means more cashflow for you.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- ============================================================
+     opBNB vs SOLANA — fee comparison showdown
+     ============================================================ -->
+<section class="vs-section" id="opbnbVsSolana">
+  <div class="vs-wrap">
+    <p class="vs-eyebrow">★ Why opBNB</p>
+    <h2 class="vs-title">opBNB <span class="vs-badge-inline">vs</span> <span class="white">Solana</span></h2>
+    <p class="vs-sub">
+      We pay <b>frequent USDT distributions</b> to every $SCC holder. When you've got <b>100,000+ holders</b> getting paid often, transaction fees add up fast. <br/>opBNB is the cheapest place to do it — by a wide margin.
+    </p>
+
+    <div class="vs-arena">
+      <!-- WINNER: opBNB -->
+      <div class="vs-col win">
+        <div class="vs-logo opbnb">
+          <img src="bnb-logo.png" alt="opBNB" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <h3 class="vs-chain-name">opBNB</h3>
+        <p class="vs-chain-sub">Layer-2 · BNB Chain</p>
+        <div class="vs-fee">
+          <div class="vs-fee-lbl">Avg fee per tx</div>
+          <div class="vs-fee-val">$0.001</div>
+          <div class="vs-fee-unit">USD · stable</div>
+        </div>
+        <div class="vs-stats">
+          <div class="vs-stat"><span class="l">Throughput</span><span class="v">~4,761 TPS</span></div>
+          <div class="vs-stat"><span class="l">Block time</span><span class="v">~1 sec</span></div>
+          <div class="vs-stat"><span class="l">Fee stability</span><span class="v good">Predictable</span></div>
+          <div class="vs-stat"><span class="l">Spikes during chaos</span><span class="v good">Rare</span></div>
+        </div>
+      </div>
+
+      <div class="vs-mid"><div class="vs-badge">VS</div></div>
+
+      <!-- Solana -->
+      <div class="vs-col lose">
+        <div class="vs-logo sol">◎</div>
+        <h3 class="vs-chain-name">Solana</h3>
+        <p class="vs-chain-sub">Layer-1</p>
+        <div class="vs-fee">
+          <div class="vs-fee-lbl">Avg fee per tx</div>
+          <div class="vs-fee-val">$0.002+</div>
+          <div class="vs-fee-unit">often higher with priority fees</div>
+        </div>
+        <div class="vs-stats">
+          <div class="vs-stat"><span class="l">Throughput</span><span class="v">~1,000 real TPS</span></div>
+          <div class="vs-stat"><span class="l">Block time</span><span class="v">~0.4 sec</span></div>
+          <div class="vs-stat"><span class="l">Fee stability</span><span class="v bad">Spiky</span></div>
+          <div class="vs-stat"><span class="l">Spikes during chaos</span><span class="v bad">$0.01–$0.10+</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Math callout -->
+    <div class="vs-math">
+      <div class="vs-math-lbl">★ The math at scale</div>
+      <div class="vs-math-row">
+        <div class="vs-math-col">
+          <span class="vs-math-num">100,000</span>
+          <span class="vs-math-lbl-sm">holders</span>
+        </div>
+        <span class="vs-math-x">×</span>
+        <div class="vs-math-col">
+          <span class="vs-math-num">52</span>
+          <span class="vs-math-lbl-sm">weekly payouts/yr</span>
+        </div>
+        <span class="vs-math-x">=</span>
+        <div class="vs-math-col">
+          <span class="vs-math-num">5.2M</span>
+          <span class="vs-math-lbl-sm">transactions/yr</span>
+        </div>
+      </div>
+      <div class="vs-savings">
+        <span class="row">Solana: <b class="white">$10,400+</b> · opBNB: <b class="green">$5,200</b></span>
+        <span class="caption">That's <b class="gold">~$5,000+ MORE every year</b> staying in your pocket as rewards. At Solana spike prices, the gap is 10× wider.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vs-section{
+    background:#0a0a0a;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.05'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.04' transform='rotate(15 130 180)'>$</text></svg>");
+    background-size:200px 200px;
+    color:#fff;
+    padding:80px 60px 90px;
+    position:relative;
+    overflow:hidden;
+    border-top:2px solid #ffd23d;
+    border-bottom:2px solid #ffd23d;
+  }
+  .vs-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+  .vs-eyebrow{
+    text-align:center;
+    font-family:'Inter',sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.3em;
+    color:#86ed5a;
+    text-transform:uppercase;
+    margin:0 0 14px;
+  }
+  .vs-title{
+    text-align:center;
+    font-family:'Arial Black',sans-serif;
+    font-size:clamp(36px,5vw,52px);
+    text-transform:uppercase;
+    letter-spacing:.005em;
+    line-height:1;
+    margin:0 0 16px;
+    color:#ffd23d;
+  }
+  .vs-title .white{color:#fff;}
+  .vs-title .vs-badge-inline{
+    display:inline-block;
+    color:#0a0a0a;
+    background:#ffd23d;
+    padding:0 14px;
+    margin:0 8px;
+    transform:translateY(-4px);
+    font-size:0.7em;
+    border-radius:8px;
+    box-shadow:0 4px 0 #d9a116;
+  }
+  .vs-sub{
+    text-align:center;
+    font-family:'Inter',sans-serif;
+    font-size:clamp(14px,1.3vw,17px);
+    color:rgba(255,255,255,0.78);
+    max-width:760px;
+    margin:0 auto 50px;
+    line-height:1.65;
+  }
+  .vs-sub b{color:#ffd23d;font-weight:800;}
+
+  .vs-arena{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    gap:24px;
+    align-items:stretch;
+    max-width:1100px;
+    margin:0 auto 56px;
+  }
+  .vs-col{
+    border-radius:18px;
+    padding:32px 28px;
+    position:relative;
+    border:2px solid transparent;
+  }
+  .vs-col.win{
+    background:linear-gradient(180deg,rgba(240,185,11,0.08),rgba(240,185,11,0.03));
+    border-color:rgba(240,185,11,0.55);
+    box-shadow:0 0 50px rgba(240,185,11,0.15);
+  }
+  .vs-col.lose{
+    background:rgba(255,255,255,0.03);
+    border-color:rgba(255,255,255,0.1);
+  }
+  .vs-logo{
+    width:60px;height:60px;
+    margin:0 auto 14px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Arial Black',sans-serif;font-weight:900;
+    overflow:hidden;
+  }
+  .vs-logo.opbnb{background:transparent;}
+  .vs-logo.sol{
+    background:linear-gradient(135deg,#9945ff,#14f195);
+    color:#fff;font-size:28px;
+  }
+  .vs-chain-name{
+    text-align:center;
+    font-family:'Arial Black',sans-serif;
+    font-size:24px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+    margin:0 0 4px;
+  }
+  .vs-col.win .vs-chain-name{color:#ffd23d;}
+  .vs-col.lose .vs-chain-name{color:#fff;}
+  .vs-chain-sub{
+    text-align:center;
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    color:rgba(255,255,255,0.55);
+    margin:0 0 24px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .vs-fee{
+    text-align:center;
+    margin-bottom:24px;
+    padding:18px 0;
+    border-radius:10px;
+    background:rgba(0,0,0,0.3);
+  }
+  .vs-fee-lbl{
+    font-family:'Inter',sans-serif;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,0.5);
+    margin-bottom:8px;
+  }
+  .vs-fee-val{
+    font-family:'Arial Black',sans-serif;
+    font-size:40px;
+    line-height:1;
+    color:#fff;
+  }
+  .vs-col.win .vs-fee-val{color:#ffd23d;}
+  .vs-fee-unit{
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    color:rgba(255,255,255,0.55);
+    margin-top:6px;
+  }
+  .vs-stats{display:flex;flex-direction:column;gap:6px;}
+  .vs-stat{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 4px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    font-family:'Inter',sans-serif;
+    font-size:12.5px;
+  }
+  .vs-stat:last-child{border-bottom:none;}
+  .vs-stat .l{color:rgba(255,255,255,0.65);}
+  .vs-stat .v{color:#fff;font-weight:800;}
+  .vs-stat .v.good{color:#86ed5a;}
+  .vs-stat .v.bad{color:#ff8a8a;}
+
+  .vs-mid{display:flex;align-items:center;justify-content:center;align-self:center;}
+  .vs-badge{
+    width:68px;height:68px;
+    border-radius:50%;
+    background:#0a0a0a;
+    border:3px solid #ffd23d;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Arial Black',sans-serif;
+    font-weight:900;font-size:22px;color:#ffd23d;
+    box-shadow:0 0 25px rgba(255,210,61,0.35);
+  }
+
+  /* Math callout */
+  .vs-math{
+    max-width:960px;
+    margin:0 auto;
+    padding:32px 36px;
+    background:linear-gradient(135deg,rgba(240,185,11,0.08),rgba(134,237,90,0.05));
+    border:1px solid rgba(255,210,61,0.3);
+    border-radius:16px;
+    text-align:center;
+  }
+  .vs-math-lbl{
+    font-family:'Inter',sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:.2em;
+    color:#86ed5a;text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .vs-math-row{
+    display:flex;justify-content:center;align-items:center;
+    gap:28px;flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .vs-math-col{display:flex;flex-direction:column;align-items:center;}
+  .vs-math-num{
+    font-family:'Arial Black',sans-serif;
+    font-size:clamp(28px,3.5vw,40px);
+    color:#fff;
+    line-height:1;
+  }
+  .vs-math-lbl-sm{
+    font-family:'Inter',sans-serif;
+    font-size:11px;color:rgba(255,255,255,0.7);
+    font-weight:600;letter-spacing:.05em;
+    text-transform:uppercase;margin-top:4px;
+  }
+  .vs-math-x{font-family:'Arial Black',sans-serif;font-size:24px;color:rgba(255,255,255,0.4);}
+  .vs-savings{margin-top:18px;}
+  .vs-savings .row{
+    display:block;
+    font-family:'Arial Black',sans-serif;
+    font-size:clamp(22px,2.8vw,30px);
+    color:#ffd23d;
+    line-height:1.2;
+    margin-bottom:8px;
+  }
+  .vs-savings .row .white{color:#fff;}
+  .vs-savings .row .green{color:#86ed5a;}
+  .vs-savings .caption{
+    display:block;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    color:rgba(255,255,255,0.85);
+    font-weight:500;
+    line-height:1.5;
+    max-width:680px;
+    margin:0 auto;
+  }
+  .vs-savings .caption .gold{color:#ffd23d;font-weight:800;}
+
+  @media (max-width:760px){
+    .vs-section{padding:60px 22px 70px;}
+    .vs-arena{grid-template-columns:1fr;gap:18px;}
+    .vs-mid{order:0;}
+    .vs-badge{margin:0 auto;}
+    .vs-math{padding:24px 18px;}
+    .vs-math-row{gap:14px;}
+    .vs-math-x{font-size:18px;}
+  }
+</style>
 
 
 
@@ -2229,8 +2540,7 @@
             <div class="wallet-balance">
               <div class="wallet-bal-amt" id="htbTotal">$2,847.32</div>
               <div class="wallet-bal-change">
-                <span class="up">▲ +$<span id="htbGain">12.47</span></span>
-                <span class="pct">(+0.44%) today</span>
+                <span class="up">▲ +$<span id="htbGain">12.47</span> today</span>
               </div>
             </div>
 
@@ -2299,35 +2609,52 @@
       <!-- ===== Steps (right on desktop, below on mobile) ===== -->
       <div class="htb-steps">
         <div class="htb-step">
-          <div class="htb-num">1</div>
-          <div class="htb-step-pic">
-            <img src="step1-wallet.png" alt="Get a wallet">
+          <div class="htb-step-left">
+            <div class="htb-num">01</div>
+            <div class="htb-step-pic">
+              <img src="step1-wallet.png" alt="Get a wallet">
+            </div>
           </div>
-          <div class="htb-step-body">
+          <div class="htb-step-right">
             <h4>Get a Wallet</h4>
-            <p>Grab <span class="gold">MetaMask</span>, add the <span class="gold">opBNB</span> network and a bit of <span class="gold">BNB</span> for gas.</p>
+            <p>Grab <span class="gold">MetaMask</span>, add the <span class="gold">opBNB</span> network and a bit of <span class="gold">BNB</span> for gas. Takes 2 minutes.</p>
+            <div class="htb-links">
+              <a class="htb-link" href="https://metamask.io" target="_blank" rel="noopener">Click here to get MetaMask</a>
+              <a class="htb-link" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">Click here to integrate with opBNB</a>
+            </div>
           </div>
         </div>
 
         <div class="htb-step">
-          <div class="htb-num">2</div>
-          <div class="htb-step-pic">
-            <img src="step2-trade.png" alt="Get some crypto">
+          <div class="htb-step-left">
+            <div class="htb-num">02</div>
+            <div class="htb-step-pic">
+              <img src="step3-buy.png" alt="Get some crypto">
+            </div>
           </div>
-          <div class="htb-step-body">
+          <div class="htb-step-right">
             <h4>Get Some Crypto</h4>
-            <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> and bridge it to opBNB — that's our trading currency.</p>
+            <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> (or any exchange), then bridge it to your wallet on opBNB. That's our trading currency.</p>
+            <div class="htb-links">
+              <a class="htb-link" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">Click here to top up USDT</a>
+              <a class="htb-link" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">Click here to top up BNB</a>
+            </div>
           </div>
         </div>
 
         <div class="htb-step">
-          <div class="htb-num">3</div>
-          <div class="htb-step-pic">
-            <img src="step3-buy.png" alt="Buy Super Cash Coin">
+          <div class="htb-step-left">
+            <div class="htb-num">03</div>
+            <div class="htb-step-pic">
+              <img src="step2-trade.png" alt="Buy Super Cash Coin">
+            </div>
           </div>
-          <div class="htb-step-body">
+          <div class="htb-step-right">
             <h4>Buy Super Cash Coin</h4>
-            <p>Swap <span class="gold">USDT</span> → <span class="gold">$SCC</span>. Turn on <span class="gold">auto-reinvest</span> to compound rewards.</p>
+            <p>Swap <span class="gold">USDT</span> → <span class="gold">$SCC</span> on the Trade Centre. Turn on <span class="gold">auto-reinvest</span> to compound rewards.</p>
+            <div class="htb-links">
+              <a class="htb-link" href="#" target="_blank" rel="noopener">Click here to buy on the Trade Centre</a>
+            </div>
           </div>
         </div>
       </div>
@@ -2525,76 +2852,118 @@
   }
   .htb-phone-stage{display:flex;justify-content:center;align-items:center;}
 
-  /* Steps column — dark navy benefit-card style with big pic + small number */
-  .htb-steps{display:flex;flex-direction:column;gap:16px;}
+  /* Steps column — split card: gold left, navy right */
+  .htb-steps{display:flex;flex-direction:column;gap:18px;}
   .htb-step{
-    position:relative;
-    display:flex;
-    gap:20px;
-    align-items:center;
-    padding:22px 26px;
-    background:#091a3e;
-    border:1px solid #16307a;
-    border-radius:14px;
-    transition:transform .25s,border-color .25s,background .25s;
+    display:grid;
+    grid-template-columns:200px 1fr;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,0.08);
+    transition:transform .25s, box-shadow .25s;
+    min-height:160px;
   }
   .htb-step:hover{
     transform:translateY(-3px);
-    border-color:rgba(255,210,61,0.6);
-    background:#0d2255;
+    box-shadow:0 14px 32px rgba(0,0,0,0.14);
+  }
+
+  /* LEFT — gold side */
+  .htb-step-left{
+    position:relative;
+    background:linear-gradient(135deg,#ffe066 0%,#ffd23d 50%,#d9a116 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
   }
   .htb-num{
     position:absolute;
-    top:10px;
-    left:14px;
-    width:26px;
-    height:26px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#ffd23d,#d9a116);
-    color:#0a0a0a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    top:14px;
+    left:18px;
     font-family:'Arial Black',sans-serif;
     font-weight:900;
-    font-size:13px;
-    box-shadow:0 2px 6px rgba(255,210,61,0.35);
+    font-size:48px;
+    color:rgba(10,10,10,0.18);
+    line-height:1;
+    z-index:1;
   }
   .htb-step-pic{
-    width:96px;
-    height:96px;
-    flex-shrink:0;
-    margin-left:8px;
+    width:120px;
+    height:120px;
     display:flex;
     align-items:center;
     justify-content:center;
+    filter:drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+    position:relative;
+    z-index:2;
   }
-  .htb-step-pic svg,
-  .htb-step-pic img{
+  .htb-step-pic img,
+  .htb-step-pic svg{
     width:100%;
     height:100%;
-    display:block;
     object-fit:contain;
+    display:block;
   }
-  .htb-step-body{flex:1;min-width:0;}
-  .htb-step-body h4{
-    margin:0 0 5px;
+
+  /* RIGHT — dark navy side */
+  .htb-step-right{
+    background:#091a3e;
+    padding:24px 28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:8px;
+  }
+  .htb-step-right h4{
+    margin:0 0 6px;
     font-family:'Arial Black',sans-serif;
-    font-size:17px;
+    font-size:24px;
     text-transform:uppercase;
     letter-spacing:.02em;
     color:#fff;
-    line-height:1.15;
+    line-height:1.1;
   }
-  .htb-step-body p{
+  .htb-step-right p{
     margin:0;
     font-family:'Inter','Arial',sans-serif;
-    font-size:13px;
+    font-size:15px;
     color:#86a4e3;
-    line-height:1.5;
+    line-height:1.55;
     font-weight:500;
   }
-  .htb-step-body p .gold{color:#ffd23d;font-weight:700;}
+  .htb-step-right p .gold{color:#ffd23d;font-weight:700;}
+
+  /* Action links */
+  .htb-links{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+  }
+  .htb-link{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding:5px 11px;
+    background:rgba(255,210,61,0.1);
+    border:1px solid rgba(255,210,61,0.35);
+    border-radius:999px;
+    font-family:'Inter','Arial',sans-serif;
+    font-size:10.5px;
+    font-weight:700;
+    color:#ffd23d;
+    text-decoration:none;
+    text-transform:none;
+    letter-spacing:0;
+    transition:background .15s, transform .12s;
+    white-space:nowrap;
+  }
+  .htb-link::after{content:'→';font-size:12px;opacity:0.8;}
+  .htb-link:hover{
+    background:rgba(255,210,61,0.2);
+    transform:translateY(-1px);
+  }
 
   /* Responsive: stack on mobile */
   @media (max-width:900px){
@@ -2602,13 +2971,21 @@
     .htb-layout{grid-template-columns:1fr;gap:36px;}
     .htb-phone-stage{order:1;}
     .htb-steps{order:2;}
-    .htb-step{padding:18px 22px;gap:16px;}
-    .htb-step-pic{width:72px;height:72px;}
-    .htb-step-body h4{font-size:15px;}
-    .htb-step-body p{font-size:12px;}
+    .htb-step{grid-template-columns:140px 1fr;min-height:140px;}
+    .htb-step-left{padding:18px;}
+    .htb-step-pic{width:90px;height:90px;}
+    .htb-num{font-size:36px;}
+    .htb-step-right{padding:18px 20px;}
+    .htb-step-right h4{font-size:19px;}
+    .htb-step-right p{font-size:14px;}
+    .htb-link{font-size:10px;padding:5px 9px;}
   }
   @media (max-width:600px){
     .htb-section{padding:50px 14px 60px;}
+    .htb-step{grid-template-columns:1fr;}
+    .htb-step-left{padding:24px 18px 18px;}
+    .htb-step-pic{width:96px;height:96px;}
+    .htb-num{top:10px;left:14px;font-size:32px;}
   }
 
   /* === The "device" frame === */
