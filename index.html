@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Press+Start+2P&family=Black+Ops+One&family=Luckiest+Guy&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Press+Start+2P&family=Black+Ops+One&family=Luckiest+Guy&family=Sigmar+One&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow-x:hidden;}
@@ -2501,7 +2501,7 @@
   <div class="htb-wrap">
     <h2 class="htb-title">How To <span class="gold">Buy</span></h2>
     <p class="htb-sub">
-      Three simple steps and you're earning <b class="gold">USDT rewards</b> from holding $SCC.
+      Three simple steps and start watching your wallet grow with <b class="gold">EVERY transaction!</b>
     </p>
 
     <div class="htb-layout">
@@ -2608,6 +2608,12 @@
 
       <!-- ===== Right column: contracts on top, steps at the bottom ===== -->
       <div class="htb-right-col">
+        <div class="htb-divider">
+          <span class="htb-divider-num">1</span>
+          <span class="htb-divider-txt">Contracts</span>
+          <span class="htb-divider-line"></span>
+        </div>
+
         <div class="htb-contracts">
           <div class="htb-contract">
             <img src="coin.png" alt="$SCC" class="ctr-icon">
@@ -2643,7 +2649,11 @@
           </div>
         </div>
 
-        <hr class="htb-divider">
+        <div class="htb-divider">
+          <span class="htb-divider-num">2</span>
+          <span class="htb-divider-txt">Steps</span>
+          <span class="htb-divider-line"></span>
+        </div>
 
         <!-- ===== Steps ===== -->
         <div class="htb-steps">
@@ -2877,15 +2887,29 @@
   .htb-title .gold{color:#ffd23d;}
   .htb-sub{
     text-align:center;
-    font-size:clamp(15px,1.4vw,18px);
-    color:#555;
-    max-width:680px;
+    font-family:'Sigmar One','Lilita One',cursive;
+    font-size:clamp(18px,2vw,26px);
+    color:#0a0a0a;
+    max-width:920px;
     margin:0 auto 50px;
-    line-height:1.55;
-    font-family:'Inter','Arial',sans-serif;
+    line-height:1.4;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
   }
-  .htb-sub b{color:#0a0a0a;font-weight:800;}
-  .htb-sub b.gold{color:#c79a0c;}
+  .htb-sub b{color:#0a0a0a;font-weight:400;}
+  .htb-sub b.gold{
+    display:inline-block;
+    background:#ffd23d;
+    color:#0a0a0a;
+    padding:2px 12px 4px;
+    margin:0 4px;
+    border:2.5px solid #0a0a0a;
+    border-radius:8px;
+    font-family:'Sigmar One','Lilita One',cursive;
+    transform:translateY(-2px);
+    letter-spacing:0.02em;
+    box-shadow:3px 3px 0 #0a0a0a;
+  }
 
   .htb-layout{
     display:grid;
@@ -2899,25 +2923,55 @@
   .htb-right-col{
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:14px;
     height:100%;
-    justify-content:space-between;
   }
 
-  /* Divider between steps and contracts */
+  /* Divider with numbered tag label */
   .htb-divider{
-    border:none;
-    border-top:1.5px dashed rgba(255,210,61,0.5);
-    margin:6px 0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0;
     width:100%;
+    border:none;
+  }
+  .htb-divider-num{
+    background:#ffd23d;
+    border:2px solid #0a0a0a;
+    color:#0a0a0a;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Arial Black',sans-serif;
+    font-size:14px;
+    font-weight:900;
+    flex-shrink:0;
+  }
+  .htb-divider-txt{
+    font-family:'Arial Black',sans-serif;
+    font-size:13px;
+    color:#0a0a0a;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    flex-shrink:0;
+  }
+  .htb-divider-line{
+    flex:1;
+    height:2px;
+    background:repeating-linear-gradient(90deg,#0a0a0a,#0a0a0a 6px,transparent 6px,transparent 10px);
+    opacity:0.4;
   }
 
   /* Contract addresses block — sits above the step cards (Style 2: light & clean) */
   .htb-contracts{
     display:flex;
     flex-direction:column;
-    gap:10px;
-    padding:18px;
+    gap:8px;
+    padding:14px;
     background:#fff;
     border:1.5px solid #ffd23d;
     border-radius:14px;
@@ -2927,7 +2981,7 @@
     display:flex;
     align-items:center;
     gap:12px;
-    padding:10px 12px;
+    padding:8px 12px;
     border-radius:10px;
     background:#fafaf6;
     border:1px solid #eee;
@@ -2986,7 +3040,7 @@
   .htb-contract .ctr-copy svg{width:100%;height:100%;display:block;}
 
   /* Steps column — Style 2: white card with gold border, matches contracts */
-  .htb-steps{display:flex;flex-direction:column;gap:14px;flex:1;}
+  .htb-steps{display:flex;flex-direction:column;gap:10px;flex:1;}
   .htb-step{
     display:grid;
     grid-template-columns:120px 1fr;
@@ -2997,7 +3051,7 @@
     box-shadow:0 6px 20px rgba(0,0,0,0.06);
     transition:transform .25s, box-shadow .25s;
     flex:1;
-    min-height:110px;
+    min-height:90px;
   }
   .htb-step:hover{
     transform:translateY(-3px);
