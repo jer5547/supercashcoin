@@ -498,31 +498,16 @@
 
   /* === TOKENOMICS SECTION === */
   .tokenomics{
-    background:#000000;
+    background:#0a0a0a;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.08'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.07' transform='rotate(15 130 180)'>$</text><text x='10' y='180' font-family='Arial Black,sans-serif' font-size='44' font-weight='900' fill='%23ffd23d' fill-opacity='0.06' transform='rotate(-12 10 180)'>$</text></svg>");
+    background-size:200px 200px;
+    background-repeat:repeat;
     color:#fff;
-    padding:140px 60px;
+    padding:80px 60px;
     position:relative;
     overflow:hidden;
-    border-top:1px solid #1a1a1a;
-  }
-  /* Subtle gold radial glow behind everything */
-  .tokenomics::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:radial-gradient(ellipse at center,rgba(255,210,61,0.08) 0%,transparent 60%);
-    pointer-events:none;
-  }
-  /* Faint pattern of dots in the bg */
-  .tokenomics::after{
-    content:'';
-    position:absolute;
-    inset:0;
-    background-image:radial-gradient(circle at 1px 1px,rgba(255,210,61,0.06) 1px,transparent 0);
-    background-size:32px 32px;
-    pointer-events:none;
-    mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);
-    -webkit-mask-image:radial-gradient(ellipse at center,black 0%,transparent 70%);
+    border-top:2px solid #ffd23d;
+    border-bottom:2px solid #ffd23d;
   }
   .tk-wrap{
     max-width:1240px;
@@ -2317,105 +2302,6 @@
 </style>
 
 
-<!-- ============================================================
-     opBNB vs SOLANA — fee comparison showdown
-     ============================================================ -->
-<section class="vs-section" id="opbnbVsSolana">
-  <div class="vs-wrap">
-    <img src="opbnb-logo.png" alt="opBNB" class="vs-hero-logo">
-    <p class="vs-eyebrow">★ Why The Network Matters</p>
-    <h2 class="vs-title">Built On <span class="green">opBNB</span></h2>
-    <p class="vs-sub">
-      The opBNB network is what makes Super Cash Coin's royalty engine work — fast, cheap, secure, and built for high-frequency payouts to thousands of holders.
-    </p>
-
-    <div class="benefits opb-six">
-      <div class="benefit">
-        <div class="b-illust">
-          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 33 15 A 14 14 0 1 0 28 28" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-            <polyline points="33,4 33,15 22,15" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="19" y="25" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" fill="#ffd23d" font-weight="900">$</text>
-          </svg>
-        </div>
-        <div class="b-text">
-          <h3>MORE FREQUENT PAYOUTS</h3>
-          <p>Cheap gas means royalty distributions trigger far more often. More cycles, more cashflow rolling in.</p>
-        </div>
-      </div>
-
-      <div class="benefit">
-        <div class="b-illust">
-          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 14 6 L 24 6 M 14 6 L 11 11 M 24 6 L 27 11" fill="none" stroke="#ffd23d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M 11 11 L 27 11 Q 34 19 31 28 Q 29 35 19 35 Q 9 35 7 28 Q 4 19 11 11 Z" fill="#ffd23d"/>
-            <text x="19" y="26" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="14" font-weight="900" fill="#0a0a0a">$</text>
-          </svg>
-        </div>
-        <div class="b-text">
-          <h3>KEEP MORE REWARDS</h3>
-          <p>At ~$0.001 per transaction, gas barely touches your payouts. Almost every cent lands in your wallet.</p>
-        </div>
-      </div>
-
-      <div class="benefit">
-        <div class="b-illust">
-          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="22,4 8,21 17,21 14,34 30,16 21,16" fill="#ffd23d"/>
-          </svg>
-        </div>
-        <div class="b-text">
-          <h3>LIGHTNING FAST</h3>
-          <p>Sub-second block times. Payouts confirm instantly. No sitting around waiting for your USDT to arrive.</p>
-        </div>
-      </div>
-
-      <div class="benefit">
-        <div class="b-illust">
-          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 4 14 L 4 9 L 26 9 L 28 12" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-            <rect x="4" y="12" width="30" height="22" rx="3" fill="none" stroke="#ffd23d" stroke-width="3"/>
-            <rect x="22" y="19" width="14" height="9" rx="2" fill="#ffd23d"/>
-            <circle cx="29" cy="23.5" r="1.5" fill="#0a0a0a"/>
-          </svg>
-        </div>
-        <div class="b-text">
-          <h3>USE YOUR WALLET</h3>
-          <p>Fully EVM-compatible. MetaMask, Trust Wallet, whatever you already use. No new logins, no new tools.</p>
-        </div>
-      </div>
-
-      <div class="benefit">
-        <div class="b-illust">
-          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 19 3 L 6 8 L 6 19 Q 6 30 19 35 Q 32 30 32 19 L 32 8 Z" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round"/>
-            <polyline points="13,19 17,23 25,14" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="b-text">
-          <h3>BNB CHAIN SECURITY</h3>
-          <p>Built on top of BNB Chain — one of the largest L1s in crypto. Battle-tested security under the hood.</p>
-        </div>
-      </div>
-
-      <div class="benefit">
-        <div class="b-illust">
-          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-            <line x1="4" y1="14" x2="30" y2="14" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-            <polyline points="24,8 30,14 24,20" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="34" y1="24" x2="8" y2="24" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-            <polyline points="14,18 8,24 14,30" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="b-text">
-          <h3>EASY BRIDGE</h3>
-          <p>Move USDT in and out via the Binance Bridge. One click. No exchange hopping, no friction.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <style>
   .vs-section{
     background:#0a0a0a;
@@ -2451,11 +2337,11 @@
   .vs-title{
     text-align:center;
     font-family:'Black Ops One','Arial Black',sans-serif;
-    font-size:clamp(36px,5vw,52px);
+    font-size:clamp(24px,3vw,34px);
     text-transform:uppercase;
     letter-spacing:.005em;
     line-height:1;
-    margin:0 0 16px;
+    margin:0 0 12px;
     color:#fff;
   }
   .vs-title .white{color:#fff;}
@@ -2464,13 +2350,45 @@
   .vs-sub{
     text-align:center;
     font-family:'Sigmar One','Lilita One',cursive;
-    font-size:clamp(14px,1.3vw,17px);
+    font-size:clamp(13px,1.2vw,15px);
     color:rgba(255,255,255,0.82);
-    max-width:780px;
-    margin:0 auto 44px;
-    line-height:1.65;
+    max-width:720px;
+    margin:0 auto 36px;
+    line-height:1.6;
   }
   .vs-sub b{color:#ffd23d;font-weight:400;}
+
+  /* Tokenomics → opBNB divider */
+  .tk-divider{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    max-width:900px;
+    margin:50px auto 32px;
+    padding:0 20px;
+  }
+  .tk-divider hr{
+    flex:1;
+    border:0;
+    border-top:1.5px dashed rgba(255,210,61,0.3);
+    margin:0;
+  }
+  .tk-divider span{
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:13px;
+    letter-spacing:.32em;
+    color:#ffd23d;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  /* Smaller hero logo since it's now a sub-section */
+  .tokenomics .vs-hero-logo{
+    width:96px;
+    height:96px;
+    margin:0 auto 14px;
+  }
+  .tokenomics .vs-eyebrow{margin:0 0 10px;}
 
   /* 6-card layout — 3 cols × 2 rows on desktop, 2 cols on tablet, 1 col on mobile */
   .opb-six{max-width:1100px;}
@@ -2492,6 +2410,164 @@
      WALLET MOCKUP SECTION — fancy MetaMask-style UI showing
      SCC balance + live-ticking USDT rewards
      ============================================================ -->
+<section class="tokenomics" id="tokenomicsSection">
+  <div class="tk-wrap">
+    <div class="tk-title">
+      <h2 class="tk-title-text"><span class="gold">Tokenomics</span></h2>
+    </div>
+    <p class="tk-subhead">Two numbers that matter. Everything else is detail.</p>
+
+    <!-- Two giant feature cards flanking the coin -->
+    <div class="tk-hero-row">
+      <div class="tk-feature-card">
+        <div class="eyebrow">Buy Tax</div>
+        <div class="big-num">25%</div>
+        <h3>Goes to holders</h3>
+        <p>Every buy. Paid in USDT. Auto-distributed on opBNB. No claiming required.</p>
+      </div>
+
+      <div class="tk-coin-stage">
+        <span class="tk-spark s1">✦</span>
+        <span class="tk-spark s2">✦</span>
+        <span class="tk-spark s3">✦</span>
+        <span class="tk-spark s4">✦</span>
+        <img src="coin.png" alt="Super Cash Coin" class="tk-coin-img">
+      </div>
+
+      <div class="tk-feature-card right">
+        <div class="eyebrow">Total Supply</div>
+        <div class="big-num">1B</div>
+        <h3>Hard-capped forever</h3>
+        <p>One billion $SCC. No minting, no team unlocks. 3% burn on every sell.</p>
+      </div>
+    </div>
+
+    <!-- Smaller details strip below -->
+    <div class="tk-details-strip">
+      <div class="tk-detail">
+        <div class="lbl">Network</div>
+        <div class="val">opBNB</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Symbol</div>
+        <div class="val">$SCC</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Decimals</div>
+        <div class="val">18</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Rewards</div>
+        <div class="val">USDT</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">Sell Tax</div>
+        <div class="val">3%</div>
+      </div>
+      <div class="tk-detail">
+        <div class="lbl">To Qualify</div>
+        <div class="val">Hold ≥ 1 $SCC</div>
+      </div>
+    </div>
+
+    <div class="tk-divider"><hr/><span>★ Built On ★</span><hr/></div>
+
+    <div class="vs-wrap">
+      <img src="opbnb-logo.png" alt="opBNB" class="vs-hero-logo">
+      <p class="vs-eyebrow">★ Why The Network Matters</p>
+      <h2 class="vs-title">Built On <span class="green">opBNB</span></h2>
+      <p class="vs-sub">
+        The opBNB network is what makes Super Cash Coin's royalty engine work — fast, cheap, secure, and built for high-frequency payouts to thousands of holders.
+      </p>
+
+      <div class="benefits opb-six">
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 33 15 A 14 14 0 1 0 28 28" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="33,4 33,15 22,15" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="19" y="25" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" fill="#ffd23d" font-weight="900">$</text>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>MORE FREQUENT PAYOUTS</h3>
+            <p>Cheap gas means royalty distributions trigger far more often. More cycles, more cashflow rolling in.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 14 6 L 24 6 M 14 6 L 11 11 M 24 6 L 27 11" fill="none" stroke="#ffd23d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 11 11 L 27 11 Q 34 19 31 28 Q 29 35 19 35 Q 9 35 7 28 Q 4 19 11 11 Z" fill="#ffd23d"/>
+              <text x="19" y="26" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="14" font-weight="900" fill="#0a0a0a">$</text>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>KEEP MORE REWARDS</h3>
+            <p>At ~$0.001 per transaction, gas barely touches your payouts. Almost every cent lands in your wallet.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="22,4 8,21 17,21 14,34 30,16 21,16" fill="#ffd23d"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>LIGHTNING FAST</h3>
+            <p>Sub-second block times. Payouts confirm instantly. No sitting around waiting for your USDT to arrive.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 4 14 L 4 9 L 26 9 L 28 12" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+              <rect x="4" y="12" width="30" height="22" rx="3" fill="none" stroke="#ffd23d" stroke-width="3"/>
+              <rect x="22" y="19" width="14" height="9" rx="2" fill="#ffd23d"/>
+              <circle cx="29" cy="23.5" r="1.5" fill="#0a0a0a"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>USE YOUR WALLET</h3>
+            <p>Fully EVM-compatible. MetaMask, Trust Wallet, whatever you already use. No new logins, no new tools.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 19 3 L 6 8 L 6 19 Q 6 30 19 35 Q 32 30 32 19 L 32 8 Z" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round"/>
+              <polyline points="13,19 17,23 25,14" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>BNB CHAIN SECURITY</h3>
+            <p>Built on top of BNB Chain — one of the largest L1s in crypto. Battle-tested security under the hood.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="b-illust">
+            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+              <line x1="4" y1="14" x2="30" y2="14" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="24,8 30,14 24,20" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="34" y1="24" x2="8" y2="24" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+              <polyline points="14,18 8,24 14,30" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="b-text">
+            <h3>EASY BRIDGE</h3>
+            <p>Move USDT in and out via the Binance Bridge. One click. No exchange hopping, no friction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 <section class="htb-section" id="howToBuy">
   <div class="htb-wrap">
     <h2 class="htb-title">How To <span class="gold">Buy</span></h2>
@@ -3476,68 +3552,6 @@
 })();
 </script>
 
-<section class="tokenomics" id="tokenomicsSection">
-  <div class="tk-wrap">
-    <div class="tk-title">
-      <h2 class="tk-title-text"><span class="gold">Tokenomics</span></h2>
-    </div>
-    <p class="tk-subhead">Two numbers that matter. Everything else is detail.</p>
-
-    <!-- Two giant feature cards flanking the coin -->
-    <div class="tk-hero-row">
-      <div class="tk-feature-card">
-        <div class="eyebrow">Buy Tax</div>
-        <div class="big-num">25%</div>
-        <h3>Goes to holders</h3>
-        <p>Every buy. Paid in USDT. Auto-distributed on opBNB. No claiming required.</p>
-      </div>
-
-      <div class="tk-coin-stage">
-        <span class="tk-spark s1">✦</span>
-        <span class="tk-spark s2">✦</span>
-        <span class="tk-spark s3">✦</span>
-        <span class="tk-spark s4">✦</span>
-        <img src="coin.png" alt="Super Cash Coin" class="tk-coin-img">
-      </div>
-
-      <div class="tk-feature-card right">
-        <div class="eyebrow">Total Supply</div>
-        <div class="big-num">1B</div>
-        <h3>Hard-capped forever</h3>
-        <p>One billion $SCC. No minting, no team unlocks. 3% burn on every sell.</p>
-      </div>
-    </div>
-
-    <!-- Smaller details strip below -->
-    <div class="tk-details-strip">
-      <div class="tk-detail">
-        <div class="lbl">Network</div>
-        <div class="val">opBNB</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Symbol</div>
-        <div class="val">$SCC</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Decimals</div>
-        <div class="val">18</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Rewards</div>
-        <div class="val">USDT</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">Sell Tax</div>
-        <div class="val">3%</div>
-      </div>
-      <div class="tk-detail">
-        <div class="lbl">To Qualify</div>
-        <div class="val">Hold ≥ 1 $SCC</div>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <section class="volume-section">
   <div class="volume-wrap">
