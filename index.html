@@ -240,7 +240,7 @@
     50%{filter:drop-shadow(0 0 60px rgba(255,210,61,0.95));}
   }
   .celebration h2{
-    font-family:'Arial Black','Helvetica',sans-serif;
+    font-family:'Black Ops One','Arial Black',sans-serif;
     font-size:clamp(22px, 3.4vw, 48px);
     font-weight:900;
     letter-spacing:0.005em;
@@ -248,26 +248,62 @@
     text-transform:uppercase;
     max-width:1000px;
     margin:0 auto 16px;
-    color:#ffd23d;
+    color:#fff;
   }
   .celebration h2 .white{color:#fff;}
   .celebration h2 .gold{color:#ffd23d;}
+  .celebration h2 .green{color:#86ed5a;}
   .celebration h2 .tether{color:#ffd23d;white-space:nowrap;}
+  .celebration h2 b.green{
+    display:inline-block;
+    background:#23d76b;
+    color:#0a0a0a;
+    padding:2px 14px 6px;
+    margin:0 6px;
+    border:3px solid #0a0a0a;
+    border-radius:10px;
+    font-family:'Sigmar One','Lilita One',cursive;
+    font-weight:400;
+    transform:translateY(-3px);
+    letter-spacing:0.02em;
+    box-shadow:4px 4px 0 #0a0a0a;
+  }
   .celebration .lead{
-    font-family:'Inter','Helvetica',sans-serif;
-    color:#86ed5a;
-    font-size:clamp(14px, 1.6vw, 20px);
-    font-weight:600;
-    margin:0 auto 6px;
-    max-width:760px;
+    font-family:'Sigmar One','Lilita One',cursive;
+    color:#fff;
+    font-size:clamp(16px, 1.8vw, 22px);
+    font-weight:400;
+    margin:0 auto 8px;
+    max-width:none;
+    line-height:1.4;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    white-space:nowrap;
   }
   .celebration .lead-white{
-    font-family:'Inter','Helvetica',sans-serif;
+    font-family:'Sigmar One','Lilita One',cursive;
     color:#fff;
-    font-size:clamp(13px, 1.4vw, 18px);
-    font-weight:500;
+    font-size:clamp(15px, 1.6vw, 20px);
+    font-weight:400;
     margin:0 auto 30px;
     max-width:760px;
+    line-height:1.6;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+  }
+  .celebration .lead-white b.green{
+    display:inline-block;
+    background:#23d76b;
+    color:#0a0a0a;
+    padding:2px 12px 4px;
+    margin:0 4px;
+    border:2.5px solid #0a0a0a;
+    border-radius:8px;
+    font-family:'Sigmar One','Lilita One',cursive;
+    font-weight:400;
+    transform:translateY(-2px);
+    letter-spacing:0.02em;
+    box-shadow:3px 3px 0 #0a0a0a;
   }
   .celebration .sub{
     color:#888;
@@ -938,7 +974,7 @@
     line-height:1.1;
     margin:0 0 24px;
     color:#fff;
-    font-family:'Arial Black','Arial',sans-serif;
+    font-family:'Black Ops One','Arial Black',sans-serif;
   }
   .dist-title-text .gold,
   .tk-title-text .gold{color:#ffd23d;}
@@ -1279,6 +1315,7 @@
     .celebration{padding:30px 18px 60px;}
     .celebration h2{margin:0 auto 14px;line-height:1.1;}
     .celebration .lead, .celebration .lead-white{padding:0 12px;}
+    .celebration .lead{white-space:normal;font-size:14px;}
       .benefits{margin-top:50px;gap:14px;}
     .benefit{padding:14px 18px;}
 
@@ -2126,48 +2163,74 @@
 <section class="celebration" id="celebrationSection">
   <div class="content">
     <h2>
-      25% OF EVERY BUY GOES BACK<br/>TO HOLDERS IN <span class="white">USD TETHER</span>!
+      25% OF EVERY BUY GOES BACK<br/>TO HOLDERS IN <b class="green">USD TETHER!</b>
     </h2>
     <p class="lead">Imagine how much you can earn in passive income every day!</p>
-    <p class="lead-white">Like earning a wage — steady cashflow!</p>
+    <p class="lead-white">Like earning a wage — <b class="green">steady cashflow!</b></p>
     <div class="celeb-anim-stage">
       <canvas id="distScene"></canvas>
     </div>
 
-    <div class="benefits">
-      <div class="benefit">
-        <div class="b-illust">
-          <img src="tether-logo.png" alt="Tether USDT">
-        </div>
-        <div class="b-text">
-          <h3>GET PAID TETHER</h3>
-          <p>Fully automatic. No mining, claiming or pooling — just add contracts to your wallet.</p>
-        </div>
-      </div>
+    <div class="how-it-works">
+      <p class="hiw-eyebrow">★ Behind The Scenes ★</p>
+      <h3 class="hiw-title">Three Steps. <span class="g">Fully Automatic.</span></h3>
 
-      <div class="benefit">
-        <div class="b-illust">
-          <img src="opbnb-logo.png" alt="opBNB">
+      <div class="hiw-grid">
+        <div class="hiw-step">
+          <span class="hiw-num">01</span>
+          <div class="hiw-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width="4"/>
+              <text x="32" y="44" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="34" font-weight="900" fill="currentColor">$</text>
+            </svg>
+          </div>
+          <h4>Buy In, Become A Holder</h4>
+          <p>$SCC is priced in USDT. Buyers grab some USDT, swap in, and pay a 25% royalty on every trade — that's their ticket into the gang.</p>
         </div>
-        <div class="b-text">
-          <h3>BUILT ON opBNB</h3>
-          <p>Ultra-fast, ultra-cheap transactions = way more frequent distributions to holders.</p>
-        </div>
-      </div>
 
-      <div class="benefit">
-        <div class="b-illust">
-          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="22" width="6" height="11" fill="#ffd23d"/>
-            <rect x="16" y="14" width="6" height="19" fill="#ffd23d"/>
-            <rect x="27" y="6" width="6" height="27" fill="#ffd23d"/>
-            <polyline points="7,18 19,10 31,4" stroke="#ffd23d" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <polygon points="26,4 33,2 31,9" fill="#ffd23d"/>
-          </svg>
+        <div class="hiw-arrow" aria-hidden="true">→</div>
+
+        <div class="hiw-step">
+          <span class="hiw-num">02</span>
+          <div class="hiw-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="14" width="48" height="40" fill="none" stroke="currentColor" stroke-width="4" rx="3"/>
+              <circle cx="40" cy="34" r="9" fill="none" stroke="currentColor" stroke-width="3"/>
+              <circle cx="40" cy="34" r="2" fill="currentColor"/>
+              <line x1="40" y1="25" x2="40" y2="30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              <rect x="14" y="48" width="6" height="9" fill="currentColor"/>
+              <rect x="44" y="48" width="6" height="9" fill="currentColor"/>
+              <line x1="14" y1="22" x2="22" y2="22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Pit Stop, Not Piggy Bank</h4>
+          <p>The vault never sits still — it empties as fast as the network allows. Royalties pool just long enough to snapshot every holder, then they ship straight back out.</p>
         </div>
-        <div class="b-text">
-          <h3>HIGH VOLUME</h3>
-          <p>One of the largest taxes — more volume means more cashflow for you.</p>
+
+        <div class="hiw-arrow" aria-hidden="true">→</div>
+
+        <div class="hiw-step">
+          <span class="hiw-num">03</span>
+          <div class="hiw-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <text x="11" y="13" font-family="'Black Ops One','Arial Black',sans-serif" font-size="11" font-weight="900" fill="currentColor">$</text>
+              <text x="27" y="11" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" font-weight="900" fill="currentColor">$</text>
+              <text x="44" y="13" font-family="'Black Ops One','Arial Black',sans-serif" font-size="11" font-weight="900" fill="currentColor">$</text>
+              <text x="18" y="26" font-family="'Black Ops One','Arial Black',sans-serif" font-size="9" font-weight="900" fill="currentColor">$</text>
+              <text x="34" y="24" font-family="'Black Ops One','Arial Black',sans-serif" font-size="11" font-weight="900" fill="currentColor">$</text>
+              <text x="48" y="26" font-family="'Black Ops One','Arial Black',sans-serif" font-size="9" font-weight="900" fill="currentColor">$</text>
+              <circle cx="10" cy="42" r="4" fill="currentColor"/>
+              <rect x="5" y="47" width="10" height="11" rx="2" fill="currentColor"/>
+              <circle cx="25" cy="42" r="4" fill="currentColor"/>
+              <rect x="20" y="47" width="10" height="11" rx="2" fill="currentColor"/>
+              <circle cx="39" cy="42" r="4" fill="currentColor"/>
+              <rect x="34" y="47" width="10" height="11" rx="2" fill="currentColor"/>
+              <circle cx="54" cy="42" r="4" fill="currentColor"/>
+              <rect x="49" y="47" width="10" height="11" rx="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <h4>Royalties, Auto-Paid</h4>
+          <p>USDT lands in your wallet — or auto-reinvest to compound into more $SCC. No claiming. No mining. Just sit back and watch the cashflow roll in.</p>
         </div>
       </div>
     </div>
@@ -2175,81 +2238,183 @@
 </section>
 
 
+<style>
+  /* ===== HOW IT WORKS — three-step process ===== */
+  .how-it-works{max-width:1180px;margin:60px auto 0;padding:0 8px}
+  .hiw-eyebrow{text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.35em;color:#ffd23d;text-transform:uppercase;margin:0 0 8px}
+  .hiw-title{text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(22px,2.6vw,32px);text-transform:uppercase;letter-spacing:.01em;color:#fff;margin:0 0 36px;line-height:1.2}
+  .hiw-title .g{color:#23d76b}
+
+  .hiw-grid{display:flex;align-items:stretch;justify-content:center;gap:8px;flex-wrap:wrap}
+  .hiw-step{
+    flex:1 1 280px;
+    max-width:340px;
+    background:#0e0e0e;
+    border:1.5px solid rgba(255,210,61,0.25);
+    border-radius:14px;
+    padding:34px 22px 24px;
+    position:relative;
+    text-align:center;
+    transition:transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .hiw-step:hover{
+    border-color:#ffd23d;
+    box-shadow:0 0 24px rgba(255,210,61,0.18), 0 8px 24px rgba(0,0,0,0.4);
+    transform:translateY(-4px);
+  }
+  .hiw-num{
+    position:absolute;
+    top:-16px;
+    left:22px;
+    background:#ffd23d;
+    color:#0a0a0a;
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:16px;
+    padding:5px 14px 6px;
+    border-radius:8px;
+    border:2.5px solid #0a0a0a;
+    box-shadow:3px 3px 0 #0a0a0a;
+    letter-spacing:.08em;
+  }
+  .hiw-icon{
+    width:72px;
+    height:72px;
+    margin:6px auto 18px;
+    color:#ffd23d;
+    filter:drop-shadow(0 0 12px rgba(255,210,61,0.25));
+  }
+  .hiw-icon svg{width:100%;height:100%;display:block}
+  .hiw-step h4{
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:18px;
+    text-transform:uppercase;
+    color:#ffd23d;
+    margin:0 0 12px;
+    letter-spacing:.02em;
+    line-height:1.2;
+  }
+  .hiw-step p{
+    font-family:'Sigmar One','Lilita One',cursive;
+    font-size:13px;
+    color:rgba(255,255,255,0.78);
+    line-height:1.65;
+    margin:0;
+    letter-spacing:.005em;
+  }
+  .hiw-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:28px;
+    color:#ffd23d;
+    opacity:.55;
+    padding:0 4px;
+    text-shadow:0 0 12px rgba(255,210,61,0.4);
+  }
+
+  @media (max-width:860px){
+    .hiw-grid{flex-direction:column;align-items:center}
+    .hiw-step{max-width:440px;width:100%}
+    .hiw-arrow{transform:rotate(90deg);padding:8px 0;font-size:24px}
+  }
+</style>
+
+
 <!-- ============================================================
      opBNB vs SOLANA — fee comparison showdown
      ============================================================ -->
 <section class="vs-section" id="opbnbVsSolana">
   <div class="vs-wrap">
-    <p class="vs-eyebrow">★ Why opBNB</p>
-    <h2 class="vs-title">opBNB <span class="vs-badge-inline">vs</span> <span class="white">Solana</span></h2>
+    <img src="opbnb-logo.png" alt="opBNB" class="vs-hero-logo">
+    <p class="vs-eyebrow">★ Why The Network Matters</p>
+    <h2 class="vs-title">Built On <span class="green">opBNB</span></h2>
     <p class="vs-sub">
-      We pay <b>frequent USDT distributions</b> to every $SCC holder. When you've got <b>100,000+ holders</b> getting paid often, transaction fees add up fast. <br/>opBNB is the cheapest place to do it — by a wide margin.
+      The opBNB network is what makes Super Cash Coin's royalty engine work — fast, cheap, secure, and built for high-frequency payouts to thousands of holders.
     </p>
 
-    <div class="vs-arena">
-      <!-- WINNER: opBNB -->
-      <div class="vs-col win">
-        <div class="vs-logo opbnb">
-          <img src="bnb-logo.png" alt="opBNB" style="width:100%;height:100%;object-fit:contain;">
+    <div class="benefits opb-six">
+      <div class="benefit">
+        <div class="b-illust">
+          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 33 15 A 14 14 0 1 0 28 28" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+            <polyline points="33,4 33,15 22,15" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="19" y="25" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" fill="#ffd23d" font-weight="900">$</text>
+          </svg>
         </div>
-        <h3 class="vs-chain-name">opBNB</h3>
-        <p class="vs-chain-sub">Layer-2 · BNB Chain</p>
-        <div class="vs-fee">
-          <div class="vs-fee-lbl">Avg fee per tx</div>
-          <div class="vs-fee-val">$0.001</div>
-          <div class="vs-fee-unit">USD · stable</div>
-        </div>
-        <div class="vs-stats">
-          <div class="vs-stat"><span class="l">Throughput</span><span class="v">~4,761 TPS</span></div>
-          <div class="vs-stat"><span class="l">Block time</span><span class="v">~1 sec</span></div>
-          <div class="vs-stat"><span class="l">Fee stability</span><span class="v good">Predictable</span></div>
-          <div class="vs-stat"><span class="l">Spikes during chaos</span><span class="v good">Rare</span></div>
+        <div class="b-text">
+          <h3>MORE FREQUENT PAYOUTS</h3>
+          <p>Cheap gas means royalty distributions trigger far more often. More cycles, more cashflow rolling in.</p>
         </div>
       </div>
 
-      <div class="vs-mid"><div class="vs-badge">VS</div></div>
-
-      <!-- Solana -->
-      <div class="vs-col lose">
-        <div class="vs-logo sol">◎</div>
-        <h3 class="vs-chain-name">Solana</h3>
-        <p class="vs-chain-sub">Layer-1</p>
-        <div class="vs-fee">
-          <div class="vs-fee-lbl">Avg fee per tx</div>
-          <div class="vs-fee-val">$0.002+</div>
-          <div class="vs-fee-unit">often higher with priority fees</div>
+      <div class="benefit">
+        <div class="b-illust">
+          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 14 6 L 24 6 M 14 6 L 11 11 M 24 6 L 27 11" fill="none" stroke="#ffd23d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 11 11 L 27 11 Q 34 19 31 28 Q 29 35 19 35 Q 9 35 7 28 Q 4 19 11 11 Z" fill="#ffd23d"/>
+            <text x="19" y="26" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="14" font-weight="900" fill="#0a0a0a">$</text>
+          </svg>
         </div>
-        <div class="vs-stats">
-          <div class="vs-stat"><span class="l">Throughput</span><span class="v">~1,000 real TPS</span></div>
-          <div class="vs-stat"><span class="l">Block time</span><span class="v">~0.4 sec</span></div>
-          <div class="vs-stat"><span class="l">Fee stability</span><span class="v bad">Spiky</span></div>
-          <div class="vs-stat"><span class="l">Spikes during chaos</span><span class="v bad">$0.01–$0.10+</span></div>
+        <div class="b-text">
+          <h3>KEEP MORE REWARDS</h3>
+          <p>At ~$0.001 per transaction, gas barely touches your payouts. Almost every cent lands in your wallet.</p>
         </div>
       </div>
-    </div>
 
-    <!-- Math callout -->
-    <div class="vs-math">
-      <div class="vs-math-lbl">★ The math at scale</div>
-      <div class="vs-math-row">
-        <div class="vs-math-col">
-          <span class="vs-math-num">100,000</span>
-          <span class="vs-math-lbl-sm">holders</span>
+      <div class="benefit">
+        <div class="b-illust">
+          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="22,4 8,21 17,21 14,34 30,16 21,16" fill="#ffd23d"/>
+          </svg>
         </div>
-        <span class="vs-math-x">×</span>
-        <div class="vs-math-col">
-          <span class="vs-math-num">52</span>
-          <span class="vs-math-lbl-sm">weekly payouts/yr</span>
-        </div>
-        <span class="vs-math-x">=</span>
-        <div class="vs-math-col">
-          <span class="vs-math-num">5.2M</span>
-          <span class="vs-math-lbl-sm">transactions/yr</span>
+        <div class="b-text">
+          <h3>LIGHTNING FAST</h3>
+          <p>Sub-second block times. Payouts confirm instantly. No sitting around waiting for your USDT to arrive.</p>
         </div>
       </div>
-      <div class="vs-savings">
-        <span class="row">Solana: <b class="white">$10,400+</b> · opBNB: <b class="green">$5,200</b></span>
-        <span class="caption">That's <b class="gold">~$5,000+ MORE every year</b> staying in your pocket as rewards. At Solana spike prices, the gap is 10× wider.</span>
+
+      <div class="benefit">
+        <div class="b-illust">
+          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 4 14 L 4 9 L 26 9 L 28 12" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+            <rect x="4" y="12" width="30" height="22" rx="3" fill="none" stroke="#ffd23d" stroke-width="3"/>
+            <rect x="22" y="19" width="14" height="9" rx="2" fill="#ffd23d"/>
+            <circle cx="29" cy="23.5" r="1.5" fill="#0a0a0a"/>
+          </svg>
+        </div>
+        <div class="b-text">
+          <h3>USE YOUR WALLET</h3>
+          <p>Fully EVM-compatible. MetaMask, Trust Wallet, whatever you already use. No new logins, no new tools.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="b-illust">
+          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 19 3 L 6 8 L 6 19 Q 6 30 19 35 Q 32 30 32 19 L 32 8 Z" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round"/>
+            <polyline points="13,19 17,23 25,14" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="b-text">
+          <h3>BNB CHAIN SECURITY</h3>
+          <p>Built on top of BNB Chain — one of the largest L1s in crypto. Battle-tested security under the hood.</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="b-illust">
+          <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <line x1="4" y1="14" x2="30" y2="14" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+            <polyline points="24,8 30,14 24,20" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="34" y1="24" x2="8" y2="24" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+            <polyline points="14,18 8,24 14,30" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="b-text">
+          <h3>EASY BRIDGE</h3>
+          <p>Move USDT in and out via the Binance Bridge. One click. No exchange hopping, no friction.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2261,13 +2426,22 @@
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.05'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.04' transform='rotate(15 130 180)'>$</text></svg>");
     background-size:200px 200px;
     color:#fff;
-    padding:80px 60px 90px;
+    padding:80px 32px 90px;
     position:relative;
     overflow:hidden;
     border-top:2px solid #ffd23d;
     border-bottom:2px solid #ffd23d;
   }
   .vs-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+  .vs-hero-logo{
+    display:block;
+    width:128px;
+    height:128px;
+    margin:0 auto 20px;
+    object-fit:contain;
+    border-radius:50%;
+    filter:drop-shadow(0 0 32px rgba(255,210,61,0.3));
+  }
   .vs-eyebrow{
     text-align:center;
     font-family:'Inter',sans-serif;
@@ -2280,213 +2454,38 @@
   }
   .vs-title{
     text-align:center;
-    font-family:'Arial Black',sans-serif;
+    font-family:'Black Ops One','Arial Black',sans-serif;
     font-size:clamp(36px,5vw,52px);
     text-transform:uppercase;
     letter-spacing:.005em;
     line-height:1;
     margin:0 0 16px;
-    color:#ffd23d;
+    color:#fff;
   }
   .vs-title .white{color:#fff;}
-  .vs-title .vs-badge-inline{
-    display:inline-block;
-    color:#0a0a0a;
-    background:#ffd23d;
-    padding:0 14px;
-    margin:0 8px;
-    transform:translateY(-4px);
-    font-size:0.7em;
-    border-radius:8px;
-    box-shadow:0 4px 0 #d9a116;
-  }
+  .vs-title .green{color:#86ed5a;}
+  .vs-title .gold{color:#ffd23d;}
   .vs-sub{
     text-align:center;
-    font-family:'Inter',sans-serif;
+    font-family:'Sigmar One','Lilita One',cursive;
     font-size:clamp(14px,1.3vw,17px);
-    color:rgba(255,255,255,0.78);
-    max-width:760px;
-    margin:0 auto 50px;
+    color:rgba(255,255,255,0.82);
+    max-width:780px;
+    margin:0 auto 44px;
     line-height:1.65;
   }
-  .vs-sub b{color:#ffd23d;font-weight:800;}
+  .vs-sub b{color:#ffd23d;font-weight:400;}
 
-  .vs-arena{
-    display:grid;
-    grid-template-columns:1fr auto 1fr;
-    gap:24px;
-    align-items:stretch;
-    max-width:1100px;
-    margin:0 auto 56px;
+  /* 6-card layout — 3 cols × 2 rows on desktop, 2 cols on tablet, 1 col on mobile */
+  .opb-six{max-width:1100px;}
+  @media (max-width:900px){
+    .opb-six{grid-template-columns:repeat(2,1fr) !important;max-width:680px !important;}
   }
-  .vs-col{
-    border-radius:18px;
-    padding:32px 28px;
-    position:relative;
-    border:2px solid transparent;
+  @media (max-width:580px){
+    .opb-six{grid-template-columns:1fr !important;max-width:480px !important;}
   }
-  .vs-col.win{
-    background:linear-gradient(180deg,rgba(240,185,11,0.08),rgba(240,185,11,0.03));
-    border-color:rgba(240,185,11,0.55);
-    box-shadow:0 0 50px rgba(240,185,11,0.15);
-  }
-  .vs-col.lose{
-    background:rgba(255,255,255,0.03);
-    border-color:rgba(255,255,255,0.1);
-  }
-  .vs-logo{
-    width:60px;height:60px;
-    margin:0 auto 14px;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Arial Black',sans-serif;font-weight:900;
-    overflow:hidden;
-  }
-  .vs-logo.opbnb{background:transparent;}
-  .vs-logo.sol{
-    background:linear-gradient(135deg,#9945ff,#14f195);
-    color:#fff;font-size:28px;
-  }
-  .vs-chain-name{
-    text-align:center;
-    font-family:'Arial Black',sans-serif;
-    font-size:24px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.02em;
-    margin:0 0 4px;
-  }
-  .vs-col.win .vs-chain-name{color:#ffd23d;}
-  .vs-col.lose .vs-chain-name{color:#fff;}
-  .vs-chain-sub{
-    text-align:center;
-    font-family:'Inter',sans-serif;
-    font-size:11px;
-    color:rgba(255,255,255,0.55);
-    margin:0 0 24px;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-  }
-  .vs-fee{
-    text-align:center;
-    margin-bottom:24px;
-    padding:18px 0;
-    border-radius:10px;
-    background:rgba(0,0,0,0.3);
-  }
-  .vs-fee-lbl{
-    font-family:'Inter',sans-serif;
-    font-size:10px;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    color:rgba(255,255,255,0.5);
-    margin-bottom:8px;
-  }
-  .vs-fee-val{
-    font-family:'Arial Black',sans-serif;
-    font-size:40px;
-    line-height:1;
-    color:#fff;
-  }
-  .vs-col.win .vs-fee-val{color:#ffd23d;}
-  .vs-fee-unit{
-    font-family:'Inter',sans-serif;
-    font-size:11px;
-    color:rgba(255,255,255,0.55);
-    margin-top:6px;
-  }
-  .vs-stats{display:flex;flex-direction:column;gap:6px;}
-  .vs-stat{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 4px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    font-family:'Inter',sans-serif;
-    font-size:12.5px;
-  }
-  .vs-stat:last-child{border-bottom:none;}
-  .vs-stat .l{color:rgba(255,255,255,0.65);}
-  .vs-stat .v{color:#fff;font-weight:800;}
-  .vs-stat .v.good{color:#86ed5a;}
-  .vs-stat .v.bad{color:#ff8a8a;}
-
-  .vs-mid{display:flex;align-items:center;justify-content:center;align-self:center;}
-  .vs-badge{
-    width:68px;height:68px;
-    border-radius:50%;
-    background:#0a0a0a;
-    border:3px solid #ffd23d;
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Arial Black',sans-serif;
-    font-weight:900;font-size:22px;color:#ffd23d;
-    box-shadow:0 0 25px rgba(255,210,61,0.35);
-  }
-
-  /* Math callout */
-  .vs-math{
-    max-width:960px;
-    margin:0 auto;
-    padding:32px 36px;
-    background:linear-gradient(135deg,rgba(240,185,11,0.08),rgba(134,237,90,0.05));
-    border:1px solid rgba(255,210,61,0.3);
-    border-radius:16px;
-    text-align:center;
-  }
-  .vs-math-lbl{
-    font-family:'Inter',sans-serif;
-    font-size:11px;font-weight:700;letter-spacing:.2em;
-    color:#86ed5a;text-transform:uppercase;
-    margin-bottom:14px;
-  }
-  .vs-math-row{
-    display:flex;justify-content:center;align-items:center;
-    gap:28px;flex-wrap:wrap;
-    margin-bottom:14px;
-  }
-  .vs-math-col{display:flex;flex-direction:column;align-items:center;}
-  .vs-math-num{
-    font-family:'Arial Black',sans-serif;
-    font-size:clamp(28px,3.5vw,40px);
-    color:#fff;
-    line-height:1;
-  }
-  .vs-math-lbl-sm{
-    font-family:'Inter',sans-serif;
-    font-size:11px;color:rgba(255,255,255,0.7);
-    font-weight:600;letter-spacing:.05em;
-    text-transform:uppercase;margin-top:4px;
-  }
-  .vs-math-x{font-family:'Arial Black',sans-serif;font-size:24px;color:rgba(255,255,255,0.4);}
-  .vs-savings{margin-top:18px;}
-  .vs-savings .row{
-    display:block;
-    font-family:'Arial Black',sans-serif;
-    font-size:clamp(22px,2.8vw,30px);
-    color:#ffd23d;
-    line-height:1.2;
-    margin-bottom:8px;
-  }
-  .vs-savings .row .white{color:#fff;}
-  .vs-savings .row .green{color:#86ed5a;}
-  .vs-savings .caption{
-    display:block;
-    font-family:'Inter',sans-serif;
-    font-size:13px;
-    color:rgba(255,255,255,0.85);
-    font-weight:500;
-    line-height:1.5;
-    max-width:680px;
-    margin:0 auto;
-  }
-  .vs-savings .caption .gold{color:#ffd23d;font-weight:800;}
-
   @media (max-width:760px){
     .vs-section{padding:60px 22px 70px;}
-    .vs-arena{grid-template-columns:1fr;gap:18px;}
-    .vs-mid{order:0;}
-    .vs-badge{margin:0 auto;}
-    .vs-math{padding:24px 18px;}
-    .vs-math-row{gap:14px;}
-    .vs-math-x{font-size:18px;}
   }
 </style>
 
@@ -2774,7 +2773,7 @@
   .htb-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
   .htb-title{
     text-align:center;
-    font-family:'Arial Black','Arial',sans-serif;
+    font-family:'Black Ops One','Arial Black',sans-serif;
     font-size:clamp(40px,6vw,72px);
     font-weight:900;
     letter-spacing:-0.02em;
@@ -3581,25 +3580,27 @@
      CLOSER — "Join the Gang" with floating coin pile accent
      ============================================================ -->
 <section class="cta-section">
-  <img src="coin-pile.png" alt="" class="cta-pile cta-pile-left" aria-hidden="true">
-  <img src="coin-pile.png" alt="" class="cta-pile cta-pile-right" aria-hidden="true">
-
   <div class="cta-wrap">
-    <p class="cta-eyebrow">★ Don't miss the launch</p>
-    <h2 class="cta-title">Join the <span class="yel">Gang.</span></h2>
-    <p class="cta-pitch">
-      Hold <b>$SCC</b>. Get paid <b class="yel">USDT</b> on every transaction. Forever.
-      <br/>Follow us so you don't miss launch day.
-    </p>
-    <div class="cta-buttons">
-      <a class="cta-btn cta-btn-secondary" href="#" aria-label="Join Telegram">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
-        Join Telegram
-      </a>
-      <a class="cta-btn cta-btn-x" href="#" aria-label="Follow on X">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        Follow on X
-      </a>
+    <div class="cta-pile-side" aria-hidden="true">
+      <img src="coin-pile.png" alt="" class="cps-main">
+    </div>
+    <div class="cta-info-side">
+      <p class="cta-eyebrow">★ Don't miss the launch</p>
+      <h2 class="cta-title">Join the <span class="yel">Gang.</span></h2>
+      <p class="cta-pitch">
+        Hold <b>$SCC</b>. Get paid <b class="yel">USDT</b> on every transaction. Forever.
+        <br/>Follow us so you don't miss launch day.
+      </p>
+      <div class="cta-buttons">
+        <a class="cta-btn cta-btn-secondary" href="#" aria-label="Join Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+          Join Telegram
+        </a>
+        <a class="cta-btn cta-btn-x" href="#" aria-label="Follow on X">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Follow on X
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -3611,65 +3612,62 @@
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.05'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.04' transform='rotate(15 130 180)'>$</text></svg>");
     background-size:200px 200px;
     color:#fff;
-    padding:90px 32px 100px;
-    text-align:center;
+    padding:80px 40px;
     overflow:hidden;
     border-top:2px solid #ffd23d;
     border-bottom:2px solid #ffd23d;
   }
 
-  /* Floating coin pile accents — left + right */
-  .cta-pile{
-    position:absolute;
-    pointer-events:none;
-    z-index:1;
-    filter:drop-shadow(0 12px 24px rgba(0,0,0,0.5));
-    opacity:0.85;
-  }
-  .cta-pile-left{
-    left:-30px;
-    bottom:-20px;
-    width:200px;
-    transform:rotate(-8deg);
-    animation:ctaPileBobL 5s ease-in-out infinite;
-  }
-  .cta-pile-right{
-    right:-30px;
-    top:-20px;
-    width:160px;
-    transform:rotate(15deg);
-    animation:ctaPileBobR 6s ease-in-out infinite;
-    opacity:0.7;
-  }
-  @keyframes ctaPileBobL{
-    0%,100%{transform:rotate(-8deg) translateY(0);}
-    50%{transform:rotate(-6deg) translateY(-10px);}
-  }
-  @keyframes ctaPileBobR{
-    0%,100%{transform:rotate(15deg) translateY(0);}
-    50%{transform:rotate(13deg) translateY(-8px);}
-  }
-
   .cta-wrap{
-    max-width:720px;
+    max-width:1200px;
     margin:0 auto;
+    display:flex;
+    align-items:center;
+    gap:60px;
     position:relative;
     z-index:2;
   }
+
+  /* Left side — big coin pile */
+  .cta-pile-side{
+    flex:0 0 45%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+  }
+  .cps-main{
+    width:100%;
+    max-width:520px;
+    height:auto;
+    filter:drop-shadow(0 24px 40px rgba(0,0,0,0.65)) drop-shadow(0 0 60px rgba(255,210,61,0.15));
+    animation:cpsBob 6s ease-in-out infinite;
+  }
+  @keyframes cpsBob{
+    0%,100%{transform:translateY(0) rotate(-1deg);}
+    50%{transform:translateY(-10px) rotate(1deg);}
+  }
+
+  /* Right side — info */
+  .cta-info-side{
+    flex:1;
+    text-align:left;
+    min-width:0;
+  }
   .cta-eyebrow{
     font-family:'Inter','Arial',sans-serif;
-    font-size:11px;
+    font-size:12px;
     letter-spacing:.3em;
     color:#ffd23d;
     text-transform:uppercase;
     font-weight:700;
-    margin:0 0 14px;
+    margin:0 0 16px;
   }
   .cta-title{
-    font-family:'Arial Black','Arial',sans-serif;
-    font-size:clamp(40px,5.5vw,64px);
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:clamp(44px,5.5vw,72px);
     line-height:1;
-    margin:0 0 18px;
+    margin:0 0 22px;
     color:#fff;
     text-transform:uppercase;
     letter-spacing:.005em;
@@ -3678,16 +3676,16 @@
   .cta-pitch{
     font-family:'Inter','Arial',sans-serif;
     font-size:clamp(14px,1.3vw,17px);
-    color:rgba(255,255,255,0.8);
+    color:rgba(255,255,255,0.85);
     line-height:1.65;
-    margin:0 auto 32px;
-    max-width:560px;
+    margin:0 0 32px;
+    max-width:520px;
   }
   .cta-pitch b{color:#fff;font-weight:800;}
   .cta-pitch b.yel{color:#ffd23d;font-weight:800;}
   .cta-buttons{
     display:flex;
-    justify-content:center;
+    justify-content:flex-start;
     gap:12px;
     flex-wrap:wrap;
   }
@@ -3728,15 +3726,25 @@
     box-shadow:0 6px 0 #135675;
   }
 
-  @media (max-width:760px){
-    .cta-section{padding:70px 22px 80px;}
-    .cta-pile-left{width:140px;left:-40px;bottom:-20px;}
-    .cta-pile-right{width:110px;right:-30px;top:-10px;}
+  @media (max-width:900px){
+    .cta-wrap{
+      flex-direction:column;
+      gap:30px;
+      text-align:center;
+    }
+    .cta-pile-side{
+      flex:0 0 auto;
+      width:100%;
+    }
+    .cps-main{max-width:340px;}
+    .cta-info-side{text-align:center;}
+    .cta-pitch{margin-left:auto;margin-right:auto;}
+    .cta-buttons{justify-content:center;}
   }
   @media (max-width:480px){
-    .cta-pile-left{width:110px;opacity:0.5;}
-    .cta-pile-right{width:90px;opacity:0.4;}
-    .cta-buttons{flex-direction:column;align-items:stretch;}
+    .cta-section{padding:60px 22px;}
+    .cps-main{max-width:260px;}
+    .cta-buttons{flex-direction:column;align-items:stretch;width:100%;}
     .cta-btn{justify-content:center;}
   }
 </style>
@@ -4725,6 +4733,7 @@ window.addEventListener('resize',()=>{
     p.userData.phase=Math.random()*Math.PI*2;
     p.userData.state='holder';
     p.userData.slotIdx=0;
+    p.userData.bagSize=3 + Math.random()*2.5; // 3.0–5.5 — locked reward $ size for this holder
     slotOccupied[0]=true;
     sc.add(p);
     holders.push(p);
@@ -4759,10 +4768,11 @@ window.addEventListener('resize',()=>{
     return sp;
   }
   const sprites=[];
-  function spawnSprite(x, y, z, amount, isTax){
+  function spawnSprite(x, y, z, amount, isTax, size){
     if(sprites.length > 40) return;
     const sp = makeMoneyText(amount, isTax);
     sp.position.set(x, y, z);
+    if(typeof size === 'number') sp.scale.set(size, size, 1);
     sp.userData={vy: 6 + Math.random()*2, life:0, maxLife: 1.6 + Math.random()*0.3};
     sc.add(sp);
     sprites.push(sp);
@@ -4910,8 +4920,8 @@ window.addEventListener('resize',()=>{
         const front = queue[0];
         const fx = front.position.x;
         const fz = front.position.z;
-        // Red $ sign over the front buyer (money leaving them — they're spending)
-        spawnSprite(fx + 1, 17, fz, '$', true);
+        // Red $ sign over the front buyer — big, since it's their whole transaction tax
+        spawnSprite(fx + 1, 17, fz, '$', true, 9);
         // Green cash bills fly from buyer → counter (cash is always green)
         for(let i=0;i<4;i++){
           setTimeout(() => {
@@ -4932,7 +4942,7 @@ window.addEventListener('resize',()=>{
           setTimeout(() => {
             if(!started) return;
             holders.forEach((h) => {
-              spawnSprite(h.position.x, 18, h.position.z, '$', false);
+              spawnSprite(h.position.x, 18, h.position.z, '$', false, h.userData.bagSize);
               spawnFlyingBill(14, 14, 0, h.position.x + (Math.random()-0.5)*2, 11, h.position.z, false, 10);
               h.userData.receivedTimer = 0.7;
             });
@@ -5015,6 +5025,7 @@ window.addEventListener('resize',()=>{
               w.rotation.y = w.userData.walkTargetRot;
               w.userData.state = 'holder';
               w.userData.phase = Math.random()*Math.PI*2;
+              w.userData.bagSize = 3 + Math.random()*2.5; // 3.0–5.5 — locked reward $ size
               // Reset arms to idle pose
               if(w.userData.armL){
                 w.userData.armL.rotation.z = 0.95;
