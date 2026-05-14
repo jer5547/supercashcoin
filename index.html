@@ -2399,17 +2399,6 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
             </button>
           </div>
-
-          <div class="htb-contract">
-            <img src="bnb-logo.png" alt="BNB" class="ctr-icon">
-            <div class="ctr-meta">
-              <div class="ctr-label">Gas Contract Address · <b>$BNB</b> · 18 decimals</div>
-              <div class="ctr-addr">Available at launch — stay tuned</div>
-            </div>
-            <button class="ctr-copy" title="Available at launch" disabled>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-            </button>
-          </div>
         </div>
 
         <div class="htb-divider">
@@ -2429,10 +2418,10 @@
           </div>
           <div class="htb-step-right">
             <h4>Get a Wallet</h4>
-            <p>Grab <span class="gold">MetaMask</span>, add the <span class="gold">opBNB</span> network and a bit of <span class="gold">BNB</span> for gas. Takes 2 minutes.</p>
+            <p>Grab <span class="gold">MetaMask</span> and add the <span class="gold">opBNB</span> network. Takes 2 minutes.</p>
             <div class="htb-links">
               <a class="htb-link" href="https://metamask.io" target="_blank" rel="noopener">Click here to get MetaMask</a>
-              <a class="htb-link" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">Click here to integrate with opBNB</a>
+              <a class="htb-link" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">Click here to add opBNB network</a>
             </div>
           </div>
         </div>
@@ -2441,15 +2430,15 @@
           <div class="htb-step-left">
             <div class="htb-num">02</div>
             <div class="htb-step-pic">
-              <img src="step3-buy.png" alt="Get some crypto">
+              <img src="bnb-logo.png" alt="Get BNB for gas">
             </div>
           </div>
           <div class="htb-step-right">
-            <h4>Get Some Crypto</h4>
-            <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> (or any exchange), then bridge it to your wallet on opBNB. That's our trading currency.</p>
+            <h4>Get BNB For Gas</h4>
+            <p>You need a tiny bit of <span class="gold">BNB</span> to pay gas on opBNB. Buy <span class="gold">BNB</span> on <span class="gold">Binance</span>, withdraw to BSC, then <b>bridge it over to opBNB</b>.</p>
             <div class="htb-links">
-              <a class="htb-link" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">Click here to top up USDT</a>
-              <a class="htb-link" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">Click here to top up BNB</a>
+              <a class="htb-link" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">Click here to buy BNB</a>
+              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Click here to bridge to opBNB</a>
             </div>
           </div>
         </div>
@@ -2457,6 +2446,23 @@
         <div class="htb-step">
           <div class="htb-step-left">
             <div class="htb-num">03</div>
+            <div class="htb-step-pic">
+              <img src="step3-buy.png" alt="Buy USDT">
+            </div>
+          </div>
+          <div class="htb-step-right">
+            <h4>Buy USDT</h4>
+            <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> (or any exchange), then <b>bridge it over to opBNB</b>. That's our trading currency for $SCC.</p>
+            <div class="htb-links">
+              <a class="htb-link" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">Click here to top up USDT</a>
+              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Click here to bridge to opBNB</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="htb-step">
+          <div class="htb-step-left">
+            <div class="htb-num">04</div>
             <div class="htb-step-pic">
               <img src="step2-trade.png" alt="Buy Super Cash Coin">
             </div>
@@ -2570,8 +2576,8 @@
 
   .htb-layout{
     display:grid;
-    grid-template-columns:380px 1fr;
-    gap:60px;
+    grid-template-columns:460px 1fr;
+    gap:44px;
     align-items:stretch;
   }
   .htb-phone-stage{display:flex;justify-content:center;align-items:center;}
@@ -2697,18 +2703,18 @@
   .htb-contract .ctr-copy svg{width:100%;height:100%;display:block;}
 
   /* Steps column — Style 2: white card with gold border, matches contracts */
-  .htb-steps{display:flex;flex-direction:column;gap:10px;flex:1;}
+  .htb-steps{display:flex;flex-direction:column;gap:8px;flex:1;}
   .htb-step{
     display:grid;
-    grid-template-columns:120px 1fr;
-    border-radius:14px;
+    grid-template-columns:90px 1fr;
+    border-radius:12px;
     overflow:hidden;
     background:#fff;
     border:1.5px solid #ffd23d;
     box-shadow:0 6px 20px rgba(0,0,0,0.06);
     transition:transform .25s, box-shadow .25s;
     flex:1;
-    min-height:90px;
+    min-height:78px;
   }
   .htb-step:hover{
     transform:translateY(-3px);
@@ -2723,22 +2729,22 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:14px;
+    padding:10px;
   }
   .htb-num{
     position:absolute;
-    top:6px;
-    left:10px;
+    top:4px;
+    left:7px;
     font-family:'Arial Black',sans-serif;
     font-weight:900;
-    font-size:18px;
+    font-size:15px;
     color:rgba(10,10,10,0.2);
     line-height:1;
     z-index:1;
   }
   .htb-step-pic{
-    width:78px;
-    height:78px;
+    width:58px;
+    height:58px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -2753,20 +2759,33 @@
     object-fit:contain;
     display:block;
   }
+  /* BNB logo is a tight flat icon — scale it down so it doesn't overpower */
+  .htb-step-pic img[src*="bnb-logo"]{
+    width:72%;
+    height:72%;
+    margin:auto;
+  }
+  /* Swap/trade icon has more whitespace — scale it up so it reads better */
+  .htb-step-pic img[src*="step2-trade"]{
+    width:120%;
+    height:120%;
+    max-width:none;
+    transform:scale(1.15);
+  }
 
   /* RIGHT — clean white side */
   .htb-step-right{
     background:#fff;
-    padding:14px 18px;
+    padding:10px 14px;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    gap:4px;
+    gap:3px;
   }
   .htb-step-right h4{
-    margin:0 0 3px;
+    margin:0 0 2px;
     font-family:'Arial Black',sans-serif;
-    font-size:17px;
+    font-size:14px;
     text-transform:uppercase;
     letter-spacing:.02em;
     color:#0a0a0a;
@@ -2775,9 +2794,9 @@
   .htb-step-right p{
     margin:0;
     font-family:'Inter','Arial',sans-serif;
-    font-size:13px;
+    font-size:12px;
     color:#666;
-    line-height:1.5;
+    line-height:1.45;
     font-weight:500;
   }
   .htb-step-right p .gold{color:#c79a0c;font-weight:700;}
@@ -2785,20 +2804,20 @@
   /* Action links */
   .htb-links{
     display:flex;
-    gap:8px;
+    gap:6px;
     flex-wrap:wrap;
-    margin-top:6px;
+    margin-top:4px;
   }
   .htb-link{
     display:inline-flex;
     align-items:center;
     gap:5px;
-    padding:5px 11px;
+    padding:4px 10px;
     background:#ffd23d;
     border:1px solid #d9a116;
     border-radius:999px;
     font-family:'Inter','Arial',sans-serif;
-    font-size:10.5px;
+    font-size:10px;
     font-weight:700;
     color:#0a0a0a;
     text-decoration:none;
@@ -4267,7 +4286,7 @@
 <section class="cta-section">
   <div class="cta-wrap">
     <div class="cta-pile-side" aria-hidden="true">
-      <img src="coin-pile.png" alt="" class="cps-main">
+      <img src="scc-mascot.png" alt="" class="cps-main">
     </div>
     <div class="cta-info-side">
       <p class="cta-eyebrow">★ Don't miss the launch</p>
@@ -4315,7 +4334,7 @@
 
   /* Left side — big coin pile */
   .cta-pile-side{
-    flex:0 0 45%;
+    flex:0 0 55%;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -4323,7 +4342,7 @@
   }
   .cps-main{
     width:100%;
-    max-width:520px;
+    max-width:720px;
     height:auto;
     filter:drop-shadow(0 24px 40px rgba(0,0,0,0.65)) drop-shadow(0 0 60px rgba(255,210,61,0.15));
     animation:cpsBob 6s ease-in-out infinite;
@@ -4421,14 +4440,14 @@
       flex:0 0 auto;
       width:100%;
     }
-    .cps-main{max-width:340px;}
+    .cps-main{max-width:480px;}
     .cta-info-side{text-align:center;}
     .cta-pitch{margin-left:auto;margin-right:auto;}
     .cta-buttons{justify-content:center;}
   }
   @media (max-width:480px){
     .cta-section{padding:60px 22px;}
-    .cps-main{max-width:260px;}
+    .cps-main{max-width:340px;}
     .cta-buttons{flex-direction:column;align-items:stretch;width:100%;}
     .cta-btn{justify-content:center;}
   }
