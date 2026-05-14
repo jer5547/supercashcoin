@@ -747,15 +747,22 @@
   @media (max-width:900px){
     .tk-hero-row{
       grid-template-columns:1fr;
-      gap:24px;
+      gap:14px;
     }
-    .tk-feature-card{padding:30px 24px;}
+    .tk-coin-stage{margin:30px auto 0 !important;}
+    .tk-feature-card{padding:18px 18px 16px;}
     .tk-feature-card.right{text-align:left;}
+    .tk-feature-card .eyebrow{margin-bottom:10px;font-size:10px;padding:2px 10px 3px;}
+    .tk-feature-card .big-num{font-size:64px;margin-bottom:6px;line-height:1;}
+    .tk-feature-card h3{font-size:16px;margin:0 0 6px;}
+    .tk-feature-card p{font-size:12.5px;line-height:1.45;}
     .tk-details-strip{grid-template-columns:repeat(3,1fr);}
   }
   @media (max-width:600px){
     .tk-details-strip{grid-template-columns:repeat(2,1fr);}
-    .tk-feature-card .big-num{font-size:64px;}
+    .tk-feature-card{padding:16px 16px 14px;}
+    .tk-feature-card .big-num{font-size:56px;}
+    .tk-feature-card h3{font-size:15px;}
   }
   /* === END OPTION 3 LAYOUT === */
 
@@ -2144,9 +2151,34 @@
   }
 
   @media (max-width:860px){
-    .hiw-grid{flex-direction:column;align-items:center}
-    .hiw-step{max-width:440px;width:100%}
-    .hiw-arrow{transform:rotate(90deg);padding:8px 0;font-size:24px}
+    .hiw-grid{
+      flex-direction:column !important;
+      align-items:center !important;
+      gap:8px !important;
+    }
+    .hiw-step{
+      flex:0 0 auto !important;
+      max-width:440px !important;
+      width:100% !important;
+      padding:12px 14px !important;
+      min-height:0 !important;
+      height:auto !important;
+      display:block !important;
+    }
+    .hiw-num{
+      position:static !important;
+      display:inline-block !important;
+      margin:0 0 4px !important;
+      font-size:10px !important;
+    }
+    .hiw-icon{
+      width:30px !important;
+      height:30px !important;
+      margin:2px auto 6px !important;
+    }
+    .hiw-step h4{font-size:12px !important;margin:0 0 4px !important;}
+    .hiw-step p{font-size:11px !important;line-height:1.4 !important;margin:0 !important;}
+    .hiw-arrow{display:none !important;}
   }
 </style>
 
@@ -2419,8 +2451,8 @@
             <h4>Get a Wallet</h4>
             <p>Grab <span class="gold">MetaMask</span> and add the <span class="gold">opBNB</span> network. Takes 2 minutes.</p>
             <div class="htb-links">
-              <a class="htb-link" href="https://metamask.io" target="_blank" rel="noopener">Click here to get MetaMask</a>
-              <a class="htb-link" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">Click here to add opBNB network</a>
+              <a class="htb-link" href="https://metamask.io" target="_blank" rel="noopener">Get MetaMask</a>
+              <a class="htb-link" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">Add opBNB</a>
             </div>
           </div>
         </div>
@@ -2436,8 +2468,8 @@
             <h4>Get BNB For Gas</h4>
             <p>You need a tiny bit of <span class="gold">BNB</span> to pay gas on opBNB. Buy <span class="gold">BNB</span> on <span class="gold">Binance</span>, withdraw to BSC, then <b>bridge it over to opBNB</b>.</p>
             <div class="htb-links">
-              <a class="htb-link" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">Click here to buy BNB</a>
-              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Click here to bridge to opBNB</a>
+              <a class="htb-link" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">Buy BNB</a>
+              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Bridge BNB</a>
             </div>
           </div>
         </div>
@@ -2453,8 +2485,8 @@
             <h4>Buy USDT</h4>
             <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> (or any exchange), then <b>bridge it over to opBNB</b>. That's our trading currency for $SCC.</p>
             <div class="htb-links">
-              <a class="htb-link" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">Click here to top up USDT</a>
-              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Click here to bridge to opBNB</a>
+              <a class="htb-link" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">Get USDT</a>
+              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Bridge USDT</a>
             </div>
           </div>
         </div>
@@ -2470,7 +2502,7 @@
             <h4>Buy Super Cash Coin</h4>
             <p>Swap <span class="gold">USDT</span> → <span class="gold">$SCC</span> on the Trade Centre. Turn on <span class="gold">auto-reinvest</span> to compound rewards.</p>
             <div class="htb-links">
-              <a class="htb-link" href="#" target="_blank" rel="noopener">Click here to buy on the Trade Centre</a>
+              <a class="htb-link" href="#" target="_blank" rel="noopener">Open Trade Centre</a>
             </div>
           </div>
         </div>
@@ -2831,7 +2863,7 @@
 
   /* Responsive: stack on mobile */
   @media (max-width:900px){
-    .htb-section{padding:60px 22px 70px;}
+    .htb-section{padding:60px 22px 30px;}
     .htb-layout{grid-template-columns:1fr;gap:36px;}
     .htb-phone-stage{order:1;}
     .htb-phone-stage .wallet-device,
@@ -2849,7 +2881,7 @@
     .htb-link{font-size:10px;padding:5px 9px;}
   }
   @media (max-width:600px){
-    .htb-section{padding:50px 14px 60px;}
+    .htb-section{padding:50px 14px 24px;}
     .htb-step{grid-template-columns:1fr;}
     .htb-step-left{padding:24px 18px 18px;}
     .htb-step-pic{width:96px;height:96px;}
@@ -3432,7 +3464,7 @@
   .cf-lb-row.compact .reward .u{display:none}
 
   @media (max-width:900px){
-    .cf-section{padding:50px 18px 60px}
+    .cf-section{padding:24px 18px 60px}
     .cf-split{grid-template-columns:1fr;gap:14px}
     .cf-lb-stage{height:580px}
     .cf-trolley-stage{height:280px}
@@ -5029,11 +5061,12 @@ window.addEventListener('resize',()=>{
 
 <script>
 // === BUYING → CONTRACT → HOLDING — Queue pays tax, then all holders split it simultaneously ===
-(function(){
+(function initDistScene(){
   const canvas=document.getElementById('distScene');
-  if(!canvas||!window.THREE)return;
+  if(!canvas){console.warn('distScene canvas not found');return;}
+  if(!window.THREE){console.warn('THREE not loaded yet, retrying...');setTimeout(initDistScene,200);return;}
   let Wd=canvas.clientWidth, Hd=canvas.clientHeight;
-  if(Wd===0||Hd===0)return;
+  if(Wd===0||Hd===0){console.warn('distScene canvas has 0 size, retrying...');setTimeout(initDistScene,200);return;}
 
   const sc=new THREE.Scene();
   const cam=new THREE.PerspectiveCamera(38, Wd/Hd, 0.1, 600);
