@@ -1133,7 +1133,17 @@
     animation:pulse 1.5s ease-in-out infinite;flex-shrink:0;
   }
   .top-banner b{color:#ffd23d;font-weight:900;}
-  .top-banner .price{font-size:14px;letter-spacing:0.03em;}
+  .top-banner .price{
+    font-size:14px;
+    letter-spacing:0.03em;
+    background:#0a0a0a;
+    color:#ffd23d;
+    padding:1px 10px 2px;
+    border:1.5px solid #ffd23d;
+    border-radius:4px;
+    display:inline-block;
+    font-weight:900;
+  }
   .top-banner .banner-only{opacity:0.85;}
 
   /* ============================================================
@@ -3193,7 +3203,35 @@
   .cf-cashflow .amt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(40px,5.5vw,64px);color:#0a0a0a;line-height:1;margin:14px 0 8px;transition:transform 0.2s,color 0.2s}
   .cf-cashflow .amt.flash{color:#23a04b;transform:scale(1.06)}
   .cf-cashflow .unit{font-size:11px;color:rgba(10,10,10,0.65);text-transform:uppercase;letter-spacing:.2em;font-weight:bold}
-  .cf-cashflow .extra{font-size:12px;color:rgba(10,10,10,0.55);margin-top:12px}
+  .cf-cashflow .extra{
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:clamp(13px,1.6vw,17px);
+    color:#0a0a0a;
+    margin-top:18px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    animation:cfExtraWiggle 3s ease-in-out infinite
+  }
+  .cf-cashflow .extra .yr-amt{
+    background:#23d76b;
+    color:#0a0a0a;
+    border:2.5px solid #0a0a0a;
+    border-radius:6px;
+    padding:2px 12px 3px;
+    box-shadow:3px 3px 0 #0a0a0a;
+    display:inline-block;
+    font-size:clamp(15px,1.9vw,20px);
+    letter-spacing:.04em;
+    transform:translateY(-1px);
+    transition:transform 0.2s
+  }
+  .cf-cashflow .extra .star{color:#ffd23d;text-shadow:1.5px 1.5px 0 #0a0a0a}
+  @keyframes cfExtraWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-0.4deg)}75%{transform:rotate(0.4deg)}}
   .cf-sparkles{position:absolute;left:50%;top:50%;width:0;height:0;pointer-events:none}
   .cf-sparkle{position:absolute;color:#ffb800;font-size:16px;font-weight:bold;pointer-events:none;animation:cfSparkAnim 0.7s ease-out forwards;text-shadow:0 0 6px rgba(255,210,61,0.7)}
   @keyframes cfSparkAnim{0%{opacity:0;transform:translate(0,0) scale(0) rotate(0deg)}40%{opacity:1;transform:translate(var(--dx),var(--dy)) scale(1) rotate(180deg)}100%{opacity:0;transform:translate(calc(var(--dx)*1.6),calc(var(--dy)*1.6)) scale(0.3) rotate(360deg)}}
@@ -3257,7 +3295,10 @@
   .cf-lb-header .g{color:#0a0a0a;font-size:16px;background:#ffd23d;border:2px solid #ffd23d;border-radius:6px;padding:0 8px 1px;margin:0 4px;box-shadow:0 0 0 2px #0a0a0a}
 
   .cf-lb-stage{position:relative;height:740px;border:3px solid #0a0a0a;border-radius:16px;background:linear-gradient(180deg,#fff,#f5f5ef);overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
-  .cf-lb-list-wrap{position:absolute;left:10px;right:10px;top:52px;bottom:10px;overflow:hidden;border-radius:10px}
+  .cf-lb-list-wrap{position:absolute;left:10px;right:10px;top:52px;bottom:10px;overflow-y:auto;overflow-x:hidden;border-radius:10px;scrollbar-width:thin;scrollbar-color:#ffd23d transparent}
+  .cf-lb-list-wrap::-webkit-scrollbar{width:6px}
+  .cf-lb-list-wrap::-webkit-scrollbar-track{background:transparent}
+  .cf-lb-list-wrap::-webkit-scrollbar-thumb{background:#ffd23d;border-radius:3px;border:1px solid #0a0a0a}
   .cf-lb-list{position:absolute;left:0;right:0;top:0;height:1820px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1);will-change:transform}
   .cf-lb-row{position:absolute;left:0;right:0;height:64px;background:#fff;border:2px solid #0a0a0a;border-radius:11px;display:flex;align-items:center;padding:0 14px 0 18px;gap:11px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),background 0.3s,border-color 0.3s,box-shadow 0.3s;will-change:transform;box-shadow:3px 3px 0 rgba(10,10,10,0.6)}
   .cf-lb-row .rank{font-family:'Black Ops One','Arial Black',sans-serif;font-size:17px;color:rgba(10,10,10,0.6);min-width:26px;text-align:center}
@@ -3325,7 +3366,7 @@
           <div class="lbl">Your Daily Cashflow</div>
           <div class="amt" id="cfPayAmt">$0</div>
           <div class="unit">USDT per day</div>
-          <div class="extra" id="cfPayExtra">that's $0/year</div>
+          <div class="extra" id="cfPayExtra"><span class="star">★</span> That's <span class="yr-amt">$0</span> a year <span class="star">★</span></div>
           <div class="cf-sparkles" id="cfSparkles"></div>
         </div>
         <div class="cf-s-row">
@@ -3460,15 +3501,16 @@
     scc.style.transform='translateY('+getSlotY(rank)+'px)';
     applyMedalClass(scc,rank);
     document.getElementById('cfSccRankNum').textContent=rank;
-    // Scroll the visible window so SCC stays in view
+    // Scroll the visible window so SCC is CENTERED — user sees ranks above AND below
     const wrap=lbStage.querySelector('.cf-lb-list-wrap');
     const wrapH=wrap?wrap.clientHeight:560;
     const sccTop=getSlotY(rank);
     const sccH=slotH(rank);
-    const sccBottom=sccTop+sccH;
     const totalH=totalListH();
-    let scrollY=0;
-    if(sccBottom>wrapH){scrollY=Math.min(sccBottom-wrapH+20,Math.max(0,totalH-wrapH));}
+    // Target: SCC's vertical center sits at the wrapper's vertical center
+    let scrollY=sccTop + sccH/2 - wrapH/2;
+    // Clamp so we don't scroll past the top or bottom of the list
+    scrollY=Math.max(0,Math.min(scrollY,Math.max(0,totalH-wrapH)));
     lbList.style.transform='translateY('+(-scrollY)+'px)';
   }
 
@@ -3502,7 +3544,7 @@
     const total=coin.volume_24h*0.125,share=total*(holdPct/100);
     const f=fmt(share);
     if(payAmt.textContent!==f){payAmt.textContent=f;flashPay();}
-    payExtra.textContent="that's "+fmt(share*365)+'/year';
+    payExtra.innerHTML='<span class="star">★</span> That\'s <span class="yr-amt">'+fmt(share*365)+'</span> a year <span class="star">★</span>';
     const sccAmt=document.getElementById('cfSccAmt');
     if(sccAmt)sccAmt.textContent=fmt(total);
     // 70% holdings (max — team owns 30%) → 300 coins; always show at least 1 coin if holdings > 0
@@ -3552,7 +3594,7 @@
     const W=canvas.clientWidth||300,H=canvas.clientHeight||320;
     const scene=new THREE.Scene();
     const camera=new THREE.PerspectiveCamera(32,W/H,0.1,100);
-    camera.position.set(5.4,6.4,10.0);camera.lookAt(0,1.8,0);
+    camera.position.set(4.0,4.6,7.4);camera.lookAt(0,1.1,0);
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
     renderer.setSize(W,H,false);renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
     scene.add(new THREE.AmbientLight(0xffffff,0.78));
@@ -3749,7 +3791,7 @@
     .then(r=>{if(!r.ok)throw new Error('fetch failed');return r.json();})
     .then(data=>{
       if(!data||!Array.isArray(data.coins)||!data.coins.length){throw new Error('no coins');}
-      memeCoins=data.coins.slice(0,30);
+      memeCoins=data.coins.slice(0,TARGET_COUNT);
       buildLeaderboard();
       update();
     })
