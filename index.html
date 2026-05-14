@@ -557,65 +557,141 @@
     margin:0 auto 50px;
   }
   .tk-feature-card{
-    background:linear-gradient(135deg,rgba(255,210,61,0.12) 0%,rgba(255,210,61,0.03) 100%);
-    border:1px solid rgba(255,210,61,0.25);
-    border-radius:18px;
-    padding:40px;
     position:relative;
-    overflow:hidden;
+    background:#0a0a0a;
+    border:3px solid #ffd23d;
+    border-radius:0;
+    box-shadow:6px 6px 0 #ffd23d,6px 6px 0 5px #0a0a0a;
+    padding:34px 28px 28px;
+    color:#fff;
+    overflow:visible;
+    font-family:'Inter','Arial',sans-serif;
   }
-  .tk-feature-card::after{
-    content:'';
+  /* Red corner tag */
+  .tk-feature-card .corner-tag{
     position:absolute;
-    top:-50%;
-    right:-50%;
-    width:100%;
-    height:100%;
-    background:radial-gradient(circle,rgba(255,210,61,0.15) 0%,transparent 50%);
-    pointer-events:none;
-  }
-  .tk-feature-card.right{text-align:right;}
-  .tk-feature-card .eyebrow{
-    font-size:11px;
-    font-weight:900;
-    color:#ffd23d;
-    letter-spacing:0.2em;
+    top:-14px;
+    left:-3px;
+    background:#cc2a2a;
+    color:#fff;
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:10px;
+    padding:4px 14px 5px;
+    letter-spacing:.18em;
+    border:2px solid #0a0a0a;
     text-transform:uppercase;
+    box-shadow:2px 2px 0 #0a0a0a;
+    transform:rotate(-3deg);
+    z-index:2;
+    white-space:nowrap;
+  }
+  .tk-feature-card.right .corner-tag{left:auto;right:-3px;transform:rotate(3deg);}
+  /* 3 ★ stars in opposite top corner */
+  .tk-feature-card .corner-stars{
+    position:absolute;
+    top:14px;
+    right:18px;
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    color:#ffd23d;
+    font-size:14px;
+    letter-spacing:.2em;
+    opacity:0.6;
+  }
+  .tk-feature-card.right .corner-stars{left:18px;right:auto;}
+
+  .tk-feature-card.right{text-align:right;}
+
+  /* Gold pill eyebrow */
+  /* Gold pill eyebrow */
+  .tk-feature-card .eyebrow{
+    display:inline-block;
+    background:#ffd23d;
+    color:#0a0a0a;
+    padding:3px 12px 4px;
+    border-radius:5px;
+    border:2px solid #0a0a0a;
+    letter-spacing:.18em;
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:11px;
+    box-shadow:2.5px 2.5px 0 #0a0a0a;
+    margin-bottom:20px;
+    text-transform:uppercase;
+    position:relative;
+    z-index:1;
+  }
+  .tk-feature-card.right .eyebrow{margin-left:auto;}
+
+  /* Big number — comic stamp gold */
+  .tk-feature-card .big-num{
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:clamp(76px,8.5vw,108px);
+    font-weight:900;
+    line-height:0.92;
+    background:linear-gradient(180deg,#ffffff 0%,#fff493 22%,#ffd23d 55%,#c79a0c 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    -webkit-text-stroke:1.5px #4a3402;
+    filter:
+      drop-shadow(3px 4px 0 #0a0a0a)
+      drop-shadow(5px 7px 12px rgba(0,0,0,0.5));
+    letter-spacing:-0.03em;
     margin-bottom:14px;
     position:relative;
     z-index:1;
   }
-  .tk-feature-card .big-num{
-    font-family:'Arial Black','Arial',sans-serif;
-    font-size:clamp(72px,8vw,104px);
-    font-weight:900;
-    line-height:0.95;
-    background:linear-gradient(180deg,#ffe884 0%,#ffd23d 60%,#c79a0c 100%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    -webkit-text-fill-color:transparent;
-    letter-spacing:-0.04em;
-    margin-bottom:8px;
-    position:relative;
-    z-index:1;
-  }
+
   .tk-feature-card h3{
+    font-family:'Black Ops One','Arial Black',sans-serif;
     font-size:20px;
     font-weight:900;
     color:#fff;
-    margin:0 0 8px;
-    letter-spacing:-0.01em;
+    margin:0 0 10px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    text-shadow:2px 2px 0 #0a0a0a;
     position:relative;
     z-index:1;
   }
   .tk-feature-card p{
-    font-size:13px;
-    color:#999;
+    font-family:'Inter','Arial',sans-serif;
+    font-size:13.5px;
+    color:rgba(255,255,255,0.72);
     line-height:1.55;
     margin:0;
+    font-weight:500;
     position:relative;
     z-index:1;
   }
+  .tk-feature-card p .hl{color:#23d76b;font-weight:700;}
+
+  /* Bullet list — gold ★ markers, no green circles */
+  .tk-feature-card .bullets{
+    margin:18px 0 0;
+    padding:16px 0 0;
+    border-top:2px dashed rgba(255,210,61,0.3);
+    list-style:none;
+  }
+  .tk-feature-card .bullets li{
+    font-family:'Inter','Arial',sans-serif;
+    font-size:12.5px;
+    color:rgba(255,255,255,0.88);
+    font-weight:600;
+    margin-bottom:7px;
+    padding-left:20px;
+    position:relative;
+  }
+  .tk-feature-card .bullets li:last-child{margin-bottom:0;}
+  .tk-feature-card .bullets li::before{
+    content:'★';
+    position:absolute;
+    left:0;
+    top:0;
+    color:#ffd23d;
+    font-size:13px;
+  }
+  .tk-feature-card.right .bullets li{padding-left:0;padding-right:20px;}
+  .tk-feature-card.right .bullets li::before{left:auto;right:0;}
 
   /* Volume animation block at top of celebration section */
   .celeb-anim-stage{
@@ -1036,7 +1112,7 @@
      ============================================================ */
   @media (max-width:900px){
     /* --- Navbar: wrap rows so links don't squeeze brand --- */
-    .navbar{padding:6px 14px;gap:10px;}
+    .navbar{padding:6px 14px;gap:10px;flex-wrap:wrap;}
     .nav-toggle{display:block;}
     .nav-brand{gap:6px;}
     .nav-brand canvas{width:36px;height:36px;}
@@ -1045,17 +1121,16 @@
     .nav-socials{display:none;}
     .nav-links{
       display:none;
-      position:absolute;
-      top:100%;
-      left:0;
-      right:0;
+      width:100%;
       flex-direction:column;
       background:#0a0a0a;
       padding:14px 24px;
       margin:0;
       gap:0;
+      border-top:1px solid #1a1a1a;
       border-bottom:1px solid #1a1a1a;
       z-index:50;
+      order:99;
     }
     .nav-links.open{display:flex;}
     .nav-links a{
@@ -3246,7 +3321,7 @@
 
   .cf-trolley-stage{position:relative;height:400px;background:radial-gradient(ellipse at center,#ffffff 0%,#e6ebf6 75%);border:3px solid #0a0a0a;border-radius:14px;overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
   .cf-trolley-stage canvas{display:block;width:100%;height:100%}
-  .cf-trolley-lbl{position:absolute;top:11px;left:0;right:0;text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:11px;letter-spacing:.3em;color:#1d4fd8;text-transform:uppercase;z-index:2}
+  .cf-trolley-lbl{position:absolute;top:11px;left:0;right:0;text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:11px;letter-spacing:.18em;color:#1d4fd8;text-transform:uppercase;z-index:2;padding:0 18px}
   .cf-trolley-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(10,10,10,0.4);font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.3em;text-transform:uppercase}
 
   /* MEDAL ICONS — for top 3 positions, dynamically applied to whichever row is in that slot */
@@ -3375,7 +3450,7 @@
           <input type="range" id="cfHoldSlider" min="0.001" max="40" value="5" step="0.001"/>
         </div>
         <div class="cf-trolley-stage">
-          <div class="cf-trolley-lbl">Your Trolley</div>
+          <div class="cf-trolley-lbl">★ The More You Hold, The More You Earn ★</div>
           <div class="cf-trolley-loading" id="cfTrolleyLoading">Loading...</div>
           <canvas id="cfTrolleyCanvas"></canvas>
         </div>
@@ -4041,10 +4116,10 @@
     <!-- Two giant feature cards flanking the coin -->
     <div class="tk-hero-row">
       <div class="tk-feature-card">
-        <div class="eyebrow">Buy Tax</div>
+        <span class="eyebrow">Buy Tax</span>
         <div class="big-num">25%</div>
-        <h3>Goes to holders</h3>
-        <p>Every buy. Paid in USDT. Auto-distributed on opBNB. No claiming required.</p>
+        <h3>Goes To Holders</h3>
+        <p>Every single buy. Paid in <span class="hl">USDT</span>. Auto-distributed on opBNB.</p>
       </div>
 
       <div class="tk-coin-stage">
@@ -4056,10 +4131,10 @@
       </div>
 
       <div class="tk-feature-card right">
-        <div class="eyebrow">Total Supply</div>
+        <span class="eyebrow">Total Supply</span>
         <div class="big-num">1B</div>
-        <h3>Hard-capped forever</h3>
-        <p>One billion $SCC. No minting, no team unlocks. 3% burn on every sell.</p>
+        <h3>Hard-Capped Forever</h3>
+        <p>No new coins. <span class="hl">Minting disabled</span>.</p>
       </div>
     </div>
 
@@ -4075,7 +4150,7 @@
       </div>
       <div class="tk-detail">
         <div class="lbl">Decimals</div>
-        <div class="val">18</div>
+        <div class="val">12</div>
       </div>
       <div class="tk-detail">
         <div class="lbl">Rewards</div>
@@ -4083,7 +4158,7 @@
       </div>
       <div class="tk-detail">
         <div class="lbl">Sell Tax</div>
-        <div class="val">3%</div>
+        <div class="val">2%</div>
       </div>
       <div class="tk-detail">
         <div class="lbl">To Qualify</div>
