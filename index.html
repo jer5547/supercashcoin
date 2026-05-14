@@ -2754,23 +2754,16 @@
   }
   .htb-step-pic img,
   .htb-step-pic svg{
-    width:100%;
-    height:100%;
+    width:128%;
+    height:128%;
     object-fit:contain;
     display:block;
   }
-  /* BNB logo is a tight flat icon — scale it down so it doesn't overpower */
+  /* BNB logo is a tight flat icon — keep it normal size so it doesn't overpower */
   .htb-step-pic img[src*="bnb-logo"]{
-    width:72%;
-    height:72%;
+    width:92%;
+    height:92%;
     margin:auto;
-  }
-  /* Swap/trade icon has more whitespace — scale it up so it reads better */
-  .htb-step-pic img[src*="step2-trade"]{
-    width:120%;
-    height:120%;
-    max-width:none;
-    transform:scale(1.15);
   }
 
   /* RIGHT — clean white side */
