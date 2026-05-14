@@ -3295,10 +3295,7 @@
   .cf-lb-header .g{color:#0a0a0a;font-size:16px;background:#ffd23d;border:2px solid #ffd23d;border-radius:6px;padding:0 8px 1px;margin:0 4px;box-shadow:0 0 0 2px #0a0a0a}
 
   .cf-lb-stage{position:relative;height:740px;border:3px solid #0a0a0a;border-radius:16px;background:linear-gradient(180deg,#fff,#f5f5ef);overflow:hidden;box-shadow:6px 6px 0 #0a0a0a}
-  .cf-lb-list-wrap{position:absolute;left:10px;right:10px;top:52px;bottom:10px;overflow-y:auto;overflow-x:hidden;border-radius:10px;scrollbar-width:thin;scrollbar-color:#ffd23d transparent}
-  .cf-lb-list-wrap::-webkit-scrollbar{width:6px}
-  .cf-lb-list-wrap::-webkit-scrollbar-track{background:transparent}
-  .cf-lb-list-wrap::-webkit-scrollbar-thumb{background:#ffd23d;border-radius:3px;border:1px solid #0a0a0a}
+  .cf-lb-list-wrap{position:absolute;left:10px;right:10px;top:52px;bottom:10px;overflow:hidden;border-radius:10px}
   .cf-lb-list{position:absolute;left:0;right:0;top:0;height:1820px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1);will-change:transform}
   .cf-lb-row{position:absolute;left:0;right:0;height:64px;background:#fff;border:2px solid #0a0a0a;border-radius:11px;display:flex;align-items:center;padding:0 14px 0 18px;gap:11px;transition:transform 0.5s cubic-bezier(0.34,1.2,0.64,1),background 0.3s,border-color 0.3s,box-shadow 0.3s;will-change:transform;box-shadow:3px 3px 0 rgba(10,10,10,0.6)}
   .cf-lb-row .rank{font-family:'Black Ops One','Arial Black',sans-serif;font-size:17px;color:rgba(10,10,10,0.6);min-width:26px;text-align:center}
@@ -3371,7 +3368,7 @@
         </div>
         <div class="cf-s-row">
           <div class="cf-s-lbl"><span class="l">★ SCC's Rank</span><span class="v" id="cfRankVal">#15</span></div>
-          <input type="range" id="cfRankSlider" min="1" max="50" value="15" step="1"/>
+          <input type="range" id="cfRankSlider" min="1" max="50" value="36" step="1"/>
         </div>
         <div class="cf-s-row">
           <div class="cf-s-lbl"><span class="l">★ Your Holdings</span><span class="v" id="cfHoldVal">5%</span></div>
@@ -3534,7 +3531,9 @@
   function update(){
     if(!memeCoins.length)return;
     if(rankSlider.max!='50')rankSlider.max='50';
-    const rank=Math.min(parseInt(rankSlider.value),TARGET_COUNT),holdPct=parseFloat(holdSlider.value);
+    // Slider is inverted visually: left = #50, right = #1 (so dragging right = climbing to top)
+    const sliderVal=Math.min(parseInt(rankSlider.value),TARGET_COUNT);
+    const rank=TARGET_COUNT+1-sliderVal,holdPct=parseFloat(holdSlider.value);
     currentRank=rank;
     rankVal.textContent='#'+rank;
     // Smart formatting: integer for >= 1%, 2 decimals for smaller
