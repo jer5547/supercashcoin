@@ -186,6 +186,8 @@
   }
   .rain-bill{width:42px;height:24px;display:block}
   .rain-coin{width:26px;height:26px;display:block}
+  .rain-scc{width:34px;height:34px;display:block;border-radius:50%}
+  .rain-scc-sm{width:26px;height:26px}
   @keyframes rainFall{
     0%{transform:translateY(-110%) rotate(0deg)}
     100%{transform:translateY(220%) rotate(360deg)}
@@ -320,20 +322,21 @@
     text-align:center;
   }
   .benefit{
-    background:linear-gradient(180deg,rgba(255,210,61,0.06),rgba(255,210,61,0.02));
-    border:1.5px solid rgba(255,210,61,0.4);
-    border-radius:18px;
-    padding:28px 22px 24px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,210,61,0.18);
+    border-radius:10px;
+    padding:18px 16px 16px;
     display:flex;
     flex-direction:column;
     align-items:center;
-    box-shadow:0 0 30px rgba(255,210,61,0.12);
-    transition:transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    box-shadow:none;
+    transition:transform 0.25s, border-color 0.25s, background 0.25s;
   }
   .benefit:hover{
-    transform:translateY(-4px);
-    border-color:rgba(255,210,61,0.75);
-    box-shadow:0 0 45px rgba(255,210,61,0.22);
+    transform:translateY(-2px);
+    border-color:rgba(255,210,61,0.5);
+    background:rgba(255,210,61,0.05);
+    box-shadow:none;
   }
   .benefit .b-illust{
     width:auto;
@@ -344,32 +347,32 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    margin:0 auto 14px;
+    margin:0 auto 10px;
     flex-shrink:0;
   }
   .benefit .b-illust svg,
   .benefit .b-illust img{
-    width:72px;
-    height:72px;
+    width:42px;
+    height:42px;
     display:block;
     object-fit:contain;
-    filter:drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+    filter:none;
   }
   .benefit .b-text{width:100%;}
   .benefit h3{
-    font-family:'Arial Black','Arial',sans-serif;
-    font-size:15px;
+    font-family:'Black Ops One','Arial Black',sans-serif;
+    font-size:12.5px;
     font-weight:900;
-    color:#fff;
-    margin:0 0 8px;
-    letter-spacing:0.02em;
-    line-height:1.15;
+    color:#ffd23d;
+    margin:0 0 5px;
+    letter-spacing:0.06em;
+    line-height:1.2;
     text-transform:uppercase;
   }
   .benefit p{
     font-family:'Inter','Helvetica',sans-serif;
-    font-size:13px;
-    color:rgba(255,255,255,0.8);
+    font-size:11.5px;
+    color:rgba(255,255,255,0.62);
     line-height:1.5;
     margin:0;
     font-weight:500;
@@ -377,7 +380,7 @@
   .benefit p b{color:#ffd23d;font-weight:900;}
   @media (max-width:900px){
     .benefits{grid-template-columns:1fr;max-width:480px;gap:14px;}
-    .benefit{padding:24px 20px;}
+    .benefit{padding:16px 14px;}
   }
   .celebration .content{position:relative;z-index:2;}
 
@@ -1152,6 +1155,8 @@
     .rain-banner{height:54px;}
     .rain-bill{width:36px;height:21px}
     .rain-coin{width:22px;height:22px}
+    .rain-scc{width:28px;height:28px}
+    .rain-scc-sm{width:22px;height:22px}
 
     /* --- Celebration (25% section): tighten padding, smaller h2 --- */
     .celebration{padding:30px 18px 60px;}
@@ -1182,6 +1187,8 @@
     .rain-banner{height:46px;}
     .rain-bill{width:30px;height:18px}
     .rain-coin{width:18px;height:18px}
+    .rain-scc{width:24px;height:24px}
+    .rain-scc-sm{width:18px;height:18px}
               .celebration{padding:30px 14px 60px;}
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
@@ -1951,7 +1958,7 @@
       <span class="green">Cashflow</span> made <span class="gold-pill">simple</span>
     </p>
     <p class="hero-sub-small">
-      Massive cash rewards to holders on every transaction.
+      Massive 25% on every Buy transaction goes to all holders
     </p>
     <div class="hero-socials">
       <a class="hero-social-btn tg" href="#" aria-label="Telegram">
@@ -1976,15 +1983,15 @@
      coins behind 3 rotating headlines (cycle every 4s).
      ============================================================ -->
 <div class="rain-banner" aria-hidden="true">
-  <div class="rain-item" style="left:4%;animation-duration:3.6s;animation-delay:0s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
-  <div class="rain-item" style="left:14%;animation-duration:4.2s;animation-delay:1.4s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
-  <div class="rain-item" style="left:24%;animation-duration:3.8s;animation-delay:2.1s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
-  <div class="rain-item" style="left:36%;animation-duration:4.4s;animation-delay:0.9s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
-  <div class="rain-item" style="left:48%;animation-duration:3.5s;animation-delay:2.6s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
-  <div class="rain-item" style="left:60%;animation-duration:4.0s;animation-delay:1.6s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
-  <div class="rain-item" style="left:72%;animation-duration:3.4s;animation-delay:0.7s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
-  <div class="rain-item" style="left:84%;animation-duration:4.3s;animation-delay:2.3s"><svg class="rain-coin" viewBox="0 0 42 42"><circle cx="21" cy="21" r="19" fill="#ffd23d" stroke="#0a0a0a" stroke-width="2"/><circle cx="21" cy="21" r="14" fill="none" stroke="#c79a0c" stroke-width="1.2"/><text x="21" y="28" text-anchor="middle" font-family="'Black Ops One',Arial Black" font-size="18" fill="#0a0a0a">$</text></svg></div>
-  <div class="rain-item" style="left:93%;animation-duration:3.7s;animation-delay:1.2s"><svg class="rain-bill" viewBox="0 0 64 36"><rect x="1" y="1" width="62" height="34" rx="3" fill="#3fa874" stroke="#0a0a0a" stroke-width="2"/><circle cx="32" cy="18" r="8" fill="#fff" stroke="#0a0a0a" stroke-width="1.5"/><text x="32" y="22" text-anchor="middle" font-family="Arial Black" font-size="11" fill="#26a17b">₮</text></svg></div>
+  <div class="rain-item" style="left:4%;animation-duration:3.6s;animation-delay:0s"><img class="rain-scc" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:14%;animation-duration:4.2s;animation-delay:1.4s"><img class="rain-scc rain-scc-sm" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:24%;animation-duration:3.8s;animation-delay:2.1s"><img class="rain-scc" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:36%;animation-duration:4.4s;animation-delay:0.9s"><img class="rain-scc rain-scc-sm" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:48%;animation-duration:3.5s;animation-delay:2.6s"><img class="rain-scc" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:60%;animation-duration:4.0s;animation-delay:1.6s"><img class="rain-scc rain-scc-sm" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:72%;animation-duration:3.4s;animation-delay:0.7s"><img class="rain-scc" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:84%;animation-duration:4.3s;animation-delay:2.3s"><img class="rain-scc rain-scc-sm" src="coin.png" alt=""/></div>
+  <div class="rain-item" style="left:93%;animation-duration:3.7s;animation-delay:1.2s"><img class="rain-scc" src="coin.png" alt=""/></div>
   <span class="rain-hl"><span class="rain-star">★</span>Get Paid Frequently · No Staking Needed<span class="rain-star">★</span></span>
   <span class="rain-hl"><span class="rain-star">★</span>Built On opBNB · Gas Is Basically Free<span class="rain-star">★</span></span>
   <span class="rain-hl"><span class="rain-star">★</span>25% Royalties On Every Buy Transaction<span class="rain-star">★</span></span>
@@ -2004,7 +2011,7 @@
 
     <div class="how-it-works">
       <p class="hiw-eyebrow">★ Behind The Scenes ★</p>
-      <h3 class="hiw-title">Three Steps. <span class="g">Fully Automatic.</span></h3>
+      <h3 class="hiw-title">The Entire Process. <span class="g">Fully Automatic.</span></h3>
 
       <div class="hiw-grid">
         <div class="hiw-step">
@@ -2076,72 +2083,64 @@
   .hiw-title{text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(22px,2.6vw,32px);text-transform:uppercase;letter-spacing:.01em;color:#fff;margin:0 0 24px;line-height:1.2}
   .hiw-title .g{color:#23d76b}
 
-  .hiw-grid{display:flex;align-items:stretch;justify-content:center;gap:8px;flex-wrap:wrap}
+  .hiw-grid{display:flex;align-items:stretch;justify-content:center;gap:14px;flex-wrap:wrap}
   .hiw-step{
     flex:1 1 280px;
     max-width:340px;
-    background:#0e0e0e;
-    border:1.5px solid rgba(255,210,61,0.25);
-    border-radius:14px;
-    padding:34px 22px 24px;
+    background:rgba(255,255,255,0.025);
+    border:1px solid rgba(255,210,61,0.18);
+    border-radius:10px;
+    padding:18px 16px 16px;
     position:relative;
     text-align:center;
-    transition:transform .25s, border-color .25s, box-shadow .25s;
+    transition:transform .25s, border-color .25s, background .25s;
   }
   .hiw-step:hover{
-    border-color:#ffd23d;
-    box-shadow:0 0 24px rgba(255,210,61,0.18), 0 8px 24px rgba(0,0,0,0.4);
-    transform:translateY(-4px);
+    border-color:rgba(255,210,61,0.5);
+    background:rgba(255,210,61,0.05);
+    transform:translateY(-2px);
   }
   .hiw-num{
     position:absolute;
-    top:-16px;
-    left:22px;
-    background:#ffd23d;
-    color:#0a0a0a;
+    top:10px;
+    left:12px;
+    background:transparent;
+    color:rgba(255,210,61,0.7);
     font-family:'Black Ops One','Arial Black',sans-serif;
-    font-size:16px;
-    padding:5px 14px 6px;
-    border-radius:8px;
-    border:2.5px solid #0a0a0a;
-    box-shadow:3px 3px 0 #0a0a0a;
-    letter-spacing:.08em;
+    font-size:10px;
+    padding:0;
+    border:none;
+    box-shadow:none;
+    letter-spacing:.2em;
   }
   .hiw-icon{
-    width:72px;
-    height:72px;
-    margin:6px auto 18px;
+    width:42px;
+    height:42px;
+    margin:6px auto 10px;
     color:#ffd23d;
-    filter:drop-shadow(0 0 12px rgba(255,210,61,0.25));
+    filter:none;
   }
   .hiw-icon svg{width:100%;height:100%;display:block}
   .hiw-step h4{
     font-family:'Black Ops One','Arial Black',sans-serif;
-    font-size:18px;
+    font-size:12.5px;
     text-transform:uppercase;
     color:#ffd23d;
-    margin:0 0 12px;
-    letter-spacing:.02em;
+    margin:0 0 5px;
+    letter-spacing:.06em;
     line-height:1.2;
   }
   .hiw-step p{
-    font-family:'Sigmar One','Lilita One',cursive;
-    font-size:13px;
-    color:rgba(255,255,255,0.78);
-    line-height:1.65;
+    font-family:'Inter','Arial',sans-serif;
+    font-size:11.5px;
+    color:rgba(255,255,255,0.62);
+    line-height:1.5;
     margin:0;
-    letter-spacing:.005em;
+    letter-spacing:0;
+    font-weight:500;
   }
   .hiw-arrow{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Black Ops One','Arial Black',sans-serif;
-    font-size:28px;
-    color:#ffd23d;
-    opacity:.55;
-    padding:0 4px;
-    text-shadow:0 0 12px rgba(255,210,61,0.4);
+    display:none;
   }
 
   @media (max-width:860px){
@@ -2731,6 +2730,11 @@
     justify-content:center;
     padding:10px;
   }
+  /* Per-step background colors */
+  .htb-step:nth-of-type(1) .htb-step-left{background:#dbeafe;}  /* light blue */
+  .htb-step:nth-of-type(2) .htb-step-left{background:#fef3c7;}  /* light gold */
+  .htb-step:nth-of-type(3) .htb-step-left{background:#dcfce7;}  /* light green */
+  .htb-step:nth-of-type(4) .htb-step-left{background:#fce7f3;}  /* light pink */
   .htb-num{
     position:absolute;
     top:4px;
@@ -2830,6 +2834,10 @@
     .htb-section{padding:60px 22px 70px;}
     .htb-layout{grid-template-columns:1fr;gap:36px;}
     .htb-phone-stage{order:1;}
+    .htb-phone-stage .wallet-device,
+    .wallet-device{
+      box-shadow:none !important;
+    }
     .htb-steps{order:2;}
     .htb-step{grid-template-columns:140px 1fr;min-height:140px;}
     .htb-step-left{padding:18px;}
@@ -2861,7 +2869,6 @@
     border-radius:36px;
     padding:16px 12px 22px;
     box-shadow:
-      0 25px 60px rgba(0,0,0,0.25),
       0 0 0 1px rgba(255,210,61,0.2),
       0 0 80px rgba(255,210,61,0.18);
   }
@@ -3078,7 +3085,10 @@
 
   @media (max-width:900px){
     .wallet-section{padding:60px 20px 70px;}
-    .wallet-device{width:340px;}
+    .wallet-device{
+      width:340px;
+      box-shadow:0 0 0 1px rgba(255,210,61,0.2);
+    }
     .wallet-deco-coin{width:65px;height:65px;left:8px;top:4%;}
     .wallet-deco-tether{width:55px;height:55px;right:8px;bottom:6%;}
     .bill-1{left:4px;top:20%;width:48px;height:26px;font-size:14px;}
