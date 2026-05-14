@@ -1,5 +1,5 @@
 // update-coins.js
-// Fetches the top meme coins from CoinGecko and writes meme-coins.json
+// Fetches the top 50 meme coins from CoinGecko and writes meme-coins.json
 // Run via GitHub Actions (see .github/workflows/update-coins.yml) or manually:
 //   node update-coins.js
 
@@ -10,7 +10,7 @@ const URL =
   '?vs_currency=usd' +
   '&category=meme-token' +
   '&order=volume_desc' +    // sorted by 24h trading volume
-  '&per_page=15' +          // grab a few extras in case some are weird
+  '&per_page=50' +          // grab top 50 meme coins
   '&page=1' +
   '&sparkline=false';
 
@@ -34,8 +34,8 @@ const URL =
     process.exit(1);
   }
 
-  // Take the top 10, normalize the fields we care about
-  const coins = raw.slice(0, 10).map(c => ({
+  // Take the top 50 (or whatever CoinGecko returned, if fewer), normalize fields
+  const coins = raw.slice(0, 50).map(c => ({
     id: c.id,
     name: c.name,
     symbol: (c.symbol || '').toUpperCase(),
