@@ -3517,69 +3517,73 @@
     const wheelHub=new THREE.MeshStandardMaterial({color:0x808080,metalness:0.9,roughness:0.3});
 
     const trolley=new THREE.Group();
-    const BW=3.6,BD=2.0,BH=1.4,BAR=0.04; // basket width / depth / height / bar thickness
+    const PW=3.6,PD=2.2,PT=0.18; // platform width / depth / thickness
 
     function bar(w,h,d,x,y,z,mat){
       const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat||silver);
       m.position.set(x,y,z);trolley.add(m);return m;
     }
 
-    // Wire basket — DENSE vertical bars front + back (8 each side)
-    const xCols=[-BW/2,-1.2,-0.75,-0.3,0.3,0.75,1.2,BW/2];
-    for(const x of xCols){bar(BAR,BH,BAR,x,BH/2,BD/2);bar(BAR,BH,BAR,x,BH/2,-BD/2);}
-    // Wire basket — vertical bars left + right sides (5 each)
-    const zCols=[-BD/2,-0.55,0,0.55,BD/2];
-    for(const z of zCols){bar(BAR,BH,BAR,-BW/2,BH/2,z);bar(BAR,BH,BAR,BW/2,BH/2,z);}
+    // ===== FLAT WOODEN PLATFORM =====
+    const wood=new THREE.MeshStandardMaterial({color:0x9c6b3a,roughness:0.75,metalness:0.05});
+    const woodDark=new THREE.MeshStandardMaterial({color:0x6b4520,roughness:0.8,metalness:0.05});
+    const platform=new THREE.Mesh(new THREE.BoxGeometry(PW,PT,PD),wood);
+    platform.position.set(0,0,0);
+    trolley.add(platform);
+    // Wood plank lines on top for grain detail
+    for(const z of [-0.55,0,0.55]){
+      bar(PW-0.04,0.02,0.04,0,PT/2+0.001,z,woodDark);
+    }
+    // Dark trim around edges
+    bar(PW,0.06,0.04,0,0, PD/2+0.001,woodDark);
+    bar(PW,0.06,0.04,0,0,-PD/2-0.001,woodDark);
+    bar(0.04,0.06,PD, PW/2+0.001,0,0,woodDark);
+    bar(0.04,0.06,PD,-PW/2-0.001,0,0,woodDark);
 
-    // Horizontal rings at 5 levels for proper wire-mesh look
-    for(const y of [0.08,0.4,0.72,1.04,BH-0.06]){
-      bar(BW+0.04,BAR,BAR,0,y,BD/2);
-      bar(BW+0.04,BAR,BAR,0,y,-BD/2);
-      bar(BAR,BAR,BD,-BW/2,y,0);
-      bar(BAR,BAR,BD,BW/2,y,0);
+    // ===== 4 SWIVEL CASTERS at corners =====
+    for(const [x,z] of [[-PW/2+0.3,PD/2-0.3],[PW/2-0.3,PD/2-0.3],[-PW/2+0.3,-PD/2+0.3],[PW/2-0.3,-PD/2+0.3]]){
+      // Caster bracket (silver post going down from platform)
+      bar(0.14,0.18,0.14,x,-0.15,z,silver);
+      // Caster fork
+      bar(0.18,0.06,0.32,x,-0.27,z,silver);
+      // Wheel (rubber tire)
+      const wheel=new THREE.Mesh(new THREE.CylinderGeometry(0.22,0.22,0.14,16),wheelDark);
+      wheel.rotation.z=Math.PI/2;
+      wheel.position.set(x,-0.40,z);
+      trolley.add(wheel);
+      // Hub
+      const hub=new THREE.Mesh(new THREE.CylinderGeometry(0.06,0.06,0.16,10),wheelHub);
+      hub.rotation.z=Math.PI/2;
+      hub.position.set(x,-0.40,z);
+      trolley.add(hub);
     }
 
-    // Floor wire grid
-    for(const x of [-1.3,-0.7,-0.2,0.2,0.7,1.3]){bar(BAR,BAR,BD,x,0.03,0);}
-    for(const z of [-0.6,-0.2,0.2,0.6]){bar(BW,BAR,BAR,0,0.03,z);}
-
-    // Bottom frame platform under basket
-    bar(BW*0.85,0.09,0.09,0,-0.5,0.75);
-    bar(BW*0.85,0.09,0.09,0,-0.5,-0.75);
-    bar(0.09,0.09,1.6,-BW*0.4,-0.5,0);
-    bar(0.09,0.09,1.6,BW*0.4,-0.5,0);
-
-    // Legs connecting basket to frame
-    for(const x of [-BW*0.4,BW*0.4]){
-      for(const z of [-0.75,0.75]){
-        bar(0.09,0.55,0.09,x,-0.22,z);
-      }
+    // ===== L-SHAPED RED HANDLE on the back =====
+    // Two vertical red posts going up from the back of the platform
+    for(const z of [-0.6,0.6]){
+      const post=new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.07,1.7,14),red);
+      post.position.set(-PW/2+0.18,0.95,z);
+      trolley.add(post);
     }
-
-    // Casters (4 wheels)
-    for(const [x,z] of [[-BW*0.4,0.75],[BW*0.4,0.75],[-BW*0.4,-0.75],[BW*0.4,-0.75]]){
-      const wheel=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.2,0.12,16),wheelDark);
-      wheel.rotation.z=Math.PI/2;wheel.position.set(x,-0.75,z);trolley.add(wheel);
-      const hub=new THREE.Mesh(new THREE.CylinderGeometry(0.055,0.055,0.14,8),wheelHub);
-      hub.rotation.z=Math.PI/2;hub.position.set(x,-0.75,z);trolley.add(hub);
-      // Caster bracket
-      bar(0.09,0.2,0.24,x,-0.62,z);
+    // Horizontal red grip bar across the top connecting the two posts
+    const grip=new THREE.Mesh(new THREE.CylinderGeometry(0.085,0.085,1.5,16),red);
+    grip.rotation.x=Math.PI/2;
+    grip.position.set(-PW/2+0.18,1.78,0);
+    trolley.add(grip);
+    // Rounded caps on the grip ends
+    for(const z of [-0.75,0.75]){
+      const cap=new THREE.Mesh(new THREE.SphereGeometry(0.1,12,10),red);
+      cap.position.set(-PW/2+0.18,1.78,z);
+      trolley.add(cap);
     }
-
-    // Handle — red horizontal bar on back, two silver stems
-    const handle=new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.07,1.6,14),red);
-    handle.rotation.x=Math.PI/2;handle.position.set(-BW/2-0.4,BH+0.42,0);trolley.add(handle);
-    // Red caps on handle ends
-    for(const z of [-0.8,0.8]){
-      const cap=new THREE.Mesh(new THREE.SphereGeometry(0.085,12,8),red);
-      cap.position.set(-BW/2-0.4,BH+0.42,z);trolley.add(cap);
-    }
-    // Stems (angled silver pipes)
-    for(const z of [-0.7,0.7]){
-      const stem=new THREE.Mesh(new THREE.CylinderGeometry(0.045,0.045,0.65,12),silver);
-      stem.position.set(-BW/2-0.2,BH+0.16,z);
-      stem.rotation.z=-0.5;
-      trolley.add(stem);
+    // Diagonal cross-brace between the two vertical posts (X pattern for industrial look)
+    const braceLen=1.35;
+    for(const rot of [Math.PI/4,-Math.PI/4]){
+      const brace=new THREE.Mesh(new THREE.CylinderGeometry(0.04,0.04,braceLen,10),red);
+      brace.position.set(-PW/2+0.18,1.0,0);
+      brace.rotation.x=Math.PI/2;
+      brace.rotation.y=rot;
+      trolley.add(brace);
     }
 
     scene.add(trolley);
