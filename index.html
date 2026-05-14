@@ -163,7 +163,7 @@
 
   /* === TICKER MARQUEE === */
   .rain-banner{
-    background:#1d4fd8;
+    background:#f40000;
     border-top:3px solid #0a0a0a;
     border-bottom:3px solid #0a0a0a;
     overflow:hidden;
@@ -1268,6 +1268,7 @@
     width:100%;
     margin-left:14%;
     margin-right:auto;
+    container-type:inline-size;
   }
   .hero-headline{
     font-family:'Luckiest Guy', 'Lilita One', system-ui, sans-serif;
@@ -1281,7 +1282,7 @@
   }
   .hero-headline .big{
     display:block;
-    font-size:clamp(72px, 10vw, 132px);
+    font-size:clamp(54px, 18cqi, 132px);
     letter-spacing:-0.005em;
     background:linear-gradient(180deg,#ffffff 0%,#fff493 25%,#ffd23d 50%,#d9a116 80%,#8a5e07 100%);
     -webkit-background-clip:text;
@@ -1296,8 +1297,8 @@
   }
   .hero-headline .small{
     display:block;
-    font-size:clamp(32px, 4.5vw, 60px);
-    margin-top:4px;
+    font-size:clamp(40px, 13cqi, 96px);
+    margin:4px 0 0 0;
     letter-spacing:0.01em;
     background:linear-gradient(180deg,#ffffff 0%,#ffd23d 50%,#8a5e07 100%);
     -webkit-background-clip:text;
@@ -1308,6 +1309,22 @@
       drop-shadow(1px 1px 0 #8a5e07)
       drop-shadow(2px 2px 0 #4a2f02)
       drop-shadow(4px 5px 8px rgba(0,0,0,0.35));
+  }
+  /* Smart: when the column is wide enough that one line still looks chunky, fit it on one line */
+  @container (min-width: 640px){
+    .hero-headline{white-space:nowrap;}
+    .hero-headline .big{
+      display:inline-block;
+      font-size:clamp(54px, 11cqi, 110px);
+      vertical-align:baseline;
+    }
+    .hero-headline .small{
+      display:inline-block;
+      font-size:clamp(54px, 11cqi, 110px);
+      margin:0 0 0 0.2em;
+      letter-spacing:-0.005em;
+      vertical-align:baseline;
+    }
   }
   .hero-headline .gold{
     background:linear-gradient(180deg,#ffffff 0%,#ffd23d 50%,#8a5e07 100%);
@@ -1351,19 +1368,52 @@
     line-height:1;
     letter-spacing:0.01em;
     color:#0a0a0a;
-    margin:18px 0 22px;
+    margin:18px 0 10px;
     text-transform:uppercase;
   }
   .hero-sub .hl{
     color:#0a0a0a;
     background:none;
     padding:0;
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
   }
-  .hero-sub .arrow{
-    color:#ffd23d;
-    margin:0 8px;
-    font-family:Arial,sans-serif;
-    -webkit-text-stroke:1px #8a5e07;
+  .hero-sub .big-arrow{
+    display:inline-flex;
+    align-items:center;
+    line-height:0;
+    flex-shrink:0;
+    width:clamp(64px, 7vw, 100px);
+    filter:
+      drop-shadow(1px 1px 0 #b8830a)
+      drop-shadow(2px 2px 0 #8a5e07)
+      drop-shadow(3px 3px 0 #4a2f02)
+      drop-shadow(4px 5px 8px rgba(0,0,0,0.3));
+  }
+  .hero-sub .big-arrow svg{width:100%;height:auto;display:block}
+  .hero-tagline{
+    font-family:'Sigmar One','Lilita One',cursive;
+    font-size:clamp(18px, 1.8vw, 26px);
+    color:#0a0a0a;
+    margin:0 0 18px;
+    letter-spacing:0.01em;
+    line-height:1.2;
+    opacity:0;
+    transform:scale(0.6);
+    animation:sccPopIn 0.6s cubic-bezier(.34,1.56,.64,1) 0.55s forwards;
+  }
+  .hero-tagline .green{color:#23a04b}
+  .hero-tagline .gold-pill{
+    background:#ffd23d;
+    border:2.5px solid #0a0a0a;
+    border-radius:6px;
+    padding:1px 12px 3px;
+    box-shadow:3px 3px 0 #0a0a0a;
+    display:inline-block;
+    transform:translateY(-2px);
+    color:#0a0a0a;
   }
   .hero-sub-big{
     font-family:'Inter','Helvetica','Arial',sans-serif;
@@ -1551,8 +1601,6 @@
   @media (max-width:1100px) and (min-width:761px){
     .hero-new{padding:40px 0 50px;min-height:auto;}
     .hero-pig-wrap{right:6%;bottom:8%;height:70%;max-height:480px;}
-    .hero-headline .big{font-size:clamp(54px, 7vw, 96px);}
-    .hero-headline .small{font-size:clamp(28px, 4vw, 52px);}
   }
 
   /* Mobile only (≤760px): flex-column with pig on top */
@@ -1588,8 +1636,6 @@
     .hero-socials{justify-content:center;}
     .hero-stage{max-width:none;}
     .hero-sub{margin-left:auto;margin-right:auto;}
-    .hero-headline .big{font-size:clamp(48px, 13vw, 96px);}
-    .hero-headline .small{font-size:clamp(28px, 7vw, 56px);}
     .hero-sub{font-size:clamp(13px, 3.4vw, 18px);}
     .top-banner{font-size:clamp(10px, 2.6vw, 14px);padding:8px 14px;gap:8px;white-space:nowrap;justify-content:center;}
     .top-banner .banner-only{display:none;}
@@ -1599,7 +1645,6 @@
   @media (max-width:600px){
     .hero-new{padding:22px 14px 24px;}
     .hero-pig-wrap{width:68%;}
-    .hero-headline .big{font-size:clamp(42px, 13vw, 72px);}
     .hero-btn{padding:14px 22px;font-size:12px;}
     .top-banner{font-size:clamp(9px, 2.4vw, 12px);padding:6px 10px;}
   }
@@ -1811,7 +1856,10 @@
       <span class="small">Cash <span class="gold">Coin</span></span>
     </h1>
     <p class="hero-sub">
-      <span class="hl">HOLD <span class="arrow">→</span> GET PAID</span>
+      <span class="hl">HOLD <span class="big-arrow" aria-hidden="true"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="arrGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="25%" stop-color="#fff493"/><stop offset="50%" stop-color="#ffd23d"/><stop offset="80%" stop-color="#d9a116"/><stop offset="100%" stop-color="#8a5e07"/></linearGradient></defs><path d="M5 22 L52 22 L52 8 L85 30 L52 52 L52 38 L5 38 Z" fill="url(#arrGrad)" stroke="#4a3402" stroke-width="3" stroke-linejoin="round"/></svg></span> GET PAID</span>
+    </p>
+    <p class="hero-tagline">
+      <span class="green">Cashflow</span> made <span class="gold-pill">simple</span>.
     </p>
     <p class="hero-sub-big">
       The Ultimate Automatic<br/>Royalty Reward Machine
@@ -1862,7 +1910,7 @@
     <h2>
       25% OF EVERY BUY GOES BACK<br/>TO HOLDERS IN <b class="green">USD TETHER!</b>
     </h2>
-    <p class="lead">Imagine how much you can earn in passive income every day!</p>
+    <p class="lead">A meme coin focussed on Passive income not just price growth!</p>
     <p class="lead-white">Like earning a wage — <b class="green">steady cashflow!</b></p>
     <div class="celeb-anim-stage">
       <canvas id="distScene"></canvas>
