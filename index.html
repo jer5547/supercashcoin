@@ -3372,7 +3372,7 @@
         </div>
         <div class="cf-s-row">
           <div class="cf-s-lbl"><span class="l">★ Your Holdings</span><span class="v" id="cfHoldVal">5%</span></div>
-          <input type="range" id="cfHoldSlider" min="0.01" max="70" value="5" step="0.01"/>
+          <input type="range" id="cfHoldSlider" min="0.001" max="40" value="5" step="0.001"/>
         </div>
         <div class="cf-trolley-stage">
           <div class="cf-trolley-lbl">Your Trolley</div>
@@ -3536,8 +3536,8 @@
     const rank=TARGET_COUNT+1-sliderVal,holdPct=parseFloat(holdSlider.value);
     currentRank=rank;
     rankVal.textContent='#'+rank;
-    // Smart formatting: integer for >= 1%, 2 decimals for smaller
-    holdVal.textContent=(holdPct>=1?holdPct.toFixed(0):holdPct.toFixed(2))+'%';
+    // Smart formatting: integer for >= 1%, 2 decimals for 0.01-1%, 3 decimals for smaller
+    holdVal.textContent=(holdPct>=1?holdPct.toFixed(0):holdPct>=0.01?holdPct.toFixed(2):holdPct.toFixed(3))+'%';
     fillBar(rankSlider);fillBar(holdSlider);
     const coin=memeCoins[rank-1]||{volume_24h:0};
     const total=coin.volume_24h*0.125,share=total*(holdPct/100);
@@ -3546,8 +3546,8 @@
     payExtra.innerHTML='<span class="star">★</span> That\'s <span class="yr-amt">'+fmt(share*365)+'</span> a year <span class="star">★</span>';
     const sccAmt=document.getElementById('cfSccAmt');
     if(sccAmt)sccAmt.textContent=fmt(total);
-    // 70% holdings (max — team owns 30%) → 300 coins; always show at least 1 coin if holdings > 0
-    const coinCount=holdPct>0?Math.max(1,Math.min(300,Math.round(holdPct/70*300))):0;
+    // 40% holdings (max) → 300 coins; always show at least 1 coin if holdings > 0
+    const coinCount=holdPct>0?Math.max(1,Math.min(300,Math.round(holdPct/40*300))):0;
     setCoinCount(coinCount);
     updateLeaderboard(rank);
   }
