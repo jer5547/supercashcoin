@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-17T04:12:24.342Z",
+  "updated_at": "2026-05-17T07:38:04.589Z",
   "source": "coingecko.com/api/v3/coins/markets?category=meme-token",
   "note": "Estimated buys = volume_24h * 0.5; rewards @ 25% applied client-side",
   "coins": [
@@ -8,80 +8,70 @@
       "name": "Dogecoin",
       "symbol": "DOGE",
       "image": "https://coin-images.coingecko.com/coins/images/5/large/dogecoin.png?1696501409",
-      "price": 0.109452,
-      "volume_24h": 933753063,
-      "market_cap": 16862709041,
-      "price_change_24h_pct": -2.53073
+      "price": 0.110192,
+      "volume_24h": 805724799,
+      "market_cap": 16999313967,
+      "price_change_24h_pct": 0.17451
     },
     {
       "id": "quq",
       "name": "Quq",
       "symbol": "QUQ",
       "image": "https://coin-images.coingecko.com/coins/images/54945/large/quq.jpg?1742635780",
-      "price": 0.00299906,
-      "volume_24h": 410037097,
-      "market_cap": 2999317,
-      "price_change_24h_pct": 0.02561
+      "price": 0.00299905,
+      "volume_24h": 442183434,
+      "market_cap": 2999047,
+      "price_change_24h_pct": 0.01461
     },
     {
       "id": "pepe",
       "name": "Pepe",
       "symbol": "PEPE",
       "image": "https://coin-images.coingecko.com/coins/images/29850/large/pepe-token.jpeg?1696528776",
-      "price": 0.00000377,
-      "volume_24h": 169988418,
-      "market_cap": 1583942186,
-      "price_change_24h_pct": -2.93789
+      "price": 0.00000379,
+      "volume_24h": 144740400,
+      "market_cap": 1594404875,
+      "price_change_24h_pct": 0.31313
     },
     {
       "id": "shiba-inu",
       "name": "Shiba Inu",
       "symbol": "SHIB",
       "image": "https://coin-images.coingecko.com/coins/images/11939/large/shiba.png?1696511800",
-      "price": 0.00000583,
-      "volume_24h": 128030084,
-      "market_cap": 3430701316,
-      "price_change_24h_pct": -4.59506
+      "price": 0.00000587,
+      "volume_24h": 120144293,
+      "market_cap": 3457510832,
+      "price_change_24h_pct": -1.88826
     },
     {
       "id": "official-trump",
       "name": "Official Trump",
       "symbol": "TRUMP",
       "image": "https://coin-images.coingecko.com/coins/images/53746/large/trump.png?1737171561",
-      "price": 2.18,
-      "volume_24h": 88195234,
-      "market_cap": 517098009,
-      "price_change_24h_pct": -2.83785
+      "price": 2.19,
+      "volume_24h": 66014041,
+      "market_cap": 519761814,
+      "price_change_24h_pct": 1.46577
     },
     {
       "id": "pudgy-penguins",
       "name": "Pudgy Penguins",
       "symbol": "PENGU",
       "image": "https://coin-images.coingecko.com/coins/images/52622/large/PUDGY_PENGUINS_PENGU_PFP.png?1733809110",
-      "price": 0.00841889,
-      "volume_24h": 65584992,
-      "market_cap": 528723879,
-      "price_change_24h_pct": -4.18125
+      "price": 0.00848628,
+      "volume_24h": 51945219,
+      "market_cap": 533119806,
+      "price_change_24h_pct": -0.52564
     },
     {
       "id": "build-on",
       "name": "BUILDon",
       "symbol": "B",
       "image": "https://coin-images.coingecko.com/coins/images/55974/large/T7asvmCb_400x400.jpg?1747902862",
-      "price": 0.396618,
-      "volume_24h": 38637516,
-      "market_cap": 396257971,
-      "price_change_24h_pct": -5.85558
-    },
-    {
-      "id": "bonk",
-      "name": "Bonk",
-      "symbol": "BONK",
-      "image": "https://coin-images.coingecko.com/coins/images/28600/large/bonk.jpg?1696527587",
-      "price": 0.00000623,
-      "volume_24h": 34059099,
-      "market_cap": 547714368,
-      "price_change_24h_pct": -4.27741
+      "price": 0.393498,
+      "volume_24h": 35452252,
+      "market_cap": 393301609,
+      "price_change_24h_pct": -2.47808
     },
     {
       "id": "ape-and-pepe",
@@ -89,69 +79,79 @@
       "symbol": "APEPE",
       "image": "https://coin-images.coingecko.com/coins/images/39614/large/APEPE_200.png?1723142351",
       "price": 0.00000119,
-      "volume_24h": 32035120,
-      "market_cap": 250072318,
-      "price_change_24h_pct": 0.29578
+      "volume_24h": 31283522,
+      "market_cap": 250339335,
+      "price_change_24h_pct": 2.07565
+    },
+    {
+      "id": "bonk",
+      "name": "Bonk",
+      "symbol": "BONK",
+      "image": "https://coin-images.coingecko.com/coins/images/28600/large/bonk.jpg?1696527587",
+      "price": 0.00000628,
+      "volume_24h": 29654025,
+      "market_cap": 552571668,
+      "price_change_24h_pct": -0.2149
     },
     {
       "id": "dogwifcoin",
       "name": "dogwifhat",
       "symbol": "WIF",
       "image": "https://coin-images.coingecko.com/coins/images/33566/large/dogwifhat.jpg?1702499428",
-      "price": 0.196985,
-      "volume_24h": 30381223,
-      "market_cap": 196421862,
-      "price_change_24h_pct": -3.7571
-    },
-    {
-      "id": "pump-fun",
-      "name": "Pump.fun",
-      "symbol": "PUMP",
-      "image": "https://coin-images.coingecko.com/coins/images/67164/large/pump.jpg?1751949376",
-      "price": 0.00174562,
-      "volume_24h": 27584101,
-      "market_cap": 620169120,
-      "price_change_24h_pct": -2.65246
+      "price": 0.198135,
+      "volume_24h": 25693675,
+      "market_cap": 198002697,
+      "price_change_24h_pct": -0.55345
     },
     {
       "id": "ordinals",
       "name": "ORDI",
       "symbol": "ORDI",
       "image": "https://coin-images.coingecko.com/coins/images/30162/large/ordi.png?1696529082",
-      "price": 4.28,
-      "volume_24h": 25255660,
-      "market_cap": 89880711,
-      "price_change_24h_pct": 0.23905
+      "price": 4.34,
+      "volume_24h": 22663657,
+      "market_cap": 91244432,
+      "price_change_24h_pct": 4.51582
+    },
+    {
+      "id": "pump-fun",
+      "name": "Pump.fun",
+      "symbol": "PUMP",
+      "image": "https://coin-images.coingecko.com/coins/images/67164/large/pump.jpg?1751949376",
+      "price": 0.00174383,
+      "volume_24h": 22217406,
+      "market_cap": 619799868,
+      "price_change_24h_pct": 0.39121
     },
     {
       "id": "floki",
       "name": "FLOKI",
       "symbol": "FLOKI",
       "image": "https://coin-images.coingecko.com/coins/images/16746/large/PNG_image.png?1696516318",
-      "price": 0.00003172,
-      "volume_24h": 24279269,
-      "market_cap": 305843130,
-      "price_change_24h_pct": -3.37407
+      "price": 0.00003193,
+      "volume_24h": 19872562,
+      "market_cap": 307853987,
+      "price_change_24h_pct": 0.46477
     },
     {
       "id": "fartcoin",
       "name": "Fartcoin",
       "symbol": "FARTCOIN",
       "image": "https://coin-images.coingecko.com/coins/images/50891/large/fart.jpg?1729503972",
-      "price": 0.193322,
-      "volume_24h": 23051733,
-      "market_cap": 193226986,
-      "price_change_24h_pct": -3.58013
+      "price": 0.19515,
+      "volume_24h": 18584232,
+      "market_cap": 195080315,
+      "price_change_24h_pct": 1.3083
     },
     {
       "id": "bianrensheng",
       "name": "币安人生 (BinanceLife)",
       "symbol": "币安人生",
       "image": "https://coin-images.coingecko.com/coins/images/69848/large/%E5%B8%81%E5%AE%89%E4%BA%BA%E7%94%9F.png?1759839225",
-      "price": 0.411196,
-      "volume_24h": 17934969,
-      "market_cap": 411012715,
-      "price_change_24h_pct": 4.22739
+      "price": 0.408522,
+      "volume_24h": 18181717,
+      "market_cap": 409063870,
+      "price_change_24h_pct": 3.81967
     },
     {
       "id": "clawguin",
@@ -168,340 +168,340 @@
       "name": "aixbt",
       "symbol": "AIXBT",
       "image": "https://coin-images.coingecko.com/coins/images/51784/large/3.png?1731981138",
-      "price": 0.03399192,
-      "volume_24h": 15724834,
-      "market_cap": 33793984,
-      "price_change_24h_pct": 1.63993
-    },
-    {
-      "id": "peanut-the-squirrel",
-      "name": "Peanut the Squirrel",
-      "symbol": "PNUT",
-      "image": "https://coin-images.coingecko.com/coins/images/51301/large/Peanut_the_Squirrel.png?1734941241",
-      "price": 0.060073,
-      "volume_24h": 15467987,
-      "market_cap": 59956878,
-      "price_change_24h_pct": -4.29414
+      "price": 0.03351314,
+      "volume_24h": 15826471,
+      "market_cap": 33348801,
+      "price_change_24h_pct": 4.91039
     },
     {
       "id": "asteroid-shiba",
       "name": "Asteroid Shiba",
       "symbol": "ASTEROID",
       "image": "https://coin-images.coingecko.com/coins/images/50333/large/IMG_0728.jpeg?1727384521",
-      "price": 0.0003615,
-      "volume_24h": 15060989,
-      "market_cap": 152367552,
-      "price_change_24h_pct": 2.45068
-    },
-    {
-      "id": "dogs-2",
-      "name": "Dogs",
-      "symbol": "DOGS",
-      "image": "https://coin-images.coingecko.com/coins/images/39699/large/dogs_logo_200x200.png?1723687163",
-      "price": 0.00005525,
-      "volume_24h": 14752598,
-      "market_cap": 28530459,
-      "price_change_24h_pct": -5.0459
+      "price": 0.00039779,
+      "volume_24h": 15659210,
+      "market_cap": 167166454,
+      "price_change_24h_pct": 23.65029
     },
     {
       "id": "degen-base",
       "name": "Degen",
       "symbol": "DEGEN",
       "image": "https://coin-images.coingecko.com/coins/images/34515/large/android-chrome-512x512.png?1706198225",
-      "price": 0.00104343,
-      "volume_24h": 14284931,
-      "market_cap": 38135795,
-      "price_change_24h_pct": 10.86408
+      "price": 0.00101701,
+      "volume_24h": 14479902,
+      "market_cap": 37541128,
+      "price_change_24h_pct": 7.43383
     },
     {
-      "id": "siren-2",
-      "name": "Siren",
-      "symbol": "SIREN",
-      "image": "https://coin-images.coingecko.com/coins/images/54479/large/siren.png?1739960056",
-      "price": 0.508441,
-      "volume_24h": 12973432,
-      "market_cap": 369631899,
-      "price_change_24h_pct": -4.73134
+      "id": "dogs-2",
+      "name": "Dogs",
+      "symbol": "DOGS",
+      "image": "https://coin-images.coingecko.com/coins/images/39699/large/dogs_logo_200x200.png?1723687163",
+      "price": 0.00005691,
+      "volume_24h": 13920152,
+      "market_cap": 29403829,
+      "price_change_24h_pct": 3.4365
+    },
+    {
+      "id": "peanut-the-squirrel",
+      "name": "Peanut the Squirrel",
+      "symbol": "PNUT",
+      "image": "https://coin-images.coingecko.com/coins/images/51301/large/Peanut_the_Squirrel.png?1734941241",
+      "price": 0.059852,
+      "volume_24h": 13629420,
+      "market_cap": 59825562,
+      "price_change_24h_pct": 0.31437
     },
     {
       "id": "banana-for-scale-2",
       "name": "Banana For Scale",
       "symbol": "BANANAS31",
       "image": "https://coin-images.coingecko.com/coins/images/52230/large/Banana_token_image.png?1732801941",
-      "price": 0.00995838,
-      "volume_24h": 12553496,
-      "market_cap": 99513584,
-      "price_change_24h_pct": -14.27983
+      "price": 0.00992363,
+      "volume_24h": 12903780,
+      "market_cap": 99328765,
+      "price_change_24h_pct": -13.904
     },
     {
       "id": "i-love-puppies",
       "name": "I love puppies",
       "symbol": "PUPPIES",
       "image": "https://coin-images.coingecko.com/coins/images/35708/large/1000005823.jpg?1709624357",
-      "price": 1.80421e-7,
-      "volume_24h": 12169572,
-      "market_cap": 7589463,
-      "price_change_24h_pct": -2.41801
-    },
-    {
-      "id": "popcat",
-      "name": "Popcat",
-      "symbol": "POPCAT",
-      "image": "https://coin-images.coingecko.com/coins/images/33760/large/image.jpg?1702964227",
-      "price": 0.058774,
-      "volume_24h": 11957789,
-      "market_cap": 57505144,
-      "price_change_24h_pct": -3.75266
-    },
-    {
-      "id": "book-of-meme",
-      "name": "BOOK OF MEME",
-      "symbol": "BOME",
-      "image": "https://coin-images.coingecko.com/coins/images/36071/large/bome.png?1710407255",
-      "price": 0.00057787,
-      "volume_24h": 11905165,
-      "market_cap": 39789244,
-      "price_change_24h_pct": -4.29776
+      "price": 1.77208e-7,
+      "volume_24h": 12187734,
+      "market_cap": 7455045,
+      "price_change_24h_pct": -1.94373
     },
     {
       "id": "troll-2",
       "name": "TROLL",
       "symbol": "TROLL",
       "image": "https://coin-images.coingecko.com/coins/images/55282/large/Untitled_design.png?1777015928",
-      "price": 0.112567,
-      "volume_24h": 11376838,
-      "market_cap": 112497825,
-      "price_change_24h_pct": 4.73837
+      "price": 0.114093,
+      "volume_24h": 11735402,
+      "market_cap": 113526649,
+      "price_change_24h_pct": 4.45356
+    },
+    {
+      "id": "book-of-meme",
+      "name": "BOOK OF MEME",
+      "symbol": "BOME",
+      "image": "https://coin-images.coingecko.com/coins/images/36071/large/bome.png?1710407255",
+      "price": 0.00059367,
+      "volume_24h": 11687784,
+      "market_cap": 40922112,
+      "price_change_24h_pct": 3.49791
+    },
+    {
+      "id": "popcat",
+      "name": "Popcat",
+      "symbol": "POPCAT",
+      "image": "https://coin-images.coingecko.com/coins/images/33760/large/image.jpg?1702964227",
+      "price": 0.059168,
+      "volume_24h": 11405306,
+      "market_cap": 57983137,
+      "price_change_24h_pct": 1.57405
+    },
+    {
+      "id": "siren-2",
+      "name": "Siren",
+      "symbol": "SIREN",
+      "image": "https://coin-images.coingecko.com/coins/images/54479/large/siren.png?1739960056",
+      "price": 0.509917,
+      "volume_24h": 11280057,
+      "market_cap": 370601418,
+      "price_change_24h_pct": -0.67124
     },
     {
       "id": "notcoin",
       "name": "Notcoin",
       "symbol": "NOT",
       "image": "https://coin-images.coingecko.com/coins/images/33453/large/rFmThDiD_400x400.jpg?1701876350",
-      "price": 0.00050274,
-      "volume_24h": 10968396,
-      "market_cap": 49897494,
-      "price_change_24h_pct": -4.25034
-    },
-    {
-      "id": "based-brett",
-      "name": "Brett",
-      "symbol": "BRETT",
-      "image": "https://coin-images.coingecko.com/coins/images/35529/large/1000050750.png?1709031995",
-      "price": 0.00791096,
-      "volume_24h": 10918638,
-      "market_cap": 78314686,
-      "price_change_24h_pct": -7.90656
+      "price": 0.00050717,
+      "volume_24h": 10515086,
+      "market_cap": 50410901,
+      "price_change_24h_pct": 0.28881
     },
     {
       "id": "moo-deng",
       "name": "Moo Deng",
       "symbol": "MOODENG",
       "image": "https://coin-images.coingecko.com/coins/images/50264/large/MOODENG.jpg?1726726975",
-      "price": 0.052765,
-      "volume_24h": 10719977,
-      "market_cap": 52156933,
-      "price_change_24h_pct": -4.15226
+      "price": 0.052995,
+      "volume_24h": 10474423,
+      "market_cap": 52439520,
+      "price_change_24h_pct": 0.14679
     },
     {
-      "id": "sundog",
-      "name": "Sundog",
-      "symbol": "SUNDOG",
-      "image": "https://coin-images.coingecko.com/coins/images/39752/large/SUNDOG.jpg?1759385447",
-      "price": 0.00619161,
-      "volume_24h": 10582744,
-      "market_cap": 6217242,
-      "price_change_24h_pct": -15.2512
+      "id": "based-brett",
+      "name": "Brett",
+      "symbol": "BRETT",
+      "image": "https://coin-images.coingecko.com/coins/images/35529/large/1000050750.png?1709031995",
+      "price": 0.00802247,
+      "volume_24h": 10256388,
+      "market_cap": 79461546,
+      "price_change_24h_pct": -2.00621
     },
     {
       "id": "turbo",
       "name": "Turbo",
       "symbol": "TURBO",
       "image": "https://coin-images.coingecko.com/coins/images/30117/large/TurboMark-QL_200.png?1708079597",
-      "price": 0.00116858,
-      "volume_24h": 9858341,
-      "market_cap": 80568715,
-      "price_change_24h_pct": -4.11666
-    },
-    {
-      "id": "neiro-3",
-      "name": "Neiro",
-      "symbol": "NEIRO",
-      "image": "https://coin-images.coingecko.com/coins/images/39488/large/neiro.jpg?1731449567",
-      "price": 0.00008965,
-      "volume_24h": 9674188,
-      "market_cap": 37660265,
-      "price_change_24h_pct": -5.24389
+      "price": 0.00118411,
+      "volume_24h": 9616125,
+      "market_cap": 81697729,
+      "price_change_24h_pct": 0.94645
     },
     {
       "id": "giggle-fund",
       "name": "Giggle Fund",
       "symbol": "GIGGLE",
       "image": "https://coin-images.coingecko.com/coins/images/69414/large/giggle-fund.jpg?1758541887",
-      "price": 33.35,
-      "volume_24h": 9240104,
-      "market_cap": 33294715,
-      "price_change_24h_pct": 0.08642
+      "price": 33.61,
+      "volume_24h": 9266410,
+      "market_cap": 33647223,
+      "price_change_24h_pct": 4.27956
+    },
+    {
+      "id": "sundog",
+      "name": "Sundog",
+      "symbol": "SUNDOG",
+      "image": "https://coin-images.coingecko.com/coins/images/39752/large/SUNDOG.jpg?1759385447",
+      "price": 0.00639841,
+      "volume_24h": 9145443,
+      "market_cap": 6395606,
+      "price_change_24h_pct": -7.48532
     },
     {
       "id": "mog-coin",
       "name": "Mog Coin",
       "symbol": "MOG",
       "image": "https://coin-images.coingecko.com/coins/images/31059/large/MOG_LOGO_200x200.png?1696529893",
-      "price": 1.454e-7,
-      "volume_24h": 8716801,
-      "market_cap": 56636138,
-      "price_change_24h_pct": -3.52997
+      "price": 1.45913e-7,
+      "volume_24h": 8751326,
+      "market_cap": 56976807,
+      "price_change_24h_pct": -0.30031
     },
     {
-      "id": "act-i-the-ai-prophecy",
-      "name": "Act I The AI Prophecy",
-      "symbol": "ACT",
-      "image": "https://coin-images.coingecko.com/coins/images/50984/large/ai_prophecy.jpg?1729653897",
-      "price": 0.01350047,
-      "volume_24h": 8460989,
-      "market_cap": 12866139,
-      "price_change_24h_pct": -5.83674
+      "id": "neiro-3",
+      "name": "Neiro",
+      "symbol": "NEIRO",
+      "image": "https://coin-images.coingecko.com/coins/images/39488/large/neiro.jpg?1731449567",
+      "price": 0.00008988,
+      "volume_24h": 8614663,
+      "market_cap": 37809602,
+      "price_change_24h_pct": -0.02673
     },
     {
       "id": "test-3",
       "name": "Test",
       "symbol": "TST",
       "image": "https://coin-images.coingecko.com/coins/images/54274/large/Test.png?1738997629",
-      "price": 0.01808812,
-      "volume_24h": 8362870,
-      "market_cap": 17045865,
-      "price_change_24h_pct": -6.28505
+      "price": 0.01817612,
+      "volume_24h": 7929942,
+      "market_cap": 17126090,
+      "price_change_24h_pct": -2.81865
+    },
+    {
+      "id": "act-i-the-ai-prophecy",
+      "name": "Act I The AI Prophecy",
+      "symbol": "ACT",
+      "image": "https://coin-images.coingecko.com/coins/images/50984/large/ai_prophecy.jpg?1729653897",
+      "price": 0.01356892,
+      "volume_24h": 7821262,
+      "market_cap": 12871984,
+      "price_change_24h_pct": -0.7726
     },
     {
       "id": "toshi",
       "name": "Toshi",
       "symbol": "TOSHI",
       "image": "https://coin-images.coingecko.com/coins/images/31126/large/Toshi_Logo_-_Circular.png?1721677476",
-      "price": 0.00017853,
-      "volume_24h": 8111612,
-      "market_cap": 75130167,
-      "price_change_24h_pct": -1.70689
-    },
-    {
-      "id": "ponke",
-      "name": "PONKE",
-      "symbol": "PONKE",
-      "image": "https://coin-images.coingecko.com/coins/images/33929/large/ponke-logo.png?1747200908",
-      "price": 0.03966841,
-      "volume_24h": 7126687,
-      "market_cap": 22073344,
-      "price_change_24h_pct": -8.17466
-    },
-    {
-      "id": "anime",
-      "name": "Animecoin",
-      "symbol": "ANIME",
-      "image": "https://coin-images.coingecko.com/coins/images/53575/large/anime.jpg?1736748703",
-      "price": 0.00446689,
-      "volume_24h": 6752651,
-      "market_cap": 24716308,
-      "price_change_24h_pct": -2.68442
-    },
-    {
-      "id": "memecore",
-      "name": "MemeCore",
-      "symbol": "M",
-      "image": "https://coin-images.coingecko.com/coins/images/53247/large/square-bg-transparent.png?1752637478",
-      "price": 3.18,
-      "volume_24h": 6683714,
-      "market_cap": 4138546977,
-      "price_change_24h_pct": -1.47548
-    },
-    {
-      "id": "melania-meme",
-      "name": "Melania Meme",
-      "symbol": "MELANIA",
-      "image": "https://coin-images.coingecko.com/coins/images/53775/large/melania-meme.png?1737329885",
-      "price": 0.098233,
-      "volume_24h": 6677086,
-      "market_cap": 93598368,
-      "price_change_24h_pct": -2.61325
-    },
-    {
-      "id": "useless-3",
-      "name": "Useless Coin",
-      "symbol": "USELESS",
-      "image": "https://coin-images.coingecko.com/coins/images/55684/large/coingeckoupdate.png?1755203747",
-      "price": 0.05905,
-      "volume_24h": 6289995,
-      "market_cap": 58934737,
-      "price_change_24h_pct": -1.02743
-    },
-    {
-      "id": "memecoin-2",
-      "name": "Memecoin",
-      "symbol": "MEME",
-      "image": "https://coin-images.coingecko.com/coins/images/32528/large/memecoin_%282%29.png?1698912168",
-      "price": 0.00053376,
-      "volume_24h": 6256406,
-      "market_cap": 33739265,
-      "price_change_24h_pct": -4.81952
+      "price": 0.00017684,
+      "volume_24h": 7812095,
+      "market_cap": 74395906,
+      "price_change_24h_pct": 0.20915
     },
     {
       "id": "zerebro",
       "name": "Zerebro",
       "symbol": "ZEREBRO",
       "image": "https://coin-images.coingecko.com/coins/images/51289/large/zerebro_2.png?1730588883",
-      "price": 0.02388499,
-      "volume_24h": 5616698,
-      "market_cap": 24141422,
-      "price_change_24h_pct": -15.76543
+      "price": 0.02486836,
+      "volume_24h": 6734183,
+      "market_cap": 24920599,
+      "price_change_24h_pct": -9.09116
+    },
+    {
+      "id": "useless-3",
+      "name": "Useless Coin",
+      "symbol": "USELESS",
+      "image": "https://coin-images.coingecko.com/coins/images/55684/large/coingeckoupdate.png?1755203747",
+      "price": 0.06042,
+      "volume_24h": 6601143,
+      "market_cap": 60302393,
+      "price_change_24h_pct": 5.35855
+    },
+    {
+      "id": "melania-meme",
+      "name": "Melania Meme",
+      "symbol": "MELANIA",
+      "image": "https://coin-images.coingecko.com/coins/images/53775/large/melania-meme.png?1737329885",
+      "price": 0.098476,
+      "volume_24h": 6453211,
+      "market_cap": 93806138,
+      "price_change_24h_pct": 0.26243
+    },
+    {
+      "id": "memecore",
+      "name": "MemeCore",
+      "symbol": "M",
+      "image": "https://coin-images.coingecko.com/coins/images/53247/large/square-bg-transparent.png?1752637478",
+      "price": 3.23,
+      "volume_24h": 6344153,
+      "market_cap": 4201310551,
+      "price_change_24h_pct": 1.88619
+    },
+    {
+      "id": "anime",
+      "name": "Animecoin",
+      "symbol": "ANIME",
+      "image": "https://coin-images.coingecko.com/coins/images/53575/large/anime.jpg?1736748703",
+      "price": 0.0044906,
+      "volume_24h": 6039171,
+      "market_cap": 24869924,
+      "price_change_24h_pct": 1.50913
+    },
+    {
+      "id": "ponke",
+      "name": "PONKE",
+      "symbol": "PONKE",
+      "image": "https://coin-images.coingecko.com/coins/images/33929/large/ponke-logo.png?1747200908",
+      "price": 0.03922664,
+      "volume_24h": 5931202,
+      "market_cap": 21754723,
+      "price_change_24h_pct": -2.11814
     },
     {
       "id": "czs-dog",
       "name": "CZ's Dog",
       "symbol": "BROCCOLI",
       "image": "https://coin-images.coingecko.com/coins/images/54400/large/broccoli.jpg?1739504145",
-      "price": 0.01445087,
-      "volume_24h": 5610620,
-      "market_cap": 13986687,
-      "price_change_24h_pct": -3.31346
+      "price": 0.0144963,
+      "volume_24h": 5686047,
+      "market_cap": 14034357,
+      "price_change_24h_pct": 0.72661
     },
     {
-      "id": "comedian",
-      "name": "Comedian",
-      "symbol": "BAN",
-      "image": "https://coin-images.coingecko.com/coins/images/51100/large/ban.jpg?1730085215",
-      "price": 0.074409,
-      "volume_24h": 5462705,
-      "market_cap": 74420570,
-      "price_change_24h_pct": -0.62669
-    },
-    {
-      "id": "cat-in-a-dogs-world",
-      "name": "cat in a dogs world",
-      "symbol": "MEW",
-      "image": "https://coin-images.coingecko.com/coins/images/36440/large/MEW.png?1711442286",
-      "price": 0.00056311,
-      "volume_24h": 5399433,
-      "market_cap": 49992932,
-      "price_change_24h_pct": -2.98871
+      "id": "memecoin-2",
+      "name": "Memecoin",
+      "symbol": "MEME",
+      "image": "https://coin-images.coingecko.com/coins/images/32528/large/memecoin_%282%29.png?1698912168",
+      "price": 0.00053696,
+      "volume_24h": 5589633,
+      "market_cap": 33979782,
+      "price_change_24h_pct": -0.12538
     },
     {
       "id": "constitutiondao",
       "name": "ConstitutionDAO",
       "symbol": "PEOPLE",
       "image": "https://coin-images.coingecko.com/coins/images/20612/large/GN_UVm3d_400x400.jpg?1696520017",
-      "price": 0.00715301,
-      "volume_24h": 5356369,
-      "market_cap": 36212524,
-      "price_change_24h_pct": -3.81525
+      "price": 0.00715141,
+      "volume_24h": 5570136,
+      "market_cap": 36218213,
+      "price_change_24h_pct": -0.38256
     },
     {
       "id": "mubarak",
       "name": "Mubarak",
       "symbol": "MUBARAK",
       "image": "https://coin-images.coingecko.com/coins/images/54857/large/DKjv3dc6_400x400.jpg?1742107486",
-      "price": 0.01406779,
-      "volume_24h": 5353924,
-      "market_cap": 14055287,
-      "price_change_24h_pct": -4.58551
+      "price": 0.0140659,
+      "volume_24h": 5078110,
+      "market_cap": 14065899,
+      "price_change_24h_pct": -0.60436
+    },
+    {
+      "id": "comedian",
+      "name": "Comedian",
+      "symbol": "BAN",
+      "image": "https://coin-images.coingecko.com/coins/images/51100/large/ban.jpg?1730085215",
+      "price": 0.074342,
+      "volume_24h": 5028194,
+      "market_cap": 74294651,
+      "price_change_24h_pct": -1.62043
+    },
+    {
+      "id": "gigachad-2",
+      "name": "Gigachad",
+      "symbol": "GIGA",
+      "image": "https://coin-images.coingecko.com/coins/images/34755/large/IMG_0015.png?1705957165",
+      "price": 0.00508909,
+      "volume_24h": 4964815,
+      "market_cap": 48823415,
+      "price_change_24h_pct": 12.59581
     }
   ]
 }
