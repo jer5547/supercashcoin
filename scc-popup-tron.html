@@ -47,15 +47,18 @@ html,body{
 html.embed, body.embed{
   background:transparent;
   min-height:0;
-  display:block;
-  padding:8px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  padding:20px;
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
 }
 body.embed::before, body.embed::after{display:none;}
 body.embed .scan{display:none;}
 @media (max-width:680px){
-  body.embed{padding:4px;}
+  body.embed{padding:6px;}
 }
 body::before{
   content:'';position:fixed;inset:0;z-index:0;
