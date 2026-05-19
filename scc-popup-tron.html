@@ -46,9 +46,17 @@ html,body{
    page's overlay dim shows through everything else. */
 html.embed, body.embed{
   background:transparent;
+  min-height:0;
+  display:block;
+  padding:8px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
 }
 body.embed::before, body.embed::after{display:none;}
 body.embed .scan{display:none;}
+@media (max-width:680px){
+  body.embed{padding:4px;}
+}
 body::before{
   content:'';position:fixed;inset:0;z-index:0;
   background:
@@ -1063,7 +1071,151 @@ body::after{
 }
 
 @media (max-width:680px){
+  body{padding:8px;}
+  body.embed{padding:0;}
   .chamber-lbl{display:none;}
+  .modal{max-width:100%;}
+
+  /* Top bar shrink */
+  .top{padding:10px 12px;flex-wrap:nowrap;gap:8px;}
+  .brand{gap:8px;flex-shrink:0;}
+  .brand-coin{width:30px;height:30px;}
+  .brand-name{font-size:16px;}
+  .top-right{gap:6px;flex-shrink:0;}
+  .chamber-btn{padding:3px 3px 3px 10px;gap:6px;}
+  .chamber-count{font-size:11px;}
+  .chamber-cta{font-size:9px;padding:4px 8px;}
+  .wallet{padding:6px 14px;font-size:10px;}
+  .close{width:30px;height:30px;font-size:18px;}
+
+  /* Hero pile area */
+  .hero{padding:2px 12px 0;}
+  .hero-pile-wrap{height:180px;padding:0 8px;}
+  .pile-img.solo{height:175px;}
+  .spark{font-size:11px;}
+  .spark.s3,.spark.s4{font-size:8px;}
+  .spark.s5{font-size:7px;}
+
+  /* Now Available banner */
+  .avail-box{padding:8px 12px;margin:0 12px;}
+  .avail-text{font-size:11px;letter-spacing:.1em;}
+  .avail-price{font-size:22px;}
+  .avail-price .unit{font-size:10px;}
+
+  /* Steps row */
+  .net-steps{padding:8px 4px;gap:4px;}
+  .net-step{padding:4px 6px;gap:5px;}
+  .net-num{width:18px;height:18px;font-size:9px;}
+  .net-logo{width:20px;height:20px;}
+  .net-eyebrow{font-size:7px;letter-spacing:.14em;}
+  .net-name{font-size:11px;}
+  .net-sep{height:18px;}
+
+  /* Gauge box */
+  .gauge-wrap{padding:12px 14px 14px;margin:2px 12px 6px;}
+  .gauge-top{margin-bottom:12px;}
+  .gauge-side{gap:8px;padding:4px 2px;}
+  .gauge-side-l{padding-right:6px;}
+  .gauge-side-r{padding-left:6px;}
+  .gauge-coin{width:42px;height:42px;}
+  .gauge-label{font-size:7px;letter-spacing:.14em;}
+  .gauge-value{font-size:17px;}
+  .gauge-value .unit{font-size:9px;}
+  .gauge-total{font-size:8px;}
+  .gauge-h-divider{margin:12px 4px 12px;}
+  .gauge-scale{padding:4px 2px;}
+  .supply-label{font-size:7px;letter-spacing:.14em;margin-bottom:4px;}
+  .led-bar{height:18px;gap:1.5px;}
+  .led-pointer-num{font-size:11px;}
+  .led-pointer-tri{border-left-width:6px;border-right-width:6px;border-bottom-width:8px;}
+
+  /* Right column: ICO module */
+  .ico-module{padding:14px 14px;margin:10px 12px 12px;}
+  .ico-title{font-size:18px;letter-spacing:.12em;}
+  .ico-limited{font-size:9px;}
+  .ico-blurb{font-size:11px;line-height:1.45;}
+  .tax-row{gap:10px;margin:14px 0 12px;}
+  .tax-lbl{font-size:14px;letter-spacing:.14em;}
+  .breaker-panel{padding:5px 8px;gap:8px;}
+  .breaker-pct{font-size:18px;}
+  .breaker-lever-track{width:22px;height:22px;}
+  .breaker-off{font-size:10px;}
+
+  /* Order form */
+  .order-head{margin-bottom:10px;}
+  .order-title{font-size:11px;letter-spacing:.16em;}
+  .order-min{font-size:8.5px;}
+  .order-min b{font-size:8.5px;}
+  .pay-box{padding:10px 12px;}
+  .pay-label{font-size:8px;}
+  .pay-bal{font-size:8.5px;}
+  .amt-prefix{font-size:22px !important;}
+  .amt-input{font-size:22px !important;}
+  .pay-badge{padding:4px 8px;gap:5px;font-size:10px;}
+  .pay-badge img{width:16px;height:16px;}
+
+  /* Receipt */
+  .receipt{padding:12px 14px;margin-top:10px;}
+  .receipt-head{font-size:10px;letter-spacing:.16em;margin-bottom:8px;}
+  .receipt-line{font-size:10px;padding:3px 0;}
+  .receipt-line .l{font-size:9px;}
+  .receipt-total{padding:8px 0 0;margin-top:4px;}
+  .receipt-total .l{font-size:11px;letter-spacing:.16em;}
+  .receipt-total .v{font-size:20px !important;}
+
+  /* Confirm button */
+  .confirm-btn{padding:13px 18px;font-size:13px;letter-spacing:.14em;margin:14px 12px 12px;}
+}
+
+/* TIGHTER MOBILE — phones under 480px */
+@media (max-width:480px){
+  body{padding:4px;}
+  body.embed{padding:0;}
+
+  .top{padding:8px 10px;}
+  .brand-coin{width:26px;height:26px;}
+  .brand-name{font-size:14px;}
+  .chamber-btn{padding:2px 2px 2px 8px;}
+  .chamber-count{font-size:10px;}
+  .chamber-cta{font-size:8px;padding:3px 7px;}
+  .wallet{padding:5px 11px;font-size:9px;}
+  .close{width:26px;height:26px;font-size:16px;}
+
+  /* Pile - shrink further */
+  .hero-pile-wrap{height:150px;}
+  .pile-img.solo{height:145px;}
+
+  .avail-box{padding:7px 10px;margin:0 10px;}
+  .avail-text{font-size:10px;}
+  .avail-price{font-size:19px;}
+
+  .net-steps{padding:7px 3px;gap:2px;}
+  .net-step{padding:3px 4px;gap:4px;}
+  .net-num{width:16px;height:16px;font-size:8px;}
+  .net-logo{width:18px;height:18px;}
+  .net-eyebrow{font-size:6.5px;}
+  .net-name{font-size:10px;}
+
+  .gauge-wrap{padding:10px 12px 12px;margin:2px 10px 6px;}
+  .gauge-coin{width:36px;height:36px;}
+  .gauge-value{font-size:15px;}
+  .gauge-total{font-size:7.5px;}
+  .led-bar{height:16px;}
+
+  .ico-module{padding:12px 12px;margin:8px 10px 10px;}
+  .ico-title{font-size:15px;letter-spacing:.1em;}
+  .ico-blurb{font-size:10px;}
+  .tax-lbl{font-size:12px;}
+  .breaker-pct{font-size:15px;}
+
+  .pay-box{padding:9px 11px;}
+  .amt-prefix{font-size:19px !important;}
+  .amt-input{font-size:19px !important;}
+
+  .receipt{padding:10px 12px;}
+  .receipt-total .v{font-size:17px !important;}
+
+  .confirm-btn{padding:11px 14px;font-size:12px;margin:12px 10px 10px;}
 }
 
 

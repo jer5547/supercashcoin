@@ -1290,17 +1290,24 @@
   }
   .top-banner:hover .ico-cta{transform:translateX(3px);}
   @media (max-width:980px){
-    .top-banner{flex-wrap:wrap;padding:10px 16px;gap:12px;}
+    .top-banner{flex-wrap:wrap;padding:9px 12px;gap:10px;}
     .top-banner > .ico-sep{display:none;}
-    .ico-steps{flex-basis:100%;order:3;flex-wrap:wrap;}
-    .ico-cta{order:4;}
+    .ico-steps{flex-basis:100%;order:3;flex-wrap:wrap;gap:10px;}
+    .ico-cta{order:4;font-size:11px;}
   }
   @media (max-width:540px){
-    .ico-title{font-size:11px;}
-    .ico-price{font-size:12px;}
+    .top-banner{padding:8px 10px;gap:8px;}
+    .ico-left{gap:8px;}
+    .ico-title{font-size:10.5px;letter-spacing:.12em;}
+    .ico-price{font-size:11px;padding:1px 8px 2px;}
+    .ico-price .u{font-size:8px;}
+    .ico-dot{width:7px;height:7px;}
     .ico-step .ico-text{display:none;}
     .ico-steps .ico-sep{display:none;}
-    .ico-steps{gap:10px;}
+    .ico-steps{gap:8px;}
+    .ico-num{width:16px;height:16px;font-size:8px;}
+    .ico-logo{width:18px;height:18px;}
+    .ico-cta{font-size:10px;letter-spacing:.1em;}
   }
 
   /* ============================================================
@@ -7074,6 +7081,10 @@ init();
   }
   /* Lock body scroll when modal is open */
   body.scc-modal-open{overflow:hidden;}
+  /* Mobile: full viewport with no padding so the iframe gets every pixel */
+  @media (max-width:680px){
+    .scc-modal-overlay{padding:0;}
+  }
 </style>
 
 <div class="scc-modal-overlay" id="sccModalOverlay" role="dialog" aria-modal="true" aria-label="$SCC ICO purchase" aria-hidden="true">
