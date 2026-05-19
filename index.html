@@ -1206,76 +1206,95 @@
   /* ============================================================
      TOP BANNER (above navbar)
      ============================================================ */
+  /* ============================================================
+     ICO STRIP — combines status/price (left), 3-step flow (middle), CTA (right)
+     ============================================================ */
   .top-banner{
     width:100%;
-    background:#1d4fd8;
-    color:#fff;
-    padding:11px 24px;
-    display:flex;align-items:center;justify-content:center;gap:14px;
-    font-size:12px;font-weight:700;letter-spacing:0.05em;
-    text-transform:uppercase;
-    border-bottom:2px solid #0a0a0a;
+    background:linear-gradient(180deg,#1d4fd8 0%,#1a44b8 100%);
+    padding:11px 22px;
+    display:flex;align-items:center;gap:22px;
+    border-top:1px solid rgba(125,165,255,0.55);
+    border-bottom:1px solid rgba(125,165,255,0.55);
+    box-shadow:0 0 20px rgba(60,130,255,0.4),inset 0 1px 0 rgba(255,255,255,0.10);
     cursor:pointer;
-    position:relative;
-    overflow:hidden;
-    transition:background 0.2s ease,box-shadow 0.2s ease;
+    position:relative;overflow:hidden;
+    transition:filter 0.2s ease;
+    font-family:'Share Tech Mono',monospace;
+    color:#fff;
     z-index:5;
   }
+  .top-banner:hover{filter:brightness(1.12);}
   .top-banner::before{
     content:'';position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(90deg,
-      transparent 0%,
-      rgba(255,255,255,0.18) 50%,
-      transparent 100%);
-    background-size:30% 100%;background-repeat:no-repeat;
-    animation:bannerScan 6s linear infinite;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.16),transparent);
+    background-size:25% 100%;background-repeat:no-repeat;
+    animation:icoScan 6s linear infinite;
     mix-blend-mode:screen;
   }
-  @keyframes bannerScan{
-    0%{background-position:-30% 0;}
-    100%{background-position:130% 0;}
+  @keyframes icoScan{0%{background-position:-25% 0;}100%{background-position:125% 0;}}
+  /* LEFT cluster: status + title + price */
+  .ico-left{display:flex;align-items:center;gap:12px;flex-shrink:0;position:relative;z-index:1;}
+  .ico-dot{
+    display:inline-block;width:9px;height:9px;border-radius:50%;
+    background:#23d76b;box-shadow:0 0 0 3px rgba(35,215,107,0.3),0 0 8px #23d76b;
+    flex-shrink:0;animation:icoPulse 1.5s ease-in-out infinite;
   }
-  .top-banner:hover{
-    background:#2255e8;
-    box-shadow:inset 0 0 26px rgba(255,255,255,0.10);
+  @keyframes icoPulse{0%,100%{opacity:1;}50%{opacity:0.55;}}
+  .ico-title{
+    font-family:'Orbitron',sans-serif;font-weight:900;font-size:12px;
+    letter-spacing:.18em;color:#fff;text-transform:uppercase;
+    text-shadow:0 0 6px rgba(170,200,255,0.5);white-space:nowrap;
   }
-  .top-banner:hover .top-banner-cta{
-    color:#ffe97d;
-    text-shadow:0 0 10px rgba(255,210,61,0.9),0 0 18px rgba(255,210,61,0.55);
-  }
-  .top-banner .dot{
-    display:inline-block;width:8px;height:8px;border-radius:50%;
-    background:#23d76b;box-shadow:0 0 0 3px rgba(35,215,107,0.3);
-    animation:pulse 1.5s ease-in-out infinite;flex-shrink:0;
-    position:relative;z-index:1;
-  }
-  .top-banner b{color:#ffd23d;font-weight:900;position:relative;z-index:1;}
-  .top-banner .banner-text{position:relative;z-index:1;}
-  .top-banner .price{
-    font-size:14px;
-    letter-spacing:0.03em;
-    background:#0a0a0a;
-    color:#ffd23d;
-    padding:1px 10px 2px;
-    border:1.5px solid #ffd23d;
-    border-radius:4px;
-    display:inline-block;
+  .ico-pipe{color:rgba(170,200,255,0.35);}
+  .ico-price{
+    font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:.03em;
+    background:rgba(0,0,0,0.55);color:#ffd23d;
+    padding:2px 10px 3px;border:1.5px solid #ffd23d;border-radius:3px;
     font-weight:900;
-    position:relative;z-index:1;
-  }
-  .top-banner .banner-only{opacity:0.85;position:relative;z-index:1;}
-  .top-banner-cta{
-    color:#ffd23d;font-weight:900;letter-spacing:0.08em;
     text-shadow:0 0 6px rgba(255,210,61,0.55);
-    margin-left:6px;
-    position:relative;z-index:1;
-    transition:color 0.2s ease,text-shadow 0.2s ease;
+    box-shadow:0 0 10px rgba(255,210,61,0.3);
+    display:inline-flex;align-items:baseline;gap:4px;
   }
-  @media (max-width:760px){
-    .top-banner{font-size:10.5px;padding:9px 14px;gap:8px;flex-wrap:wrap;}
-    .top-banner .price{font-size:12px;}
-    .top-banner .banner-only{display:none;}
-    .top-banner-cta{margin-left:0;width:100%;text-align:center;}
+  .ico-price .u{font-size:9px;letter-spacing:.14em;color:rgba(255,210,61,0.75);font-weight:700;}
+  /* MIDDLE cluster: three steps with logos */
+  .ico-steps{display:flex;align-items:center;gap:14px;flex:1;justify-content:center;min-width:0;position:relative;z-index:1;}
+  .ico-step{display:flex;align-items:center;gap:8px;min-width:0;}
+  .ico-num{
+    width:20px;height:20px;border-radius:50%;flex-shrink:0;
+    background:rgba(255,255,255,0.12);border:1.5px solid rgba(170,200,255,0.7);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Orbitron',sans-serif;font-weight:900;font-size:10px;
+    color:#aac8ff;text-shadow:0 0 6px rgba(170,200,255,0.6);
+    box-shadow:0 0 6px rgba(170,200,255,0.3);
+  }
+  .ico-logo{width:22px;height:22px;flex-shrink:0;object-fit:contain;border-radius:4px;}
+  .ico-text{display:flex;flex-direction:column;line-height:1.1;min-width:0;}
+  .ico-eyebrow{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,0.6);text-transform:uppercase;white-space:nowrap;}
+  .ico-name{font-family:'Orbitron',sans-serif;font-weight:900;font-size:13px;letter-spacing:.04em;line-height:1;margin-top:1px;}
+  .ico-name.gold{color:#ffd23d;text-shadow:0 0 6px rgba(255,210,61,0.5);}
+  .ico-name.green{color:#23d76b;text-shadow:0 0 6px rgba(35,215,107,0.5);}
+  .ico-name.scc{color:#ffd23d;text-shadow:0 0 6px rgba(255,210,61,0.5);}
+  .ico-sep{width:1px;height:22px;background:linear-gradient(180deg,transparent,rgba(170,200,255,0.5),transparent);flex-shrink:0;}
+  /* RIGHT cluster: CTA */
+  .ico-cta{
+    font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:.14em;
+    color:#ffd23d;text-shadow:0 0 6px #ffd23d,0 0 14px rgba(255,210,61,0.6);
+    font-size:12px;flex-shrink:0;position:relative;z-index:1;
+    transition:transform 0.2s ease;
+  }
+  .top-banner:hover .ico-cta{transform:translateX(3px);}
+  @media (max-width:980px){
+    .top-banner{flex-wrap:wrap;justify-content:center;padding:10px 16px;gap:14px;}
+    .ico-steps{flex-basis:100%;order:3;flex-wrap:wrap;}
+    .ico-cta{order:4;}
+  }
+  @media (max-width:540px){
+    .ico-title{font-size:11px;}
+    .ico-price{font-size:12px;}
+    .ico-step .ico-text{display:none;}
+    .ico-sep{display:none;}
+    .ico-steps{gap:10px;}
   }
 
   /* ============================================================
@@ -1986,10 +2005,41 @@
 </nav>
 
 <button class="top-banner" id="sccBannerBtn" type="button" aria-label="Open ICO purchase popup">
-  <span class="dot"></span>
-  <span class="banner-text"><b>INITIAL COIN OFFERING</b> — Now available at <b class="price">$0.002</b> per coin</span>
-  <span class="banner-only">— Only for a limited time</span>
-  <span class="top-banner-cta">TAP TO BUY $SCC →</span>
+  <span class="ico-left">
+    <span class="ico-dot"></span>
+    <span class="ico-title">INITIAL COIN OFFERING</span>
+    <span class="ico-pipe">·</span>
+    <span class="ico-price">$0.002 <span class="u">USDT</span></span>
+  </span>
+  <span class="ico-steps">
+    <span class="ico-step">
+      <span class="ico-num">1</span>
+      <img class="ico-logo" src="assets/opbnb-logo.png" alt="">
+      <span class="ico-text">
+        <span class="ico-eyebrow">CONNECT</span>
+        <span class="ico-name gold">opBNB</span>
+      </span>
+    </span>
+    <span class="ico-sep"></span>
+    <span class="ico-step">
+      <span class="ico-num">2</span>
+      <img class="ico-logo" src="assets/tether-logo.png" alt="">
+      <span class="ico-text">
+        <span class="ico-eyebrow">PAY WITH</span>
+        <span class="ico-name green">USDT</span>
+      </span>
+    </span>
+    <span class="ico-sep"></span>
+    <span class="ico-step">
+      <span class="ico-num">3</span>
+      <img class="ico-logo" src="assets/coin.png" alt="">
+      <span class="ico-text">
+        <span class="ico-eyebrow">HOLD</span>
+        <span class="ico-name scc">$SCC</span>
+      </span>
+    </span>
+  </span>
+  <span class="ico-cta">TAP TO BUY $SCC →</span>
 </button>
 
 <section class="hero-new">
