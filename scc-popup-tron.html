@@ -1,0 +1,2912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$SCC · ICO Popup [TRON]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Luckiest+Guy&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000604;
+  --ink:#02060c;
+  --panel:#040c14;
+
+  --cyan:#00ff66;
+  --cyan-soft:#80ffaa;
+  --cyan-deep:#00aa44;
+  --cyan-dark:#002a14;
+
+  --blue:#00aa44;
+  --blue-deep:#003318;
+
+  --orange:#ffaa00;
+  --orange-soft:#ffd070;
+
+  --green:#aaff00;
+  --red:#ff2d4a;
+
+  --grid:rgba(0,255,102,0.07);
+  --grid-strong:rgba(0,255,102,0.18);
+  --line:rgba(0,255,102,0.25);
+  --line-soft:rgba(0,255,102,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:var(--bg);color:#d0ffe0;
+  font-family:'Rajdhani','Inter',sans-serif;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  overflow-x:hidden;
+}
+/* Embed (iframe) mode: page background, grid, and scan-lines all disappear
+   so only the .modal element renders on a transparent background. The host
+   page's overlay dim shows through everything else. */
+html.embed, body.embed{
+  background:transparent;
+}
+body.embed::before, body.embed::after{display:none;}
+body.embed .scan{display:none;}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 50% 20%,rgba(0,255,102,0.18) 0%,transparent 55%),
+    radial-gradient(ellipse at 20% 90%,rgba(0,170,68,0.14) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 90%,rgba(255,170,0,0.08) 0%,transparent 50%),
+    linear-gradient(180deg,#000604 0%,#000402 100%);
+  pointer-events:none;
+}
+body::after{
+  content:'';position:fixed;left:-10%;right:-10%;bottom:-10%;height:75%;z-index:0;
+  background-image:
+    linear-gradient(var(--grid-strong) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-strong) 1px,transparent 1px);
+  background-size:60px 60px;
+  transform:perspective(600px) rotateX(70deg);
+  transform-origin:center bottom;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 50%,#000 100%);
+          mask-image:linear-gradient(180deg,transparent 0%,#000 50%,#000 100%);
+  pointer-events:none;
+  animation:gridSlide 8s linear infinite;
+}
+@keyframes gridSlide{from{background-position:0 0,0 0;}to{background-position:0 60px,0 0;}}
+.scan{
+  position:fixed;inset:0;z-index:99;pointer-events:none;
+  background:repeating-linear-gradient(180deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 2px,rgba(0,255,102,0.025) 3px,rgba(0,0,0,0) 4px);
+  mix-blend-mode:screen;
+}
+.modal{
+  position:relative;z-index:1;
+  width:100%;max-width:940px;
+  background:linear-gradient(180deg,#001408 0%,#000604 100%);
+  border:1px solid var(--cyan);
+  clip-path:polygon(18px 0,calc(100% - 18px) 0,100% 18px,100% calc(100% - 18px),calc(100% - 18px) 100%,18px 100%,0 calc(100% - 18px),0 18px);
+  box-shadow:0 0 0 1px rgba(0,255,102,0.15) inset,0 0 40px rgba(0,255,102,0.35),0 0 100px rgba(0,170,68,0.25),0 30px 80px -10px rgba(0,0,0,0.9);
+}
+.modal-inner{
+  position:absolute;inset:6px;
+  border:1px solid rgba(0,255,102,0.18);
+  clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px),0 14px);
+  pointer-events:none;z-index:0;
+}
+.corner{
+  position:absolute;width:22px;height:22px;
+  border:1.5px solid var(--cyan);
+  filter:drop-shadow(0 0 6px var(--cyan));
+  pointer-events:none;z-index:5;
+}
+.corner.tl{top:10px;left:10px;border-right:none;border-bottom:none;}
+.corner.tr{top:10px;right:10px;border-left:none;border-bottom:none;}
+.corner.bl{bottom:10px;left:10px;border-right:none;border-top:none;}
+.corner.br{bottom:10px;right:10px;border-left:none;border-top:none;}
+.modal > .top,.modal > .body-grid{position:relative;z-index:1;}
+.body-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:stretch;
+}
+.col-left{
+  border-right:1px solid var(--line);
+  position:relative;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.col-left::after{
+  content:'';position:absolute;top:10%;bottom:10%;right:-1px;width:1px;
+  background:linear-gradient(180deg,transparent,var(--cyan) 40%,var(--cyan) 60%,transparent);
+  box-shadow:0 0 8px rgba(0,255,102,0.6),0 0 14px rgba(0,255,102,0.35);
+  pointer-events:none;
+}
+.col-right{display:flex;flex-direction:column;justify-content:flex-start;}
+/* ===================================================================
+   TABS — switch between BUY and ACTIVITY in right module
+   =================================================================== */
+.tabs{
+  display:flex;align-items:stretch;
+  border-bottom:1px solid rgba(0,255,102,0.25);
+  background:rgba(0,0,0,0.35);
+}
+.tab{
+  flex:1;padding:11px 14px;
+  background:transparent;border:none;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-weight:800;font-size:11px;
+  letter-spacing:.22em;color:rgba(0,255,102,0.5);
+  text-transform:uppercase;
+  position:relative;
+  transition:color .12s,background .12s;
+}
+.tab + .tab{border-left:1px solid rgba(0,255,102,0.18);}
+.tab:hover{color:#aaff00;background:rgba(0,255,102,0.04);}
+.tab.active{
+  color:#fff;
+  text-shadow:0 0 6px #00ff66,0 0 14px rgba(0,255,102,0.6);
+  background:linear-gradient(180deg,rgba(0,255,102,0.12) 0%,rgba(0,255,102,0) 100%);
+}
+.tab.active::after{
+  content:'';position:absolute;left:14%;right:14%;bottom:-1px;height:2px;
+  background:#00ff66;
+  box-shadow:0 0 8px #00ff66,0 0 14px rgba(0,255,102,0.7);
+}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ===================================================================
+   ACTIVITY PANEL — first buyers list
+   =================================================================== */
+.activity-head{
+  padding:16px 22px 12px;text-align:center;
+}
+.activity-title{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:14px;letter-spacing:.24em;color:#ffd23d;
+  text-shadow:0 0 8px #ffd23d,0 0 18px rgba(255,210,61,0.55);
+  animation:bannerBlink 2s ease-in-out infinite;
+}
+@keyframes bannerBlink{
+  0%,100%{filter:brightness(1);}
+  50%{filter:brightness(1.25);}
+}
+.activity-sub{
+  font-family:'Rajdhani',sans-serif;font-size:12px;
+  color:rgba(208,255,224,0.7);letter-spacing:.04em;
+  margin-top:5px;
+}
+.activity-sub b{color:#00ff66;text-shadow:0 0 6px rgba(0,255,102,0.6);}
+
+.activity-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px dashed rgba(0,255,102,0.18);
+  border-bottom:1px dashed rgba(0,255,102,0.18);
+  margin:0 22px;
+}
+.astat{
+  text-align:center;padding:10px 4px;
+}
+.astat + .astat{border-left:1px solid rgba(0,255,102,0.12);}
+.astat-num{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:18px;
+  color:#fff;letter-spacing:.02em;line-height:1;
+  text-shadow:0 0 6px rgba(0,255,102,0.5);
+}
+.astat-num .pct{font-size:12px;color:#aaff00;margin-left:1px;}
+.astat-lbl{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:.22em;color:rgba(0,255,102,0.6);
+  text-transform:uppercase;margin-top:5px;
+}
+
+.activity-list{
+  padding:8px 16px;
+  max-height:340px;overflow-y:auto;
+  scrollbar-width:thin;scrollbar-color:rgba(0,255,102,0.4) transparent;
+}
+.activity-list::-webkit-scrollbar{width:6px;}
+.activity-list::-webkit-scrollbar-thumb{background:rgba(0,255,102,0.35);border-radius:3px;}
+
+.buyer{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 8px;
+  border-bottom:1px dashed rgba(0,255,102,0.1);
+  position:relative;
+}
+.buyer:last-child{border-bottom:none;}
+.buyer-rank{
+  flex-shrink:0;width:26px;height:26px;
+  background:rgba(0,255,102,0.08);
+  border:1px solid rgba(0,255,102,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:11px;
+  color:rgba(255,255,255,0.6);letter-spacing:.02em;
+  clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px);
+}
+.buyer.genesis .buyer-rank{
+  background:rgba(255,210,61,0.18);
+  border-color:#ffd23d;
+  color:#ffd23d;
+  text-shadow:0 0 6px #ffd23d;
+  box-shadow:0 0 12px rgba(255,210,61,0.5);
+}
+.buyer.top .buyer-rank{
+  background:rgba(0,255,102,0.18);
+  border-color:#00ff66;
+  color:#00ff66;
+  text-shadow:0 0 6px rgba(0,255,102,0.7);
+}
+.buyer-info{flex:1;min-width:0;line-height:1.2;}
+.buyer-addr{
+  font-family:'Share Tech Mono',monospace;font-size:11px;
+  color:#fff;letter-spacing:.06em;
+  display:flex;align-items:center;gap:5px;
+}
+.buyer-addr .crown{color:#ffd23d;font-size:11px;text-shadow:0 0 6px #ffd23d;}
+.buyer-meta{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  color:rgba(0,255,102,0.55);letter-spacing:.08em;
+  margin-top:2px;text-transform:uppercase;
+}
+.buyer-amt{
+  flex-shrink:0;text-align:right;line-height:1.15;
+}
+.buyer-amt-usd{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:13px;
+  color:#fff;letter-spacing:.02em;
+  text-shadow:0 0 6px rgba(0,255,102,0.5);
+}
+.buyer-amt-scc{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  color:#ffd23d;letter-spacing:.06em;margin-top:2px;
+}
+
+.activity-foot{
+  padding:8px 22px 14px;
+  text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:.22em;color:rgba(0,255,102,0.55);
+  text-transform:uppercase;
+  border-top:1px dashed rgba(0,255,102,0.18);
+}
+.live-dot{
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:#aaff00;
+  box-shadow:0 0 6px #aaff00,0 0 12px rgba(170,255,0,0.7);
+  vertical-align:middle;margin-right:5px;
+  animation:nowBlink 1s ease-in-out infinite;
+}
+
+/* ===================================================================
+   ICO-RIGHT-MODULE — combined frame for tax-card + order
+   =================================================================== */
+.ico-right-module{
+  position:relative;
+  margin:14px 22px 14px;
+  background:linear-gradient(180deg,rgba(0,255,102,0.04) 0%,rgba(0,255,102,0) 100%);
+  border:1px solid var(--cyan);
+  clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px),0 14px);
+  box-shadow:0 0 0 1px rgba(0,255,102,0.12) inset,0 0 22px rgba(0,255,102,0.3);
+  overflow:hidden;
+}
+.ico-right-module::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan) 50%,transparent);
+  box-shadow:0 0 8px var(--cyan),0 0 14px rgba(0,255,102,0.6);
+  animation:taxScan 3.6s linear infinite;
+  opacity:0.6;
+  z-index:2;
+}
+.tax-card.inner{
+  margin:0;padding:14px 20px 16px;
+  border:none;background:transparent;
+  clip-path:none;box-shadow:none;
+}
+.tax-card.inner::before{display:none;}
+.ico-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,255,102,0.4) 50%,transparent);
+  margin:0 14px;
+}
+.tax-card{
+  position:relative;
+  margin:14px 22px 6px;
+  padding:13px 20px 14px;
+  background:linear-gradient(180deg,rgba(0,255,102,0.04) 0%,rgba(0,255,102,0) 100%);
+  border:1px solid var(--line);
+  clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px),0 14px);
+  box-shadow:0 0 0 1px rgba(0,255,102,0.10) inset,0 0 18px rgba(0,255,102,0.18);
+  overflow:hidden;
+  text-align:center;
+}
+.tax-card::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan) 50%,transparent);
+  box-shadow:0 0 8px var(--cyan),0 0 14px rgba(0,255,102,0.6);
+  animation:taxScan 3.6s linear infinite;
+  opacity:0.6;
+}
+@keyframes taxScan{0%{top:0%;opacity:0;}10%{opacity:0.7;}90%{opacity:0.7;}100%{top:100%;opacity:0;}}
+.tax-corner{
+  position:absolute;width:14px;height:14px;
+  border:1.5px solid var(--cyan);
+  filter:drop-shadow(0 0 4px var(--cyan));
+  pointer-events:none;
+}
+.tax-corner.tl{top:4px;left:4px;border-right:none;border-bottom:none;}
+.tax-corner.tr{top:4px;right:4px;border-left:none;border-bottom:none;}
+.tax-corner.bl{bottom:4px;left:4px;border-right:none;border-top:none;}
+.tax-corner.br{bottom:4px;right:4px;border-left:none;border-top:none;}
+.tax-eyebrow{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.32em;color:#00ff66;text-transform:uppercase;text-shadow:0 0 6px rgba(0,255,102,0.7);margin-bottom:10px;}
+.tax-hero{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 2px;}
+.tax-lbl{font-family:'Orbitron',sans-serif;font-weight:900;font-size:20px;color:#fff;letter-spacing:.18em;text-shadow:0 0 6px rgba(255,255,255,0.4);}
+
+/* Industrial circuit-breaker panel: 25% on left + vertical lever on right, all in one black metal box */
+.tax-breaker{
+  position:relative;
+  display:inline-flex;align-items:stretch;
+  background:linear-gradient(180deg,#1a1a1a 0%,#0a0a0a 100%);
+  border:2px solid #2a2a2a;
+  box-shadow:
+    0 0 14px rgba(255,45,74,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(0,0,0,0.6);
+  border-radius:2px;
+}
+.tax-breaker-screw{
+  position:absolute;width:5px;height:5px;
+  background:radial-gradient(circle,#666 0%,#222 100%);
+  border-radius:50%;
+  box-shadow:0 0 2px rgba(0,0,0,0.5);
+}
+.tax-breaker-screw.tl{top:4px;left:4px;}
+.tax-breaker-screw.tr{top:4px;right:4px;}
+.tax-breaker-screw.bl{bottom:4px;left:4px;}
+.tax-breaker-screw.br{bottom:4px;right:4px;}
+.tax-breaker-pct{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:22px;color:#ff2d4a;letter-spacing:.02em;
+  padding:8px 14px 8px 18px;
+  text-shadow:0 0 6px #ff2d4a,0 0 14px rgba(255,45,74,0.5);
+  text-decoration:line-through;
+  text-decoration-color:#ff2d4a;
+  text-decoration-thickness:3px;
+  display:flex;align-items:center;
+}
+.tax-breaker-divider{
+  width:1px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,0.15),transparent);
+}
+.tax-breaker-lever-area{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 12px 6px 10px;
+  background:linear-gradient(180deg,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.6) 100%);
+}
+.tax-breaker-track{
+  position:relative;width:30px;height:26px;
+  background:linear-gradient(180deg,rgba(0,0,0,0.7) 0%,rgba(20,20,20,0.7) 100%);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:2px;
+}
+.tax-breaker-track::before{
+  content:'';position:absolute;left:50%;top:3px;width:1.5px;height:3px;
+  background:#aaff00;box-shadow:0 0 4px #aaff00;
+  transform:translateX(-50%);border-radius:1px;
+}
+.tax-breaker-track::after{
+  content:'';position:absolute;left:50%;bottom:3px;width:1.5px;height:3px;
+  background:#ff2d4a;box-shadow:0 0 4px #ff2d4a;
+  transform:translateX(-50%);border-radius:1px;
+}
+.tax-breaker-lever{
+  position:absolute;left:50%;transform:translateX(-50%);
+  width:20px;height:10px;
+  background:linear-gradient(180deg,#ffd0d8 0%,#ff2d4a 50%,#8a0014 100%);
+  border:1px solid #ff5d36;
+  box-shadow:0 0 10px #ff2d4a,0 1px 0 rgba(255,255,255,0.4) inset;
+  border-radius:2px;
+  animation:taxBreakerFlip 2.6s ease-in-out infinite;
+}
+@keyframes taxBreakerFlip{0%,12%{top:2px;}50%,100%{top:calc(100% - 12px);}}
+.tax-breaker-label{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.14em;
+  color:#ff5d36;
+  text-shadow:0 0 6px #ff5d36,0 0 12px rgba(255,93,54,0.6);
+  animation:taxBreakerLabelBlink 1.4s ease-in-out infinite;
+}
+@keyframes taxBreakerLabelBlink{0%,100%{filter:brightness(1);}50%{filter:brightness(1.4);}}
+.tax-body{
+  font-family:'Rajdhani',sans-serif;font-size:12.5px;font-weight:500;
+  line-height:1.45;
+  color:rgba(208,255,224,0.78);
+  letter-spacing:.02em;
+  max-width:420px;margin:0 auto;
+}
+.tax-body b{color:#fff;font-weight:700;text-shadow:0 0 6px rgba(0,255,102,0.55);}
+@media (max-width:980px){
+  .body-grid{grid-template-columns:1fr;}
+  .col-left{border-right:none;border-bottom:1px solid var(--line);}
+  .col-left::after{display:none;}
+  .modal{max-width:560px;}
+}
+.top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 22px;
+  background:linear-gradient(180deg,rgba(0,255,102,0.08) 0%,rgba(0,255,102,0) 100%);
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-coin{
+  width:38px;height:38px;
+  background-image:url('assets/coin.png');
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+  animation:coinFloat 3.5s ease-in-out infinite;
+}
+@keyframes coinFloat{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-3px) rotate(2deg);}}
+.brand-text{display:flex;flex-direction:column;line-height:1;}
+.brand-name{font-family:'Luckiest Guy','Lilita One',sans-serif;font-weight:400;font-size:22px;letter-spacing:.01em;color:#ffffff;text-transform:uppercase;}
+.brand-name .gold{color:#ffd23d;}
+.top-right{display:flex;align-items:center;gap:10px;}
+.wallet{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 22px;
+  background:transparent;color:#ffd23d;
+  border:2px solid #ffd23d;border-radius:999px;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-weight:900;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;
+  transition:background .2s ease,color .2s ease;
+}
+.wallet:hover{background:#ffd23d;color:#0a0a0a;}
+.wallet.connected{color:#ffd23d;border-color:#ffd23d;background:transparent;border-radius:999px;padding:5px 14px 5px 5px;display:none;}
+.wallet.connected.show{display:inline-flex;}
+.wallet.disc.hide{display:none;}
+.wallet-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#ffd23d 0%,#ff9d00 100%);border:1.5px solid #ffd23d;flex-shrink:0;}
+.wallet-block{display:flex;flex-direction:column;text-align:left;line-height:1.1;}
+.wallet-addr{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:11px;font-weight:700;color:#fff;letter-spacing:.02em;text-transform:none;}
+.wallet-bal{font-family:'Share Tech Mono',monospace;font-size:9px;color:#ffd23d;margin-top:1px;text-transform:none;letter-spacing:.04em;}
+.close{
+  width:30px;height:30px;background:transparent;
+  border:1px solid var(--line);
+  color:var(--cyan);cursor:pointer;
+  font-size:18px;line-height:1;font-weight:300;
+  display:flex;align-items:center;justify-content:center;
+  clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);
+  transition:all .12s;
+  text-shadow:0 0 6px rgba(0,255,102,0.5);
+}
+.close:hover{background:rgba(255,45,74,0.10);border-color:var(--red);color:var(--red);text-shadow:0 0 8px var(--red);box-shadow:0 0 12px rgba(255,45,74,0.4);}
+.ann-title{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:20px;letter-spacing:.12em;line-height:1.1;
+  color:#ffffff;
+  text-shadow:0 0 6px var(--cyan),0 0 16px rgba(0,255,102,0.7),0 0 32px rgba(0,170,68,0.45);
+  margin-bottom:8px;
+}
+.lto-marquee{
+  position:relative;display:block;
+  margin:0 auto 14px;padding:5px 4px;
+  width:100%;max-width:280px;
+  border:1px solid #ffd23d;
+  box-shadow:0 0 14px rgba(255,210,61,0.45),inset 0 0 8px rgba(255,210,61,0.15);
+  clip-path:polygon(6px 0,calc(100% - 6px) 0,100% 50%,calc(100% - 6px) 100%,6px 100%,0 50%);
+  overflow:hidden;
+  background:rgba(0,0,0,0.4);
+}
+.lto-track{
+  display:flex;gap:30px;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.22em;
+  color:#ffd23d;text-transform:uppercase;white-space:nowrap;
+  text-shadow:0 0 6px #ffd23d;
+  animation:ltoScroll 7s linear infinite;
+}
+.lto-track span::before{content:'★ ';color:#ffd23d;margin-right:6px;}
+@keyframes ltoScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.hero{position:relative;padding:4px 22px 0;text-align:center;overflow:visible;}
+.spark{position:absolute;color:var(--cyan);font-size:14px;filter:drop-shadow(0 0 8px var(--cyan));pointer-events:none;z-index:2;animation:sparkPulse 2.5s ease-in-out infinite;}
+.spark.s1{top:30px;left:18%;animation-delay:0s;}
+.spark.s2{top:50px;right:20%;animation-delay:0.4s;}
+.spark.s3{top:90px;left:12%;animation-delay:0.8s;font-size:10px;}
+.spark.s4{top:110px;right:14%;animation-delay:1.2s;font-size:10px;}
+.spark.s5{top:18px;right:38%;animation-delay:1.6s;font-size:9px;}
+@keyframes sparkPulse{0%,100%{opacity:0.3;transform:scale(0.8) rotate(0deg);}50%{opacity:1;transform:scale(1.1) rotate(180deg);}}
+.hero-pile-wrap{
+  position:relative;z-index:3;
+  display:flex;justify-content:center;align-items:flex-end;
+  height:255px;margin:-4px 0 0;
+  padding:0 14px;overflow:visible;
+}
+.hero-pile-wrap::before{
+  content:'';position:absolute;left:50%;bottom:18px;transform:translateX(-50%);
+  width:78%;height:50px;
+  background:radial-gradient(ellipse,rgba(0,255,102,0.6) 0%,transparent 70%);
+  filter:blur(16px);z-index:1;
+}
+.hero-pile-wrap::after{
+  content:'';position:absolute;left:10%;right:10%;bottom:30px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  box-shadow:0 0 12px var(--cyan),0 0 22px rgba(0,255,102,0.6);
+  z-index:1;
+}
+.pile-img.solo{
+  height:245px;max-width:none;width:auto;
+  position:relative;z-index:2;
+  animation:pileBreathe 5s ease-in-out infinite;
+  margin-bottom:0;
+}
+@keyframes pileBreathe{0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.02) translateY(-2px);}}
+.avail-box{
+  margin:10px 22px 6px;
+  background:linear-gradient(180deg,rgba(0,255,102,0.04) 0%,rgba(0,0,0,0.35) 100%);
+  border:1px solid #00ff66;
+  box-shadow:0 0 0 1px rgba(0,255,102,0.12) inset,0 0 18px rgba(0,255,102,0.3);
+  clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);
+  overflow:hidden;
+}
+.now-banner{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:12px 18px;
+  background:linear-gradient(180deg,rgba(0,255,102,0.08) 0%,rgba(0,255,102,0) 100%);
+  border-bottom:1px solid rgba(0,255,102,0.25);
+}
+.now-left{display:flex;align-items:center;gap:10px;min-width:0;}
+.now-dot{
+  width:10px;height:10px;border-radius:50%;flex-shrink:0;
+  background:#aaff00;
+  box-shadow:0 0 8px #aaff00,0 0 16px rgba(170,255,0,0.85);
+  animation:nowBlink 1s ease-in-out infinite;
+}
+@keyframes nowBlink{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.now-title{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:16px;letter-spacing:.1em;
+  color:#ffffff;text-transform:uppercase;
+  text-shadow:0 0 6px var(--cyan),0 0 16px rgba(0,255,102,0.7);
+  white-space:nowrap;
+}
+.now-right{flex-shrink:0;}
+.now-price{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:20px;letter-spacing:.02em;
+  color:#ffffff;
+  white-space:nowrap;
+}
+.now-unit{
+  font-size:10px;font-weight:700;
+  letter-spacing:.14em;margin-left:4px;
+  color:rgba(255,255,255,0.6);
+}
+.supply{padding:6px 22px 4px;position:relative;}
+.gauge-wrap{
+  background:linear-gradient(180deg,#001408 0%,#000402 100%);
+  border:1px solid #00ff66;
+  box-shadow:0 0 0 1px rgba(0,255,102,0.15) inset,0 0 22px rgba(0,255,102,0.4);
+  clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px);
+  padding:18px 20px 22px;
+  margin:2px 0 6px;
+}
+.gauge-top{display:flex;align-items:stretch;margin-bottom:18px;}
+.gauge-side{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:6px 4px;position:relative;}
+.gauge-side-r{padding-left:10px;}
+.gauge-side-l{padding-right:10px;}
+.gauge-divider{
+  width:1px;flex-shrink:0;
+  background:linear-gradient(180deg,transparent,#00ff66 30%,#00ff66 70%,transparent);
+  box-shadow:0 0 8px rgba(0,255,102,0.6),0 0 14px rgba(0,255,102,0.35);
+}
+.gauge-h-divider{
+  height:1px;
+  margin:18px 4px 16px;
+  background:linear-gradient(90deg,transparent,#00ff66 30%,#00ff66 70%,transparent);
+  box-shadow:0 0 8px rgba(0,255,102,0.6),0 0 14px rgba(0,255,102,0.35);
+}
+.gauge-coin{flex-shrink:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+.gauge-coin img{width:100%;height:100%;object-fit:contain;}
+.gauge-readout{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;position:relative;z-index:2;}
+.gauge-label{
+  font-family:'Share Tech Mono',monospace;
+  font-size:8px;letter-spacing:.18em;
+  color:rgba(255,255,255,0.55);
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.gauge-value{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:22px;color:#ffd23d;letter-spacing:.02em;
+  text-shadow:0 0 10px #ffd23d,0 0 22px rgba(255,210,61,0.6);
+  line-height:1;
+  display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;
+}
+.gauge-value.green{color:#ffffff;text-shadow:0 0 10px #00ff66,0 0 22px rgba(0,255,102,0.7);}
+.gauge-value .unit{font-size:10px;color:#ffd23d;font-weight:700;letter-spacing:.14em;text-shadow:0 0 6px rgba(255,210,61,0.6);}
+.gauge-value.green .unit{color:#00ff66;text-shadow:0 0 6px rgba(0,255,102,0.6);}
+.gauge-total{font-family:'Share Tech Mono',monospace;font-size:8.5px;color:rgba(255,255,255,0.5);letter-spacing:.1em;white-space:nowrap;}
+.gauge-scale{padding:8px 4px 4px;}
+
+/* Segmented LED bar — uniform YELLOW with refined liquid shimmer */
+.led-bar{
+  display:flex;gap:2px;height:26px;align-items:stretch;padding:2px 0;
+  position:relative;
+}
+.led-seg{
+  flex:1;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:1px;
+  position:relative;
+}
+.led-seg.lit{
+  background:linear-gradient(180deg,#ffe97d 0%,#ffd23d 100%);
+  border:1px solid #ffd23d;
+  box-shadow:
+    0 0 6px rgba(255,210,61,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.45),
+    inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+/* Refined liquid shimmer — gold-tinted, narrower, slower, with pause */
+.led-shimmer{
+  position:absolute;
+  top:2px;bottom:2px;left:0;
+  width:42.5%;
+  pointer-events:none;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,250,200,0.35) 35%,
+    rgba(255,255,230,0.7) 50%,
+    rgba(255,250,200,0.35) 65%,
+    rgba(255,255,255,0) 100%);
+  background-size:25% 100%;
+  background-repeat:no-repeat;
+  animation:ledShimmer 6s ease-in-out infinite;
+  mix-blend-mode:screen;
+  filter:blur(0.5px);
+}
+@keyframes ledShimmer{
+  0%{background-position:-25% 0;}
+  70%{background-position:125% 0;}
+  100%{background-position:125% 0;}
+}
+
+/* Floating pointer BELOW the bar - arrow on the right pointing UP, number trails to its left */
+.led-pointer-row{position:relative;height:22px;}
+.led-pointer-row.top{margin-bottom:3px;}
+.led-pointer-row.bottom{margin-top:3px;}
+.led-pointer{
+  position:absolute;
+  /* Shift so the arrow's center sits at the percentage position */
+  transform:translateX(calc(-100% + 7px));
+  display:flex;flex-direction:row;align-items:center;gap:5px;
+  white-space:nowrap;
+}
+/* LOW mode (below ~20%): flip so arrow is on the left, text trails to the right */
+.led-pointer.low{
+  transform:translateX(-7px);
+  flex-direction:row-reverse;
+}
+.led-pointer-tri{
+  width:0;height:0;
+  border-left:7px solid transparent;border-right:7px solid transparent;
+  border-bottom:9px solid #ffd23d;
+  filter:drop-shadow(0 0 6px #ffd23d);
+  flex-shrink:0;
+}
+.led-pointer-num{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:13px;
+  color:#fff;letter-spacing:.04em;
+  text-shadow:0 0 6px #ffd23d,0 0 14px rgba(255,210,61,0.7);
+  white-space:nowrap;
+}
+@keyframes ledPointerPulse{
+  0%,100%{filter:brightness(0.95);}
+  50%{filter:brightness(1.25);}
+}
+.gauge-labels{display:flex;justify-content:center;}
+.gauge-labels-top{margin-bottom:6px;}
+.gauge-labels .mid{font-family:'Share Tech Mono',monospace;font-size:9.5px;color:rgba(255,210,61,0.7);letter-spacing:.32em;text-shadow:0 0 6px rgba(255,210,61,0.4);}
+.supply-label{
+  font-family:'Share Tech Mono',monospace;
+  font-size:8px;letter-spacing:.18em;
+  color:rgba(255,255,255,0.55);
+  text-transform:uppercase;
+  text-align:left;
+  margin-bottom:5px;
+}
+.order{padding:16px 22px 20px;}
+.order-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.order-title{
+  font-family:'Orbitron',sans-serif;font-weight:800;
+  font-size:13px;letter-spacing:.22em;color:#e8fff0;
+  display:flex;align-items:center;gap:8px;
+  text-shadow:0 0 6px rgba(0,255,102,0.5);
+}
+.order-title::before{content:'';width:14px;height:2px;background:var(--cyan);box-shadow:0 0 8px var(--cyan),0 0 14px rgba(0,255,102,0.6);}
+.order-min{
+  font-family:'Share Tech Mono',monospace;
+  font-size:9.5px;letter-spacing:.18em;
+  color:rgba(208,255,224,0.6);
+  text-transform:uppercase;
+  display:inline-flex;align-items:baseline;gap:5px;
+}
+.order-min b{
+  font-family:'Share Tech Mono',monospace;font-weight:700;
+  font-size:9.5px;letter-spacing:.18em;
+  color:rgba(255,255,255,0.9);
+  text-shadow:0 0 5px rgba(0,255,102,0.4);
+}
+.order-rate{font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(223,250,255,0.55);letter-spacing:.1em;}
+.order-rate b{color:var(--cyan);text-shadow:0 0 6px rgba(0,255,102,0.6);}
+.net-steps{
+  display:flex;align-items:stretch;
+  background:transparent;
+  padding:10px 6px;
+}
+.net-step{flex:1;display:flex;align-items:center;gap:7px;padding:0 6px;min-width:0;position:relative;}
+.net-step + .net-step{border-left:1px solid rgba(0,255,102,0.2);}
+.net-num{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;
+  background:rgba(0,255,102,0.18);
+  border:1.5px solid #00ff66;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:10px;
+  color:#00ff66;
+  text-shadow:0 0 6px rgba(0,255,102,0.7);
+  box-shadow:0 0 8px rgba(0,255,102,0.4);
+  position:relative;z-index:1;
+}
+.net-logo{width:24px;height:24px;flex-shrink:0;object-fit:contain;border-radius:4px;position:relative;z-index:1;}
+.net-text{line-height:1.15;min-width:0;position:relative;z-index:2;}
+.net-eyebrow{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,0.55);text-transform:uppercase;white-space:nowrap;}
+.net-name{font-family:'Orbitron',sans-serif;font-weight:900;font-size:13px;letter-spacing:.04em;margin-top:1px;line-height:1;}
+.net-name .amber{color:#ffd23d;text-shadow:0 0 6px rgba(255,210,61,0.7);}
+.net-name .green{color:#26a69a;text-shadow:0 0 6px rgba(38,166,154,0.65);}
+.net-name .scc{color:#00ff66;text-shadow:0 0 6px rgba(0,255,102,0.7);}
+.amt-box{
+  background:rgba(0,255,102,0.025);
+  border:1px solid var(--line);
+  padding:11px 14px;margin-bottom:6px;
+  position:relative;
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  transition:border-color .15s,background .15s,box-shadow .15s;
+}
+.amt-box:hover{border-color:var(--cyan);background:rgba(0,255,102,0.06);box-shadow:0 0 14px rgba(0,255,102,0.3) inset;}
+
+/* Pay box — extra-prominent so it's clearly the input */
+.pay-box{
+  background:linear-gradient(180deg,rgba(0,255,102,0.08) 0%,rgba(0,255,102,0.02) 100%);
+  border:1.5px solid #00ff66;
+  box-shadow:0 0 0 1px rgba(0,255,102,0.18) inset,0 0 20px rgba(0,255,102,0.35);
+  animation:payPulse 2.4s ease-in-out infinite;
+}
+@keyframes payPulse{
+  0%,100%{box-shadow:0 0 0 1px rgba(0,255,102,0.18) inset,0 0 20px rgba(0,255,102,0.35);}
+  50%{box-shadow:0 0 0 1px rgba(0,255,102,0.3) inset,0 0 28px rgba(0,255,102,0.55);}
+}
+.pay-edit-tag{
+  display:inline-block;
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:8px;
+  letter-spacing:.16em;color:#aaff00;
+  background:rgba(170,255,0,0.15);
+  border:1px solid rgba(170,255,0,0.5);
+  padding:2px 6px;margin-right:6px;
+  text-shadow:0 0 4px rgba(170,255,0,0.6);
+  clip-path:polygon(3px 0,100% 0,calc(100% - 3px) 100%,0 100%);
+}
+.amt-prefix{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:28px;color:#00ff66;
+  text-shadow:0 0 8px #00ff66,0 0 16px rgba(0,255,102,0.65);
+  line-height:1;margin-right:2px;
+  flex-shrink:0;
+}
+.amt-label{display:flex;justify-content:space-between;align-items:center;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.22em;color:rgba(0,255,102,0.6);margin-bottom:5px;text-transform:uppercase;}
+.amt-label .bal{color:#fff;font-weight:600;text-shadow:0 0 4px rgba(0,255,102,0.5);}
+.amt-row{display:flex;align-items:center;gap:8px;}
+.amt-input{
+  border:none;background:transparent;outline:none;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:28px;color:#00ff66;padding:0;
+  letter-spacing:.02em;
+  text-shadow:0 0 8px #00ff66,0 0 16px rgba(0,255,102,0.6);
+  caret-color:#00ff66;
+}
+.amt-input::placeholder{
+  color:rgba(0,255,102,0.3);
+  text-shadow:none;
+  font-weight:900;
+}
+.amt-input:focus{
+  color:#aaff00;
+  text-shadow:0 0 10px #aaff00,0 0 20px rgba(170,255,0,0.6);
+}
+/* Wrap holds input + fake caret, sized by hidden ghost span */
+.amt-input-wrap{
+  flex:1;min-width:0;
+  display:flex;align-items:center;
+  position:relative;
+}
+.amt-input-wrap .amt-input{
+  width:var(--amt-w,80px);
+  min-width:1ch;max-width:100%;
+}
+.amt-ghost{
+  position:absolute;visibility:hidden;white-space:pre;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:28px;letter-spacing:.02em;padding:0;
+  pointer-events:none;left:-9999px;top:0;
+}
+.amt-caret{
+  display:inline-block;
+  width:2.5px;height:30px;
+  background:#00ff66;
+  margin-right:3px;
+  box-shadow:0 0 6px #00ff66,0 0 14px rgba(0,255,102,0.8);
+  animation:caretBlink 0.9s steps(2,start) infinite;
+  flex-shrink:0;
+}
+@keyframes caretBlink{
+  0%,100%{opacity:1;}
+  50%{opacity:0;}
+}
+/* Hide fake caret when input is actively focused — real caret takes over */
+.amt-input-wrap:focus-within .amt-caret{display:none;}
+
+/* Quick amount selector */
+.quick-amts{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:5px;
+  margin-top:10px;padding-top:10px;
+  border-top:1px dashed rgba(0,255,102,0.2);
+}
+.quick-amts button{
+  padding:6px 4px;
+  border:1px solid rgba(0,255,102,0.3);
+  background:rgba(0,255,102,0.04);
+  color:#d0ffe0;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-weight:800;
+  font-size:10px;letter-spacing:.06em;
+  clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px);
+  transition:all .12s;
+}
+.quick-amts button:hover{
+  border-color:#00ff66;
+  background:rgba(0,255,102,0.12);
+  color:#00ff66;
+  text-shadow:0 0 6px #00ff66;
+  box-shadow:0 0 10px rgba(0,255,102,0.4);
+}
+.quick-amts button.max{
+  background:rgba(170,255,0,0.1);
+  border-color:rgba(170,255,0,0.55);
+  color:#aaff00;
+  text-shadow:0 0 4px rgba(170,255,0,0.6);
+}
+.quick-amts button.max:hover{
+  background:rgba(170,255,0,0.22);
+  box-shadow:0 0 14px rgba(170,255,0,0.5);
+}
+.amt-curr{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,255,102,0.06);
+  border:1px solid var(--line);
+  padding:6px 12px;
+  font-family:'Orbitron',sans-serif;font-weight:700;
+  font-size:11px;color:#e8fff0;letter-spacing:.12em;
+  clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);
+}
+.amt-curr .ic{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:900;font-size:10px;border:1px solid var(--cyan);flex-shrink:0;}
+.amt-curr .ic.usdt{background:linear-gradient(135deg,var(--green),#006644);color:#001008;border-color:var(--green);box-shadow:0 0 6px rgba(170,255,0,0.5);}
+.amt-curr .ic.scc{background-image:url('assets/coin.png');background-size:cover;background-position:center;color:transparent;filter:hue-rotate(170deg) saturate(1.3);box-shadow:0 0 6px rgba(0,255,102,0.6);}
+.amt-curr-logo{
+  width:20px;height:20px;flex-shrink:0;
+  object-fit:contain;
+  filter:drop-shadow(0 0 4px rgba(38,166,154,0.6));
+}
+.swap{display:flex;justify-content:center;margin:6px 0;position:relative;}
+.swap span{
+  width:32px;height:32px;
+  background:#001008;border:1px solid var(--cyan);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cyan);font-size:14px;font-weight:700;line-height:1;
+  clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);
+  box-shadow:0 0 12px rgba(0,255,102,0.5),inset 0 0 8px rgba(0,255,102,0.15);
+  text-shadow:0 0 6px var(--cyan);
+  cursor:pointer;
+  transition:transform .25s,box-shadow .15s;
+}
+.swap span:hover{transform:rotate(180deg);box-shadow:0 0 22px rgba(0,255,102,0.85),inset 0 0 10px rgba(0,255,102,0.3);}
+/* ===================================================================
+   RECEIPT — Sample 5 style
+   =================================================================== */
+.receipt{
+  margin:14px 0 14px;
+  padding:12px 14px 14px;
+  background:rgba(0,0,0,0.5);
+  border:1px solid rgba(0,255,102,0.3);
+  clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+}
+.receipt-head{
+  text-align:center;padding-bottom:8px;margin-bottom:8px;
+  border-bottom:1px dashed rgba(0,255,102,0.3);
+}
+.receipt-title{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.28em;color:#fff;
+  text-shadow:0 0 6px #00ff66;
+}
+.receipt-sub{
+  font-family:'Share Tech Mono',monospace;font-size:8.5px;
+  letter-spacing:.24em;color:rgba(0,255,102,0.7);
+  text-transform:uppercase;margin-top:3px;
+}
+.receipt-line{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 0;
+  font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.04em;
+}
+.receipt-line .l{
+  color:rgba(255,255,255,0.65);text-transform:uppercase;
+  letter-spacing:.14em;font-size:10px;
+}
+.receipt-line .v{
+  color:#fff;font-family:'Orbitron',sans-serif;font-weight:700;
+  text-shadow:0 0 6px rgba(0,255,102,0.4);
+}
+.receipt-line .v .u{font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,0.6);font-weight:700;margin-left:1px;}
+.receipt-line.zero .v{
+  color:#ff2d4a;
+  text-shadow:0 0 6px rgba(255,45,74,0.7);
+  display:inline-flex;align-items:center;gap:6px;
+}
+.tax-zero{
+  position:relative;
+  color:#ff2d4a;
+  text-shadow:0 0 8px #ff2d4a,0 0 14px rgba(255,45,74,0.6);
+  font-weight:900;
+  padding:0 2px;
+}
+.tax-zero::after{
+  content:'';
+  position:absolute;left:-2px;right:-2px;top:50%;height:2px;
+  background:#ff2d4a;
+  box-shadow:0 0 6px #ff2d4a,0 0 12px rgba(255,45,74,0.8);
+  transform:translateY(-50%) rotate(-6deg);
+  animation:strikeIn 0.6s ease-out;
+}
+@keyframes strikeIn{
+  from{transform:translateY(-50%) rotate(-6deg) scaleX(0);transform-origin:left center;}
+  to{transform:translateY(-50%) rotate(-6deg) scaleX(1);transform-origin:left center;}
+}
+.receipt-divider{
+  height:1px;background:rgba(0,255,102,0.25);margin:6px 0;
+}
+.receipt-total{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 0 4px;margin-top:4px;
+  border-top:1px solid rgba(170,255,0,0.4);
+}
+.receipt-total .l{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:12px;
+  letter-spacing:.22em;color:#aaff00;
+  text-shadow:0 0 6px rgba(170,255,0,0.6);
+}
+.receipt-total .v{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:26px;
+  color:#00ddff;letter-spacing:.02em;
+  text-shadow:0 0 10px #00ddff,0 0 22px rgba(0,221,255,0.55);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.receipt-coin{
+  width:28px;height:28px;object-fit:contain;
+  filter:drop-shadow(0 0 6px rgba(0,221,255,0.6));
+}
+.confirm{
+  width:100%;padding:16px;border:1px solid var(--cyan);
+  background:linear-gradient(180deg,rgba(0,255,102,0.15) 0%,rgba(0,170,68,0.10) 100%);
+  color:#ffffff;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:14px;letter-spacing:.28em;
+  position:relative;
+  clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px);
+  text-shadow:0 0 8px var(--cyan),0 0 16px rgba(0,255,102,0.6);
+  box-shadow:inset 0 0 0 1px rgba(0,255,102,0.25),inset 0 0 18px rgba(0,255,102,0.2),0 0 24px rgba(0,255,102,0.5),0 0 50px rgba(0,170,68,0.3);
+  transition:transform .1s,box-shadow .15s,background .15s;
+}
+.confirm:hover{
+  background:linear-gradient(180deg,rgba(0,255,102,0.25) 0%,rgba(0,170,68,0.18) 100%);
+  box-shadow:inset 0 0 0 1px rgba(0,255,102,0.4),inset 0 0 28px rgba(0,255,102,0.3),0 0 38px rgba(0,255,102,0.85),0 0 80px rgba(0,170,68,0.5);
+}
+.confirm:active{transform:translateY(2px);}
+.confirm-secure{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  margin-top:12px;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:.22em;color:rgba(0,255,102,0.55);text-transform:uppercase;
+}
+.confirm-secure svg{width:11px;height:11px;color:var(--green);filter:drop-shadow(0 0 4px var(--green));}
+/* ===================================================================
+   CHAMBER BUTTON (next to Connect)
+   =================================================================== */
+.chamber-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 6px 6px 11px;
+  background:rgba(0,255,102,0.06);
+  border:1.5px solid rgba(0,255,102,0.55);
+  border-radius:999px;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:10px;letter-spacing:.14em;
+  color:#aaff00;cursor:pointer;
+  text-shadow:0 0 6px rgba(170,255,0,0.6);
+  transition:all .15s;
+  box-shadow:0 0 12px rgba(0,255,102,0.25);
+  gap:7px;
+}
+.chamber-btn:hover{
+  background:rgba(0,255,102,0.14);
+  border-color:#aaff00;
+  box-shadow:0 0 18px rgba(0,255,102,0.55);
+  transform:translateY(-1px);
+}
+.chamber-btn:hover .chamber-cta{
+  background:#aaff00;color:#001408;
+  box-shadow:0 0 14px rgba(170,255,0,0.8);
+}
+.chamber-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#aaff00;
+  box-shadow:0 0 6px #aaff00,0 0 12px rgba(170,255,0,0.85);
+  animation:nowBlink 1s ease-in-out infinite;
+}
+.chamber-count{
+  color:#fff;text-shadow:0 0 6px #00ff66;
+}
+.chamber-lbl{color:#aaff00;font-size:9.5px;letter-spacing:.16em;}
+.chamber-cta{
+  display:inline-flex;align-items:center;
+  padding:5px 10px 4px;
+  background:rgba(170,255,0,0.18);
+  border:1px solid #aaff00;
+  border-radius:999px;
+  color:#fff;
+  font-size:9.5px;letter-spacing:.18em;
+  text-shadow:0 0 5px #aaff00;
+  box-shadow:0 0 8px rgba(170,255,0,0.4);
+  margin-left:2px;
+  transition:all .15s;
+}
+
+@media (max-width:680px){
+  .chamber-lbl{display:none;}
+}
+
+
+/* ===================================================================
+   DEPARTURE BOARD OVERLAY
+   =================================================================== */
+.chamber-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,4,2,0.92);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+  animation:boardFadeIn .3s ease;
+}
+.chamber-overlay.open{display:flex;}
+@keyframes boardFadeIn{from{opacity:0;}to{opacity:1;}}
+
+.board-modal{
+  position:relative;
+  width:100%;max-width:920px;max-height:92vh;
+  background:
+    linear-gradient(180deg,#000604 0%,#001408 100%);
+  border:1px solid var(--cyan);
+  clip-path:polygon(18px 0,calc(100% - 18px) 0,100% 18px,100% calc(100% - 18px),calc(100% - 18px) 100%,18px 100%,0 calc(100% - 18px),0 18px);
+  box-shadow:
+    0 0 0 1px rgba(0,255,102,0.15) inset,
+    0 0 40px rgba(0,255,102,0.4),
+    0 0 100px rgba(0,170,68,0.3);
+  overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:thin;scrollbar-color:rgba(0,255,102,0.4) transparent;
+}
+.board-modal::-webkit-scrollbar{width:8px;}
+.board-modal::-webkit-scrollbar-thumb{background:rgba(0,255,102,0.35);border-radius:4px;}
+
+/* Top header */
+.board-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+  padding:18px 22px 14px;
+  background:linear-gradient(180deg,rgba(0,255,102,0.1) 0%,rgba(0,255,102,0) 100%);
+  border-bottom:1px solid rgba(0,255,102,0.3);
+}
+.board-titles{flex:1;min-width:0;}
+.board-eyebrow{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:.32em;color:#ffd23d;
+  text-transform:uppercase;
+  text-shadow:0 0 6px rgba(255,210,61,0.7);
+  animation:flipBlink 2s ease-in-out infinite;
+}
+@keyframes flipBlink{0%,100%{filter:brightness(1);}50%{filter:brightness(1.3);}}
+.board-title{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:18px;
+  letter-spacing:.06em;color:#fff;margin-top:5px;
+  text-shadow:0 0 8px #00ff66,0 0 18px rgba(0,255,102,0.6);
+}
+.board-route{
+  font-family:'Share Tech Mono',monospace;font-size:11px;font-weight:600;
+  color:rgba(0,255,102,0.7);margin-top:5px;letter-spacing:.1em;
+}
+.chamber-close{flex-shrink:0;}
+
+/* ===================================================================
+   ROCKET + WELCOME BOARD (replaces countdown)
+   =================================================================== */
+.board-welcome{
+  display:grid;
+  grid-template-columns:170px 1fr;
+  gap:18px;
+  padding:14px 22px 18px;
+  align-items:center;
+  background:
+    repeating-linear-gradient(180deg,
+      rgba(0,0,0,0.5) 0px,
+      rgba(0,0,0,0.5) 2px,
+      rgba(0,255,102,0.02) 3px,
+      rgba(0,0,0,0.5) 4px);
+  border-bottom:1px solid rgba(0,255,102,0.25);
+}
+
+/* Rocket stage */
+/* Rocket stage — uses actual sccrocket.png */
+.bw-rocket-stage{
+  position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
+  height:220px;
+  overflow:visible;
+}
+.bw-rocket-wrap{
+  position:relative;
+  height:200px;
+  width:auto;
+  display:flex;align-items:flex-end;justify-content:center;
+  animation:bwRocketHover 2.8s ease-in-out infinite;
+}
+@keyframes bwRocketHover{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
+}
+.bw-rocket-img{
+  height:100%;width:auto;display:block;
+  /* Aspect ratio is 1006:1459 (~0.69:1), so at 200px height it's ~138px wide */
+  filter:drop-shadow(0 4px 12px rgba(0,255,102,0.45)) drop-shadow(0 0 22px rgba(0,255,102,0.25));
+  position:relative;z-index:2;
+}
+
+/* Multi-layer animated flame underneath the rocket */
+.bw-flame{
+  position:absolute;
+  bottom:-8px;left:50%;transform:translateX(-50%);
+  width:38px;height:56px;
+  z-index:1;pointer-events:none;
+}
+.bw-flame-outer,.bw-flame-inner,.bw-flame-core{
+  position:absolute;left:50%;top:0;
+  border-radius:50% 50% 45% 45% / 30% 30% 70% 70%;
+  filter:blur(0.6px);
+  transform-origin:50% 0;
+}
+.bw-flame-outer{
+  transform:translateX(-50%);
+  width:38px;height:56px;
+  background:radial-gradient(ellipse at 50% 0%,#ffd23d 0%,#ff8a00 35%,#ff2d4a 70%,rgba(255,45,74,0) 100%);
+  opacity:0.85;
+  animation:bwFlameOuter 0.18s ease-in-out infinite alternate;
+  filter:blur(2px);
+}
+.bw-flame-inner{
+  transform:translateX(-50%);
+  width:22px;height:42px;
+  background:radial-gradient(ellipse at 50% 0%,#fff 0%,#ffe97d 30%,#ff8a00 70%,rgba(255,45,74,0) 100%);
+  opacity:0.95;
+  animation:bwFlameInner 0.14s ease-in-out infinite alternate;
+  filter:blur(1px);
+}
+.bw-flame-core{
+  transform:translateX(-50%);
+  width:11px;height:28px;
+  background:radial-gradient(ellipse at 50% 0%,#fff 0%,#ffe97d 40%,rgba(255,138,0,0) 100%);
+  animation:bwFlameCore 0.1s ease-in-out infinite alternate;
+}
+@keyframes bwFlameOuter{
+  0%{transform:translateX(-50%) scaleY(0.92) scaleX(1);}
+  100%{transform:translateX(-50%) scaleY(1.08) scaleX(0.94);}
+}
+@keyframes bwFlameInner{
+  0%{transform:translateX(-50%) scaleY(0.88) scaleX(1.04);}
+  100%{transform:translateX(-50%) scaleY(1.12) scaleX(0.92);}
+}
+@keyframes bwFlameCore{
+  0%{transform:translateX(-50%) scaleY(0.94);opacity:0.9;}
+  100%{transform:translateX(-50%) scaleY(1.1);opacity:1;}
+}
+
+/* Ground glow under flame */
+.bw-rocket-stage::after{
+  content:'';position:absolute;left:50%;bottom:0;
+  width:80px;height:10px;
+  background:radial-gradient(ellipse at 50% 50%,rgba(255,210,61,0.55) 0%,rgba(255,138,0,0.3) 40%,transparent 75%);
+  transform:translateX(-50%);
+  filter:blur(4px);
+  animation:bwGroundGlow 0.32s ease-in-out infinite alternate;
+  z-index:0;
+}
+@keyframes bwGroundGlow{
+  0%{opacity:0.7;transform:translateX(-50%) scaleX(0.88);}
+  100%{opacity:1;transform:translateX(-50%) scaleX(1.12);}
+}
+
+/* Smoke puffs */
+.bw-smoke{
+  position:absolute;bottom:0;
+  width:6px;height:6px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.35) 0%,rgba(255,255,255,0) 70%);
+  animation:bwSmoke 1.8s ease-out infinite;
+  z-index:0;pointer-events:none;
+}
+.bw-smoke.s1{left:38%;animation-delay:0s;}
+.bw-smoke.s2{left:50%;animation-delay:0.6s;}
+.bw-smoke.s3{left:62%;animation-delay:1.2s;}
+@keyframes bwSmoke{
+  0%{opacity:0;transform:translateY(0) scale(0.5);}
+  20%{opacity:0.5;}
+  100%{opacity:0;transform:translateY(-16px) translateX(6px) scale(1.6);}
+}
+
+/* ===================================================================
+   WHITE HOLOGRAPHIC PANEL
+   =================================================================== */
+.bw-holo{
+  position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.10) 50%,rgba(255,255,255,0.05) 100%);
+  border:1px solid rgba(255,255,255,0.45);
+  box-shadow:
+    0 0 16px rgba(255,255,255,0.35),
+    inset 0 0 24px rgba(255,255,255,0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+  padding:12px 18px 12px;
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+  overflow:hidden;
+  min-height:148px;
+}
+/* Scanline overlay (faint horizontal lines across the whole panel) */
+.bw-holo::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent 0,transparent 2px,rgba(255,255,255,0.04) 2px,rgba(255,255,255,0.04) 3px);
+  z-index:1;
+}
+/* Top-to-bottom scan beam */
+.bw-holo-scan{
+  position:absolute;left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,transparent,#fff 50%,transparent);
+  box-shadow:0 0 8px #fff,0 0 16px rgba(255,255,255,0.7);
+  animation:bwHoloScan 3.6s linear infinite;
+  z-index:2;
+}
+@keyframes bwHoloScan{0%{top:-2px;}100%{top:100%;}}
+
+/* Corner brackets */
+.bw-holo-corner{
+  position:absolute;width:14px;height:14px;
+  border:2px solid #fff;
+  box-shadow:0 0 5px rgba(255,255,255,0.8);
+  z-index:3;
+}
+.bw-holo-corner.tl{top:0;left:0;border-right:none;border-bottom:none;}
+.bw-holo-corner.tr{top:0;right:0;border-left:none;border-bottom:none;}
+.bw-holo-corner.bl{bottom:0;left:0;border-right:none;border-top:none;}
+.bw-holo-corner.br{bottom:0;right:0;border-left:none;border-top:none;}
+
+/* Top header */
+.bw-holo-top{
+  position:relative;z-index:4;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:.28em;color:rgba(255,255,255,0.75);
+  margin-bottom:9px;text-transform:uppercase;
+  padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.2);
+}
+.bw-holo-status{display:inline-flex;align-items:center;gap:6px;font-weight:600;}
+.bw-holo-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 6px #fff,0 0 12px rgba(255,255,255,0.7);
+  animation:bwHoloDot 1.2s ease-in-out infinite;
+}
+@keyframes bwHoloDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.bw-holo-time{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:11px;
+  color:#fff;letter-spacing:.08em;
+  text-shadow:0 0 5px rgba(255,255,255,0.7);
+}
+
+/* Rows container */
+.bw-holo-rows{
+  position:relative;z-index:4;
+  min-height:78px;
+  display:flex;flex-direction:column;
+  gap:5px;
+  padding:4px 0;
+}
+
+/* Individual row */
+.bw-holo-row{
+  display:grid;grid-template-columns:74px 1fr 60px;
+  gap:10px;
+  padding:4px 0;
+  align-items:center;
+  border-bottom:1px dashed rgba(255,255,255,0.08);
+}
+.bw-holo-row:last-child{border-bottom:none;}
+
+.bw-holo-cell{
+  font-family:'Orbitron',sans-serif;font-weight:700;
+  letter-spacing:.06em;
+  color:#fff;
+  text-shadow:0 0 4px rgba(255,255,255,0.6),0 0 10px rgba(255,255,255,0.3);
+  position:relative;
+  display:flex;align-items:center;
+}
+.bw-holo-cell.status{font-size:10px;font-weight:900;letter-spacing:.16em;opacity:0.85;}
+.bw-holo-cell.msg{font-size:12px;letter-spacing:.08em;}
+.bw-holo-cell.gate{font-size:10px;justify-content:flex-end;font-weight:900;letter-spacing:.12em;}
+
+/* Inline amount highlights inside noticeboard messages */
+.bw-holo-cell .g{color:#00ff66;text-shadow:0 0 5px #00ff66,0 0 14px rgba(0,255,102,0.7);font-weight:900;}
+.bw-holo-cell .y{color:#ffd23d;text-shadow:0 0 5px #ffd23d,0 0 14px rgba(255,210,61,0.7);font-weight:900;}
+
+/* Flap-flip animation (kept for message changes) */
+.bw-holo-cell .flap{
+  display:inline-block;
+  animation:bwHoloFade 0.5s ease-out forwards;
+  transform-origin:center top;
+}
+@keyframes bwHoloFade{
+  0%{transform:translateY(-4px);opacity:0;}
+  100%{transform:translateY(0);opacity:1;}
+}
+
+/* Bottom bar */
+.bw-holo-bot{
+  position:relative;z-index:4;
+  display:flex;align-items:center;justify-content:center;
+  padding-top:7px;margin-top:4px;
+  border-top:1px solid rgba(255,255,255,0.2);
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:8.5px;
+  letter-spacing:.28em;color:rgba(255,255,255,0.7);
+  text-transform:uppercase;
+  text-shadow:0 0 4px rgba(255,255,255,0.5);
+}
+
+/* BOARD rows */
+.board-row{
+  display:grid;
+  grid-template-columns:38px 232px 1fr 110px 90px;
+  gap:10px;align-items:center;
+  padding:8px 18px;
+  border-bottom:1px solid rgba(0,255,102,0.08);
+  font-family:'Share Tech Mono',monospace;
+  position:relative;
+}
+.board-row-head{
+  background:rgba(0,255,102,0.06);
+  border-bottom:1px solid rgba(0,255,102,0.35);
+  padding:9px 22px;
+}
+.board-row-head .bc{
+  font-size:9px;letter-spacing:.26em;color:#aaff00;
+  text-transform:uppercase;
+  text-shadow:0 0 6px rgba(170,255,0,0.6);
+}
+.bc-amt,.bc-status{text-align:right;}
+.bc-status{text-align:center;}
+.bc-ticket{text-align:center;}
+
+/* Boarding ticket avatar — landscape, detailed */
+.ticket-av{
+  width:220px;height:62px;
+  display:block;
+  filter:drop-shadow(0 0 5px rgba(0,255,102,0.4));
+}
+.ticket-av.captain-tk{filter:drop-shadow(0 0 10px rgba(255,210,61,0.8));}
+.ticket-av.first-tk{filter:drop-shadow(0 0 8px rgba(170,255,0,0.65));}
+
+.board-rows{
+  position:relative;
+  overflow:hidden;
+}
+.board-scanline{
+  position:absolute;left:0;right:0;top:0;height:60px;
+  background:linear-gradient(180deg,transparent 0%,rgba(0,255,102,0.18) 60%,rgba(0,255,102,0.4) 100%);
+  pointer-events:none;
+  z-index:5;
+  animation:boardScan 4.5s linear infinite;
+}
+@keyframes boardScan{
+  0%{transform:translateY(-100%);opacity:0;}
+  10%,90%{opacity:0.7;}
+  100%{transform:translateY(800px);opacity:0;}
+}
+
+.brow{
+  display:grid;grid-template-columns:38px 232px 1fr 110px 90px;
+  gap:10px;align-items:center;
+  padding:2px 18px;
+  border-bottom:1px solid rgba(0,255,102,0.08);
+  font-family:'Share Tech Mono',monospace;
+  transition:background .12s;
+  position:relative;
+}
+.brow:hover{background:rgba(0,255,102,0.04);}
+.brow.captain{
+  background:linear-gradient(90deg,rgba(255,210,61,0.08) 0%,rgba(255,210,61,0) 100%);
+}
+.brow.captain::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:#ffd23d;
+  box-shadow:0 0 10px #ffd23d;
+}
+.brow.first-class{
+  background:linear-gradient(90deg,rgba(0,255,102,0.05) 0%,rgba(0,255,102,0) 100%);
+}
+
+/* Rank */
+.brank{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:14px;
+  color:rgba(255,255,255,0.65);letter-spacing:.02em;
+  display:flex;align-items:center;gap:4px;
+}
+.brow.captain .brank{
+  color:#ffd23d;
+  text-shadow:0 0 6px #ffd23d,0 0 14px rgba(255,210,61,0.6);
+}
+.brow.first-class .brank{
+  color:#00ff66;
+  text-shadow:0 0 6px rgba(0,255,102,0.7);
+}
+
+/* Wallet column */
+.bwallet-line{
+  display:flex;align-items:center;gap:8px;line-height:1.2;
+}
+.bwallet-addr{
+  font-family:'Share Tech Mono',monospace;font-size:13px;
+  color:#fff;letter-spacing:.06em;
+  font-weight:600;
+}
+.bwallet-tag{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:9px;
+  letter-spacing:.16em;
+  padding:2px 7px;
+  clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);
+}
+.bwallet-tag.captain{
+  background:rgba(255,210,61,0.18);
+  border:1px solid #ffd23d;
+  color:#ffd23d;
+  text-shadow:0 0 6px rgba(255,210,61,0.7);
+  animation:flipBlink 1.6s ease-in-out infinite;
+}
+.bwallet-tag.first{
+  background:rgba(0,255,102,0.12);
+  border:1px solid #00ff66;
+  color:#aaff00;
+  text-shadow:0 0 4px rgba(170,255,0,0.6);
+}
+.bwallet-time{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  color:rgba(0,255,102,0.55);letter-spacing:.1em;
+  margin-top:3px;text-transform:uppercase;
+}
+
+/* Amount */
+.bamt{text-align:right;line-height:1.15;}
+.bamt-usd{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:15px;
+  color:#fff;letter-spacing:.02em;
+  text-shadow:0 0 6px rgba(0,255,102,0.5);
+}
+.bamt-scc{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  color:#ffd23d;letter-spacing:.06em;margin-top:3px;
+}
+.bamt-pct{
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:10px;
+  color:#aaff00;letter-spacing:.06em;margin-top:3px;
+  text-shadow:0 0 5px rgba(170,255,0,0.6);
+  text-align:right;
+}
+
+/* Status */
+.bstatus{
+  text-align:center;
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:10px;
+  letter-spacing:.18em;
+  padding:6px 8px;
+  clip-path:polygon(6px 0,calc(100% - 6px) 0,100% 50%,calc(100% - 6px) 100%,6px 100%,0 50%);
+}
+.bstatus.boarded{
+  background:rgba(0,255,102,0.12);
+  border:1px solid rgba(0,255,102,0.5);
+  color:#aaff00;
+  text-shadow:0 0 6px rgba(170,255,0,0.7);
+}
+.bstatus.first-class{
+  background:rgba(255,210,61,0.12);
+  border:1px solid rgba(255,210,61,0.55);
+  color:#ffd23d;
+  text-shadow:0 0 6px rgba(255,210,61,0.7);
+}
+.bstatus.captain-class{
+  background:rgba(255,210,61,0.22);
+  border:1.5px solid #ffd23d;
+  color:#fff;
+  text-shadow:0 0 6px #ffd23d,0 0 14px rgba(255,210,61,0.7);
+  animation:flipBlink 1.4s ease-in-out infinite;
+}
+
+/* Footer stats — 4-cell board */
+.board-foot{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  background:linear-gradient(180deg,rgba(0,255,102,0.04) 0%,rgba(0,0,0,0) 100%);
+  border-top:1px solid rgba(0,255,102,0.3);
+  border-bottom:1px solid rgba(0,255,102,0.15);
+}
+.bf-cell{
+  text-align:center;padding:12px 4px;
+  position:relative;
+}
+.bf-cell + .bf-cell{border-left:1px solid rgba(0,255,102,0.15);}
+.bf-lbl{
+  display:block;
+  font-family:'Share Tech Mono',monospace;font-size:8.5px;
+  letter-spacing:.28em;color:rgba(0,255,102,0.65);
+  text-transform:uppercase;margin-bottom:5px;
+}
+.bf-val{
+  display:block;
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:18px;
+  color:#fff;letter-spacing:.02em;
+  text-shadow:0 0 8px #00ff66,0 0 16px rgba(0,255,102,0.55);
+}
+.bf-val.green{color:#00ff66;text-shadow:0 0 8px #00ff66,0 0 18px rgba(0,255,102,0.7);}
+
+.board-bottom-bar{
+  padding:11px 22px;
+  text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:9.5px;
+  letter-spacing:.26em;color:rgba(0,255,102,0.6);
+  text-transform:uppercase;
+}
+.live-dot{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:#aaff00;
+  box-shadow:0 0 6px #aaff00,0 0 12px rgba(170,255,0,0.85);
+  vertical-align:middle;margin-right:6px;
+  animation:nowBlink 1s ease-in-out infinite;
+}
+
+/* ===================================================================
+   BOARD TABS (boarding order / top holders)
+   =================================================================== */
+.board-tabs{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  margin:8px 22px 0;
+}
+.board-tab{
+  display:flex;flex-direction:row;align-items:center;justify-content:center;
+  gap:7px;
+  padding:5px 14px;
+  background:rgba(0,0,0,0.45);
+  border:1px solid rgba(0,255,102,0.25);
+  border-bottom:none;
+  cursor:pointer;
+  font-family:'Orbitron',sans-serif;
+  transition:all .15s ease;
+  position:relative;
+  color:rgba(208,255,224,0.5);
+}
+.board-tab:first-child{
+  clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 100%, 0 100%);
+  border-right:none;
+  padding-right:20px;
+}
+.board-tab:last-child{
+  clip-path:polygon(10px 0, 100% 0, 100% 100%, 0 100%);
+  padding-left:20px;
+}
+.board-tab:hover{
+  background:rgba(0,255,102,0.06);
+  color:rgba(208,255,224,0.85);
+}
+.board-tab.active{
+  background:linear-gradient(180deg,rgba(0,255,102,0.16) 0%,rgba(0,255,102,0.04) 100%);
+  border-color:#00ff66;
+  color:#fff;
+  z-index:2;
+}
+.board-tab.active .bt-label{
+  text-shadow:0 0 8px #00ff66,0 0 16px rgba(0,255,102,0.55);
+}
+.board-tab.active .bt-icon{
+  color:#aaff00;
+  text-shadow:0 0 6px #aaff00;
+}
+.board-tab .bt-icon{
+  font-size:13px;line-height:1;
+  color:rgba(170,255,0,0.5);
+  transition:color .15s,text-shadow .15s;
+}
+.board-tab .bt-label{
+  font-weight:900;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+/* ===================================================================
+   BOARD SEARCH (find my seat)
+   =================================================================== */
+.board-search{
+  display:flex;align-items:stretch;gap:8px;
+  margin:10px 22px 14px;
+  padding:0;
+}
+.bs-icon{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;
+  background:rgba(0,255,102,0.08);
+  border:1px solid rgba(0,255,102,0.35);
+  border-right:none;
+  font-size:13px;color:#aaff00;
+  clip-path:polygon(5px 0,100% 0,100% 100%,0 100%,0 5px);
+}
+.bs-input{
+  flex:1;min-width:0;
+  background:rgba(0,255,102,0.04);
+  border:1px solid rgba(0,255,102,0.35);
+  border-left:none;border-right:none;
+  padding:9px 12px;outline:none;
+  font-family:'Share Tech Mono',monospace;font-size:12px;
+  color:#fff;letter-spacing:.04em;
+  transition:background .12s,border-color .12s;
+}
+.bs-input::placeholder{color:rgba(0,255,102,0.45);}
+.bs-input:focus{
+  background:rgba(0,255,102,0.08);
+  border-color:#00ff66;
+  box-shadow:inset 0 0 12px rgba(0,255,102,0.2);
+}
+.bs-find{
+  background:rgba(255,210,61,0.12);
+  border:1px solid #ffd23d;
+  padding:0 14px;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:10px;letter-spacing:.16em;
+  color:#ffd23d;text-shadow:0 0 6px rgba(255,210,61,0.6);
+  clip-path:polygon(0 0,calc(100% - 5px) 0,100% 5px,100% 100%,5px 100%,0 calc(100% - 5px));
+  transition:all .12s;
+  white-space:nowrap;
+}
+.bs-find:hover{
+  background:rgba(255,210,61,0.22);
+  box-shadow:0 0 14px rgba(255,210,61,0.5);
+}
+
+/* ===================================================================
+   BOARD PAGINATION
+   =================================================================== */
+.board-pagination{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 22px;
+  border-top:1px solid rgba(0,255,102,0.18);
+  border-bottom:1px solid rgba(0,255,102,0.18);
+  background:rgba(0,0,0,0.4);
+  flex-wrap:wrap;
+}
+.bp-btn{
+  background:rgba(0,255,102,0.08);
+  border:1px solid rgba(0,255,102,0.45);
+  padding:7px 14px;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:10px;letter-spacing:.16em;color:#aaff00;
+  text-shadow:0 0 5px rgba(170,255,0,0.5);
+  clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px);
+  transition:all .12s;
+}
+.bp-btn:hover{
+  background:rgba(0,255,102,0.18);
+  border-color:#00ff66;
+  box-shadow:0 0 12px rgba(0,255,102,0.5);
+}
+.bp-btn:disabled{
+  opacity:0.35;cursor:not-allowed;
+  box-shadow:none;
+}
+.bp-info{
+  flex:1;text-align:center;
+  font-family:'Share Tech Mono',monospace;font-size:11px;
+  color:rgba(208,255,224,0.65);letter-spacing:.06em;
+}
+.bp-info b{
+  color:#fff;font-family:'Orbitron',sans-serif;font-weight:900;
+  text-shadow:0 0 4px rgba(0,255,102,0.5);
+}
+.bp-jump{
+  display:inline-flex;align-items:center;gap:6px;
+}
+.bp-jump-lbl{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  letter-spacing:.16em;color:rgba(0,255,102,0.6);
+  text-transform:uppercase;
+}
+.bp-jump-input{
+  width:80px;
+  background:rgba(0,255,102,0.06);
+  border:1px solid rgba(0,255,102,0.35);
+  padding:6px 8px;outline:none;
+  font-family:'Orbitron',sans-serif;font-weight:700;
+  font-size:11px;color:#fff;letter-spacing:.04em;
+  transition:all .12s;
+}
+.bp-jump-input:focus{
+  border-color:#00ff66;
+  background:rgba(0,255,102,0.12);
+}
+.bp-jump-input::-webkit-inner-spin-button{-webkit-appearance:none;}
+.bp-jump-go{
+  background:rgba(0,255,102,0.12);
+  border:1px solid #00ff66;
+  padding:6px 10px;cursor:pointer;
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:10px;letter-spacing:.14em;color:#aaff00;
+  text-shadow:0 0 5px rgba(170,255,0,0.6);
+}
+.bp-jump-go:hover{
+  background:rgba(0,255,102,0.22);
+  box-shadow:0 0 10px rgba(0,255,102,0.4);
+}
+
+/* ===================================================================
+   5-TIER ROW STYLES
+   =================================================================== */
+.brow.tier-business{
+  background:linear-gradient(90deg,rgba(255,128,192,0.05) 0%,rgba(255,128,192,0) 100%);
+}
+.brow.tier-premium{
+  background:linear-gradient(90deg,rgba(126,213,255,0.04) 0%,rgba(126,213,255,0) 100%);
+}
+.brow.tier-economy{}
+
+.brow.tier-business .brank{color:#ff80c0;text-shadow:0 0 6px rgba(255,128,192,0.6);}
+.brow.tier-premium .brank{color:#7ed5ff;text-shadow:0 0 6px rgba(126,213,255,0.5);}
+.brow.tier-economy .brank{color:rgba(94,234,212,0.85);}
+
+.bwallet-tag.business{
+  background:rgba(255,128,192,0.15);
+  border:1px solid rgba(255,128,192,0.5);
+  color:#ff80c0;
+  text-shadow:0 0 4px rgba(255,128,192,0.6);
+}
+.bwallet-tag.premium{
+  background:rgba(126,213,255,0.12);
+  border:1px solid rgba(126,213,255,0.45);
+  color:#7ed5ff;
+  text-shadow:0 0 4px rgba(126,213,255,0.5);
+}
+
+.bstatus.business-class{
+  background:rgba(255,128,192,0.12);
+  border:1px solid rgba(255,128,192,0.5);
+  color:#ff80c0;
+  text-shadow:0 0 5px rgba(255,128,192,0.6);
+}
+.bstatus.premium-class{
+  background:rgba(126,213,255,0.10);
+  border:1px solid rgba(126,213,255,0.45);
+  color:#7ed5ff;
+  text-shadow:0 0 5px rgba(126,213,255,0.5);
+}
+.bstatus.economy-class{
+  background:rgba(94,234,212,0.10);
+  border:1px solid rgba(94,234,212,0.4);
+  color:#5eead4;
+}
+
+/* Tier glow on tickets */
+.ticket-av.business-tk{filter:drop-shadow(0 0 7px rgba(255,128,192,0.55));}
+.ticket-av.premium-tk{filter:drop-shadow(0 0 6px rgba(126,213,255,0.5));}
+.ticket-av.economy-tk{filter:drop-shadow(0 0 4px rgba(94,234,212,0.4));}
+
+/* Highlight searched/found row */
+.brow.found{
+  background:linear-gradient(90deg,rgba(255,210,61,0.25) 0%,rgba(255,210,61,0.05) 100%);
+  box-shadow:inset 0 0 18px rgba(255,210,61,0.4);
+  animation:foundPulse 1.6s ease-in-out infinite;
+}
+@keyframes foundPulse{
+  0%,100%{box-shadow:inset 0 0 18px rgba(255,210,61,0.4);}
+  50%{box-shadow:inset 0 0 26px rgba(255,210,61,0.65);}
+}
+
+</style>
+</head>
+<body>
+
+<div class="scan"></div>
+
+<div class="modal">
+  <span class="modal-inner"></span>
+  <span class="corner tl"></span>
+  <span class="corner tr"></span>
+  <span class="corner bl"></span>
+  <span class="corner br"></span>
+
+  <div class="top">
+    <div class="brand">
+      <div class="brand-coin"></div>
+      <div class="brand-text">
+        <span class="brand-name">Super Cash <span class="gold">Coin</span></span>
+      </div>
+    </div>
+
+    <div class="top-right">
+      <button class="chamber-btn" id="chamberBtn">
+        <span class="chamber-dot"></span>
+        <span class="chamber-count">1.24M</span>
+        <span class="chamber-lbl">HOLDERS WAITING</span>
+        <span class="chamber-cta">VIEW →</span>
+      </button>
+      <button class="wallet disc" id="walletDisc">Connect</button>
+      <button class="wallet connected" id="walletConn">
+        <div class="wallet-avatar"></div>
+        <div class="wallet-block">
+          <span class="wallet-addr">0x4a8d…f10c</span>
+          <span class="wallet-bal">250.00 USDT</span>
+        </div>
+      </button>
+      <button class="close" id="closeBtn" aria-label="close">×</button>
+    </div>
+  </div>
+
+  <div class="body-grid">
+
+    <div class="col-left">
+
+      <div class="hero">
+        <span class="spark s1">✦</span>
+        <span class="spark s2">✦</span>
+        <span class="spark s3">✦</span>
+        <span class="spark s4">✦</span>
+        <span class="spark s5">✦</span>
+
+        <div class="hero-pile-wrap">
+          <img class="pile-img solo" src="assets/coin-pile.png" alt="Pile of $SCC coins" />
+        </div>
+      </div>
+
+  <div class="avail-box">
+    <div class="now-banner">
+      <div class="now-left">
+        <span class="now-dot"></span>
+        <span class="now-title">Now Available</span>
+      </div>
+      <div class="now-right">
+        <span class="now-price">$0.002<span class="now-unit">USDT</span></span>
+      </div>
+    </div>
+
+    <div class="net-steps">
+      <div class="net-step">
+        <div class="net-num">1</div>
+        <img class="net-logo" src="assets/opbnb-logo.png" alt="opBNB" />
+        <div class="net-text">
+          <div class="net-eyebrow">CONNECT</div>
+          <div class="net-name"><span class="amber">opBNB</span></div>
+        </div>
+      </div>
+      <div class="net-step">
+        <div class="net-num">2</div>
+        <img class="net-logo" src="assets/tether-logo.png" alt="USDT" />
+        <div class="net-text">
+          <div class="net-eyebrow">PAY WITH</div>
+          <div class="net-name"><span class="green">USDT</span></div>
+        </div>
+      </div>
+      <div class="net-step">
+        <div class="net-num">3</div>
+        <img class="net-logo" src="assets/coin.png" alt="$SCC" />
+        <div class="net-text">
+          <div class="net-eyebrow">HOLD &amp; WAIT</div>
+          <div class="net-name"><span class="scc">$SCC</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="supply">
+    <div class="gauge-wrap">
+      <div class="gauge-top">
+        <div class="gauge-side gauge-side-l">
+          <div class="gauge-coin">
+            <img src="assets/coin.png" alt="$SCC coin" />
+          </div>
+          <div class="gauge-readout">
+            <div class="gauge-label">REMAINING</div>
+            <div class="gauge-value">148.75M<span class="unit">$SCC</span></div>
+            <div class="gauge-total">OF 350M TOTAL</div>
+          </div>
+        </div>
+
+        <div class="gauge-divider"></div>
+
+        <div class="gauge-side gauge-side-r">
+          <div class="gauge-coin">
+            <img src="assets/usdt-pile.png" alt="USDT" />
+          </div>
+          <div class="gauge-readout">
+            <div class="gauge-label">RAISED</div>
+            <div class="gauge-value green">$297K<span class="unit">USDT</span></div>
+            <div class="gauge-total">OF $700K TARGET</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gauge-h-divider"></div>
+
+      <div class="gauge-scale">
+        <div class="supply-label">SUPPLY LEVEL</div>
+        <div class="led-bar">
+          <span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span><span class="led-seg lit"></span>
+          <span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span><span class="led-seg"></span>
+          <div class="led-shimmer"></div>
+        </div>
+        <div class="led-pointer-row bottom">
+          <div class="led-pointer" style="left:42.5%;">
+            <span class="led-pointer-num">42.5%</span>
+            <span class="led-pointer-tri"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+    <div class="col-right">
+
+  <div class="ico-right-module">
+    <div class="tax-corner tl"></div>
+    <div class="tax-corner tr"></div>
+    <div class="tax-corner bl"></div>
+    <div class="tax-corner br"></div>
+
+    <div class="tax-card inner">
+      <div class="ann-title">INITIAL COIN OFFERING</div>
+      <div class="lto-marquee">
+        <div class="lto-track">
+          <span>Limited Time Offer</span>
+          <span>Limited Time Offer</span>
+          <span>Limited Time Offer</span>
+          <span>Limited Time Offer</span>
+        </div>
+      </div>
+
+      <p class="tax-body">
+        This is the <b>only time</b> you can buy <b>Super Cash Coin</b>
+        while taxes are switched <b>off</b> — a one-time raise to establish
+        the liquidity pool.
+      </p>
+
+      <div class="tax-hero">
+        <span class="tax-lbl">TAX</span>
+        <div class="tax-breaker" aria-label="Circuit breaker flipped off">
+          <span class="tax-breaker-screw tl"></span>
+          <span class="tax-breaker-screw tr"></span>
+          <span class="tax-breaker-screw bl"></span>
+          <span class="tax-breaker-screw br"></span>
+          <div class="tax-breaker-pct">25%</div>
+          <div class="tax-breaker-divider"></div>
+          <div class="tax-breaker-lever-area">
+            <div class="tax-breaker-track">
+              <div class="tax-breaker-lever"></div>
+            </div>
+            <div class="tax-breaker-label">OFF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ico-divider"></div>
+
+    <div class="order">
+    <div class="order-head">
+      <span class="order-title">ORDER FORM</span>
+      <span class="order-min">MIN SPEND <b>$1 USDT</b></span>
+    </div>
+
+    <div class="amt-box pay-box">
+      <div class="amt-label">
+        <span>YOU PAY</span>
+        <span class="bal">BAL: 250.00 USDT</span>
+      </div>
+      <div class="amt-row">
+        <span class="amt-prefix">$</span>
+        <div class="amt-input-wrap">
+          <span class="amt-caret" id="amtCaret"></span>
+          <input class="amt-input" id="payInput" type="text" value="" placeholder="100.00" inputmode="decimal" />
+          <span class="amt-ghost" id="amtGhost">100.00</span>
+        </div>
+        <div class="amt-curr">
+          <img class="amt-curr-logo" src="assets/tether-logo.png" alt="USDT">
+          USDT
+        </div>
+      </div>
+    </div>
+
+    <div class="receipt">
+      <div class="receipt-head">
+        <div class="receipt-title">ORDER SUMMARY</div>
+      </div>
+      <div class="receipt-line"><span class="l">Fixed ICO price</span><span class="v">$0.002 <span class="u">USDT</span></span></div>
+      <div class="receipt-line zero"><span class="l">Purchase tax (25%)</span><span class="v"><span class="tax-zero">$0.00</span></span></div>
+      <div class="receipt-line"><span class="l">Gas fee</span><span class="v">~$0.05</span></div>
+      <div class="receipt-divider"></div>
+      <div class="receipt-total">
+        <span class="l">YOU GET</span>
+        <span class="v">
+          <span id="getOutput">50,000</span> $SCC
+        </span>
+      </div>
+    </div>
+
+    <button class="confirm" id="confirmBtn">CONFIRM PURCHASE</button>
+  </div>
+  </div><!-- /ico-right-module -->
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ============================================================
+     DEPARTURE BOARD OVERLAY — Tron-style flip-board of buyers
+     ============================================================ -->
+<div class="chamber-overlay" id="chamberOverlay" aria-hidden="true">
+  <div class="board-modal">
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
+
+    <!-- HEADER BAR -->
+    <div class="board-top">
+      <div class="board-titles">
+        <div class="board-eyebrow">★ DEPARTURE BOARD ★</div>
+        <div class="board-title">🛫 NEXT DEPARTURE · GET PAID ROYALTIES</div>
+      </div>
+      <button class="close chamber-close" id="chamberClose" aria-label="close">×</button>
+    </div>
+
+    <!-- ROCKET + AIRPORT FLIP BOARD -->
+    <div class="board-welcome">
+      <div class="bw-rocket-stage">
+        <div class="bw-rocket-wrap">
+          <img class="bw-rocket-img" src="assets/sccrocket.png" alt="$SCC rocket" />
+          <!-- Exhaust flame underneath -->
+          <div class="bw-flame">
+            <div class="bw-flame-outer"></div>
+            <div class="bw-flame-inner"></div>
+            <div class="bw-flame-core"></div>
+          </div>
+          <!-- Smoke puffs -->
+          <span class="bw-smoke s1"></span>
+          <span class="bw-smoke s2"></span>
+          <span class="bw-smoke s3"></span>
+        </div>
+        <!-- Launchpad ground glow -->
+        <div class="bw-ground-glow"></div>
+      </div>
+
+      <!-- WHITE HOLOGRAPHIC PANEL -->
+      <div class="bw-holo">
+        <span class="bw-holo-corner tl"></span>
+        <span class="bw-holo-corner tr"></span>
+        <span class="bw-holo-corner bl"></span>
+        <span class="bw-holo-corner br"></span>
+        <div class="bw-holo-scan"></div>
+
+        <div class="bw-holo-top">
+          <span class="bw-holo-status">
+            <span class="bw-holo-dot"></span>
+          </span>
+          <span class="bw-holo-time" id="bwFbTime">14:37</span>
+        </div>
+
+        <div class="bw-holo-rows" id="bwFbRows">
+          <!-- JS renders rotating messages here -->
+        </div>
+
+        <div class="bw-holo-bot">
+          <span class="bw-holo-bot-text">★ SUPER CASH COIN · GET PAID ROYALTIES ★</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="board-tabs">
+      <button class="board-tab active" data-tab="boarding" id="tabBoarding">
+        <span class="bt-icon">🛫</span>
+        <span class="bt-label">BOARDING ORDER</span>
+      </button>
+      <button class="board-tab" data-tab="holders" id="tabHolders">
+        <span class="bt-icon">★</span>
+        <span class="bt-label">TOP HOLDERS</span>
+      </button>
+    </div>
+
+    <!-- SEARCH / FIND MY SEAT -->
+    <div class="board-search">
+      <div class="bs-icon">🔍</div>
+      <input class="bs-input" id="boardSearch" type="text" placeholder="Find a passenger… (wallet address or seat #)" />
+      <button class="bs-find" id="findMeBtn">📍 FIND MY SEAT</button>
+    </div>
+
+    <!-- BOARD HEADER ROW -->
+    <div class="board-row board-row-head">
+      <div class="bc bc-rank">RANK</div>
+      <div class="bc bc-ticket">TICKET</div>
+      <div class="bc bc-wallet">WALLET / PASSENGER</div>
+      <div class="bc bc-amt">DEPOSIT</div>
+      <div class="bc bc-status">STATUS</div>
+    </div>
+
+    <!-- BOARD ROWS injected by JS -->
+    <div class="board-rows" id="boardRows">
+      <div class="board-scanline"></div>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="board-pagination">
+      <button class="bp-btn" id="bpPrev">← PREV</button>
+      <div class="bp-info">
+        Showing <b id="bpFrom">1</b>–<b id="bpTo">20</b> of <b id="bpTotal">1,247,891</b> passengers
+      </div>
+      <div class="bp-jump">
+        <span class="bp-jump-lbl">Jump to #</span>
+        <input class="bp-jump-input" id="bpJumpInput" type="number" placeholder="1" />
+        <button class="bp-jump-go" id="bpJumpGo">GO</button>
+      </div>
+      <button class="bp-btn" id="bpNext">NEXT →</button>
+    </div>
+
+    <!-- FOOTER STATS -->
+    <div class="board-foot">
+      <div class="bf-cell">
+        <span class="bf-lbl">PASSENGERS</span>
+        <span class="bf-val">1.24M</span>
+      </div>
+      <div class="bf-cell">
+        <span class="bf-lbl">CARGO</span>
+        <span class="bf-val">$2.48M</span>
+      </div>
+      <div class="bf-cell">
+        <span class="bf-lbl">CAPACITY</span>
+        <span class="bf-val">71.2%</span>
+      </div>
+      <div class="bf-cell">
+        <span class="bf-lbl">GATE</span>
+        <span class="bf-val">opBNB</span>
+      </div>
+    </div>
+
+    <div class="board-bottom-bar">
+      <span class="live-dot"></span> LIVE · BOARDING IN PROGRESS · opBNB TERMINAL
+    </div>
+  </div>
+</div>
+
+<script>
+// Detect iframe / embed mode and toggle transparent body styles
+(function(){
+  var inFrame = (window.parent && window.parent !== window);
+  var hasFlag = /[?&]embed=1\b/.test(window.location.search) || window.location.hash === '#embed';
+  if (inFrame || hasFlag){
+    document.documentElement.classList.add('embed');
+    document.body.classList.add('embed');
+  }
+})();
+
+const walletDisc = document.getElementById('walletDisc');
+const walletConn = document.getElementById('walletConn');
+walletDisc.addEventListener('click', () => {
+  walletDisc.classList.add('hide');
+  walletConn.classList.add('show');
+});
+walletConn.addEventListener('click', () => {
+  walletDisc.classList.remove('hide');
+  walletConn.classList.remove('show');
+});
+
+const RATE = 500;
+const BALANCE = 250;
+const DEFAULT_AMT = 100;
+const payInput = document.getElementById('payInput');
+const getOutput = document.getElementById('getOutput');
+const amtGhost = document.getElementById('amtGhost');
+const amtPrefix = document.querySelector('.amt-prefix');
+const PAY_BASE_PX = 28;
+const PAY_MIN_PX = 14;
+const GET_BASE_PX = 26;
+const GET_MIN_PX = 12;
+
+function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+function fmtUsd(n){
+  return n.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+
+// Format a raw input string into "1,234,567.89" form (live)
+function formatWithCommas(str){
+  const cleaned = str.replace(/[^0-9.]/g, '');
+  const parts = cleaned.split('.');
+  let intPart = parts[0] || '';
+  // Only one decimal allowed; keep up to 2 decimals while typing
+  const decPart = parts.length > 1 ? '.' + parts.slice(1).join('').slice(0, 2) : '';
+  intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return intPart + decPart;
+}
+
+// Reformat the YOU PAY input, preserving cursor position by counting
+// non-comma characters before the cursor.
+function reformatPay(){
+  const oldVal = payInput.value;
+  const oldCursor = payInput.selectionStart || 0;
+  const significantBefore = oldVal.slice(0, oldCursor).replace(/,/g, '').length;
+
+  const newVal = formatWithCommas(oldVal);
+  if (newVal === oldVal) return;
+
+  payInput.value = newVal;
+
+  let count = 0, newCursor = newVal.length;
+  for (let i = 0; i < newVal.length; i++){
+    if (count >= significantBefore){ newCursor = i; break; }
+    if (newVal[i] !== ',') count++;
+    newCursor = i + 1;
+  }
+  try{ payInput.setSelectionRange(newCursor, newCursor); }catch(_){}
+}
+
+// Shrink font-size proportionally to fit within available width
+function fitToWidth(naturalWidth, availableWidth, basePx, minPx){
+  if (naturalWidth <= availableWidth || naturalWidth <= 0) return basePx;
+  const scale = availableWidth / naturalWidth;
+  return Math.max(minPx, basePx * scale);
+}
+
+function fitPay(){
+  payInput.style.fontSize = PAY_BASE_PX + 'px';
+  amtGhost.style.fontSize = PAY_BASE_PX + 'px';
+  if (amtPrefix) amtPrefix.style.fontSize = PAY_BASE_PX + 'px';
+
+  amtGhost.textContent = payInput.value || payInput.placeholder || '0';
+  const naturalW = amtGhost.getBoundingClientRect().width;
+  const wrapW = payInput.parentElement.clientWidth;
+  const size = fitToWidth(naturalW, wrapW - 4, PAY_BASE_PX, PAY_MIN_PX);
+
+  payInput.style.fontSize = size + 'px';
+  amtGhost.style.fontSize = size + 'px';
+  if (amtPrefix) amtPrefix.style.fontSize = size + 'px';
+
+  const newW = amtGhost.getBoundingClientRect().width;
+  payInput.style.setProperty('--amt-w', (newW + 2) + 'px');
+}
+
+function fitGet(){
+  const vEl = getOutput.parentElement;
+  const rowEl = vEl.parentElement;
+  const labelEl = rowEl.querySelector('.l');
+
+  vEl.style.fontSize = GET_BASE_PX + 'px';
+  const naturalW = vEl.scrollWidth;
+  const available = rowEl.clientWidth - labelEl.offsetWidth - 14;
+  const size = fitToWidth(naturalW, available, GET_BASE_PX, GET_MIN_PX);
+  vEl.style.fontSize = size + 'px';
+}
+
+function updateGet(){
+  // Parse the input value (strip commas) and compute coins
+  const raw = payInput.value.replace(/[^0-9.]/g,'');
+  const v = raw === '' ? DEFAULT_AMT : (parseFloat(raw) || 0);
+  getOutput.textContent = fmt(v * RATE);
+  fitPay();
+  fitGet();
+}
+
+payInput.addEventListener('input', () => {
+  reformatPay();
+  updateGet();
+});
+payInput.addEventListener('blur', () => {
+  const raw = payInput.value.replace(/[^0-9.]/g,'');
+  const v = parseFloat(raw);
+  payInput.value = isNaN(v) ? '' : fmtUsd(v);
+  updateGet();
+});
+// (No focus handler stripping commas — keep them visible at all times)
+
+// Re-fit when the popup is resized
+window.addEventListener('resize', () => { fitPay(); fitGet(); });
+
+// Size on first render so caret sits flush against the placeholder
+window.addEventListener('load', updateGet);
+updateGet();
+
+document.getElementById('closeBtn').addEventListener('click', () => {
+  // If this popup is hosted inside an iframe on the main site, ask the parent to close us.
+  // When viewed standalone (no parent), just dim the modal as a visual hint.
+  if (window.parent && window.parent !== window) {
+    try { window.parent.postMessage({type:'scc-popup-close'}, '*'); return; } catch(_){}
+  }
+  document.querySelector('.modal').style.opacity = '0.3';
+});
+
+document.getElementById('confirmBtn').addEventListener('click', (e) => {
+  const b = e.currentTarget;
+  const t = b.textContent;
+  b.textContent = '✓ SUBMITTED';
+  b.style.filter = 'hue-rotate(40deg) brightness(1.2)';
+  setTimeout(() => { b.textContent = t; b.style.filter = ''; }, 1400);
+});
+
+// =========== Chamber ===========
+const chamberBtn = document.getElementById('chamberBtn');
+const chamberOverlay = document.getElementById('chamberOverlay');
+const chamberClose = document.getElementById('chamberClose');
+
+chamberBtn.addEventListener('click', () => {
+  chamberOverlay.classList.add('open');
+  chamberOverlay.setAttribute('aria-hidden', 'false');
+});
+chamberClose.addEventListener('click', () => {
+  chamberOverlay.classList.remove('open');
+  chamberOverlay.setAttribute('aria-hidden', 'true');
+});
+chamberOverlay.addEventListener('click', (e) => {
+  if (e.target === chamberOverlay) {
+    chamberOverlay.classList.remove('open');
+    chamberOverlay.setAttribute('aria-hidden', 'true');
+  }
+});
+
+// ===== Buyer data (simulated 1M+ scale) =====
+// We simulate the API: total count is huge, but we only generate the rows
+// the user is currently viewing. Real implementation = backend pagination.
+const TOTAL_BUYERS = 1247891;
+const TOTAL_SUPPLY = 1_000_000_000; // 1B $SCC total supply for % calculations
+const PAGE_SIZE = 20;
+let currentPage = 0; // page is 0-indexed
+let highlightRank = null; // for "find my seat" / search
+let currentMode = 'boarding'; // 'boarding' = chronological order, 'holders' = top by amount
+
+function getTier(rank){
+  if (rank === 1) return 'captain';
+  if (rank <= 10) return 'first';
+  if (rank <= 100) return 'business';
+  if (rank <= 10000) return 'premium';
+  return 'economy';
+}
+function tierConfig(tier){
+  switch(tier){
+    case 'captain': return {
+      bgFill:'#ffd23d', accentFill:'#ffe97d', stubFill:'#aa6600',
+      $color:'#ffd23d', mainColor:'#3a1a00',
+      classLbl:'CAPTAIN', classSub:'GENESIS HOLDER',
+      tag:'★ GENESIS', tagCls:'captain',
+      status:'★ CAPTAIN ★', statusCls:'captain-class',
+      ticketCls:'captain-tk', rowCls:'captain',
+      footerTag:'★ ALL ACCESS · UNLIMITED ★'
+    };
+    case 'first': return {
+      bgFill:'#aaff00', accentFill:'#ccff66', stubFill:'#226600',
+      $color:'#aaff00', mainColor:'#0a2200',
+      classLbl:'FIRST CLASS', classSub:'EARLY HOLDER',
+      tag:'EARLY', tagCls:'first',
+      status:'FIRST CLASS', statusCls:'first-class',
+      ticketCls:'first-tk', rowCls:'first-class',
+      footerTag:'▲ PRIORITY BOARDING ▲'
+    };
+    case 'business': return {
+      bgFill:'#ff80c0', accentFill:'#ffc0e0', stubFill:'#660033',
+      $color:'#ff80c0', mainColor:'#330011',
+      classLbl:'BUSINESS', classSub:'EARLY ADOPTER',
+      tag:'ADOPTER', tagCls:'business',
+      status:'BUSINESS', statusCls:'business-class',
+      ticketCls:'business-tk', rowCls:'tier-business',
+      footerTag:'◆ EARLY ADOPTER ◆'
+    };
+    case 'premium': return {
+      bgFill:'#7ed5ff', accentFill:'#c0e8ff', stubFill:'#114488',
+      $color:'#7ed5ff', mainColor:'#001a33',
+      classLbl:'PREMIUM', classSub:'PREMIUM HOLDER',
+      tag:'PREMIUM', tagCls:'premium',
+      status:'PREMIUM', statusCls:'premium-class',
+      ticketCls:'premium-tk', rowCls:'tier-premium',
+      footerTag:'◇ PREMIUM HOLDER ◇'
+    };
+    default: return {
+      bgFill:'#5eead4', accentFill:'#a8f7e6', stubFill:'#0a4438',
+      $color:'#5eead4', mainColor:'#002822',
+      classLbl:'PASSENGER', classSub:'BOARDED',
+      tag:'', tagCls:'',
+      status:'BOARDED ✓', statusCls:'economy-class',
+      ticketCls:'economy-tk', rowCls:'tier-economy',
+      footerTag:'VALID · ON-CHAIN · opBNB'
+    };
+  }
+}
+
+// Pseudo-random but deterministic data per rank
+function makeBuyer(rank){
+  // simple hash from rank for repeatable address
+  const seed = rank * 2654435761;
+  const hex = (n, len) => Math.abs((seed * n) | 0).toString(16).padStart(len, '0').slice(0, len);
+  const addr = '0x' + hex(7, 4) + '…' + hex(13, 4);
+  // Amount tiered roughly by rank (earlier = bigger deposits)
+  let usd;
+  if (rank === 1) usd = 5000;
+  else if (rank <= 10) usd = Math.round(3500 - rank * 250);
+  else if (rank <= 100) usd = Math.round(1000 - (rank - 10) * 7);
+  else if (rank <= 10000) usd = Math.round(400 - Math.log(rank) * 25);
+  else usd = Math.max(2, Math.round(100 - Math.log(rank) * 8));
+  usd = Math.max(2, usd);
+  const scc = usd * 500;
+  // Time approximations
+  let t;
+  if (rank === 1) t = 'GENESIS';
+  else if (rank <= 3) t = '2 days ago';
+  else if (rank <= 10) t = '1 day ago';
+  else if (rank <= 100) t = `${Math.floor(rank/3)}h ago`;
+  else if (rank <= 1000) t = `${Math.floor(rank/40)}h ago`;
+  else if (rank <= 10000) t = 'days ago';
+  else t = 'recent';
+  return { rank, addr, usd, scc, t };
+}
+
+const boardRows = document.getElementById('boardRows');
+function fmtCompactUsd(n){
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(2) + 'M';
+  if (n >= 1000) return '$' + (n/1000).toFixed(n>=10000?0:1) + 'K';
+  return '$' + n;
+}
+function fmtSccCompact(n){
+  if (n >= 1000000) return (n/1000000).toFixed(n>=10000000?0:2) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(0) + 'K';
+  return n.toLocaleString('en-US');
+}
+function fmtRank(r){
+  if (r >= 1000000) return (r/1000000).toFixed(2) + 'M';
+  if (r >= 1000) return (r/1000).toFixed(1) + 'K';
+  return r.toLocaleString('en-US');
+}
+function fmtPct(scc){
+  const p = (scc / TOTAL_SUPPLY) * 100;
+  if (p >= 1) return p.toFixed(2) + '%';
+  if (p >= 0.01) return p.toFixed(3) + '%';
+  return p.toFixed(4) + '%';
+}
+
+// $SCC Pig mascot — pixel-art rendered as a group of rects.
+// Origin (0,0) is the top-left of a 32x32 grid in user-space units.
+function pigSvg(){
+  return `
+    <g shape-rendering="crispEdges">
+      <!-- Ears -->
+      <rect x="3"  y="2" width="3" height="1" fill="#1da4e9"/>
+      <rect x="3"  y="3" width="4" height="1" fill="#1da4e9"/>
+      <rect x="3"  y="4" width="5" height="1" fill="#1da4e9"/>
+      <rect x="26" y="2" width="3" height="1" fill="#1da4e9"/>
+      <rect x="25" y="3" width="4" height="1" fill="#1da4e9"/>
+      <rect x="24" y="4" width="5" height="1" fill="#1da4e9"/>
+      <!-- Head -->
+      <rect x="3" y="5" width="26" height="22" fill="#1da4e9"/>
+      <!-- Sunglasses band -->
+      <rect x="4" y="11" width="24" height="4" fill="#0a0a0a"/>
+      <!-- Glasses reflections -->
+      <rect x="6"  y="12" width="2" height="1" fill="#ffffff"/>
+      <rect x="18" y="12" width="2" height="1" fill="#ffffff"/>
+      <!-- Snout -->
+      <rect x="11" y="18" width="10" height="6" fill="#1da4e9"/>
+      <rect x="13" y="20" width="2" height="2" fill="#0a0a0a"/>
+      <rect x="17" y="20" width="2" height="2" fill="#0a0a0a"/>
+      <!-- Smirk: flat mouth that curves up on the right -->
+      <rect x="13" y="25" width="5" height="1" fill="#0a0a0a"/>
+      <rect x="18" y="24" width="1" height="1" fill="#0a0a0a"/>
+      <rect x="19" y="23" width="1" height="1" fill="#0a0a0a"/>
+    </g>
+  `;
+}
+
+function ticketSvg(rank, b){
+  const tier = getTier(rank);
+  const cfg = tierConfig(tier);
+  const seatDisplay = rank > 99999 ? fmtRank(rank) : String(rank).padStart(rank > 999 ? 4 : 3, '0');
+  const flightNo = rank > 999 ? 'SCC-' + fmtRank(rank) : 'SCC-' + String(rank).padStart(3,'0');
+  let gateNo;
+  if (rank === 1) gateNo = 'A1';
+  else if (rank <= 10) gateNo = 'A' + rank;
+  else if (rank <= 100) gateNo = 'B' + String(rank).padStart(2,'0');
+  else if (rank <= 10000) gateNo = 'C' + String(Math.floor(rank/100));
+  else gateNo = 'D' + String(Math.floor(rank/1000));
+  // Pseudo-random QR pattern based on rank
+  const qr = Array.from({length:25}, (_, q) => ((rank * 7 + q * 13) % 5) > 1);
+  let qrSquares = `
+    <rect x="0" y="0" width="4" height="4" fill="${cfg.bgFill}"/><rect x="1" y="1" width="2" height="2" fill="#000"/>
+    <rect x="8" y="0" width="4" height="4" fill="${cfg.bgFill}"/><rect x="9" y="1" width="2" height="2" fill="#000"/>
+    <rect x="0" y="8" width="4" height="4" fill="${cfg.bgFill}"/><rect x="1" y="9" width="2" height="2" fill="#000"/>
+  `;
+  qr.forEach((on, q) => {
+    if (on) {
+      const x = (q % 5) * 2.2 + 1;
+      const y = Math.floor(q / 5) * 2.2 + 1;
+      qrSquares += `<rect x="${x}" y="${y}" width="2" height="2" fill="${cfg.bgFill}"/>`;
+    }
+  });
+
+  return `
+    <svg class="ticket-av ${cfg.ticketCls}" viewBox="0 0 380 108" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="tk-g-${rank}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="${cfg.accentFill}"/>
+          <stop offset="1" stop-color="${cfg.bgFill}"/>
+        </linearGradient>
+        <pattern id="tk-stripe-${rank}" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" stroke="${cfg.mainColor}" stroke-width="1" opacity="0.06"/>
+        </pattern>
+      </defs>
+      <rect x="2" y="4" width="376" height="100" rx="5" fill="url(#tk-g-${rank})" stroke="#fff" stroke-width="1.2"/>
+      <rect x="2" y="4" width="376" height="100" rx="5" fill="url(#tk-stripe-${rank})"/>
+      <rect x="2" y="4" width="376" height="6" fill="${cfg.stubFill}" rx="5" ry="5"/>
+      <rect x="2" y="8" width="376" height="2" fill="${cfg.stubFill}"/>
+      <line x1="280" y1="14" x2="280" y2="100" stroke="${cfg.mainColor}" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.6"/>
+      <circle cx="280" cy="14" r="4" fill="#000604"/>
+      <circle cx="280" cy="100" r="4" fill="#000604"/>
+      <rect x="280" y="14" width="96" height="86" fill="${cfg.stubFill}" opacity="0.92"/>
+      <rect x="280" y="14" width="96" height="86" fill="url(#tk-stripe-${rank})" opacity="0.4"/>
+      <text x="14" y="22" font-family="Orbitron" font-weight="900" font-size="7" letter-spacing="2" fill="${cfg.mainColor}">◆ SUPER CASH COIN ◆ BOARDING PASS</text>
+      <circle cx="32" cy="52" r="20" fill="${cfg.stubFill}" stroke="#fff" stroke-width="1.5"/>
+      <circle cx="32" cy="52" r="16" fill="none" stroke="${cfg.bgFill}" stroke-width="0.8" stroke-dasharray="2 1.5"/>
+      <!-- Pig mascot, scaled and centered (32x32 native → 28x28 in circle) -->
+      <g transform="translate(18, 38) scale(0.875)">${pigSvg()}</g>
+      ${tier === 'captain' ? `<text x="32" y="34" text-anchor="middle" font-size="9" fill="#fff" style="filter:drop-shadow(0 0 4px #fff);">★ ★ ★</text>` : ''}
+      <text x="62" y="30" font-family="Share Tech Mono" font-size="6" letter-spacing="1.5" fill="${cfg.mainColor}" opacity="0.7">PASSENGER</text>
+      <text x="62" y="40" font-family="Orbitron" font-weight="900" font-size="11" fill="${cfg.mainColor}">${b.addr}</text>
+      <text x="62" y="52" font-family="Share Tech Mono" font-size="6" letter-spacing="1.5" fill="${cfg.mainColor}" opacity="0.7">CLASS</text>
+      <text x="62" y="62" font-family="Orbitron" font-weight="900" font-size="11" fill="${cfg.mainColor}">${cfg.classLbl}</text>
+      <text x="62" y="76" font-family="Share Tech Mono" font-size="5.5" letter-spacing="1" fill="${cfg.mainColor}" opacity="0.7">DEPARTURE</text>
+      <text x="62" y="86" font-family="Orbitron" font-weight="900" font-size="9" fill="${cfg.mainColor}">opBNB</text>
+      <text x="148" y="76" font-family="Share Tech Mono" font-size="5.5" letter-spacing="1" fill="${cfg.mainColor}" opacity="0.7">ARRIVAL</text>
+      <text x="148" y="86" font-family="Orbitron" font-weight="900" font-size="9" fill="${cfg.mainColor}">$SCC POOL</text>
+      <text x="222" y="76" font-family="Share Tech Mono" font-size="5.5" letter-spacing="1" fill="${cfg.mainColor}" opacity="0.7">FLIGHT</text>
+      <text x="222" y="86" font-family="Orbitron" font-weight="900" font-size="9" fill="${cfg.mainColor}">${flightNo}</text>
+      <line x1="98" y1="82" x2="146" y2="82" stroke="${cfg.mainColor}" stroke-width="0.4" stroke-dasharray="1 1" opacity="0.5"/>
+      <polygon points="96,80 98,82 96,84" fill="${cfg.mainColor}" opacity="0.6"/>
+      <text x="328" y="22" text-anchor="middle" font-family="Orbitron" font-weight="900" font-size="6.5" letter-spacing="1.6" fill="${cfg.bgFill}">${cfg.classSub}</text>
+      <g transform="translate(288,28)">
+        <rect x="-1" y="-1" width="14" height="14" fill="${cfg.mainColor}"/>
+        <g transform="scale(0.83)">${qrSquares}</g>
+      </g>
+      <text x="336" y="40" text-anchor="middle" font-family="Share Tech Mono" font-size="5.5" letter-spacing="1.5" fill="${cfg.bgFill}" opacity="0.7">SEAT</text>
+      <text x="336" y="60" text-anchor="middle" font-family="Orbitron" font-weight="900" font-size="${rank > 9999 ? 14 : rank > 999 ? 18 : 22}" fill="#fff" style="filter:drop-shadow(0 0 6px ${cfg.bgFill});">${seatDisplay}</text>
+      <line x1="288" y1="68" x2="370" y2="68" stroke="${cfg.bgFill}" stroke-width="0.5" stroke-dasharray="2 1" opacity="0.5"/>
+      <text x="300" y="80" font-family="Share Tech Mono" font-size="5.5" letter-spacing="1.5" fill="${cfg.bgFill}" opacity="0.7">GATE</text>
+      <text x="300" y="91" font-family="Orbitron" font-weight="900" font-size="10" fill="#fff">${gateNo}</text>
+      <text x="358" y="80" text-anchor="end" font-family="Share Tech Mono" font-size="5.5" letter-spacing="1.5" fill="${cfg.bgFill}" opacity="0.7">RANK</text>
+      <text x="358" y="91" text-anchor="end" font-family="Orbitron" font-weight="900" font-size="${rank > 99999 ? 8 : rank > 999 ? 9 : 10}" fill="#fff">#${rank > 9999 ? fmtRank(rank) : rank}</text>
+      <text x="270" y="96" text-anchor="end" font-family="Orbitron" font-weight="900" font-size="6.5" letter-spacing="2" fill="${cfg.mainColor}" opacity="0.55">${cfg.footerTag}</text>
+    </svg>
+  `;
+}
+
+function renderRow(rank){
+  const b = makeBuyer(rank);
+  const tier = getTier(rank);
+  const cfg = tierConfig(tier);
+  const tag = cfg.tag ? `<span class="bwallet-tag ${cfg.tagCls}">${tier === 'captain' ? '★ GENESIS' : cfg.tag}</span>` : '';
+  const isFound = rank === highlightRank;
+  const row = document.createElement('div');
+  row.className = 'brow ' + cfg.rowCls + (isFound ? ' found' : '');
+  row.innerHTML = `
+    <div class="brank">#${rank > 9999 ? fmtRank(rank) : rank}</div>
+    <div>${ticketSvg(rank, b)}</div>
+    <div>
+      <div class="bwallet-line">
+        <span class="bwallet-addr">${b.addr}</span>
+        ${tag}
+      </div>
+      <div class="bwallet-time">${b.t}</div>
+    </div>
+    <div class="bamt">
+      <div class="bamt-usd">${fmtCompactUsd(b.usd)}</div>
+      <div class="bamt-scc">${fmtSccCompact(b.scc)} $SCC</div>
+    </div>
+    <div class="bstatus ${cfg.statusCls}">${cfg.status}</div>
+  `;
+  return row;
+}
+
+// Top 100 Holders: pre-generated, deterministic, sorted descending by SCC held.
+// Each holder still has their original SEAT (when they joined) — that's their identity.
+// Holder rank is purely an amount sorting; tickets always reflect original seat.
+const TOP_HOLDERS = (() => {
+  const list = [];
+  for (let i = 1; i <= 100; i++){
+    const seed = (i * 73856093) ^ 0x9e3779b9;
+    const hex = (n, len) => Math.abs((seed * n) | 0).toString(16).padStart(len, '0').slice(0, len);
+    const addr = '0x' + hex(11, 4) + '…' + hex(29, 4);
+    // Holdings: top whales have ~50M, exponential decay
+    const scc = Math.round(50_000_000 * Math.pow(0.94, i - 1));
+    const usd = Math.round(scc * 0.002);
+    // Original seat — realistic: some early whales (low seats), some who bought big later
+    // Mix early adopters with mid-tier buyers who happened to accumulate
+    let originalRank;
+    if (i === 1) originalRank = 247;       // #1 whale wasn't first — bought big at seat 247
+    else if (i === 2) originalRank = 1;    // Captain (seat 1) is #2 by amount
+    else if (i === 3) originalRank = 5;    // First class seat 5
+    else if (i === 4) originalRank = 89;   // Business class
+    else if (i === 5) originalRank = 3;    // First class
+    else if (i === 6) originalRank = 1842; // Premium seat — bought a LOT
+    else if (i === 7) originalRank = 28;   // Business
+    else if (i === 8) originalRank = 7;    // First class
+    else if (i === 9) originalRank = 412;  // Premium
+    else if (i === 10) originalRank = 64;  // Business
+    else {
+      // Spread the rest pseudo-randomly across the 1.2M holders
+      const rangeSeed = (i * 2654435761) >>> 0;
+      const range = (rangeSeed % 50000) + 50;
+      originalRank = range;
+    }
+    list.push({ holderRank: i, addr, scc, usd, originalRank });
+  }
+  return list;
+})();
+const TOTAL_HOLDERS = 100;
+
+function getTierByHolderRank(holderRank){
+  if (holderRank === 1) return 'captain';
+  if (holderRank <= 10) return 'first';
+  if (holderRank <= 30) return 'business';
+  if (holderRank <= 100) return 'premium';
+  return 'economy';
+}
+
+function renderRowHolder(h){
+  // The ticket itself reflects the holder's ORIGINAL seat (who they are when they joined)
+  const seatTier = getTier(h.originalRank);
+  const seatCfg = tierConfig(seatTier);
+  // Holder rank gets its own whale badge on top of that
+  const whaleTag = h.holderRank === 1
+    ? '<span class="bwallet-tag captain">★ WHALE KING</span>'
+    : h.holderRank <= 10
+    ? '<span class="bwallet-tag first">WHALE</span>'
+    : h.holderRank <= 30
+    ? '<span class="bwallet-tag business">BIG HOLDER</span>'
+    : '';
+  const whaleStatus = h.holderRank === 1
+    ? { txt: '★ WHALE KING ★', cls: 'captain-class' }
+    : h.holderRank <= 10
+    ? { txt: 'WHALE', cls: 'first-class' }
+    : h.holderRank <= 30
+    ? { txt: 'BIG HOLDER', cls: 'business-class' }
+    : h.holderRank <= 100
+    ? { txt: 'KEY HOLDER', cls: 'premium-class' }
+    : { txt: 'HOLDER', cls: 'economy-class' };
+  const isFound = h.holderRank === highlightRank && currentMode === 'holders';
+
+  // Build a buyer object that ticketSvg expects
+  const b = { addr: h.addr };
+  const pct = fmtPct(h.scc);
+  const amt = fmtSccCompact(h.scc);
+  const row = document.createElement('div');
+  // Row gets the WHALE-tier styling on the rank/status side, but ticket uses seat tier
+  row.className = 'brow ' + seatCfg.rowCls + (isFound ? ' found' : '');
+  row.innerHTML = `
+    <div class="brank">#${h.holderRank}</div>
+    <div>${ticketSvg(h.originalRank, b)}</div>
+    <div>
+      <div class="bwallet-line">
+        <span class="bwallet-addr">${h.addr}</span>
+        ${whaleTag}
+      </div>
+      <div class="bwallet-time">Seat #${h.originalRank}</div>
+    </div>
+    <div class="bamt">
+      <div class="bamt-usd">${amt} $SCC</div>
+      <div class="bamt-pct">${pct} of supply</div>
+    </div>
+    <div class="bstatus ${whaleStatus.cls}">${whaleStatus.txt}</div>
+  `;
+  return row;
+}
+
+function renderPage(){
+  boardRows.innerHTML = '<div class="board-scanline"></div>';
+
+  if (currentMode === 'holders'){
+    // Top Holders mode — show top 100 by amount
+    const startRank = currentPage * PAGE_SIZE + 1;
+    const endRank = Math.min(startRank + PAGE_SIZE - 1, TOTAL_HOLDERS);
+    for (let r = startRank; r <= endRank; r++){
+      const h = TOP_HOLDERS[r - 1];
+      if (h) boardRows.appendChild(renderRowHolder(h));
+    }
+    document.getElementById('bpFrom').textContent = startRank.toLocaleString('en-US');
+    document.getElementById('bpTo').textContent = endRank.toLocaleString('en-US');
+    document.getElementById('bpTotal').textContent = TOTAL_HOLDERS.toLocaleString('en-US');
+    document.getElementById('bpPrev').disabled = currentPage === 0;
+    document.getElementById('bpNext').disabled = endRank >= TOTAL_HOLDERS;
+  } else {
+    // Boarding Order mode — chronological by rank
+    const startRank = currentPage * PAGE_SIZE + 1;
+    const endRank = Math.min(startRank + PAGE_SIZE - 1, TOTAL_BUYERS);
+    for (let r = startRank; r <= endRank; r++){
+      boardRows.appendChild(renderRow(r));
+    }
+    document.getElementById('bpFrom').textContent = startRank.toLocaleString('en-US');
+    document.getElementById('bpTo').textContent = endRank.toLocaleString('en-US');
+    document.getElementById('bpTotal').textContent = TOTAL_BUYERS.toLocaleString('en-US');
+    document.getElementById('bpPrev').disabled = currentPage === 0;
+    document.getElementById('bpNext').disabled = endRank >= TOTAL_BUYERS;
+  }
+}
+
+renderPage();
+
+// Tab switching
+function switchTab(mode){
+  if (mode === currentMode) return;
+  currentMode = mode;
+  currentPage = 0;
+  highlightRank = null;
+  document.getElementById('tabBoarding').classList.toggle('active', mode === 'boarding');
+  document.getElementById('tabHolders').classList.toggle('active', mode === 'holders');
+  // Update header column labels based on mode
+  const depLbl = document.querySelector('.bc-amt');
+  if (depLbl) depLbl.textContent = mode === 'holders' ? 'HELD' : 'DEPOSIT';
+  // Update placeholder
+  const search = document.getElementById('boardSearch');
+  if (search) search.placeholder = mode === 'holders'
+    ? 'Find a holder… (wallet address or rank #)'
+    : 'Find a passenger… (wallet address or seat #)';
+  renderPage();
+}
+document.getElementById('tabBoarding').addEventListener('click', () => switchTab('boarding'));
+document.getElementById('tabHolders').addEventListener('click', () => switchTab('holders'));
+
+// ===== Airport flip-board rotating messages =====
+const FB_MESSAGES = [
+  {
+    rows:[
+      {status:'★ BOARDING',  msg:'WELCOME ABOARD · 0x91C2…8E4D',                                          gate:'A1'},
+      {status:'NOW',         msg:'PLEASE WAIT FOR ICO TO FINISH',                                          gate:'★'},
+      {status:'ICO',         msg:'TAX OFF · ONE-TIME LIQUIDITY EVENT',                                     gate:'25%'},
+    ]
+  },
+  {
+    rows:[
+      {status:'◆ HOLD',      msg:'THANK YOU FOR HOLDING $SCC',                                             gate:'OK'},
+      {status:'DIAMOND',     msg:'DIAMOND HANDS · GET REWARDED',                                           gate:'★'},
+      {status:'NETWORK',     msg:'opBNB MAINNET · LIVE',                                                   gate:'OK'},
+    ]
+  },
+  {
+    rows:[
+      {status:'★ ROYALTY',   msg:'ROYALTY PAYMENTS · COMING UP',                                           gate:'$$'},
+      {status:'PAYDAY',      msg:'25% TAX FUNDS HOLDERS · AUTO-PAID',                                      gate:'$$'},
+      {status:'NEXT',        msg:'CHECK WALLET FOR DEPOSITS',                                              gate:'$$'},
+    ]
+  },
+  {
+    rows:[
+      {status:'★ STATS',     msg:'<span class="g">1,247,891</span> PASSENGERS BOARDED',                    gate:'71%'},
+      {status:'RAISED',      msg:'<span class="g">$2.48M</span> RAISED · $700K TARGET',                    gate:'★'},
+      {status:'REMAINING',   msg:'<span class="y">148.75M $SCC</span> LEFT · 42.5% SOLD',                  gate:'$$'},
+    ]
+  },
+  {
+    rows:[
+      {status:'★ THANKS',    msg:'THANKS FOR BOARDING $SCC',                                               gate:'★'},
+      {status:'STATUS',      msg:'WAIT FOR ICO TO FINISH',                                                 gate:'…'},
+      {status:'PRICE',       msg:'$0.002 USDT · FIXED ICO PRICE',                                          gate:'★'},
+    ]
+  },
+];
+
+const fbRows = document.getElementById('bwFbRows');
+let fbIdx = 0;
+
+function renderFlipBoard(index){
+  const message = FB_MESSAGES[index];
+  fbRows.innerHTML = '';
+  message.rows.forEach((row, i) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'bw-holo-row';
+    rowEl.innerHTML = `
+      <div class="bw-holo-cell status"><span class="flap" style="animation-delay:${i*0.08}s">${row.status}</span></div>
+      <div class="bw-holo-cell msg"><span class="flap" style="animation-delay:${i*0.08 + 0.06}s">${row.msg}</span></div>
+      <div class="bw-holo-cell gate"><span class="flap" style="animation-delay:${i*0.08 + 0.12}s">${row.gate}</span></div>
+    `;
+    fbRows.appendChild(rowEl);
+  });
+}
+
+function rotateFlipBoard(){
+  fbIdx = (fbIdx + 1) % FB_MESSAGES.length;
+  renderFlipBoard(fbIdx);
+}
+renderFlipBoard(0);
+setInterval(rotateFlipBoard, 8000);
+
+// Update time stamp on flip-board (just a fake clock that ticks)
+function tickFbTime(){
+  const t = new Date();
+  document.getElementById('bwFbTime').textContent =
+    String(t.getHours()).padStart(2,'0') + ':' + String(t.getMinutes()).padStart(2,'0');
+}
+tickFbTime();
+setInterval(tickFbTime, 1000 * 30);
+
+document.getElementById('bpPrev').addEventListener('click', () => {
+  if (currentPage > 0){ currentPage--; renderPage(); boardRows.scrollTop = 0; }
+});
+document.getElementById('bpNext').addEventListener('click', () => {
+  const cap = currentMode === 'holders' ? TOTAL_HOLDERS : TOTAL_BUYERS;
+  if ((currentPage + 1) * PAGE_SIZE < cap){ currentPage++; renderPage(); boardRows.scrollTop = 0; }
+});
+document.getElementById('bpJumpGo').addEventListener('click', () => {
+  const v = parseInt(document.getElementById('bpJumpInput').value, 10);
+  if (!isNaN(v) && v >= 1 && v <= TOTAL_BUYERS){
+    currentPage = Math.floor((v - 1) / PAGE_SIZE);
+    highlightRank = v;
+    renderPage();
+    setTimeout(() => { highlightRank = null; }, 4000);
+  }
+});
+document.getElementById('bpJumpInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') document.getElementById('bpJumpGo').click();
+});
+
+// FIND MY SEAT — fake "user's seat" at rank 247
+document.getElementById('findMeBtn').addEventListener('click', () => {
+  const myRank = 247;
+  currentPage = Math.floor((myRank - 1) / PAGE_SIZE);
+  highlightRank = myRank;
+  renderPage();
+});
+
+// SEARCH — by seat # or address (for demo, just parses numbers)
+document.getElementById('boardSearch').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter'){
+    const q = e.target.value.trim();
+    const asNum = parseInt(q.replace(/[^0-9]/g,''), 10);
+    if (!isNaN(asNum) && asNum >= 1 && asNum <= TOTAL_BUYERS){
+      currentPage = Math.floor((asNum - 1) / PAGE_SIZE);
+      highlightRank = asNum;
+      renderPage();
+    }
+  }
+});
+</script>
+
+</body>
+</html>
