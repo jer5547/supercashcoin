@@ -1196,6 +1196,8 @@
     .rain-coin{width:18px;height:18px}
     .rain-scc{width:24px;height:24px}
     .rain-scc-sm{width:18px;height:18px}
+    .rain-hl{left:6px;right:6px;font-size:11px;letter-spacing:.02em;white-space:nowrap;}
+    .rain-star{margin:0 5px;}
               .celebration{padding:30px 14px 60px;}
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
@@ -1456,8 +1458,9 @@
   }
   .hero-headline .big{
     display:block;
-    font-size:clamp(54px, 18cqi, 132px);
+    font-size:clamp(80px, 28cqi, 180px);
     letter-spacing:-0.005em;
+    white-space:nowrap;
     background:linear-gradient(180deg,#ffffff 0%,#fff493 25%,#ffd23d 50%,#d9a116 80%,#8a5e07 100%);
     -webkit-background-clip:text;
     background-clip:text;
@@ -1471,9 +1474,10 @@
   }
   .hero-headline .small{
     display:block;
-    font-size:clamp(40px, 13cqi, 96px);
+    font-size:clamp(54px, 18cqi, 130px);
     margin:4px 0 0 0;
-    letter-spacing:0.01em;
+    letter-spacing:0;
+    white-space:nowrap;
     background:linear-gradient(180deg,#ffffff 0%,#ffd23d 50%,#8a5e07 100%);
     -webkit-background-clip:text;
     background-clip:text;
@@ -1484,22 +1488,7 @@
       drop-shadow(2px 2px 0 #4a2f02)
       drop-shadow(4px 5px 8px rgba(0,0,0,0.35));
   }
-  /* Smart: when the column is wide enough that one line still looks chunky, fit it on one line */
-  @container (min-width: 640px){
-    .hero-headline{white-space:nowrap;}
-    .hero-headline .big{
-      display:inline-block;
-      font-size:clamp(54px, 11cqi, 110px);
-      vertical-align:baseline;
-    }
-    .hero-headline .small{
-      display:inline-block;
-      font-size:clamp(54px, 11cqi, 110px);
-      margin:0 0 0 0.2em;
-      letter-spacing:-0.005em;
-      vertical-align:baseline;
-    }
-  }
+  .hero-headline .gold{display:inline;}
   .hero-headline .gold{
     background:linear-gradient(180deg,#ffffff 0%,#ffd23d 50%,#8a5e07 100%);
     -webkit-background-clip:text;
@@ -1534,6 +1523,47 @@
       animation:none;
     }
   }
+
+  /* === NEW Cashflow tagline + 3-stat strip (LEFT aligned to match hero) === */
+  .hero-cashflow{
+    font-family:'Luckiest Guy','Lilita One',cursive;
+    font-size:clamp(24px, 3.8vw, 44px);
+    line-height:0.95;
+    color:#0a0a0a;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    margin:22px 0 22px;
+    opacity:0;transform:scale(0.6);
+    animation:sccPopIn 0.7s cubic-bezier(.34,1.56,.64,1) 0.4s forwards;
+  }
+  .hero-cashflow .green{color:#23a04b;}
+  .hero-stat-strip{
+    display:grid;grid-template-columns:1fr 1fr 1fr;
+    border-top:2px solid #0a0a0a;border-bottom:2px solid #0a0a0a;
+    padding:14px 0;
+    max-width:460px;margin:0 0 22px;
+    opacity:0;transform:scale(0.6);
+    animation:sccPopIn 0.7s cubic-bezier(.34,1.56,.64,1) 0.55s forwards;
+  }
+  .hero-stat-strip .cell{
+    text-align:center;border-right:1px solid #ddd;padding:0 8px;
+    min-width:0;
+  }
+  .hero-stat-strip .cell:last-child{border-right:none;}
+  .hero-stat-strip .k{
+    font-family:'Luckiest Guy','Lilita One',cursive;
+    font-size:clamp(24px, 3vw, 38px);
+    line-height:1;color:#0a0a0a;letter-spacing:0.01em;
+  }
+  .hero-stat-strip .k.green{color:#23a04b;}
+  .hero-stat-strip .l{
+    font-family:'Inter','Helvetica','Arial',sans-serif;
+    font-size:clamp(9px, 0.9vw, 12px);
+    font-weight:700;
+    letter-spacing:0.16em;text-transform:uppercase;color:#777;
+    margin-top:6px;line-height:1.3;
+  }
+  /* === END new === */
 
   .hero-sub{
     font-family:'Arial Black','Helvetica',sans-serif;
@@ -1768,14 +1798,26 @@
   }
   /* Just-above-tablet (1101-1400px): tight desktops where mascot crowds the text */
   @media (max-width:1400px) and (min-width:1101px){
-    .hero-left{margin-left:8%;max-width:42%;}
-    .hero-pig-wrap{right:4%;height:74%;max-height:560px;}
+    .hero-left{margin-left:5%;max-width:50%;}
+    .hero-headline .big{font-size:clamp(96px, 26cqi, 160px);}
+    .hero-headline .small{font-size:clamp(58px, 14cqi, 100px);}
+    .hero-pig-wrap{right:1%;bottom:4%;height:92%;max-height:700px;}
   }
 
   /* Tablet + small desktop (761-1100px): keep desktop layout, scaled */
   @media (max-width:1100px) and (min-width:761px){
     .hero-new{padding:40px 0 50px;min-height:auto;}
-    .hero-pig-wrap{right:6%;bottom:8%;height:70%;max-height:480px;}
+    .hero-left{margin-left:5%;max-width:48%;}
+    .hero-headline .big{font-size:clamp(76px, 28cqi, 140px);}
+    .hero-headline .small{font-size:clamp(46px, 16cqi, 92px);}
+    .hero-cashflow{font-size:clamp(22px, 2.8vw, 32px);margin:14px 0 14px;}
+    .hero-stat-strip{padding:10px 0;margin:0 0 14px;max-width:380px;}
+    .hero-stat-strip .k{font-size:clamp(20px, 2.4vw, 28px);}
+    .hero-stat-strip .l{font-size:10px;letter-spacing:0.12em;margin-top:4px;}
+    .hero-socials{gap:10px;}
+    .hero-social-btn{padding:10px 18px;font-size:14px;box-shadow:0 4px 0 #0a0a0a;}
+    .hero-social-btn svg{width:18px;height:18px;}
+    .hero-pig-wrap{right:1%;bottom:6%;height:80%;max-height:560px;}
   }
 
   /* Mobile only (≤760px): flex-column with pig on top */
@@ -1825,6 +1867,26 @@
   }
   @media (max-width:380px){
     .top-banner{white-space:normal;text-align:center;line-height:1.3;}
+  }
+
+  /* ===== Responsive scaling for NEW hero-cashflow + hero-stat-strip ===== */
+  @media (max-width:760px){
+    .hero-cashflow{font-size:clamp(22px, 5.4vw, 36px);margin:16px 0 16px;}
+    .hero-stat-strip{padding:12px 0;margin:0 auto 18px;max-width:420px;}
+    .hero-stat-strip .k{font-size:clamp(22px, 5.2vw, 30px);}
+    .hero-stat-strip .l{font-size:clamp(9px, 2.4vw, 11px);letter-spacing:0.12em;}
+  }
+  @media (max-width:480px){
+    .hero-cashflow{font-size:clamp(20px, 5.6vw, 28px);}
+    .hero-stat-strip{padding:10px 0;}
+    .hero-stat-strip .cell{padding:0 4px;}
+    .hero-stat-strip .k{font-size:clamp(20px, 5.4vw, 26px);}
+    .hero-stat-strip .l{font-size:9px;letter-spacing:0.1em;line-height:1.25;}
+  }
+  @media (max-width:360px){
+    .hero-cashflow{font-size:22px;}
+    .hero-stat-strip .k{font-size:20px;}
+    .hero-stat-strip .l{font-size:8px;letter-spacing:0.08em;}
   }
 
   /* Hero socials defaults (desktop unchanged from original) */
@@ -2064,18 +2126,23 @@
       <span class="big">Super</span>
       <span class="small">Cash <span class="gold">Coin</span></span>
     </h1>
-    <p class="hero-sub">
-      <span class="hl">HOLD <span class="big-arrow" aria-hidden="true"><svg viewBox="0 0 90 60" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="arrGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="25%" stop-color="#fff493"/><stop offset="50%" stop-color="#ffd23d"/><stop offset="80%" stop-color="#d9a116"/><stop offset="100%" stop-color="#8a5e07"/></linearGradient></defs><path d="M5 22 L52 22 L52 8 L85 30 L52 52 L52 38 L5 38 Z" fill="url(#arrGrad)" stroke="#4a3402" stroke-width="3" stroke-linejoin="round"/></svg></span> GET PAID</span>
+    <p class="hero-cashflow">
+      Cashflow. <span class="green">Made simple.</span>
     </p>
-    <p class="hero-sub-big">
-      The Ultimate Automatic<br/>Royalty Reward Machine
-    </p>
-    <p class="hero-tagline">
-      <span class="green">Cashflow</span> made <span class="gold-pill">simple</span>
-    </p>
-    <p class="hero-sub-small">
-      The world's laziest way to earn USDT
-    </p>
+    <div class="hero-stat-strip">
+      <div class="cell">
+        <div class="k">25%</div>
+        <div class="l">You Earn</div>
+      </div>
+      <div class="cell">
+        <div class="k green">USDT</div>
+        <div class="l">Real money</div>
+      </div>
+      <div class="cell">
+        <div class="k">∞</div>
+        <div class="l">Forever</div>
+      </div>
+    </div>
     <div class="hero-socials">
       <a class="hero-social-btn tg" href="#" aria-label="Telegram">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
@@ -2088,7 +2155,7 @@
     </div>
   </div>
   <div class="hero-pig-wrap" id="heroPigWrap">
-    <img class="hero-pig-img" src="pig.png" alt="Super Cash Coin mascot" />
+    <img class="hero-pig-img" src="pig.png" alt="" onerror="this.style.display='none'" />
   </div>
 </section>
 
