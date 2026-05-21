@@ -1258,24 +1258,6 @@
     display:inline-flex;align-items:baseline;gap:3px;
   }
   .ico-price .u{font-size:8px;letter-spacing:.14em;color:rgba(255,210,61,0.75);font-weight:700;}
-  /* MIDDLE cluster: three steps with logos */
-  .ico-steps{display:flex;align-items:center;gap:11px;justify-content:center;min-width:0;position:relative;z-index:1;}
-  .ico-step{display:flex;align-items:center;gap:6px;min-width:0;}
-  .ico-num{
-    width:17px;height:17px;border-radius:50%;flex-shrink:0;
-    background:rgba(255,255,255,0.12);border:1.5px solid rgba(170,200,255,0.7);
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Orbitron',sans-serif;font-weight:900;font-size:9px;
-    color:#aac8ff;text-shadow:0 0 6px rgba(170,200,255,0.6);
-    box-shadow:0 0 6px rgba(170,200,255,0.3);
-  }
-  .ico-logo{width:18px;height:18px;flex-shrink:0;object-fit:contain;border-radius:4px;}
-  .ico-text{display:flex;flex-direction:column;line-height:1.05;min-width:0;}
-  .ico-eyebrow{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:.16em;color:rgba(255,255,255,0.6);text-transform:uppercase;white-space:nowrap;}
-  .ico-name{font-family:'Orbitron',sans-serif;font-weight:900;font-size:11px;letter-spacing:.04em;line-height:1;margin-top:1px;}
-  .ico-name.gold{color:#ffd23d;text-shadow:0 0 6px rgba(255,210,61,0.5);}
-  .ico-name.green{color:#23d76b;text-shadow:0 0 6px rgba(35,215,107,0.5);}
-  .ico-name.scc{color:#ffd23d;text-shadow:0 0 6px rgba(255,210,61,0.5);}
   /* Yellow vertical dividers — used between every cluster */
   .ico-sep{
     width:1px;height:18px;flex-shrink:0;
@@ -1294,7 +1276,6 @@
   @media (max-width:980px){
     .top-banner{flex-wrap:wrap;padding:7px 10px;gap:8px;}
     .top-banner > .ico-sep{display:none;}
-    .ico-steps{flex-basis:100%;order:3;flex-wrap:wrap;gap:8px;}
     .ico-cta{order:4;font-size:10px;}
   }
   @media (max-width:540px){
@@ -1304,11 +1285,6 @@
     .ico-price{font-size:10px;padding:1px 6px 2px;}
     .ico-price .u{font-size:7px;}
     .ico-dot{width:6px;height:6px;}
-    .ico-step .ico-text{display:none;}
-    .ico-steps .ico-sep{display:none;}
-    .ico-steps{gap:6px;}
-    .ico-num{width:14px;height:14px;font-size:7px;}
-    .ico-logo{width:16px;height:16px;}
     .ico-cta{font-size:9.5px;letter-spacing:.08em;}
   }
 
@@ -1796,32 +1772,56 @@
     0%,100%{transform:translateY(0) rotate(10deg);}
     50%{transform:translateY(-14px) rotate(2deg);}
   }
-  /* Just-above-tablet (1101-1400px): tight desktops where mascot crowds the text */
-  @media (max-width:1400px) and (min-width:1101px){
-    .hero-left{margin-left:5%;max-width:50%;}
-    .hero-headline .big{font-size:clamp(96px, 26cqi, 160px);}
-    .hero-headline .small{font-size:clamp(58px, 14cqi, 100px);}
-    .hero-pig-wrap{right:1%;bottom:4%;height:92%;max-height:700px;}
-  }
-
-  /* Tablet + small desktop (761-1100px): keep desktop layout, scaled */
-  @media (max-width:1100px) and (min-width:761px){
-    .hero-new{padding:40px 0 50px;min-height:auto;}
-    .hero-left{margin-left:5%;max-width:48%;}
-    .hero-headline .big{font-size:clamp(76px, 28cqi, 140px);}
-    .hero-headline .small{font-size:clamp(46px, 16cqi, 92px);}
-    .hero-cashflow{font-size:clamp(22px, 2.8vw, 32px);margin:14px 0 14px;}
-    .hero-stat-strip{padding:10px 0;margin:0 0 14px;max-width:380px;}
-    .hero-stat-strip .k{font-size:clamp(20px, 2.4vw, 28px);}
-    .hero-stat-strip .l{font-size:10px;letter-spacing:0.12em;margin-top:4px;}
+  /* ====================================================================
+     Constrained desktop (981-1400px): real 2-column flex layout. Below
+     981px the screen is too narrow for a comfortable side-by-side, so it
+     falls through to the stacked layout (mascot on top) defined below.
+     The mascot lives in its own width-sized track, so text + mascot share
+     the row and can never overlap regardless of window aspect ratio.
+     ==================================================================== */
+  @media (max-width:1400px) and (min-width:981px){
+    .hero-new{
+      padding:40px 4% 50px;
+      min-height:auto;
+      gap:2%;
+    }
+    .hero-left{
+      flex:1 1 52%;
+      margin-left:0;
+      margin-right:0;
+      max-width:none;
+      min-width:0;        /* allow shrinking below content size */
+    }
+    /* Mascot becomes an in-flow flex track sized by width */
+    .hero-pig-wrap{
+      position:relative;
+      flex:0 0 42%;
+      right:auto;
+      bottom:auto;
+      left:auto;
+      height:auto;
+      max-height:none;
+      width:42%;
+      align-self:center;
+    }
+    .hero-pig-img{
+      width:100%;
+      height:auto;
+    }
+    /* Headline scales to the (now narrower) text track via container query */
+    .hero-headline .big{font-size:clamp(56px, 27cqi, 150px);}
+    .hero-headline .small{font-size:clamp(40px, 18cqi, 104px);}
+    .hero-cashflow{font-size:clamp(28px, 7.6cqi, 46px);margin:16px 0 16px;white-space:nowrap;}
+    .hero-stat-strip{padding:12px 0;margin:0 0 16px;max-width:420px;}
+    .hero-stat-strip .k{font-size:clamp(20px, 6.5cqi, 32px);}
+    .hero-stat-strip .l{font-size:clamp(9px, 2cqi, 11px);letter-spacing:0.12em;margin-top:4px;}
     .hero-socials{gap:10px;}
     .hero-social-btn{padding:10px 18px;font-size:14px;box-shadow:0 4px 0 #0a0a0a;}
     .hero-social-btn svg{width:18px;height:18px;}
-    .hero-pig-wrap{right:1%;bottom:6%;height:80%;max-height:560px;}
   }
 
-  /* Mobile only (≤760px): flex-column with pig on top */
-  @media (max-width:760px){
+  /* Mobile + narrow tablet (≤980px): stacked layout, pig on top */
+  @media (max-width:980px){
     .hero-new{
       flex-direction:column;
       padding:28px 18px 28px;
@@ -1870,21 +1870,21 @@
   }
 
   /* ===== Responsive scaling for NEW hero-cashflow + hero-stat-strip ===== */
-  @media (max-width:760px){
-    .hero-cashflow{font-size:clamp(22px, 5.4vw, 36px);margin:16px 0 16px;}
+  @media (max-width:980px){
+    .hero-cashflow{font-size:clamp(28px, 7vw, 46px);margin:18px 0 18px;}
     .hero-stat-strip{padding:12px 0;margin:0 auto 18px;max-width:420px;}
     .hero-stat-strip .k{font-size:clamp(22px, 5.2vw, 30px);}
     .hero-stat-strip .l{font-size:clamp(9px, 2.4vw, 11px);letter-spacing:0.12em;}
   }
   @media (max-width:480px){
-    .hero-cashflow{font-size:clamp(20px, 5.6vw, 28px);}
+    .hero-cashflow{font-size:clamp(24px, 7.2vw, 38px);}
     .hero-stat-strip{padding:10px 0;}
     .hero-stat-strip .cell{padding:0 4px;}
     .hero-stat-strip .k{font-size:clamp(20px, 5.4vw, 26px);}
     .hero-stat-strip .l{font-size:9px;letter-spacing:0.1em;line-height:1.25;}
   }
   @media (max-width:360px){
-    .hero-cashflow{font-size:22px;}
+    .hero-cashflow{font-size:26px;}
     .hero-stat-strip .k{font-size:20px;}
     .hero-stat-strip .l{font-size:8px;letter-spacing:0.08em;}
   }
@@ -2084,36 +2084,7 @@
     <span class="ico-dot"></span>
     <span class="ico-title">INITIAL COIN OFFERING</span>
     <span class="ico-sep"></span>
-    <span class="ico-price">$0.002 <span class="u">USDT</span></span>
-  </span>
-  <span class="ico-sep"></span>
-  <span class="ico-steps">
-    <span class="ico-step">
-      <span class="ico-num">1</span>
-      <img class="ico-logo" src="assets/opbnb-logo.png" alt="">
-      <span class="ico-text">
-        <span class="ico-eyebrow">CONNECT</span>
-        <span class="ico-name gold">opBNB</span>
-      </span>
-    </span>
-    <span class="ico-sep"></span>
-    <span class="ico-step">
-      <span class="ico-num">2</span>
-      <img class="ico-logo" src="assets/tether-logo.png" alt="">
-      <span class="ico-text">
-        <span class="ico-eyebrow">PAY WITH</span>
-        <span class="ico-name green">USDT</span>
-      </span>
-    </span>
-    <span class="ico-sep"></span>
-    <span class="ico-step">
-      <span class="ico-num">3</span>
-      <img class="ico-logo" src="assets/coin.png" alt="">
-      <span class="ico-text">
-        <span class="ico-eyebrow">HOLD</span>
-        <span class="ico-name scc">$SCC</span>
-      </span>
-    </span>
+    <span class="ico-price">$0.002 <span class="u">USDT / $SCC</span></span>
   </span>
   <span class="ico-sep"></span>
   <span class="ico-cta">TAP TO BUY $SCC →</span>
@@ -2127,7 +2098,7 @@
       <span class="small">Cash <span class="gold">Coin</span></span>
     </h1>
     <p class="hero-cashflow">
-      Cashflow. <span class="green">Made simple.</span>
+      <span class="green">Cashflow.</span> Made simple.
     </p>
     <div class="hero-stat-strip">
       <div class="cell">
@@ -7161,7 +7132,6 @@ init();
 <script>
 (function(){
   var POPUP_URL = 'scc-popup-tron.html?embed=1';
-  var FIRST_VISIT_KEY = 'scc_ico_popup_seen_v1';
 
   var overlay = document.getElementById('sccModalOverlay');
   var frame = document.getElementById('sccModalFrame');
@@ -7195,17 +7165,9 @@ init();
     if (e && e.data && e.data.type === 'scc-popup-close') close();
   });
 
-  // Auto-open on first visit (per browser, until cache/localStorage cleared)
-  try{
-    if (!localStorage.getItem(FIRST_VISIT_KEY)){
-      // Give the page a moment to render so the popup doesn't slam in before paint
-      setTimeout(open, 800);
-      localStorage.setItem(FIRST_VISIT_KEY, '1');
-    }
-  } catch(_){
-    // If localStorage is blocked, still auto-open
-    setTimeout(open, 800);
-  }
+  // Auto-open on EVERY page load (including refreshes).
+  // Small delay so the page paints first and the popup doesn't slam in before render.
+  setTimeout(open, 800);
 })();
 </script>
 
