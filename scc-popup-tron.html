@@ -33,7 +33,8 @@
   --line-soft:rgba(0,212,255,0.10);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{
+*,*::before,*::after{box-sizing:border-box;}
+html,body{max-width:100%;overflow-x:hidden;
   background:var(--bg);color:#a0e8ff;
   font-family:'Rajdhani','Inter',sans-serif;
   min-height:100vh;
@@ -133,6 +134,30 @@ body::after{
   pointer-events:none;
 }
 .col-right{display:flex;flex-direction:column;justify-content:flex-start;}
+/* ===== Recent buyers (bottom strip) ===== */
+.buyers-strip{border-top:1px solid var(--line);padding:12px 18px 14px;position:relative;z-index:1;min-width:0;background:linear-gradient(180deg,rgba(0,212,255,0.04),rgba(0,212,255,0));}
+.buyers-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.buyers-left{display:flex;flex-direction:column;gap:4px;min-width:0;}
+.buyers-titlerow{display:flex;align-items:center;gap:9px;}
+.buyers-dot{width:8px;height:8px;border-radius:50%;background:#39FF14;box-shadow:0 0 6px #39FF14,0 0 12px rgba(57,255,20,0.7);animation:buyersPulse 1.4s ease-in-out infinite;flex-shrink:0;}
+@keyframes buyersPulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+.buyers-title{font-family:'Orbitron',sans-serif;font-weight:900;font-size:12px;letter-spacing:.14em;color:#fff;text-transform:uppercase;text-shadow:0 0 6px var(--cyan),0 0 14px rgba(0,212,255,0.55);}
+.buyers-meta{display:flex;flex-direction:column;align-items:flex-end;line-height:1.1;flex-shrink:0;}
+.buyers-count-num{font-family:'Orbitron',sans-serif;font-weight:900;font-size:16px;color:#fff;text-shadow:0 0 8px var(--cyan),0 0 16px rgba(0,212,255,0.5);letter-spacing:.02em;}
+.buyers-count-lbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:600;letter-spacing:.18em;color:rgba(0,212,255,0.7);text-transform:uppercase;}
+.buyers-count-msg{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.03em;color:rgba(160,232,255,0.65);}
+.buyers-track{display:flex;gap:8px;width:100%;max-width:100%;min-width:0;overflow-x:auto;padding-bottom:4px;scroll-behavior:smooth;}
+.buyers-track::-webkit-scrollbar{height:4px;}
+.buyers-track::-webkit-scrollbar-thumb{background:rgba(0,212,255,0.3);border-radius:2px;}
+.buyer-row{display:flex;flex-direction:column;gap:3px;flex:0 0 auto;min-width:138px;padding:8px 11px;border-radius:5px;background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.16);animation:buyerIn 0.45s ease;text-decoration:none;cursor:pointer;transition:background 0.15s,border-color 0.15s;}
+.buyer-row:hover{background:rgba(0,212,255,0.11);border-color:rgba(0,212,255,0.42);}
+@keyframes buyerIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:translateX(0);}}
+.buyer-toprow{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.buyer-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:rgba(0,212,255,0.7);flex-shrink:0;}
+.buyer-time{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(160,232,255,0.5);letter-spacing:.04em;flex-shrink:0;}
+.buyer-addr{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;color:#cdeeff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.buyer-amt{font-family:'Orbitron',sans-serif;font-weight:900;font-size:10px;color:#ffffff;text-shadow:0 0 5px rgba(0,212,255,0.4);white-space:nowrap;text-align:right;}
+.buyer-spent{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:8.5px;color:#39FF14;text-shadow:0 0 5px rgba(57,255,20,0.4);white-space:nowrap;text-align:right;}
 /* ===================================================================
    TABS — switch between BUY and ACTIVITY in right module
    =================================================================== */
@@ -431,6 +456,7 @@ body::after{
 .tax-body b{color:#fff;font-weight:700;text-shadow:0 0 6px rgba(0,212,255,0.55);}
 @media (max-width:980px){
   .body-grid{grid-template-columns:1fr;}
+  .col-left,.col-right{min-width:0;}
   .col-left{border-right:none;border-bottom:1px solid var(--line);}
   .col-left::after{display:none;}
   .modal{max-width:560px;}
@@ -481,7 +507,7 @@ body::after{
   font-size:20px;letter-spacing:.12em;line-height:1.1;
   color:#ffffff;
   text-shadow:0 0 6px var(--cyan),0 0 16px rgba(0,212,255,0.7),0 0 32px rgba(0,144,212,0.45);
-  margin-bottom:8px;
+  margin-bottom:14px;
 }
 .lto-marquee{
   position:relative;display:block;
@@ -627,6 +653,17 @@ body::after{
   position:relative;height:14px;overflow:visible;
   background:rgba(255,210,61,0.05);border:1px solid rgba(255,210,61,0.30);
   margin:6px 0 4px;display:flex;gap:2px;padding:2px;
+}
+.cw-min{position:absolute;top:0;left:40%;width:0;z-index:6;pointer-events:none;}
+.cw-min-tick{
+  position:absolute;left:-1px;top:-4px;width:2px;height:22px;border-radius:1px;
+  background:#eaffff;box-shadow:0 0 5px #ffffff,0 0 9px var(--cyan);
+}
+.cw-min-label{
+  position:absolute;top:22px;left:0;transform:translateX(-50%);white-space:nowrap;
+  font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:#bfefff;
+  text-shadow:0 0 4px rgba(0,212,255,0.55);
 }
 .cw-seg{
   flex:1;height:100%;background:rgba(255,210,61,0.07);
@@ -956,18 +993,19 @@ body::after{
   body{padding:8px;}
   body.embed{padding:0;}
   .modal{max-width:100%;}
+  .body-grid{max-width:100%;}
 
   /* Top bar shrink */
-  .top{padding:10px 12px;flex-wrap:nowrap;gap:8px;}
-  .brand{gap:8px;flex-shrink:0;}
+  .top{padding:10px 12px;flex-wrap:nowrap;gap:8px;min-width:0;}
+  .brand{gap:8px;min-width:0;flex-shrink:1;}
   .brand-mascot{width:36px;height:36px;}
-  .brand-name{font-size:16px;}
+  .brand-name{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .top-right{gap:6px;flex-shrink:0;}
-  .wallet{padding:6px 14px;font-size:10px;}
+  .wallet{padding:6px 12px;font-size:10px;}
   .close{width:30px;height:30px;font-size:18px;}
 
   /* Hero pile area */
-  .hero{padding:2px 12px 0;}
+  .hero{padding:2px 12px 0;transform:translateY(0);}
   .hero-pile-wrap{height:180px;padding:0 8px;}
   .pile-img.solo{height:175px;}
   .spark{font-size:11px;}
@@ -976,6 +1014,10 @@ body::after{
 
   /* Now Available banner */
   .avail-box{padding:8px 12px;margin:0 12px;}
+  .now-banner{padding:10px 14px;gap:8px;flex-wrap:wrap;}
+  .now-title{font-size:13px;letter-spacing:.06em;white-space:normal;}
+  .now-price{font-size:18px;}
+  .now-unit{font-size:10px;}
   .avail-text{font-size:11px;letter-spacing:.1em;}
   .avail-price{font-size:22px;}
   .avail-price .unit{font-size:10px;}
@@ -1038,8 +1080,9 @@ body::after{
   .receipt-total .l{font-size:11px;letter-spacing:.16em;}
   .receipt-total .v{font-size:20px !important;}
 
+
   /* Confirm button */
-  .confirm-btn{padding:13px 18px;font-size:13px;letter-spacing:.14em;margin:14px 12px 12px;}
+  .confirm{padding:13px 18px;font-size:13px;letter-spacing:.14em;margin:14px 12px 12px;}
 }
 
 /* TIGHTER MOBILE — phones under 480px */
@@ -1047,17 +1090,22 @@ body::after{
   body{padding:4px;}
   body.embed{padding:0;}
 
-  .top{padding:8px 10px;}
-  .brand-mascot{width:32px;height:32px;}
-  .brand-name{font-size:14px;}
-  .wallet{padding:5px 11px;font-size:9px;}
-  .close{width:26px;height:26px;font-size:16px;}
+  .top{padding:8px 10px;gap:6px;}
+  .brand{min-width:0;flex-shrink:1;}
+  .brand-mascot{width:30px;height:30px;}
+  .brand-name{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .wallet{padding:5px 10px;font-size:9px;flex-shrink:0;}
+  .close{width:26px;height:26px;font-size:16px;flex-shrink:0;}
 
   /* Pile - shrink further */
   .hero-pile-wrap{height:150px;}
   .pile-img.solo{height:145px;}
 
   .avail-box{padding:7px 10px;margin:0 10px;}
+  .now-banner{padding:9px 12px;}
+  .now-title{font-size:12px;}
+  .now-price{font-size:16px;}
+  .now-unit{font-size:9px;}
   .avail-text{font-size:10px;}
   .avail-price{font-size:19px;}
 
@@ -1087,7 +1135,7 @@ body::after{
   .receipt{padding:10px 12px;}
   .receipt-total .v{font-size:17px !important;}
 
-  .confirm-btn{padding:11px 14px;font-size:12px;margin:12px 10px 10px;}
+  .confirm{padding:11px 14px;font-size:12px;margin:12px 10px 10px;}
 }
 
 
@@ -1219,6 +1267,7 @@ body::after{
         </div>
         <!-- 24 segments · 14 filled (~57.5%) -->
         <div class="cw">
+          <div class="cw-min"><span class="cw-min-tick"></span><span class="cw-min-label">Minimum needed</span></div>
           <div class="cw-seg filled"></div>
           <div class="cw-seg filled"></div>
           <div class="cw-seg filled"></div>
@@ -1343,6 +1392,23 @@ body::after{
 
     </div>
 
+  </div>
+
+  <div class="buyers-strip">
+    <div class="buyers-head">
+      <span class="buyers-left">
+        <span class="buyers-titlerow">
+          <span class="buyers-dot"></span>
+          <span class="buyers-title">Recent Buyers</span>
+        </span>
+        <span class="buyers-count-msg">Thank you holders — please wait for ICO completion</span>
+      </span>
+      <span class="buyers-meta">
+        <span class="buyers-count-num" id="buyerCount">1,247</span>
+        <span class="buyers-count-lbl">Total Buyers</span>
+      </span>
+    </div>
+    <div class="buyers-track" id="buyersList"></div>
   </div>
 
 </div>
@@ -1566,5 +1632,38 @@ document.getElementById('confirmBtn').addEventListener('click', (e) => {
 })();
 </script>
 
+<script>
+/* Recent buyers live feed + running counter */
+(function(){
+  var list=document.getElementById('buyersList');
+  var countEl=document.getElementById('buyerCount');
+  if(!list||!countEl) return;
+  var count=1247;
+  var hex='0123456789abcdef';
+  function rngAddr(){var a='0x',b='';for(var i=0;i<4;i++)a+=hex[Math.floor(Math.random()*16)];for(var j=0;j<4;j++)b+=hex[Math.floor(Math.random()*16)];return a+'\u2026'+b;}
+  var amts=[500,1000,1500,2500,5000,7500,10000,12500,25000,50000,100000];
+  function rngAmt(){return amts[Math.floor(Math.random()*amts.length)];}
+  function fmt(n){return n.toLocaleString('en-US');}
+  function timeAgo(ts){var s=Math.floor((Date.now()-ts)/1000);if(s<5)return 'just now';if(s<60)return s+'s ago';var m=Math.floor(s/60);return m+'m ago';}
+  var buyers=[];
+  (function seed(){var base=Date.now();for(var i=0;i<10;i++){buyers.push({n:count-i,addr:rngAddr(),amt:rngAmt(),ts:base-(i*9000+Math.floor(Math.random()*6000))});}})();
+  // opBNB scanner base — replace with the real tx URL later; {tx} or address gets appended.
+  var SCAN_BASE='https://opbnbscan.com/tx/';
+  function scanUrl(b){return SCAN_BASE;}
+  function render(){
+    list.innerHTML='';
+    buyers.forEach(function(b){
+      var row=document.createElement('a');row.className='buyer-row';
+      row.href=scanUrl(b);row.target='_blank';row.rel='noopener';
+      row.innerHTML='<span class="buyer-toprow"><span class="buyer-num">#'+fmt(b.n)+'</span><span class="buyer-time">'+timeAgo(b.ts)+'</span></span><span class="buyer-addr">'+b.addr+'</span><span class="buyer-amt">+'+fmt(b.amt)+' $SCC</span><span class="buyer-spent">$'+fmt(+(b.amt*0.002).toFixed(2))+' USDT</span>';
+      list.appendChild(row);
+    });
+  }
+  function addBuyer(){count+=1;buyers.unshift({n:count,addr:rngAddr(),amt:rngAmt(),ts:Date.now()});if(buyers.length>14)buyers.pop();countEl.textContent=fmt(count);render();}
+  render();
+  setInterval(function(){var t=list.querySelectorAll('.buyer-time');buyers.forEach(function(b,i){if(t[i])t[i].textContent=timeAgo(b.ts);});},1000);
+  setInterval(addBuyer,3800);
+})();
+</script>
 </body>
 </html>
