@@ -45,19 +45,21 @@ html,body{max-width:100%;overflow-x:hidden;
 /* Embed (iframe) mode: page background, grid, and scan-lines all disappear
    so only the .modal element renders on a transparent background. The host
    page's overlay dim shows through everything else. */
-html.embed, body.embed{
+html.embed{background:transparent;padding:0;min-height:0;display:block;}
+body.embed{
   background:transparent;
   min-height:100vh;
+  box-sizing:border-box;
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:flex-start;
+  justify-content:center;
   padding:20px;
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
 }
-/* Vertical auto-margins center the modal when it fits, and collapse so it
-   scrolls cleanly from the top when it's taller than the viewport. */
+/* margin-block:auto keeps the modal centered when it fits and lets it scroll
+   from the top cleanly when it's taller than the viewport. */
 body.embed .modal{margin-block:auto;}
 body.embed::before, body.embed::after{display:none;}
 body.embed .scan{display:none;}
