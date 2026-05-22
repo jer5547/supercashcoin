@@ -225,12 +225,12 @@
     background-size:200px 200px;
     background-repeat:repeat;
     color:#fff;
-    padding:60px 32px 110px;
+    padding:60px 32px 32px;
     position:relative;
     overflow:hidden;
     text-align:center;
     border-top:2px solid #ffd23d;
-    border-bottom:2px solid #ffd23d;
+    border-bottom:none;
   }
   #pct25{width:100%;height:100%;}
   #pct25 canvas{display:block;}
@@ -507,11 +507,11 @@
     background-size:200px 200px;
     background-repeat:repeat;
     color:#fff;
-    padding:80px 60px;
+    padding:80px 60px 16px;
     position:relative;
     overflow:hidden;
     border-top:2px solid #ffd23d;
-    border-bottom:2px solid #ffd23d;
+    border-bottom:none;
   }
   .tk-wrap{
     max-width:1240px;
@@ -982,7 +982,7 @@
 
   @media (max-width:760px){
       .tk-launch{padding:30px 22px;}
-    .tokenomics{padding:80px 24px;}
+    .tokenomics{padding:52px 24px 28px;}
   }
 
   /* === HOW TO TRADE SECTION (4-step guide, blue background) === */
@@ -1166,7 +1166,7 @@
     .rain-scc-sm{width:22px;height:22px}
 
     /* --- Celebration (25% section): tighten padding, smaller h2 --- */
-    .celebration{padding:30px 18px 60px;}
+    .celebration{padding:24px 18px 40px;}
     .celebration h2{margin:0 auto 14px;line-height:1.1;}
     .celebration .lead, .celebration .lead-white{padding:0 12px;}
     .celebration .lead{white-space:normal;font-size:14px;}
@@ -1179,7 +1179,7 @@
     .dist-subhead{font-size:clamp(14px,3vw,18px);padding:0 12px;}
 
     /* --- Tokenomics: tighten padding, voxel title shorter --- */
-    .tokenomics{padding:80px 18px;}
+    .tokenomics{padding:52px 18px 24px;}
   
     /* --- How To Trade: existing 900px rule for cards is fine, just tighter section padding --- */
     .how-to-trade{padding:50px 18px 70px;}
@@ -1198,10 +1198,10 @@
     .rain-scc-sm{width:18px;height:18px}
     .rain-hl{left:6px;right:6px;font-size:11px;letter-spacing:.02em;white-space:nowrap;}
     .rain-star{margin:0 5px;}
-              .celebration{padding:30px 14px 60px;}
+              .celebration{padding:24px 14px 40px;}
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
-    .tokenomics{padding:60px 14px;}
+    .tokenomics{padding:40px 14px 20px;}
     .how-to-trade{padding:40px 14px 60px;}
   }
 
@@ -2342,6 +2342,12 @@
     border-top:2px solid #ffd23d;
     border-bottom:2px solid #ffd23d;
   }
+  .vs-section.vs-moved{
+    padding:8px 32px 56px;
+    border-top:none;
+  }
+  .vs-moved .vs-hero-logo{margin:0 auto 12px;}
+  .vs-moved .tk-wrap{padding-top:0;}
   .vs-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
   .vs-hero-logo{
     display:block;
@@ -2427,7 +2433,8 @@
     .opb-six{grid-template-columns:1fr !important;max-width:480px !important;}
   }
   @media (max-width:760px){
-    .vs-section{padding:60px 22px 70px;}
+    .vs-section{padding:40px 22px 44px;}
+    .vs-section.vs-moved{padding:6px 22px 36px;}
   }
 </style>
 
@@ -2438,6 +2445,107 @@
      WALLET MOCKUP SECTION — fancy MetaMask-style UI showing
      SCC balance + live-ticking USDT rewards
      ============================================================ -->
+
+<!-- ===== Built On opBNB (moved below Fully Automatic) ===== -->
+<section class="vs-section vs-moved">
+  <div class="tk-wrap">
+
+      <div class="vs-wrap">
+        <img src="opbnb-logo.png" alt="opBNB" class="vs-hero-logo">
+        <p class="vs-eyebrow">★ Why The Network Matters</p>
+        <h2 class="vs-title">Built On <span class="green">opBNB</span></h2>
+        <p class="vs-sub">
+          The opBNB network is what makes Super Cash Coin's royalty engine work — fast, cheap, secure, and built for high-frequency payouts to thousands of holders.
+        </p>
+  
+        <div class="benefits opb-six">
+          <div class="benefit">
+            <div class="b-illust">
+              <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 33 15 A 14 14 0 1 0 28 28" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+                <polyline points="33,4 33,15 22,15" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="19" y="25" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" fill="#ffd23d" font-weight="900">$</text>
+              </svg>
+            </div>
+            <div class="b-text">
+              <h3>MORE FREQUENT PAYOUTS</h3>
+              <p>Cheap gas means royalty distributions trigger far more often. More cycles, more cashflow rolling in.</p>
+            </div>
+          </div>
+  
+          <div class="benefit">
+            <div class="b-illust">
+              <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 14 6 L 24 6 M 14 6 L 11 11 M 24 6 L 27 11" fill="none" stroke="#ffd23d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M 11 11 L 27 11 Q 34 19 31 28 Q 29 35 19 35 Q 9 35 7 28 Q 4 19 11 11 Z" fill="#ffd23d"/>
+                <text x="19" y="26" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="14" font-weight="900" fill="#0a0a0a">$</text>
+              </svg>
+            </div>
+            <div class="b-text">
+              <h3>KEEP MORE REWARDS</h3>
+              <p>At ~$0.001 per transaction, gas barely touches your payouts. Almost every cent lands in your wallet.</p>
+            </div>
+          </div>
+  
+          <div class="benefit">
+            <div class="b-illust">
+              <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="22,4 8,21 17,21 14,34 30,16 21,16" fill="#ffd23d"/>
+              </svg>
+            </div>
+            <div class="b-text">
+              <h3>LIGHTNING FAST</h3>
+              <p>Sub-second block times. Payouts confirm instantly. No sitting around waiting for your USDT to arrive.</p>
+            </div>
+          </div>
+  
+          <div class="benefit">
+            <div class="b-illust">
+              <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 4 14 L 4 9 L 26 9 L 28 12" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                <rect x="4" y="12" width="30" height="22" rx="3" fill="none" stroke="#ffd23d" stroke-width="3"/>
+                <rect x="22" y="19" width="14" height="9" rx="2" fill="#ffd23d"/>
+                <circle cx="29" cy="23.5" r="1.5" fill="#0a0a0a"/>
+              </svg>
+            </div>
+            <div class="b-text">
+              <h3>USE YOUR WALLET</h3>
+              <p>Fully EVM-compatible. MetaMask, Trust Wallet, whatever you already use. No new logins, no new tools.</p>
+            </div>
+          </div>
+  
+          <div class="benefit">
+            <div class="b-illust">
+              <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 19 3 L 6 8 L 6 19 Q 6 30 19 35 Q 32 30 32 19 L 32 8 Z" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round"/>
+                <polyline points="13,19 17,23 25,14" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="b-text">
+              <h3>BNB CHAIN SECURITY</h3>
+              <p>Built on top of BNB Chain — one of the largest L1s in crypto. Battle-tested security under the hood.</p>
+            </div>
+          </div>
+  
+          <div class="benefit">
+            <div class="b-illust">
+              <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+                <line x1="4" y1="14" x2="30" y2="14" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+                <polyline points="24,8 30,14 24,20" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="34" y1="24" x2="8" y2="24" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
+                <polyline points="14,18 8,24 14,30" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="b-text">
+              <h3>EASY BRIDGE</h3>
+              <p>Move USDT in and out via the Binance Bridge. One click. No exchange hopping, no friction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
 <section class="htb-section" id="howToBuy">
   <div class="htb-wrap">
     <h2 class="htb-title">How To <span class="gold">Buy</span></h2>
@@ -2467,8 +2575,10 @@
                 <path d="M267.2 153.5l-52.3-15.3 15.9 23.9-23.7 46 31.2-.4h46.5zm-163.6-15.3l-52.3 15.3-17.4 54.2h46.4l31.1.4-23.6-46zm71 26.4l3.3-57.7 15.2-41.1h-67.5l15 41.1 3.5 57.7 1.2 18.2.1 44.8h27.6l.2-44.8z" fill="#F6851B"/>
               </svg>
               <span class="wallet-app-name">MetaMask</span>
-              <span class="wallet-app-dot"></span>
-              <span class="wallet-app-net">opBNB</span>
+              <span class="wallet-net-pill">
+                <img src="opbnb-logo.png" alt="" class="wallet-app-logo">
+                <span class="wallet-net-name">opBNB</span>
+              </span>
             </div>
 
             <!-- Account row -->
@@ -2707,6 +2817,8 @@
   /* === HOW TO BUY SECTION ============================== */
   .htb-section{
     background:#1d4fd8;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.16'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.13' transform='rotate(15 130 180)'>$</text></svg>");
+    background-size:200px 200px;
     color:#fff;
     padding:90px 60px 40px;
     position:relative;
@@ -3010,7 +3122,7 @@
 
   /* Responsive: stack on mobile */
   @media (max-width:900px){
-    .htb-section{padding:60px 22px 30px;}
+    .htb-section{padding:40px 22px 24px;}
     .htb-layout{grid-template-columns:1fr;gap:36px;}
     .htb-phone-stage{order:1;}
     .htb-phone-stage .wallet-device,
@@ -3028,7 +3140,7 @@
     .htb-link{font-size:10px;padding:5px 9px;}
   }
   @media (max-width:600px){
-    .htb-section{padding:50px 14px 24px;}
+    .htb-section{padding:34px 14px 20px;}
     .htb-step{grid-template-columns:1fr;}
     .htb-step-left{padding:24px 18px 18px;}
     .htb-step-pic{width:96px;height:96px;}
@@ -3067,6 +3179,13 @@
   }
   .wallet-fox{width:28px;height:28px;flex-shrink:0;}
   .wallet-app-name{font-weight:900;font-size:15px;color:#0a0a0a;flex:1;}
+  .wallet-net-pill{
+    display:inline-flex;align-items:center;gap:6px;flex-shrink:0;
+    padding:4px 10px 4px 6px;
+    background:#fdf6e3;border:1px solid #f0d98a;border-radius:999px;
+  }
+  .wallet-app-logo{height:18px;width:18px;flex-shrink:0;object-fit:contain;display:block;}
+  .wallet-net-name{font-size:12px;font-weight:800;color:#9a7a12;letter-spacing:0.02em;}
   .wallet-app-dot{
     width:7px;height:7px;border-radius:50%;background:#23d76b;
     box-shadow:0 0 0 3px rgba(35,215,107,0.25);
@@ -3450,6 +3569,8 @@
 <style>
   .cf-section{
     background:#1d4fd8;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.16'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.13' transform='rotate(15 130 180)'>$</text></svg>");
+    background-size:200px 200px;
     color:#fff;
     padding:30px 32px 100px;
     position:relative;
@@ -3625,13 +3746,13 @@
   .cf-lb-row.compact .reward .u{display:none}
 
   @media (max-width:900px){
-    .cf-section{padding:24px 18px 60px}
+    .cf-section{padding:20px 18px 40px}
     .cf-split{grid-template-columns:1fr;gap:14px}
     .cf-lb-stage{height:580px}
     .cf-trolley-stage{height:280px}
   }
   @media (max-width:600px){
-    .cf-section{padding:40px 14px 50px}
+    .cf-section{padding:28px 14px 36px}
     .cf-cashflow{padding:18px 14px}
     .cf-cashflow .amt{font-size:38px}
     .cf-lb-stage{height:520px}
@@ -4382,102 +4503,47 @@
       </div>
     </div>
 
-    <div class="tk-divider"><hr/><span>★ Built On ★</span><hr/></div>
+  </div>
+</section>
 
-    <div class="vs-wrap">
-      <img src="opbnb-logo.png" alt="opBNB" class="vs-hero-logo">
-      <p class="vs-eyebrow">★ Why The Network Matters</p>
-      <h2 class="vs-title">Built On <span class="green">opBNB</span></h2>
-      <p class="vs-sub">
-        The opBNB network is what makes Super Cash Coin's royalty engine work — fast, cheap, secure, and built for high-frequency payouts to thousands of holders.
-      </p>
-
-      <div class="benefits opb-six">
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 33 15 A 14 14 0 1 0 28 28" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-              <polyline points="33,4 33,15 22,15" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <text x="19" y="25" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="13" fill="#ffd23d" font-weight="900">$</text>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>MORE FREQUENT PAYOUTS</h3>
-            <p>Cheap gas means royalty distributions trigger far more often. More cycles, more cashflow rolling in.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 14 6 L 24 6 M 14 6 L 11 11 M 24 6 L 27 11" fill="none" stroke="#ffd23d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M 11 11 L 27 11 Q 34 19 31 28 Q 29 35 19 35 Q 9 35 7 28 Q 4 19 11 11 Z" fill="#ffd23d"/>
-              <text x="19" y="26" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="14" font-weight="900" fill="#0a0a0a">$</text>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>KEEP MORE REWARDS</h3>
-            <p>At ~$0.001 per transaction, gas barely touches your payouts. Almost every cent lands in your wallet.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="22,4 8,21 17,21 14,34 30,16 21,16" fill="#ffd23d"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>LIGHTNING FAST</h3>
-            <p>Sub-second block times. Payouts confirm instantly. No sitting around waiting for your USDT to arrive.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 4 14 L 4 9 L 26 9 L 28 12" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-              <rect x="4" y="12" width="30" height="22" rx="3" fill="none" stroke="#ffd23d" stroke-width="3"/>
-              <rect x="22" y="19" width="14" height="9" rx="2" fill="#ffd23d"/>
-              <circle cx="29" cy="23.5" r="1.5" fill="#0a0a0a"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>USE YOUR WALLET</h3>
-            <p>Fully EVM-compatible. MetaMask, Trust Wallet, whatever you already use. No new logins, no new tools.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 19 3 L 6 8 L 6 19 Q 6 30 19 35 Q 32 30 32 19 L 32 8 Z" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linejoin="round"/>
-              <polyline points="13,19 17,23 25,14" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>BNB CHAIN SECURITY</h3>
-            <p>Built on top of BNB Chain — one of the largest L1s in crypto. Battle-tested security under the hood.</p>
-          </div>
-        </div>
-
-        <div class="benefit">
-          <div class="b-illust">
-            <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
-              <line x1="4" y1="14" x2="30" y2="14" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-              <polyline points="24,8 30,14 24,20" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="34" y1="24" x2="8" y2="24" stroke="#ffd23d" stroke-width="3" stroke-linecap="round"/>
-              <polyline points="14,18 8,24 14,30" fill="none" stroke="#ffd23d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="b-text">
-            <h3>EASY BRIDGE</h3>
-            <p>Move USDT in and out via the Binance Bridge. One click. No exchange hopping, no friction.</p>
-          </div>
-        </div>
-      </div>
+<!-- ===== RECAP — Why $SCC (Three Things, One Goal) ===== -->
+<style>
+  .scc-recap{position:relative;overflow:hidden;color:#fff;background:#0a0a0a;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.06'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.05' transform='rotate(15 130 180)'>$</text></svg>");
+    background-size:200px 200px;padding:22px 24px 60px;border-bottom:2px solid #ffd23d;}
+  .scc-recap-eyebrow{text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.35em;color:#ffd23d;text-transform:uppercase;margin:0 0 8px;}
+  .scc-recap-eyebrow .star{color:#ffd23d;margin:0 8px;}
+  .scc-recap-title{text-align:center;font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(24px,3vw,34px);text-transform:uppercase;letter-spacing:.01em;color:#fff;margin:0 0 12px;line-height:1.15;}
+  .scc-recap-title .y{color:#ffd23d;}
+  .scc-recap-sub{text-align:center;font-family:'Inter','Arial',sans-serif;font-size:15px;color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 40px;line-height:1.5;}
+  .scc-recap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;max-width:1000px;margin:0 auto;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden;}
+  .scc-recap-cell{background:#0a0a0a;padding:34px 26px;text-align:center;}
+  .scc-recap-ic{width:40px;height:40px;margin:0 auto 14px;}
+  .scc-recap-ic svg{width:40px;height:40px;}
+  .scc-recap-big{font-family:'Black Ops One','Arial Black',sans-serif;font-size:15px;color:#86ed5a;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px;}
+  .scc-recap-cell p{font-family:'Inter','Arial',sans-serif;font-size:13px;line-height:1.5;color:rgba(255,255,255,0.68);margin:0;}
+  @media(max-width:760px){.scc-recap-grid{grid-template-columns:1fr;}.scc-recap{padding:28px 18px 46px;}}
+</style>
+<section class="scc-recap">
+  <p class="scc-recap-eyebrow"><span class="star">&#9733;</span> Recap <span class="star">&#9733;</span></p>
+  <h2 class="scc-recap-title">Three Things, <span class="y">One Goal</span></h2>
+  <p class="scc-recap-sub">Cashflow that shows up whether the chart's green or red.</p>
+  <div class="scc-recap-grid">
+    <div class="scc-recap-cell">
+      <div class="scc-recap-ic"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#86ed5a" stroke-width="2.5"/><text x="20" y="27" text-anchor="middle" font-family="'Black Ops One','Arial Black',sans-serif" font-size="19" fill="#86ed5a" font-weight="900">$</text></svg></div>
+      <div class="scc-recap-big">Passive Income</div>
+      <p>Real USDT paid out on every single transaction. Hold and earn.</p>
     </div>
-
+    <div class="scc-recap-cell">
+      <div class="scc-recap-ic"><svg viewBox="0 0 40 40"><path d="M8 21 L17 30 L32 13" fill="none" stroke="#86ed5a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="scc-recap-big">100% Automatic</div>
+      <p>Nothing to claim or manage. Rewards arrive on their own, forever.</p>
+    </div>
+    <div class="scc-recap-cell">
+      <div class="scc-recap-ic"><svg viewBox="0 0 40 40"><path d="M22 5 L10 23 H19 L17 35 L30 15 H21 Z" fill="#86ed5a"/></svg></div>
+      <div class="scc-recap-big">Built On opBNB</div>
+      <p>~$0.001 gas and instant payouts to thousands of holders at once.</p>
+    </div>
   </div>
 </section>
 <section class="cta-section">
@@ -4510,13 +4576,13 @@
 <style>
   .cta-section{
     position:relative;
-    background:#0a0a0a;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.05'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.04' transform='rotate(15 130 180)'>$</text></svg>");
+    background:#1d4fd8;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.16'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.13' transform='rotate(15 130 180)'>$</text></svg>");
     background-size:200px 200px;
     color:#fff;
     padding:80px 40px;
     overflow:hidden;
-    border-top:2px solid #ffd23d;
+    border-top:none;
     border-bottom:2px solid #ffd23d;
   }
 
