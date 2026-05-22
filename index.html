@@ -1167,7 +1167,8 @@
 
     /* --- Celebration (25% section): tighten padding, smaller h2 --- */
     .celebration{padding:24px 18px 40px;}
-    .celebration h2{margin:0 auto 14px;line-height:1.1;}
+    .celebration h2{margin:0 auto 14px;line-height:1.14;font-size:21px;}
+    .celebration h2 b.green{padding:1px 9px 4px;margin:0 4px;border-width:2px;box-shadow:3px 3px 0 #0a0a0a;transform:translateY(-2px);}
     .celebration .lead, .celebration .lead-white{padding:0 12px;}
     .celebration .lead{white-space:normal;font-size:14px;}
       .benefits{margin-top:50px;gap:14px;}
@@ -1180,6 +1181,7 @@
 
     /* --- Tokenomics: tighten padding, voxel title shorter --- */
     .tokenomics{padding:52px 18px 24px;}
+    .tk-details-strip{margin-bottom:28px;}
   
     /* --- How To Trade: existing 900px rule for cards is fine, just tighter section padding --- */
     .how-to-trade{padding:50px 18px 70px;}
@@ -1199,9 +1201,12 @@
     .rain-hl{left:6px;right:6px;font-size:11px;letter-spacing:.02em;white-space:nowrap;}
     .rain-star{margin:0 5px;}
               .celebration{padding:24px 14px 40px;}
+    .celebration h2{font-size:16px;letter-spacing:0;}
+    .celebration h2 b.green{padding:1px 7px 3px;margin:0 3px;border-width:2px;box-shadow:2px 2px 0 #0a0a0a;}
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
     .tokenomics{padding:40px 14px 20px;}
+    .tk-details-strip{margin-bottom:10px;}
     .how-to-trade{padding:40px 14px 60px;}
   }
 
@@ -2586,7 +2591,7 @@
   <div class="htb-wrap">
     <h2 class="htb-title">How To <span class="gold">Buy</span></h2>
     <p class="htb-sub">
-      Three simple steps and start watching your wallet grow with <b class="gold">EVERY transaction!</b>
+      Four simple steps and start watching your wallet grow with <b class="gold">EVERY transaction!</b>
     </p>
 
     <div class="htb-layout">
@@ -2696,7 +2701,6 @@
       <!-- ===== Right column: contracts on top, steps at the bottom ===== -->
       <div class="htb-right-col">
         <div class="htb-divider">
-          <span class="htb-divider-num">1</span>
           <span class="htb-divider-txt">Contracts</span>
           <span class="htb-divider-line"></span>
         </div>
@@ -2726,7 +2730,6 @@
         </div>
 
         <div class="htb-divider">
-          <span class="htb-divider-num">2</span>
           <span class="htb-divider-txt">Steps</span>
           <span class="htb-divider-line"></span>
         </div>
@@ -2742,10 +2745,12 @@
           </div>
           <div class="htb-step-right">
             <h4>Get a Wallet</h4>
+            <div class="htb-step-body">
             <p>Grab <span class="gold">MetaMask</span> and add the <span class="gold">opBNB</span> network. Takes 2 minutes.</p>
             <div class="htb-links">
               <a class="htb-link" href="https://metamask.io" target="_blank" rel="noopener">Get MetaMask</a>
               <a class="htb-link" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">Add opBNB</a>
+            </div>
             </div>
           </div>
         </div>
@@ -2759,10 +2764,12 @@
           </div>
           <div class="htb-step-right">
             <h4>Get BNB For Gas</h4>
+            <div class="htb-step-body">
             <p>You need a tiny bit of <span class="gold">BNB</span> to pay gas on opBNB. Buy <span class="gold">BNB</span> on <span class="gold">Binance</span>, withdraw to BSC, then <b>bridge it over to opBNB</b>.</p>
             <div class="htb-links">
               <a class="htb-link" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">Buy BNB</a>
               <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Bridge BNB</a>
+            </div>
             </div>
           </div>
         </div>
@@ -2776,10 +2783,12 @@
           </div>
           <div class="htb-step-right">
             <h4>Buy USDT</h4>
+            <div class="htb-step-body">
             <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> (or any exchange), then <b>bridge it over to opBNB</b>. That's our trading currency for $SCC.</p>
             <div class="htb-links">
               <a class="htb-link" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">Get USDT</a>
               <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Bridge USDT</a>
+            </div>
             </div>
           </div>
         </div>
@@ -2793,9 +2802,11 @@
           </div>
           <div class="htb-step-right">
             <h4>Buy Super Cash Coin</h4>
+            <div class="htb-step-body">
             <p>Swap <span class="gold">USDT</span> → <span class="gold">$SCC</span> on the Trade Centre. Turn on <span class="gold">auto-reinvest</span> to compound rewards.</p>
             <div class="htb-links">
               <a class="htb-link" href="#" target="_blank" rel="noopener">Open Trade Centre</a>
+            </div>
             </div>
           </div>
         </div>
@@ -3125,6 +3136,10 @@
   }
   .htb-step-right p .gold{color:#c79a0c;font-weight:700;}
 
+  /* Wrapper for description+links. On desktop/tablet it's transparent (display:contents)
+     so it has zero layout effect; the mobile accordion turns it into a real box. */
+  .htb-step-body{display:contents;}
+
   /* Action links */
   .htb-links{
     display:flex;
@@ -3176,11 +3191,73 @@
     .htb-link{font-size:10px;padding:5px 9px;}
   }
   @media (max-width:600px){
-    .htb-section{padding:34px 14px 20px;}
-    .htb-step{grid-template-columns:1fr;}
-    .htb-step-left{padding:24px 18px 18px;}
-    .htb-step-pic{width:96px;height:96px;}
-    .htb-num{top:10px;left:14px;font-size:32px;}
+    .htb-section{padding:34px 14px 24px;}
+    /* ===== Mobile steps: ACCORDION with pics + slim text links ===== */
+    .htb-steps{counter-reset:htbstep;gap:10px;}
+    .htb-step{
+      counter-increment:htbstep;
+      display:grid;
+      grid-template-columns:46px 1fr 22px;
+      grid-template-areas:"pic title chev" "body body body";
+      align-items:center;column-gap:13px;row-gap:0;
+      position:relative;flex:none;min-height:0;cursor:pointer;
+      background:#fff;border:1.5px solid #ffd23d;border-radius:13px;
+      padding:11px 14px;overflow:hidden;
+      box-shadow:0 5px 16px rgba(0,0,0,0.12);
+    }
+    .htb-step:hover{transform:none;box-shadow:0 5px 16px rgba(0,0,0,0.12);}
+    /* flatten the wrappers so pic / title / body sit on the card grid */
+    .htb-step-left{display:contents;}
+    .htb-step-right{display:contents;}
+    .htb-num{display:none;}            /* desktop number hidden; we use a badge */
+    /* pic = round tinted thumbnail with a number badge */
+    .htb-step-pic{
+      grid-area:pic;position:relative;align-self:center;
+      width:46px;height:46px;border-radius:50%;
+      background:#f4f4f0;padding:7px;filter:none;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .htb-step:nth-of-type(1) .htb-step-pic{background:#dbeafe;}
+    .htb-step:nth-of-type(2) .htb-step-pic{background:#fef3c7;}
+    .htb-step:nth-of-type(3) .htb-step-pic{background:#dcfce7;}
+    .htb-step:nth-of-type(4) .htb-step-pic{background:#fce7f3;}
+    .htb-step-pic img,.htb-step-pic svg{width:100%;height:100%;object-fit:contain;}
+    .htb-step-pic img[src*="bnb-logo"]{width:100%;height:100%;}
+    .htb-step-pic::after{
+      content:counter(htbstep,decimal-leading-zero);
+      position:absolute;bottom:-4px;right:-4px;
+      width:21px;height:21px;border-radius:50%;
+      background:#ffd23d;border:2px solid #0a0a0a;color:#0a0a0a;
+      font-family:'Arial Black',sans-serif;font-size:9.5px;font-weight:900;
+      display:flex;align-items:center;justify-content:center;
+    }
+    /* title in the always-visible header row */
+    .htb-step-right h4{grid-area:title;align-self:center;margin:0;font-size:14.5px;line-height:1.12;}
+    /* chevron */
+    .htb-step::after{
+      content:'\2304';grid-area:chev;align-self:center;justify-self:center;
+      color:#c79a0c;font-size:17px;font-weight:900;line-height:1;
+      transition:transform .25s;
+    }
+    .htb-step.open::after{transform:rotate(180deg);}
+    /* collapsible body */
+    .htb-step-body{
+      grid-area:body;display:block;
+      max-height:0;overflow:hidden;padding:0 0 0 59px;
+      transition:max-height .3s ease,padding .3s ease;
+    }
+    .htb-step.open .htb-step-body{max-height:260px;padding-top:9px;}
+    .htb-step-body p{margin:0;font-size:12.5px;line-height:1.45;color:#666;}
+    .htb-step-body p .gold,.htb-step-body p .gold{color:#c79a0c;font-weight:700;}
+    /* slim text links (Version 2) instead of gold pills */
+    .htb-step-body .htb-links{margin-top:10px;gap:7px 16px;}
+    .htb-step-body .htb-link{
+      padding:0;background:none;border:none;border-radius:0;
+      border-bottom:1.5px solid #ffd23d;
+      color:#1d4fd8;font-size:11.5px;font-weight:700;white-space:nowrap;
+    }
+    .htb-step-body .htb-link::after{content:' \2192';color:#c79a0c;font-size:11.5px;opacity:1;}
+    .htb-step-body .htb-link:hover{background:none;transform:none;}
   }
 
   /* === The "device" frame === */
@@ -3792,7 +3869,7 @@
     .cf-cashflow{padding:18px 14px}
     .cf-cashflow .amt{font-size:38px}
     .cf-lb-stage{height:520px}
-    .cf-lb-list-wrap{left:44px}
+    .cf-lb-list-wrap{left:10px}
     .cf-trolley-stage{height:240px}
   }
 </style>
@@ -4567,61 +4644,66 @@
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><text x='40' y='80' font-family='Arial Black,sans-serif' font-size='72' font-weight='900' fill='%23ffd23d' fill-opacity='0.08'>$</text><text x='130' y='180' font-family='Arial Black,sans-serif' font-size='52' font-weight='900' fill='%23ffd23d' fill-opacity='0.07' transform='rotate(15 130 180)'>$</text><text x='10' y='180' font-family='Arial Black,sans-serif' font-size='44' font-weight='900' fill='%23ffd23d' fill-opacity='0.06' transform='rotate(-12 10 180)'>$</text></svg>");
   background-size:200px 200px;background-attachment:fixed;background-repeat:repeat;
   padding:30px 40px 50px;}
-#sccMascot .scc-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center;}
+#sccMascot .scc-wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;text-align:center;}
 #sccMascot .eb{font-family:'Black Ops One','Arial Black',sans-serif;font-size:12px;letter-spacing:.36em;color:#ffd23d;text-transform:uppercase;margin-bottom:12px;text-shadow:0 0 16px rgba(255,210,61,.45);}
 #sccMascot .eb .s{margin:0 8px;}
 #sccMascot h2{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(26px,4.4vw,46px);text-transform:uppercase;line-height:1.08;margin:0;color:#fff;}
 #sccMascot h2 .y{color:#ffd23d;text-shadow:0 0 22px rgba(255,210,61,.4);}
-#sccMascot .shot{max-width:760px;margin:22px auto 0;border-radius:16px;overflow:hidden;border:3px solid #ffd23d;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 50px rgba(255,210,61,.18);}
+#sccMascot .shot{max-width:620px;margin:24px auto 26px;border-radius:16px;overflow:hidden;border:3px solid #ffd23d;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 50px rgba(255,210,61,.18);}
+#sccMascot .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;text-align:left;border-top:1px solid rgba(255,255,255,.1);padding-top:26px;}
 #sccMascot .shot img{display:block;width:100%;height:auto;}
-#sccMascot .copy{max-width:760px;margin:24px auto 0;}
+#sccMascot .copy{margin:0;}
 #sccMascot .copy p{color:rgba(255,255,255,.68);font-size:15px;line-height:1.65;margin:0;}
 #sccMascot .copy p b{color:#fff;}
-#sccMascot .badges{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;max-width:760px;margin:18px auto 14px;}
-#sccMascot .badge{flex:1;min-width:180px;text-align:left;border:1px solid rgba(134,237,90,.4);background:rgba(134,237,90,.07);border-radius:12px;padding:13px 16px;}
+#sccMascot .badges{display:flex;flex-direction:column;gap:10px;margin:16px 0 14px;}
+#sccMascot .badge{text-align:left;border:1px solid rgba(134,237,90,.4);background:rgba(134,237,90,.07);border-radius:12px;padding:13px 16px;}
 #sccMascot .badge .bt{font-family:'Black Ops One','Arial Black',sans-serif;font-size:13px;color:#86ed5a;text-transform:uppercase;letter-spacing:.04em;}
 #sccMascot .badge .bs{font-size:12px;color:rgba(255,255,255,.6);margin-top:3px;line-height:1.4;}
-#sccMascot .rule{max-width:740px;margin:0 auto;font-size:13.5px;color:rgba(255,255,255,.82);line-height:1.55;}
+#sccMascot .rule{margin:0;font-size:13.5px;color:rgba(255,255,255,.82);line-height:1.55;}
 #sccMascot .rule b{color:#ffd23d;}
-#sccMascot .why{margin-top:30px;}
+#sccMascot .why{margin-top:0;}
 #sccMascot .why h4{font-family:'Black Ops One','Arial Black',sans-serif;font-size:17px;text-transform:uppercase;margin:0 0 6px;}
 #sccMascot .why .sub{color:rgba(255,255,255,.6);font-size:13.5px;margin:0 0 20px;}
-#sccMascot .benefits{list-style:none;max-width:740px;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 30px;text-align:left;}
-#sccMascot .benefits li{flex:0 1 300px;display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.5;color:rgba(255,255,255,.85);}
+#sccMascot .benefits{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;text-align:left;}
+#sccMascot .benefits li{display:flex;gap:11px;align-items:flex-start;font-size:14px;line-height:1.5;color:rgba(255,255,255,.85);}
 #sccMascot .benefits .ck{flex:none;width:22px;height:22px;border-radius:6px;display:grid;place-items:center;background:rgba(134,237,90,.15);color:#86ed5a;font-weight:800;font-size:13px;margin-top:1px;}
 #sccMascot .flood{margin-top:28px;}
 #sccMascot .flood .big{font-family:'Black Ops One','Arial Black',sans-serif;font-size:clamp(19px,3vw,30px);text-transform:uppercase;color:#86ed5a;text-shadow:0 0 22px rgba(134,237,90,.4);line-height:1.15;}
 #sccMascot .flood .small{color:rgba(255,255,255,.6);font-size:14px;max-width:560px;margin:12px auto 0;line-height:1.6;}
-@media(max-width:760px){#sccMascot{padding:34px 20px 50px;}#sccMascot .benefits{grid-template-columns:1fr;}#sccMascot .badge{min-width:140px;}}
+@media(max-width:760px){#sccMascot{padding:12px 20px 44px;}#sccMascot .shot{max-width:360px;margin:18px auto 22px;}#sccMascot .grid{grid-template-columns:1fr;text-align:center;gap:26px;border-top:none;padding-top:0;}#sccMascot .badges{align-items:center;}#sccMascot .badge{width:100%;max-width:330px;}#sccMascot .benefits{align-items:center;}#sccMascot .rule{text-align:center;}}
 </style>
 <section id="sccMascot">
   <div class="scc-wrap">
     <div class="eb"><span class="s">&#9733;</span>Use The Mascot<span class="s">&#9733;</span></div>
     <h2>It's Yours &mdash; <span class="y">And Everybody's</span></h2>
     <div class="shot"><img src="assets/supercashcoinmerch.png" alt="Super Cash Coin merch" loading="lazy"/></div>
-    <div class="copy">
-      <p>We grant <b>full, royalty-free permission</b> to anyone &mdash; individuals, creators, makers, and businesses &mdash; to use the Super Cash Coin mascot to create toys, apparel, collectibles, stickers, posters, and any other physical or digital product.</p>
-    </div>
-    <div class="badges">
-      <div class="badge"><div class="bt">&#10003; Sell It</div><div class="bs">Make and sell your own merch &mdash; keep 100%.</div></div>
-      <div class="badge"><div class="bt">&#10003; No Approval</div><div class="bs">Never ask permission. Just create.</div></div>
-      <div class="badge"><div class="bt">&#10003; No Royalties</div><div class="bs">Zero fees to us. Not now, not ever.</div></div>
-    </div>
-    <p class="rule">Go wild &mdash; create, print, manufacture, sell. <b>The only rule:</b> don't use the mascot to mislead or harm the project.</p>
-    <div class="why">
-      <h4>Why Physical Merch Is Powerful</h4>
-      <p class="sub">Unlike a digital ad that vanishes in seconds, real-world merch keeps working.</p>
-      <ul class="benefits">
-        <li><span class="ck">&#10003;</span>Real-world visibility in everyday life</li>
-        <li><span class="ck">&#10003;</span>Stronger emotional connection &amp; community pride</li>
-        <li><span class="ck">&#10003;</span>Sparks organic conversations &mdash; &ldquo;what's that?&rdquo;</li>
-        <li><span class="ck">&#10003;</span>Long-lasting brand exposure that doesn't vanish in a scroll</li>
-        <li><span class="ck">&#10003;</span>Turns fans into active promoters</li>
-      </ul>
-      <div class="flood">
-        <div class="big">Let's flood the streets with<br>Super Cash Coin energy!</div>
-        <p class="small">The more $SCC merch out in the real world, the stronger the brand becomes. Every figure, hoodie, and sticker is one more billboard working for all of us.</p>
+    <div class="grid">
+      <div class="detail">
+        <div class="copy">
+          <p>We grant <b>full, royalty-free permission</b> to anyone &mdash; individuals, creators, makers, and businesses &mdash; to use the Super Cash Coin mascot to create toys, apparel, collectibles, stickers, posters, and any other physical or digital product.</p>
+        </div>
+        <div class="badges">
+          <div class="badge"><div class="bt">&#10003; Sell It</div><div class="bs">Make and sell your own merch &mdash; keep 100%.</div></div>
+          <div class="badge"><div class="bt">&#10003; No Approval</div><div class="bs">Never ask permission. Just create.</div></div>
+          <div class="badge"><div class="bt">&#10003; No Royalties</div><div class="bs">Zero fees to us. Not now, not ever.</div></div>
+        </div>
+        <p class="rule">Go wild &mdash; create, print, manufacture, sell. <b>The only rule:</b> don't use the mascot to mislead or harm the project.</p>
       </div>
+      <div class="why">
+        <h4>Why Physical Merch Is Powerful</h4>
+        <p class="sub">Unlike a digital ad that vanishes in seconds, real-world merch keeps working.</p>
+        <ul class="benefits">
+          <li><span class="ck">&#10003;</span>Real-world visibility in everyday life</li>
+          <li><span class="ck">&#10003;</span>Stronger emotional connection &amp; community pride</li>
+          <li><span class="ck">&#10003;</span>Sparks organic conversations &mdash; &ldquo;what's that?&rdquo;</li>
+          <li><span class="ck">&#10003;</span>Long-lasting brand exposure that doesn't vanish in a scroll</li>
+          <li><span class="ck">&#10003;</span>Turns fans into active promoters</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flood">
+      <div class="big">Let's flood the streets with<br>Super Cash Coin energy!</div>
+      <p class="small">The more $SCC merch out in the real world, the stronger the brand becomes. Every figure, hoodie, and sticker is one more billboard working for all of us.</p>
     </div>
   </div>
 </section>
@@ -7313,6 +7395,24 @@ init();
   // Auto-open on EVERY page load (including refreshes).
   // Small delay so the page paints first and the popup doesn't slam in before render.
   setTimeout(open, 800);
+})();
+</script>
+
+<script>
+/* How-To-Buy mobile accordion: tap a step header to expand/collapse.
+   Has no visual effect on desktop/tablet (those layouts ignore .open). */
+(function(){
+  var steps = document.querySelectorAll('.htb-steps .htb-step');
+  if(!steps.length) return;
+  steps.forEach(function(step){
+    step.addEventListener('click', function(e){
+      // don't toggle when interacting with the expanded body (e.g. tapping a link)
+      if(e.target.closest('.htb-step-body')) return;
+      step.classList.toggle('open');
+    });
+  });
+  // open the first step by default
+  steps[0].classList.add('open');
 })();
 </script>
 
