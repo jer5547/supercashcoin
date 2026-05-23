@@ -1181,6 +1181,9 @@
 
     /* --- Tokenomics: tighten padding, voxel title shorter --- */
     .tokenomics{padding:52px 18px 24px;}
+    .tk-title{margin-bottom:10px;}
+    .tk-title-text{margin:0 0 12px;}
+    .tk-subhead{margin:0 auto 30px;}
     .tk-details-strip{margin-bottom:28px;}
   
     /* --- How To Trade: existing 900px rule for cards is fine, just tighter section padding --- */
@@ -1201,11 +1204,17 @@
     .rain-hl{left:6px;right:6px;font-size:11px;letter-spacing:.02em;white-space:nowrap;}
     .rain-star{margin:0 5px;}
               .celebration{padding:24px 14px 40px;}
-    .celebration h2{font-size:16px;letter-spacing:0;}
-    .celebration h2 b.green{padding:1px 7px 3px;margin:0 3px;border-width:2px;box-shadow:2px 2px 0 #0a0a0a;}
+    .celebration h2{font-size:17px;letter-spacing:0;line-height:1.25;margin-bottom:14px;}
+    .celebration h2 b.green{padding:1px 8px 3px;margin:0 3px;border-width:2px;box-shadow:2px 2px 0 #0a0a0a;}
+    .celebration .lead{font-size:13px;line-height:1.4;margin-bottom:12px;}
+    .celebration .lead-white{font-size:13px;line-height:1.5;margin-bottom:14px;padding:0 8px;}
+    .celebration .lead-white b.green{padding:1px 9px 3px;margin:0 3px;border-width:2px;box-shadow:2px 2px 0 #0a0a0a;}
     .distributor{padding:14px 14px 24px;}
     .dist-stage{height:clamp(320px,80vw,440px);margin:-20px auto 4px;}
-    .tokenomics{padding:40px 14px 20px;}
+    .tokenomics{padding:28px 14px 20px;}
+    .tk-title{margin-bottom:6px;}
+    .tk-title-text{margin:0 0 8px;}
+    .tk-subhead{font-size:13px;margin:0 auto 18px;line-height:1.4;}
     .tk-details-strip{margin-bottom:10px;}
     .how-to-trade{padding:40px 14px 60px;}
   }
@@ -2305,31 +2314,60 @@
   @media (max-width:860px){
     .hiw-grid{
       flex-direction:column !important;
-      align-items:center !important;
-      gap:8px !important;
+      align-items:stretch !important;
+      gap:11px !important;
     }
+    /* Option A — left-aligned card: icon chip on the left, text on the right */
     .hiw-step{
+      display:grid !important;
+      grid-template-columns:54px 1fr;
+      grid-template-areas:"icon title" "icon desc";
+      column-gap:14px;row-gap:4px;
+      align-items:start;
+      text-align:left !important;
       flex:0 0 auto !important;
-      max-width:440px !important;
+      max-width:480px !important;
       width:100% !important;
-      padding:12px 14px !important;
-      min-height:0 !important;
-      height:auto !important;
-      display:block !important;
+      margin:0 auto;
+      padding:15px !important;
+      min-height:0 !important;height:auto !important;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,210,61,0.25);
+      border-radius:13px;
     }
-    .hiw-num{
-      position:static !important;
-      display:inline-block !important;
-      margin:0 0 4px !important;
-      font-size:10px !important;
-    }
+    /* the existing icon becomes a framed chip (icons kept as-is) */
     .hiw-icon{
-      width:30px !important;
-      height:30px !important;
-      margin:2px auto 6px !important;
+      grid-area:icon;
+      width:54px !important;height:54px !important;
+      margin:0 !important;
+      padding:11px;
+      border-radius:13px;
+      background:rgba(255,210,61,0.12);
+      border:1px solid rgba(255,210,61,0.4);
+      display:flex;align-items:center;justify-content:center;
+      align-self:start;
+      color:#ffd23d;
     }
-    .hiw-step h4{font-size:12px !important;margin:0 0 4px !important;}
-    .hiw-step p{font-size:11px !important;line-height:1.4 !important;margin:0 !important;}
+    .hiw-icon svg{width:100% !important;height:100% !important;}
+    /* number badge sitting on the chip's top-left corner */
+    .hiw-num{
+      position:absolute !important;
+      top:6px !important;left:6px !important;
+      width:21px;height:21px;border-radius:50%;
+      background:#ffd23d !important;color:#0a0a0a !important;
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Arial Black',sans-serif !important;
+      font-size:9.5px !important;letter-spacing:0 !important;
+      margin:0 !important;z-index:2;
+    }
+    .hiw-step h4{
+      grid-area:title;align-self:center;text-align:left !important;
+      font-size:13.5px !important;margin:0 !important;
+    }
+    .hiw-step p{
+      grid-area:desc;text-align:left !important;
+      font-size:11.5px !important;line-height:1.5 !important;margin:0 !important;
+    }
     .hiw-arrow{display:none !important;}
   }
 </style>
@@ -3192,29 +3230,29 @@
   }
   @media (max-width:600px){
     .htb-section{padding:34px 14px 24px;}
-    /* ===== Mobile steps: ACCORDION with pics + slim text links ===== */
-    .htb-steps{counter-reset:htbstep;gap:10px;}
+    /* ===== Mobile steps: Option 5 — pic left + "STEP nn" label, bigger pics ===== */
+    .htb-steps{counter-reset:htbstep;gap:12px;}
     .htb-step{
       counter-increment:htbstep;
       display:grid;
-      grid-template-columns:46px 1fr 22px;
-      grid-template-areas:"pic title chev" "body body body";
-      align-items:center;column-gap:13px;row-gap:0;
-      position:relative;flex:none;min-height:0;cursor:pointer;
-      background:#fff;border:1.5px solid #ffd23d;border-radius:13px;
-      padding:11px 14px;overflow:hidden;
-      box-shadow:0 5px 16px rgba(0,0,0,0.12);
+      grid-template-columns:80px 1fr;
+      grid-template-areas:"pic title" "pic body";
+      align-items:start;column-gap:14px;row-gap:3px;
+      position:relative;flex:none;min-height:0;
+      background:#fff;border:1.5px solid #ffd23d;
+      border-radius:14px;padding:14px 15px;overflow:hidden;
+      box-shadow:0 5px 16px rgba(0,0,0,0.13);
     }
-    .htb-step:hover{transform:none;box-shadow:0 5px 16px rgba(0,0,0,0.12);}
-    /* flatten the wrappers so pic / title / body sit on the card grid */
+    .htb-step:hover{transform:none;box-shadow:0 5px 16px rgba(0,0,0,0.13);}
+    /* flatten wrappers so pic / title / body sit on the card grid */
     .htb-step-left{display:contents;}
     .htb-step-right{display:contents;}
-    .htb-num{display:none;}            /* desktop number hidden; we use a badge */
-    /* pic = round tinted thumbnail with a number badge */
+    .htb-num{display:none;}
+    /* pic = bigger rounded-square tinted thumbnail (no overlapping badge) */
     .htb-step-pic{
       grid-area:pic;position:relative;align-self:center;
-      width:46px;height:46px;border-radius:50%;
-      background:#f4f4f0;padding:7px;filter:none;
+      width:80px;height:80px;border-radius:16px;
+      background:#f4f4f0;padding:11px;filter:none;
       display:flex;align-items:center;justify-content:center;
     }
     .htb-step:nth-of-type(1) .htb-step-pic{background:#dbeafe;}
@@ -3222,35 +3260,23 @@
     .htb-step:nth-of-type(3) .htb-step-pic{background:#dcfce7;}
     .htb-step:nth-of-type(4) .htb-step-pic{background:#fce7f3;}
     .htb-step-pic img,.htb-step-pic svg{width:100%;height:100%;object-fit:contain;}
-    .htb-step-pic img[src*="bnb-logo"]{width:100%;height:100%;}
-    .htb-step-pic::after{
-      content:counter(htbstep,decimal-leading-zero);
-      position:absolute;bottom:-4px;right:-4px;
-      width:21px;height:21px;border-radius:50%;
-      background:#ffd23d;border:2px solid #0a0a0a;color:#0a0a0a;
-      font-family:'Arial Black',sans-serif;font-size:9.5px;font-weight:900;
-      display:flex;align-items:center;justify-content:center;
+    .htb-step-pic img[src*="bnb-logo"]{width:74%;height:74%;margin:auto;}
+    /* "STEP 01" label injected above the title */
+    .htb-step-right h4{grid-area:title;align-self:center;margin:0;font-size:15px;line-height:1.14;}
+    .htb-step-right h4::before{
+      content:"Step " counter(htbstep,decimal-leading-zero);
+      display:block;
+      font-family:'Inter','Arial',sans-serif;
+      font-size:9.5px;font-weight:800;letter-spacing:.14em;
+      color:#1d4fd8;text-transform:uppercase;
+      margin-bottom:3px;
     }
-    /* title in the always-visible header row */
-    .htb-step-right h4{grid-area:title;align-self:center;margin:0;font-size:14.5px;line-height:1.12;}
-    /* chevron */
-    .htb-step::after{
-      content:'\2304';grid-area:chev;align-self:center;justify-self:center;
-      color:#c79a0c;font-size:17px;font-weight:900;line-height:1;
-      transition:transform .25s;
-    }
-    .htb-step.open::after{transform:rotate(180deg);}
-    /* collapsible body */
-    .htb-step-body{
-      grid-area:body;display:block;
-      max-height:0;overflow:hidden;padding:0 0 0 59px;
-      transition:max-height .3s ease,padding .3s ease;
-    }
-    .htb-step.open .htb-step-body{max-height:260px;padding-top:9px;}
-    .htb-step-body p{margin:0;font-size:12.5px;line-height:1.45;color:#666;}
-    .htb-step-body p .gold,.htb-step-body p .gold{color:#c79a0c;font-weight:700;}
-    /* slim text links (Version 2) instead of gold pills */
-    .htb-step-body .htb-links{margin-top:10px;gap:7px 16px;}
+    /* body — always visible */
+    .htb-step-body{grid-area:body;display:block;}
+    .htb-step-body p{margin:0;font-size:12.5px;line-height:1.46;color:#666;}
+    .htb-step-body p .gold{color:#c79a0c;font-weight:700;}
+    /* slim text links instead of chunky pills */
+    .htb-step-body .htb-links{margin-top:10px;gap:7px 18px;}
     .htb-step-body .htb-link{
       padding:0;background:none;border:none;border-radius:0;
       border-bottom:1.5px solid #ffd23d;
@@ -7395,24 +7421,6 @@ init();
   // Auto-open on EVERY page load (including refreshes).
   // Small delay so the page paints first and the popup doesn't slam in before render.
   setTimeout(open, 800);
-})();
-</script>
-
-<script>
-/* How-To-Buy mobile accordion: tap a step header to expand/collapse.
-   Has no visual effect on desktop/tablet (those layouts ignore .open). */
-(function(){
-  var steps = document.querySelectorAll('.htb-steps .htb-step');
-  if(!steps.length) return;
-  steps.forEach(function(step){
-    step.addEventListener('click', function(e){
-      // don't toggle when interacting with the expanded body (e.g. tapping a link)
-      if(e.target.closest('.htb-step-body')) return;
-      step.classList.toggle('open');
-    });
-  });
-  // open the first step by default
-  steps[0].classList.add('open');
 })();
 </script>
 
