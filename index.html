@@ -2786,11 +2786,7 @@
           <div class="htb-step-right">
             <h4>Get a Wallet</h4>
             <div class="htb-step-body">
-            <p>Grab <span class="gold">MetaMask</span> and add the <span class="gold">opBNB</span> network. Takes 2 minutes.</p>
-            <div class="htb-links">
-              <a class="htb-link" href="https://metamask.io" target="_blank" rel="noopener">Get MetaMask</a>
-              <a class="htb-link" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">Add opBNB</a>
-            </div>
+            <p>Install <a class="glink" href="https://metamask.io" target="_blank" rel="noopener">MetaMask</a> (it's free and takes about 2 minutes) and add the <a class="glink" href="https://docs.bnbchain.org/bnb-opbnb/get-started/connect-wallet/" target="_blank" rel="noopener">opBNB</a> network. This wallet is your personal key to the whole ecosystem — it's where you'll hold your $SCC and receive your USDT rewards. No sign-ups, no middleman, you stay in full control.</p>
             </div>
           </div>
         </div>
@@ -2805,11 +2801,7 @@
           <div class="htb-step-right">
             <h4>Get BNB For Gas</h4>
             <div class="htb-step-body">
-            <p>You need a tiny bit of <span class="gold">BNB</span> to pay gas on opBNB. Buy <span class="gold">BNB</span> on <span class="gold">Binance</span>, withdraw to BSC, then <b>bridge it over to opBNB</b>.</p>
-            <div class="htb-links">
-              <a class="htb-link" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">Buy BNB</a>
-              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Bridge BNB</a>
-            </div>
+            <p>You need a tiny bit of <a class="glink" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">BNB</a> to cover network fees on opBNB — usually just a few cents per transaction. Buy <a class="glink" href="https://www.binance.com/en/trade/BNB" target="_blank" rel="noopener">BNB</a> on <a class="glink" href="https://www.binance.com" target="_blank" rel="noopener">Binance</a> (or any exchange), withdraw it to BSC, then <a class="glink" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">bridge it over to opBNB</a>. It's a one-time setup that keeps your fees almost free from then on.</p>
             </div>
           </div>
         </div>
@@ -2824,11 +2816,7 @@
           <div class="htb-step-right">
             <h4>Buy USDT</h4>
             <div class="htb-step-body">
-            <p>Buy <span class="gold">USDT</span> on <span class="gold">Binance</span> (or any exchange), then <b>bridge it over to opBNB</b>. That's our trading currency for $SCC.</p>
-            <div class="htb-links">
-              <a class="htb-link" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">Get USDT</a>
-              <a class="htb-link" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">Bridge USDT</a>
-            </div>
+            <p>Grab some <a class="glink" href="https://www.binance.com/en/trade/USDT" target="_blank" rel="noopener">USDT</a> on <a class="glink" href="https://www.binance.com" target="_blank" rel="noopener">Binance</a> or any exchange you like, then <a class="glink" href="https://opbnb-bridge.bnbchain.org/" target="_blank" rel="noopener">bridge it over to opBNB</a>. USDT is the trading currency for $SCC and the exact token your rewards get paid out in — so this is the fuel that powers your cashflow.</p>
             </div>
           </div>
         </div>
@@ -2843,10 +2831,7 @@
           <div class="htb-step-right">
             <h4>Buy Super Cash Coin</h4>
             <div class="htb-step-body">
-            <p>Swap <span class="gold">USDT</span> → <span class="gold">$SCC</span> on the Trade Centre. Turn on <span class="gold">auto-reinvest</span> to compound rewards.</p>
-            <div class="htb-links">
-              <a class="htb-link" href="#" target="_blank" rel="noopener">Open Trade Centre</a>
-            </div>
+            <p>Head to the <a class="glink" href="#" target="_blank" rel="noopener">Trade Centre</a> and swap your <a class="glink" href="#" target="_blank" rel="noopener">USDT</a> for <a class="glink" href="#" target="_blank" rel="noopener">$SCC</a>. Turn on <a class="glink" href="#" target="_blank" rel="noopener">auto-reinvest</a> to automatically compound your rewards into more coins — then sit back and watch the USDT roll into your wallet on every single transaction.</p>
             </div>
           </div>
         </div>
@@ -3083,7 +3068,7 @@
   .htb-steps{display:flex;flex-direction:column;gap:8px;flex:1;}
   .htb-step{
     display:grid;
-    grid-template-columns:90px 1fr;
+    grid-template-columns:104px 1fr;
     border-radius:12px;
     overflow:hidden;
     background:#fff;
@@ -3125,8 +3110,8 @@
     z-index:1;
   }
   .htb-step-pic{
-    width:58px;
-    height:58px;
+    width:74px;
+    height:74px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -3175,6 +3160,16 @@
     font-weight:500;
   }
   .htb-step-right p .gold{color:#c79a0c;font-weight:700;}
+  /* Inline keyword links inside the step description (bold gold, no underline) */
+  .htb-step-right p a.glink,
+  .htb-step-body p a.glink{
+    color:#c79a0c;
+    font-weight:800;
+    text-decoration:none;
+    transition:color .15s;
+  }
+  .htb-step-right p a.glink:hover,
+  .htb-step-body p a.glink:hover{color:#1d4fd8;}
 
   /* Wrapper for description+links. On desktop/tablet it's transparent (display:contents)
      so it has zero layout effect; the mobile accordion turns it into a real box. */
@@ -3237,7 +3232,7 @@
     .htb-step{
       counter-increment:htbstep;
       display:grid;
-      grid-template-columns:80px 1fr;
+      grid-template-columns:92px 1fr;
       grid-template-areas:"pic title" "pic body";
       align-items:start;column-gap:14px;row-gap:3px;
       position:relative;flex:none;min-height:0;
@@ -3253,7 +3248,7 @@
     /* pic = bigger rounded-square tinted thumbnail (no overlapping badge) */
     .htb-step-pic{
       grid-area:pic;position:relative;align-self:center;
-      width:80px;height:80px;border-radius:16px;
+      width:92px;height:92px;border-radius:16px;
       background:#f4f4f0;padding:11px;filter:none;
       display:flex;align-items:center;justify-content:center;
     }
