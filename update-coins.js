@@ -20,12 +20,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5        # Node 24 runtime (was @v4 / Node 20)
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5      # Node 24 runtime (was @v4 / Node 20)
         with:
-          node-version: '20'
+          node-version: '24'             # was '20' (now EOL); script uses native fetch, fine on 24
 
       - name: Fetch latest coin data
         run: node update-coins.js
