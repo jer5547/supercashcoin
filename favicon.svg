@@ -1,36 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" shape-rendering="crispEdges">
-  <!-- ===== GOLD face (#ffd23d — brand color) ===== -->
-  <g fill="#ffd23d">
-    <!-- Ears top row -->
-    <rect x="0" y="0" width="2" height="1"/>
-    <rect x="13" y="0" width="2" height="1"/>
-    <!-- Ears row 2 -->
-    <rect x="0" y="1" width="3" height="1"/>
-    <rect x="12" y="1" width="3" height="1"/>
-    <!-- Top yellow bar -->
-    <rect x="0" y="2" width="15" height="2"/>
-    <!-- Lower face -->
-    <rect x="0" y="8" width="15" height="6"/>
-    <!-- Bottom row (stepped corners) -->
-    <rect x="1" y="14" width="13" height="1"/>
-  </g>
-
-  <!-- ===== BLACK sunglasses band ===== -->
-  <rect x="1" y="4" width="13" height="4" fill="#0a0a0a"/>
-
-  <!-- ===== WHITE lens highlights ===== -->
-  <g fill="#ffffff">
-    <rect x="3" y="6" width="2" height="1"/>
-    <rect x="10" y="6" width="2" height="1"/>
-  </g>
-
-  <!-- ===== BLACK face details ===== -->
-  <g fill="#0a0a0a">
-    <!-- Nostrils -->
-    <rect x="5" y="9" width="1" height="1"/>
-    <rect x="9" y="9" width="1" height="1"/>
-    <!-- Smirk: bar + hook on right -->
-    <rect x="4" y="13" width="7" height="1"/>
-    <rect x="11" y="11" width="1" height="2"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 19" shape-rendering="crispEdges">
+  <!-- $SCC mascot face — geometry from nav-mascot.js -->
+  <g fill="#ffd23d"><rect x="2" y="2" width="2" height="1"/><rect x="15" y="2" width="2" height="1"/><rect x="2" y="3" width="3" height="1"/><rect x="14" y="3" width="3" height="1"/><rect x="2" y="4" width="15" height="1"/><rect x="2" y="5" width="15" height="1"/><rect x="2" y="10" width="15" height="1"/><rect x="2" y="11" width="5" height="1"/><rect x="8" y="11" width="3" height="1"/><rect x="12" y="11" width="5" height="1"/><rect x="2" y="12" width="15" height="1"/><rect x="2" y="13" width="11" height="1"/><rect x="14" y="13" width="3" height="1"/><rect x="2" y="14" width="11" height="1"/><rect x="14" y="14" width="3" height="1"/><rect x="2" y="15" width="4" height="1"/><rect x="13" y="15" width="4" height="1"/><rect x="3" y="16" width="13" height="1"/></g>
+  <g fill="#0a0a0a"><rect x="3" y="6" width="13" height="1"/><rect x="3" y="7" width="13" height="1"/><rect x="3" y="8" width="2" height="1"/><rect x="7" y="8" width="5" height="1"/><rect x="14" y="8" width="2" height="1"/><rect x="3" y="9" width="13" height="1"/><rect x="7" y="11" width="1" height="1"/><rect x="11" y="11" width="1" height="1"/><rect x="13" y="13" width="1" height="1"/><rect x="13" y="14" width="1" height="1"/><rect x="6" y="15" width="7" height="1"/></g>
+  <g fill="#ffffff"><rect x="5" y="8" width="2" height="1"/><rect x="12" y="8" width="2" height="1"/></g>
 </svg>
