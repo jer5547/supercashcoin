@@ -151,10 +151,13 @@ body::after{
 .buyers-track{display:flex;gap:8px;width:100%;max-width:100%;min-width:0;overflow-x:auto;padding-bottom:4px;scroll-behavior:smooth;}
 .buyers-track::-webkit-scrollbar{height:4px;}
 .buyers-track::-webkit-scrollbar-thumb{background:rgba(0,212,255,0.3);border-radius:2px;}
-.buyer-row{display:flex;flex-direction:column;gap:3px;flex:0 0 auto;min-width:138px;padding:8px 11px;border-radius:5px;background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.16);animation:buyerIn 0.45s ease;text-decoration:none;cursor:pointer;transition:background 0.15s,border-color 0.15s;}
+.buyer-row{display:flex;flex-direction:column;gap:2px;flex:0 0 auto;min-width:150px;padding:7px 10px;border-radius:5px;background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.16);animation:buyerIn 0.45s ease;text-decoration:none;cursor:pointer;transition:background 0.15s,border-color 0.15s;}
 .buyer-row:hover{background:rgba(0,212,255,0.11);border-color:rgba(0,212,255,0.42);}
 @keyframes buyerIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:translateX(0);}}
 .buyer-toprow{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.buyer-midrow{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+.buyer-midrow .buyer-addr{flex:0 1 auto;min-width:0;color:rgba(205,238,255,0.5);font-weight:500;}
+.buyer-midrow .buyer-amt{flex:0 0 auto;}
 .buyer-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:rgba(0,212,255,0.7);flex-shrink:0;}
 .buyer-time{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(160,232,255,0.5);letter-spacing:.04em;flex-shrink:0;}
 .buyer-addr{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;color:#cdeeff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -1644,7 +1647,7 @@ document.getElementById('confirmBtn').addEventListener('click', (e) => {
   if(!list||!countEl) return;
   var count=1247;
   var hex='0123456789abcdef';
-  function rngAddr(){var a='0x',b='';for(var i=0;i<4;i++)a+=hex[Math.floor(Math.random()*16)];for(var j=0;j<4;j++)b+=hex[Math.floor(Math.random()*16)];return a+'\u2026'+b;}
+  function rngAddr(){var a='0x';for(var i=0;i<5;i++)a+=hex[Math.floor(Math.random()*16)];return a+'\u2026';}
   var amts=[500,1000,1500,2500,5000,7500,10000,12500,25000,50000,100000];
   function rngAmt(){return amts[Math.floor(Math.random()*amts.length)];}
   function fmt(n){return n.toLocaleString('en-US');}
@@ -1659,7 +1662,7 @@ document.getElementById('confirmBtn').addEventListener('click', (e) => {
     buyers.forEach(function(b){
       var row=document.createElement('a');row.className='buyer-row';
       row.href=scanUrl(b);row.target='_blank';row.rel='noopener';
-      row.innerHTML='<span class="buyer-toprow"><span class="buyer-num">#'+fmt(b.n)+'</span><span class="buyer-time">'+timeAgo(b.ts)+'</span></span><span class="buyer-addr">'+b.addr+'</span><span class="buyer-amt">+'+fmt(b.amt)+' $SCC</span><span class="buyer-spent">$'+fmt(+(b.amt*0.002).toFixed(2))+' USDT</span>';
+      row.innerHTML='<span class="buyer-toprow"><span class="buyer-num">#'+fmt(b.n)+'</span><span class="buyer-time">'+timeAgo(b.ts)+'</span></span><span class="buyer-midrow"><span class="buyer-addr">'+b.addr+'</span><span class="buyer-amt">+'+fmt(b.amt)+' $SCC</span></span><span class="buyer-spent">$'+fmt(+(b.amt*0.002).toFixed(2))+' USDT</span>';
       list.appendChild(row);
     });
   }
