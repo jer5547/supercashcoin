@@ -7444,6 +7444,8 @@ init();
   var scrollLockY = 0;
   var frameLoaded = false;
   frame.addEventListener('load', function(){ frameLoaded = true; });
+  var closeAnim = null;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Vault-open entrance: iris + scale the iframe in, expand the gold ring.
   // Restart-safe (remove class -> reflow -> re-add) so it replays every open.
@@ -7461,6 +7463,8 @@ init();
 
   function open(){
     var firstLoad = !frame.src;
+    if (closeAnim){ closeAnim.cancel(); closeAnim = null; }
+    frame.style.transform = '';
     frame.classList.add('scc-pre'); // hide until the entrance fires
     if (firstLoad) frame.src = POPUP_URL;
     // Remember where the user was, then pin the body in place.
@@ -7482,12 +7486,41 @@ init();
     }
   }
   function close(){
-    overlay.classList.remove('open');
     overlay.setAttribute('aria-hidden','true');
-    document.body.classList.remove('scc-modal-open');
-    document.body.style.top = '';
-    // Restore the scroll position the user was at before opening.
-    window.scrollTo(0, scrollLockY);
+
+    // Reduced-motion (or no Web Animations support): plain fade, as before.
+    if (reduceMotion || !frame.animate){
+      overlay.classList.remove('open');
+      document.body.classList.remove('scc-modal-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollLockY);
+      return;
+    }
+
+    // Shrink the popup back toward the ICO banner that opens it.
+    // Measure the banner's on-screen position BEFORE unlocking the body.
+    var tx = 0, ty = -window.innerHeight / 2;   // fallback: collapse up toward the top
+    if (bannerBtn){
+      var r = bannerBtn.getBoundingClientRect();
+      if (r.width){
+        tx = (r.left + r.width / 2) - window.innerWidth / 2;
+        ty = (r.top + r.height / 2) - window.innerHeight / 2;
+      }
+    }
+    frame.classList.remove('scc-vault-in');
+    closeAnim = frame.animate(
+      [{ transform: 'translate(0,0) scale(1)' },
+       { transform: 'translate(' + tx + 'px,' + ty + 'px) scale(0.08)' }],
+      { duration: 320, easing: 'cubic-bezier(.4,0,.7,.2)', fill: 'forwards' }
+    );
+    overlay.classList.remove('open');           // fade the dim backdrop out alongside it
+    closeAnim.onfinish = function(){
+      document.body.classList.remove('scc-modal-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollLockY);
+      frame.style.transform = '';
+      if (closeAnim){ closeAnim.cancel(); closeAnim = null; }
+    };
   }
 
   // Banner click → open
