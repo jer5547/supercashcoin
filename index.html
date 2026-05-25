@@ -7384,10 +7384,52 @@ init();
   @media (max-width:680px){
     .scc-modal-overlay{padding:0;}
   }
+
+  /* === Vault-open entrance ============================================ */
+  .scc-modal-iframe{
+    transform-origin:50% 50%;
+    will-change:transform,opacity,clip-path;
+    backface-visibility:hidden;
+  }
+  /* keeps the iframe hidden between open() and the entrance firing, so a
+     freshly-loaded popup never flashes before it animates */
+  .scc-modal-iframe.scc-pre{opacity:0;}
+  .scc-modal-iframe.scc-vault-in{
+    animation:sccVaultIn 0.72s cubic-bezier(0.22,0.8,0.3,1) both;
+  }
+  @keyframes sccVaultIn{
+    0%  {opacity:0;transform:scale(0.62);
+         -webkit-clip-path:circle(0% at 50% 50%);clip-path:circle(0% at 50% 50%);}
+    50% {opacity:1;}
+    80% {transform:scale(1.02);}
+    100%{opacity:1;transform:scale(1);
+         -webkit-clip-path:circle(140% at 50% 50%);clip-path:circle(140% at 50% 50%);}
+  }
+  /* the gold "vault" ring that expands outward from the centre */
+  .scc-vault-ring{
+    position:absolute;left:50%;top:50%;
+    width:340px;height:340px;margin:-170px 0 0 -170px;
+    border:4px solid #ffd23d;border-radius:50%;
+    box-shadow:0 0 24px rgba(255,210,61,0.5);
+    pointer-events:none;opacity:0;z-index:3;
+  }
+  .scc-vault-ring.go{animation:sccVaultRing 0.72s cubic-bezier(0.2,0.6,0.2,1) both;}
+  @keyframes sccVaultRing{
+    0%  {transform:scale(0.15);opacity:0.9;}
+    70% {opacity:0.65;}
+    100%{transform:scale(2.7);opacity:0;}
+  }
+  /* respect users who ask for less motion */
+  @media (prefers-reduced-motion: reduce){
+    .scc-modal-iframe.scc-vault-in{animation:none;}
+    .scc-modal-iframe.scc-pre{opacity:1;}
+    .scc-vault-ring{display:none;}
+  }
 </style>
 
 <div class="scc-modal-overlay" id="sccModalOverlay" role="dialog" aria-modal="true" aria-label="$SCC ICO purchase" aria-hidden="true">
   <iframe class="scc-modal-iframe" id="sccModalFrame" title="$SCC ICO purchase" loading="lazy" allowtransparency="true"></iframe>
+  <div class="scc-vault-ring" id="sccVaultRing" aria-hidden="true"></div>
 </div>
 
 <script>
@@ -7397,11 +7439,30 @@ init();
   var overlay = document.getElementById('sccModalOverlay');
   var frame = document.getElementById('sccModalFrame');
   var bannerBtn = document.getElementById('sccBannerBtn');
+  var ring = document.getElementById('sccVaultRing');
 
   var scrollLockY = 0;
+  var frameLoaded = false;
+  frame.addEventListener('load', function(){ frameLoaded = true; });
+
+  // Vault-open entrance: iris + scale the iframe in, expand the gold ring.
+  // Restart-safe (remove class -> reflow -> re-add) so it replays every open.
+  function playEntrance(){
+    frame.classList.remove('scc-vault-in');
+    frame.classList.remove('scc-pre');
+    void frame.offsetWidth;
+    frame.classList.add('scc-vault-in');
+    if (ring){
+      ring.classList.remove('go');
+      void ring.offsetWidth;
+      ring.classList.add('go');
+    }
+  }
 
   function open(){
-    if (!frame.src) frame.src = POPUP_URL;
+    var firstLoad = !frame.src;
+    frame.classList.add('scc-pre'); // hide until the entrance fires
+    if (firstLoad) frame.src = POPUP_URL;
     // Remember where the user was, then pin the body in place.
     // position:fixed would otherwise jump the page to the top.
     scrollLockY = window.scrollY || window.pageYOffset || 0;
@@ -7409,6 +7470,16 @@ init();
     overlay.setAttribute('aria-hidden','false');
     document.body.style.top = (-scrollLockY) + 'px';
     document.body.classList.add('scc-modal-open');
+    // Play the entrance only once the popup has actually painted,
+    // so it never animates an empty frame on first open.
+    if (frameLoaded){
+      playEntrance();
+    } else {
+      frame.addEventListener('load', function onready(){
+        frame.removeEventListener('load', onready);
+        playEntrance();
+      });
+    }
   }
   function close(){
     overlay.classList.remove('open');
@@ -7437,7 +7508,7 @@ init();
 
   // Auto-open on EVERY page load (including refreshes).
   // Small delay so the page paints first and the popup doesn't slam in before render.
-  setTimeout(open, 800);
+  setTimeout(open, 2000);
 })();
 </script>
 
