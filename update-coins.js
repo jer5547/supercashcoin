@@ -1,61 +1,46 @@
-// update-coins.js
-// Fetches the top 50 meme coins from CoinGecko and writes meme-coins.json
-// Run via GitHub Actions (see .github/workflows/update-coins.yml) or manually:
-//   node update-coins.js
+name: Update meme coin data
 
-const fs = require('fs');
+on:
+  schedule:
+    # Runs every hour, at minute 7 (offset to avoid GitHub's busy times)
+    - cron: '7 * * * *'
+  workflow_dispatch:  # Lets you run it manually from the Actions tab
 
-const URL =
-  'https://api.coingecko.com/api/v3/coins/markets' +
-  '?vs_currency=usd' +
-  '&category=meme-token' +
-  '&order=volume_desc' +    // sorted by 24h trading volume
-  '&per_page=50' +          // grab top 50 meme coins
-  '&page=1' +
-  '&sparkline=false';
+# Avoid overlapping runs stepping on each other (a manual run firing while the
+# scheduled one is mid-flight is what causes the non-fast-forward push failure).
+concurrency:
+  group: update-coins
+  cancel-in-progress: false
 
-(async () => {
-  let raw;
-  try {
-    const res = await fetch(URL, {
-      headers: { 'accept': 'application/json' }
-    });
-    if (!res.ok) {
-      throw new Error(`CoinGecko returned ${res.status}`);
-    }
-    raw = await res.json();
-  } catch (err) {
-    console.error('Fetch failed:', err.message);
-    process.exit(1);
-  }
+permissions:
+  contents: write   # Required for the bot to push the updated JSON
 
-  if (!Array.isArray(raw) || raw.length === 0) {
-    console.error('Unexpected response from CoinGecko');
-    process.exit(1);
-  }
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-  // Take the top 50 (or whatever CoinGecko returned, if fewer), normalize fields
-  const coins = raw.slice(0, 50).map(c => ({
-    id: c.id,
-    name: c.name,
-    symbol: (c.symbol || '').toUpperCase(),
-    image: c.image,
-    price: c.current_price,
-    volume_24h: c.total_volume,
-    market_cap: c.market_cap,
-    price_change_24h_pct: c.price_change_percentage_24h
-  }));
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-  const out = {
-    updated_at: new Date().toISOString(),
-    source: 'coingecko.com/api/v3/coins/markets?category=meme-token',
-    note: 'Estimated buys = volume_24h * 0.5; rewards @ 25% applied client-side',
-    coins
-  };
+      - name: Fetch latest coin data
+        run: node update-coins.js
 
-  fs.writeFileSync('meme-coins.json', JSON.stringify(out, null, 2));
-  console.log(`Wrote ${coins.length} coins to meme-coins.json`);
-  coins.forEach((c, i) => {
-    console.log(`  ${i + 1}. ${c.name} (${c.symbol}) - $${(c.volume_24h / 1e6).toFixed(2)}M volume`);
-  });
-})();
+      - name: Commit and push if data changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add meme-coins.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: refresh meme coin data"
+            # Rebase our fresh commit on top of anything that landed since checkout,
+            # so an advanced remote can't cause a non-fast-forward rejection.
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push
+          fi
