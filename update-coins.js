@@ -32,7 +32,7 @@ function buildUrl() {
   const params = new URLSearchParams({
     vs_currency: 'usd',
     category: 'meme-token',
-    order: 'market_cap_desc',
+    order: 'volume_desc',
     per_page: String(PER_PAGE),
     page: '1',
     price_change_percentage: '24h',
