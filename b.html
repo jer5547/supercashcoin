@@ -2164,13 +2164,7 @@
 </style>
 <style>
   /* ICO strip: deep navy blueprint grid */
-  .top-banner{background-position: 0% 0%;
-background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(159,208,255,.14) 1px,transparent 1px) !important !important;
-	background-size:10px 10px !important;border-top:1px solid rgba(159,208,255,.5) !important;border-bottom:1px solid rgba(159,208,255,.5) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06) !important;
-	background-color: #0b2350 !important;
-	background-repeat: repeat !important;
-	background-attachment: scroll !important;
-}
+  .top-banner{background:#0b2350 !important;background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(159,208,255,.14) 1px,transparent 1px) !important;background-size:10px 10px !important;border-top:1px solid rgba(159,208,255,.5) !important;border-bottom:1px solid rgba(159,208,255,.5) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06) !important;}
 </style>
 <style>
   /* Pile positions: big cash pile left of the mascot, $SCC coin stacks right of the mascot */
@@ -2350,20 +2344,22 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
   .sr-section.is-sample .sr-sample{display:block}
   .sr-grid>div{position:relative}
   .sr-grid>.sr-bp{order:-1}
+  .sr-chart-rp{position:absolute;left:20px;bottom:16px;font-family:'Share Tech Mono',monospace;font-size:11px;background:rgba(13,4,32,.85);color:#f1eaff;border:1px solid rgba(201,182,255,.6);border-radius:4px;padding:4px 10px;cursor:pointer}
   .sr-stamp{display:none !important}
   .sr-pierow{display:flex;align-items:center;gap:10px}
   .sr-pierow #srPie{flex:1 1 auto;min-width:0}
-  .sr-vol{flex:0 0 200px;border:1.5px solid #7d3cff;background:rgba(13,4,32,.7);border-radius:8px;padding:9px 10px 8px}
-  .sr-vol .vk{font-size:10px;letter-spacing:.12em;color:#c9b6ff}
-  .sr-vol .vv{font-family:'Black Ops One',system-ui;font-size:24px;color:#7dff9a;line-height:1.15;margin:4px 0 3px}
+  .sr-vol{flex:0 1 200px;min-width:150px;border:1.5px solid #7d3cff;background:rgba(13,4,32,.7);border-radius:8px;padding:9px 10px 8px}
+  .sr-vol .vk{font-size:clamp(8px,.75vw,10px);letter-spacing:.08em;color:#c9b6ff}
+  .sr-vol .vu{font-family:'Share Tech Mono',monospace;font-size:11px;color:#ffd23d}
+  .sr-vol .vv{font-family:'Black Ops One',system-ui;font-size:clamp(16px,1.6vw,22px);overflow-wrap:anywhere;color:#7dff9a;line-height:1.15;margin:4px 0 3px}
   .sr-vol .vs{font-size:10px;color:#c9b6ff}.sr-vol .vs .sr-tag{margin-left:0;font-size:10px}
   @media (max-width:520px){.sr-pierow{flex-wrap:wrap}.sr-vol{flex:1 1 100%}}
   .sr-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 8px}
   .sr-mini .m{border:1.5px solid #7d3cff;background:rgba(13,4,32,.7);border-radius:8px;padding:9px 10px 8px;min-width:0}
-  .sr-mini .mk{font-size:10px;letter-spacing:.12em;color:#c9b6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .sr-mini .mv{font-family:'Black Ops One',system-ui;font-size:clamp(18px,1.9vw,24px);line-height:1.15;margin:5px 0 3px;white-space:nowrap}
+  .sr-mini .mk{font-size:clamp(8px,.75vw,10px);letter-spacing:.08em;color:#c9b6ff}
+  .sr-mini .mv{font-family:'Black Ops One',system-ui;font-size:clamp(15px,1.7vw,24px);line-height:1.15;margin:5px 0 3px;overflow-wrap:anywhere}
   .sr-mini .mv2{font-size:11px;color:#c9b6ff;margin-top:4px;white-space:nowrap}.sr-mini .mv2 span{font-family:'Black Ops One',system-ui;font-size:16px;margin-right:3px}
-  .sr-mini .ms{font-size:10px;color:#c9b6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sr-mini .ms{font-size:clamp(8px,.75vw,10px);color:#c9b6ff;overflow-wrap:anywhere}
   .sr-mini .g{color:#7dff9a}.sr-mini .y{color:#ffd23d}
   @media (max-width:1180px){.sr-mini{grid-template-columns:repeat(2,1fr)}}
   .sr-rank{margin-bottom:14px;border-radius:10px;overflow:hidden;box-shadow:0 0 0 2px #7d3cff}
@@ -2419,7 +2415,7 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
 </style>
 <section class="sr-section" id="sessionResults">
  <div class="sr"><div class="sr-grid">
-  <div><span class="sr-sample" style="right:14px;top:-10px">SAMPLE DATA · PREVIEW</span><div class="sr-rank" id="srRankWrap"><canvas id="srRank" aria-label="Global meme coin rank leaderboard"></canvas></div><canvas class="sr-bpc" id="srStk" width="880" height="940" aria-label="Hourly stacks of USDT notes and $SCC coins on blueprint paper"></canvas></div>
+  <div><span class="sr-sample" style="right:14px;top:-10px">SAMPLE DATA · PREVIEW</span><div class="sr-rank" id="srRankWrap"><canvas id="srRank" aria-label="Global meme coin rank leaderboard"></canvas></div><div style="position:relative"><canvas class="sr-bpc" id="srStk" width="880" height="940" aria-label="Hourly stacks of USDT notes and $SCC coins on blueprint paper"></canvas><button class="sr-chart-rp" id="srChartReplay">&#8635; REPLAY</button></div></div>
   <div class="sr-bp" id="srSheet"><span class="sr-sample" style="right:14px;top:6px">SAMPLE DATA · PREVIEW</span>
    
    <h3>TODAY'S SESSION RESULTS</h3>
@@ -2427,7 +2423,7 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
    <div class="sr-ln"><span class="k">OPEN PRICE</span><span class="dots"></span><span class="v" data-k="open">—</span></div>
    <div class="sr-ln"><span class="k">CLOSE PRICE</span><span class="dots"></span><span class="v"><span data-k="close">—</span><span class="sr-tag" id="srPriceTag" hidden></span></span></div>
    <div class="sr-blk"><canvas id="srPlot" style="width:100%;height:110px;display:block"></canvas></div>
-   <div class="sr-blk sr-pierow" style="position:relative"><canvas id="srPie" style="width:100%;height:150px;display:block"></canvas><div class="sr-vol"><div class="vk">VOLUME GROWTH</div><div class="vv" data-m="vol">&mdash;</div><div class="vs"><span id="srVolTag" class="sr-tag" hidden></span> <span class="vsub">24H VOLUME</span></div><canvas id="srVolBars" style="width:100%;height:46px;display:block;margin-top:6px"></canvas></div><div class="sr-stamp" id="srStamp" hidden></div></div>
+   <div class="sr-blk sr-pierow" style="position:relative"><canvas id="srPie" style="width:100%;height:150px;display:block"></canvas><div class="sr-vol"><div class="vk">TOTAL $SCC TRADED TODAY</div><div class="vv"><span data-m="vol">&mdash;</span><small class="vu"> $SCC</small></div><div class="vs"><span id="srVolTag" class="sr-tag" hidden></span> <span class="vsub">LAST 7 DAYS</span></div><canvas id="srVolBars" style="width:100%;height:46px;display:block;margin-top:6px"></canvas></div><div class="sr-stamp" id="srStamp" hidden></div></div>
    <div class="sr-blk sr-mini">
     <div class="m"><div class="mk">&#127942; TOP PAYOUT</div><div class="mv y" data-m="big">&mdash;</div><div class="ms" id="srBigW">&nbsp;</div></div>
     <div class="m"><div class="mk">AVG PER HOLDER</div><div class="mv g" data-m="avg">&mdash;</div><div class="ms">earned today</div></div>
@@ -2456,8 +2452,8 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
         "rank":57, "rankYesterday":60, "rankBest":57,  // global meme coin rank (rankBest optional)
         "biggestPayout":{"amount":1284,"wallet":"0x92A1…0FA61"}, "avgPerHolder":1.12,
         "payoutsMade":1284, "holdersUsdt":25560, "holdersScc":15660,
-        "volume24h":184840, "volumeYesterday":156400,
-        "volume7d":[98200,112400,105300,131000,140600,156400,184840],  // last 7 days, today last
+        "sccTraded":18420000, "sccTradedYesterday":15600000,           // number of $SCC coins traded
+        "sccTraded7d":[9800000,11200000,10500000,13100000,14000000,15600000,18420000],  // last 7 days, today last
         "rankNeighbors":[{"rank":55,"name":"Coin A"},{"rank":56,"name":"Coin B"},{"rank":58,"name":"Coin C"},{"rank":59,"name":"Coin D"}],  // optional: names around you
         "sccMovedUsd":39310,                       // optional: USD value of the $SCC moved (otherwise sccMoved x close)
         "usdtShare":0.62,                        // 62% cashed out, 38% reinvested
@@ -2490,7 +2486,7 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
  /* keep the chart exactly as tall as the results sheet when they sit side by side */
  function syncH(){var sh=document.getElementById('srSheet'),cw=cv.clientWidth;if(!sh||!cw)return;
   var rw=document.getElementById('srRankWrap'),rh=rw?rw.offsetHeight+14:0,side=Math.abs(sh.getBoundingClientRect().top-cv.parentNode.getBoundingClientRect().top)<4,nh=side?Math.max(280,Math.round((sh.offsetHeight-rh)*W/cw)):470;
-  if(nh!==H){H=nh;cv.height=H*2;c.setTransform(2,0,0,2,0,0)}}
+  if(nh!==H){H=nh;cv.height=H*2;c.setTransform(2,0,0,2,0,0);needDraw=true}}
  if(window.ResizeObserver)new ResizeObserver(syncH).observe(document.getElementById('srSheet'));window.addEventListener('resize',syncH);
  function L(x1,y1,x2,y2,w,col,dash){c.strokeStyle=col;c.lineWidth=w;c.setLineDash(dash||[]);c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke();c.setLineDash([])}
  function T(s,x,y,col,size,al){c.fillStyle=col;c.font=(size||10)+'px '+FM;c.textAlign=al||'center';c.textBaseline='middle';c.fillText(s,x,y)}
@@ -2508,25 +2504,32 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
  var P=[],drops=[],last=0,t0=null,flags={};
  function paper(){c.fillStyle=BG;c.fillRect(0,0,W,H);c.lineWidth=1;c.strokeStyle='rgba(255,255,255,.05)';for(var x=0;x<W;x+=10){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke()}for(var y=0;y<H;y+=10){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()}c.strokeStyle='rgba(255,255,255,.12)';for(x=0;x<W;x+=50){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke()}for(y=0;y<H;y+=50){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()}
   c.strokeStyle='#7d3cff';c.lineWidth=2;c.strokeRect(8,8,W-16,H-16);c.strokeStyle='rgba(255,210,61,.55)';c.lineWidth=.8;c.strokeRect(13,13,W-26,H-26)}
+ var needDraw=true;
  function frame(ms){
   if(!visible){last=ms/1000;requestAnimationFrame(frame);return}
-  var t=ms/1000,dt=Math.min(.04,t-last||.016);last=t;if(t0===null)t0=t;var cy=(t-t0)%10,base=H-60,x0=52,live=!!D,SH=base-165;
+  if(t0!==null&&ms/1000-t0>11.2&&!P.length&&!drops.length&&!needDraw){requestAnimationFrame(frame);return}needDraw=false;
+  var t=ms/1000,dt=Math.min(.04,t-last||.016);last=t;if(t0===null)t0=t;var cy=Math.min(11,t-t0),base=H-60,x0=52,live=!!D,SH=base-165;
   var HS=hours(),tot=HS.map(function(h){return h.usdt+h.scc}),mx=Math.max.apply(null,tot),peak=tot.indexOf(mx);
+  var others=tot.filter(function(v,i){return i!==peak}).sort(function(a,b){return a-b}),oMax=others[others.length-1]||mx,med=others[Math.floor(others.length/2)]||mx;
+  var whale=live&&mx>2.2*med&&mx>1.6*oMax,stP=.4+peak*.32,ev=whale?Math.max(0,Math.min(1,(cy-stP)/1.6)):0,e2=1-Math.pow(1-ev,3);
+  if(whale)mx=Math.max(oMax*1.05,tot[peak]*e2);  /* when the big hour is plotted it shoots up and the chart rescales right then */
   paper();T('FIG. 1 — PAYOUTS, HOUR BY HOUR',W/2,30,GOLD,12);
   L(x0-10,base,W-22,base,1.6,INK);L(x0-10,base,x0-10,130,1.6,INK);
   for(var k=0;k<=4;k++){var gy=base-k*SH/4;L(x0-14,gy,x0-10,gy,1,INK);L(x0-10,gy,W-22,gy,1,'rgba(234,242,255,.18)',[2,4]);if(live)T('$'+(mx/1000*k/4*1.03).toFixed(1)+'K',x0-18,gy,CY,9,'right')}
-  var su=0,ss=0;
-  HS.forEach(function(hh,i){var v=tot[i],x=x0+8+i*30,start=.4+i*.32,f=Math.max(0,Math.min(1,(cy-start)/.6)),down=cy>9?Math.max(0,1-(cy-9)/.7):1,e=(1-Math.pow(1-f,3))*down,h=(v/mx)*SH*e,hu=h*(hh.usdt/v);su+=hh.usdt*f*down;ss+=hh.scc*f*down;
-   var nu=Math.floor(hu/6);for(var q=0;q<nu;q++){c.fillStyle=q%2?'#2e9b48':'#3dc650';c.fillRect(x-11,base-6-q*6,22,6);c.fillStyle='rgba(11,61,28,.6)';c.fillRect(x-11,base-1-q*6,22,1)}
+  var su=0,ss=0,whTop=base;
+  HS.forEach(function(hh,i){var v=tot[i],x=x0+8+i*30,start=.4+i*.32,f=Math.max(0,Math.min(1,(cy-start)/(whale&&i===peak?1.6:.6))),down=1,e=(1-Math.pow(1-f,3))*down,h=(v/mx)*SH*e,hu=h*(hh.usdt/(hh.usdt+hh.scc));su+=hh.usdt*f*down;ss+=hh.scc*f*down;
+   var nu=Math.floor(hu/6);if(h>8&&nu<1)nu=1;for(var q=0;q<nu;q++){c.fillStyle=q%2?'#2e9b48':'#3dc650';c.fillRect(x-11,base-6-q*6,22,6);c.fillStyle='rgba(11,61,28,.6)';c.fillRect(x-11,base-1-q*6,22,1)}
    if(nu){c.fillStyle=GOLD;c.fillRect(x-2.5,base-nu*6,5,nu*6);c.strokeStyle=GRN;c.lineWidth=1.2;c.strokeRect(x-11,base-nu*6,22,nu*6)}
-   var ns=Math.floor((h-hu)/4),y0=base-nu*6;for(q=0;q<ns;q++)coinEdge(x,y0-2-q*4,12,q);if(ns)coinTop(x,y0-6-ns*4,12);
+   var ns=Math.floor((h-hu)/4),y0=base-nu*6;if(h>1&&ns<1)ns=1;for(q=0;q<ns;q++)coinEdge(x,y0-2-q*4,12,q);if(ns)coinTop(x,y0-2-ns*4,12);
    var top=y0-ns*4-14;
-   if(f>0&&f<1&&Math.random()<dt*7&&down>.9)drops.push({x:x,y:110,top:top,vy:0,ph:Math.random()*6});
-   if(live&&f>.6&&down>.5){c.globalAlpha=Math.min(1,(f-.6)*3);L(x,top-2,x,top-12,1,CY);T((v/1000).toFixed(1)+'K',x,top-19,INK,9);c.globalAlpha=1}
-   if(i===peak&&f>=1&&down>.5){c.strokeStyle=GOLD;c.lineWidth=1.4;c.setLineDash([3,3]);c.beginPath();c.arc(x,top-20,15,0,7);c.stroke();c.setLineDash([]);T('PEAK HOUR',x+19,top-20,GOLD,9,'left')}
+   if(live&&f>.6&&down>.5&&!(whale&&i===peak&&ev>0)){c.globalAlpha=Math.min(1,(f-.6)*3);L(x,top-2,x,top-12,1,CY);T((v/1000).toFixed(1)+'K',x,top-19,INK,9);c.globalAlpha=1}
+   if(i===peak&&whale)whTop=top;
+   if(i===peak&&!whale&&f>=1&&down>.5){c.strokeStyle=GOLD;c.lineWidth=1.4;c.setLineDash([3,3]);c.beginPath();c.arc(x,top-20,15,0,7);c.stroke();c.setLineDash([]);T('PEAK HOUR',x+19,top-20,GOLD,9,'left')}
    L(x,base,x,base+5,1,INK);if(i%2===0)T(('0'+i*2).slice(-2)+'h',x,base+14,CY,9);
-   if(f>=1&&!flags['b'+i]){flags['b'+i]=1;for(q=0;q<4;q++){var a=-Math.PI/2+(Math.random()-.5)*2,s=120+Math.random()*120;P.push({x:x,y:top,vx:Math.cos(a)*s,vy:Math.sin(a)*s,rot:0,vr:(Math.random()-.5)*8,ph:Math.random()*6,life:0,coin:Math.random()<.45})}}
-   if(cy<.3)flags['b'+i]=0});
+   if(cy<.3){flags['b'+i]=0;flags.whale=0}});
+  if(whale&&ev>0){var wx=x0+8+peak*30;   var amt=Math.round(tot[peak]*e2);if(ev<1){c.save();c.font="20px 'Black Ops One',Impact,sans-serif";c.textAlign='center';c.textBaseline='middle';c.lineWidth=4;c.strokeStyle='#0d0420';c.strokeText('$'+amt.toLocaleString('en-US'),wx,Math.max(60,whTop-12));c.fillStyle=GOLD;c.fillText('$'+amt.toLocaleString('en-US'),wx,Math.max(60,whTop-12));c.restore()}
+   else{var lx=wx<W/2?wx+30:wx-160,ly=Math.max(118,whTop-6);c.globalAlpha=Math.min(1,(cy-stP-1.6)*3);c.strokeStyle=GOLD;c.lineWidth=1.5;c.beginPath();c.moveTo(wx+(lx>wx?12:-12),whTop+4);c.lineTo(lx>wx?lx:lx+130,ly+14);c.stroke();
+   c.fillStyle='rgba(13,4,32,.92)';c.fillRect(lx,ly-4,130,36);c.strokeStyle=GOLD;c.strokeRect(lx,ly-4,130,36);T('\uD83D\uDD25 TODAY\'S PEAK',lx+65,ly+7,GOLD,11);T('$'+amt.toLocaleString('en-US')+' PAID AT '+('0'+peak*2).slice(-2)+'H',lx+65,ly+22,GRN,10);c.globalAlpha=1}}
   drops=drops.filter(function(d){d.vy+=900*dt;d.y+=d.vy*dt;d.ph+=dt*8;if(d.y>=d.top)return false;coinSpin(d.x,d.y,10,d.ph);return true});
   P.forEach(function(p){p.life+=dt;p.vy+=480*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;p.ph+=dt*8});P=P.filter(function(p){return p.life<1.6});
   P.forEach(function(p){var a=p.life>1.1?1-(p.life-1.1)/.5:1;p.coin?coinSpin(p.x,p.y,10,p.ph,a):note(p.x,p.y,p.rot,.55,Math.cos(p.ph),a)});
@@ -2548,13 +2551,17 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
   g.beginPath();for(k=0;k<n;k++)k?g.lineTo(X(k),Y(S[k])):g.moveTo(X(k),Y(S[k]));g.lineTo(X(n-1),y0);g.lineTo(x0,y0);g.closePath();var gr=g.createLinearGradient(0,y1,0,y0);gr.addColorStop(0,'rgba(125,255,154,.35)');gr.addColorStop(1,'rgba(125,255,154,0)');g.fillStyle=gr;g.fill();
   g.strokeStyle=GRN;g.lineWidth=2;g.beginPath();for(k=0;k<n;k++)k?g.lineTo(X(k),Y(S[k])):g.moveTo(X(k),Y(S[k]));g.stroke();
   if(prog>=1){g.fillStyle=GOLD;var xe=x1,ye=Y(S[S.length-1]);g.beginPath();g.arc(xe,ye,4,0,7);g.fill();g.textAlign='right';g.fillText('CLOSE',xe-8,ye<y1+14?ye+14:ye-6)}}
- function pie(prog){var a=sized('srPie',150),g=a[0],w=a[1],h=a[2],cx=78,cy=75,r=58,s=-Math.PI/2,u=D?(D.usdtShare!=null?D.usdtShare:.62):null;
-  if(u==null){g.strokeStyle=CY;g.setLineDash([4,4]);g.lineWidth=1.4;g.beginPath();g.arc(cx,cy,r,0,7);g.stroke();g.setLineDash([]);g.fillStyle=GOLD;g.font='11px '+FM;g.textAlign='left';g.fillText('USDT / $SCC SPLIT AT LAUNCH',cx+r+16,cy+4);return}
+ function pie(prog){var a=sized('srPie',150),g=a[0],w=a[1],h=a[2],r=Math.max(30,Math.min(58,h/2-16,w*.2)),cx=r+14,cy=h/2,s=-Math.PI/2,u=D?(D.usdtShare!=null?D.usdtShare:.62):null;
+  /* shrink text until it fits the space to the right of the pie, so nothing is ever cut off */
+  var fit=function(txt,max,size,min){g.font=size+'px '+FM;while(size>min&&g.measureText(txt).width>max){size-=.5;g.font=size+'px '+FM}return size};
+  if(u==null){g.strokeStyle=CY;g.setLineDash([4,4]);g.lineWidth=1.4;g.beginPath();g.arc(cx,cy,r,0,7);g.stroke();g.setLineDash([]);var mxw=w-(cx+r+12)-4,fs=fit('USDT / $SCC SPLIT AT LAUNCH',mxw,11,7);g.fillStyle=GOLD;g.font=fs+'px '+FM;g.textAlign='left';g.fillText('USDT / $SCC SPLIT AT LAUNCH',cx+r+12,cy+4);return}
   var A=u*Math.PI*2*prog,B=(1-u)*Math.PI*2*prog;
   g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r,s,s+A);g.closePath();g.fillStyle='rgba(61,198,80,.45)';g.fill();g.strokeStyle=GRN;g.lineWidth=1.6;g.stroke();
   g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r,s+A,s+A+B);g.closePath();g.fillStyle='rgba(255,210,61,.25)';g.fill();g.strokeStyle=GOLD;g.stroke();
   g.save();g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r,s+A,s+A+B);g.closePath();g.clip();g.strokeStyle=GOLD;g.globalAlpha=.8;g.lineWidth=1;for(var k=-160;k<160;k+=6){g.beginPath();g.moveTo(cx+k,cy-r);g.lineTo(cx+k+r*2,cy+r);g.stroke()}g.restore();
-  if(prog>=1){[[s+A/2,'USDT CASH OUT',Math.round(u*100)+'%',GRN],[s+A+B/2,'REINVESTED $SCC',Math.round((1-u)*100)+'%',GOLD]].forEach(function(o){var px=cx+Math.cos(o[0])*r,py=cy+Math.sin(o[0])*r,ex=cx+Math.cos(o[0])*(r+16),ey=cy+Math.sin(o[0])*(r+16),lx=Math.max(ex+14,cx+r+34);g.strokeStyle=o[3];g.fillStyle=o[3];g.beginPath();g.moveTo(px,py);g.lineTo(ex,ey);g.lineTo(lx-4,ey);g.stroke();g.textAlign='left';g.font='10px '+FM;g.fillText(o[1],lx,ey-2);g.font='16px '+FM;g.fillText(o[2],lx,ey+15)})}}
+  if(prog>=1){var lx=cx+r+22,mxw=Math.max(20,w-lx-2),f1=Math.min(fit('USDT CASH OUT',mxw,10,6),fit('REINVESTED $SCC',mxw,10,6)),f2=fit('100%',mxw,16,9);
+   [[s+A/2,'USDT CASH OUT',Math.round(u*100)+'%',GRN],[s+A+B/2,'REINVESTED $SCC',Math.round((1-u)*100)+'%',GOLD]].forEach(function(o){var px=cx+Math.cos(o[0])*r,py=cy+Math.sin(o[0])*r,ex=cx+Math.cos(o[0])*(r+10),ey=Math.max(f1+4,Math.min(h-f2-6,cy+Math.sin(o[0])*(r+10)));
+    g.strokeStyle=o[3];g.fillStyle=o[3];g.lineWidth=1.2;g.beginPath();g.moveTo(px,py);g.lineTo(ex,ey);g.lineTo(lx-4,ey);g.stroke();g.textAlign='left';g.textBaseline='alphabetic';g.font=f1+'px '+FM;g.fillText(o[1],lx,ey-2);g.font=f2+'px '+FM;g.fillText(o[2],lx,ey+f2)})}}
  function fmtP(v){return '$'+Number(v).toFixed(6)}function fmtD(v){return '$'+Math.round(v).toLocaleString('en-US')}function fmtI(v){return Math.round(v).toLocaleString('en-US')}
  function tally(el,n,f){var s0=performance.now();(function s(){var p=Math.min(1,(performance.now()-s0)/900);el.textContent=f(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(s)})()}
  function anim(fn,ms){var s0=performance.now();(function s(){var p=Math.min(1,(performance.now()-s0)/ms);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(s)})()}
@@ -2566,18 +2573,18 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
    if(e.querySelector('#srPlot'))anim(plot,1200);if(e.querySelector('#srPie'))anim(pie,1300)},500+i*450)});
   if(D)setTimeout(function(){st.classList.add('in')},500+els.length*450+700)}
  /* ---------- GLOBAL MEME COIN RANK: leaderboard climb ---------- */
- function volBars(p){var el=document.getElementById('srVolBars');if(!el)return;var a=sized('srVolBars',46),g=a[0],w=a[1],h=a[2],V=D&&D.volume7d;g.clearRect(0,0,w,h);
+ function volBars(p){var el=document.getElementById('srVolBars');if(!el)return;var a=sized('srVolBars',46),g=a[0],w=a[1],h=a[2],V=D&&D.sccTraded7d;g.clearRect(0,0,w,h);
   if(!V||!V.length){g.fillStyle=CY;g.font='10px '+FM;g.textAlign='center';g.fillText('7-DAY CHART AT LAUNCH',w/2,h/2);return}
   var n=V.length,mx=Math.max.apply(null,V),bw=(w-(n-1)*5)/n,days=['M','T','W','T','F','S','S'],dn=D.volumeDays||null;
-  for(var i=0;i<n;i++){var bh=(V[i]/mx)*(h-14)*p,x=i*(bw+5),last=i===n-1;g.fillStyle=last?'#7dff9a':'rgba(190,160,255,.55)';g.fillRect(x,h-12-bh,bw,bh);if(last){g.strokeStyle='#ffd23d';g.lineWidth=1.5;g.strokeRect(x+.5,h-12-bh+.5,bw-1,bh-1)}
-   g.fillStyle=last?'#ffd23d':CY;g.font='9px '+FM;g.textAlign='center';g.fillText(last?'TODAY':(dn?dn[i]:''),x+bw/2,h-2)}}
+  for(var i=0;i<n;i++){var bh=(V[i]/mx)*(h-14)*p,x=i*(bw+5),last=i===n-1;g.fillStyle=last?'#7dff9a':'#ffd23d';g.fillRect(x,h-12-bh,bw,bh);if(last){g.strokeStyle='#2fbf5c';g.lineWidth=1.5;g.strokeRect(x+.5,h-12-bh+.5,bw-1,bh-1)}
+   g.fillStyle=last?'#7dff9a':CY;g.font='9px '+FM;g.textAlign=last?'right':'center';g.fillText(last?'TODAY':(dn?dn[i]:''),last?w:x+bw/2,h-2)}}
  function minis(){var q=function(k){return sec.querySelector('[data-m="'+k+'"]')};
   var set=function(k,v,f){var el=q(k);if(!el)return;if(v==null){el.textContent='\u2014';return}tally(el,v,f)};
   var bp=D&&D.biggestPayout||{};set('big',bp.amount,fmtD);document.getElementById('srBigW').textContent=bp.wallet?'to '+bp.wallet:'\u00a0';
   set('avg',D&&D.avgPerHolder,function(v){return '$'+v.toFixed(2)});
   set('pay',D&&D.payoutsMade,fmtI);var pe=document.getElementById('srPayEvery');pe.textContent=D&&D.payoutsMade?'\u2248 one every '+Math.max(1,Math.round(86400/D.payoutsMade))+' sec':'\u00a0';
   set('hu',D&&D.holdersUsdt,fmtI);set('hs',D&&D.holdersScc,fmtI);
-  set('vol',D&&D.volume24h,fmtD);var vt=document.getElementById('srVolTag');if(D&&D.volume24h!=null&&D.volumeYesterday){var gr=(D.volume24h/D.volumeYesterday-1)*100;vt.hidden=false;vt.className='sr-tag'+(gr<0?' down':'');vt.textContent=(gr>=0?'\u25B2 ':'\u25BC ')+Math.abs(gr).toFixed(1)+'% VS YDAY'}else vt.hidden=true;
+  set('vol',D&&D.sccTraded,fmtI);var vt=document.getElementById('srVolTag');if(D&&D.sccTraded!=null&&D.sccTradedYesterday){var gr=(D.sccTraded/D.sccTradedYesterday-1)*100;vt.hidden=false;vt.className='sr-tag'+(gr<0?' down':'');vt.textContent=(gr>=0?'\u25B2 ':'\u25BC ')+Math.abs(gr).toFixed(1)+'% VS YDAY'}else vt.hidden=true;
   anim(volBars,1200)}
  function mvTxt(d){if(d===0)return '= NO CHANGE SINCE YESTERDAY';var n=Math.abs(d);return (d>0?'\u25B2 MOVED UP ':'\u25BC MOVED DOWN ')+n+(n===1?' SPOT':' SPOTS')}
  function arrow(g,x,y,up,k,sc){sc=(sc||1)*(.6+.4*k);g.save();g.globalAlpha=k;g.translate(x,y+(up?-1:1)*(1-k)*10);g.scale(sc,up?sc:-sc);
@@ -2614,14 +2621,15 @@ background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),line
   (function st(){var p=Math.min(1,(performance.now()-s0)/1800),e=1-Math.pow(1-p,3);el.textContent='$'+Math.round(to*e).toLocaleString('en-US');
     if(p<1)requestAnimationFrame(st);else{el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}})()}
  document.getElementById('srReplay').onclick=function(){play()};
+ document.getElementById('srChartReplay').onclick=function(){t0=null;P=[];drops=[];flags={};needDraw=true};
  window.addEventListener('resize',function(){drawRank(1);volBars(1)});
- window.setSessionResults=function(d){if(!d)return;D=d;sec.classList.remove('no-data');sec.classList.toggle('is-sample',!!d.sample);if(visible){played=true;play()}};
+ window.setSessionResults=function(d){if(!d)return;D=d;window.__sccSession=d;sec.classList.remove('no-data');sec.classList.toggle('is-sample',!!d.sample);if(visible){played=true;play()}};
  new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible&&!played){played=true;play()}},{threshold:.2}).observe(sec);
  syncH();requestAnimationFrame(frame);
  var demo=SHOW_SAMPLE||location.protocol==='file:'||/[?&]demo\b/.test(location.search);
  if(SESSION_URL){fetch(SESSION_URL,{cache:'no-store'}).then(function(r){return r.json()}).then(window.setSessionResults).catch(function(){sec.classList.add('no-data')})}
  else if(demo){var pr=[],p=.002011;for(var i=0;i<48;i++){p*=1+(Math.random()-.44)*.014;pr.push(p)}pr[47]=.002134;var raw=[1.2,.8,.6,.9,1.6,2.4,3.1,2.8,3.6,4.2,3.3,2.7],sp=[.7,.66,.6,.64,.62,.58,.61,.65,.6,.57,.63,.68],sum=raw.reduce(function(a,b){return a+b},0);
-  window.setSessionResults({sample:true,volume24h:184840,volumeYesterday:156400,volume7d:[98200,112400,105300,131000,140600,156400,184840],biggestPayout:{amount:1284,wallet:'0x92A1\u20260FA61'},avgPerHolder:1.12,payoutsMade:1284,holdersUsdt:25560,holdersScc:15660,rank:57,rankYesterday:60,rankBest:57,open:.002011,close:.002134,royalties:46210,royaltiesYesterday:41110,holders:41220,totalHolders:52340,holdersChange:1204,sccMoved:18420000,usdtShare:.62,prices:pr,hours:raw.map(function(v,i){var tt=v/sum*46210;return{usdt:tt*sp[i],scc:tt*(1-sp[i])}})})}
+  window.setSessionResults({sample:true,sccTraded:18420000,sccTradedYesterday:15600000,sccTraded7d:[9800000,11200000,10500000,13100000,14000000,15600000,18420000],biggestPayout:{amount:1284,wallet:'0x92A1\u20260FA61'},avgPerHolder:1.12,payoutsMade:1284,holdersUsdt:25560,holdersScc:15660,rank:57,rankYesterday:60,rankBest:57,open:.002011,close:.002134,royalties:46210,royaltiesYesterday:41110,holders:41220,totalHolders:52340,holdersChange:1204,sccMoved:18420000,usdtShare:.62,prices:pr,hours:raw.map(function(v,i){var so=sum-raw[6],tt=i===6?19800:v/so*(46210-19800);return{usdt:tt*sp[i],scc:tt*(1-sp[i])}})})}
  else sec.classList.add('no-data');
 })();
 </script>
@@ -7915,5 +7923,113 @@ window.setTickerPrice=function(price,chg){var el=document.getElementById("sccTic
   var p=Number(price),txt="$"+(p<0.01?p.toFixed(6):p<1?p.toFixed(4):p.toFixed(2));
   el.innerHTML=txt+' <span class="u">USDT / $SCC</span>'+(chg==null?"":' <span class="chg">'+(up?"\u25B2 ":"\u25BC ")+Math.abs(chg).toFixed(2)+"%</span>")};
 </script>
+<!-- ============================================================
+     QUICK TRADE POP-UP — opens from the "Buy $SCC" corner coin
+     ============================================================ -->
+<style>
+  .qt-ov{position:fixed;inset:0;z-index:10000;background:rgba(5,8,20,.65);display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px)}
+  .qt-ov.open{display:flex;animation:qtFade .2s ease}
+  @keyframes qtFade{from{opacity:0}to{opacity:1}}
+  .qt{position:relative;width:100%;max-width:360px;max-height:calc(100vh - 32px);overflow:auto;background:#1d4fd8;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:20px 20px;border:3px solid #0a0a0a;border-radius:14px;padding:14px;color:#fff;font-family:'Share Tech Mono',ui-monospace,monospace;box-shadow:6px 6px 0 #0a0a0a;animation:qtPop .3s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes qtPop{from{transform:scale(.85)}to{transform:none}}
+  .qt-x{position:absolute;top:8px;right:10px;background:none;border:0;color:#fff;font-size:22px;line-height:1;cursor:pointer}
+  .qt-hd{display:flex;justify-content:space-between;align-items:center;margin:0 26px 10px 0}
+  .qt-ttl{font-family:'Black Ops One',Impact,sans-serif;font-size:18px;color:#ffd23d;text-shadow:2px 2px 0 #0a0a0a}
+  .qt-cw{font-family:inherit;font-size:11px;background:#ffd23d;color:#0a0a0a;border:2px solid #0a0a0a;border-radius:8px;padding:6px 10px;box-shadow:2px 2px 0 #0a0a0a;font-weight:700;cursor:pointer}
+  .qt-cw.on{background:#0a0a0a;color:#86ed5a;box-shadow:none}
+  .qt-wal{background:rgba(0,0,0,.28);border:2px solid #0a0a0a;border-radius:10px;padding:10px;margin-bottom:10px}
+  .qt-wal .k{font-size:10px;letter-spacing:.14em;color:#cfe0ff}
+  .qt-wal .off{font-size:12px;color:#cfe0ff;text-align:center;padding:8px 0}
+  .qt-g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+  .qt-it{background:rgba(0,0,0,.25);border-radius:8px;padding:7px 8px}
+  .qt-it .l{font-size:10px;color:#cfe0ff}.qt-it .v{font-family:'Black Ops One',Impact,sans-serif;font-size:18px;margin-top:2px}.qt-it .s{font-size:10px;color:#cfe0ff}
+  .qt-tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:7px;border-top:1px dashed rgba(207,224,255,.5);font-size:11px;color:#cfe0ff}
+  .qt-tot b{font-family:'Black Ops One',Impact,sans-serif;font-size:20px;color:#86ed5a;font-weight:400}
+  .qt-px{display:flex;align-items:baseline;gap:8px}.qt-px b{font-size:20px;font-weight:400}
+  .qt-chg{font-size:11px;padding:2px 6px;border-radius:3px;background:#2fbf5c;color:#062a12;font-weight:700}.qt-chg.down{background:#ff5a4d;color:#2a0806}
+  .qt-tabs{display:grid;grid-template-columns:1fr 1fr;border:2px solid #0a0a0a;border-radius:8px;overflow:hidden;margin-bottom:10px}
+  .qt-tabs button{font-family:inherit;border:0;text-align:center;padding:7px 0;font-size:12px;letter-spacing:.12em;cursor:pointer;color:#cfe0ff;background:rgba(0,0,0,.2)}
+  .qt-tabs .on.b{background:#2fbf5c;color:#062a12;font-weight:700}.qt-tabs .on.s{background:#ff5a4d;color:#2a0806;font-weight:700}
+  .qt-fld{background:rgba(0,0,0,.25);border:2px solid #0a0a0a;border-radius:8px;padding:8px 10px;margin-bottom:8px}
+  .qt-lb{font-size:10px;letter-spacing:.12em;color:#cfe0ff;display:flex;justify-content:space-between}
+  .qt-row{display:flex;align-items:center;gap:8px;margin-top:4px}
+  .qt-row input{font-family:inherit;flex:1;font-size:20px;min-width:0;background:none;border:0;color:#fff;outline:none}
+  .qt-row .tok{font-size:12px;color:#ffd23d}.qt-row .o{flex:1;font-size:20px;color:#86ed5a}
+  .qt-chips{display:flex;gap:6px;margin:-2px 0 8px}.qt-chips button{font-family:inherit;font-size:10px;border:1.5px solid #0a0a0a;background:rgba(0,0,0,.2);border-radius:999px;padding:2px 9px;color:#cfe0ff;cursor:pointer}
+  .qt-note{font-size:10px;color:#cfe0ff;line-height:1.5;margin-bottom:10px}
+  .qt-go{display:block;width:100%;text-align:center;font-family:'Black Ops One',Impact,sans-serif;font-size:15px;padding:10px 0;border:2.5px solid #0a0a0a;border-radius:10px;box-shadow:3px 3px 0 #0a0a0a;background:#3a62c8;color:#cfe0ff;cursor:not-allowed}
+  .qt-full{display:block;text-align:center;margin-top:10px;font-size:12px;color:#ffd23d;text-decoration:none;border-top:1px dashed rgba(207,224,255,.5);padding-top:10px}
+  .qt-full small{display:block;color:#cfe0ff;font-size:10px;margin-top:3px}
+  .qt-msg{font-size:11px;color:#ffd23d;text-align:center;min-height:14px;margin-top:6px}
+</style>
+<div class="qt-ov" id="qtOv" role="dialog" aria-modal="true" aria-label="Quick trade">
+ <div class="qt">
+  <button class="qt-x" id="qtX" aria-label="Close">&times;</button>
+  <div class="qt-hd"><span class="qt-ttl">QUICK TRADE</span><button class="qt-cw" id="qtCw">CONNECT WALLET</button></div>
+  <div class="qt-wal"><div class="k">YOUR WALLET</div><div id="qtWal"><div class="off">Connect your wallet to see your balance</div></div></div>
+  <div class="qt-px"><b id="qtPx">$0.002</b><span class="qt-chg" id="qtChg" hidden></span><span style="font-size:10px;color:#cfe0ff">$SCC &middot; 24H</span></div>
+  <canvas id="qtCh" style="width:100%;height:64px;display:block;margin:6px 0 10px"></canvas>
+  <div class="qt-tabs"><button class="on b" id="qtB">BUY</button><button class="s" id="qtS">SELL</button></div>
+  <div class="qt-fld"><div class="qt-lb"><span>YOU PAY</span><span id="qtBal">BALANCE: &mdash;</span></div><div class="qt-row"><input id="qtAmt" inputmode="decimal" value="100" aria-label="Amount"><span class="tok" id="qtT1">USDT</span></div></div>
+  <div class="qt-chips" id="qtChips"><button>25%</button><button>50%</button><button>MAX</button></div>
+  <div class="qt-fld"><div class="qt-lb"><span>YOU GET (EST.)</span><span id="qtTax">AFTER 25% BUY TAX</span></div><div class="qt-row"><span class="o" id="qtOut">&mdash;</span><span class="tok" id="qtT2">$SCC</span></div></div>
+  <div class="qt-note" id="qtNote">The 25% buy tax is paid straight back to holders as royalties.</div>
+  <button class="qt-go" disabled>TRADING OPENS AT LAUNCH</button>
+  <div class="qt-msg" id="qtMsg"></div>
+  <a class="qt-full" href="#" id="qtFull">OPEN FULL TRADE CENTRE &rarr;<small>Charts, limit orders, history &amp; more</small></a>
+ </div>
+</div>
+<script>
+/* =================================================================
+   QUICK TRADE settings — fill these in at launch
+   ================================================================= */
+var QT={
+  SCC_TOKEN:'',      // $SCC contract address on opBNB
+  USDT_TOKEN:'',     // USDT contract address on opBNB
+  TRADE_CENTRE_URL:'#',  // link for "Open full Trade Centre"
+  CHAIN_ID:'0xcc'    // opBNB mainnet (204)
+};
+(function(){
+  var ov=document.getElementById('qtOv');if(!ov)return;
+  var price=0.002,chg=null,mode='buy',acct=null,bal={usdt:null,scc:null},SCC_DEC=12,USDT_DEC=18;
+  var $=function(id){return document.getElementById(id)},fm=function(v,d){return Number(v).toLocaleString('en-US',{minimumFractionDigits:d==null?2:d,maximumFractionDigits:d==null?2:d})};
+  $('qtFull').href=QT.TRADE_CENTRE_URL;
+  function open(e){if(e)e.preventDefault();ov.classList.add('open');draw();calc()}
+  function close(){ov.classList.remove('open')}
+  var fc=document.querySelector('.float-coin');if(fc)fc.addEventListener('click',open);
+  $('qtX').onclick=close;ov.addEventListener('click',function(e){if(e.target===ov)close()});document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+  /* price comes from the same plug-in as the top strip */
+  var oldTick=window.setTickerPrice;window.setTickerPrice=function(p,c){if(oldTick)oldTick(p,c);price=Number(p);chg=c;showPrice();calc();wallet()};
+  function showPrice(){$('qtPx').textContent='$'+(price<0.01?price.toFixed(6):price.toFixed(4));var c=$('qtChg');if(chg==null){c.hidden=true;return}c.hidden=false;c.className='qt-chg'+(chg<0?' down':'');c.textContent=(chg<0?'\u25BC ':'\u25B2 ')+Math.abs(chg).toFixed(2)+'%'}
+  function draw(){var cv=$('qtCh'),r=cv.getBoundingClientRect();if(!r.width)return;var d=Math.min(2,window.devicePixelRatio||1);cv.width=r.width*d;cv.height=64*d;var g=cv.getContext('2d');g.scale(d,d);var w=r.width,h=64;
+    var S=window.__sccSession&&window.__sccSession.prices;g.clearRect(0,0,w,h);
+    if(!S||S.length<2){g.fillStyle='#cfe0ff';g.font='11px "Share Tech Mono",monospace';g.textAlign='center';g.fillText('CHART GOES LIVE AT LAUNCH',w/2,h/2);return}
+    var lo=Math.min.apply(null,S),hi=Math.max.apply(null,S),X=function(i){return i/(S.length-1)*w},Y=function(v){return h-4-(v-lo)/((hi-lo)||1)*(h-10)},up=S[S.length-1]>=S[0],col=up?'#86ed5a':'#ff6b5e';
+    g.beginPath();S.forEach(function(v,i){i?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v))});g.lineTo(w,h);g.lineTo(0,h);g.closePath();g.globalAlpha=.25;g.fillStyle=col;g.fill();g.globalAlpha=1;
+    g.beginPath();S.forEach(function(v,i){i?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v))});g.strokeStyle=col;g.lineWidth=2;g.stroke()}
+  function calc(){var v=parseFloat($('qtAmt').value)||0;$('qtOut').textContent=v?(mode==='buy'?Math.floor(v/price*.75).toLocaleString('en-US'):'$'+fm(v*price*.98)):'\u2014'}
+  function showBal(){var b=mode==='buy'?bal.usdt:bal.scc;$('qtBal').textContent=acct&&b!=null?'BALANCE: '+(mode==='buy'?fm(b)+' USDT':fm(b,0)+' $SCC'):'BALANCE: \u2014'}
+  function wallet(){var el=$('qtWal');if(!acct){el.innerHTML='<div class="off">Connect your wallet to see your balance</div>';return}
+    if(bal.usdt==null&&bal.scc==null){el.innerHTML='<div class="off">Connected &middot; balances show at launch</div>';return}
+    var u=bal.usdt||0,s=bal.scc||0,sv=s*price;
+    el.innerHTML='<div class="qt-g2"><div class="qt-it"><div class="l">USDT</div><div class="v" style="color:#86ed5a">$'+fm(u)+'</div><div class="s">'+fm(u)+' USDT</div></div><div class="qt-it"><div class="l">$SCC</div><div class="v" style="color:#ffd23d">'+fm(s,0)+'</div><div class="s">&asymp; $'+fm(sv)+'</div></div></div><div class="qt-tot"><span>TOTAL VALUE</span><b>$'+fm(u+sv)+'</b></div>'}
+  function setMode(m){mode=m;$('qtB').classList.toggle('on',m==='buy');$('qtS').classList.toggle('on',m==='sell');$('qtT1').textContent=m==='buy'?'USDT':'$SCC';$('qtT2').textContent=m==='buy'?'$SCC':'USDT';
+    $('qtTax').textContent=m==='buy'?'AFTER 25% BUY TAX':'AFTER 2% SELL TAX';$('qtNote').textContent=m==='buy'?'The 25% buy tax is paid straight back to holders as royalties.':'Only a 2% sell tax. Selling is cheap, but holders keep earning.';$('qtAmt').value=m==='buy'?'100':'50000';showBal();calc()}
+  $('qtB').onclick=function(){setMode('buy')};$('qtS').onclick=function(){setMode('sell')};$('qtAmt').oninput=calc;
+  [].forEach.call($('qtChips').children,function(b,i){b.onclick=function(){var v=mode==='buy'?bal.usdt:bal.scc;if(v==null)return;$('qtAmt').value=Math.floor(v*[.25,.5,1][i]);calc()}});
+  /* read a token balance straight from the wallet's network (read-only) */
+  function balanceOf(token,dec){if(!token||!acct||!window.ethereum)return Promise.resolve(null);
+    return window.ethereum.request({method:'eth_call',params:[{to:token,data:'0x70a08231'+acct.slice(2).toLowerCase().padStart(64,'0')},'latest']}).then(function(hx){return Number(BigInt(hx))/Math.pow(10,dec)}).catch(function(){return null})}
+  function refresh(){Promise.all([balanceOf(QT.USDT_TOKEN,USDT_DEC),balanceOf(QT.SCC_TOKEN,SCC_DEC)]).then(function(r){bal.usdt=r[0];bal.scc=r[1];wallet();showBal()})}
+  $('qtCw').onclick=function(){var b=this;
+    if(acct){acct=null;bal={usdt:null,scc:null};b.classList.remove('on');b.textContent='CONNECT WALLET';wallet();showBal();return}
+    if(!window.ethereum){$('qtMsg').innerHTML='No wallet found. <a href="https://metamask.io" target="_blank" rel="noopener" style="color:#fff">Get MetaMask</a>';return}
+    window.ethereum.request({method:'eth_requestAccounts'}).then(function(a){acct=a[0];b.classList.add('on');b.textContent='\u25CF '+acct.slice(0,6)+'\u2026'+acct.slice(-4);$('qtMsg').textContent='';
+      return window.ethereum.request({method:'wallet_switchEthereumChain',params:[{chainId:QT.CHAIN_ID}]}).catch(function(){})}).then(refresh).catch(function(){$('qtMsg').textContent='Wallet connection was cancelled.'})};
+  window.addEventListener('resize',function(){if(ov.classList.contains('open'))draw()});
+  setMode('buy');
+})();
+</script>
+
 </body>
 </html>
