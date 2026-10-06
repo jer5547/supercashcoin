@@ -2164,7 +2164,13 @@
 </style>
 <style>
   /* ICO strip: deep navy blueprint grid */
-  .top-banner{background:#0b2350 !important;background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(159,208,255,.14) 1px,transparent 1px) !important;background-size:10px 10px !important;border-top:1px solid rgba(159,208,255,.5) !important;border-bottom:1px solid rgba(159,208,255,.5) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06) !important;}
+  .top-banner{background-position: 0% 0%;
+background-image:linear-gradient(rgba(159,208,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(159,208,255,.14) 1px,transparent 1px) !important !important;
+	background-size:10px 10px !important;border-top:1px solid rgba(159,208,255,.5) !important;border-bottom:1px solid rgba(159,208,255,.5) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06) !important;
+	background-color: #0b2350 !important;
+	background-repeat: repeat !important;
+	background-attachment: scroll !important;
+}
 </style>
 <style>
   /* Pile positions: big cash pile left of the mascot, $SCC coin stacks right of the mascot */
@@ -2230,7 +2236,27 @@
 <style>
   /* Money floor: random-height cash + $SCC coin stacks across the full width (replaces the two piles) */
   .hero-new .hero-cash,.hero-new .hero-coins{display:none !important}
+  .hero-new .hero-left{position:relative;z-index:45}
   .hero-money-band{position:absolute;left:0;bottom:-4px;width:100%;z-index:40;pointer-events:none;filter:drop-shadow(0 -4px 10px rgba(0,0,0,.25));animation:heroCashIn .8s cubic-bezier(.34,1.56,.64,1) .3s both}
+</style>
+<style>
+  /* ===== Landing: live all-time royalties odometer ===== */
+  .hero-roy{position:relative;margin:4px 0 22px;max-width:560px}
+  .hero-roy-l{font-family:'Luckiest Guy',Impact,sans-serif;font-size:clamp(13px,1.3vw,17px);letter-spacing:.06em;color:#ffd23d;text-shadow:2px 2px 0 #0a0a0a}
+  .hero-roy-odo{display:flex;align-items:flex-end;gap:clamp(2px,.35vw,5px);margin-top:8px;--h:clamp(44px,5vw,64px)}
+  .hero-roy-odo .dg{width:calc(var(--h)*.68);height:var(--h);background:linear-gradient(180deg,#000,#1c1c1c 50%,#000);border:3px solid #0a0a0a;border-radius:7px;box-shadow:3px 3px 0 #0a0a0a,inset 0 0 0 2px #ffd23d;overflow:hidden;position:relative}
+  .hero-roy-odo .reel{position:absolute;left:0;right:0;top:0;transition:transform .7s cubic-bezier(.3,1.35,.5,1)}
+  .hero-roy-odo .reel div{height:var(--h);line-height:var(--h);text-align:center;font-family:'Luckiest Guy',Impact,sans-serif;font-size:calc(var(--h)*.74);color:#7dff9a;text-shadow:0 0 10px rgba(125,255,154,.6)}
+  .hero-roy-odo .dg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent 28%,transparent 72%,rgba(0,0,0,.55));pointer-events:none}
+  .hero-roy-odo .sp{font-family:'Luckiest Guy',Impact,sans-serif;font-size:calc(var(--h)*.72);color:#fff;text-shadow:3px 3px 0 #0a0a0a;line-height:var(--h)}
+  .hero-roy-odo.flash .dg{box-shadow:3px 3px 0 #0a0a0a,inset 0 0 0 2px #7dff9a,0 0 18px rgba(125,255,154,.8)}
+  .hero-roy-s{font-family:'Share Tech Mono',monospace;font-size:13px;color:#dbe6ff;margin-top:10px;letter-spacing:.04em}
+  .hero-roy-pop{position:absolute;z-index:5;font-family:'Share Tech Mono',monospace;font-weight:700;font-size:13px;color:#062a12;background:#7dff9a;border:2px solid #0a0a0a;padding:2px 9px;border-radius:999px;box-shadow:2px 2px 0 #0a0a0a;white-space:nowrap;pointer-events:none;animation:heroRoyUp 1.8s ease-out forwards}
+  @keyframes heroRoyUp{0%{opacity:0;transform:translateY(12px) scale(.8)}15%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-46px)}}
+  .hero-roy-coin{position:absolute;z-index:5;width:26px;height:26px;pointer-events:none;animation:heroRoyCoin 1s ease-out forwards}
+  @keyframes heroRoyCoin{0%{transform:translate(0,0) scaleX(1);opacity:1}50%{transform:translate(var(--dx),-50px) scaleX(-1)}100%{transform:translate(calc(var(--dx)*1.6),10px) scaleX(1);opacity:0}}
+  @media (max-width:980px){.hero-roy{margin:4px auto 20px;text-align:center}.hero-roy-odo{justify-content:center}}
+  @media (prefers-reduced-motion:reduce){.hero-roy-odo .reel{transition:none}.hero-roy-pop,.hero-roy-coin{display:none}}
 </style>
 </head>
 <body>
@@ -2288,20 +2314,7 @@
     <p class="hero-cashflow">
       <span class="green">Cashflow.</span> Made simple.
     </p>
-    <div class="hero-stat-strip">
-      <div class="cell">
-        <div class="k">25%</div>
-        <div class="l">You Earn</div>
-      </div>
-      <div class="cell">
-        <div class="k green">USDT</div>
-        <div class="l">Real money</div>
-      </div>
-      <div class="cell">
-        <div class="k">&#8734;</div>
-        <div class="l">Forever</div>
-      </div>
-    </div>
+    <div class="hero-roy" id="heroRoy" aria-live="polite"><div class="hero-roy-l">&#9733; TOTAL ROYALTIES PAID TO HOLDERS &#9733;</div><div class="hero-roy-odo" id="heroRoyOdo" aria-label="Total royalties paid"></div><div class="hero-roy-s" id="heroRoyS">25% of every buy &middot; paid in USDT &middot; forever</div></div>
     <div class="hero-socials">
       <a class="hero-social-btn tg" href="#" aria-label="Telegram">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
@@ -2349,7 +2362,58 @@
 .sr-sample{display:none;position:absolute;z-index:4;font-family:'Black Ops One',sans-serif;font-size:11px;letter-spacing:.16em;color:#0a0a0a;background:#ffd23d;border:2px solid #0a0a0a;padding:3px 10px;box-shadow:2px 2px 0 #0a0a0a;transform:rotate(-3deg);pointer-events:none}
   .sr-section.is-sample .sr-sample{display:block}
   .sr-grid>div{position:relative}
-  .sr-grid>.sr-bp{order:-1}
+  .sr-grid>.sr-left{order:-1}
+  .sr-ohlc{display:flex;gap:12px;align-items:stretch}.sr-ohlc-rows{flex:1;min-width:0}.sr-ohlc .sr-ln .v.r{color:#ff6b6b}
+  #srCandle{flex:0 0 92px;width:92px;align-self:stretch;min-height:140px;display:block;border:1.5px solid #7d3cff;background:rgba(13,4,32,.7);border-radius:8px}
+  .sr-left,.sr-right{display:flex;flex-direction:column;gap:14px;position:relative}
+  .sr-left .sr-rank{margin:0}
+  .sr-combo{background:#1c0b42;background-image:linear-gradient(rgba(190,160,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(190,160,255,.08) 1px,transparent 1px);background-size:10px 10px;border-radius:10px;box-shadow:inset 0 0 0 2px #7d3cff;padding:0 0 4px;overflow:hidden}
+  .sr-combo .sr-paid{background:none !important;box-shadow:none !important;border-radius:0}
+  .sr-combo .sr-bpc{box-shadow:none !important;border-radius:0}
+  @media (max-width:600px){.sr-chart-rp{position:static !important;margin:4px 0 8px 14px}}
+  .sr-combo-div{height:6px}
+  .sr-gap{height:14px}
+  .sr-total-b{margin-top:18px}
+  .sr-combo .sr-paid{padding-top:2px}
+  .sr-paid-rows{padding:0;font-family:'Share Tech Mono',monospace;color:#f1eaff}
+  .sr-paid-rows .sr-ln .usd{font-size:11px;color:#c9b6ff;margin-left:6px}
+  .sr-paid{background:#1c0b42;background-image:linear-gradient(rgba(190,160,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(190,160,255,.08) 1px,transparent 1px);background-size:10px 10px;border-radius:10px;box-shadow:inset 0 0 0 2px #7d3cff;padding:16px 16px 12px;font-family:'Share Tech Mono',monospace;color:#f1eaff;container-type:inline-size}
+  .sr-paid-l{margin-top:6px;font-size:13px;letter-spacing:.18em;color:#ffd23d;text-align:center}
+  .sr-paid-v{font-family:'Black Ops One',system-ui;font-size:clamp(34px,13cqw,64px);color:#7dff9a;line-height:1;text-align:center;margin:8px 0 12px;white-space:nowrap;text-shadow:4px 4px 0 #0d0420,0 0 24px rgba(125,255,154,.35)}
+  .sr-paid-c{text-align:center;margin:-4px 0 12px;min-height:18px}.sr-paid-c .sr-tag{margin:0;font-size:12px;padding:3px 8px}
+  .sr-paid-v.pop{animation:srPop .5s cubic-bezier(.3,1.8,.5,1)}
+  .sr-pierow2{display:flex;align-items:center;gap:22px;margin-top:4px}
+  .sr-t4{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0}
+  .sr-t{background:rgba(13,4,32,.85);border:1.5px solid #7d3cff;border-radius:6px;padding:8px 10px;min-width:0}.sr-t.g{border-color:#7dff9a}.sr-t.y{border-color:#ffd23d}
+  .sr-tk{font-size:clamp(8px,2.2cqw,10px);letter-spacing:.08em;color:#c9b6ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sr-t.g .sr-tk{color:#7dff9a}.sr-t.y .sr-tk{color:#ffd23d}
+  .sr-t b,.sr-tval{display:block;font-family:'Black Ops One',system-ui;font-weight:400;font-size:clamp(15px,4.4cqw,21px);line-height:1.15;margin:4px 0 3px;white-space:nowrap}.sr-t.g b,.sr-tval.g{color:#7dff9a}.sr-t.y b,.sr-tval.y{color:#ffd23d}
+  .sr-ts{font-size:clamp(8px,2.2cqw,10px);color:#c9b6ff;overflow-wrap:anywhere}
+  .sr-pierow2 #srPie{flex:0 0 auto;width:min(170px,34cqw);aspect-ratio:1;height:auto;display:block}
+  .sr-boxes{flex:1;display:flex;flex-direction:column;gap:14px;min-width:0}
+  .sr-box{display:block;gap:10px;padding:10px 12px;background:rgba(13,4,32,.85);border:1.5px solid;border-radius:4px;min-width:0}
+  .sr-box.g{border-color:#7dff9a}.sr-box.y{border-color:#ffd23d}.sr-box svg{flex:0 0 auto}
+  .sr-box b{display:block;font-weight:400;font-size:clamp(14px,5cqw,20px);white-space:nowrap}.sr-box.g b{color:#7dff9a}.sr-box.y b{color:#ffd23d}
+  .sr-bx-h{display:flex;align-items:center;gap:8px;margin-bottom:8px}.sr-box .sr-bx-h span{font-size:clamp(9px,2.6cqw,11px);letter-spacing:.08em;margin:0}.sr-box.g .sr-bx-h span{color:#7dff9a}.sr-box.y .sr-bx-h span{color:#ffd23d}
+  .sr-bx-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sr-bx-cols>div{background:rgba(255,255,255,.04);border-radius:4px;padding:6px 8px;min-width:0}
+  .sr-bx-k{font-size:clamp(8px,2.2cqw,10px);letter-spacing:.08em;color:#c9b6ff}
+  .sr-box .sr-bx-cols b{font-family:'Black Ops One',system-ui;font-size:clamp(15px,4.6cqw,21px);line-height:1.15;margin:3px 0 2px}
+  .sr-bx-s{font-size:clamp(8px,2.3cqw,10px);color:#c9b6ff;overflow-wrap:anywhere}
+  .sr-bx-i{display:block;font-style:normal;font-size:clamp(9px,2.6cqw,11px);color:#f1eaff;margin-top:6px;line-height:1.45}
+  .sr-bx-i .sr-hn{display:inline;font-size:inherit;color:#c9b6ff;letter-spacing:0;margin:0;white-space:nowrap}
+  .sr-bx-i b{display:inline;font-size:inherit;font-weight:700}
+  .sr-box span{display:block;font-size:clamp(8px,2.4cqw,10px);color:#c9b6ff;letter-spacing:.06em;margin-top:3px}
+  @container (max-width:440px){.sr-pierow2{flex-direction:column}.sr-t4{width:100%}.sr-pierow2 #srPie{width:min(180px,60cqw)}}
+  /* mascot commentary */
+  .sr-talk{display:flex;align-items:center;gap:18px;margin-top:22px;padding:16px 18px;background:#1c0b42;border:2px solid #7d3cff;border-radius:12px;box-shadow:0 0 24px rgba(125,60,255,.25)}
+  #srMascot{width:120px;height:120px;flex:0 0 120px;image-rendering:pixelated}
+  .sr-bubble{position:relative;flex:1;min-width:0;background:#fff;color:#0a0a0a;border:3px solid #0a0a0a;border-radius:16px;padding:14px 18px;box-shadow:4px 4px 0 #0a0a0a}
+  .sr-bubble::before{content:'';position:absolute;left:-16px;top:50%;margin-top:-10px;border:10px solid transparent;border-right:14px solid #0a0a0a;border-left:0}
+  .sr-bubble::after{content:'';position:absolute;left:-10px;top:50%;margin-top:-7px;border:7px solid transparent;border-right:10px solid #fff;border-left:0}
+  .sr-who{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.16em;color:#7d3cff;margin-bottom:4px}
+  .sr-say{font-family:'Luckiest Guy','Black Ops One',Impact,sans-serif;font-size:clamp(17px,2vw,24px);line-height:1.25;min-height:2.5em}
+  .sr-say .cur{display:inline-block;width:.5em;animation:arcadeBlink .7s steps(1) infinite}
+  @media (max-width:600px){.sr-talk{flex-direction:column;text-align:center}.sr-bubble::before{left:50%;top:-16px;margin:0 0 0 -10px;border:10px solid transparent;border-bottom:14px solid #0a0a0a;border-top:0}.sr-bubble::after{left:50%;top:-10px;margin:0 0 0 -7px;border:7px solid transparent;border-bottom:10px solid #fff;border-top:0}}
+
   .sr-chart-rp{position:absolute;left:20px;bottom:16px;font-family:'Share Tech Mono',monospace;font-size:11px;background:rgba(13,4,32,.85);color:#f1eaff;border:1px solid rgba(201,182,255,.6);border-radius:4px;padding:4px 10px;cursor:pointer}
   .sr-stamp{display:none !important}
   .sr-pierow{display:flex;align-items:center;gap:10px}
@@ -2380,7 +2444,7 @@
   .sr-vol .vv{font-family:'Black Ops One',system-ui;font-size:clamp(16px,1.6vw,22px);overflow-wrap:anywhere;color:#7dff9a;line-height:1.15;margin:4px 0 3px}
   .sr-vol .vs{font-size:10px;color:#c9b6ff}.sr-vol .vs .sr-tag{margin-left:0;font-size:10px}
   @media (max-width:520px){.sr-vol{flex:1 1 100%}}
-  .sr-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 8px}
+  .sr-mini{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:6px 0 8px}
   .sr-mini .m{border:1.5px solid #7d3cff;background:rgba(13,4,32,.7);border-radius:8px;padding:9px 10px 8px;min-width:0}
   .sr-mini .mk{font-size:clamp(8px,.75vw,10px);letter-spacing:.08em;color:#c9b6ff}
   .sr-mini .mv{font-family:'Black Ops One',system-ui;font-size:clamp(15px,1.7vw,24px);line-height:1.15;margin:5px 0 3px;overflow-wrap:anywhere}
@@ -2391,7 +2455,9 @@
   .sr-rank{margin-bottom:14px;border-radius:10px;overflow:hidden;box-shadow:0 0 0 2px #7d3cff}
   .sr-rank canvas{display:block;width:100%;height:210px}
   @media (max-width:600px){.sr-section.is-sample .sr-bp h3{margin-top:30px}}
-  .sr-grid{align-items:flex-start}
+  .sr-grid{align-items:stretch}
+  .sr-left>.sr-bp{display:flex;flex-direction:column}.sr-left>.sr-bp>.sr-foot{padding-top:10px}
+  .sr-left .sr-rank{flex:1;display:flex;align-items:center;background:#1c0b42;background-image:linear-gradient(rgba(190,160,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(190,160,255,.08) 1px,transparent 1px);background-size:10px 10px}
   .sr-tot{margin-top:10px;padding-top:12px;border-top:2px solid #7d3cff;text-align:center;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
   .sr-tot{container-type:inline-size}
   .sr-tot-pie{flex:0 1 250px;min-width:200px;order:1;align-self:stretch;display:flex;align-items:center}
@@ -2450,30 +2516,33 @@
 </style>
 <section class="sr-section" id="sessionResults">
  <div class="sr"><div class="sr-grid">
-  <div><span class="sr-sample" style="right:14px;top:-10px">SAMPLE DATA · PREVIEW</span><div class="sr-toprow" id="srTopRow"><div class="sr-rank" id="srRankWrap"><canvas id="srRank" aria-label="Global meme coin rank leaderboard"></canvas></div></div><div style="position:relative"><canvas class="sr-bpc" id="srStk" width="880" height="940" aria-label="Hourly stacks of USDT notes and $SCC coins on blueprint paper"></canvas><button class="sr-chart-rp" id="srChartReplay">&#8635; REPLAY</button></div></div>
-  <div class="sr-bp" id="srSheet"><span class="sr-sample" style="right:14px;top:6px">SAMPLE DATA · PREVIEW</span>
-   
-   <h3>TODAY'S SESSION RESULTS</h3>
-   <div class="sub" id="srSub">SHEET 02 · $SCC</div>
-   <div class="sr-ln"><span class="k">OPEN PRICE</span><span class="dots"></span><span class="v" data-k="open">—</span></div>
-   <div class="sr-ln"><span class="k">CLOSE PRICE</span><span class="dots"></span><span class="v"><span data-k="close">—</span><span class="sr-tag" id="srPriceTag" hidden></span></span></div>
-   <div class="sr-blk"><canvas id="srPlot" style="width:100%;height:110px;display:block"></canvas></div>
-   <div class="sr-blk sr-pierow" style="position:relative"><div class="lp-box"><canvas id="lpSwap" aria-label="Liquidity pool: USDT shown as a growing cash mountain and $SCC as a coin cliff, with amounts and changes"></canvas></div><div class="sr-vol"><div class="vk">TOTAL $SCC TRADED TODAY</div><div class="vv"><span data-m="vol">&mdash;</span><small class="vu"> $SCC</small></div><div class="vs"><span id="srVolTag" class="sr-tag" hidden></span></div><div class="vsub" style="font-size:9px;letter-spacing:.1em;color:#c9b6ff;margin-top:6px">LAST 7 DAYS</div><canvas id="srVolBars" style="width:100%;height:46px;display:block;margin-top:3px"></canvas></div><div class="sr-stamp" id="srStamp" hidden></div></div>
-   <div class="sr-blk sr-mini">
-    <div class="m"><div class="mk">&#127942; TOP PAYOUT</div><div class="mv y" data-m="big">&mdash;</div><div class="ms" id="srBigW">&nbsp;</div></div>
-    <div class="m"><div class="mk">AVG PER HOLDER</div><div class="mv g" data-m="avg">&mdash;</div><div class="ms">earned today</div></div>
-    <div class="m"><div class="mk">PAYOUTS MADE</div><div class="mv g" data-m="pay">&mdash;</div><div class="ms" id="srPayEvery">&nbsp;</div></div>
-    <div class="m"><div class="mk">HOLDERS CHOSE</div><div class="mv2"><span class="g" data-m="hu">&mdash;</span> USDT</div><div class="mv2"><span class="y" data-m="hs">&mdash;</span> $SCC</div></div>
-   </div>
+  <div class="sr-right"><span class="sr-sample" style="right:14px;top:-22px">SAMPLE DATA · PREVIEW</span><div class="sr-combo"><div style="position:relative"><canvas class="sr-bpc" id="srStk" width="880" height="940" aria-label="Hourly stacks of USDT notes and $SCC coins on blueprint paper"></canvas><button class="sr-chart-rp" id="srChartReplay">&#8635; REPLAY</button></div><div class="sr-paid" id="srPaid"><div class="sr-pierow2"><canvas id="srPie" aria-label="Pie chart of today's royalties: cashed out in USDT versus reinvested into $SCC"></canvas><div class="sr-t4"><div class="sr-t g"><div class="sr-tk">CASHED OUT USDT</div><b id="srCashU">&mdash;</b><div class="sr-ts"><span id="srHUp">&mdash;</span> of holders &middot; <span id="srHUn">&mdash;</span></div></div><div class="sr-t y"><div class="sr-tk">REINVESTED $SCC</div><b id="srCashS">&mdash;</b><div class="sr-ts"><span id="srHSp">&mdash;</span> of holders &middot; <span id="srHSn">&mdash;</span></div></div><div class="sr-t m2"><div class="sr-tk">&#127942; TOP PAYOUT</div><div class="sr-tval y" data-m="big">&mdash;</div><div class="sr-ts" id="srBigW">&nbsp;</div></div><div class="sr-t m2"><div class="sr-tk">PAYOUTS MADE</div><div class="sr-tval g" data-m="pay">&mdash;</div><div class="sr-ts" id="srPayEvery">&nbsp;</div></div></div></div><div class="sr-gap"></div><div class="sr-paid-rows">
    <div class="sr-ln"><span class="k">ROYALTIES PAID</span><span class="dots"></span><span class="v g"><span data-k="royalties">—</span><span class="sr-tag" id="srRoyTag" hidden></span></span></div>
    <div class="sr-ln"><span class="k">HOLDERS PAID</span><span class="dots"></span><span class="v" data-k="holders">—</span></div>
    <div class="sr-ln"><span class="k">TOTAL HOLDERS</span><span class="dots"></span><span class="v"><span data-k="totalHolders">—</span><span class="sr-tag" id="srHoldTag" hidden></span></span></div>
    <div class="sr-ln"><span class="k">TOTAL $SCC MOVED</span><span class="dots"></span><span class="v"><span data-k="sccMoved">—</span><span class="usd" id="srSccUsd"></span></span></div>
-   <div class="sr-blk sr-tot"><div class="sr-tot-pie"><canvas id="srPie" style="width:100%;height:140px;display:block"></canvas></div><div class="sr-tot-txt"><div class="sr-tot-l">TOTAL ROYALTIES PAID TODAY</div><div class="sr-tot-v" id="srTotalV">&mdash;</div><div class="sr-tot-s" id="srTotalS"></div></div></div>
+</div><div class="sr-total-b"><div class="sr-paid-l">TOTAL ROYALTIES RAISED</div><div class="sr-paid-v" id="srTotalV">&mdash;</div><div class="sr-paid-c"><span class="sr-tag" id="srTotalC" hidden></span></div><div id="srTotalS" hidden></div></div></div></div></div>
+  <div class="sr-left"><div class="sr-bp" id="srSheet"><span class="sr-sample" style="right:14px;top:6px">SAMPLE DATA · PREVIEW</span>
+   
+   <h3>TODAY'S SESSION RESULTS</h3>
+   <div class="sub" id="srSub">DAY 1 · $SCC</div>
+   <div class="sr-blk"><canvas id="srPlot" style="width:100%;height:110px;display:block"></canvas></div>
+   <div class="sr-ohlc"><div class="sr-ohlc-rows">
+   <div class="sr-ln"><span class="k">OPEN</span><span class="dots"></span><span class="v" data-k="open">—</span></div>
+   <div class="sr-ln"><span class="k">HIGH</span><span class="dots"></span><span class="v g" data-k="high">—</span></div>
+   <div class="sr-ln"><span class="k">LOW</span><span class="dots"></span><span class="v r" data-k="low">—</span></div>
+   <div class="sr-ln"><span class="k">CLOSE</span><span class="dots"></span><span class="v"><span data-k="close">—</span><span class="sr-tag" id="srPriceTag" hidden></span></span></div>
+   </div><canvas id="srCandle" aria-label="Today's candlestick"></canvas></div>
+   <div class="sr-blk sr-pierow" style="position:relative"><div class="lp-box"><canvas id="lpSwap" aria-label="Liquidity pool: USDT shown as a growing cash mountain and $SCC as a coin cliff, with amounts and changes"></canvas></div><div class="sr-vol"><div class="vk">TOTAL $SCC TRADED TODAY</div><div class="vv"><span data-m="vol">&mdash;</span><small class="vu"> $SCC</small></div><div class="vs"><span id="srVolTag" class="sr-tag" hidden></span></div><div class="vsub" style="font-size:9px;letter-spacing:.1em;color:#c9b6ff;margin-top:6px">LAST 7 DAYS</div><canvas id="srVolBars" style="width:100%;height:46px;display:block;margin-top:3px"></canvas></div><div class="sr-stamp" id="srStamp" hidden></div></div>
    <div class="sr-soon">★ RESULTS GO LIVE AT LAUNCH ★</div>
    <div class="sr-foot"><span>DRAWN BY: ROYALTY ENGINE · CHK: HOLDERS</span><button id="srReplay">↻ REPLAY</button></div>
   </div>
+  <div class="sr-rank" id="srRankWrap"><canvas id="srRank" aria-label="Global meme coin rank leaderboard"></canvas></div></div>
  </div>
+<div class="sr-talk" id="srTalk">
+ <canvas id="srMascot" width="240" height="240" aria-hidden="true"></canvas>
+ <div class="sr-bubble"><div class="sr-who">SUPER CASH SAYS:</div><div class="sr-say" id="srSay">&hellip;</div></div>
+</div>
  </div>
 </section>
 <script>
@@ -2501,6 +2570,7 @@
    ================================================================= */
 (function(){
  var SESSION_URL='';   // e.g. 'https://api.yoursite.com/session/today'
+ var LAUNCH_DATE='';   // your launch day, e.g. '2026-11-01' -> the sheet shows DAY 1, DAY 2 ... (or send "day" in the data)
  var SHOW_SAMPLE=true;  // shows clearly-labelled SAMPLE numbers until real data is connected. Set to false to hide them.
  var sec=document.getElementById('sessionResults');if(!sec)return;
  var INK='#f1eaff',BG='#1c0b42',GRN='#7dff9a',GOLD='#ffd23d',CY='#c9b6ff',FM='"Share Tech Mono",monospace';
@@ -2517,12 +2587,10 @@
   x.fillStyle='#ffd23d';x.fillRect(78,128,98,42);x.fillStyle='#0a0a0a';x.fillRect(104,146,12,10);x.fillRect(140,146,12,10);x.fillRect(120,162,24,8);
   return c})();
  /* ---------- LEFT: stacks on blueprint ---------- */
- var cv=document.getElementById('srStk'),c=cv.getContext('2d'),W=440,H=470;c.scale(2,2);
+ var cv=document.getElementById('srStk'),c=cv.getContext('2d'),W=440,H=470;var SC=2;function scNow(){return Math.max(2,Math.min(4,(window.devicePixelRatio||1)*(cv.clientWidth||440)/440))}SC=scNow();cv.width=Math.round(440*SC);cv.height=Math.round(470*SC);c.setTransform(SC,0,0,SC,0,0);
  /* keep the chart exactly as tall as the results sheet when they sit side by side */
- function syncH(){var sh=document.getElementById('srSheet'),cw=cv.clientWidth;if(!sh||!cw)return;
-  var rw=document.getElementById('srTopRow')||document.getElementById('srRankWrap'),rh=rw?rw.offsetHeight+14:0,side=Math.abs(sh.getBoundingClientRect().top-(rw?rw.parentNode:cv.parentNode).getBoundingClientRect().top)<4,nh=side?Math.max(200,Math.round((sh.offsetHeight-rh)*W/cw)):470;
-  if(nh!==H){H=nh;cv.height=H*2;c.setTransform(2,0,0,2,0,0);needDraw=true}}
- if(window.ResizeObserver){var ro=new ResizeObserver(syncH);ro.observe(document.getElementById('srSheet'));var tr0=document.getElementById('srTopRow');if(tr0)ro.observe(tr0)}window.addEventListener('resize',syncH);
+ function syncH(){var L=document.querySelector('#sessionResults .sr-left'),R=document.querySelector('#sessionResults .sr-right'),cw=cv.clientWidth;if(!L||!R||!cw)return;var side=Math.abs(L.getBoundingClientRect().top-R.getBoundingClientRect().top)<4,other=R.offsetHeight-cv.offsetHeight,nh=side?320:470;var ns=scNow();if(Math.abs(nh-H)>1||Math.abs(ns-SC)>.05){H=nh;SC=ns;cv.width=Math.round(440*SC);cv.height=Math.round(H*SC);c.setTransform(SC,0,0,SC,0,0);needDraw=true}}
+ if(window.ResizeObserver){var ro=new ResizeObserver(syncH);ro.observe(document.getElementById('srSheet'));var tr0=document.querySelector('#sessionResults .sr-left');if(tr0)ro.observe(tr0);var pd0=document.getElementById('srPaid');if(pd0)ro.observe(pd0)}window.addEventListener('resize',syncH);
  function L(x1,y1,x2,y2,w,col,dash){c.strokeStyle=col;c.lineWidth=w;c.setLineDash(dash||[]);c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke();c.setLineDash([])}
  function T(s,x,y,col,size,al){c.fillStyle=col;c.font=(size||10)+'px '+FM;c.textAlign=al||'center';c.textBaseline='middle';c.fillText(s,x,y)}
  function coinSpin(x,y,r,ang,a){c.save();c.globalAlpha=a==null?1:a;c.translate(x,y);var sx=Math.abs(Math.cos(ang)),th=r*.28*Math.abs(Math.sin(ang)),dir=Math.sin(ang)>0?1:-1;
@@ -2537,24 +2605,22 @@
  function note(x,y,rot,s,flip,a){if(!bimg.complete)return;c.save();c.globalAlpha=a==null?1:a;c.translate(x,y);c.rotate(rot);c.scale(s*Math.max(.1,Math.abs(flip)),s);c.drawImage(bimg,-26,-18,52,36);c.restore()}
  function hours(){if(D&&D.hours&&D.hours.length)return D.hours;var raw=[1.2,.8,.6,.9,1.6,2.4,3.1,2.8,3.6,4.2,3.3,2.7],sp=[.7,.66,.6,.64,.62,.58,.61,.65,.6,.57,.63,.68];return raw.map(function(v,i){return{usdt:v*sp[i]*1000,scc:v*(1-sp[i])*1000}})}
  var P=[],drops=[],last=0,t0=null,flags={};
- function paper(){c.fillStyle=BG;c.fillRect(0,0,W,H);c.lineWidth=1;c.strokeStyle='rgba(255,255,255,.05)';for(var x=0;x<W;x+=10){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke()}for(var y=0;y<H;y+=10){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()}c.strokeStyle='rgba(255,255,255,.12)';for(x=0;x<W;x+=50){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke()}for(y=0;y<H;y+=50){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()}
-  c.strokeStyle='#7d3cff';c.lineWidth=2;c.strokeRect(8,8,W-16,H-16);c.strokeStyle='rgba(255,210,61,.55)';c.lineWidth=.8;c.strokeRect(13,13,W-26,H-26)}
+ function paper(){c.clearRect(0,0,W,H)}
  var needDraw=true;
  function frame(ms){
   if(!visible){last=ms/1000;requestAnimationFrame(frame);return}
   if(t0!==null&&ms/1000-t0>11.2&&!P.length&&!drops.length&&!needDraw){requestAnimationFrame(frame);return}needDraw=false;
-  var t=ms/1000,dt=Math.min(.04,t-last||.016);last=t;if(t0===null)t0=t;var cy=Math.min(11,t-t0),base=H-60,x0=52,live=!!D,SH=base-165;
+  var t=ms/1000,dt=Math.min(.04,t-last||.016);last=t;if(t0===null)t0=t;var cy=Math.min(11,t-t0),base=H-60,x0=52,live=!!D,SH=base-80;
   var HS=hours(),tot=HS.map(function(h){return h.usdt+h.scc}),mx=Math.max.apply(null,tot),peak=tot.indexOf(mx);
   var others=tot.filter(function(v,i){return i!==peak}).sort(function(a,b){return a-b}),oMax=others[others.length-1]||mx,med=others[Math.floor(others.length/2)]||mx;
   var whale=live&&mx>2.2*med&&mx>1.6*oMax,stP=.4+peak*.32,ev=whale?Math.max(0,Math.min(1,(cy-stP)/1.6)):0,e2=1-Math.pow(1-ev,3);
   if(whale)mx=Math.max(oMax*1.05,tot[peak]*e2);  /* when the big hour is plotted it shoots up and the chart rescales right then */
   paper();T('FIG. 1 — PAYOUTS, HOUR BY HOUR',W/2,30,GOLD,12);
-  L(x0-10,base,W-22,base,1.6,INK);L(x0-10,base,x0-10,130,1.6,INK);
+  L(x0-10,base,W-22,base,1.6,INK);L(x0-10,base,x0-10,base-SH-14,1.6,INK);
   for(var k=0;k<=4;k++){var gy=base-k*SH/4;L(x0-14,gy,x0-10,gy,1,INK);L(x0-10,gy,W-22,gy,1,'rgba(234,242,255,.18)',[2,4]);if(live)T('$'+(mx/1000*k/4*1.03).toFixed(1)+'K',x0-18,gy,CY,9,'right')}
   var su=0,ss=0,whTop=base;
   HS.forEach(function(hh,i){var v=tot[i],x=x0+8+i*30,start=.4+i*.32,f=Math.max(0,Math.min(1,(cy-start)/(whale&&i===peak?1.6:.6))),down=1,e=(1-Math.pow(1-f,3))*down,h=(v/mx)*SH*e,hu=h*(hh.usdt/(hh.usdt+hh.scc));su+=hh.usdt*f*down;ss+=hh.scc*f*down;
-   var nu=Math.floor(hu/6);if(h>8&&nu<1)nu=1;for(var q=0;q<nu;q++){c.fillStyle=q%2?'#2e9b48':'#3dc650';c.fillRect(x-11,base-6-q*6,22,6);c.fillStyle='rgba(11,61,28,.6)';c.fillRect(x-11,base-1-q*6,22,1)}
-   if(nu){c.fillStyle=GOLD;c.fillRect(x-2.5,base-nu*6,5,nu*6);c.strokeStyle=GRN;c.lineWidth=1.2;c.strokeRect(x-11,base-nu*6,22,nu*6)}
+   var nu=Math.floor(hu/6);if(h>8&&nu<1)nu=1;for(var q=0;q<nu;q++){var rr=Math.sin(x*1.7+q*2.3)*.12;c.save();c.translate(x+Math.sin(q*1.9+x)*.8,base-4-q*6);c.rotate(rr*.8);if(bimg.complete)c.drawImage(bimg,-13,-6,26,12);c.restore()}
    var ns=Math.floor((h-hu)/4),y0=base-nu*6;if(h>1&&ns<1)ns=1;for(q=0;q<ns;q++)coinEdge(x,y0-2-q*4,12,q);if(ns)coinTop(x,y0-2-ns*4,12);
    var top=y0-ns*4-14;
    if(live&&f>.6&&down>.5&&!(whale&&i===peak&&ev>0)){c.globalAlpha=Math.min(1,(f-.6)*3);L(x,top-2,x,top-12,1,CY);T((v/1000).toFixed(1)+'K',x,top-19,INK,9);c.globalAlpha=1}
@@ -2568,14 +2634,11 @@
   drops=drops.filter(function(d){d.vy+=900*dt;d.y+=d.vy*dt;d.ph+=dt*8;if(d.y>=d.top)return false;coinSpin(d.x,d.y,10,d.ph);return true});
   P.forEach(function(p){p.life+=dt;p.vy+=480*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;p.ph+=dt*8});P=P.filter(function(p){return p.life<1.6});
   P.forEach(function(p){var a=p.life>1.1?1-(p.life-1.1)/.5:1;p.coin?coinSpin(p.x,p.y,10,p.ph,a):note(p.x,p.y,p.rot,.55,Math.cos(p.ph),a)});
-  c.fillStyle='rgba(13,4,32,.85)';c.fillRect(22,48,190,52);c.fillRect(228,48,190,52);c.strokeStyle=GRN;c.lineWidth=1.2;c.strokeRect(22,48,190,52);c.strokeStyle=GOLD;c.strokeRect(228,48,190,52);
-  note(44,74,0,.55,1);T(live?'$'+Math.round(su).toLocaleString('en-US'):'—',68,66,GRN,16,'left');T('CASHED OUT USDT',68,88,CY,9,'left');
-  c.drawImage(COIN,236,58,32,32);T(live?'$'+Math.round(ss).toLocaleString('en-US'):'—',274,66,GOLD,16,'left');T('REINVESTED $SCC',274,88,CY,9,'left');
   if(!live)T('PREVIEW · LIVE AT LAUNCH',W/2,base+34,GOLD,10);
   c.strokeStyle=GOLD;c.lineWidth=1;c.strokeRect(W-150,H-30,137,18);T('DWG  HOURLY PAYOUTS',W-146,H-21,GOLD,9,'left');
   requestAnimationFrame(frame)}
  /* ---------- RIGHT: results sheet ---------- */
- function sized(id,h){var el=document.getElementById(id),r=el.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);el.width=r.width*d;el.height=h*d;var g=el.getContext('2d');g.setTransform(d,0,0,d,0,0);return [g,r.width,h]}
+ function sized(id,h){var el=document.getElementById(id),r=el.getBoundingClientRect(),d=Math.min(3,Math.max(1,window.devicePixelRatio||1));h=Math.round(r.height)||h;el.width=Math.round(r.width*d);el.height=Math.round(h*d);var g=el.getContext('2d');g.setTransform(d,0,0,d,0,0);return [g,r.width,h]}
  function plot(prog){var a=sized('srPlot',110),g=a[0],w=a[1],h=a[2],S=(D&&D.prices&&D.prices.length>1)?D.prices:null;
   g.strokeStyle=CY;g.fillStyle=CY;g.lineWidth=1;var x0=38,y0=h-18,x1=w-8,y1=8;g.beginPath();g.moveTo(x0,y1);g.lineTo(x0,y0);g.lineTo(x1,y0);g.stroke();g.font='9px '+FM;
   ['00','06','12','18','24'].forEach(function(s,k){var x=x0+(x1-x0)*k/4;g.textAlign='center';g.fillText(s+'h',x,y0+14)});
@@ -2586,33 +2649,24 @@
   g.beginPath();for(k=0;k<n;k++)k?g.lineTo(X(k),Y(S[k])):g.moveTo(X(k),Y(S[k]));g.lineTo(X(n-1),y0);g.lineTo(x0,y0);g.closePath();var gr=g.createLinearGradient(0,y1,0,y0);gr.addColorStop(0,'rgba('+FC+',.35)');gr.addColorStop(1,'rgba('+FC+',0)');g.fillStyle=gr;g.fill();
   g.strokeStyle=LC;g.lineWidth=2;g.beginPath();for(k=0;k<n;k++)k?g.lineTo(X(k),Y(S[k])):g.moveTo(X(k),Y(S[k]));g.stroke();
   if(prog>=1){g.fillStyle=GOLD;var xe=x1,ye=Y(S[S.length-1]);g.beginPath();g.arc(xe,ye,4,0,7);g.fill();g.textAlign='right';g.fillText('CLOSE',xe-8,ye<y1+14?ye+14:ye-6)}}
- function pie(prog){var a=sized('srPie',150),g=a[0],w=a[1],h=a[2],r=Math.max(30,Math.min(56,h/2-12,w*.19)),cx=r+12,cy=h/2,s=-Math.PI/2,u=D?(D.usdtShare!=null?D.usdtShare:.62):null;
-  var fit=function(txt,max,size,min,f){g.font=size+'px '+(f||FM);while(size>min&&g.measureText(txt).width>max){size-=.5;g.font=size+'px '+(f||FM)}return size};
-  /* gold coin rim */
-  g.fillStyle='#0a0a0a';g.beginPath();g.arc(cx,cy,r+6,0,7);g.fill();g.fillStyle='#ffd23d';g.beginPath();g.arc(cx,cy,r+4,0,7);g.fill();g.strokeStyle='#c79a0c';g.lineWidth=2;g.beginPath();g.arc(cx,cy,r+1,0,7);g.stroke();
-  if(u==null){g.fillStyle='#2a1366';g.beginPath();g.arc(cx,cy,r-1,0,7);g.fill();var mx0=w-(cx+r+14)-4,fs=fit('USDT / $SCC SPLIT AT LAUNCH',mx0,11,7);g.fillStyle=GOLD;g.textAlign='left';g.textBaseline='middle';g.fillText('USDT / $SCC SPLIT AT LAUNCH',cx+r+14,cy);return}
-  var A=u*Math.PI*2*prog,B=(1-u)*Math.PI*2*prog,ns=r/120;
-  g.fillStyle='#2a1366';g.beginPath();g.arc(cx,cy,r-1,0,7);g.fill();
-  /* USDT slice: packed cash notes */
-  g.save();g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r-1,s,s+A);g.closePath();g.clip();g.fillStyle='#1f8a3c';g.fillRect(cx-r,cy-r,r*2,r*2);
-  if(bimg.complete)for(var yy=cy-r,row=0;yy<cy+r+12;yy+=24*ns*1.0,row++)for(var xx=cx-r-(row%2?26*ns:0);xx<cx+r+52*ns;xx+=52*ns)g.drawImage(bimg,xx-26*ns,yy-18*ns,52*ns,36*ns);g.restore();
-  /* $SCC slice: packed coins */
-  g.save();g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r-1,s+A,s+A+B);g.closePath();g.clip();g.fillStyle='#c4900f';g.fillRect(cx-r,cy-r,r*2,r*2);
-  var cr=r*.15;for(var y2=cy-r,rw=0;y2<cy+r+cr;y2+=cr*1.7,rw++)for(var x2=cx-r-(rw%2?cr:0);x2<cx+r+cr*2;x2+=cr*2)g.drawImage(COIN,x2-cr,y2-cr,cr*2,cr*2);g.restore();
-  g.strokeStyle='#0a0a0a';g.lineWidth=2.5;g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.cos(s)*r,cy+Math.sin(s)*r);g.moveTo(cx,cy);g.lineTo(cx+Math.cos(s+A)*r,cy+Math.sin(s+A)*r);g.stroke();
-  /* legend with icons, shrinks to fit so nothing is cut off */
-  var lx=cx+r+18,ic=Math.min(20,r*.4),tx=lx+ic+8,mxw=Math.max(20,w-tx-2),f1=Math.min(fit('USDT CASH OUT',mxw,10,6),fit('REINVESTED $SCC',mxw,10,6)),f2=fit('100%',mxw,18,10,"'Black Ops One',Impact,sans-serif");
-  var y1=cy-f2-4,y3=cy+f2*.9+6;g.textAlign='left';g.textBaseline='middle';
-  if(bimg.complete)g.drawImage(bimg,lx,y1-ic*.35,ic*1.1,ic*.76);g.fillStyle=GRN;g.font=f1+'px '+FM;g.fillText('USDT CASH OUT',tx,y1-f2*.45);g.font=f2+"px 'Black Ops One',Impact,sans-serif";g.fillText(Math.round(u*100*prog)+'%',tx,y1+f2*.55);
-  g.drawImage(COIN,lx+ic*.05,y3-ic*.5,ic,ic);g.fillStyle=GOLD;g.font=f1+'px '+FM;g.fillText('REINVESTED $SCC',tx,y3-f2*.45);g.font=f2+"px 'Black Ops One',Impact,sans-serif";g.fillText(Math.round((1-u)*100*prog)+'%',tx,y3+f2*.55)}
+ function pie(prog){var el=document.getElementById('srPie');if(!el)return;var a=sized('srPie',170),g=a[0],w=a[1],h=a[2],r=Math.min(w,h)/2-9,cx=w/2,cy=h/2,s=-Math.PI/2,u=D?(D.usdtShare!=null?D.usdtShare:.62):null;
+  g.clearRect(0,0,w,h);
+  g.fillStyle='#0a0a0a';g.beginPath();g.arc(cx,cy,r+8,0,7);g.fill();g.fillStyle='#ffd23d';g.beginPath();g.arc(cx,cy,r+6,0,7);g.fill();g.strokeStyle='#c79a0c';g.lineWidth=2;g.beginPath();g.arc(cx,cy,r+2,0,7);g.stroke();
+  g.fillStyle='#2a1366';g.beginPath();g.arc(cx,cy,r,0,7);g.fill();if(u==null)return;
+  var A=u*Math.PI*2*prog,B=(1-u)*Math.PI*2*prog,ns=r/110;
+  g.save();g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r,s,s+A);g.closePath();g.clip();g.fillStyle='#1f8a3c';g.fillRect(cx-r,cy-r,r*2,r*2);
+  if(bimg.complete)for(var yy=cy-r,row=0;yy<cy+r+12;yy+=24*ns,row++)for(var xx=cx-r-(row%2?26*ns:0);xx<cx+r+52*ns;xx+=52*ns)g.drawImage(bimg,xx-26*ns,yy-18*ns,52*ns,36*ns);g.restore();
+  g.save();g.beginPath();g.moveTo(cx,cy);g.arc(cx,cy,r,s+A,s+A+B);g.closePath();g.clip();g.fillStyle='#c4900f';g.fillRect(cx-r,cy-r,r*2,r*2);
+  var cr=r*.11;for(var y2=cy-r,rw=0;y2<cy+r+cr;y2+=cr*1.8,rw++)for(var x2=cx-r-(rw%2?cr:0);x2<cx+r+cr*2;x2+=cr*2.05)g.drawImage(COIN,x2-cr,y2-cr,cr*2,cr*2);g.restore();
+  g.strokeStyle='#0a0a0a';g.lineWidth=3;g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.cos(s)*r,cy+Math.sin(s)*r);g.moveTo(cx,cy);g.lineTo(cx+Math.cos(s+A)*r,cy+Math.sin(s+A)*r);g.stroke()}
  function fmtP(v){return '$'+Number(v).toFixed(6)}function fmtD(v){return '$'+Math.round(v).toLocaleString('en-US')}function fmtI(v){return Math.round(v).toLocaleString('en-US')}
  function tally(el,n,f){var s0=performance.now();(function s(){var p=Math.min(1,(performance.now()-s0)/900);el.textContent=f(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(s)})()}
  function anim(fn,ms){var s0=performance.now();(function s(){var p=Math.min(1,(performance.now()-s0)/ms);fn(1-Math.pow(1-p,3));if(p<1)requestAnimationFrame(s)})()}
  function tag(id,v,suffix){var el=document.getElementById(id);if(v==null||!isFinite(v)){el.hidden=true;return}el.hidden=false;el.className='sr-tag'+(v<0?' down':'');el.textContent=(v>=0?'▲ ':'▼ ')+Math.abs(v).toFixed(2)+'%'+(suffix||'')}
  function play(){var els=[].slice.call(sec.querySelectorAll('.sr-ln,.sr-blk')),st=document.getElementById('srStamp');els.forEach(function(e){e.classList.remove('in')});st.classList.remove('in');plot(0);pie(0);drawRank(0);volBars(0);t0=null;
-  if(D){var dd=D.date?new Date(D.date+'T12:00:00'):new Date();document.getElementById('srSub').textContent='SHEET 02 · $SCC · '+dd.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
-   tag('srPriceTag',D.open?(D.close/D.open-1)*100:null);var ht=document.getElementById('srHoldTag');if(D.holdersChange==null){ht.hidden=true}else{ht.hidden=false;ht.className='sr-tag'+(D.holdersChange<0?' down':'');ht.textContent=(D.holdersChange>=0?'\u25B2 +':'\u25BC -')+fmtI(Math.abs(D.holdersChange))+' TODAY'}var su=document.getElementById('srSccUsd'),usd=D.sccMovedUsd!=null?D.sccMovedUsd:(D.sccMoved!=null&&D.close?D.sccMoved*D.close:null);su.textContent=usd!=null?'(\u2248 $'+Math.round(usd).toLocaleString('en-US')+')':'';arcade();anim(drawRank,1800);minis();tag('srRoyTag',D.royaltiesYesterday?(D.royalties/D.royaltiesYesterday-1)*100:null,' VS YDAY')}
-  els.forEach(function(e,i){setTimeout(function(){e.classList.add('in');var p=e.querySelector('[data-k]');if(p&&D){var k=p.getAttribute('data-k');if(D[k]!=null)tally(p,D[k],k==='open'||k==='close'?fmtP:k==='royalties'?fmtD:k==='sccMoved'?function(v){return fmtI(v)+' $SCC'}:fmtI)}
+  if(D){var dd=D.date?new Date(D.date+'T12:00:00'):new Date();document.getElementById('srSub').textContent='DAY '+(D.day!=null?D.day:(LAUNCH_DATE?Math.max(1,Math.floor((dd-new Date(LAUNCH_DATE+'T12:00:00'))/864e5)+1):1))+' · $SCC · '+dd.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
+   tag('srPriceTag',D.open?(D.close/D.open-1)*100:null);var ht=document.getElementById('srHoldTag');if(D.holdersChange==null){ht.hidden=true}else{ht.hidden=false;ht.className='sr-tag'+(D.holdersChange<0?' down':'');ht.textContent=(D.holdersChange>=0?'\u25B2 +':'\u25BC -')+fmtI(Math.abs(D.holdersChange))}var su=document.getElementById('srSccUsd'),usd=D.sccMovedUsd!=null?D.sccMovedUsd:(D.sccMoved!=null&&D.close?D.sccMoved*D.close:null);su.textContent=usd!=null?'(\u2248 $'+Math.round(usd).toLocaleString('en-US')+')':'';arcade();anim(drawRank,1800);minis();anim(pie,1300);anim(candle,1100);tag('srRoyTag',D.royaltiesYesterday?(D.royalties/D.royaltiesYesterday-1)*100:null)}
+  els.forEach(function(e,i){setTimeout(function(){e.classList.add('in');var p=e.querySelector('[data-k]');if(p&&D){var k=p.getAttribute('data-k');if(D[k]!=null)tally(p,D[k],k==='volumeUsd'?fmtD:k==='open'||k==='close'||k==='high'||k==='low'?fmtP:k==='royalties'?fmtD:k==='sccMoved'?function(v){return fmtI(v)+' $SCC'}:fmtI)}
    if(e.querySelector('#srPlot'))anim(plot,1200);if(e.querySelector('#srPie'))anim(pie,1300)},500+i*450)});
   if(D)setTimeout(function(){st.classList.add('in')},500+els.length*450+700)}
  /* ---------- GLOBAL MEME COIN RANK: leaderboard climb ---------- */
@@ -2628,8 +2682,16 @@
   set('pay',D&&D.payoutsMade,fmtI);var pe=document.getElementById('srPayEvery');pe.textContent=D&&D.payoutsMade?'\u2248 one every '+Math.max(1,Math.round(86400/D.payoutsMade))+' sec':'\u00a0';
   
   set('hu',D&&D.holdersUsdt,fmtI);set('hs',D&&D.holdersScc,fmtI);
-  set('vol',D&&D.sccTraded,fmtI);var vt=document.getElementById('srVolTag');if(D&&D.sccTraded!=null&&D.sccTradedYesterday){var gr=(D.sccTraded/D.sccTradedYesterday-1)*100;vt.hidden=false;vt.className='sr-tag'+(gr<0?' down':'');vt.textContent=(gr>=0?'\u25B2 ':'\u25BC ')+Math.abs(gr).toFixed(1)+'% VS YDAY'}else vt.hidden=true;
+  set('vol',D&&D.sccTraded,fmtI);var vt=document.getElementById('srVolTag');if(D&&D.sccTraded!=null&&D.sccTradedYesterday){var gr=(D.sccTraded/D.sccTradedYesterday-1)*100;vt.hidden=false;vt.className='sr-tag'+(gr<0?' down':'');vt.textContent=(gr>=0?'\u25B2 ':'\u25BC ')+Math.abs(gr).toFixed(1)+'%'}else vt.hidden=true;
   anim(volBars,1200)}
+ function candle(p){var el=document.getElementById('srCandle');if(!el)return;var a=sized('srCandle',140),g=a[0],w=a[1],h=a[2];g.clearRect(0,0,w,h);
+  if(!D||D.open==null||D.close==null||D.high==null||D.low==null){g.fillStyle=CY;g.font='9px '+FM;g.textAlign='center';g.fillText('AT LAUNCH',w/2,h/2);return}
+  var Hh=D.high,Lw=D.low,O=D.open,C=D.close,top=12,bot=h-22,Y=function(v){return top+(Hh-v)/((Hh-Lw)||1)*(bot-top)},up=C>=O,col=up?'#3dff7a':'#ff4b4b',e=1-Math.pow(1-p,3),cx=w/2,bw=Math.min(40,w*.42);
+  var cTop=Y(Math.max(O,C)),cBot=Y(Math.min(O,C)),mid=(Y(O));
+  g.strokeStyle=col;g.lineWidth=3;g.beginPath();g.moveTo(cx,Y(O)+(Y(Hh)-Y(O))*e);g.lineTo(cx,Y(O)+(Y(Lw)-Y(O))*e);g.stroke();
+  var y1=up?Y(O)-(Y(O)-cTop)*e:Y(O),hh=Math.max(2,Math.abs(cBot-cTop)*e);
+  g.save();g.shadowColor=col;g.shadowBlur=12;g.fillStyle=col;g.fillRect(cx-bw/2,y1,bw,hh);g.restore();g.strokeStyle='#0a0a0a';g.lineWidth=2;g.strokeRect(cx-bw/2,y1,bw,hh);
+  g.fillStyle=CY;g.font='9px '+FM;g.textAlign='center';g.textBaseline='alphabetic';g.fillText('TODAY',cx,h-7)}
  function mvTxt(d){if(d===0)return '= NO CHANGE SINCE YESTERDAY';var n=Math.abs(d);return (d>0?'\u25B2 MOVED UP ':'\u25BC MOVED DOWN ')+n+(n===1?' SPOT':' SPOTS')}
  function arrow(g,x,y,up,k,sc){sc=(sc||1)*(.6+.4*k);g.save();g.globalAlpha=k;g.translate(x,y+(up?-1:1)*(1-k)*10);g.scale(sc,up?sc:-sc);
   g.beginPath();g.moveTo(0,-22);g.lineTo(18,0);g.lineTo(7,0);g.lineTo(7,20);g.lineTo(-7,20);g.lineTo(-7,0);g.lineTo(-18,0);g.closePath();
@@ -2661,20 +2723,22 @@
  function arcade(){var el=document.getElementById('srTotalV'),sub=document.getElementById('srTotalS');if(!el)return;
   if(!D||D.royalties==null){el.textContent='\u2014';sub.textContent='';return}
   var to=D.royalties,u=D.usdtShare!=null?D.usdtShare:null,s0=performance.now();
-  sub.innerHTML=u!=null?'<b>$'+Math.round(to*u).toLocaleString('en-US')+'</b> cashed out in USDT \u00b7 <i>$'+Math.round(to*(1-u)).toLocaleString('en-US')+'</i> reinvested into $SCC':'';
+  var tc=document.getElementById('srTotalC');if(tc){if(D.royaltiesYesterday){var dd=to-D.royaltiesYesterday,dp=dd/D.royaltiesYesterday*100;tc.hidden=false;tc.className='sr-tag'+(dd<0?' down':'');tc.textContent=(dd<0?'\u25BC -$':'\u25B2 +$')+Math.round(Math.abs(dd)).toLocaleString('en-US')+' ('+Math.abs(dp).toFixed(1)+'%)'}else tc.hidden=true}
+  var cu=document.getElementById('srCashU'),cs=document.getElementById('srCashS'),hu=D.holdersUsdt,hs=D.holdersScc,ht=(hu||0)+(hs||0),inf=function(k,hn){var hp=document.getElementById('srH'+k+'p'),hc=document.getElementById('srH'+k+'n');if(!hp)return;if(hn!=null&&ht){hp.textContent=Math.round(hn/ht*100)+'%';hc.textContent=fmtI(hn)}else{hp.textContent=hc.textContent='\u2014'}};inf('U',hu);inf('S',hs);if(u!=null){tally(cu,to*u,fmtD);tally(cs,to*(1-u),fmtD)}else{cu.textContent=cs.textContent='\u2014'}sub.innerHTML=u!=null?'<b>$'+Math.round(to*u).toLocaleString('en-US')+'</b> cashed out in USDT \u00b7 <i>$'+Math.round(to*(1-u)).toLocaleString('en-US')+'</i> reinvested into $SCC':'';
   (function st(){var p=Math.min(1,(performance.now()-s0)/1800),e=1-Math.pow(1-p,3);el.textContent='$'+Math.round(to*e).toLocaleString('en-US');
     if(p<1)requestAnimationFrame(st);else{el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')}})()}
  document.getElementById('srReplay').onclick=function(){play()};
  document.getElementById('srChartReplay').onclick=function(){t0=null;P=[];drops=[];flags={};needDraw=true};
  window.addEventListener('resize',function(){drawRank(1);volBars(1)});
+ if(window.ResizeObserver){var _rd=null;new ResizeObserver(function(){clearTimeout(_rd);_rd=setTimeout(function(){if(D){pie(1);plot(1);volBars(1);candle(1)}},60)}).observe(document.getElementById('srSheet'));['srPie','srCandle'].forEach(function(id){var el=document.getElementById(id);if(el)new ResizeObserver(function(){clearTimeout(_rd);_rd=setTimeout(function(){if(D){pie(1);candle(1)}},60)}).observe(el)})}
  if(window.ResizeObserver)new ResizeObserver(function(){drawRank(1)}).observe(document.getElementById('srRankWrap'));
- window.setSessionResults=function(d){if(!d)return;D=d;window.__sccSession=d;sec.classList.remove('no-data');sec.classList.toggle('is-sample',!!d.sample);if(visible){played=true;play()}};
+ window.setSessionResults=function(d){if(!d)return;if(d.volumeUsd==null&&d.sccTraded!=null&&d.close)d.volumeUsd=d.sccTraded*d.close;if(d.prices&&d.prices.length){if(d.high==null)d.high=Math.max.apply(null,d.prices.concat([d.open,d.close].filter(function(v){return v!=null})));if(d.low==null)d.low=Math.min.apply(null,d.prices.concat([d.open,d.close].filter(function(v){return v!=null})))}D=d;window.__sccSession=d;sec.classList.remove('no-data');sec.classList.toggle('is-sample',!!d.sample);if(visible){played=true;play()}};
  new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible&&!played){played=true;play()}},{threshold:.2}).observe(sec);
  syncH();requestAnimationFrame(frame);
  var demo=SHOW_SAMPLE||location.protocol==='file:'||/[?&]demo\b/.test(location.search);
  if(SESSION_URL){fetch(SESSION_URL,{cache:'no-store'}).then(function(r){return r.json()}).then(window.setSessionResults).catch(function(){sec.classList.add('no-data')})}
  else if(demo){var pr=[],p=.002011;for(var i=0;i<48;i++){p*=1+(Math.random()-.44)*.014;pr.push(p)}pr[47]=.002134;var raw=[1.2,.8,.6,.9,1.6,2.4,3.1,2.8,3.6,4.2,3.3,2.7],sp=[.7,.66,.6,.64,.62,.58,.61,.65,.6,.57,.63,.68],sum=raw.reduce(function(a,b){return a+b},0);
-  window.setSessionResults({sample:true,sccTraded:18420000,sccTradedYesterday:15600000,sccTraded7d:[9800000,11200000,10500000,13100000,12400000,15600000,18420000],biggestPayout:{amount:1284,wallet:'0x92A1\u20260FA61'},avgPerHolder:1.12,payoutsMade:1284,holdersUsdt:25560,holdersScc:15660,rank:57,rankYesterday:60,rankBest:57,open:.002011,close:.002134,royalties:46210,royaltiesYesterday:41110,holders:41220,totalHolders:52340,holdersChange:1204,sccMoved:18420000,usdtShare:.62,prices:pr,hours:raw.map(function(v,i){var so=sum-raw[6],tt=i===6?19800:v/so*(46210-19800);return{usdt:tt*sp[i],scc:tt*(1-sp[i])}})})}
+  window.setSessionResults({sample:true,day:55,sccTraded:18420000,sccTradedYesterday:15600000,sccTraded7d:[9800000,11200000,10500000,13100000,12400000,15600000,18420000],biggestPayout:{amount:1284,wallet:'0x92A1\u20260FA61'},avgPerHolder:1.12,payoutsMade:1284,holdersUsdt:25560,holdersScc:15660,rank:57,rankYesterday:60,rankBest:57,open:.002011,close:.002134,royalties:46210,royaltiesYesterday:41110,holders:41220,totalHolders:52340,holdersChange:1204,sccMoved:18420000,usdtShare:.62,prices:pr,hours:raw.map(function(v,i){var so=sum-raw[6],tt=i===6?19800:v/so*(46210-19800);return{usdt:tt*sp[i],scc:tt*(1-sp[i])}})})}
  else sec.classList.add('no-data');
 })();
 </script>
@@ -8156,9 +8220,7 @@ var QT={
       else if(BILLI.complete){var nw=Math.max(16,gh*.34),nh=nw*.69;for(var y2=gy+gh-nh*.6,rw2=0;y2>gy-nh;y2-=nh*.62,rw2++)for(var x2=gx-nw/2+(rw2%2)*nw/2;x2<gx+gw+nw;x2+=nw*.95)g.drawImage(BILLI,x2-nw/2,y2-nh/2,nw,nh)}
       g.restore();
       g.strokeStyle=up?GRN:RED;g.lineWidth=2;g.lineJoin='round';g.beginPath();pts.forEach(function(q,k){if(isS&&k===n-1){g.lineTo(q[0]-2,pts[k-1][1]+(q[1]-pts[k-1][1])*.15);g.lineTo(q[0],q[1])}else k?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])});g.stroke();
-      var last=pts[n-1];if(!isS){g.strokeStyle='#fff';g.lineWidth=1.5;g.beginPath();g.moveTo(last[0]-3,last[1]);g.lineTo(last[0]-3,last[1]-12);g.stroke();g.fillStyle=GRN;g.beginPath();g.moveTo(last[0]-3,last[1]-12);g.lineTo(last[0]-13,last[1]-9);g.lineTo(last[0]-3,last[1]-6);g.closePath();g.fill()}
-      else{g.fillStyle=RED;g.beginPath();g.moveTo(last[0]-4,last[1]-12);g.lineTo(last[0]+1,last[1]-4);g.lineTo(last[0]-9,last[1]-4);g.closePath();g.fill()}
-      g.restore();T(n>2?'7D':'24H',gx+gw,gy+gh+6,CY,8,FM,'right');
+      g.restore();
       if(i===0){g.strokeStyle='rgba(201,182,255,.25)';g.beginPath();g.moveTo(0,18+rh-1);g.lineTo(W,18+rh-1);g.stroke()}})}
   function play(){var s0=performance.now();(function st(){var p=Math.min(1,(performance.now()-s0)/1400);draw(p);if(p<1)requestAnimationFrame(st)})()}
   window.setLiquidityPool=function(d){if(!d||!d.usdt||!d.scc)return;P=d;played=false};
@@ -8166,6 +8228,77 @@ var QT={
   window.addEventListener('resize',function(){if(size())draw(1)});if(window.ResizeObserver)new ResizeObserver(function(){if(size())draw(played?1:0)}).observe(cv);
   var rp=document.getElementById('srReplay');if(rp)rp.addEventListener('click',function(){size();play()});
   window.setLiquidityPool({sample:true,usdt:{now:206400,yesterday:200200,week:[188000,191000,194000,193000,197000,200200,206400]},scc:{now:96700000,yesterday:97900000,week:[99400000,99100000,98800000,98600000,98200000,97900000,96700000]}});
+})();
+</script>
+<script>
+/* =================================================================
+   MASCOT COMMENTARY — picks a line from today's results.
+   It uses the same data as the section (price, royalties, holders, rank).
+   Edit the lines below freely; one is picked per day from the best-fitting group.
+   ================================================================= */
+(function(){
+  var cv=document.getElementById('srMascot'),say=document.getElementById('srSay');if(!cv||!say)return;
+  var LINES={
+    great:["Great, we are on track to become a meme juggernaut!","A great day! Remember to spread the word of Super Cash Coin, let's achieve meme status and take the number one spot!","Amazing gains today! Welcome to our new holders, remember to spread the word of Super Cash Coin!"],
+    good:["We are getting noticed!","We are slowly getting there!","Tell everybody about Super Cash Coin and let's get paid royalties!"],
+    newHolders:["Amazing gains today! Welcome to our new holders, remember to spread the word of Super Cash Coin!","We are getting noticed! Welcome aboard to all our new holders!"],
+    down:["A slow day and a tiny step back, but tomorrow is another day!","A little dip today, but royalties still got paid. Tomorrow is another day!"]
+  };
+  function pick(D){
+    var price=D.open?(D.close/D.open-1):0,roy=D.royaltiesYesterday?(D.royalties/D.royaltiesYesterday-1):0,hold=D.holdersChange||0,rank=(D.rankYesterday!=null&&D.rank!=null)?D.rankYesterday-D.rank:0;
+    var score=(price>0?1:price<0?-1:0)+(roy>0?1:roy<0?-1:0)+(hold>0?1:hold<0?-1:0)+(rank>0?1:rank<0?-1:0);
+    var group=score>=3?'great':score<=-1?'down':(hold>500?'newHolders':'good');
+    var d=D.date?new Date(D.date+'T12:00:00'):new Date(),day=Math.floor(d.getTime()/864e5),list=LINES[group];
+    return list[day%list.length]}
+  /* the mascot face (same pixel design as the $SCC coin) with a talking jaw */
+  var g=cv.getContext('2d'),talking=false,blink=0;
+  /* your logo mascot, big close-up: gentle bob and blink (no talking mouth) */
+  var LOGO=['.Y.......YY','YYY.....YYY','YYYYYYYYYYY','.#########.','.#o.###.o#.','.#########.','YYYYYYYYYYY','YYY#YY#YYYY','YYYYYYYY#YY','YYY#####YYY','.YYYYYYYYY.'],COL={Y:'#ffbe2d','#':'#1c1c1c',o:'#f2f2f2'};
+  function face(t){g.clearRect(0,0,240,240);var s=24,ox=-12,oy=-9+Math.sin(t*2.4)*3,bl=(t%3.5)<.13;
+    LOGO.forEach(function(row,y){row.split('').forEach(function(ch,x){if(ch==='.')return;if(bl&&ch==='o')ch='#';g.fillStyle=COL[ch];g.fillRect(ox+x*s,oy+y*s,s+.5,s+.5);g.strokeStyle='rgba(0,0,0,.25)';g.lineWidth=1;g.strokeRect(ox+x*s+.5,oy+y*s+.5,s-1,s-1)})})}
+  function loop(ms){face(ms/1000);requestAnimationFrame(loop)}requestAnimationFrame(loop);
+  var timer=null;
+  function speak(txt){clearTimeout(timer);var i=0;talking=true;
+    (function step(){say.innerHTML=txt.slice(0,i).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'<span class="cur">▌</span>';
+      if(i<txt.length){i++;timer=setTimeout(step,txt[i-1]===' '?45:32)}else{talking=false;say.textContent=txt}})()}
+  var D=null,shown=false;
+  var orig=window.setSessionResults;window.setSessionResults=function(d){if(orig)orig(d);D=d;shown=false;check()};
+  if(window.__sccSession)D=window.__sccSession;
+  var vis=false;function check(){if(vis&&D&&!shown){shown=true;setTimeout(function(){speak(pick(D))},400)}}
+  new IntersectionObserver(function(es){vis=es[0].isIntersecting;check()},{threshold:.4}).observe(cv);
+  var rp=document.getElementById('srReplay');if(rp)rp.addEventListener('click',function(){if(D)speak(pick(D))});
+  if(!D)say.textContent="Results go live at launch. Get ready to get paid!";
+})();
+</script>
+<script>
+/* =================================================================
+   LIVE ALL-TIME ROYALTIES COUNTER (landing page)
+   Plug in ONE of these:
+   1) ROYALTIES_TOTAL_URL: an endpoint returning {"total": 847263.42}; it is checked every 15 seconds
+   2) or call window.setTotalRoyalties(847263.42) from your own code whenever it changes
+   Every increase rolls the digits, pops a coin and shows "+$X just paid".
+   Until it is plugged in, the live site shows "Live at launch".
+   (Opening the file on your computer, or adding ?demo, shows a ticking demo.)
+   ================================================================= */
+(function(){
+  var ROYALTIES_TOTAL_URL='';
+  var box=document.getElementById('heroRoy'),odo=document.getElementById('heroRoyOdo');if(!box||!odo)return;
+  var cur=null,digitsLen=0;
+  function fmt(v){return '$'+Math.floor(v).toLocaleString('en-US')}
+  function build(str){odo.innerHTML='';digitsLen=0;str.split('').forEach(function(ch){if(/[0-9]/.test(ch)){var d=document.createElement('div');d.className='dg';var r=document.createElement('div');r.className='reel';for(var k=0;k<10;k++){var c=document.createElement('div');c.textContent=k;r.appendChild(c)}d.appendChild(r);odo.appendChild(d);digitsLen++}else{var sp=document.createElement('div');sp.className='sp';sp.textContent=ch;odo.appendChild(sp)}})}
+  function show(v){var str=fmt(v),ds=str.replace(/[^0-9]/g,'');if(ds.length!==digitsLen||odo.querySelectorAll('.sp').length!==(str.length-ds.length))build(str);
+    var reels=odo.querySelectorAll('.reel');reels.forEach(function(r,i){r.style.transform='translateY('+(-Number(ds[i])*10)+'%)'})}
+  var COINSVG='<svg viewBox="0 0 64 64" width="26" height="26"><circle cx="32" cy="32" r="30" fill="#0a0a0a"/><circle cx="32" cy="32" r="27" fill="#ffd23d"/><circle cx="32" cy="32" r="20" fill="#1d54c0"/><rect x="20" y="22" width="24" height="5" fill="#ffd23d"/><rect x="20" y="27" width="24" height="8" fill="#0a0a0a"/><rect x="20" y="35" width="24" height="10" fill="#ffd23d"/></svg>';
+  function celebrate(add){var w=odo.getBoundingClientRect(),bw=box.getBoundingClientRect(),x=w.left-bw.left+Math.random()*Math.max(60,w.width-140),y=w.top-bw.top-6;
+    var p=document.createElement('div');p.className='hero-roy-pop';p.textContent='+$'+add.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' just paid';p.style.left=x+'px';p.style.top=(y-14)+'px';box.appendChild(p);setTimeout(function(){p.remove()},1800);
+    for(var k=0;k<3;k++){var c=document.createElement('div');c.className='hero-roy-coin';c.innerHTML=COINSVG;c.style.left=(w.right-bw.left-24-k*14)+'px';c.style.top=(y+20)+'px';c.style.setProperty('--dx',(20+Math.random()*40)+'px');c.style.animationDelay=(k*.12)+'s';box.appendChild(c);(function(cc){setTimeout(function(){cc.remove()},1300)})(c)}
+    odo.classList.add('flash');setTimeout(function(){odo.classList.remove('flash')},500)}
+  window.setTotalRoyalties=function(v){v=Number(v);if(!isFinite(v))return;var prev=cur;cur=v;document.getElementById('heroRoyS').innerHTML='25% of every buy &middot; paid in USDT &middot; forever';
+    if(prev==null){var s0=performance.now(),from=v*.85;(function st(){var q=Math.min(1,(performance.now()-s0)/2000);show(from+(v-from)*(1-Math.pow(1-q,3)));if(q<1)requestAnimationFrame(st)})()}
+    else{show(v);if(v>prev)celebrate(v-prev)}};
+  if(ROYALTIES_TOTAL_URL){var poll=function(){fetch(ROYALTIES_TOTAL_URL,{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){window.setTotalRoyalties(d.total!=null?d.total:d)}).catch(function(){})};poll();setInterval(poll,15000)}
+  else if(location.protocol==='file:'||/[?&]demo\b/.test(location.search)){window.setTotalRoyalties(847263.42);setInterval(function(){window.setTotalRoyalties(cur+2+Math.random()*28)},3000)}
+  else{show(0);document.getElementById('heroRoyS').textContent='Live at launch · 25% of every buy, paid in USDT'}
 })();
 </script>
 </body>
