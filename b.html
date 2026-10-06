@@ -2953,6 +2953,141 @@
  }else sec.classList.add('no-data');
 })();
 </script>
+<section class="rs-section" id="rewardSwitch">
+ <style>
+ .rs-section{background:#0d0420;background-image:repeating-linear-gradient(180deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);padding:56px 32px 60px;border-top:3px solid #7d3cff;font-family:'Share Tech Mono',ui-monospace,monospace;color:#f1eaff}
+ .rs{max-width:1180px;margin:0 auto;border:1.5px solid #7d3cff;border-radius:12px;padding:26px 22px 28px;background:#12062e;background-image:linear-gradient(rgba(125,60,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(125,60,255,.12) 1px,transparent 1px);background-size:22px 22px;position:relative}
+ .rs-kick{font-size:12px;letter-spacing:.2em;color:#c9b6ff}
+ .rs-title{font-family:'Luckiest Guy',Impact,sans-serif;font-weight:400;color:#ffd23d;font-size:clamp(30px,4.4vw,56px);line-height:1;text-shadow:3px 3px 0 #0a0a0a;margin:6px 0 10px;letter-spacing:.02em}
+ .rs-title .g{color:#7dff9a}
+ .rs-lead{font-size:clamp(14px,1.3vw,17px);line-height:1.55;max-width:760px;color:#f1eaff;margin:0 0 18px}
+ .rs-lead b{color:#ffd23d;font-weight:400}
+ .rs-stage{display:flex;flex-direction:column;align-items:center;gap:6px;margin:6px 0 22px}
+ .rs-try{font-family:'Luckiest Guy',Impact,sans-serif;font-size:16px;letter-spacing:.08em;color:#0a0a0a;background:#ffd23d;border:2.5px solid #0a0a0a;box-shadow:3px 3px 0 #0a0a0a;border-radius:6px;padding:4px 12px 2px;transform:rotate(-3deg);animation:rsWig 2.4s ease-in-out infinite}
+ @keyframes rsWig{0%,80%,100%{transform:rotate(-3deg)}85%{transform:rotate(3deg) scale(1.05)}90%{transform:rotate(-4deg)}95%{transform:rotate(2deg)}}
+ #rsSwitch{width:100%;max-width:330px;aspect-ratio:300/266;display:block;cursor:pointer;outline:none;border-radius:16px}
+ #rsSwitch:focus-visible{box-shadow:0 0 0 3px #ffd23d}
+ .rs-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+ .rs-card{border:2.5px solid #2a1366;border-radius:12px;background:rgba(13,4,32,.8);padding:18px 18px 16px;position:relative;transition:border-color .35s,box-shadow .35s,transform .35s,opacity .35s;opacity:.55}
+ .rs-card.on{opacity:1;transform:translateY(-4px)}
+ .rs-card.cash.on{border-color:#3dd16a;box-shadow:4px 4px 0 #0a0a0a,0 0 22px rgba(61,209,106,.35)}
+ .rs-card.stack.on{border-color:#ffd23d;box-shadow:4px 4px 0 #0a0a0a,0 0 22px rgba(255,210,61,.35)}
+ .rs-badge{position:absolute;top:-12px;right:14px;font-family:'Luckiest Guy',Impact,sans-serif;font-size:13px;letter-spacing:.08em;padding:3px 10px 1px;border:2px solid #0a0a0a;border-radius:6px;box-shadow:2px 2px 0 #0a0a0a;color:#0a0a0a;opacity:0;transition:opacity .3s}
+ .rs-card.on .rs-badge{opacity:1}.rs-card.cash .rs-badge{background:#3dd16a}.rs-card.stack .rs-badge{background:#ffd23d}
+ .rs-ch{font-family:'Luckiest Guy',Impact,sans-serif;font-size:clamp(22px,2.4vw,30px);letter-spacing:.03em;text-shadow:2px 2px 0 #0a0a0a;line-height:1}
+ .rs-card.cash .rs-ch{color:#7dff9a}.rs-card.stack .rs-ch{color:#ffd23d}
+ .rs-cs{font-size:11px;letter-spacing:.16em;color:#c9b6ff;margin:6px 0 12px}
+ .rs-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+ .rs-card li{font-size:14px;line-height:1.45;padding-left:22px;position:relative}
+ .rs-card li::before{content:'';position:absolute;left:0;top:5px;width:10px;height:10px;border:2px solid #0a0a0a;border-radius:3px}
+ .rs-card.cash li::before{background:#3dd16a}.rs-card.stack li::before{background:#ffd23d}
+ .rs-best{margin-top:12px;font-size:12px;letter-spacing:.06em;color:#c9b6ff}.rs-best b{color:#f1eaff;font-weight:400}
+ .rs-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+ .rs-step{display:flex;gap:12px;align-items:flex-start;border:1.5px solid #7d3cff;border-radius:10px;background:rgba(13,4,32,.7);padding:12px 14px}
+ .rs-n{flex:0 0 36px;height:36px;border-radius:50%;background:#ffd23d;border:2.5px solid #0a0a0a;box-shadow:2px 2px 0 #0a0a0a;font-family:'Luckiest Guy',Impact,sans-serif;font-size:19px;color:#0a0a0a;display:flex;align-items:center;justify-content:center;padding-top:3px;box-sizing:border-box}
+ .rs-st b{display:block;font-family:'Luckiest Guy',Impact,sans-serif;font-weight:400;font-size:17px;letter-spacing:.04em;color:#f1eaff;margin-bottom:3px}.rs-st{font-size:13px;line-height:1.45;color:#c9b6ff}
+ .rs-note{margin-top:16px;font-size:11px;letter-spacing:.06em;color:#8a7bb8;text-align:center}
+ @media (max-width:760px){.rs-cards,.rs-steps{grid-template-columns:1fr}}
+ @media (max-width:600px){.rs-section{padding:36px 12px 44px}.rs{padding:20px 14px 22px}}
+ @media (prefers-reduced-motion:reduce){.rs-try{animation:none}}
+ </style>
+ <div class="rs">
+  <div class="rs-kick">ONE SWITCH · YOUR CHOICE</div>
+  <h2 class="rs-title"><span class="g">CASH</span> OR COIN?</h2>
+  <p class="rs-lead">Every holder gets rewards. On your dashboard there's one switch that decides what happens to them: take them as <b>cash in your wallet</b>, or turn them into <b>more $SCC coins automatically</b>. Flip it any time.</p>
+  <div class="rs-stage"><span class="rs-try">TRY IT!</span><canvas id="rsSwitch" role="switch" aria-checked="false" tabindex="0" aria-label="Reward switch: cash to your wallet, or coin to get more $SCC"></canvas></div>
+  <div class="rs-cards">
+   <div class="rs-card cash on" id="rsCash"><span class="rs-badge">YOU PICKED THIS</span><div class="rs-ch">💵 CASH</div><div class="rs-cs">SWITCH OFF · TO MY WALLET</div>
+    <ul><li>Your rewards land in your wallet as USDT.</li><li>Spend it, save it or send it. It's yours straight away.</li><li>Your $SCC balance stays the same.</li></ul>
+    <div class="rs-best">GREAT IF: <b>you want income you can use now.</b></div></div>
+   <div class="rs-card stack" id="rsStack"><span class="rs-badge">YOU PICKED THIS</span><div class="rs-ch">🪙 COIN</div><div class="rs-cs">SWITCH ON · MORE $SCC</div>
+    <ul><li>Your rewards automatically buy more $SCC for you.</li><li>More $SCC means a bigger share of every future reward.</li><li>Your $SCC keeps growing on its own, every time rewards are paid.</li></ul>
+    <div class="rs-best">GREAT IF: <b>you're happy to wait for bigger rewards later.</b></div></div>
+  </div>
+  <div class="rs-steps">
+   <div class="rs-step"><span class="rs-n">1</span><div class="rs-st"><b>CONNECT</b>Open your dashboard and connect your wallet.</div></div>
+   <div class="rs-step"><span class="rs-n">2</span><div class="rs-st"><b>PUSH THE BUTTON</b>Cash to your wallet, or coin for more $SCC.</div></div>
+   <div class="rs-step"><span class="rs-n">3</span><div class="rs-st"><b>CHANGE ANY TIME</b>Your choice applies to your next rewards.</div></div>
+  </div>
+  <div class="rs-note">Demo only. The switch here shows how it works; the real one lives on your dashboard.</div>
+ </div>
+</section>
+<script>
+/* ===== CASH IT OR STACK IT — animated mascot switch demo ===== */
+(function(){
+ var cv=document.getElementById('rsSwitch');if(!cv)return;var sec=document.getElementById('rewardSwitch'),g=cv.getContext('2d'),W=560,H=230,d=Math.min(3,Math.max(2,(window.devicePixelRatio||1)*1.5)),NARROW=false,L={};
+ function setup(){NARROW=true;W=300;H=266;cv.style.aspectRatio=W+'/'+H;var cw=cv.getBoundingClientRect().width||W,sc=Math.max(1,cw/W)*Math.min(3,Math.max(1,window.devicePixelRatio||1));cv.width=Math.round(W*sc);cv.height=Math.round(H*sc);g.setTransform(sc,0,0,sc,0,0);g.imageSmoothingQuality='high';
+  T={x:12,y:86,w:276,h:112};L={cx:62,sx:238,ly:T.y+T.h+36,hint:-99,head:20}}
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,FONT='"Luckiest Guy",Impact,sans-serif',MONO='"Share Tech Mono",monospace',visible=false;
+ function mk(n,f){var k=document.createElement('canvas');k.width=n[0];k.height=n[1];f(k.getContext('2d'));return k}
+ var COIN=mk([128,128],function(x){x.scale(.5,.5);x.fillStyle='#0a0a0a';x.beginPath();x.arc(128,128,127,0,7);x.fill();x.fillStyle='#ffd23d';x.beginPath();x.arc(128,128,119,0,7);x.fill();x.strokeStyle='#c79a0c';x.lineWidth=6;x.beginPath();x.arc(128,128,108,0,7);x.stroke();x.fillStyle='#1d54c0';x.beginPath();x.arc(128,128,94,0,7);x.fill();x.fillStyle='#ffd23d';x.fillRect(90,72,18,16);x.fillRect(148,72,18,16);x.fillRect(78,86,98,14);x.fillStyle='#0a0a0a';x.fillRect(78,100,98,28);x.fillStyle='#aab4d8';x.fillRect(96,108,14,10);x.fillRect(144,108,14,10);x.fillStyle='#ffd23d';x.fillRect(78,128,98,42);x.fillStyle='#0a0a0a';x.fillRect(104,146,12,10);x.fillRect(140,146,12,10);x.fillRect(120,162,24,8);x.fillStyle='rgba(255,255,255,.35)';x.beginPath();x.ellipse(92,70,30,14,-.6,0,7);x.fill()});
+ var BILL=mk([104,72],function(x){var w=104,h=72;x.fillStyle='#0b4a22';x.beginPath();x.roundRect(5,7,w-6,h-8,14);x.fill();x.fillStyle='#3dc650';x.beginPath();x.roundRect(2,2,w-6,h-8,14);x.fill();x.strokeStyle='#1a7a2e';x.lineWidth=4;x.stroke();x.fillStyle='rgba(128,224,144,.55)';x.beginPath();x.ellipse(w*.47,h*.22,w*.36,h*.1,0,0,7);x.fill();x.font='italic 900 42px Arial Black,Arial';x.textAlign='center';x.textBaseline='middle';x.lineWidth=3;x.strokeStyle='#1a7a2e';x.strokeText('$',w*.47,h*.5);x.fillStyle='#fff';x.fillText('$',w*.47,h*.5)});
+ var BHD=mk([390,270],function(x){x.scale(3,3);x.fillStyle='#0b4a22';x.globalAlpha=.85;x.beginPath();x.roundRect(6,9,120,76,16);x.fill();x.globalAlpha=1;x.fillStyle='#3dc650';x.beginPath();x.roundRect(3,4,120,76,16);x.fill();x.strokeStyle='#1a7a2e';x.lineWidth=5;x.beginPath();x.roundRect(3,4,120,76,16);x.stroke();
+  x.fillStyle='rgba(128,224,144,.55)';x.beginPath();x.ellipse(63,20,50,10,0,0,7);x.fill();x.font='italic 900 52px "Arial Black",Arial';x.textAlign='center';x.textBaseline='alphabetic';x.lineJoin='round';x.lineWidth=3;x.strokeStyle='#1a7a2e';x.strokeText('$',63,62);x.fillStyle='#fff';x.fillText('$',63,62)});
+ /* bundle pile: side blocks with paper edges + gold strap, top shows the note */
+ function brick(cx,base,bw,n){var th=bw*.5,bh=Math.max(7,bw*.13);for(var j=0;j<n;j++){var y=base-j*bh,x=cx-bw/2+((j*7)%3-1)*1.5;
+   g.fillStyle='#0a0a0a';g.fillRect(x-1.5,y-bh-1,bw+3,bh+2.5);var sg=g.createLinearGradient(x,0,x+bw,0);sg.addColorStop(0,'#1f8a3c');sg.addColorStop(.5,'#3dc650');sg.addColorStop(1,'#1f8a3c');g.fillStyle=sg;g.fillRect(x,y-bh,bw,bh);
+   g.strokeStyle='rgba(233,251,233,.55)';g.lineWidth=.7;for(var q=1;q<4;q++){g.beginPath();g.moveTo(x+1,y-bh+q*bh/4);g.lineTo(x+bw-1,y-bh+q*bh/4);g.stroke()}
+   g.fillStyle='#ffd23d';g.fillRect(cx-bw*.09,y-bh,bw*.18,bh);g.strokeStyle='#0a0a0a';g.lineWidth=1;g.strokeRect(cx-bw*.09,y-bh,bw*.18,bh)}
+  var ty=base-n*bh;g.fillStyle='#0a0a0a';g.beginPath();g.roundRect(cx-bw/2-1.5,ty-th-1.5,bw+3,th+3,4);g.fill();g.drawImage(BHD,cx-bw/2,ty-th,bw,th);
+  }
+ /* coin pile: reeded gold edges, top coin shows the $SCC face */
+ function cstack(cx,base,cw,n){var eh=cw*.36,ch=Math.max(5,cw*.15);for(var j=0;j<n;j++){var y=base-j*ch,x=cx+((j*5)%3-1)*1.2;
+   g.fillStyle='#0a0a0a';g.beginPath();g.ellipse(x,y,cw/2+1.5,eh/2+1.5,0,0,Math.PI);g.lineTo(x-cw/2-1.5,y-ch);g.ellipse(x,y-ch,cw/2+1.5,eh/2+1.5,0,Math.PI,0,true);g.closePath();g.fill();
+   var eg=g.createLinearGradient(x-cw/2,0,x+cw/2,0);eg.addColorStop(0,'#9a6a06');eg.addColorStop(.35,'#ffd23d');eg.addColorStop(.6,'#fff0a0');eg.addColorStop(1,'#a8740a');g.fillStyle=eg;g.beginPath();g.ellipse(x,y,cw/2,eh/2,0,0,Math.PI);g.lineTo(x-cw/2,y-ch);g.ellipse(x,y-ch,cw/2,eh/2,0,Math.PI,0,true);g.closePath();g.fill();
+   g.strokeStyle='rgba(122,91,7,.55)';g.lineWidth=.8;for(var q=-5;q<=5;q++){var a=q/6*Math.PI/2,xx=x+Math.sin(a)*cw/2;g.beginPath();g.moveTo(xx,y-ch+Math.cos(a)*eh/2);g.lineTo(xx,y+Math.cos(a)*eh/2-1);g.stroke()}}
+  var ty=base-n*ch;g.fillStyle='#0a0a0a';g.beginPath();g.ellipse(cx,ty,cw/2+1.5,eh/2+1.5,0,0,7);g.fill();g.save();g.translate(cx,ty);g.scale(1,eh/cw);g.drawImage(COIN,-cw/2,-cw/2,cw,cw);g.restore()}
+ var LOGO=['.Y.......YY','YYY.....YYY','YYYYYYYYYYY','.#########.','.#oo###oo#.','.#########.','YYYYYYYYYYY','YYY#YY#YYYY','YYYYYYYY#YY','YYY#####YYY','.YYYYYYYYY.'],LC={Y:'#ffbe2d','#':'#1c1c1c',o:'#f2f2f2'};
+ function rr(x,y,w,h,r){g.beginPath();g.roundRect(x,y,w,h,r)}
+ function disc(x,y,w,c){g.fillStyle='#0a0a0a';g.beginPath();g.ellipse(x,y,w/2+1.5,w*.18+1.5,0,0,7);g.fill();g.fillStyle=c?'#c4900f':'#ffd23d';g.beginPath();g.ellipse(x,y-1,w/2,w*.18,0,0,7);g.fill()}
+ function txt(s,x,y,sz,col){g.font=sz+'px '+FONT;g.textAlign='center';g.textBaseline='middle';g.fillStyle='#0a0a0a';g.fillText(s,x+2,y+2);g.fillStyle=col;g.fillText(s,x,y)}
+ function spark(x,y,s,a){g.save();g.globalAlpha=Math.max(0,a);g.fillStyle='#fff';g.beginPath();g.moveTo(x,y-s);g.lineTo(x+s*.25,y-s*.25);g.lineTo(x+s,y);g.lineTo(x+s*.25,y+s*.25);g.lineTo(x,y+s);g.lineTo(x-s*.25,y+s*.25);g.lineTo(x-s,y);g.lineTo(x-s*.25,y-s*.25);g.fill();g.restore()}
+ var S={m:0,k:0,parts:[],stacks:[3,5,4,6,2],drops:[],piles:[2,3,1,4,2],cdrops:[],cash:0,coins:0,press:0,lt:0},T={x:100,y:86,w:360,h:96};setup();if(window.ResizeObserver)new ResizeObserver(function(){setup();if(reduce)draw(0,0)}).observe(cv);else window.addEventListener('resize',function(){setup()});
+ var cC=document.getElementById('rsCash'),cS=document.getElementById('rsStack');
+ function toggle(){S.used=1;S.m=1-S.m;S.press=1;cv.setAttribute('aria-checked',S.m?'true':'false');cC.classList.toggle('on',!S.m);cS.classList.toggle('on',!!S.m);if(reduce){S.k=S.m;draw(0,0)}}
+ cv.addEventListener('click',toggle);cv.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();toggle()}});
+ cC.addEventListener('click',function(){if(S.m)toggle()});cS.addEventListener('click',function(){if(!S.m)toggle()});cC.style.cursor=cS.style.cursor='pointer';
+ function draw(t,dt){g.clearRect(0,0,W,H);var stack=S.k>.5,glowC=stack?'255,210,61':'61,209,106',pulse=reduce?.5:.5+.5*Math.sin(t*3);
+  txt('CASH',L.cx,L.ly,24,stack?'#5a4a8a':'#7dff9a');g.font='11px '+MONO;g.textAlign='center';g.fillStyle=stack?'#5a4a8a':'#c9b6ff';g.fillText('TO MY WALLET',L.cx,L.ly+22);
+  txt('COIN',L.sx,L.ly,24,stack?'#ffd23d':'#5a4a8a');g.font='11px '+MONO;g.fillStyle=stack?'#c9b6ff':'#5a4a8a';g.fillText('MORE $SCC',L.sx,L.ly+22);
+  g.save();g.shadowColor='rgba('+glowC+',.9)';g.shadowBlur=14+pulse*16;g.strokeStyle='rgba('+glowC+','+(.4+pulse*.4)+')';g.lineWidth=3;rr(T.x-4,T.y-4,T.w+8,T.h+8,52);g.stroke();g.restore();
+  g.fillStyle='#0a0a0a';rr(T.x+6,T.y+6,T.w,T.h,48);g.fill();
+  g.save();rr(T.x,T.y,T.w,T.h,48);g.clip();g.fillStyle='#0d0420';g.fillRect(T.x,T.y,T.w,T.h);var gr=g.createLinearGradient(0,T.y,0,T.y+T.h);gr.addColorStop(0,'rgba('+glowC+',.05)');gr.addColorStop(1,'rgba('+glowC+',.28)');g.fillStyle=gr;g.fillRect(T.x,T.y,T.w,T.h);g.strokeStyle='rgba(125,60,255,.18)';g.lineWidth=1;for(var gx=T.x;gx<T.x+T.w;gx+=16){g.beginPath();g.moveTo(gx,T.y);g.lineTo(gx,T.y+T.h);g.stroke()}for(var gy=T.y;gy<T.y+T.h;gy+=16){g.beginPath();g.moveTo(T.x,gy);g.lineTo(T.x+T.w,gy);g.stroke()}
+  var cols=[0,1,2,3,4].map(function(i){return T.x+T.w*.27+i*T.w*.115}),bw=T.w*.1,base=T.y+T.h-12;
+  if(!stack){if(!reduce&&Math.random()<.12)S.cdrops.push({i:Math.random()*5|0,y:T.y-24,v:0,r:Math.random()*6});
+   S.cdrops=S.cdrops.filter(function(p){p.v+=.6;p.y+=p.v;p.r+=.2;var top=base-S.piles[p.i]*Math.max(7,bw*.13)-bw*.3;if(p.y>=top){S.piles[p.i]++;if(S.piles[p.i]>7)S.piles[p.i]=2;return false}return true});
+   cols.forEach(function(x,i){brick(x,base,bw,S.piles[i])});S.cdrops.forEach(function(p){g.save();g.translate(cols[p.i],p.y);g.rotate(Math.sin(p.r)*.4);g.drawImage(BHD,-bw/2,-bw*.35,bw,bw*.69);g.restore()})}
+  else{if(!reduce&&Math.random()<.14)S.drops.push({i:Math.random()*5|0,y:T.y-20,v:0});var chh=Math.max(5,bw*.9*.15);
+   S.drops=S.drops.filter(function(p){p.v+=.7;p.y+=p.v;var top=base-S.stacks[p.i]*chh;if(p.y>=top){S.stacks[p.i]++;if(S.stacks[p.i]>10)S.stacks[p.i]=3;return false}return true});
+   cols.forEach(function(x,i){cstack(x,base,bw*.9,S.stacks[i])});S.drops.forEach(function(p){g.save();g.translate(cols[p.i],p.y);g.scale(1,.36);g.drawImage(COIN,-bw*.45,-bw*.45,bw*.9,bw*.9);g.restore()})}
+  g.restore();g.strokeStyle='#0a0a0a';g.lineWidth=4;rr(T.x,T.y,T.w,T.h,48);g.stroke();g.strokeStyle=stack?'#ffd23d':'#3dd16a';g.lineWidth=3;rr(T.x+3.5,T.y+3.5,T.w-7,T.h-7,45);g.stroke();
+  var r=46,kx=T.x+T.h/2+(T.w-T.h)*S.k,ky=T.y+T.h/2,ph=t%2.4,shake=(!reduce&&ph<.55)?Math.sin(ph*44)*(1-ph/.55):0,rot=shake*.13,hop=(!reduce&&ph<.55)?-Math.abs(Math.sin(ph*11))*5*(1-ph/.55):0,dep=7,pd=Math.min(1,S.press*1.4)*dep,px=6.4,bob=0;
+  g.save();g.translate(kx,ky+hop);g.rotate(rot);
+  g.fillStyle='rgba(0,0,0,.4)';g.beginPath();g.ellipse(4,r+dep+2,r*.85,r*.15,0,0,7);g.fill();
+  g.fillStyle='#0a0a0a';rr(-r-2,-r+dep-2,r*2+4,r*2+4,18);g.fill();g.fillStyle=stack?'#8a6206':'#14682f';rr(-r,-r+dep,r*2,r*2,16);g.fill();
+  var ty=-r-dep*0+pd-2;g.fillStyle='#0a0a0a';rr(-r-2,ty-2,r*2+4,r*2+4,18);g.fill();var fg=g.createLinearGradient(0,ty,0,ty+r*2);fg.addColorStop(0,stack?'#ffe27a':'#7dff9a');fg.addColorStop(1,stack?'#e0a50f':'#2fbf5c');g.fillStyle=fg;rr(-r,ty,r*2,r*2,16);g.fill();
+  g.fillStyle='rgba(255,255,255,.35)';rr(-r+6,ty+4,r*2-12,10,5);g.fill();
+  g.fillStyle='#12062e';rr(-r+8,ty+8,r*2-16,r*2-16,10);g.fill();g.strokeStyle='#0a0a0a';g.lineWidth=2.5;g.stroke();
+  for(var a=0;a<11;a++)for(var b2=0;b2<11;b2++){var ch=LOGO[a][b2];if(ch==='.')continue;if(a===4&&ch==='o'&&!reduce&&(t%3.4)<.12)ch='#';g.fillStyle=LC[ch];g.fillRect(-px*5.5+b2*px,ty+r-px*5.5+a*px,px+.3,px+.3)}
+  g.restore();
+  /* PUSH! sticker bouncing above the button */
+  var sx=kx+(S.k<.5?18:-18),sy=T.y-14+hop,sc=reduce?1:1+.08*Math.sin(t*8);g.save();g.translate(sx,sy);g.rotate(S.k<.5?-.14:.14);g.scale(sc,sc);g.beginPath();for(var q=0;q<20;q++){var ang=q/20*Math.PI*2,rad=q%2?20:28;g.lineTo(Math.cos(ang)*rad*1.45,Math.sin(ang)*rad*.8)}g.closePath();g.fillStyle='#0a0a0a';g.save();g.translate(3,3);g.fill();g.restore();g.fillStyle='#ff4fa3';g.fill();g.strokeStyle='#0a0a0a';g.lineWidth=2.5;g.stroke();
+  g.font='18px '+FONT;g.textAlign='center';g.textBaseline='middle';g.fillStyle='#fff';g.strokeStyle='#0a0a0a';g.lineWidth=4;g.lineJoin='round';g.strokeText('PUSH!',0,1);g.fillText('PUSH!',0,1);g.restore();
+  if(!reduce){if(!stack&&Math.random()<.06)S.parts.push({k:'b',x:kx,y:ky-30,vx:2+Math.random()*2.5,vy:-3-Math.random()*2,r:Math.random()*6,vr:(Math.random()-.5)*.2,l:0});
+   if(stack&&Math.random()<.07)S.parts.push({k:'c',x:kx+(Math.random()-.5)*40,y:ky-30,vx:(Math.random()-.5)*2,vy:-4-Math.random()*2,r:0,vr:.25,l:0})}
+  S.parts=S.parts.filter(function(p){p.l+=dt;p.x+=p.vx;p.y+=p.vy;p.vy+=p.k==='b'?.05:.2;p.r+=p.vr;if(p.l>2.2||p.y>H)return false;g.save();g.globalAlpha=Math.max(0,1-p.l/2.2);g.translate(p.x,p.y);g.rotate(p.r);if(p.k==='b'){g.scale(Math.cos(p.l*6),1);g.drawImage(BHD,-18,-12.5,36,25)}else{g.scale(Math.cos(p.l*9),1);g.drawImage(COIN,-11,-11,22,22)}g.restore();return true});
+  if(stack&&!reduce){for(var i=0;i<4;i++){var q=(t*1.2+i*.25)%1;spark(T.x+T.w*.35+i*T.w*.16,T.y-6-q*24,5,Math.sin(q*Math.PI))}}
+  txt(stack?'YOUR REWARDS BUY MORE $SCC':'YOUR REWARDS ARRIVE AS USDT',W/2,L.head,NARROW?15:16,'#f1eaff');
+  g.globalAlpha=1;
+  /* tapping hand so people know to push it */
+  if(!reduce){var per=S.used?8:3.2,c=(t%per)/per*per,kx2=T.x+T.h/2+(T.w-T.h)*S.k,ky2=T.y+T.h/2;if(c<1.6){var inA=Math.min(1,c/.5),pr=c>.55&&c<.85?Math.sin((c-.55)/.3*Math.PI):0,out=c>1.1?(c-1.1)/.5:0,hx=kx2+34-pr*4,hy=ky2+46+(1-inA)*30+out*30-pr*8;
+    if(c>.6&&c<.62)S.press=Math.max(S.press,.6);if(c>.6&&c<1.4){var rp=(c-.6)/.8;g.strokeStyle='rgba('+glowC+','+(1-rp)+')';g.lineWidth=3;g.beginPath();g.arc(kx2,ky2,40+rp*40,0,7);g.stroke()}
+    g.save();g.globalAlpha=inA*(1-out);g.font='40px serif';g.textAlign='center';g.textBaseline='middle';g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=6;g.fillText('\u{1F446}',hx,hy);g.restore()}}}
+ function loop(ms){requestAnimationFrame(loop);if(!visible)return;var t=ms/1000,dt=Math.min(.05,t-(S.lt||t));S.lt=t;S.k+=(S.m-S.k)*.1;S.press*=.86;draw(t,dt)}
+ new IntersectionObserver(function(es){visible=es[0].isIntersecting},{threshold:0}).observe(sec);
+ (document.fonts&&document.fonts.load?document.fonts.load('20px "Luckiest Guy"'):Promise.resolve()).then(function(){if(reduce)draw(0,0);else requestAnimationFrame(loop)},function(){requestAnimationFrame(loop)});
+})();
+</script>
 <section class="celebration" id="celebrationSection">
   <div class="content">
     <h2>
@@ -8479,7 +8614,7 @@ var QT={
   /* the mascot face (same pixel design as the $SCC coin) with a talking jaw */
   var g=cv.getContext('2d'),talking=false,blink=0;
   /* your logo mascot, big close-up: gentle bob and blink (no talking mouth) */
-  var LOGO=['.Y.......YY','YYY.....YYY','YYYYYYYYYYY','.#########.','.#o.###.o#.','.#########.','YYYYYYYYYYY','YYY#YY#YYYY','YYYYYYYY#YY','YYY#####YYY','.YYYYYYYYY.'],COL={Y:'#ffbe2d','#':'#1c1c1c',o:'#f2f2f2'};
+  var LOGO=['.Y.......YY','YYY.....YYY','YYYYYYYYYYY','.#########.','.#oo###oo#.','.#########.','YYYYYYYYYYY','YYY#YY#YYYY','YYYYYYYY#YY','YYY#####YYY','.YYYYYYYYY.'],COL={Y:'#ffbe2d','#':'#1c1c1c',o:'#f2f2f2'};
   function face(t){g.clearRect(0,0,240,240);var s=24,ox=-12,oy=-9+Math.sin(t*2.4)*3,bl=(t%3.5)<.13;
     LOGO.forEach(function(row,y){row.split('').forEach(function(ch,x){if(ch==='.')return;if(bl&&ch==='o')ch='#';g.fillStyle=COL[ch];g.fillRect(ox+x*s,oy+y*s,s+.5,s+.5);g.strokeStyle='rgba(0,0,0,.25)';g.lineWidth=1;g.strokeRect(ox+x*s+.5,oy+y*s+.5,s-1,s-1)})})}
   function loop(ms){face(ms/1000);requestAnimationFrame(loop)}requestAnimationFrame(loop);
