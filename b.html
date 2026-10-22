@@ -1309,7 +1309,7 @@
 <style id="tcUp">#tradeCentre{padding-top:14px!important}@media(min-width:901px){#tradeCentre{margin-top:-10px!important}}</style>
 <style id="mbChartUp">@media(max-width:900px){#meter .chartc{margin-top:-50px!important}}</style>
 <style id="rvMobFix">@keyframes rvRipM{0%{transform:scale(.8);opacity:.8}100%{transform:scale(1.35);opacity:0}}@media(max-width:900px){.sccx #reinvest .rv-ov{padding-top:24px!important;min-height:0!important}.sccx #reinvest .mrow .rip{animation-name:rvRipM!important}.sccx #reinvest .mrow{margin-bottom:22px}}</style>
-<style id="bannerBlue">.top-banner{background-color:#1d4fd8!important;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px)!important;background-size:12px 12px!important}.top-banner::before{background:none!important}.top-banner{border-top:3px solid #ffd23d!important;border-bottom:3px solid #ffd23d!important}.top-banner .ico-sep{background:#ffd23d!important}body.qd23 #dayRecap,#dayRecap.sn3{border-top:3px solid #ffd23d!important;border-bottom:3px solid #ffd23d!important}.top-banner{box-shadow:none!important;outline:none!important}</style><style id="bannerOneLine">.top-banner .ico-price,.top-banner .ico-left .ico-sep{display:none!important}@media(max-width:700px){.top-banner{flex-wrap:nowrap!important;white-space:nowrap!important;padding:8px 8px!important;gap:8px!important}.top-banner .ico-left{flex-wrap:nowrap!important;white-space:nowrap!important}.top-banner .ico-title,.top-banner .ico-cta{font-size:min(10px,calc((100vw - 44px) / 51))!important;white-space:nowrap!important}.top-banner > .ico-sep{display:block!important;height:1.6em;flex:0 0 2px}}</style></head>
+<style id="bannerBlue">.top-banner{background-color:#1d4fd8!important;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px)!important;background-size:12px 12px!important}.top-banner::before{background:none!important}.top-banner{border-top:3px solid #ffd23d!important;border-bottom:3px solid #ffd23d!important}.top-banner .ico-sep{background:#ffd23d!important}body.qd23 #dayRecap,#dayRecap.sn3{border-top:3px solid #ffd23d!important;border-bottom:3px solid #ffd23d!important}.top-banner{box-shadow:none!important;outline:none!important}</style><style id="bannerOneLine">.top-banner .ico-price,.top-banner .ico-left .ico-sep{display:none!important}@media(max-width:700px){.top-banner{flex-wrap:nowrap!important;white-space:nowrap!important;padding:8px 8px!important;gap:8px!important}.top-banner .ico-left{flex-wrap:nowrap!important;white-space:nowrap!important}.top-banner .ico-title,.top-banner .ico-cta{font-size:min(10px,calc((100vw - 44px) / 51))!important;white-space:nowrap!important}.top-banner > .ico-sep{display:block!important;height:1.6em;flex:0 0 2px}}</style><style id="lnMobFit">@media(max-width:700px){section.hero-new.ln,#lnHero{min-height:0!important}#lnHero{padding-top:44px!important;padding-bottom:52px!important;justify-content:center!important}}</style></head>
 <body>
 <script>
 /* Pause off-screen animations: __sccVis(el) is true only while el is on screen */
@@ -3569,7 +3569,7 @@ document.querySelectorAll('#howToBuy .ph').forEach((ph,pi)=>{let v=2847.32,today
     x.fillStyle='rgba(255,255,255,.35)';x.beginPath();x.ellipse(92,70,30,14,-.6,0,7);x.fill();return k})();
   function note(g,x,y,rot,s,flip,a){if(!bimg.complete)return;g.save();g.globalAlpha=a==null?1:a;g.translate(x,y);g.rotate(rot);g.scale(s*Math.max(.08,Math.abs(flip)),s);g.drawImage(bimg,-26,-18,52,36);g.restore()}
   function coin(g,x,y,r,flip,a){g.save();g.globalAlpha=a==null?1:a;g.translate(x,y);var sx=Math.abs(flip==null?1:flip);if(sx<.25){g.fillStyle='#c4900f';g.fillRect(-r*.15,-r,r*.3,r*2);g.fillStyle='#ffd23d';g.fillRect(-r*.05,-r,r*.1,r*2)}else{g.scale(sx,1);g.drawImage(COIN,-r,-r,r*2,r*2)}g.restore()}
-  var DPR=Math.min(2,window.devicePixelRatio||1),visible=true,last=0,T0=null;
+  var DPR=Math.min(3,window.devicePixelRatio||1),visible=true,last=0,T0=null;
 
   /* ---------------- TITLE ---------------- */
   var tc=tcv.getContext('2d'),off=document.createElement('canvas'),oc=off.getContext('2d'),W=0,H=0,L=null,S=null;
@@ -3734,7 +3734,7 @@ document.querySelectorAll('#howToBuy .ph').forEach((ph,pi)=>{let v=2847.32,today
   function rsize(){RW=hero.clientWidth;RH=hero.clientHeight;rcv.width=RW;rcv.height=RH;rc.setTransform(1,0,0,1,0,0);
     var n=Math.round(Math.min(64,Math.max(26,RW*RH/22000)));R=[];for(var i=0;i<n;i++)R.push(mk(Math.random()*RH));SPR=sprites()}
   function mk(y){var z=[.35,.6,1][Math.floor(Math.random()*3)];return{x:Math.random()*RW,y:y==null?-40:y,z:z,v:(40+Math.random()*40)*z+25,ph:Math.random()*6,sw:Math.random()*6,coin:Math.random()<.4,rot:Math.random()*6}}
-  function rain(t,dt){rc.clearRect(0,0,RW,RH);rc.save();var sc=Math.max(.8,Math.min(1.5,RW/900));
+  function rain(t,dt){if(!rcv.offsetParent)return;rc.clearRect(0,0,RW,RH);rc.save();var sc=Math.max(.8,Math.min(1.5,RW/900));
     [.35,.6,1].forEach(function(z){R.forEach(function(p){if(p.z!==z)return;p.y+=p.v*dt;p.ph+=dt*(2+z*3);p.rot+=dt*z;if(p.y>RH+40){var q=mk();for(var k in q)p[k]=q[k]}
       var x=p.x+Math.sin(t*.8+p.sw)*16*z,a=.35+z*.55,fl=Math.cos(p.ph);
       if(z<1&&SPR){var sp=SPR[(p.coin?'c':'n')+z],s=(p.coin?(7+z*10)*sc/16:(.38+z*.5)*sc);rc.save();rc.globalAlpha=a;rc.translate(x,p.y);rc.rotate(p.coin?0:p.rot);rc.scale(s*Math.max(.1,Math.abs(fl)),s);rc.drawImage(sp,-sp.width/2,-sp.height/2);rc.restore()}
@@ -4668,24 +4668,7 @@ var vb=svg.viewBox.baseVal,clone=svg.cloneNode(true);clone.setAttribute('width',
 var img=new Image();img.onload=function(){var PW=64,PH=Math.round(PW*vb.height/vb.width),t=document.createElement('canvas');t.width=PW;t.height=PH;var g=t.getContext('2d');g.drawImage(img,0,0,PW,PH);var d=g.getImageData(0,0,PW,PH).data;var S=10,G=Math.max(1,S*.18);cv.width=PW*S;cv.height=PH*S;var c=cv.getContext('2d');c.clearRect(0,0,cv.width,cv.height);
 for(var y=0;y<PH;y++)for(var x=0;x<PW;x++){var i=(y*PW+x)*4,a=d[i+3];if(a<60)continue;var gr=d[i+1];if(gr>120){c.fillStyle='#3dff7a';c.shadowColor='#3dff7a';c.shadowBlur=8}else if(gr>40){c.fillStyle='rgba(61,255,122,.45)';c.shadowBlur=0}else{c.fillStyle='rgba(61,255,122,.10)';c.shadowBlur=0}c.fillRect(x*S,y*S,S-G,S-G)}};
 img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(new XMLSerializer().serializeToString(clone));};})();</script><script>(function(){document.body.classList.add("qd23");function go(){if(!document.querySelector("#dayRecap .dr-pig svg"))return setTimeout(go,200);window.__neonPig(true);window.__blkPig(true)}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go()})();</script><style id="cashPileCSS">body.qd23 #dayRecap{background-image:none!important;background-color:#fff!important}#dayRecap{position:relative;isolation:isolate}#dayRecap .dr-in{position:relative;z-index:2}#cashPileCv{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}#dayRecap.sn3{padding:70px 60px 70px!important}@media(max-width:900px){#dayRecap.sn3{padding:44px 22px 44px!important}}</style>
-<script>(function(){
-function go(){const sec=document.getElementById('dayRecap');if(!sec)return;const cv=document.createElement('canvas');cv.id='cashPileCv';sec.insertBefore(cv,sec.firstChild);const c=cv.getContext('2d');
-const sym=id=>{const s=document.getElementById(id);if(!s)return null;const i=new Image();i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s.outerHTML.replace('<symbol','<svg xmlns="http://www.w3.org/2000/svg"').replace(/<\/symbol>$/,'</svg>'));return i};
-const BILL=sym('bill'),COIN=sym('coin');let N=0;[BILL,COIN].forEach(i=>i&&(i.onload=()=>{if(++N===2)draw()}));
-let seed=1;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
-function bill(x,y,s,r,sq){c.save();c.translate(x,y);c.rotate(r);c.scale(1,sq||1);c.drawImage(BILL,-32*s,-22*s,64*s,44*s);c.restore()}
-function coin(x,y,s,flat){c.save();c.translate(x,y);if(flat){c.scale(1,.45)}c.drawImage(COIN,-14*s,-14*s,28*s,28*s);c.restore()}
-function bundle(x,y,s){for(let i=0;i<5;i++)bill(x,y-i*5*s,s,0,.55);c.fillStyle='#ffd23d';c.fillRect(x-6*s,y-26*s,12*s,26*s);c.strokeStyle='#0a0a0a';c.lineWidth=1.5;c.strokeRect(x-6*s,y-26*s,12*s,26*s)}
-function tower(x,y,s,n){for(let i=0;i<n;i++)coin(x+(i%2?1:-1)*s,y-i*5.5*s,s,1)}
-function mound(cx,base,w,h,s,k){for(let i=0;i<k;i++){const u=rnd()*2-1,v=rnd();const x=cx+u*w,y=base-Math.max(0,1-u*u)*h*v-4;if(rnd()<.78)bill(x,y,s*(.85+rnd()*.35),(rnd()-.5)*1.2,.7);else coin(x,y,s*(1+rnd()*.3),rnd()<.6)}}
-function draw(){const DPR=Math.min(2,devicePixelRatio||1),W=sec.clientWidth,H=sec.clientHeight;cv.width=W*DPR;cv.height=H*DPR;c.setTransform(DPR,0,0,DPR,0,0);c.clearRect(0,0,W,H);seed=7;
- const inn=sec.querySelector('.dr-in').getBoundingClientRect(),sr=sec.getBoundingClientRect(),L=inn.left-sr.left,R=inn.right-sr.left,T=inn.top-sr.top,B=inn.bottom-sr.top,s=W<700?.7:1.05;
- // fill the whole section edge to edge with layers of cash
- const step=26*s,cnt=Math.ceil(W/step)*Math.ceil(H/step)*2.6;for(let i=0;i<cnt;i++){const x=rnd()*(W+60)-30,y=rnd()*(H+40)-20;bill(x,y,s*(.9+rnd()*.4),(rnd()-.5)*3,.75+rnd()*.25)}
- // soft shadow around the card so it lifts off the cash
- c.save();c.shadowColor='rgba(0,0,0,.55)';c.shadowBlur=40;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.roundRect?c.roundRect(L-6,T-6,R-L+12,B-T+12,30):c.rect(L-6,T-6,R-L+12,B-T+12);c.fill();c.restore()}
-addEventListener('resize',()=>{clearTimeout(window.__cpT);window.__cpT=setTimeout(draw,200)});if(window.ResizeObserver)new ResizeObserver(()=>{clearTimeout(window.__cpT);window.__cpT=setTimeout(draw,200)}).observe(sec);setTimeout(()=>N===2&&draw(),1500)}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>
+
 <style id="snapMobCompact">@media(max-width:700px){
 #dayRecap.sn3{padding:26px 12px 26px!important}
 #dayRecap.sn3 .dr-in{padding:52px 12px 14px!important;gap:6px 12px!important;grid-template-columns:70px 1fr!important}
@@ -4818,6 +4801,6 @@ window.__setLN=k=>{for(let i=1;i<=10;i++)document.body.classList.remove('lv'+i);
 sz();addEventListener('resize',sz);if(window.ResizeObserver)new ResizeObserver(sz).observe(sec);
 (function loop(ms){requestAnimationFrame(loop);const dt=Math.min(.05,last?(ms-last)/1000:0);last=ms;const r=sec.getBoundingClientRect();if(document.hidden||r.bottom<0)return;T+=dt;try{FR()}catch(e){console.error(e)}})(0);
 })();</script>
-<script>window.__setLN&&window.__setLN(5)</script></body>
+<script>window.__setLN&&window.__setLN(5)</script><style id="offPause">.zzOff,.zzOff *{animation-play-state:paused!important}</style><script id="offPauseJS">(function(){function go(){if(!window.IntersectionObserver)return;var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('zzOff',!e.isIntersecting)})},{rootMargin:'200px 0px'});document.querySelectorAll('body > section, body > div > section, main > section, footer').forEach(function(s){io.observe(s)})}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script></body>
 </html>
 </body></html>
